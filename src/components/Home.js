@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import '../App.css'
-import { increment, decrement } from '../actions'
+import { increment, decrement } from '../actions/counterAction'
 import { connect } from 'react-redux'
 
 class Home extends Component{
