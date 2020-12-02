@@ -1,37 +1,50 @@
+[![Build Status](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend.svg?token=x19GyWiP5q66qYkSESPU&branch=develop)](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend)
+
 # c1-barefoot-frontend
+
 ## Setting react project from scratch
-* First of all you need to clone project reposotory by running 
-    ```git clone git clone https://github.com/atlp-rwanda/c2-barefoot-frontend.git```
+
+- First of all you need to clone project reposotory by running
+  `git clone git clone https://github.com/atlp-rwanda/c2-barefoot-frontend.git`
+
 ## Initializing node module packages
-  * run ```npm init --yes``` here package.json will be created imadiately
+
+- run `npm init --yes` here package.json will be created imadiately
 
 ## Installation dependencies
+
     Here we need to install all packgages that will be used to set up our project
-* ```npm install react```
-* ```npm i react-dom```
-* ```npm i react-roouter-dom```
+
+- `npm install react`
+- `npm i react-dom`
+- `npm i react-roouter-dom`
 
 ## Transipiling babel
-    We need compile our javascript file from ECMA2015 (ES6) to ES5 
-* ```@babel/core```
-* ```@babel/preset-env```
-* ```@babel/preset-react```
-* ```babel-loader```
-* ```babel/core```
+
+    We need compile our javascript file from ECMA2015 (ES6) to ES5
+
+- `@babel/core`
+- `@babel/preset-env`
+- `@babel/preset-react`
+- `babel-loader`
+- `babel/core`
 
 ## Installing plugins that will allow react to unstander html files
-* ```npm i html-webpack-plugin```
-* ```npm i htm-loader```
+
+- `npm i html-webpack-plugin`
+- `npm i htm-loader`
 
 ## In our project we need to style the pages we need to install this dependencies
-* ```npm i css-loader```
-* ```npm i style-loader```
 
-After that  we will need to run our project in devlopment 
+- `npm i css-loader`
+- `npm i style-loader`
+
+After that we will need to run our project in devlopment
 we have to make sure that webpack dependencies are installed like:
-* ```npm i webpack-cli``` Note: here you have to pay more attation on version of webpack-cli I am using version: ```3.3.12``` other version is not working
-* ```npm i webpack``` 
-* ```npm i webpack-dev-server``` This will helps us to run server automatically after save when you change any file content 
+
+- `npm i webpack-cli` Note: here you have to pay more attation on version of webpack-cli I am using version: `3.3.12` other version is not working
+- `npm i webpack`
+- `npm i webpack-dev-server` This will helps us to run server automatically after save when you change any file content
 
 ## After that we need to tell webpack what to do
 
@@ -57,7 +70,7 @@ module.exports = {
         headers: { "Access-Control-Allow-Origin": "*"},
         https: false
     },
-    
+
     plugins: [
         new HtmlWebpackPlugin({
         template: "public/index.html"
@@ -87,13 +100,15 @@ module.exports = {
 };
 ```
 
-### Here  we go now we can start our project by running ```npm start```
-you will get error that says ```no start script available``` now you can guess what do right now
+### Here we go now we can start our project by running `npm start`
 
-let jump into  package.json and configure ``start script``
+you will get error that says `no start script available` now you can guess what do right now
+
+let jump into package.json and configure `start script`
 
 ```"scripts": {
     "start": "webpack-dev-server --config webpack.config.js --port 3000 --open"
   }
-  ```
-so far you can run ```npm start```
+```
+
+so far you can run `npm start`
