@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install -g serve; serve -s build",
-    "heroku-postbuild":"npm run build",
-    "app":"webpack-dev-server --config webpack.config.js --port 3000 --open",
+    "start": "webpack-dev-server --config webpack.config.js --port 3000 --open",
     "test": "jest --coverage",
     "coverage": "npm run test && jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
@@ -53,8 +51,6 @@
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(gif|ttf|eof|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "setupFilesAfterEnv": [
-      "<rootDir>src/setupTests.js"
-    ]
+    "setupFilesAfterEnv": ["<rootDir>src/setupTests.js"]
   }
 }
