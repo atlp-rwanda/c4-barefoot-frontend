@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend.svg?token=x19GyWiP5q66qYkSESPU&branch=develop)](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend)
-
 # c1-barefoot-frontend
+
+[![Build Status](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend.svg?branch=develop)](https://travis-ci.com/atlp-rwanda/c2-barefoot-frontend)
 
 ## Setting react project from scratch
 
