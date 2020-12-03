@@ -30,4 +30,3 @@ Please check the options that are relevant.
 - [ ] Any dependent changes have been merged and published in downstream modules
 
 # Screenshots (if applicable)
-<img width="1435" alt="Screen Shot 2020-12-02 at 09 58 22" src="https://user-images.githubusercontent.com/52486783/100844763-f541f500-3484-11eb-89a5-ce1beb9a6eac.png">
