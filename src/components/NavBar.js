@@ -13,7 +13,7 @@ class NavBar extends Component{
             <div>
              <div className="navbar">
              <div className="logo">
-             <h2>Barefoot Normad</h2>
+             <h2>Barefoot Nomad</h2>
              </div>
              <div className="navlinks">
                 <ul>
