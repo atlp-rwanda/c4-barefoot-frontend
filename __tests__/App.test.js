@@ -4,6 +4,8 @@ import Navbar from '../src/components/NavBar';
 import Routers from '../src/routes/Routers';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import store from '../src/redux/store';
 
 describe('<App />', () =>{
     let wrapper = shallow(<App />);
@@ -20,7 +22,8 @@ describe('<App />', () =>{
     });
 
     it('matches snapshot', () => {
-        let tree = renderer.create(<App/>).toJSON();
+        let apptest = (<Provider store={store}><App/></Provider>);
+        let tree = renderer.create(apptest).toJSON();
         expect(tree).toMatchSnapshot();
     });
     

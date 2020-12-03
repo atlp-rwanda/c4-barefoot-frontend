@@ -12,7 +12,7 @@ exports[`<App /> matches snapshot 1`] = `
         className="logo"
       >
         <h2>
-          Barefoot Normad
+          Barefoot Nomad
         </h2>
       </div>
       <div
@@ -52,9 +52,10 @@ exports[`<App /> matches snapshot 1`] = `
     className="home"
   >
     <button
-      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+      className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
       disabled={false}
       onBlur={[Function]}
+      onClick={[Function]}
       onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
@@ -71,14 +72,37 @@ exports[`<App /> matches snapshot 1`] = `
       <span
         className="MuiButton-label"
       >
-        Greating
+        -
       </span>
     </button>
-    <br />
-    Hi, There.
-    <p>
-      Guys enjoy your coding.
-    </p>
+    <div>
+      Counter: 
+      0
+    </div>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        +
+      </span>
+    </button>
   </div>
 </div>
 `;
