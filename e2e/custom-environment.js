@@ -1,6 +1,7 @@
 
 var NodeEnvironemnt = require('jest-environment-node')
 var puppeteer = require('puppeteer')
+let port= 3000;
 class CustomEnvironment extends NodeEnvironemnt {
     constructor(config, context){
         super(config, context)
@@ -12,7 +13,7 @@ class CustomEnvironment extends NodeEnvironemnt {
             slowMo: 100
         })
         this.global.page = await this.global.browser.newPage()
-        await this.global.page.goto('http://localhost:3000/', {waitUntil: 'load'})
+        await this.global.page.goto('http://localhost:'+port+'/', {waitUntil: 'load'})
     }
     async teardown(){
         await this.global.browser.close()
