@@ -1,32 +1,29 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'cheap-module-source-map',
+    mode: 'production',
+    devtool: 'source-map',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, "build"),
         publicPath: '/',
-        chunkFilename:'[name].bundle.js',
+        // chunkFilename:'bundle.js',
         filename: 'bundle.js'
     },
-    devServer: {
-        stats:'minimal',
-        overlay: true,
-        historyApiFallback: true,
-        disableHostCheck: true,
-        headers: { "Access-Control-Allow-Origin": "*"},
-        https: false
+    performance : {
+    hints : false
     },
-    
     plugins: [
         new HtmlWebpackPlugin({
         template: "public/index.html"
-    })
+    }),
+    new CleanWebpackPlugin({build: 'build'})
     ],
+   
     module : {
         rules: [
             {
@@ -47,5 +44,6 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    optimization: {}
 };
