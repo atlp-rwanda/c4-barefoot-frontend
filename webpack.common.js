@@ -4,24 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 process.env.NODE_ENV = 'development';
 
 module.exports = {
-    mode: 'development',
-    devtool: 'cheap-module-source-map',
     entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, "build"),
-        publicPath: '/',
-        chunkFilename:'[name].bundle.js',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        stats:'minimal',
-        overlay: true,
-        historyApiFallback: true,
-        disableHostCheck: true,
-        headers: { "Access-Control-Allow-Origin": "*"},
-        https: false
-    },
-    
+    // ------------------------- //
     plugins: [
         new HtmlWebpackPlugin({
         template: "public/index.html"
@@ -47,5 +31,6 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    optimization: {}
 };

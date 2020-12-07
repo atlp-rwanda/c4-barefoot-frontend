@@ -1,49 +1,20 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-process.env.NODE_ENV = 'production';
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+process.env.NODE_ENV = 'production';
 
-module.exports = {
+module.exports = merge( common, {
     mode: 'production',
-    devtool: 'source-map',
     entry: './src/index.js',
     output: {
+        filename: 'bundle.[contentHash].js',
         path: path.resolve(__dirname, "build"),
-        publicPath: '/',
-        // chunkFilename:'bundle.js',
-        filename: 'bundle.js'
+        publicPath: '/'
     },
     performance : {
     hints : false
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-        template: "public/index.html"
-    }),
-    new CleanWebpackPlugin({build: 'build'})
-    ],
-   
-    module : {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: ["babel-loader"]
-            },
-            {
-            test: /(\.css)$/,
-            use: ["style-loader", "css-loader"]
-            },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                    loader: "html-loader"
-                }
-                ]
-            }
-        ]
-    },
-    optimization: {}
-};
+    
+});
