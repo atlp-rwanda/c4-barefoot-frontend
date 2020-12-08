@@ -8,9 +8,10 @@ process.env.NODE_ENV = 'production';
 
 module.exports = merge( common, {
     mode: 'production',
+    context: __dirname,
     entry: './src/index.js',
     output: {
-        filename: 'bundle.[contentHash].js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, "build"),
         publicPath: '/'
     },
@@ -35,9 +36,9 @@ module.exports = merge( common, {
     minimize: true,
     },
      plugins: [
-        new HtmlWebpackPlugin({template: "public/index.html"}),
-        new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
-        new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
+        // new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
+        // new webpack.optimize.ModuleConcatenationPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin()
     ],
 });

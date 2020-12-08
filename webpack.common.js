@@ -23,7 +23,11 @@ module.exports = {
                     loader: "html-loader"
                 }
                 ]
-            }
+            },
+            {
+            test: /\.(png|j?g|svg|gif)?$/,
+            use: 'file-loader'
+         }
         ]
     }
 };
