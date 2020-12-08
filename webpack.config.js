@@ -5,6 +5,34 @@ process.env.NODE_ENV = 'development';
 
 module.exports = {
     entry: './src/index.js',
+    mode: 'production',
+    context: __dirname,
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, "build"),
+        publicPath: '/'
+    },
+    performance : {
+    hints : false
+    },
+    optimization: {
+    moduleIds: 'deterministic',
+    chunkIds: 'deterministic',
+    mangleExports: 'deterministic',
+    nodeEnv: 'production',
+    flagIncludedChunks: true,
+    concatenateModules: true,
+    splitChunks: {
+        hidePathInfo: true,
+        minSize: 30000,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+    },
+    emitOnErrors: false,
+    checkWasmTypes: true,
+    minimize: true,
+    },
     module : {
         rules: [
             {
@@ -29,5 +57,8 @@ module.exports = {
             use: 'file-loader'
          }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
+    ],
 };
