@@ -5,12 +5,6 @@ process.env.NODE_ENV = 'development';
 
 module.exports = {
     entry: './src/index.js',
-    // ------------------------- //
-    plugins: [
-        new HtmlWebpackPlugin({
-        template: "public/index.html"
-    })
-    ],
     module : {
         rules: [
             {
@@ -31,6 +25,5 @@ module.exports = {
                 ]
             }
         ]
-    },
-    optimization: {}
+    }
 };
