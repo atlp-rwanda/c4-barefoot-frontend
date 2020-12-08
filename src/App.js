@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import Navbar from './components/NavBar'
+import NavBar from './components/NavBar'
 import Routers from './routes/Routers'
 import {BrowserRouter as Router} from 'react-router-dom'
-import './App.css'
 
 class App extends Component{
      render() {
         return (
             <Router>
-            <div className="container">
-               <Navbar />
-                <Routers /> 
-            </div>
+                <div className="App">
+                    <NavBar/>
+                    <Routers/>
+                </div>
             </Router>
         )
     }
