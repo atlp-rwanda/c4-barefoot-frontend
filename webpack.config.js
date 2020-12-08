@@ -2,12 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 process.env.NODE_ENV = 'development';
-
-module.exports = {
+module.exports = (env) => ({
     entry: './src/index.js',
-    mode: 'production',
+    mode: env.environment,
     context: __dirname,
-    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, "build"),
@@ -61,4 +59,4 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
     ],
-};
+});

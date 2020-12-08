@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --env.environment=development --config webpack.config.js --port 3000 --open",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --env.environment=production --config webpack.config.js",
     "start": "npm run build && node ./server/index.js",
     "test": "jest --coverage",
     "test:e2e": "jest -c e2e/jest.config.js",
