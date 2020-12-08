@@ -2,30 +2,35 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 process.env.NODE_ENV = 'development';
-
-module.exports = {
-    mode: 'development',
-    devtool: 'cheap-module-source-map',
+module.exports = (env) => ({
     entry: './src/index.js',
+    mode: env.environment,
+    context: __dirname,
     output: {
+        filename: 'bundle.js',
         path: path.resolve(__dirname, "build"),
-        publicPath: '/',
-        filename: 'bundle.js'
+        publicPath: '/'
     },
-    devServer: {
-        stats:'minimal',
-        overlay: true,
-        historyApiFallback: true,
-        disableHostCheck: true,
-        headers: { "Access-Control-Allow-Origin": "*"},
-        https: false
+    performance : {
+    hints : false
     },
-    
-    plugins: [
-        new HtmlWebpackPlugin({
-        template: "public/index.html"
-    })
-    ],
+    optimization: {
+    moduleIds: 'deterministic',
+    chunkIds: 'deterministic',
+    mangleExports: 'deterministic',
+    nodeEnv: 'production',
+    flagIncludedChunks: true,
+    concatenateModules: true,
+    splitChunks: {
+        hidePathInfo: true,
+        minSize: 30000,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+    },
+    emitOnErrors: false,
+    checkWasmTypes: true,
+    minimize: true,
+    },
     module : {
         rules: [
             {
@@ -44,7 +49,14 @@ module.exports = {
                     loader: "html-loader"
                 }
                 ]
-            }
+            },
+            {
+            test: /\.(png|j?g|svg|gif)?$/,
+            use: 'file-loader'
+         }
         ]
-    }
-};
+    },
+    plugins: [
+        new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
+    ],
+});
