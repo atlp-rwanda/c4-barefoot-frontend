@@ -5,6 +5,9 @@ const theme = createMuiTheme({
     primary: {
       main: '#257AAA',
     }
+  },
+  typography: {
+    fontFamily: "'Poppins', sans-serif"
   }
 });
 

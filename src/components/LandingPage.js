@@ -1,12 +1,10 @@
 import React from 'react'
 import Card from './PlacesToVisit'
 import Grid from '@material-ui/core/Grid'
-import {Box, makeStyles, Typography} from '@material-ui/core'
+import {Box, makeStyles, Typography, Container} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  root: { 
-    flexGrow: 1,
-  },
+  
   paper: {
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
@@ -22,7 +20,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     color: "#fff",
-    fontSize: "4rem"
+    fontSize: "4rem",
+  },
+  cardContainer: {
+    paddingTop: theme.spacing(3)
+  },
+  cardTitle: {
+    fontWeight: 600,
+    paddingBottom: theme.spacing(3)
   }
 }));
 
@@ -31,22 +36,25 @@ function Landing (){
   const classes = useStyles();
 
   return(
-    <div className={ classes.root }>
+    <React.Fragment>
       <Box className={classes.image}>
-        <Box> <Typography>Let's travel together</Typography> </Box>
+        <Box> <Typography variant='h4'>Let's travel together</Typography> </Box>
       </Box>
-      <Grid container>
-        <Grid item xs={4} className={classes.paper}>
-          <Card/>
+      <Container maxWidth='lg' className={classes.cardContainer}>
+        <Typography variant='h6' className={classes.cardTitle}>Recommended places to visit</Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+            <Card/>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+            <Card/>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+            <Card/>
+          </Grid>
         </Grid>
-        <Grid item xs={4} className={classes.paper}>
-          <Card/>
-        </Grid>
-        <Grid item xs={4} className={classes.paper}>
-          <Card/>
-        </Grid>
-      </Grid>
-    </div>
+      </Container>
+    </React.Fragment>
 
   )
   
