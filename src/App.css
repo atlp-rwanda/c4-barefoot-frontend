@@ -54,11 +54,15 @@
     align-self: center;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     justify-content: space-around;
     margin-top: 150px;
     width: 300px;
+}
+.forgot{
+  margin-top: 30px;
 }
 form {
   width: 50vw;
@@ -70,7 +74,7 @@ form {
   justify-content: center;
   height: 19vw;
   float: center;
-  margin-left: 23vw;
+  /* margin-left: 23vw; */
 }
 form input {
   width: 90%;
