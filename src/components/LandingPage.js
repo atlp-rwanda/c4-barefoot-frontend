@@ -1,7 +1,9 @@
 import React from 'react'
-import Card from './PlacesToVisit'
+import LocationCard from './LocationCard'
+import AccommodationCard from './AccommodationCard'
 import Grid from '@material-ui/core/Grid'
 import {Box, makeStyles, Typography, Container} from '@material-ui/core'
+import {locations, accommodations} from '../dummyData.json'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -43,15 +45,24 @@ function Landing (){
       <Container maxWidth='lg' className={classes.cardContainer}>
         <Typography variant='h6' className={classes.cardTitle}>Recommended places to visit</Typography>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
-            <Card/>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
-            <Card/>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4} className={classes.paper}>
-            <Card/>
-          </Grid>
+          {locations.map((location) => (
+             <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+             <LocationCard location={location}/>
+           </Grid> 
+          )
+          )}
+        </Grid>
+      </Container>
+
+      <Container maxWidth='lg' className={classes.cardContainer}>
+        <Typography variant='h6' className={classes.cardTitle}>Checkout top rated accommodations</Typography>
+        <Grid container spacing={3}>
+          {accommodations.map((accommodation)=> (
+            <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+              <AccommodationCard accommodation={accommodation}/>
+            </Grid>
+          ))}
+          
         </Grid>
       </Container>
     </React.Fragment>

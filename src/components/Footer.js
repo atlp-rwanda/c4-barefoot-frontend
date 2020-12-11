@@ -3,16 +3,17 @@ import { AppBar, Toolbar, Typography, Button, makeStyles} from '@material-ui/cor
 import {PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
+    offset: theme.mixins.toolbar,
     navDisplay: {
         display: 'flex',
         justifyContent: 'space-between'
     }
   }))
 
-function Header (){
+function Footer (){
     const classes = useStyles()
-    const barefootLogo = <Typography href='/' variant='h6'component='h1'>
-                Barefoot Nomad
+    const barefootLogo = <Typography href='/' variant='body1'component='p'>
+               &#169; 2020, BareFoot Nomad, All rights reserved.
             </Typography>
 
     const displayDesktop = () => {
@@ -29,9 +30,11 @@ function Header (){
 
      return(
          <React.Fragment>
+                        
+            <div className={classes.offset} />
             <AppBar position='static'>{displayDesktop()}</AppBar>
          </React.Fragment>
      )
  
 }
-export default Header;
+export default Footer;

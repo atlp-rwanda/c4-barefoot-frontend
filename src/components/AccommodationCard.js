@@ -7,19 +7,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Place } from '@material-ui/icons'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: '#EAF4FB'
-
+    backgroundColor: theme.palette.primary
   },
   media: {
-    height: 140,
+    height: 140
   },
-});
+}));
 
-export default function PlacesToVisit() {
+function Accommodations(props) {
   const classes = useStyles();
 
   return (
@@ -27,23 +27,25 @@ export default function PlacesToVisit() {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://freewalkingtourscapetown.co.za/wp-content/uploads/2018/05/cropped-cape-town-header-pic-1.png"
-          title="Capetown"
+          image={props.accommodation.image}
+          title={props.accommodation.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Capetown
+           {props.accommodation.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          This is one of best cities in Africa and you can also find good accomodations.
+            {props.accommodation.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Learn More
+        <Button size="small" color="primary" startIcon={<Place />}>
+          {props.accommodation.location}
         </Button>
       </CardActions>
     </Card>
   );
 }
+
+export default Accommodations
