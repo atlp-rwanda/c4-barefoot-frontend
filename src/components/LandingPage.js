@@ -62,7 +62,7 @@ function Landing (){
               <AccommodationCard accommodation={accommodation}/>
             </Grid>
           ))}
-          
+           
         </Grid>
       </Container>
     </React.Fragment>

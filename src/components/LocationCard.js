@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,28 +20,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Locations(props) {
+  const { loading = true } = props;
   const classes = useStyles();
-
   return (
+    
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
+        
+       { loading ? (
+         <Skeleton variant='rect' animation="wave" className={classes.media} />
+       )
+        :(<CardMedia
           className={classes.media}
           image={props.location.image}
-          title={props.location.city}
-        />
+          title={props.location.city}/>)}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           {props.location.city}
+           {loading ? (<Skeleton animation="wave"  width="50%"/>) : (props.location.city)}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.location.description}
+            { loading ? (
+            <React.Fragment>
+              <Skeleton animation="wave"/>
+              <Skeleton animation="wave" width='80%' />
+            </React.Fragment>) : 
+            (props.location.description)}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Learn More
+          { loading ? <Skeleton animation='wave' width='100%'/> :"Learn More"}
         </Button>
       </CardActions>
     </Card>
