@@ -9,7 +9,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-between'
     },
     stickToBottom: {
-        bottom: 0
+        position: "fixed",
+        bottom: 0,
+
     }
   }))
 
@@ -34,7 +36,6 @@ function Footer (){
      return(
          <React.Fragment>
                         
-            <div className={classes.offset} />
             <AppBar className={classes.stickToBottom} position='static'>{displayDesktop()}</AppBar>
          </React.Fragment>
      )
