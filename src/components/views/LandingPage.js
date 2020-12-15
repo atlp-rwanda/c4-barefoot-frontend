@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import LocationCard from './LocationCard'
-import AccommodationCard from './AccommodationCard'
+import LocationCard from '../LocationCard'
+import AccommodationCard from '../AccommodationCard'
 import Grid from '@material-ui/core/Grid'
 import {Box, makeStyles, Typography, Container} from '@material-ui/core'
-import {locations, accommodations} from '../dummyData.json'
+import {locations, accommodations} from '../../dummyData.json'
 import { Skeleton } from '@material-ui/lab'
 
 
