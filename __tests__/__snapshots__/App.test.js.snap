@@ -2,107 +2,816 @@
 
 exports[`<App /> matches snapshot 1`] = `
 <div
-  className="container"
+  className="App"
 >
-  <div>
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+  >
     <div
-      className="navbar"
+      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
       <div
-        className="logo"
+        className="MuiContainer-root makeStyles-navDisplay-1 MuiContainer-maxWidthLg"
       >
-        <h2>
-          Barefoot Nomad
-        </h2>
+        <h1
+          className="MuiTypography-root MuiTypography-h6"
+          href="/"
+        >
+          <span
+            className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+            style={
+              Object {
+                "height": undefined,
+                "width": "50%",
+              }
+            }
+          />
+        </h1>
+      </div>
+    </div>
+  </header>
+  <span
+    className="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"
+    style={
+      Object {
+        "height": "500px",
+        "width": undefined,
+      }
+    }
+  />
+  <div
+    className="MuiContainer-root makeStyles-cardContainer-4 MuiContainer-maxWidthLg"
+  >
+    <h6
+      className="MuiTypography-root makeStyles-cardTitle-5 MuiTypography-h6"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": "25%",
+          }
+        }
+      />
+    </h6>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+    >
+      <div
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-6 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-7 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
+            >
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
       </div>
       <div
-        className="navlinks"
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
       >
-        <ul>
-          <li>
-            <a
-              href="/"
-              onClick={[Function]}
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-6 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-7 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
             >
-              Home
-            </a>
-          </li>
-          <li>
-             
-            <a
-              href="/login"
-              onClick={[Function]}
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
             >
-              Login
-            </a>
-          </li>
-          <li>
-            <a
-              href="/signup"
-              onClick={[Function]}
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-6 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-7 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
             >
-              Signup
-            </a>
-          </li>
-        </ul>
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div
-    className="home"
+    className="MuiContainer-root makeStyles-cardContainer-4 MuiContainer-maxWidthLg"
   >
-    <button
-      className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragLeave={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-      tabIndex={0}
-      type="button"
+    <h6
+      className="MuiTypography-root makeStyles-cardTitle-5 MuiTypography-h6"
     >
       <span
-        className="MuiButton-label"
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": "25%",
+          }
+        }
+      />
+    </h6>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+    >
+      <div
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
       >
-        -
-      </span>
-    </button>
-    <div>
-      Counter: 
-      0
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-8 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-9 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
+            >
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20%",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-8 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-9 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
+            >
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20%",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-paper-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          className="MuiPaper-root MuiCard-root makeStyles-root-8 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <button
+            className="MuiButtonBase-root MuiCardActionArea-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-rect makeStyles-media-9 MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            />
+            <div
+              className="MuiCardContent-root"
+            >
+              <h2
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "50%",
+                    }
+                  }
+                />
+              </h2>
+              <p
+                className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    }
+                  }
+                />
+                <span
+                  className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "width": "80%",
+                    }
+                  }
+                />
+              </p>
+            </div>
+            <span
+              className="MuiCardActionArea-focusHighlight"
+            />
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            className="MuiCardActions-root MuiCardActions-spacing"
+          >
+            <span
+              className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20%",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    <button
-      className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragLeave={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-      tabIndex={0}
-      type="button"
-    >
-      <span
-        className="MuiButton-label"
-      >
-        +
-      </span>
-    </button>
   </div>
+  <div
+    className="makeStyles-offset-10"
+  />
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-12 MuiPaper-elevation4"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-regular makeStyles-navDisplay-11 MuiToolbar-gutters"
+    >
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        href="/"
+      >
+        © 2020, BareFoot Nomad, All rights reserved.
+      </p>
+      <nav>
+        <a
+          aria-disabled={false}
+          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+          href="/login"
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+        >
+          <span
+            className="MuiButton-label"
+          >
+            <span
+              className="MuiButton-startIcon MuiButton-iconSizeMedium"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                />
+              </svg>
+            </span>
+            Login
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </a>
+        <a
+          aria-disabled={false}
+          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+          href="/signup"
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+        >
+          <span
+            className="MuiButton-label"
+          >
+            <span
+              className="MuiButton-startIcon MuiButton-iconSizeMedium"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 8c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm-6 4c.22-.72 3.31-2 6-2 2.7 0 5.8 1.29 6 2H9zm-3-3v-3h3v-2H6V7H4v3H1v2h3v3z"
+                />
+              </svg>
+            </span>
+            Signup
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </a>
+      </nav>
+    </div>
+  </header>
 </div>
 `;
