@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -22,7 +22,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Accommodations(props) {
-  const { loading = true } = props;
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(()=> {
+      setLoading(false)
+    }, 3000)
+  })
   const classes = useStyles();
 
   return (
@@ -52,10 +58,9 @@ function Accommodations(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" startIcon={<Place />}>
-          {loading ? (<Skeleton animation='wave' width='100%' />) 
-          : (props.accommodation.location)}
-        </Button>
+      {loading ? (<Skeleton animation='wave' width='20%' height='20px' />) :
+        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.location} </Button>
+      }
       </CardActions>
     </Card>
   );

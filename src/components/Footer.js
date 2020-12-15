@@ -7,6 +7,9 @@ const useStyles = makeStyles(theme => ({
     navDisplay: {
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    stickToBottom: {
+        bottom: 0
     }
   }))
 
@@ -32,7 +35,7 @@ function Footer (){
          <React.Fragment>
                         
             <div className={classes.offset} />
-            <AppBar position='static'>{displayDesktop()}</AppBar>
+            <AppBar className={classes.stickToBottom} position='static'>{displayDesktop()}</AppBar>
          </React.Fragment>
      )
  

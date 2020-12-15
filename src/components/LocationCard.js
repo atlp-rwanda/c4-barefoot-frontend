@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,7 +20,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Locations(props) {
-  const { loading = true } = props;
+  const [loading, setLoading] = useState(true)
+  
+  useEffect(() => {
+    setTimeout(()=> {
+      setLoading(false)
+    }, 3000)
+  })
+  
   const classes = useStyles();
   return (
     

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import LocationCard from './LocationCard'
 import AccommodationCard from './AccommodationCard'
 import Grid from '@material-ui/core/Grid'
 import {Box, makeStyles, Typography, Container} from '@material-ui/core'
 import {locations, accommodations} from '../dummyData.json'
+import { Skeleton } from '@material-ui/lab'
+
 
 const useStyles = makeStyles((theme) => ({
   
@@ -35,15 +37,25 @@ const useStyles = makeStyles((theme) => ({
 
 function Landing (){
 
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(()=> {
+      setLoading(false)
+    }, 3000)
+  })
+
   const classes = useStyles();
 
   return(
     <React.Fragment>
-      <Box className={classes.image}>
+      {loading ? <Skeleton variant='rect' height='500px'/> :(<Box className={classes.image}>
         <Box> <Typography variant='h4'>Let's travel together</Typography> </Box>
-      </Box>
+      </Box>)}
       <Container maxWidth='lg' className={classes.cardContainer}>
-        <Typography variant='h6' className={classes.cardTitle}>Recommended places to visit</Typography>
+        <Typography variant='h6' className={classes.cardTitle}>{
+        loading ? <Skeleton variant='text' width='25%' /> 
+        :"Recommended places to visit"}</Typography>
         <Grid container spacing={3}>
           {locations.map((location) => (
              <Grid item xs={12} sm={6} md={4} className={classes.paper}>
@@ -55,7 +67,9 @@ function Landing (){
       </Container>
 
       <Container maxWidth='lg' className={classes.cardContainer}>
-        <Typography variant='h6' className={classes.cardTitle}>Checkout top rated accommodations</Typography>
+        <Typography variant='h6' className={classes.cardTitle}>{
+        loading ? <Skeleton variant='text' width='25%' />
+        :"Checkout top rated accommodations"}</Typography>
         <Grid container spacing={3}>
           {accommodations.map((accommodation)=> (
             <Grid item xs={12} sm={6} md={4} className={classes.paper}>
