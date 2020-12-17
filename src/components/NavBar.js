@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import { AppBar, Toolbar, Typography, Button, makeStyles, List, Container, Hidden} from '@material-ui/core'
+import React from 'react'
+import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography} from '@material-ui/core'
 import {PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
 import SideDrawer from './SideDrawer'
-import { Skeleton } from '@material-ui/lab'
 
 const navLinks = [
     {title: 'Login', path: '/login'},
@@ -14,22 +13,17 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    logo: {
+        textDecorationLine: 'none',
+        color: 'inherit'
     }
   }))
 
 function Header (){
     const classes = useStyles()
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        setTimeout(()=> {
-          setLoading(false)
-        }, 3000)
-      })
-
-    const barefootLogo = <Typography href='/' variant='h6'component='h1'>
-                 { loading ? (<Skeleton animation='wave' width='50%' />) : "Barefoot Nomad"}
-            </Typography>
+    const barefootLogo = <Typography href='/welcome' variant='h6'component='a' className={classes.logo}> Barefoot Nomad </Typography>
 
     const displayDesktop = () => {
     return (
