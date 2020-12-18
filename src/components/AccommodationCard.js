@@ -39,7 +39,7 @@ function Accommodations(props) {
         :
         (<CardMedia
           className={classes.media}
-          image={props.accommodation.image}
+          image={props.accommodation.photos}
           title={props.accommodation.title}
         />)}
         <CardContent>
@@ -59,7 +59,7 @@ function Accommodations(props) {
       </CardActionArea>
       <CardActions>
       {loading ? (<Skeleton animation='wave' width='20%' height='20px' />) :
-        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.location} </Button>
+        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.city} </Button>
       }
       </CardActions>
     </Card>

@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import LocationCard from '../LocationCard'
 import AccommodationCard from '../AccommodationCard'
 import Grid from '@material-ui/core/Grid'
 import {Box, makeStyles, Typography, Container} from '@material-ui/core'
-import {locations, accommodations} from '../../dummyData.json'
 import { Skeleton } from '@material-ui/lab'
-
+import { connect } from 'react-redux'
+import { getLocations } from '../../redux/actions/fetchLocationsAction'
+import { getAccommodations } from '../../redux/actions/fetchAccommodations'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -35,29 +36,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Landing (){
-
-  const [loading, setLoading] = useState(true)
+function Landing (props){
 
   useEffect(() => {
-    setTimeout(()=> {
-      setLoading(false)
-    }, 3000)
-  })
+    props.getLocations()
+    props.getAccommodations()
+  }, [])
 
   const classes = useStyles();
-
   return(
     <React.Fragment>
-      {loading ? <Skeleton variant='rect' height='500px'/> :(<Box className={classes.image}>
+      {props.locationsData.pending ? <Skeleton variant='rect' height='500px'/> :(<Box className={classes.image}>
         <Box> <Typography variant='h4'>Let's travel together</Typography> </Box>
       </Box>)}
       <Container maxWidth='lg' className={classes.cardContainer}>
         <Typography variant='h6' className={classes.cardTitle}>{
-        loading ? <Skeleton variant='text' width='25%' /> 
+        props.locationsData.pending ? <Skeleton variant='text' width='25%' /> 
         :"Recommended places to visit"}</Typography>
         <Grid container spacing={3}>
-          {locations.map((location) => (
+          {props.locationsData.locations.map((location) => (
              <Grid item xs={12} sm={6} md={4} className={classes.paper}>
              <LocationCard location={location}/>
            </Grid> 
@@ -68,10 +65,10 @@ function Landing (){
 
       <Container maxWidth='lg' className={classes.cardContainer}>
         <Typography variant='h6' className={classes.cardTitle}>{
-        loading ? <Skeleton variant='text' width='25%' />
+        props.accommodationsData.pending ? <Skeleton variant='text' width='25%' />
         :"Checkout top rated accommodations"}</Typography>
         <Grid container spacing={3}>
-          {accommodations.map((accommodation)=> (
+          {props.accommodationsData.accommodations.map((accommodation)=> (
             <Grid item xs={12} sm={6} md={4} className={classes.paper}>
               <AccommodationCard accommodation={accommodation}/>
             </Grid>
@@ -85,4 +82,9 @@ function Landing (){
   
 }
 
-export default Landing
+const mapStateToProps = state => ({
+  locationsData: state.fetchLocations,
+  accommodationsData: state.fetchAccommodations
+})
+
+export default connect(mapStateToProps, { getLocations, getAccommodations })(Landing)

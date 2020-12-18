@@ -39,11 +39,11 @@ function Locations(props) {
        )
         :(<CardMedia
           className={classes.media}
-          image={props.location.image}
-          title={props.location.city}/>)}
+          image={props.location.link}
+          title={props.location.LocationName}/>)}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           {loading ? (<Skeleton animation="wave"  width="50%"/>) : (props.location.city)}
+           {loading ? (<Skeleton animation="wave"  width="50%"/>) : (props.location.LocationName)}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             { loading ? (

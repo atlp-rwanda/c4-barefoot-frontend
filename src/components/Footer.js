@@ -35,7 +35,7 @@ function Footer (){
 
      return(
          <React.Fragment>
-                        
+            <div className={classes.offset}></div>            
             <AppBar className={classes.stickToBottom} position='static'>{displayDesktop()}</AppBar>
          </React.Fragment>
      )
