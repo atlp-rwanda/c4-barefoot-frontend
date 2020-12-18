@@ -12,6 +12,7 @@ export const loginReducer = (state = initialState, action) =>{
             if(action.error){
                 return {
                     ...state,
+                    loading: false,
                     success: false,
                     error: action.error
                 }

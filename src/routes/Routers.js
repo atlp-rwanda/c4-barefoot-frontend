@@ -4,6 +4,7 @@ import Login from '../components/views/Login'
 import Signup from '../components/views/Signup';
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
+import Profile from '../components/views/Profile';
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout } from '../components/layouts';
@@ -32,6 +33,12 @@ const Routes = () => {
           exact
           layout={DefaultLayout}
           path="/signup"
+        />
+         <RouteWithLayout
+          component={Profile}
+          exact
+          layout={DefaultLayout}
+          path="/profile"
         />
         <RouteWithLayout
           component={PageNotFound}

@@ -19,9 +19,19 @@ export const loginAction = (userCredentials) => dispatch => {
         })
     })
     .catch(err=>{
-        dispatch({
-            type: USER_LOGIN,
-            error: err.message
-        })
+        if(err.message === 'Network Error'){
+            console.log(err.message);
+            dispatch({
+                type: USER_LOGIN,
+                error: err.message
+            })
+        }
+        if(err.response){
+            console.log(err.response.data.error);
+            dispatch({
+                type: USER_LOGIN,
+                error: err.response.data.error
+            })
+        }
     });
 }

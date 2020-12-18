@@ -10,7 +10,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import React, { useEffect, useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { CircularProgress, FormGroup, Snackbar, Avatar } from '@material-ui/core';
+import { CircularProgress, FormGroup, Snackbar, Avatar, Slide } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 function Login(props) {
     const [loading , setLoading] = useState(false);
-    const [snackbar, setSnackbar] = useState({open: false, severity: 'error', message:'Something went wrong!'});
+    const [snackbar, setSnackbar]= useState(true);
     const classes = useStyles();
 
     useEffect(() =>{
@@ -118,25 +118,28 @@ function Login(props) {
         
     }, []);
 
-    const handleSubmition = async (values) => { 
+
+    const handleSubmition = (values) => { 
         props.loginAction(values);
     }
-    const handleCloseSnackbar = () =>{
-        let newState ={open: false} 
-        if(snackbar.severity === "error"){
-            newState.severity= 'error';
-        } else if(snackbar.severity === "success"){
-            newState.severity= 'success';
-        } else if(snackbar.severity === "warning"){
-            newState.severity= 'warning';
-        }else{
-            newState.severity= 'error';
-        }
 
-        return setSnackbar(newState);
+    const transitionSnackbar = (props)=>{
+        return <Slide {...props} direction ="right"/>;
+    }
+    
+    
+    const closeSnackbar = () =>{
+        return setSnackbar(false);
     }
     let load = false;
-    props.login.loading ? load = true : load = false;
+    if(props.login.loading){
+        load = true;
+    } else{
+        load = false;
+    } 
+    if(props.login.success){
+        props.history.push('/profile');
+    }
 
     return(
         <>
@@ -161,17 +164,17 @@ function Login(props) {
                 </Modal>
                 <div>
                     <Snackbar
-                    open={snackbar.open}
-                    onClose={handleCloseSnackbar}
-                    onExit={handleCloseSnackbar}
+                    open={props.login.error && true}
+                    onClose={closeSnackbar}
                     autoHideDuration={6000}
+                    TransitionComponent={transitionSnackbar}
                     >
                         <MuiAlert 
-                        severity={snackbar.severity} 
-                        onClose={handleCloseSnackbar}
+                        severity="error" 
+                        onClose={closeSnackbar}
                         variant="filled"
                         elevation={6}
-                        >{snackbar.message}</MuiAlert>
+                        >{props.login.error}</MuiAlert>
                     </Snackbar>
                 </div>
                 <div className={classes.paper}>
