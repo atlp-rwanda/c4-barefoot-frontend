@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const USER_LOGIN = 'LOGIN';
 export const LoGIN_LOADING = 'LOADING';
+export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR'
 
 export const loginAction = (userCredentials) => dispatch => {
     dispatch({
@@ -27,11 +28,17 @@ export const loginAction = (userCredentials) => dispatch => {
             })
         }
         if(err.response){
-            console.log(err.response.data.error);
             dispatch({
                 type: USER_LOGIN,
-                error: err.response.data.error
+                error: 'Email or password is invalid, try again!'
             })
         }
+
+    });
+}
+
+export const closeSnackbar = () => dispatch =>{
+    dispatch({
+        type: CLOSE_SNACKBAR
     });
 }

@@ -1,8 +1,9 @@
-import {USER_LOGIN, LoGIN_LOADING} from '../actions/loginAction';
+import {USER_LOGIN, LoGIN_LOADING, CLOSE_SNACKBAR} from '../actions/loginAction';
 
 const initialState ={
     loading: false,
     success: false,
+    snackBarMessage: false,
     error: '',
 }
 
@@ -14,6 +15,7 @@ export const loginReducer = (state = initialState, action) =>{
                     ...state,
                     loading: false,
                     success: false,
+                    snackBarMessage: true,
                     error: action.error
                 }
             }
@@ -25,7 +27,13 @@ export const loginReducer = (state = initialState, action) =>{
         case LoGIN_LOADING:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                snackBarMessage: false
+            }
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                snackBarMessage: false
             }
         default:
             return state;
