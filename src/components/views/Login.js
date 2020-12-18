@@ -15,7 +15,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import { connect } from 'react-redux';
-import { loginAction } from '../../redux/actions/loginAction';
+import { loginAction, closeSnackbar } from '../../redux/actions/loginAction';
 import PropTypes from 'prop-types';
 
 const initialValues ={
@@ -104,16 +104,12 @@ const useStyles = makeStyles((theme) => ({
   }));
 function Login(props) {
     const [loading , setLoading] = useState(false);
-    const [snackbar, setSnackbar]= useState(true);
     const classes = useStyles();
-
+    
     useEffect(() =>{
-        console.log('---------------props');
-        console.log(props);
         const timer = setTimeout(() =>{
             setLoading(true);
         }, 2000);
-        console.log(loading);
         return () => clearTimeout(timer);
         
     }, []);
@@ -127,16 +123,17 @@ function Login(props) {
         return <Slide {...props} direction ="right"/>;
     }
     
-    
-    const closeSnackbar = () =>{
-        return setSnackbar(false);
-    }
+    const closeSnackbarTimer = ()=>{
+        props.closeSnackbar();
+    };
+
     let load = false;
     if(props.login.loading){
         load = true;
     } else{
         load = false;
     } 
+
     if(props.login.success){
         props.history.push('/profile');
     }
@@ -164,14 +161,13 @@ function Login(props) {
                 </Modal>
                 <div>
                     <Snackbar
-                    open={props.login.error && true}
-                    onClose={closeSnackbar}
-                    autoHideDuration={6000}
+                    open={props.login.snackBarMessage}
+                    onClose={closeSnackbarTimer}
+                    autoHideDuration={5000}
                     TransitionComponent={transitionSnackbar}
                     >
                         <MuiAlert 
                         severity="error" 
-                        onClose={closeSnackbar}
                         variant="filled"
                         elevation={6}
                         >{props.login.error}</MuiAlert>
@@ -183,7 +179,7 @@ function Login(props) {
                     {(loading ? 
                     <>
                     <Typography component="h1" variant="h5">
-                        Sign in to Barefoot Nomad {props.login.success ? 'Y' : 'N'}
+                        Sign in to Barefoot Nomad
                     </Typography>
                     <Formik 
                     initialValues={initialValues} 
@@ -344,4 +340,4 @@ const mapStateToProps = state =>({
 });
 
 
-export default connect(mapStateToProps, { loginAction })(Login);
+export default connect(mapStateToProps, { loginAction, closeSnackbar })(Login);

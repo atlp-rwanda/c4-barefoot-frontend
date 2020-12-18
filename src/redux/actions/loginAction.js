@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const USER_LOGIN = 'LOGIN';
 export const LoGIN_LOADING = 'LOADING';
+export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR'
 
 export const loginAction = (userCredentials) => dispatch => {
     dispatch({
@@ -33,5 +34,20 @@ export const loginAction = (userCredentials) => dispatch => {
                 error: err.response.data.error
             })
         }
+
+        
+    // const snackbarDisappearTimer = setTimeout(() =>{
+    //     dispatch({
+    //         type: CLOSE_SNACKBAR
+    //     })
+    // },3000)
+    // clearTimeout(snackbarDisappearTimer);
+
+    });
+}
+
+export const closeSnackbar = () => dispatch =>{
+    dispatch({
+        type: CLOSE_SNACKBAR
     });
 }
