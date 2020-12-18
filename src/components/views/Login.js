@@ -74,10 +74,11 @@ const useStyles = makeStyles((theme) => ({
     },
     social_media_grid: {
       margin: 'auto',
+      marginTop: '0',
       width: '80%',
       justifyContent: 'center',
       alignItems: 'center',
-      textAlign: 'center',
+      textAlign: 'center'
     },
     secondpart: {
       margin: theme.spacing(5, 0, 5),
