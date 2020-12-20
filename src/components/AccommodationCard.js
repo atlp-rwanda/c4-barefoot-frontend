@@ -14,7 +14,10 @@ import { Skeleton } from '@material-ui/lab'
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: theme.palette.primary
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   media: {
     height: 140

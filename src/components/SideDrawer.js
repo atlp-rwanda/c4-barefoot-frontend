@@ -5,19 +5,19 @@ import { useState } from "react"
 import { Link } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
-    color: `black`,
+    color: 'black'
   },
   menuIcon: {
     color: 'white'
   }
-})
+}))
 
 const SideDrawer = ({navLinks}) => {
   const classes = useStyles()
@@ -66,6 +66,7 @@ const SideDrawer = ({navLinks}) => {
         open={state.right}
         onOpen={toggleDrawer("right", true)}
         onClose={toggleDrawer("right", false)}
+        
       >
   {sideDrawerList("right")}
 </Drawer>
