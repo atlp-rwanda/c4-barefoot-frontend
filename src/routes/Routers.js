@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import Home from '../components/Home'
 import Login from '../components/Login'
 import Signup from '../components/Signup';
-import { ResetPasswordEmailForm } from '../components/resetPassword/ResetPasswordEmailForm';
-import { SuccessFulEmailSent } from '../components/resetPassword/SuccessfulEmailSent';
-import { NewPassword } from '../components/resetPassword/NewPassword'
+import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
+import SuccessFulEmailSent from '../components/resetPassword/SuccessfulEmailSent';
+import NewPassword from '../components/resetPassword/NewPassword'
 
 class Routes extends Component {
     render(){

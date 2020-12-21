@@ -1,58 +1,160 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
 import Button from '@material-ui/core/Button';
-import { Grid, Paper, TextField, Typography } from '@material-ui/core';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
+import { connect, useSelector } from 'react-redux';
+import { resetNewPassword } from '../../redux/actions/resetPasswordAction';
+import { Field, Form, Formik } from 'formik'
+import { FormGroup } from '@material-ui/core';
+import { object, string, ref } from 'yup';
 
-toast.configure();
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding:'10px'
+  },
+   sendingHeader:{
+            justifyContent:'center',
+            alignItems:'center',
+            alignContent:'center',
+            marginTop:'40vh',
+            color:'gray',
+            textAlign:'center'
+        },
+  avatar: {
+    margin: theme.spacing(1),
 
-export class NewPassword extends Component {
-    render() {
-        const NewMessage = ()=> {
-            return(
-                <p>Your password reset successful!</p>
-            )};
+    backgroundColor: theme.palette.secondary.main,
+  },
+  errors:{
+      color:'red'
+      },
 
-        const message = 'Your password reset successful!'
-        const paperStyle = {
-            padding:30,
-            height:'fit-content',
-            width:'50vw',
-            margin:'80px auto'
-        }
-        const buttonStyle = {
-            margin: '20px auto',
-            background:'#257AAA'
-        }
-        const typographyColor = {
-            color:'#257AAA',
-            margin:'30px auto'
-        }
-
-    const notify = () => {
-        toast.success(<NewMessage />, {position:toast.POSITION.TOP_CENTER})
-    }
-        return (
-            <Grid>
-                <Paper elevation={10} style={paperStyle}>
-                    <Typography align="center" style={typographyColor} variant="h5">Reset Password</Typography>
-
-                    <TextField id="standard-basic" type="password" placeholder="New password" label="New Password" fullWidth required /><br />
-                    <TextField id="standard-basic" type="password" placeholder="Confurm password" label="Confurm Password" fullWidth required  /><br />
-                    <Button variant="contained" color="primary" style={buttonStyle}onClick={notify}>Send</Button>
-                </Paper>
-            </Grid>
-        )
-    }
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+    padding:'20px',
+    height:'fit-content',
+    borderBottom: '2px solid lightgray'
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+  // const err = useSelector(state => state.newPassword.error)
+const notify = () => {
+        event.preventDefault();
+        
+        toast.success(<p>Your password reset successful! You can login with new password.</p>, {position:toast.POSITION.TOP_CENTER})
+    };
+  
+const initialValues = {
+  password:'',
+  confirmPassword:''
 }
 
-const mapStateToProps = (state) => ({
-    
-})
+function NewPassword(props) {
+  const classes = useStyles();
+  const sending = useSelector(state => state.newPassword.isLoading)
 
-const mapDispatchToProps = {
-    
-}
+  const handleSubmition = (values)=>{
+        event.preventDefault()
+        alert(JSON.stringify(values, null, 2))
+        props.resetNewPassword(values)
+        console.log(values)
+        values=''
+        notify()
+    }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPassword)
+  return (
+    <Container component="main" maxWidth="xs">
+        <ToastContainer />
+      {sending? ( <Typography className={classes.sendingHeader} variant="h5" > Sending ...</Typography> ): (
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Reset Password
+        </Typography>
+        <Formik
+        initialValues={initialValues}
+        validationSchema={
+          object().shape({
+            password:string().required(),
+            confirmPassword:string().required().when("password", {
+               is: val => (val && val.length > 0 ? true : false),
+               then: string().oneOf(
+               [ref("password")], "Both password need to be the same")
+            })
+          })
+        }
+        onSubmit={handleSubmition}
+        >
+        {({ values, handleChange, handleBlur, errors, touched }) => (
+            <Form className={classes.form} noValidate>
+                <FormGroup>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    margin="normal"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    fullWidth
+                    type="password"
+                    id="password"
+                    label="New password"
+                    name="password"
+                    autoComplete="current-password"
+                    autoFocus
+                  />
+                  {touched.password && errors.password ? (<span className={classes.errors} >{errors.password }</span>): null}
+                </FormGroup>
+                <FormGroup>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    margin="normal"
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    fullWidth
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    type="password"
+                    id="confirmPassword"
+                    autoComplete="current-password"
+                  />
+                  {touched.confirmPassword && errors.confirmPassword ? (<span className={classes.errors} >{errors.confirmPassword }</span>): null}
+                </FormGroup>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                // onClick={notify}
+              >
+                RESET
+              </Button>
+            </Form>
+        )}
+        </Formik>
+      </div>
+      )}
+    </Container>
+  );
+};
+
+const mapStateToProps = state =>({
+    newPassword: state.resetNewPassword
+});
+
+export default connect(mapStateToProps, {resetNewPassword})(NewPassword)

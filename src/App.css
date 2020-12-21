@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
 .container{
     display: flex;
     flex-direction: column;
@@ -12,7 +13,7 @@
   width: 100vw;
   height: 80px;
   background-color: teal;
-  /* display: flex; */
+ 
   display: grid;
   grid-template-columns: 15rem 30rem;
 }
@@ -35,7 +36,7 @@
   margin-top: 25px;
   display: flex;
   justify-content: space-around;
-  /* margin-right: 10px; */
+
   float: right;
 }
 .navbar .navlinks ul li {
@@ -74,7 +75,6 @@ form {
   justify-content: center;
   height: 19vw;
   float: center;
-  /* margin-left: 23vw; */
 }
 form input {
   width: 90%;
