@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import counterReducer from './counterReducer'
-import {fetchLocations} from './locationsReducer'
-import { fetchAccommodations } from './accommodationsReducer'
+import {fetchLocationsReducer} from './locationsReducer'
+import { fetchAccommodationsReducer } from './accommodationsReducer'
 
 const reducers = combineReducers({
   counter: counterReducer,
-  fetchLocations: fetchLocations,
-  fetchAccommodations: fetchAccommodations
+  fetchLocations: fetchLocationsReducer,
+  fetchAccommodations: fetchAccommodationsReducer
 })
 
 export default reducers

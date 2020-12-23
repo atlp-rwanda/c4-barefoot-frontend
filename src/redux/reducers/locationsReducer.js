@@ -6,7 +6,7 @@ const initialState = {
   error: null
 }
 
-export function fetchLocations(state = initialState, action){
+export function fetchLocationsReducer(state = initialState, action){
   switch(action.type){
     case FETCH_LOCATIONS_PENDING:
       return {

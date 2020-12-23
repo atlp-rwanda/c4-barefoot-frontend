@@ -6,7 +6,7 @@ const initialState = {
   error: null
 }
 
-export function fetchAccommodations(state = initialState, action){
+export function fetchAccommodationsReducer(state = initialState, action){
   switch(action.type){
     case FETCH_ACCOMMODATIONS_PENDING:
       return {
