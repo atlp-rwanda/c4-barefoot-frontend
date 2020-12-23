@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Locations(props) {
-  console.log(props)
   const classes = useStyles();
   return (
     

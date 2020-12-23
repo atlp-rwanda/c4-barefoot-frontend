@@ -1,6 +1,6 @@
-import { fetchAccommodationsReducer } from '../src/redux/reducers/accommodationsReducer';
-import * as types from '../src/redux/actions/fetchAccommodations';
-import { accommodationsPayload } from '../dummyData';
+import { fetchAccommodationsReducer } from '../../src/redux/reducers/accommodationsReducer';
+import * as types from '../../src/redux/actions/fetchAccommodations';
+import { accommodationsPayload } from '../../dummyData';
 
 describe('Fetch accommodations reducer', () => {
 

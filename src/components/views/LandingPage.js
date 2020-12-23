@@ -42,7 +42,6 @@ function Landing (props){
     props.getLocations()
     props.getAccommodations()
   }, [])
-
   const classes = useStyles();
   return(
     <React.Fragment>
@@ -55,9 +54,9 @@ function Landing (props){
         :"Recommended places to visit"}</Typography>
         <Grid container spacing={3}>
           {props.locationsData.locations.map((location) => (
-             <Grid item xs={12} sm={6} md={4} className={classes.paper}>
-             <LocationCard location={location}/>
-           </Grid> 
+              <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {location.id}>
+                <LocationCard location={location}/>
+              </Grid> 
           )
           )}
         </Grid>
@@ -69,7 +68,7 @@ function Landing (props){
         :"Checkout top rated accommodations"}</Typography>
         <Grid container spacing={3}>
           {props.accommodationsData.accommodations.map((accommodation)=> (
-            <Grid item xs={12} sm={6} md={4} className={classes.paper}>
+            <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {accommodation.id}>
               <AccommodationCard accommodation={accommodation}/>
             </Grid>
           ))}

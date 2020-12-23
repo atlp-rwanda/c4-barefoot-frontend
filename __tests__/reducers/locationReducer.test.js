@@ -1,6 +1,6 @@
-import {fetchLocationsReducer} from '../src/redux/reducers/locationsReducer';
-import * as types from '../src/redux/actions/fetchLocationsAction';
-import {locationsPayload} from '../dummyData'
+import {fetchLocationsReducer} from '../../src/redux/reducers/locationsReducer';
+import * as types from '../../src/redux/actions/fetchLocationsAction';
+import {locationsPayload} from '../../dummyData'
 
 describe('Fetch Locations Reducer', ()=> {
   
