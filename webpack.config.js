@@ -46,5 +46,9 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    historyApiFallback: {
+        disableDotRule: true
+    },
+    
 };
