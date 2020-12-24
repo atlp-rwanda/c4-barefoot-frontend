@@ -9,7 +9,7 @@ export const getLocations = () => dispatch => {
   dispatch({
     type: FETCH_LOCATIONS_PENDING
   })
-  axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/locations')
+  return axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/locations')
     .then(res => {
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,

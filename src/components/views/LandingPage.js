@@ -42,6 +42,7 @@ function Landing (props){
     props.getLocations()
     props.getAccommodations()
   }, [])
+  
   const classes = useStyles();
   return(
     <React.Fragment>
