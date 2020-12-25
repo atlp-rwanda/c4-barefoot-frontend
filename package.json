@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --port 3000 --open",
+    "dev": "webpack-dev-server --env.environment=development --config webpack.config.js --port 3000 --open",
+    "build": "webpack --env.environment=production --config webpack.config.js",
+    "start": "npm run build && node ./server/index.js",
     "test": "jest --coverage",
     "test:e2e": "jest -c e2e/jest.config.js",
     "coverage": "npm run test && jest --coverage && cat ./coverage/lcov.info | coveralls"
@@ -27,11 +29,16 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@testing-library/jest-dom": "^5.11.6",
     "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
     "cloudinary-core": "^2.11.3",
     "cloudinary-react": "^1.6.8",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "formik": "^2.2.5",
+    "history": "^5.0.0",
     "html-webpack-plugin": "^4.5.0",
+    "query-string": "^6.13.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-facebook-login": "^4.1.1",
@@ -51,6 +58,7 @@
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
+    "clean-webpack-plugin": "^3.0.0",
     "coveralls": "^3.1.0",
     "css-loader": "^5.0.1",
     "enzyme": "^3.11.0",
@@ -67,7 +75,8 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.9.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0"
   },
   "jest": {
     "moduleNameMapper": {

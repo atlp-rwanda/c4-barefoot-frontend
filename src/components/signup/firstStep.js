@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Form, Field, useFormikContext } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import {TextField, InputAdornment, Box, Avatar} from '@material-ui/core';
 import { AccountCircle, Email, Lock } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
@@ -90,7 +90,6 @@ const validationSchema = yup.object({
 
 export const FormUserDetails = ({ loading, formData, setFormData, nextStep }) => {
   const classes = useStyles();
-  // const [loading, setLoading] = useState(true)
   return (
     <>
       <Formik

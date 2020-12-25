@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom'
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Form, Field, useFormikContext } from 'formik';
-import { TextField, Select, InputAdornment } from '@material-ui/core';
+import { Formik, Form, Field } from 'formik';
+import { TextField, Select, InputAdornment, CircularProgress, MenuItem, FormControl, InputLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl'
-import Upload from './imageUploadModel'
-import * as yup from "yup";
 import Box from '@material-ui/core/Box';
-import { AccountCircle, Language, BusinessCenter, CloudUpload, Subject, EventBusy } from "@material-ui/icons";
+import { AccountCircle, Language, Subject, EventBusy } from "@material-ui/icons";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
@@ -48,7 +42,10 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     margin: '1rem',
   },
-  labelText: {
+  uploadSpinner: {
+    width: '20px !important',
+    height: '20px !important',
+    margin: '0 5px -5px 5px'
   }
 }));
 
@@ -62,6 +59,7 @@ export  const FormPersonalDetails = ({
   const [direction, setDirection] = useState('back');
   const [photo, setPhoto] = useState('');
   const [loading, setLoading] = useState(false);
+  useEffect(() => { setLoading(false); setPhoto('') }, [])
   return (
     <>
       <Formik
@@ -78,9 +76,8 @@ export  const FormPersonalDetails = ({
               alt="user" 
               name='profile_picture' 
               margin='normal'
-              src={formData ? formData.profile_picture : ''} 
+              src={photo ? photo : formData.profile_picture }
               className={classes.large}/>
-              {/* <Upload/> */}
               <input 
               id="file" 
               name="profile_picture" 
@@ -91,20 +88,18 @@ export  const FormPersonalDetails = ({
                 const formData = new FormData()
                 formData.append('upload_preset', 'l9dhzfdi')
                 formData.append('file', profile_picture)
-                setLoading(true)
-                
+                setLoading(true) 
+                setPhoto('')               
                 axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
-                .then(res => setFieldValue("profile_picture", res.data.secure_url))
-                .then(
-                  setLoading(false)
-                )
-                .catch(err => console.log(err))
+                .then(res => {setFieldValue("profile_picture", res.data.secure_url); setLoading(false); setPhoto(res.data.secure_url)})
+                .catch(err => {console.log(err); setLoading(false)})
               }}
               />
+              
               <label for="file" className={classes.label}>
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> 
-                <div className={classes.labelText}>
-                Upload Profile Image
+                <div>
+                Upload Profile Image {loading ? <CircularProgress className={classes.uploadSpinner}/> : ''}
                 </div>
 
               </label>
@@ -135,43 +130,45 @@ export  const FormPersonalDetails = ({
                 ),
               }}
             />
-            <Field 
-            as={Select} 
-            name="address" 
-            margin='normal' 
-            label='Address' 
-            placeholder='Address'
-            margin='normal'
-              InputProps={{
-                startAdornment: (
-                  <ListItemIcon>
-                    <AccountCircle />
-                  </ListItemIcon>
-                ),
-              }}
-            >
-              <option selected value="kk 509 st">kk 509 st</option>
-              <option value="kk 309 st">kk 309 st</option>
-              <option value="kk 280 st">kk 280 st</option>
-            </Field>
-            <Field 
-            as={Select} 
-            name="language" 
-            margin='normal' 
-            label='Language' 
-            placeholder='Language'
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Language />
-                  </InputAdornment>
-                ),
-              }}
-            >
-              <option selected value="Kinyarwanda">Kinyarwanda</option>
-              <option value="English">English</option>
-              <option value="Franch">Franch</option>
-            </Field>
+            <FormControl>
+              <InputLabel>Address</InputLabel>
+              <Field 
+              as={Select} 
+              name="address" 
+              margin='normal' 
+                InputProps={{
+                  startAdornment: (
+                    <ListItemIcon>
+                      <AccountCircle />
+                    </ListItemIcon>
+                  ),
+                }}
+              >
+                <MenuItem selected value="kk 509 st">kk 509 st</MenuItem>
+                <MenuItem value="kk 309 st">kk 309 st</MenuItem>
+                <MenuItem value="kk 280 st">kk 280 st</MenuItem>
+              </Field>
+            </FormControl>
+            <FormControl>
+              <InputLabel>Language</InputLabel>
+              <Field 
+              as={Select} 
+              name="language" 
+              margin='normal' 
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Language />
+                    </InputAdornment>
+                  ),
+                }}
+              >
+                <MenuItem selected value="Kinyarwanda">Kinyarwanda</MenuItem>
+                <MenuItem value="English">English</MenuItem>
+                <MenuItem value="Franch">Franch</MenuItem>
+              </Field>
+            </FormControl>
+            
             <div>
               <Button
                 type='submit'

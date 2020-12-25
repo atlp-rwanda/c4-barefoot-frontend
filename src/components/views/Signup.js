@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-class Login extends Component {
+class Signup extends Component {
     render(){
         return(
             <div className="home">
             <h3>Hi, there.</h3>
-            <h5>Login Here, and proceed on application</h5>
+            <h5>Create your account Here!</h5>
             <form>
+            <label>
+                Names:
+                </label><br />
+                <input type="text" name="name" /><br />
+                 <label></label>
                 <label>
                 Email:
                 </label><br />
@@ -14,10 +19,10 @@ class Login extends Component {
                 password:
                 </label><br />
                 <input type="password" name="name" /><br />
-                <button className="login-btn">LOGIN</button>
+                <button>SIGNUP</button>
             </form>
             </div>
         )
     }
 }
-export default Login
+export default Signup

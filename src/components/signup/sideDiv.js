@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Box } from '@material-ui/core';
@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 function SideDiv({loading}){
     const classes = useStyles();
-    // const [loading, setLoading] = useState(true)
     return(
         <div className={classes.sideNav}>
             { loading ? (
@@ -77,7 +76,7 @@ function SideDiv({loading}){
                 </Box>
             ) : (
                 <div className={classes.img}>
-                    <img className={classes.locationImg} src='public/images/location.png' alt='Barefoot Nomards'/>
+                    <img className={classes.locationImg} src={'../public/images/location.png'} alt='Barefoot Nomards'/>
                 </div>
             )}
         </div>

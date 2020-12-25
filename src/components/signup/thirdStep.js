@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import {InputAdornment} from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { List, ListItem, ListItemText } from '@material-ui/core/';
 import { AccountCircle, Email, BusinessCenter, Language, Subject, EventBusy } from "@material-ui/icons";
@@ -41,8 +40,6 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     const{confirmPassword, ...user} = {...formData}
     axios.post(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/signup`, user)
     .then(res => {
-      // console.log(res);
-      // console.log(res.data);
       setSuccessOpen(true)
       nextStep()
     })
@@ -72,7 +69,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     <>
       <Snackbar open={errorOpen} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          Error: {error ? JSON.stringify(error) : 'Error Not set'}
+          Error: {error ? JSON.stringify(error).replace(/[\\'"]+/g, '') : 'Error Not set'}
         </Alert>
       </Snackbar>
       <Snackbar open={successOpen} autoHideDuration={6000} onClose={handleClose}>

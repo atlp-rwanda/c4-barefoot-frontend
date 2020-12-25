@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     padding: '1rem',
     boxSizing: 'border-box',
+    marginBottom: '100px'
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -161,7 +162,6 @@ export default function SignUp() {
     setActiveStep(0);
   };
 
-  // setTimeout(setLoading(false), 300)
   setTimeout(() => { setLoading(false)}, 1000);
   return (
     <div className={classes.container}>

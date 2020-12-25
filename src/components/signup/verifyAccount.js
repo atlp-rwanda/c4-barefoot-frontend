@@ -1,9 +1,10 @@
 import { Box, Button, makeStyles } from '@material-ui/core'
 import Devider from '@material-ui/core/Divider'
-import { BorderBottom, CheckCircle } from '@material-ui/icons'
+import { CheckCircle } from '@material-ui/icons'
 import Axios from 'axios'
-import React, {Component, useState} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import queryString from 'query-string';
+import { Skeleton } from '@material-ui/lab'
 
 const useStyle = makeStyles(theme => ({
     container: {
@@ -20,7 +21,6 @@ const useStyle = makeStyles(theme => ({
     box: {
         display: 'flex',
         justifyContent: 'center',
-        // flexDirection: 'row',
         alignItems: 'center',
         padding: '10px',
         color: '#90a4ae'
@@ -35,31 +35,40 @@ const useStyle = makeStyles(theme => ({
     tokenMissing: {
         fontSize: '5vh',
         padding: '20px',
+        marginBottom: '10px',
         borderBottom: '2px black solid',
     }
 }))
-
-const verifyAccount = () => {
-    const classes = useStyle()
-    const { token} = useParams();
-    const [verified, setVerified] = useState(false)
-    const [error, setError] = useState('');
-    console.log("Token: " + token)
-    
+const verify = (token, verified, setVerified ,setError) => {
     Axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/verification?token=` + token)
     .then(res => {
-        console.log(JSON.stringify(verified))
+      console.log(JSON.stringify("Verification: " + verified))
       setVerified(true)
     })
     .catch(err => { 
       if (err.response){
         setError(err.response.data.error)
       }else if(err.request){
-        setError(err.request.data.error)
+        setError(err.request)
       }else if(err.message){
-        setError(err.message.data.error)
+        setError(err.message)
       }
     })
+}
+const verifyAccount = () => {
+    const classes = useStyle()
+    const [verified, setVerified] = useState(false);
+    const [error, setError] = useState('');
+    const parsed = queryString.parse(location.search);
+    const [checked, setChecked] = useState(false)
+    const token = parsed.token
+    console.log(token)
+    
+    if(!checked){
+        verify(token, verified, setVerified, setError)
+        setChecked(true)
+    }
+    
     return (
         
             <div className={classes.container}>
@@ -76,11 +85,25 @@ const verifyAccount = () => {
                         </Box>
                         
                     </>) : (
-                        <Box className={classes.tokenMissing}>
-                            :( Token Missing
-                        </Box>
+                        (!error ? (
+                            <Box>
+                                <Skeleton variant="text" width={300} height={40}/>
+                                <Skeleton variant="text" width={300} height={40}/>
+                            </Box>
+                        ) : (
+                            <Box className={classes.tokenMissing}>
+                                { JSON.stringify(error).replace(/['"]+/g, '')}
+                                {console.log('Verification: ' + error)}
+                            </Box>
+                        ))
+                        
                     )}
-                    <Button variant="contained" color="primary" href='/'> Go Home</Button>
+                    { !error && !verified ? (
+                        <Skeleton variant="rect" width={70} height={50} style={{marginLeft: 'auto', marginRight: 'auto'}}/>
+                    ) : (
+                        <Button variant="contained" color="primary" href='/'> Go Home</Button>
+                    )}
+                    
                 </Box>
                 
             </div>
