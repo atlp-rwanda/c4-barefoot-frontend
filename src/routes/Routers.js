@@ -9,14 +9,16 @@ import NewPassword from '../components/resetPassword/NewPassword'
 
 class Routes extends Component {
     render(){
+ 
         return (
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/signup" component={Signup}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/signup" component={Signup}/>
                 <Route path="/forgetpassword" component={ResetPasswordEmailForm}/>
                 <Route path="/emailsuccessfulsent" component={SuccessFulEmailSent}/>
-                <Route path="/newpassword" component={NewPassword}/>
+                {/* <Route path="/user/reset-password?" component={NewPassword}/> */}
+                <Route path="/user/reset-password" component={NewPassword}/>
             </Switch>
         )
     }

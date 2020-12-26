@@ -43,6 +43,8 @@ const useStyle = makeStyles((theme)=>({
 
 }));
 export default function SuccessFulEmailSent(){
+    // const token = props.history.location
+    // console.log(token)
     const classes = useStyle();
         return (
             <Grid item className={classes.successGrid} maxWidth="sm">

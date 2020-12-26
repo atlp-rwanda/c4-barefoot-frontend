@@ -9,8 +9,9 @@ import 'material-react-toastify/dist/ReactToastify.css';
 import { connect, useSelector } from 'react-redux';
 import { resetNewPassword } from '../../redux/actions/resetPasswordAction';
 import { Field, Form, Formik } from 'formik'
-import { FormGroup } from '@material-ui/core';
+import { FormGroup, Snackbar } from '@material-ui/core';
 import { object, string, ref } from 'yup';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,18 +43,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     padding:'20px',
     height:'fit-content',
-    borderBottom: '2px solid lightgray'
+    border: '1px solid lightgray',
+    borderBottom: '2px solid lightgray',
+    borderRadius: '10px'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    float:'right',
+    marginRight:0
   },
 }));
-  // const err = useSelector(state => state.newPassword.error)
-const notify = () => {
-        event.preventDefault();
-        
-        toast.success(<p>Your password reset successful! You can login with new password.</p>, {position:toast.POSITION.TOP_CENTER})
-    };
   
 const initialValues = {
   password:'',
@@ -62,21 +61,44 @@ const initialValues = {
 
 function NewPassword(props) {
   const classes = useStyles();
-  const sending = useSelector(state => state.newPassword.isLoading)
+
+   const { history } = props
+   const query = history.location.search
+  console.log('this is query token ' + query);
+  const errors = useSelector(state => state.newPassword.error)
+  const opened = useSelector(state => state.newPassword.open)
+  const messages = useSelector(state => state.newPassword.message)
+  const anyLoading = useSelector(state => state.newPassword.isLoading)
 
   const handleSubmition = (values)=>{
         event.preventDefault()
-        alert(JSON.stringify(values, null, 2))
         props.resetNewPassword(values)
         console.log(values)
         values=''
-        notify()
-    }
+    };
+  function handleClose(event, reason){
+        if(reason === 'clickaway'){
+            return opened;
+        }
+    };
 
+    function Alert(props){
+        return < MuiAlert elevation={6} variant="filled" {...props}/>
+    };
   return (
+    <>
+    {errors ? (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
+                <Alert onclose={handleClose} severity="error">
+                    Error: {errors.error? (errors.error): (<div>{errors}</div>)}
+                </Alert>
+            </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
+                <Alert onclose={handleClose} severity="success">
+                    successful: {messages}
+                </Alert>
+            </Snackbar>)}
     <Container component="main" maxWidth="xs">
         <ToastContainer />
-      {sending? ( <Typography className={classes.sendingHeader} variant="h5" > Sending ...</Typography> ): (
+      {anyLoading? ( <Typography className={classes.sendingHeader} variant="h5" > Sending ...</Typography> ): (
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Reset Password
@@ -150,6 +172,7 @@ function NewPassword(props) {
       </div>
       )}
     </Container>
+    </>
   );
 };
 

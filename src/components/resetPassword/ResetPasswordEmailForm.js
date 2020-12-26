@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, connect } from 'react-redux'
-// import Button from '@material-ui/core/Button'
-import { FormGroup, Grid, makeStyles, Paper, TextField, Typography, Button } from '@material-ui/core'
+import { FormGroup, Grid, makeStyles, Paper, TextField, Typography, Button, CircularProgress, Snackbar, Slide, Container  } from '@material-ui/core'
 import { Field, Form, Formik } from 'formik'
-import { blue } from '@material-ui/core/colors';
-import { sendEmail } from "../../redux/actions/resetPasswordAction";
-import { ResetPasswordEmailReducer } from '../../redux/reducers/resetPasswordEmail';
+import { sendEmail, closeSnackbar } from "../../redux/actions/resetPasswordAction";
 import { object, string } from 'yup'
-// import { string } from 'yup/lib/locale'
 import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
-import store from '../../redux/store'
-
-
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'
-
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyle = makeStyles( (theme) => ({
     typographyColor: {
@@ -31,21 +22,46 @@ const useStyle = makeStyles( (theme) => ({
             color:'gray',
             textAlign:'center'
         },
+        message:{
+            color:'green',
+            textAlign:'center',
+            padding:'10px',
+            borderRadius:'8px'
+        },
+        rootGrid: {
+            justifyContent:'center',
+            height:'100vh'
+        },
         errors:{
             color:'red'
         },
         buttonStyle: {
             margin: '20px auto',
-            background:'#257AAA'
+            background:'#257AAA',
+            width:"20vw",
+            '@media(max-width:1024px)':{
+                width:'100%'
+            },
+            '@media(max-width: 740px)' :{
+                minHeight: '100%'
+            },
+            float:'right',
+            marginRight:0,
+            borderRadius:0
         },
         emailForm: {
             border: 'none'
         },
         paperStyle: {
-            padding:30,
-            height:'fit-content',
-            width:'50vw',
-            margin:'80px auto'
+            padding:' 5px 20px',
+            maxHeight:'fit-content',
+            margin:'70px auto',
+            '@media(max-width: 740px)' :{
+                minHeight: '450px'
+            },
+            '@media(max-width:1024px)':{
+                marginTop:'90px'
+            }
         }
 
 }));
@@ -55,15 +71,20 @@ const initialValues = {
 }
 
 function ResetPasswordEmailForm(props){
-    const loading = useSelector(state => state.sendEmail.isLoading)
-const notify = (errors) => {
-        // event.preventDefault();
-        toast.success(<p>Your email sent successful!</p>, {position:toast.POSITION.TOP_CENTER})
-    };
-    const classes= useStyle();
+
     const [Email, setEmail] = useState({email:''})
-    const [isLoading, SetIsLoading] = useState(false)
+    const [loading, SetLoading] = useState(false)
     let { email } = Email;
+    const errors = useSelector(state => state.sendEmail.error)
+    const opened = useSelector(state => state.sendEmail.open)
+    const anyLoading = useSelector(state => state.sendEmail.isLoading)
+    const messages = useSelector(state => state.sendEmail.message)
+    const myerror = JSON.stringify(errors)
+    const classes= useStyle();
+    const notify = (errors) => {
+            toast.success(<p>Your email sent successful!</p>, {position:toast.POSITION.TOP_CENTER})
+        };
+        
     // let { isLoading } = loading;
 
 
@@ -73,37 +94,52 @@ const notify = (errors) => {
     };
 
 
-    // useEffect(() => {
-    //     const loadingTime = setTimeout(() => {
-    //         SetIsLoading(true);
-    //     }, 1000)
-    //     return () => {
-    //         cleanTimeout(loadingTime)
-    //         SetIsLoading(false);
-    //     }
-    // }, [])
+    useEffect(() => {
+        const loadingTime = setTimeout(() => {
+            SetLoading(true);
+        }, 2000)
+        return () => cleanTimeout(loadingTime)
+    }, []);
+
     const handleSubmition = (values)=>{
-        event.preventDefault()
-        // alert(JSON.stringify(values, null, 2))
-        // const data = {
-        //     email:Email.email,
-        //     isLoading:loading.isLoading
-        // }
         console.log(values)
-        // -----------  //
+        console.log(errors)
         props.sendEmail(values)
-        // store.dispatch(sendEmail(data))
         setEmail({email:''})
-        notify()
-    }
+    };
+
+    function handleClose(event, reason){
+        if(reason === 'clickaway'){
+            dispatch(closeSnackbar(opened=false))
+        }
+        opened
+    };
+
+    function Alert(props){
+        return < MuiAlert elevation={6} variant="filled" {...props}/>
+    };
         return (
-            <Grid>
-                <ToastContainer />
-            {loading? ( <Typography className={classes.loadingHeader} variant="h5" > Loading ...</Typography> ):
+            <>
+            {errors ? (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
+                <Alert onclose={handleClose} severity="error">
+                    Error: {errors}
+                </Alert>
+            </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
+                <Alert onclose={handleClose} severity="success">
+                    successful: {messages}
+                </Alert>
+            </Snackbar>)}
+                
+            <Grid container className={classes.rootGrid} component='main'>
+                {/* <ToastContainer /> */}
+                
+            {anyLoading? ( <Typography className={classes.loadingHeader} variant="h5" > Loading ...</Typography> ):
             (
-                <Paper className={classes.paperStyle}>
+                <Grid item xs={10} sm={8} md={6}>
+                <Paper item className={classes.paperStyle} >
                     <Typography  className={classes.typographyColor} variant="h5">Forgot your password don't worry ?</Typography>
                     <Typography variant="h6" className={classes.typographyColor}>Enter email below and send you a link to reset your password.</Typography>
+                    {/* <Typography className={classes.message}>{messages}</Typography> */}
                     <Formik 
                     initialValues={initialValues}
                     validationSchema={
@@ -139,7 +175,6 @@ const notify = (errors) => {
                              autoFocus 
                              />
                             {touched.email && errors.email ? (<span className={classes.errors} >{errors.email }</span>) : null } 
-                        </FormGroup>
                         <Button 
                             variant="contained"
                             type="submit"
@@ -148,20 +183,20 @@ const notify = (errors) => {
                             className={classes.buttonStyle}
                             >Send</Button>
                             {/* <br /> */}
+                        </FormGroup>
                         </Form>
                     )}
                     </Formik>
-                    {/* <TextField id="standard-basic" value={ email } name='email' onChange={emailHandle} label="Email" placeholder="Enter Your email" fullWidth required /><br />
-                    <Button variant="contained" color="primary" className={classes.buttonStyle} onClick={onsubmit}>Send</Button> */}
                 </Paper>
+                </Grid>
             )
             }
             </Grid>
-            
+           </> 
         )
     };
     const mapStateToProps = state =>({
     login: state.sendEmail
 });
 
-export default connect(mapStateToProps, {sendEmail})(ResetPasswordEmailForm)
+export default connect(mapStateToProps, {sendEmail, closeSnackbar})(ResetPasswordEmailForm)

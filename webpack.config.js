@@ -5,6 +5,9 @@ process.env.NODE_ENV = 'development';
 module.exports = (env) => ({
     entry: './src/index.js',
     mode: env.environment,
+    devServer: {
+        historyApiFallback: true
+      },
     context: __dirname,
     output: {
         filename: 'bundle.js',

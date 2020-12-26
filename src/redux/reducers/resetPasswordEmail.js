@@ -1,10 +1,10 @@
-import { LOADING, RESET_PASSWORD, SEND_RESET_EMAIL } from "../resetPasswordType"
+import { LOADING, RESET_PASSWORD, SEND_RESET_EMAIL, CLOSE_SNACKBAR } from "../resetPasswordType"
 
 const initialState = {
-    email:'',
-    success:false,
     isLoading:false,
-    error: ''
+    open:false,
+    error: '',
+    message:''
 }
 export const ResetPasswordEmailReducer = (state = initialState, action) =>{
     // const {type, payload} = action;
@@ -13,23 +13,32 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
             if(action.error){
                 return {
                     ...state,
-                    success: false,
                     isLoading: false,
-                    error: action.error
+                    error: action.error,
+                    open:true,
+                    message:''
                 };
             }
             return {
                 ...state,
                 isLoading: false,
-                success: true,
-            }
+                open:true,
+                message: action.message
+            };
         case LOADING:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                open: false
+            };
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                open: false,
+                isLoading: false,
             }
         default:
-            return state
+            return state;
     }
 };
 
@@ -39,20 +48,29 @@ export const NewPasswordReducer = (state = initialState, action) => {
             if(action.error){
                 return {
                     ...state,
-                    success: false,
                     isLoading:false,
-                    error: action.error
+                   error: action.error,
+                   open:true,
+                   message:''
                 }
             };
             return {
                 ...state,
                 isLoading: false,
-                success: true,
-            }
+                open:true,
+                error:'',
+                message: action.message
+            };
         case LOADING:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                open:false
+            }
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                open: false
             }
         default:
             return state
