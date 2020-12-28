@@ -11,6 +11,7 @@ export const getLocations = () => dispatch => {
   })
   return axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/locations')
     .then(res => {
+      console.log(res)
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,
         payload: res.data.locations.rows

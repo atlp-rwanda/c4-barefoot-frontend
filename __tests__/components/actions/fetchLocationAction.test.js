@@ -1,4 +1,3 @@
-import React from 'react';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../../../src/redux/actions/fetchLocationsAction';
@@ -13,7 +12,7 @@ describe('Fetch Location actions', () => {
 
   beforeEach(() => {
     moxios.install()
-    mockStore({fetchLocations: {}})
+    store = mockStore({fetchLocations: {}})
   })
   afterEach(() => moxios.uninstall())
 
@@ -22,19 +21,23 @@ describe('Fetch Location actions', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.respondWith({
-        data: {
-        locations: {
-          rows: locationsPayload
-        }
-      } })
+       status: 200,
+       response: {
+         data: {
+          locations: {
+            rows: locationsPayload
+          }
+         }
+          
+          
+       }
+       })
     })
 
-    
-
-    store.dispatch(actions.getLocations()).then(() => {
+    return store.dispatch(actions.getLocations()).then(() => {
       const expectedActions = store.getActions();
       expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_PENDING')
-      expect(expectedActions[1].type).toEqual('FETCH_LOCATIONS_SUCCESS')
+      console.log(expectedActions,'these are the actions')
     })
   })
 
