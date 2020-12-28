@@ -23,13 +23,9 @@ describe('Fetch Location actions', () => {
       request.respondWith({
        status: 200,
        response: {
-         data: {
           locations: {
             rows: locationsPayload
           }
-         }
-          
-          
        }
        })
     })
@@ -37,7 +33,7 @@ describe('Fetch Location actions', () => {
     return store.dispatch(actions.getLocations()).then(() => {
       const expectedActions = store.getActions();
       expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_PENDING')
-      console.log(expectedActions,'these are the actions')
+      expect(expectedActions[1].type).toEqual('FETCH_LOCATIONS_SUCCESS')
     })
   })
 
