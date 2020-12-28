@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from './AxiosAPI';
 
 export const USER_LOGIN = 'LOGIN';
 export const LoGIN_LOADING = 'LOADING';
@@ -9,7 +9,7 @@ export const loginAction = (userCredentials) => dispatch => {
     dispatch({
         type: LoGIN_LOADING
     });
-    return axios.post('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/login',
+    return API.post('/user/login',
     userCredentials
     )
     .then((res) => {
