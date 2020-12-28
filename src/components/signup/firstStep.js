@@ -88,7 +88,7 @@ const validationSchema = yup.object({
 
 });
 
-export const FormUserDetails = ({ loading, formData, setFormData, nextStep }) => {
+export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
   const classes = useStyles();
   return (
     <>
@@ -288,7 +288,7 @@ export const FormUserDetails = ({ loading, formData, setFormData, nextStep }) =>
   );
 };
 
-FormUserDetails.propTypes = {
+FirstStep.propTypes = {
   formData: PropTypes.object.isRequired,
   setFormData: PropTypes.func.isRequired,
   nextStep: PropTypes.func.isRequired

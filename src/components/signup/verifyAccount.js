@@ -71,42 +71,42 @@ const verifyAccount = () => {
     
     return (
         
-            <div className={classes.container}>
-                <Box className={classes.boxContainer}>
-                    {token && verified ? (
-                    <>
-                        <Box className={classes.box}>
-                            <CheckCircle style={{color: '#1b5e20'}}/>Your e-mail has been verified
-                            {"Verified : " + JSON.stringify(verified)}
-                        </Box>
-                        <Devider flexItem className={classes.hr}/>
-                        <Box className={classes.box}>
-                            Thank you for verifying your account. You can now continue to use BarefootNomad
-                        </Box>
-                        
-                    </>) : (
-                        (!error ? (
-                            <Box>
-                                <Skeleton variant="text" width={300} height={40}/>
-                                <Skeleton variant="text" width={300} height={40}/>
-                            </Box>
-                        ) : (
-                            <Box className={classes.tokenMissing}>
-                                { JSON.stringify(error).replace(/['"]+/g, '')}
-                                {console.log('Verification: ' + error)}
-                            </Box>
-                        ))
-                        
-                    )}
-                    { !error && !verified ? (
-                        <Skeleton variant="rect" width={70} height={50} style={{marginLeft: 'auto', marginRight: 'auto'}}/>
-                    ) : (
-                        <Button variant="contained" color="primary" href='/'> Go Home</Button>
-                    )}
+        <div className={classes.container}>
+            <Box className={classes.boxContainer}>
+                {token && verified ? (
+                <>
+                    <Box className={classes.box}>
+                        <CheckCircle style={{color: '#1b5e20'}}/>Your e-mail has been verified
+                        {"Verified : " + JSON.stringify(verified)}
+                    </Box>
+                    <Devider flexItem className={classes.hr}/>
+                    <Box className={classes.box}>
+                        Thank you for verifying your account. You can now continue to use BarefootNomad
+                    </Box>
                     
-                </Box>
+                </>) : (
+                    (!error ? (
+                        <Box>
+                            <Skeleton variant="text" width={300} height={40}/>
+                            <Skeleton variant="text" width={300} height={40}/>
+                        </Box>
+                    ) : (
+                        <Box className={classes.tokenMissing}>
+                            { JSON.stringify(error).replace(/['"]+/g, '')}
+                            {console.log('Verification: ' + error)}
+                        </Box>
+                    ))
+                    
+                )}
+                { !error && !verified ? (
+                    <Skeleton variant="rect" width={70} height={50} style={{marginLeft: 'auto', marginRight: 'auto'}}/>
+                ) : (
+                    <Button variant="contained" color="primary" href='/'> Go Home</Button>
+                )}
                 
-            </div>
+            </Box>
+            
+        </div>
         
         
     )

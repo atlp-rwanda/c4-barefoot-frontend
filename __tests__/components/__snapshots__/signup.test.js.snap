@@ -1,0 +1,564 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signup Signup Rendering renders Social buttons correctly 1`] = `""`;
+
+exports[`Signup Signup Rendering renders correctly Signup index 1`] = `
+<div
+  className="makeStyles-container-11"
+>
+  <SideDiv
+    loading={true}
+  />
+  <div
+    className="makeStyles-root-8"
+  >
+    <div
+      className="makeStyles-rightSide-9"
+    >
+      <Styled(MuiBox)
+        className="makeStyles-box-15"
+      >
+        <WithStyles(ForwardRef(Skeleton))
+          className="makeStyles-textBox-14"
+          variant="rect"
+        />
+      </Styled(MuiBox)>
+      <Styled(MuiBox)
+        className="makeStyles-stepperContainer-16"
+      >
+        <Styled(MuiBox)
+          className="makeStyles-stepperBox-17"
+        >
+          <WithStyles(ForwardRef(Skeleton))
+            variant="circle"
+          >
+            <WithStyles(ForwardRef(Avatar)) />
+          </WithStyles(ForwardRef(Skeleton))>
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+        </Styled(MuiBox)>
+        <Styled(MuiBox)
+          className="makeStyles-stepperBox-17"
+        >
+          <WithStyles(ForwardRef(Skeleton))
+            variant="circle"
+          >
+            <WithStyles(ForwardRef(Avatar)) />
+          </WithStyles(ForwardRef(Skeleton))>
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+        </Styled(MuiBox)>
+        <Styled(MuiBox)
+          className="makeStyles-stepperBox-17"
+        >
+          <WithStyles(ForwardRef(Skeleton))
+            variant="circle"
+          >
+            <WithStyles(ForwardRef(Avatar)) />
+          </WithStyles(ForwardRef(Skeleton))>
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+          <WithStyles(ForwardRef(Skeleton))
+            className="makeStyles-stepperText-18"
+            variant="rect"
+          />
+        </Styled(MuiBox)>
+      </Styled(MuiBox)>
+      <div>
+        <div>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-instructions-13"
+          >
+            <FirstStep
+              formData={
+                Object {
+                  "address": "",
+                  "bio": "",
+                  "email": "",
+                  "first_name": "",
+                  "language": "",
+                  "last_name": "",
+                  "occupation": "",
+                  "password": "",
+                  "profile_picture": "",
+                  "username": "",
+                }
+              }
+              loading={true}
+              nextStep={[Function]}
+              setFormData={[Function]}
+            />
+          </WithStyles(ForwardRef(Typography))>
+        </div>
+      </div>
+    </div>
+    <SocialButtons
+      loading={true}
+      stepIndex={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`Signup Signup Rendering renders correctly Third step 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Snackbar))
+    autoHideDuration={6000}
+    onClose={[Function]}
+    open={false}
+  >
+    <Alert
+      onClose={[Function]}
+      severity="error"
+    >
+      Error: 
+      Error Not set
+    </Alert>
+  </WithStyles(ForwardRef(Snackbar))>
+  <WithStyles(ForwardRef(Snackbar))
+    autoHideDuration={6000}
+    onClose={[Function]}
+    open={false}
+  >
+    <Alert
+      onClose={[Function]}
+      severity="success"
+    >
+      Success: 
+      Message Not set
+    </Alert>
+  </WithStyles(ForwardRef(Snackbar))>
+  <div>
+    <WithStyles(ForwardRef(List))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Avatar))
+          alt="user"
+          className="makeStyles-large-22"
+          name="file"
+          src=""
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Names"
+          secondary="undefined undefined"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Username"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Email"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Occupation"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Address"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Language"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Biography"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Occupation"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+    <div
+      className="makeStyles-textCenter-20"
+    >
+      <WithStyles(ForwardRef(Button))
+        className="makeStyles-button-21"
+        color="secondary"
+        id="backBtn"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Back
+      </WithStyles(ForwardRef(Button))>
+      <WithStyles(ForwardRef(Button))
+        btn="submitBtn"
+        className="makeStyles-button-21"
+        color="primary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Submit
+      </WithStyles(ForwardRef(Button))>
+    </div>
+  </div>
+</Fragment>
+`;
+
+exports[`Signup Signup Rendering renders correctly first step 1`] = `
+<Fragment>
+  <Formik
+    initialValues={FormData {}}
+    onSubmit={[Function]}
+    validationSchema={
+      ObjectSchema {
+        "_blacklist": ReferenceSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "_excludedEdges": Array [],
+        "_mutate": undefined,
+        "_nodes": Array [
+          "password",
+          "confirmPassword",
+          "email",
+          "username",
+          "last_name",
+          "first_name",
+        ],
+        "_sortErrors": [Function],
+        "_typeError": [Function],
+        "_whitelist": ReferenceSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "conditions": Array [],
+        "deps": Array [],
+        "exclusiveTests": Object {},
+        "fields": Object {
+          "confirmPassword": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [
+              Condition {
+                "fn": [Function],
+                "refs": Array [
+                  Reference {
+                    "getter": [Function],
+                    "isContext": false,
+                    "isSibling": true,
+                    "isValue": false,
+                    "key": "password",
+                    "map": undefined,
+                    "path": "password",
+                  },
+                ],
+              },
+            ],
+            "deps": Array [
+              "password",
+            ],
+            "exclusiveTests": Object {
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "email": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_mutate": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "email": false,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "first_name": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "max": true,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "last_name": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "max": true,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "password": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "min": true,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "username": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "max": true,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "label": undefined,
+              "meta": undefined,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+        },
+        "spec": Object {
+          "abortEarly": true,
+          "label": undefined,
+          "meta": undefined,
+          "nullable": false,
+          "presence": "optional",
+          "recursive": true,
+          "strict": false,
+          "strip": false,
+        },
+        "tests": Array [],
+        "transforms": Array [
+          [Function],
+        ],
+        "type": "object",
+      }
+    }
+  >
+    <Component />
+  </Formik>
+</Fragment>
+`;
+
+exports[`Signup Signup Rendering renders side div correctly 1`] = `
+<div
+  className="makeStyles-sideNav-23"
+>
+  <div
+    className="makeStyles-sideText-27"
+  >
+    <p>
+      Please create account to get 
+    </p>
+    <p>
+      started with Barefoot Nomard.
+    </p>
+  </div>
+  <div
+    className="makeStyles-img-25"
+  >
+    <img
+      alt="Barefoot Nomards"
+      className="makeStyles-locationImg-24"
+      src="../public/images/location.png"
+    />
+  </div>
+</div>
+`;

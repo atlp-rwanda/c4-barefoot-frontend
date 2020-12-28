@@ -1,5 +1,5 @@
-import { FormUserDetails } from './firstStep';
-import { FormPersonalDetails } from './secondStep';
+import { FirstStep } from './firstStep';
+import { SecondStep } from './secondStep';
 import { Confirm } from './thirdStep';
 import SideNav from './sideDiv'
 import React from 'react';
@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SocialButtons from '../signup/socialButton'
 import { Avatar, Box } from '@material-ui/core';
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: 'grid',
+    fontFamily: "'Poppins', sans-serif",
     '@media(max-width: 740px)' : {
       display: 'flex',
       flexDirection: 'column'
@@ -107,7 +107,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
   switch (stepIndex) {
     case 0:
       return (
-        <FormUserDetails
+        <FirstStep
           formData={formData}
           setFormData={setFormData}
           nextStep={handleNext}
@@ -116,7 +116,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
       );
     case 1:
       return (
-        <FormPersonalDetails
+        <SecondStep
           formData={formData}
           setFormData={setFormData}
           nextStep={handleNext}
@@ -156,10 +156,6 @@ export default function SignUp() {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
   };
 
   setTimeout(() => { setLoading(false)}, 1000);
@@ -215,7 +211,6 @@ export default function SignUp() {
               <div>
                 <Typography className={classes.instructions}>Well Done <i class="fa fa-thumbs-up"></i></Typography>
                 <Typography className={classes.instructions}>Now, Check your inbox <p>to verify your account</p></Typography>
-                <Button onClick={handleReset}>Reset</Button>
               </div>
             ) : (
               <div>

@@ -17,7 +17,7 @@ class SocialButtons extends Component{
                         icon="fa-facebook"/>
                     <p>Or</p>
                     <GoogleLoginButton
-                        onClick={() => { console.log('Google button clicked') }}
+                        onClick={() => { }}
                     />
                 </>
             ): '')
