@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loginAction, closeSnackbar, loadSkeletons } from '../../redux/actions/loginAction';
 import PropTypes from 'prop-types';
@@ -30,7 +30,6 @@ function Login(props) {
     const classes = loginStyles();
     
     useEffect(() =>{
-        console.log(props);
         props.loadSkeletons(true);
         const userToken = localStorage.getItem("barefootUserToken");
         if(userToken){
@@ -64,12 +63,8 @@ function Login(props) {
     } 
 
     if(props.login.success){
-        const userToken = localStorage.getItem("barefootUserToken");
-        console.log('new user token ==================');
-        console.log(userToken);
         props.history.push('/profile');
     }
-    console.log(props);
 
     return(
         <>
@@ -259,7 +254,12 @@ function Login(props) {
     )
 }
 
-
+Login.protoTypes={
+    loginAction: PropTypes.func.isRequired,
+    closeSnackbar: PropTypes.func.isRequired,
+    loadSkeletons: PropTypes.func.isRequired,
+    login: PropTypes.object.isRequired
+}
 
 const mapStateToProps = state =>({
     login: state.login

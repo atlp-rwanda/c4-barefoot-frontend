@@ -27,6 +27,7 @@ export const loginAction = (userCredentials) => dispatch => {
             })
         }
         if(err.response){
+            console.log(err.response);
             dispatch({
                 type: USER_LOGIN,
                 error: 'Email or password is invalid, try again!'

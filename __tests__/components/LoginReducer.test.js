@@ -1,12 +1,13 @@
 import {loginReducer} from '../../src/redux/reducers/loginReducer';
-import { USER_LOGIN, LoGIN_LOADING, CLOSE_SNACKBAR } from "../../src/redux/actions/loginAction";
+import { USER_LOGIN, LoGIN_LOADING, CLOSE_SNACKBAR, DISPLAY_SKELETONS } from "../../src/redux/actions/loginAction";
 
 describe('loginReducer(state, action)', () =>{
     const initialState ={
         loading: false,
         success: false,
         snackBarMessage: false,
-        error: ''
+        error: '',
+        showSkeletons: false
     }  
     it('should return the initialState for no action', () =>{
         const reducer = loginReducer(undefined, {});
@@ -18,10 +19,8 @@ describe('loginReducer(state, action)', () =>{
         } 
         const reducer = loginReducer(initialState, action);
         expect(reducer).toEqual({
-            loading: false,
-            success: true,
-            snackBarMessage: false,
-            error: ""
+            ...initialState,
+            success: true
             }
         );
 
@@ -33,12 +32,12 @@ describe('loginReducer(state, action)', () =>{
             error: 'Network Error'
         } 
         const reducer = loginReducer(initialState, action);
-        console.log(reducer);
         expect(reducer).toEqual({
+            ...initialState,
             loading: false,
             success: false,
             snackBarMessage: true,
-            error: "Network Error"
+            error: action.error
             }
         );
 
@@ -48,12 +47,10 @@ describe('loginReducer(state, action)', () =>{
             type: LoGIN_LOADING
         } 
         const reducer = loginReducer(initialState, action);
-        console.log(reducer);
         expect(reducer).toEqual({
+            ...initialState,
             loading: true,
-            success: false,
-            snackBarMessage: false,
-            error: ""
+            snackBarMessage: false
             }
         );
 
@@ -63,15 +60,28 @@ describe('loginReducer(state, action)', () =>{
             type: CLOSE_SNACKBAR
         } 
         const reducer = loginReducer(initialState, action);
-        console.log(reducer);
         expect(reducer).toEqual({
-            loading: false,
-            success: false,
-            snackBarMessage: false,
-            error: ""
+            ...initialState,
+            snackBarMessage: false
             }
         );
 
+    })
+    it('should return the state with showSkeletons true', () =>{
+        const action = { type: DISPLAY_SKELETONS, payload: true}
+        const reducer = loginReducer(initialState,action);
+        expect(reducer).toEqual({
+            ...initialState,
+            showSkeletons:true
+        })
+    })
+    it('should return the state with showSkeletons false', () =>{
+        const action = { type: DISPLAY_SKELETONS, payload: false}
+        const reducer = loginReducer(initialState,action);
+        expect(reducer).toEqual({
+            ...initialState,
+            showSkeletons:false
+        })
     })
 })
 
