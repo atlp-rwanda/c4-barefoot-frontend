@@ -37,4 +37,25 @@ describe('Fetch Location actions', () => {
     })
   })
 
+  it('Creates FETCH_LOCATIONS_ERROR after task is unsuccessful', () => {
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+       status: 200,
+       response: {
+          loccations: {
+            rowws: locationsPayload
+          }
+       }
+       })
+    })
+
+    return store.dispatch(actions.getLocations()).then(() => {
+      const expectedActions = store.getActions();
+      expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_PENDING')
+      expect(expectedActions[1].type).toEqual('FETCH_LOCATIONS_ERROR')
+    })
+  })
+
 })

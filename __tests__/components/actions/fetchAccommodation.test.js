@@ -37,4 +37,27 @@ describe('Fetch accommodations actions', () => {
     })
   })
 
+  it('Dispatches FETCH_ACCOMMODATIONS_ERROR after task is unsuccessful', () => {
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+       status: 200,
+       response: {
+         data: {
+          accommodations: {
+            rows: accommodationsPayload
+          }
+        }
+       }
+       })
+    })
+
+    return store.dispatch(actions.getAccommodations()).then(() => {
+      const expectedActions = store.getActions();
+      expect(expectedActions[0].type).toEqual('FETCH_ACCOMMODATIONS_PENDING')
+      expect(expectedActions[1].type).toEqual('FETCH_ACCOMMODATIONS_ERROR')
+    })
+  })
+
 })
