@@ -116,6 +116,9 @@ exports[`Signup Signup Rendering renders correctly Signup index 1`] = `
 
 exports[`Signup Signup Rendering renders correctly Third step 1`] = `
 <Fragment>
+  <Loader
+    open={false}
+  />
   <WithStyles(ForwardRef(Snackbar))
     autoHideDuration={6000}
     onClose={[Function]}
