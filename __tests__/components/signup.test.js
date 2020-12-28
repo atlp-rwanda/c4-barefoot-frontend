@@ -8,7 +8,7 @@ import { Confirm } from "../../src/components/signup/thirdStep";
 import verifyAccount from "../../src/components/signup/verifyAccount";
 import SocialButtons from '../../src/components/signup/socialButton'
 import SideDiv from "../../src/components/signup/sideDiv";
-import { act } from "react-test-renderer";
+import {act} from 'react-dom/test-utils'
 
 describe('Signup', () => {
     let formData = new FormData()
@@ -55,6 +55,7 @@ describe('Signup', () => {
             
         });
         it('should call onClick to submit form', async () => {
+            act
             await act( async () => {
                 const signupRequest = jest.fn();
                 const handleClose = jest.fn();
