@@ -82,7 +82,7 @@ export  const SecondStep = ({
               id="file" 
               name="profile_picture" 
               type="file" 
-              hidden='true'
+              hidden={true}
               onChange={(e) => {
                 const profile_picture = e.target.files[0]
                 const formData = new FormData()
@@ -96,8 +96,8 @@ export  const SecondStep = ({
               }}
               />
               
-              <label for="file" className={classes.label}>
-                <i class="fa fa-cloud-upload" aria-hidden="true"></i> 
+              <label htmlFor="file" className={classes.label}>
+                <i className="fa fa-cloud-upload" aria-hidden="true"></i> 
                 <div>
                 Upload Profile Image {loading ? <CircularProgress className={classes.uploadSpinner}/> : ''}
                 </div>
@@ -109,7 +109,7 @@ export  const SecondStep = ({
             label='Biography' 
             as={TextField} 
             margin='normal'
-              InputProps={{
+              inputprops={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <Subject />
@@ -122,7 +122,7 @@ export  const SecondStep = ({
             label='Occupation' 
             as={TextField} 
             margin='normal'
-              InputProps={{
+              inputprops={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <EventBusy />
@@ -135,8 +135,8 @@ export  const SecondStep = ({
               <Field 
               as={Select} 
               name="address" 
-              margin='normal' 
-                InputProps={{
+              // margin='normal' 
+                inputprops={{
                   startAdornment: (
                     <ListItemIcon>
                       <AccountCircle />
@@ -154,8 +154,8 @@ export  const SecondStep = ({
               <Field 
               as={Select} 
               name="language" 
-              margin='normal' 
-                InputProps={{
+              // margin='normal' 
+                inputprops={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <Language />

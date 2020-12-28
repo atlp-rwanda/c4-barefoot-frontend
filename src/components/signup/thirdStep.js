@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Loader from '../Loader'
 
 
 const useStyles = makeStyles(theme => ({
@@ -35,23 +36,29 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   const [successOpen, setSuccessOpen] = React.useState(false);
   const [success, setSuccess] = React.useState('');
   const [error, setError] = React.useState('');
+  const [requesting, setRequesting] = React.useState(false)
 
   const signupRequest = () => {
     const{confirmPassword, ...user} = {...formData}
+    setRequesting(true)
     axios.post(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/signup`, user)
     .then(res => {
       setSuccessOpen(true)
+      setRequesting(false)
       nextStep()
     })
     .catch(err => { 
       if (err.response){
         setError(err.response.data.error)
+        setRequesting(false)
         setErrorOpen(true);
       }else if(err.request){
         setError(err.request.data.error)
+        setRequesting(false)
         setErrorOpen(true)
       }else if(err.message){
         setError(err.message.data.error)
+        setRequesting(false)
         setErrorOpen(true)      
       }
     })
@@ -67,6 +74,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   }
   return (
     <>
+      <Loader open={requesting} />
       <Snackbar open={errorOpen} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           Error: {error ? JSON.stringify(error).replace(/[\\'"]+/g, '') : 'Error Not set'}
