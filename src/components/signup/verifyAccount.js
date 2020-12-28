@@ -77,7 +77,6 @@ const verifyAccount = () => {
                 <>
                     <Box className={classes.box}>
                         <CheckCircle style={{color: '#1b5e20'}}/>Your e-mail has been verified
-                        {"Verified : " + JSON.stringify(verified)}
                     </Box>
                     <Devider flexItem className={classes.hr}/>
                     <Box className={classes.box}>

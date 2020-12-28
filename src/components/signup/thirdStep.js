@@ -173,7 +173,6 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
           <Button
             color='primary'
             variant='contained'
-            // id="submitBtn_"
             btn='submitBtn'
             className={classes.button}
             onClick={() => signupRequest()}

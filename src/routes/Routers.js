@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Login from '../components/views/Login'
 import SignUp from '../components/signup';
@@ -29,12 +28,6 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-         {/* <RouteWithLayout
-          component={Signup}
-          exact
-          layout={DefaultLayout}
-          path="/signup"
-        /> */}
          <RouteWithLayout
           component={Profile}
           exact
