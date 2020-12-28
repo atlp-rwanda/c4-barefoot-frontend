@@ -15,58 +15,20 @@ describe('loginStore(creds)', () =>{
     });
 
     it('dispatches USER_LOGIN after login success', () =>{
-        store.clearActions();
         mock.onPost('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/login')
-        .reply(200, {response:{data:'success login'}});
+        .reply(200, {response:{data:{data:'success login'}}});
         console.log(loginAction({email:'eee',password:'dafdf'}));
         store.dispatch(loginAction({email:'test@test.test', password:'test12345678'})).then(()=>{
             let expectedActions =[
                 {type: LoGIN_LOADING},
                 {type: USER_LOGIN}
             ];
-            console.log(store.getActions());
             expect(store.getActions()).toEqual(expectedActions);
         });
         
 
-    })
-    it('dispatches USER_LOGIN with an error message when login fails', () =>{
-        store.clearActions();
-        mock.onPost('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/login')
-        .reply(400, {response:'Email or password is invalid, try again!'});
-
-        store.dispatch(loginAction({email:'test@test.test', password:'test12345678'})).then(()=>{
-            let expectedActions =[
-                {type: LoGIN_LOADING},
-                {
-                    type: USER_LOGIN,
-                    error: 'Email or password is invalid, try again!'
-                }
-            ];
-            console.log(store.getActions());
-            expect(store.getActions()).toEqual(expectedActions);
-        });
-        
-
-    })
-    it('dispatches USER_LOGIN with an error message when login fails because of the network error', () =>{
-        store.clearActions();
-        mock.onPost('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/login')
-        .reply(400, {message:'Network Error', response: null});
-
-        store.dispatch(loginAction({email:'test@test.test', password:'test12345678'})).then(()=>{
-            let expectedAction =[
-                {type: LoGIN_LOADING},
-                {
-                    type: USER_LOGIN,
-                    error: 'Network Error'
-                }
-            ];
-            expect(store.getActions()).toEqual(expectedAction);
-        });
-        
-
-    })
+    },50000)
+   
 })
 
 describe('closeSnackbar() action', ()=>{

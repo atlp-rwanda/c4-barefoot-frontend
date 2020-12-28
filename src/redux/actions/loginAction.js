@@ -20,14 +20,12 @@ export const loginAction = (userCredentials) => dispatch => {
     })
     .catch(err=>{
         if(err.message === 'Network Error'){
-            console.log(err.message);
             dispatch({
                 type: USER_LOGIN,
                 error: err.message
             })
         }
         if(err.response){
-            console.log(err.response);
             dispatch({
                 type: USER_LOGIN,
                 error: 'Email or password is invalid, try again!'
