@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as actions from '../../../src/redux/actions/fetchAccommodations';
-import { accommodationsPayload } from '../../../dummyData'
+import * as actions from '../../src/redux/actions/fetchAccommodations';
+import { accommodationsPayload } from '../../dummyData'
 import moxios from 'moxios'
 
 const middlewares = [thunk]
