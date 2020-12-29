@@ -28,7 +28,7 @@ describe('loginStore(creds)', () =>{
         
 
     },50000)
-   
+    
 })
 
 describe('closeSnackbar() action', ()=>{
