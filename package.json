@@ -86,6 +86,9 @@
     ],
     "roots": [
       "<rootDir>/__tests__"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   }
 }
