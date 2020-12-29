@@ -9,6 +9,7 @@ import verifyAccount from "../../src/components/signup/verifyAccount";
 import SocialButtons from '../../src/components/signup/socialButton'
 import SideDiv from "../../src/components/signup/sideDiv";
 import {act} from 'react-dom/test-utils'
+import { BrowserRouter as Router } from "react-router-dom";
 
 describe('Signup', () => {
     let formData = new FormData()
@@ -54,6 +55,33 @@ describe('Signup', () => {
                     // expect(onSearchMock).toBeCalledWith('image.jpg');
                 })
             
+        });
+        it('should call onSubmit on first step', () => {
+        
+            const onSubmit = jest.fn();
+            const component = mount(<Router><FirstStep onSubmit={onSubmit} {...props} values="custom value" /></Router>);
+            act( () => {   
+                component.find('[type="submit"]').first().simulate('click');
+            })
+        
+        });
+        it('should call onSubmit on Second step', () => {
+        
+            const onSubmit = jest.fn();
+            const component = mount(<Router><SecondStep onSubmit={onSubmit} {...props} values="custom value" /></Router>);
+            act( () => {   
+                component.find('[type="submit"]').first().simulate('click');
+            })
+        
+        });
+        it('should call onSubmit on Third step', () => {
+        
+            const onClick = jest.fn();
+            const component = mount(<Router><Confirm onClick={onClick} {...props} values="custom value" /></Router>);
+            act( () => {   
+                component.find('[id="backBtn"]').first().simulate('click');
+            })
+        
         });
         // it('should call onClick to submit form', async (done) => {
             
