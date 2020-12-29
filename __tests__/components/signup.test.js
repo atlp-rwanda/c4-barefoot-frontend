@@ -39,31 +39,42 @@ describe('Signup', () => {
             expect(toJson(wrapper)).toMatchSnapshot();
         });
         it('renders Social buttons correctly', () => {
-            const wrapper = shallow(<SocialButtons />)
+            const wrapper = shallow(<SocialButtons />)            
             expect(toJson(wrapper)).toMatchSnapshot();
         });
         
     })
     describe('Functionalities', () => {
-        it('should call onChange prop with input value', async () => {
-           await act( async () => {
+        it('should call onChange prop with input value', () => {
+        
                 const onSearchMock = jest.fn();
                 const component = mount(<SecondStep onChange={onSearchMock} {...props} value="custom value" />);
-                component.find('#file').simulate('change');
-                // expect(onSearchMock).toBeCalledWith('image.jpg');
-           })
+                act( () => {   
+                    component.find('#file').simulate('change');
+                    // expect(onSearchMock).toBeCalledWith('image.jpg');
+                })
             
         });
-        it('should call onClick to submit form', async () => {
-            act
-            await act( async () => {
-                const signupRequest = jest.fn();
-                const handleClose = jest.fn();
-                const component = mount(<Confirm onClick={signupRequest} handleClose={handleClose} {...props} value="custom value" />);
-                component.find('[btn="submitBtn"]').first().simulate('click');
-                // expect(onSearchMock).toBeCalledWith('image.jpg');
-            })
-        });
+        // it('should call onClick to submit form', async (done) => {
+            
+        //         const signupRequest = jest.fn();
+        //         const handleClose = jest.fn();
+        //         try{
+        //             console.log("try.........................")
+        //             act(() => { 
+        //                 // const component = 
+        //                     mount(<Confirm onClick={signupRequest} handleClose={handleClose} {...props} />).find('[btn="submitBtn"]').first().simulate('click');
+        //                 // component
+                       
+        //             }); 
+        //             done()
+        //             console.log("try end___________________________")
+        //         }catch(e){
+        //             console.log("catch_________________________")
+        //             done.fail(e)
+        //         }
+                
+        // });
     })
 
 })
