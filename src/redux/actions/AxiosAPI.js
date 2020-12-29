@@ -1,5 +1,6 @@
 import axios from 'axios';
+import {BACKEND_LINK} from '../../../config';
 
 export default axios.create({
-    baseURL: 'https://barefoot-nomad-app-v1.herokuapp.com/api/v1'
+    baseURL: BACKEND_LINK
 })
