@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { List, ListItem, ListItemText } from '@material-ui/core/';
 import { AccountCircle, Email, BusinessCenter, Language, Subject, EventBusy } from "@material-ui/icons";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Avatar from '@material-ui/core/Avatar';
-import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Loader from '../Loader'
+import { requestSignup } from '../../redux/actions/signupRequestAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeSnackbar } from '../../redux/actions/signupRequestAction';
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,57 +35,28 @@ const useStyles = makeStyles(theme => ({
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
   const { first_name, last_name, email, username, occupation, bio, address, language, profile_picture} = formData;
-  const [errorOpen, setErrorOpen] = React.useState(false);
-  const [successOpen, setSuccessOpen] = React.useState(false);
-  const [success, setSuccess] = React.useState('');
-  const [error, setError] = React.useState('');
-  const [requesting, setRequesting] = React.useState(false)
+
+  const dispatch = useDispatch();
+  const requestingState = useSelector(state => state.signup.requesting);
+  const openError = useSelector(state => state.signup.errorOpen);
+  const errorMsg = useSelector(state => state.signup.error);
 
   const signupRequest = () => {
     const{confirmPassword, ...user} = {...formData}
-    setRequesting(true)
-    axios.post(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/signup`, user)
-    .then(res => {
-      setSuccessOpen(true)
-      setRequesting(false)
-      nextStep()
-    })
-    .catch(err => { 
-      if (err.response){
-        setError(err.response.data.error)
-        setRequesting(false)
-        setErrorOpen(true);
-      }else if(err.request){
-        setError(err.request.data.error)
-        setRequesting(false)
-        setErrorOpen(true)
-      }else if(err.message){
-        setError(err.message.data.error)
-        setRequesting(false)
-        setErrorOpen(true)      
-      }
-    })
+    dispatch(requestSignup(user, nextStep))
   }
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setErrorOpen(false);
+  const handleClose = () => {
+    dispatch(closeSnackbar());
   };
   function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} variant="filled" {...props}  itemID='alert' />;
   }
   return (
     <>
-      <Loader open={requesting} />
-      <Snackbar open={errorOpen} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error">
-          Error: {error ? JSON.stringify(error).replace(/[\\'"]+/g, '') : 'Error Not set'}
-        </Alert>
-      </Snackbar>
-      <Snackbar open={successOpen} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Success: {success ? JSON.stringify(success) : 'Message Not set'}
+      <Loader open={requestingState} />
+      <Snackbar open={openError} autoHideDuration={6000} onClose={handleClose} >
+        <Alert onClose={handleClose} severity="error" >
+          Error: {errorMsg ? JSON.stringify(errorMsg).replace(/[\\'"]+/g, '') : 'Error Not set'}
         </Alert>
       </Snackbar>
       <div>
@@ -198,3 +172,9 @@ Confirm.propTypes = {
   prevStep: PropTypes.func.isRequired,
   nextStep: PropTypes.func.isRequired
 };
+
+const mapStateToProps = state => ({
+  requestSignup: state.signup,
+})
+
+export default connect(mapStateToProps, { requestSignup })(Confirm)

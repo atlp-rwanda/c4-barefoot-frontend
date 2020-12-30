@@ -115,136 +115,45 @@ exports[`Signup Signup Rendering renders correctly Signup index 1`] = `
 `;
 
 exports[`Signup Signup Rendering renders correctly Third step 1`] = `
-<Fragment>
-  <Loader
-    open={false}
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <Confirm
+    formData={FormData {}}
+    nextStep={[Function]}
+    prevStep={[Function]}
+    profile_picture="image.jpg"
+    setFormData={[Function]}
   />
-  <WithStyles(ForwardRef(Snackbar))
-    autoHideDuration={6000}
-    onClose={[Function]}
-    open={false}
-  >
-    <Alert
-      onClose={[Function]}
-      severity="error"
-    >
-      Error: 
-      Error Not set
-    </Alert>
-  </WithStyles(ForwardRef(Snackbar))>
-  <WithStyles(ForwardRef(Snackbar))
-    autoHideDuration={6000}
-    onClose={[Function]}
-    open={false}
-  >
-    <Alert
-      onClose={[Function]}
-      severity="success"
-    >
-      Success: 
-      Message Not set
-    </Alert>
-  </WithStyles(ForwardRef(Snackbar))>
-  <div>
-    <WithStyles(ForwardRef(List))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(Avatar))
-          alt="user"
-          className="makeStyles-large-22"
-          name="file"
-          src=""
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Names"
-          secondary="undefined undefined"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Username"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Email"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Occupation"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Address"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Language"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Biography"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(ListItemIcon))>
-          <Memo([object Object]) />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))
-          primary="Occupation"
-        />
-      </WithStyles(ForwardRef(ListItem))>
-    </WithStyles(ForwardRef(List))>
-    <div
-      className="makeStyles-textCenter-20"
-    >
-      <WithStyles(ForwardRef(Button))
-        className="makeStyles-button-21"
-        color="secondary"
-        id="backBtn"
-        onClick={[Function]}
-        variant="contained"
-      >
-        Back
-      </WithStyles(ForwardRef(Button))>
-      <WithStyles(ForwardRef(Button))
-        btn="submitBtn"
-        className="makeStyles-button-21"
-        color="primary"
-        onClick={[Function]}
-        variant="contained"
-      >
-        Submit
-      </WithStyles(ForwardRef(Button))>
-    </div>
-  </div>
-</Fragment>
+</ContextProvider>
 `;
 
 exports[`Signup Signup Rendering renders correctly first step 1`] = `
@@ -542,10 +451,10 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
 
 exports[`Signup Signup Rendering renders side div correctly 1`] = `
 <div
-  className="makeStyles-sideNav-23"
+  className="makeStyles-sideNav-19"
 >
   <div
-    className="makeStyles-sideText-27"
+    className="makeStyles-sideText-23"
   >
     <p>
       Please create account to get 
@@ -555,11 +464,11 @@ exports[`Signup Signup Rendering renders side div correctly 1`] = `
     </p>
   </div>
   <div
-    className="makeStyles-img-25"
+    className="makeStyles-img-21"
   >
     <img
       alt="Barefoot Nomards"
-      className="makeStyles-locationImg-24"
+      className="makeStyles-locationImg-20"
       src="../public/images/location.png"
     />
   </div>

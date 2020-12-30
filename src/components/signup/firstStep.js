@@ -6,7 +6,7 @@ import { AccountCircle, Email, Lock } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import * as yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles(theme => ({
@@ -101,7 +101,7 @@ export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
         validationSchema={validationSchema}
       >
         {({ errors, touched }) => (
-          <Form className={classes.form}>
+          <Form className={classes.form} form-data='form-1'>
             {loading ? (
               <Box className={classes.box}>
                 <Skeleton variant="circle">
@@ -260,7 +260,7 @@ export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
                   <Skeleton variant="rect" className={classes.skeletonLink} />
                 </Box>
               ) : (
-                <Link to='/login'>Sign in instead</Link>
+                <Router><Link to='/login'>Sign in instead</Link></Router>
               )}
               
               <div></div>

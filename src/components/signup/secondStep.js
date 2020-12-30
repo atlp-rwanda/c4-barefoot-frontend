@@ -135,7 +135,6 @@ export  const SecondStep = ({
               <Field 
               as={Select} 
               name="address" 
-              // margin='normal' 
                 inputprops={{
                   startAdornment: (
                     <ListItemIcon>
@@ -154,7 +153,6 @@ export  const SecondStep = ({
               <Field 
               as={Select} 
               name="language" 
-              // margin='normal' 
                 inputprops={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -172,18 +170,19 @@ export  const SecondStep = ({
             <div>
               <Button
                 type='submit'
+                
                 variant='contained'
                 color='primary'
                 className={classes.button}
                 onClick={() => {
                   setDirection('back'); 
-                  console.log(JSON.stringify(formData))
                 }}
               >
                 Back
               </Button>
               <Button
                 type='submit'
+                id='backBtn'
                 variant='contained'
                 color='primary'
                 className={classes.button}

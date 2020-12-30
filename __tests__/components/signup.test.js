@@ -5,15 +5,23 @@ import { FirstStep } from "../../src/components/signup/firstStep";
 import { SecondStep } from "../../src/components/signup/secondStep";
 import Signup from '../../src/components/signup'
 import { Confirm } from "../../src/components/signup/thirdStep";
-import verifyAccount from "../../src/components/signup/verifyAccount";
 import SocialButtons from '../../src/components/signup/socialButton'
 import SideDiv from "../../src/components/signup/sideDiv";
 import {act} from 'react-dom/test-utils'
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import configureStore from 'redux-mock-store';
+import { signupState} from '../../dummyData'
+import thunk from "redux-thunk";
 
+const middlewares = [thunk]
+const mockStore = configureStore(middlewares);
+let store;
 describe('Signup', () => {
     let formData = new FormData()
-
+    store = mockStore({
+        signup: signupState,
+      });
     const props = {
         formData:formData,
         setFormData: function(){},
@@ -32,7 +40,7 @@ describe('Signup', () => {
             expect(toJson(wrapper)).toMatchSnapshot();
         });
         it('renders correctly Third step', () => {
-            const wrapper = shallow(<Confirm {...props}/>)
+            const wrapper = shallow(<Provider store={store}><Confirm {...props}/></Provider>)
             expect(toJson(wrapper)).toMatchSnapshot();
         });
         it('renders side div correctly', () => {
@@ -52,7 +60,6 @@ describe('Signup', () => {
                 const component = mount(<SecondStep onChange={onSearchMock} {...props} value="custom value" />);
                 act( () => {   
                     component.find('#file').simulate('change');
-                    // expect(onSearchMock).toBeCalledWith('image.jpg');
                 })
             
         });
@@ -77,32 +84,45 @@ describe('Signup', () => {
         it('should call onSubmit on Third step', () => {
         
             const onClick = jest.fn();
-            const component = mount(<Router><Confirm onClick={onClick} {...props} values="custom value" /></Router>);
+            const component = mount(<Provider store={store}><Router><Confirm onClick={onClick} {...props} values="custom value" /></Router></Provider>);
             act( () => {   
                 component.find('[id="backBtn"]').first().simulate('click');
             })
         
         });
-        // it('should call onClick to submit form', async (done) => {
+        it('should call onClick for backward on second step', async() => {
             
-        //         const signupRequest = jest.fn();
-        //         const handleClose = jest.fn();
-        //         try{
-        //             console.log("try.........................")
-        //             act(() => { 
-        //                 // const component = 
-        //                     mount(<Confirm onClick={signupRequest} handleClose={handleClose} {...props} />).find('[btn="submitBtn"]').first().simulate('click');
-        //                 // component
-                       
-        //             }); 
-        //             done()
-        //             console.log("try end___________________________")
-        //         }catch(e){
-        //             console.log("catch_________________________")
-        //             done.fail(e)
-        //         }
-                
-        // });
+            const signupRequest = jest.fn()
+                         
+            const component = mount(<SecondStep onClick={signupRequest} {...props} />) 
+            const button = component.find('#backBtn').at(0)
+            await act( async() => {
+                button.simulate('click');
+            });
+            expect(button.length).toBe(1)
+            expect(signupRequest.mock.calls.length).toEqual(0);
+        });
+        it('should call onClick to submit form', async() => {
+            
+            const signupRequest = jest.fn()
+                         
+            const component = mount(<Provider store={store}><Confirm {...props} /></Provider>) 
+            const button = component.find('[btn="submitBtn"]').first()
+            await act( async() => {
+                button.simulate('click');
+            });
+            expect(button.length).toBe(1)
+            expect(signupRequest.mock.calls.length).toEqual(0);
+        });
+        it('submit form', async() => {
+            const component = mount(<Router store={store}><FirstStep {...props} /></Router>) 
+            const button = component.find('[form-data="form-1"]').first()
+            await act( async() => {
+                button.simulate('submit');
+            });
+            expect(button.length).toBe(1)
+        });
+
     })
 
 })
