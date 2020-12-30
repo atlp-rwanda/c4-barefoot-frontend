@@ -1,29 +1,26 @@
-import { Switch, Route } from 'react-router-dom'
-import React, { Component } from 'react';
 import Home from '../components/Home'
-import Login from '../components/Login'
-import Signup from '../components/Signup';
+// import Login from '../components/Login'
+// import Signup from '../components/Signup';
 import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
-import SuccessFulEmailSent from '../components/resetPassword/SuccessfulEmailSent';
 import NewPassword from '../components/resetPassword/NewPassword'
 
-class Routes extends Component {
-    render(){
+// class Routes extends Component {
+//     render(){
  
-        return (
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/signup" component={Signup}/>
-                <Route path="/forgetpassword" component={ResetPasswordEmailForm}/>
-                <Route path="/emailsuccessfulsent" component={SuccessFulEmailSent}/>
-                {/* <Route path="/user/reset-password?" component={NewPassword}/> */}
-                <Route path="/user/reset-password" component={NewPassword}/>
-            </Switch>
-        )
-    }
-}
-export default Routes
+//         return (
+//             <Switch>
+//                 <Route exact path="/" component={Home}/>
+//                 <Route exact path="/login" component={Login}/>
+//                 <Route exact path="/signup" component={Signup}/>
+//                 <Route path="/forgetpassword" component={ResetPasswordEmailForm}/>
+//                 <Route path="/emailsuccessfulsent" component={SuccessFulEmailSent}/>
+//                 {/* <Route path="/user/reset-password?" component={NewPassword}/> */}
+//                 <Route path="/user/reset-password" component={NewPassword}/>
+//             </Switch>
+//         )
+//     }
+// }
+// export default Routes
 
 import React from 'react';
 import Login from '../components/views/Login'
@@ -60,6 +57,18 @@ const Routes = () => {
           path="/signup"
         />
         <RouteWithLayout
+          component={ResetPasswordEmailForm}
+          exact
+          layout={DefaultLayout}
+          path="/forgetpassword"
+        />
+        <RouteWithLayout
+          component={NewPassword}
+          exact
+          layout={DefaultLayout}
+          path="/user/reset-password"
+        />
+        <RouteWithLayout
           component={PageNotFound}
           exact
           layout={DefaultLayout}
@@ -72,4 +81,5 @@ const Routes = () => {
   };
   
   export default Routes;
+
 

@@ -1,4 +1,4 @@
-import { LOADING, RESET_PASSWORD, SEND_RESET_EMAIL, CLOSE_SNACKBAR } from "../resetPasswordType"
+import { LOADING, SEND_RESET_EMAIL, CLOSE_SNACKBAR, SEND_RESET_EMAIL_SUCCESS, RESET_PASSWORD } from "../resetPasswordType"
 
 const initialState = {
     isLoading:false,
@@ -9,7 +9,7 @@ const initialState = {
 export const ResetPasswordEmailReducer = (state = initialState, action) =>{
     // const {type, payload} = action;
     switch(action.type){
-        case SEND_RESET_EMAIL:
+        case SEND_RESET_EMAIL_SUCCESS:
             if(action.error){
                 return {
                     ...state,
@@ -31,12 +31,12 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
                 isLoading: true,
                 open: false
             };
-        case CLOSE_SNACKBAR:
-            return {
-                ...state,
-                open: false,
-                isLoading: false,
-            }
+        // case CLOSE_SNACKBAR:
+        //     return {
+        //         ...state,
+        //         open: false,
+        //         isLoading: false,
+        //     }
         default:
             return state;
     }
@@ -67,11 +67,11 @@ export const NewPasswordReducer = (state = initialState, action) => {
                 isLoading: true,
                 open:false
             }
-        case CLOSE_SNACKBAR:
-            return {
-                ...state,
-                open: false
-            }
+        // case CLOSE_SNACKBAR:
+        //     return {
+        //         ...state,
+        //         open: false
+        //     }
         default:
             return state
     }

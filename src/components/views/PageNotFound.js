@@ -20,7 +20,7 @@ function PageNotFound (){
     <React.Fragment>
       <Box className={classes.box}>
         <Typography variant='h1' >404</Typography>
-        <Typography variant='h4' >Page Not Found :(</Typography>
+        <Typography variant='h4' >Page Not Found :(😹</Typography>
       </Box>
     </React.Fragment>
   )

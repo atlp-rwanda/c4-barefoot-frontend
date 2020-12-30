@@ -1,15 +1,16 @@
 import axios from 'axios'
-import { SEND_RESET_EMAIL,SEND_RESET_EMAIL_FAIL, RESET_PASSWORD, RESET_PASSWORD_FAIL, LOADING,LOADING_ERROR, CLOSE_SNACKBAR } from '../resetPasswordType';
+import { SEND_RESET_EMAIL_SUCCESS,SEND_RESET_EMAIL_FAIL,RESET_PASSWORD, LOADING,LOADING_ERROR, CLOSE_SNACKBAR } from '../resetPasswordType';
 
 export const sendEmail = (userEmail) => dispatch =>{
         dispatch({
         type: LOADING
     });
-    axios.post('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/request-reset-password', {email:userEmail.email})
+   return axios.post('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/request-reset-password', {email:userEmail.email})
     .then((res)=> {
+        console.log(res)
         console.log(res.data.message)
         dispatch({
-            type:SEND_RESET_EMAIL,
+            type:SEND_RESET_EMAIL_SUCCESS,
             message: res.data.message
         })
     })
@@ -17,7 +18,7 @@ export const sendEmail = (userEmail) => dispatch =>{
         if(err.response){
         console.log(err.response.data.error);
         dispatch({
-            type: SEND_RESET_EMAIL,
+            type: SEND_RESET_EMAIL_FAIL,
             error: err.response.data.error
         })
         }
@@ -28,8 +29,7 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
     dispatch({
         type: LOADING
     });
-    const q = '?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaWRlc2pldW5lcyIsImlhdCI6MTYwODk2NzU1NCwiZXhwIjoxNjA5NTcyMzU0fQ.LQz45uMO0FiS8nFc11ViPJTpzV7HyYfkei4uw_U-8sQ'
-    axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/reset-password${q}`, {
+    return axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/reset-password${query}`, {
         password:newPassword.password,
         confirmPassword: newPassword.confirmPassword
     })

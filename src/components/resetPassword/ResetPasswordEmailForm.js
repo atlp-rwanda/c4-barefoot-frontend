@@ -75,10 +75,10 @@ function ResetPasswordEmailForm(props){
     const [Email, setEmail] = useState({email:''})
     const [loading, SetLoading] = useState(false)
     let { email } = Email;
-    const errors = useSelector(state => state.sendEmail.error)
-    const opened = useSelector(state => state.sendEmail.open)
-    const anyLoading = useSelector(state => state.sendEmail.isLoading)
-    const messages = useSelector(state => state.sendEmail.message)
+    const errors = props.sendemail.error
+    const opened = props.sendemail.open
+    const anyLoading = props.sendemail.isLoading
+    const messages = props.sendemail.message
     const myerror = JSON.stringify(errors)
     const classes= useStyle();
     const notify = (errors) => {
@@ -105,7 +105,7 @@ function ResetPasswordEmailForm(props){
         console.log(values)
         console.log(errors)
         props.sendEmail(values)
-        setEmail({email:''})
+        values=''
     };
 
     function handleClose(event, reason){
@@ -130,15 +130,15 @@ function ResetPasswordEmailForm(props){
                 </Alert>
             </Snackbar>)}
                 
-            <Grid container className={classes.rootGrid} component='main'>
+            <Grid container data-test="main-grid" className={classes.rootGrid} component='main'>
                 {/* <ToastContainer /> */}
                 
             {anyLoading? ( <Typography className={classes.loadingHeader} variant="h5" > Loading ...</Typography> ):
             (
                 <Grid item xs={10} sm={8} md={6}>
                 <Paper item className={classes.paperStyle} >
-                    <Typography  className={classes.typographyColor} variant="h5">Forgot your password don't worry ?</Typography>
-                    <Typography variant="h6" className={classes.typographyColor}>Enter email below and send you a link to reset your password.</Typography>
+                    <Typography data-test="typography-test" className={classes.typographyColor} variant="h5">Forgot your password don't worry ?</Typography>
+                    <Typography data-test="typography-test" variant="h6" className={classes.typographyColor}>Enter email below and send you a link to reset your password.</Typography>
                     {/* <Typography className={classes.message}>{messages}</Typography> */}
                     <Formik 
                     initialValues={initialValues}
@@ -153,6 +153,7 @@ function ResetPasswordEmailForm(props){
                     {({ values, handleChange, handleBlur, errors, touched }) => (
                         <Form className={classes.emailForm} 
                         noValidate
+                        data-test="form-test"
                         >
                         {/* <pre>{JSON.stringify(errors, null, 4)}</pre>
                         <pre>{JSON.stringify(values, null, 4)}</pre> */}
@@ -173,6 +174,7 @@ function ResetPasswordEmailForm(props){
                              errors={errors.email}
                              touched={touched.email}
                              autoFocus 
+                             data-test="input-test"
                              />
                             {touched.email && errors.email ? (<span className={classes.errors} >{errors.email }</span>) : null } 
                         <Button 
@@ -196,7 +198,8 @@ function ResetPasswordEmailForm(props){
         )
     };
     const mapStateToProps = state =>({
-    login: state.sendEmail
+    sendemail: state.sendEmail
 });
 
 export default connect(mapStateToProps, {sendEmail, closeSnackbar})(ResetPasswordEmailForm)
+export { ResetPasswordEmailForm}

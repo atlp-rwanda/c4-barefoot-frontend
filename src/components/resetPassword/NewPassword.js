@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
-import { connect, useSelector } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { resetNewPassword } from '../../redux/actions/resetPasswordAction';
 import { Field, Form, Formik } from 'formik'
 import { FormGroup, Snackbar } from '@material-ui/core';
@@ -65,14 +65,14 @@ function NewPassword(props) {
    const { history } = props
    const query = history.location.search
   console.log('this is query token ' + query);
-  const errors = useSelector(state => state.newPassword.error)
-  const opened = useSelector(state => state.newPassword.open)
-  const messages = useSelector(state => state.newPassword.message)
-  const anyLoading = useSelector(state => state.newPassword.isLoading)
+   const errors = props.newpassword.error
+    const opened = props.newpassword.open
+    const anyLoading = props.newpassword.isLoading
+    const messages = props.newpassword.message
 
   const handleSubmition = (values)=>{
         event.preventDefault()
-        props.resetNewPassword(values)
+        props.resetNewPassword(values, query)
         console.log(values)
         values=''
     };
@@ -96,7 +96,7 @@ function NewPassword(props) {
                     successful: {messages}
                 </Alert>
             </Snackbar>)}
-    <Container component="main" maxWidth="xs">
+    <Container data-test='container' component="main" maxWidth="xs">
         <ToastContainer />
       {anyLoading? ( <Typography className={classes.sendingHeader} variant="h5" > Sending ...</Typography> ): (
       <div className={classes.paper}>
@@ -118,7 +118,7 @@ function NewPassword(props) {
         onSubmit={handleSubmition}
         >
         {({ values, handleChange, handleBlur, errors, touched }) => (
-            <Form className={classes.form} noValidate>
+            <Form data-test="form-test" className={classes.form} noValidate>
                 <FormGroup>
                   <Field
                     as={TextField}
@@ -177,7 +177,7 @@ function NewPassword(props) {
 };
 
 const mapStateToProps = state =>({
-    newPassword: state.resetNewPassword
+    newpassword: state.newPassword
 });
-
+export { NewPassword }
 export default connect(mapStateToProps, {resetNewPassword})(NewPassword)
