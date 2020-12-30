@@ -10,7 +10,7 @@ export const requestSignup = (user, nextStep) => async dispatch => {
   dispatch({
     type: REQUEST_SIGNUP
   })
-  return axios.post( `${process.env.REACT_APP_BACKEND_LINK}/user/signup`, user)
+  return axios.post( `https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/signup`, user)
     .then(res => {
       dispatch({
         type: REQUEST_SUCCESS,

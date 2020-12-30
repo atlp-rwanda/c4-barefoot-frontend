@@ -92,7 +92,6 @@ describe('Very important form', () => {
         await waitFor(() => {
           fireEvent.click(submit)
         })
-      console.log("FORM : " + JSON.stringify(form))
         expect(form.length).toBe(1)
       })
 });
