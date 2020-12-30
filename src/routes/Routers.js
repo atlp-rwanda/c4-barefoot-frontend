@@ -42,12 +42,6 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/profile"
         />
-         <RouteWithLayout
-          component={Logout}
-          exact
-          layout={RequesterLayout}
-          path="/logout"
-        />
         <RouteWithLayout
           component={Logout}
           exact

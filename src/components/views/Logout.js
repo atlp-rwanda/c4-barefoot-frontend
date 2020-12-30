@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import { logoutAction, closeSnackbar } from '../../redux/actions/LogoutAction';
+import { logoutAction } from '../../redux/actions/LogoutAction';
+import { closeSnackbar } from '../../redux/actions/loginAction';
 import PropTypes from 'prop-types';
 
 import { Skeleton } from '@material-ui/lab';

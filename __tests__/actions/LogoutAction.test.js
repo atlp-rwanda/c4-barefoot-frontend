@@ -31,33 +31,54 @@ describe('logout actions', () => {
 
     return store.dispatch(actions.logoutAction('the token')).then(() => {
       const expectedActions = store.getActions();
-      // console.log(store.getActions());
       expect(expectedActions[0].type).toEqual('LOGOUT_PENDING')
       expect(expectedActions[1].type).toEqual('LOGOUT_SUCCESS')
     })
   })
 
-  // it('Dispatches FETCH_ACCOMMODATIONS_ERROR after task is unsuccessful', () => {
+  it('Dispatches LOGOUT_FAIL after logout is failed because of the network error', () => {
 
-  //   moxios.wait(() => {
-  //     const request = moxios.requests.mostRecent()
-  //     request.respondWith({
-  //      status: 200,
-  //      response: {
-  //        data: {
-  //         accommodations: {
-  //           rows: accommodationsPayload
-  //         }
-  //       }
-  //      }
-  //      })
-  //   })
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.reject({
+        status: 400,
+        response:{
+          data:{message:"Network Error"}
+        }
+      })
+    })
 
-  //   return store.dispatch(actions.getAccommodations()).then(() => {
-  //     const expectedActions = store.getActions();
-  //     expect(expectedActions[0].type).toEqual('FETCH_ACCOMMODATIONS_PENDING')
-  //     expect(expectedActions[1].type).toEqual('FETCH_ACCOMMODATIONS_ERROR')
-  //   })
-  // })
+    return store.dispatch(actions.logoutAction('fake token string')).then(() => {
+      const expectedActions = [
+        {type: 'LOGOUT_PENDING'},
+        {type: 'LOGOUT_FAIL', error: 'Network Error'}
+      ]
+      expect(store.getActions()).toEqual(expectedActions);
+    })
+  })
+
+  it("should dispatch LOGOUT_FAILS for any other reason of failure", () =>{
+    moxios.wait(() =>{
+      const request = moxios.requests.mostRecent();
+      request.reject({
+        status: 400,
+        response:{
+          data:{
+            message:'Fail to logout'
+          }
+        }
+      })
+    })
+
+    return store.dispatch(actions.logoutAction('fake token')).then(() =>{
+      const expectedActions = [
+        {type: 'LOGOUT_PENDING'},
+        {type: 'LOGOUT_FAIL', error: 'Fail to logout'}
+      ]    
+      expect(store.getActions()).toEqual(expectedActions);  
+    }) 
+
+  })
 
 })
+
