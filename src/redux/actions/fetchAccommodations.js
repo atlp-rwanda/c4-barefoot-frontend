@@ -9,7 +9,7 @@ export const getAccommodations = () => dispatch => {
   dispatch({
     type: FETCH_ACCOMMODATIONS_PENDING
   })
-  axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/accommodations')
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`)
     .then(res => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_SUCCESS,

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Routers from './routes/Routers'
 import {BrowserRouter as Router} from 'react-router-dom'
-import './App.css'
+
+import history from "./history";
 
 import history from "./history";
 
