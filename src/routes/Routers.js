@@ -8,6 +8,8 @@ import Profile from '../components/views/Profile';
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import Logout from '../components/views/Logout';
+
 const Routes = () => {
     return (
       <Switch>
@@ -37,14 +39,14 @@ const Routes = () => {
          <RouteWithLayout
           component={Profile}
           exact
-          layout={DefaultLayout}
+          layout={AuthorizedUserLayout}
           path="/profile"
         />
         <RouteWithLayout
-          component={PageNotFound}
+          component={Logout}
           exact
-          layout={DefaultLayout}
-          path="/PageNotFound"
+          layout={AuthorizedUserLayout}
+          path="/logout"
         />
         <RouteWithLayout
           component={PageNotFound}
