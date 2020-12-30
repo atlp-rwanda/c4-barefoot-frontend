@@ -1,27 +1,25 @@
-import axios from 'axios';
+import {API} from './AxiosAPI';
 
 export const USER_LOGIN = 'LOGIN';
 export const LoGIN_LOADING = 'LOADING';
-export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR'
+export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
+export const DISPLAY_SKELETONS = 'DISPLAY_SKELETONS';
 
 export const loginAction = (userCredentials) => dispatch => {
     dispatch({
         type: LoGIN_LOADING
     });
-    axios.post('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/login',
-    {
-        email: userCredentials.email,
-        password: userCredentials.password
-    }
+    return API.post('/user/login',
+    userCredentials
     )
-    .then(() => {
+    .then((res) => {
+        localStorage.setItem('barefootUserToken',res.data.data);
         dispatch({
             type: USER_LOGIN
         })
     })
     .catch(err=>{
         if(err.message === 'Network Error'){
-            console.log(err.message);
             dispatch({
                 type: USER_LOGIN,
                 error: err.message
@@ -41,4 +39,18 @@ export const closeSnackbar = () => dispatch =>{
     dispatch({
         type: CLOSE_SNACKBAR
     });
+}
+export const loadSkeletons = (value) => dispatch =>{
+    if(value){
+        dispatch({
+            type: DISPLAY_SKELETONS,
+            payload: value
+        });
+    }
+    else{
+        dispatch({
+            type: DISPLAY_SKELETONS,
+            payload: false
+        });
+    }
 }

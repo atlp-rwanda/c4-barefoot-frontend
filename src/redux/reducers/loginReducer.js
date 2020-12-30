@@ -1,14 +1,28 @@
-import {USER_LOGIN, LoGIN_LOADING, CLOSE_SNACKBAR} from '../actions/loginAction';
+import {USER_LOGIN, LoGIN_LOADING, CLOSE_SNACKBAR, DISPLAY_SKELETONS} from '../actions/loginAction';
 
 const initialState ={
     loading: false,
     success: false,
     snackBarMessage: false,
     error: '',
+    showSkeletons:false
 }
 
 export const loginReducer = (state = initialState, action) =>{
     switch (action.type) {
+        case DISPLAY_SKELETONS:
+            if(action.payload){
+                return {
+                    ...state,
+                    showSkeletons: true
+                }
+            }else{
+                return {
+                    ...state,
+                    showSkeletons: false
+                }
+            }
+            
         case USER_LOGIN:
             if(action.error){
                 return {

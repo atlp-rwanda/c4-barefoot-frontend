@@ -2,11 +2,15 @@ import { combineReducers } from 'redux'
 import counterReducer from './counterReducer'
 import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
+import {fetchLocationsReducer} from './locationsReducer'
+import { fetchAccommodationsReducer } from './accommodationsReducer'
 
 const reducers = combineReducers({
-  counter: counterReducer,
   login: loginReducer,
-  signup: signupRequestReducer
+  signup: signupRequestReducer,
+  fetchLocations: fetchLocationsReducer,
+  fetchAccommodations: fetchAccommodationsReducer,
+  
 })
 
 export default reducers

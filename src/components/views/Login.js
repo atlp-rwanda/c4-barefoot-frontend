@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { loginAction, closeSnackbar } from '../../redux/actions/loginAction';
+import { loginAction, closeSnackbar, loadSkeletons } from '../../redux/actions/loginAction';
 import PropTypes from 'prop-types';
 
 import { Field, Form, Formik } from 'formik';
@@ -27,13 +27,16 @@ const loginForm = Yup.object().shape({
 });
 
 function Login(props) {
-    const [loadingSkeleton , setLoadingSkeletion] = useState(true);
     const classes = loginStyles();
     
     useEffect(() =>{
-        console.log(props);
+        props.loadSkeletons(true);
+        const userToken = localStorage.getItem("barefootUserToken");
+        if(userToken){
+            props.history.push('/profile');
+        }
         const timer = setTimeout(() =>{
-            setLoadingSkeletion(false);
+            props.loadSkeletons(false);
         }, 2000);
         return () => clearTimeout(timer);
         
@@ -62,7 +65,6 @@ function Login(props) {
     if(props.login.success){
         props.history.push('/profile');
     }
-    console.log(props);
 
     return(
         <>
@@ -88,7 +90,7 @@ function Login(props) {
                 <div className={classes.paper}>
                     
                     {/*logic for skeletons*/}
-                    {(!loadingSkeleton ? 
+                    {(!props.login.showSkeletons ? 
                     <>
                     <Typography component="h1" variant="h5">
                         Sign in to Barefoot Nomad
@@ -180,7 +182,7 @@ function Login(props) {
                     </React.Fragment>)}
                 </div>
 
-                {(!loadingSkeleton ?
+                {(!props.login.showSkeletons ?
                 <Grid container direction="column" className={classes.social_media_grid} >
                         <Typography variant="h6" component="h6">
                             Or Login with
@@ -210,7 +212,7 @@ function Login(props) {
             <Grid item container sm={4} xs={12} style={{background:"#257AAA"}}>
                 <div className={classes.paper2} text='primary'>
                 
-                    {(!loadingSkeleton ? 
+                    {(!props.login.showSkeletons ? 
                     <>
                     <Typography component="h1" variant="h5">
                         Hello, Friend!
@@ -252,11 +254,16 @@ function Login(props) {
     )
 }
 
-
+Login.protoTypes={
+    loginAction: PropTypes.func.isRequired,
+    closeSnackbar: PropTypes.func.isRequired,
+    loadSkeletons: PropTypes.func.isRequired,
+    login: PropTypes.object.isRequired
+}
 
 const mapStateToProps = state =>({
     login: state.login
 });
 
 export {Login};
-export default connect(mapStateToProps, { loginAction, closeSnackbar })(Login);
+export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons})(Login);
