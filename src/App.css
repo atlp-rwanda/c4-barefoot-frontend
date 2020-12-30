@@ -1,5 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
-  margin: 0
+.navbar .logo {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 20px;
+  justify-content: space-around;
+  justify-items: center;
 }
+
+.navbar .navlinks {
+  margin-right: 0;
+  text-align: right;
+  float: right;
+}
+.navbar .navlinks ul {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+  /* margin-right: 10px; */
+  float: right;
+}
+.navbar .navlinks ul li {
+  list-style: none;
+  justify-content: space-between;
+  padding: 10px;
+}
+.navbar .navlinks ul li a {
+  display: inline;
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  margin-right: 20px;
+}
+.home{
+    align-self: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 150px;
+    width: 300px;
+}
+/* form {
+  width: 50vw;
+  border: 1px solid lightgray;
+  padding-top: 30px;
+  margin-top: 20px;
+  justify-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  height: 19vw;
+  float: center;
+  margin-left: 23vw;
+}
+form input {
+  width: 90%;
+  height: 30px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid lightgray;
+}
+form input:focus {
+  border: none;
+}
+form button {
+  border: none;
+  cursor: pointer;
+  background-color: rgb(28, 175, 224);
+  width: 90%;
+  padding: 8px;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+form .login-btn {
+  border: none;
+  margin-top: 60px;
+  cursor: pointer;
+  background-color: rgb(28, 175, 224);
+  width: 90%;
+  padding: 8px;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+ */

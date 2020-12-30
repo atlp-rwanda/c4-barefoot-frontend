@@ -27,20 +27,20 @@ function Header() {
 
     const displayDesktop = () => {
         return (
-            <Toolbar>
-                <Container maxWidth='lg' className={classes.navDisplay}>
-                    {barefootLogo}
-                    <Hidden smDown>
-                        <List component='nav'>
-                            <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>Login</Button>
-                            <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>Signup</Button>
-                        </List>
-                    </Hidden>
-                    <Hidden mdUp>
-                        <SideDrawer navLinks={navLinks} />
-                    </Hidden>
-                </Container>
-            </Toolbar>
+            <div>
+                <div className="navbar">
+                    <div className="logo">
+                        <h2>Barefoot Nomad</h2>
+                    </div>
+                    <div className="navlinks">
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li> <Link to="/login">Login</Link></li>
+                            <li><Link to="/signup">Signup</Link></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         )
     }
 
