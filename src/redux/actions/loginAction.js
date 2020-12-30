@@ -1,5 +1,5 @@
-import API from './AxiosAPI';
- 
+import {API} from './AxiosAPI';
+
 export const USER_LOGIN = 'LOGIN';
 export const LoGIN_LOADING = 'LOADING';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';

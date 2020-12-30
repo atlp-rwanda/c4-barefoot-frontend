@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {BACKEND_LINK} from '../../../config';
 
-export default axios.create({
-    baseURL: BACKEND_LINK
+const API = axios.create({
+    baseURL: process.env.REACT_APP_BACKEND_LINK
 })
+
+export {API}
