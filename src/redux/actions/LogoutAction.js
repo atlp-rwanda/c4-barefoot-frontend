@@ -1,4 +1,5 @@
-import { API } from "./AxiosAPI";
+// import { API } from "./AxiosAPI";
+import axios from 'axios';
 
 export const LOGOUT_PENDING = "LOGOUT_PENDING";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
@@ -6,11 +7,16 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
  
 export const logoutAction =(authToken) => dispatch =>{
-        API.defaults.headers.common['Authorization'] =`Bearer ${authToken}`;
+        const userToken= `Bearer ${authToken}`;
         dispatch({
             type: LOGOUT_PENDING
         })
-        return API.post('/user/logout').then(()=>{
+        // API.defaults.headers.common['Authorization'] =
+        return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/logout`,{
+            headers:{
+                Authorization: userToken
+            }
+        }).then(()=>{
             dispatch({
                 type:LOGOUT_SUCCESS
             })
