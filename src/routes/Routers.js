@@ -40,7 +40,7 @@ const Routes = () => {
           path="/profile"
         />
          <RouteWithLayout
-          component={Signup}
+          component={signup}
           exact
           layout={DefaultLayout}
           path="/signup"

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import counterReducer from './counterReducer';
 import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
-import counterReducer from './counterReducer'
 import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
