@@ -12,6 +12,8 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout } from '../components/layouts';
 import Profile from '../components/views/Profile';
+import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import Logout from '../components/views/Logout';
 
 const Routes = () => {
     return (
@@ -36,7 +38,7 @@ const Routes = () => {
         <RouteWithLayout
           component={Profile}
           exact
-          layout={DefaultLayout}
+          layout={AuthorizedUserLayout}
           path="/profile"
         />
          <RouteWithLayout
@@ -57,6 +59,12 @@ const Routes = () => {
           exact
           layout={DefaultLayout}
           path="/user/reset-password"
+        />
+        <RouteWithLayout
+          component={Logout}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/logout"
         />
         <RouteWithLayout
           component={PageNotFound}
