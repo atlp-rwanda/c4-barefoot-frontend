@@ -192,7 +192,7 @@ function Login(props) {
                             variant="contained"
                             disabled={load}
                             className={classes.social_media}
-                            startIcon={<Avatar src={'../src/images/facebook.png'}/>}
+                            startIcon={<Avatar className={classes.image_icon} src={'../src/images/facebook.svg'}/>}
                             >
                             Facebook
                             </Button>
@@ -201,7 +201,7 @@ function Login(props) {
                             variant="contained"
                             disabled={load}
                             className={classes.social_media}
-                            startIcon={<Avatar className={classes.image_icon} src={'../src/images/goo.png'}/>}
+                            startIcon={<Avatar className={classes.image_icon} src={'../src/images/google.svg'}/>}
                             >
                                 Google
                             </Button>
