@@ -5,7 +5,6 @@ import { Field, Form, Formik } from 'formik'
 import { sendEmail, closeSnackbar } from "../../redux/actions/resetPasswordAction";
 import { object, string } from 'yup'
 import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
-import 'material-react-toastify/dist/ReactToastify.css';
 import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyle = makeStyles( (theme) => ({

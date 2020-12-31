@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
-import 'material-react-toastify/dist/ReactToastify.css';
 import { useDispatch, connect, useSelector } from 'react-redux';
 import { resetNewPassword } from '../../redux/actions/resetPasswordAction';
 import { Field, Form, Formik } from 'formik'

@@ -10,7 +10,6 @@ import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
-import {  DefaultLayout } from '../components/layouts';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
@@ -49,7 +48,6 @@ const Routes = () => {
         />
         <RouteWithLayout
           component={ResetPasswordEmailForm}
-          component={Profile}
           exact
           layout={DefaultLayout}
           path="/forgetpassword"

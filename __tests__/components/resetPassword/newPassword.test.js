@@ -1,21 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 import Enzyme, { shallow } from "enzyme";
 import toJson from 'enzyme-to-json';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { Field, Form, Formik } from 'formik'
 import { FormGroup, Grid, makeStyles, Paper, TextField, Typography, Button, CircularProgress, Snackbar, Slide, Container, Input  } from '@material-ui/core'
-import MuiAlert from '@material-ui/lab/Alert';
 import { NewPassword } from '../../../src/components/resetPassword/NewPassword';
-import { createMemoryHistory } from 'history'
 
-
-import Action from 'history';
-import * as router from 'react-router';
-
- Enzyme.configure({ adapter: new EnzymeAdapter()});
+Enzyme.configure({ adapter: new EnzymeAdapter()});
 describe('reset new password', ()=>{
     //  let wrapper;
          const props = {
