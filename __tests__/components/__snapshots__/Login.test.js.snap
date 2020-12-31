@@ -3959,6 +3959,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                 <WithStyles(ForwardRef(Button))
                   className="makeStyles-submit-6"
                   disabled={false}
+                  href="/signup"
                   type="submit"
                   variant="contained"
                 >
@@ -3998,6 +3999,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                       }
                     }
                     disabled={false}
+                    href="/signup"
                     type="submit"
                     variant="contained"
                   >
@@ -4007,6 +4009,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                       disabled={false}
                       focusRipple={true}
                       focusVisibleClassName="Mui-focusVisible"
+                      href="/signup"
                       type="submit"
                     >
                       <ForwardRef(ButtonBase)
@@ -4022,11 +4025,13 @@ exports[`<Login /> if it matches snapshot 1`] = `
                         disabled={false}
                         focusRipple={true}
                         focusVisibleClassName="Mui-focusVisible"
+                        href="/signup"
                         type="submit"
                       >
-                        <button
+                        <a
+                          aria-disabled={false}
                           className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-6"
-                          disabled={false}
+                          href="/signup"
                           onBlur={[Function]}
                           onDragLeave={[Function]}
                           onFocus={[Function]}
@@ -4039,7 +4044,6 @@ exports[`<Login /> if it matches snapshot 1`] = `
                           onTouchMove={[Function]}
                           onTouchStart={[Function]}
                           tabIndex={0}
-                          type="submit"
                         >
                           <span
                             className="MuiButton-label"
@@ -4074,7 +4078,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                               </span>
                             </ForwardRef(TouchRipple)>
                           </WithStyles(memo)>
-                        </button>
+                        </a>
                       </ForwardRef(ButtonBase)>
                     </WithStyles(ForwardRef(ButtonBase))>
                   </ForwardRef(Button)>
