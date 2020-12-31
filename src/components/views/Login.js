@@ -132,7 +132,7 @@ function Login(props) {
                             </FormGroup>
                             <Grid container item >
                                 <Grid item xs className={classes.forgotPassword} >
-                                    <Link href="#" variant="body2">Forgot password?</Link> 
+                                    <Link href="/forgetpassword" variant="body2">Forgot password?</Link> 
                                 </Grid>
                             </Grid>
                             <Button

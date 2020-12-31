@@ -28,7 +28,7 @@ describe('testing action creator', () => {
                 }
             })
         })
-        store.dispatch(sendEmail({email:'abajeunes2@gmail.com'})).then(() => {
+        store.dispatch(sendEmail({email:'habajeunes2@gmail.com'})).then(() => {
             const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('LOADING')
             expect(expectedActions[1].type).toEqual('SEND_RESET_EMAIL_SUCCESS')

@@ -1,4 +1,4 @@
-import { LOADING, SEND_RESET_EMAIL, CLOSE_SNACKBAR, SEND_RESET_EMAIL_SUCCESS, RESET_PASSWORD } from "../resetPasswordType"
+import { LOADING, SEND_RESET_EMAIL_FAIL, CLOSE_SNACKBAR, SEND_RESET_EMAIL_SUCCESS, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAIL } from "../resetPasswordType"
 
 const initialState = {
     isLoading:false,
@@ -7,10 +7,21 @@ const initialState = {
     message:''
 }
 export const ResetPasswordEmailReducer = (state = initialState, action) =>{
-    // const {type, payload} = action;
     switch(action.type){
+        case LOADING:
+            return {
+                ...state,
+                isLoading: true,
+                open: false
+            };
         case SEND_RESET_EMAIL_SUCCESS:
-            if(action.error){
+            return {
+                ...state,
+                isLoading: false,
+                open:true,
+                message: action.message
+            };
+        case SEND_RESET_EMAIL_FAIL:
                 return {
                     ...state,
                     isLoading: false,
@@ -18,19 +29,6 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
                     open:true,
                     message:''
                 };
-            }
-            return {
-                ...state,
-                isLoading: false,
-                open:true,
-                message: action.message
-            };
-        case LOADING:
-            return {
-                ...state,
-                isLoading: true,
-                open: false
-            };
         // case CLOSE_SNACKBAR:
         //     return {
         //         ...state,
@@ -44,16 +42,13 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
 
 export const NewPasswordReducer = (state = initialState, action) => {
     switch(action.type){
-        case RESET_PASSWORD:
-            if(action.error){
-                return {
-                    ...state,
-                    isLoading:false,
-                   error: action.error,
-                   open:true,
-                   message:''
-                }
-            };
+        case LOADING:
+            return {
+                ...state,
+                isLoading: true,
+                open:false
+            }
+        case RESET_PASSWORD_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -61,12 +56,14 @@ export const NewPasswordReducer = (state = initialState, action) => {
                 error:'',
                 message: action.message
             };
-        case LOADING:
-            return {
-                ...state,
-                isLoading: true,
-                open:false
-            }
+        case RESET_PASSWORD_FAIL:
+                return {
+                    ...state,
+                    isLoading:false,
+                   error: action.error,
+                   open:true,
+                   message:''
+            };
         // case CLOSE_SNACKBAR:
         //     return {
         //         ...state,

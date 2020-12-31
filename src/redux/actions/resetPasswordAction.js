@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { SEND_RESET_EMAIL_SUCCESS,SEND_RESET_EMAIL_FAIL,RESET_PASSWORD, LOADING,LOADING_ERROR, CLOSE_SNACKBAR } from '../resetPasswordType';
+import { SEND_RESET_EMAIL_SUCCESS, SEND_RESET_EMAIL_FAIL, RESET_PASSWORD_SUCCESS, LOADING, LOADING_ERROR, CLOSE_SNACKBAR, RESET_PASSWORD_FAIL } from '../resetPasswordType';
 
 export const sendEmail = (userEmail) => dispatch =>{
         dispatch({
         type: LOADING
     });
-   return axios.post('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/request-reset-password', {email:userEmail.email})
+   return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/request-reset-password`, {email:userEmail.email})
     .then((res)=> {
         console.log(res)
         console.log(res.data.message)
@@ -15,13 +15,13 @@ export const sendEmail = (userEmail) => dispatch =>{
         })
     })
     .catch(err => {
-        if(err.response){
+        // if(err.response){
         console.log(err.response.data.error);
         dispatch({
             type: SEND_RESET_EMAIL_FAIL,
             error: err.response.data.error
         })
-        }
+        // }
     })
 };
 
@@ -29,14 +29,14 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
     dispatch({
         type: LOADING
     });
-    return axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/reset-password${query}`, {
+    return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/user/reset-password${query}`, {
         password:newPassword.password,
         confirmPassword: newPassword.confirmPassword
     })
     .then((res) => {
         console.log(res)
         dispatch({
-            type: RESET_PASSWORD,
+            type: RESET_PASSWORD_SUCCESS,
             message:res.data.message
         })
     })
@@ -44,7 +44,7 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
         if(err.response){
         console.log(err.response.data.error);
         dispatch({
-            type:RESET_PASSWORD,
+            type:RESET_PASSWORD_FAIL,
             error: err.response.data
         })
         }

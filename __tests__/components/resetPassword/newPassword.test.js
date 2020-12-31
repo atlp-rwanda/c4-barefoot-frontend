@@ -131,30 +131,5 @@ describe('reset new password', ()=>{
         expect(component.length).toBe(1)
    });
 
-   it('should render form with two input component', ()=>{
-       const props = {
-             resetNewPassword: jest.fn(),
-             history : {
-            replace: jest.fn(),
-            length: 0,
-            location: { 
-                pathname: '',
-                search: '/user/reset_password',
-                state: '',
-                hash: ''
-            }},
-             newpassword: {
-                isLoading:false,
-                    open:false,
-                    error: '',
-                    message:''
-            }
-         }
-       const wrapper = shallow(<NewPassword  {...props} />)
-        const component = wrapper.find(Formik);
-        const event = { preventDefault: () => console.log('preventDefault') };
-        component.simulate("submit", event)
-        expect(component.find(Snackbar).length).toBe(1);
-   });
     
  })

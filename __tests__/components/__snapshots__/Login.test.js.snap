@@ -2703,7 +2703,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                       className="MuiGrid-root makeStyles-forgotPassword-12 MuiGrid-item MuiGrid-grid-xs-true"
                                     >
                                       <WithStyles(ForwardRef(Link))
-                                        href="#"
+                                        href="/forgetpassword"
                                         variant="body2"
                                       >
                                         <ForwardRef(Link)
@@ -2717,14 +2717,14 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                               "underlineNone": "MuiLink-underlineNone",
                                             }
                                           }
-                                          href="#"
+                                          href="/forgetpassword"
                                           variant="body2"
                                         >
                                           <WithStyles(ForwardRef(Typography))
                                             className="MuiLink-root MuiLink-underlineHover"
                                             color="primary"
                                             component="a"
-                                            href="#"
+                                            href="/forgetpassword"
                                             onBlur={[Function]}
                                             onFocus={[Function]}
                                             variant="body2"
@@ -2767,14 +2767,14 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                               }
                                               color="primary"
                                               component="a"
-                                              href="#"
+                                              href="/forgetpassword"
                                               onBlur={[Function]}
                                               onFocus={[Function]}
                                               variant="body2"
                                             >
                                               <a
                                                 className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
-                                                href="#"
+                                                href="/forgetpassword"
                                                 onBlur={[Function]}
                                                 onFocus={[Function]}
                                               >

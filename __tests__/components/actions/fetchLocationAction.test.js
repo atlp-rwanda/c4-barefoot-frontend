@@ -13,7 +13,7 @@ describe('Fetch Location actions', () => {
 
   beforeEach(() => {
     moxios.install()
-    mockStore({fetchLocations: {}})
+    store = mockStore({fetchLocations: {}})
   })
   afterEach(() => moxios.uninstall())
 

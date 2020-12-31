@@ -4,8 +4,6 @@ import {BrowserRouter as Router} from 'react-router-dom'
 
 import history from "./history";
 
-import history from "./history";
-
 class App extends Component{
      render() {
         return (

@@ -93,7 +93,7 @@ function NewPassword(props) {
                 </Alert>
             </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
                 <Alert onclose={handleClose} severity="success">
-                    successful: {messages}
+                    successful: {messages}👍 You can login with new Password 
                 </Alert>
             </Snackbar>)}
     <Container data-test='container' component="main" maxWidth="xs">
