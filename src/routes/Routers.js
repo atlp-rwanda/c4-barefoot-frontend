@@ -9,9 +9,12 @@ import PageNotFound from '../components/views/PageNotFound'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
-import { DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import {  DefaultLayout, AuthorizedUserLayout, AdminLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
+
+
+import adminHome from '../components/views/Admin/Home'
 
 const Routes = () => {
     return (
@@ -62,6 +65,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/logout"
+        />
+        <RouteWithLayout
+          component={adminHome}
+          exact
+          layout={AdminLayout}
+          path="/adminHome"
         />
         <RouteWithLayout
           component={PageNotFound}
