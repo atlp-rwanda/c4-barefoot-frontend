@@ -3,13 +3,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack');
 
-
+process.env.NODE_ENV = 'development';
 module.exports = () => ({
     entry: './src/index.js',
-    mode: 'development',
-    devServer: {
-        historyApiFallback: true
-      },
+    mode: 'production',
     context: __dirname,
     output: {
         filename: 'bundle.js',
@@ -44,11 +41,13 @@ module.exports = () => ({
                 use: ["babel-loader"]
             },
             {
-            test: /(\.css)$/,
-            use: ["style-loader", "css-loader"]
+                test: /(\.css)$/,
+                exclude: /node_modules/,
+                use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.html$/,
+                exclude: /node_modules/,
                 use: [
                     {
                     loader: "html-loader"
@@ -56,9 +55,9 @@ module.exports = () => ({
                 ]
             },
             {
-            test: /\.(png|j?g|svg|gif)?$/,
-            loader: ['file-loader', 'url-loader']
-        }
+                test: /\.(png|j?g|svg|gif)?$/,
+                loader: ['file-loader', 'url-loader']
+            }
         ]
     },
     plugins: [
