@@ -86,13 +86,13 @@ export  const SecondStep = ({
               onChange={(e) => {
                 const profile_picture = e.target.files[0]
                 const formData = new FormData()
-                formData.append('upload_preset', 'l9dhzfdi')
+                formData.append('upload_preset', process.env.UPLOAD_PRESET)
                 formData.append('file', profile_picture)
                 setLoading(true) 
                 setPhoto('')               
-                axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
+                axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
                 .then(res => {setFieldValue("profile_picture", res.data.secure_url); setLoading(false); setPhoto(res.data.secure_url)})
-                .catch(err => {console.log(err); setLoading(false)})
+                .catch(err => { setLoading(false) })
               }}
               />
               

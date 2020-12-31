@@ -42,7 +42,6 @@ const useStyle = makeStyles(theme => ({
 const verify = (token, verified, setVerified ,setError) => {
     Axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/verification?token=` + token)
     .then(res => {
-      console.log(JSON.stringify("Verification: " + verified))
       setVerified(true)
     })
     .catch(err => { 
@@ -62,7 +61,6 @@ const verifyAccount = () => {
     const parsed = queryString.parse(location.search);
     const [checked, setChecked] = useState(false)
     const token = parsed.token
-    console.log(token)
     
     if(!checked){
         verify(token, verified, setVerified, setError)
@@ -92,7 +90,6 @@ const verifyAccount = () => {
                     ) : (
                         <Box className={classes.tokenMissing}>
                             { JSON.stringify(error).replace(/['"]+/g, '')}
-                            {console.log('Verification: ' + error)}
                         </Box>
                     ))
                     

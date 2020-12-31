@@ -1,4 +1,3 @@
-import { requestSignup, closeSnackbar } from "../../src/redux/actions/signupRequestAction";
 import * as types from "../../src/redux/actions/signupRequestAction";
 import { signupRequestReducer } from "../../src/redux/reducers/signupReducer";
 
