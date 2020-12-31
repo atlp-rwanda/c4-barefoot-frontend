@@ -3214,7 +3214,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                 startIcon={
                                   <WithStyles(ForwardRef(Avatar))
                                     className="makeStyles-image_icon-8"
-                                    src="../src/images/facebook.svg"
+                                    src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg"
                                   />
                                 }
                                 variant="contained"
@@ -3258,7 +3258,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                   startIcon={
                                     <WithStyles(ForwardRef(Avatar))
                                       className="makeStyles-image_icon-8"
-                                      src="../src/images/facebook.svg"
+                                      src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg"
                                     />
                                   }
                                   variant="contained"
@@ -3311,7 +3311,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                           >
                                             <WithStyles(ForwardRef(Avatar))
                                               className="makeStyles-image_icon-8"
-                                              src="../src/images/facebook.svg"
+                                              src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg"
                                             >
                                               <ForwardRef(Avatar)
                                                 className="makeStyles-image_icon-8"
@@ -3327,14 +3327,14 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                                     "square": "MuiAvatar-square",
                                                   }
                                                 }
-                                                src="../src/images/facebook.svg"
+                                                src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg"
                                               >
                                                 <div
                                                   className="MuiAvatar-root MuiAvatar-circle makeStyles-image_icon-8"
                                                 >
                                                   <img
                                                     className="MuiAvatar-img"
-                                                    src="../src/images/facebook.svg"
+                                                    src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg"
                                                   />
                                                 </div>
                                               </ForwardRef(Avatar)>
@@ -3381,7 +3381,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                 startIcon={
                                   <WithStyles(ForwardRef(Avatar))
                                     className="makeStyles-image_icon-8"
-                                    src="../src/images/google.svg"
+                                    src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg"
                                   />
                                 }
                                 variant="contained"
@@ -3425,7 +3425,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                   startIcon={
                                     <WithStyles(ForwardRef(Avatar))
                                       className="makeStyles-image_icon-8"
-                                      src="../src/images/google.svg"
+                                      src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg"
                                     />
                                   }
                                   variant="contained"
@@ -3478,7 +3478,7 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                           >
                                             <WithStyles(ForwardRef(Avatar))
                                               className="makeStyles-image_icon-8"
-                                              src="../src/images/google.svg"
+                                              src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg"
                                             >
                                               <ForwardRef(Avatar)
                                                 className="makeStyles-image_icon-8"
@@ -3494,14 +3494,14 @@ exports[`<Login /> if it matches snapshot 1`] = `
                                                     "square": "MuiAvatar-square",
                                                   }
                                                 }
-                                                src="../src/images/google.svg"
+                                                src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg"
                                               >
                                                 <div
                                                   className="MuiAvatar-root MuiAvatar-circle makeStyles-image_icon-8"
                                                 >
                                                   <img
                                                     className="MuiAvatar-img"
-                                                    src="../src/images/google.svg"
+                                                    src="https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg"
                                                   />
                                                 </div>
                                               </ForwardRef(Avatar)>
