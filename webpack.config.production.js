@@ -2,8 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
-process.env.NODE_ENV = 'development';
 module.exports = () => ({
     entry: './src/index.js',
     mode: 'production',
@@ -42,16 +42,14 @@ module.exports = () => ({
             },
             {
                 test: /(\.css)$/,
-                exclude: /node_modules/,
                 use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.html$/,
-                exclude: /node_modules/,
                 use: [
                     {
                     loader: "html-loader"
-                }
+                    }
                 ]
             },
             {
@@ -62,7 +60,12 @@ module.exports = () => ({
     },
     plugins: [
         new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
-        new webpack.ProgressPlugin(),
-        new Dotenv()
+        new webpack.DefinePlugin({
+            'process.env': {
+                'REACT_APP_BACKEND_LINK': JSON.stringify(process.env.REACT_APP_BACKEND_LINK),
+                'IMAGE_UPLOAD_LINK': JSON.stringify(process.env.IMAGE_UPLOAD_LINK),
+                'UPLOAD_PRESET': JSON.stringify(process.env.UPLOAD_PRESET)
+            }
+        })
     ],
 });

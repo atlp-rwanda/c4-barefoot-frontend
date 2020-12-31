@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack');
-
+require('dotenv').config();
 
 module.exports = () => ({
     entry: './src/index.js',
@@ -23,7 +23,7 @@ module.exports = () => ({
     moduleIds: 'deterministic',
     chunkIds: 'deterministic',
     mangleExports: 'deterministic',
-    nodeEnv: 'production',
+    nodeEnv: 'development',
     flagIncludedChunks: true,
     concatenateModules: true,
     splitChunks: {
@@ -44,21 +44,25 @@ module.exports = () => ({
                 use: ["babel-loader"]
             },
             {
-            test: /(\.css)$/,
-            use: ["style-loader", "css-loader"]
+                test: /(\.css)$/,
+                use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.html$/,
                 use: [
                     {
                     loader: "html-loader"
-                }
+                    }
                 ]
             },
             {
             test: /\.(png|j?g|svg|gif)?$/,
-            loader: ['file-loader', 'url-loader']
-        }
+            use:[
+                    {
+                        loader: ['file-loader', 'url-loader']
+                    }
+                ]
+            }
         ]
     },
     plugins: [
