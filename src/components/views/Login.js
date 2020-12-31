@@ -227,6 +227,7 @@ function Login(props) {
                         Don't have an account?
                     </Typography>
                     <Button
+                        href="/signup" 
                         type="submit"
                         variant="contained"
                         className={classes.submit}
