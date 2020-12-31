@@ -6,8 +6,9 @@ import { AccountCircle, Email, Lock } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import * as yup from 'yup';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { Login } from '../views/Login';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -260,7 +261,7 @@ export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
                   <Skeleton variant="rect" className={classes.skeletonLink} />
                 </Box>
               ) : (
-                <Router><Link to='/login'>Sign in instead</Link></Router>
+                <a href='/login' style={{textDecoration:'none'}}>Sign in instead</a>
               )}
               
               <div></div>

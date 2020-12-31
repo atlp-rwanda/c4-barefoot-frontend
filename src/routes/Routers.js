@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from '../components/views/Login'
 import SignUp from '../components/signup';
+import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
@@ -42,7 +43,7 @@ const Routes = () => {
         />
         <RouteWithLayout 
             path="/signup" 
-            component={SignUp}
+            component={signup}
             layout={DefaultLayout}
         />
         <RouteWithLayout 
