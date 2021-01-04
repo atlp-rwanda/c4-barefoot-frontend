@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from '../components/views/Login'
-import SignUp from '../components/signup';
 import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
@@ -10,6 +9,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 
 const Routes = () => {
     return (
@@ -63,6 +63,11 @@ const Routes = () => {
             path="/user/verification/" 
             component={ verifyAccount }
             layout={DefaultLayout}
+        />
+        <RouteWithLayout 
+            path="/user/create-travel-request" 
+            component={ CreateTravelRequest }
+            layout={AuthorizedUserLayout}
         />
         
         <Redirect to="/PageNotFound" />
