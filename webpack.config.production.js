@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
 module.exports = () => ({
@@ -54,7 +53,7 @@ module.exports = () => ({
             },
             {
                 test: /\.(png|j?g|svg|gif)?$/,
-                loader: ['file-loader', 'url-loader']
+                use: ['file-loader', 'url-loader']
             }
         ]
     },
