@@ -19,21 +19,21 @@ export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
 import axios from 'axios';
 
-export const CheckReturningAction = (data) => dispatch =>{
+export const CheckReturningAction = (data) => dispatch => {
     return dispatch({
         type: RETURNING,
         payload: data.isReturning
     })
 }
 
-export const checkTravelDatesAction = (data) => dispatch =>{
+export const checkTravelDatesAction = (data) => dispatch => {
     return dispatch({
         type: TRAVEL_DATES,
         payload: data
     })
 }
-export const getLocationsAction = () => async (dispatch) =>{
-    try{
+export const getLocationsAction = () => async (dispatch) => {
+    try {
         dispatch({
             type: SEARCH_LOCATIONS_LOADING
         })
@@ -42,33 +42,33 @@ export const getLocationsAction = () => async (dispatch) =>{
             type: SEARCH_LOCATIONS,
             payload: getData.data.locations.rows
         })
-    }catch(error){
+    } catch (error) {
     }
-    
+
 }
 
-export const searchCurrentLocationAction = (data) => async (dispatch) =>{
+export const searchCurrentLocationAction = (data) => async (dispatch) => {
     //get the text field id
-    const selectedOption = data.textField.split("-",1)
+    const selectedOption = data.textField.split("-", 1)
 
-    if((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")){
-        if(!data.searchKeyword){
+    if ((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")) {
+        if (!data.searchKeyword) {
             return dispatch({
                 type: CURRENT_LOCATION,
                 payload: ''
-            })            
+            })
         }
         dispatch({
             type: CURRENT_LOCATION,
-            payload:data.searchKeyword
+            payload: data.searchKeyword
         });
     }
-    if(data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")){
-        if(!data.searchKeyword){
+    if (data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")) {
+        if (!data.searchKeyword) {
             return dispatch({
                 type: DESTINATION_LOCATION,
                 payload: ''
-            })            
+            })
         }
         const country = data.searchKeyword.country;
         const city = data.searchKeyword.LocationName;
@@ -80,16 +80,16 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
         dispatch({
             type: SEARCH_ACCOMMODATIONS_LOADING
         })
-        try{
+        try {
             const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}&page=${page}&limit=6`);
             return dispatch({
                 type: SEARCH_ACCOMMODATIONS,
                 payload: getAccommodations.data.rows
             })
-        }catch(error){
-            if(error.response.status === 404){
+        } catch (error) {
+            if (error.response.status === 404) {
                 return dispatch({
-                    type:SEARCH_ACCOMMODATIONS,
+                    type: SEARCH_ACCOMMODATIONS,
                     payload: []
                 })
             }
@@ -99,7 +99,7 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
 
 
 export const selectAccommodationAction = (accommodation) => dispatch => {
-    if(accommodation.checked){
+    if (accommodation.checked) {
         return dispatch({
             type: SELECT_ACCOMMODATION,
             payload: {
@@ -109,31 +109,31 @@ export const selectAccommodationAction = (accommodation) => dispatch => {
             }
         })
     }
-    
+
 }
 
-export const handleErrorsAction = (errorMessage) => dispatch =>{
+export const handleErrorsAction = (errorMessage) => dispatch => {
     return dispatch({
         type: HANDLE_ERRORS,
         payload: errorMessage
     })
 }
 
-export const closeSnackbar = () => dispatch =>{
+export const closeSnackbar = () => dispatch => {
     dispatch({
         type: CLOSE_SNACKBAR
     });
 }
 
-export const addTravelReasonAction = (data) => dispatch =>{
+export const addTravelReasonAction = (data) => dispatch => {
     return dispatch({
         type: ADD_TRAVEL_REASON,
         payload: data
     })
 }
 
-export const sendTravelRequestAction = (data) => async (dispatch) =>{
-    try{
+export const sendTravelRequestAction = (data) => async (dispatch) => {
+    try {
         dispatch({
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
@@ -143,9 +143,9 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
             type: SEND_TRAVEL_REQUEST,
             payload: true
         })
-        
+
     }
-    catch(error){
+    catch (error) {
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: false
@@ -153,32 +153,32 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
     }
 }
 
-export const addMultiCityAction = (data) => dispatch =>{
-    
+export const addMultiCityAction = (data) => dispatch => {
+
     dispatch({
         type: ADD_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
     return dispatch({
         type: TRAVEL_DATES,
-        payload:{departureDate: '', returnDate:''}
+        payload: { departureDate: '', returnDate: '' }
     })
 }
-export const removeMultiCityAction = (data) => dispatch =>{
+export const removeMultiCityAction = (data) => dispatch => {
     dispatch({
         type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
-    
+
 }
 
-export const openModalAction = (data) => dispatch =>{
+export const openModalAction = (data) => dispatch => {
     return dispatch({
         type: OPEN_MODAL,
-        payload:data
+        payload: data
     });
 }
-export const cancelTravelRequestAction = () => dispatch  =>{
+export const cancelTravelRequestAction = () => dispatch => {
     return dispatch({
         type: CANCEL_TRAVEL_REQUEST
     })

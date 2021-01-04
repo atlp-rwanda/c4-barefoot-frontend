@@ -4,6 +4,7 @@ import { fetchLocationsReducer } from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 // import { fetchUserReducer } from "./usersReducer";
 import { logoutReducer } from './logoutReducer';
+<<<<<<< HEAD
 import { fetchTravelReducer } from './travelRequestReducer';
 import { fetchSingleTravelReducer } from './singleTravelReducer'
 import { updateSingleTravelReducer } from "./updateTravelReducer";
@@ -17,6 +18,9 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
+=======
+import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
+>>>>>>> add search locations feature
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -26,6 +30,7 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
+<<<<<<< HEAD
   // verifiedUser: fetchUserReducer,
   manageTravel:fetchTravelReducer,
   manageSingleTravel:fetchSingleTravelReducer,
@@ -39,6 +44,9 @@ const reducers = combineReducers({
   permissions: permissionsReducer,
   createRoles,
   managerReducer
+=======
+  createTravelRequest: CreateTravelRequestReducer
+>>>>>>> add search locations feature
   
 })
   

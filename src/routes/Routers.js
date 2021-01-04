@@ -17,6 +17,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
 import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, ManagerLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+<<<<<<< HEAD
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
@@ -25,6 +26,9 @@ import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
 
+=======
+import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+>>>>>>> add search locations feature
 
 const Routes = () => {
     return (
@@ -176,6 +180,11 @@ const Routes = () => {
             path="/user/verification/" 
             component={ verifyAccount }
             layout={DefaultLayout}
+        />
+        <RouteWithLayout 
+            path="/user/create-travel-request" 
+            component={ CreateTravelRequest }
+            layout={AuthorizedUserLayout}
         />
         
         <Redirect to="/PageNotFound" />
