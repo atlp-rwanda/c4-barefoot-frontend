@@ -1,12 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const dotenv = require('dotenv').config( {
-//   path: path.join(__dirname, '.env')
-// } );
 const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
-process.env.NODE_ENV = 'development';
 module.exports = (env) => ({
     entry: './src/index.js',
     mode: env.environment,
@@ -47,29 +44,28 @@ module.exports = (env) => ({
                 use: ["babel-loader"]
             },
             {
-            test: /(\.css)$/,
-            use: ["style-loader", "css-loader"]
+                test: /(\.css)$/,
+                use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                    loader: "html-loader"
-                }
-                ]
+                use: ["html-loader"]
+                
             },
             {
-            test: /\.(png|j?g|svg|gif)?$/,
-            use: 'file-loader'
+                test: /\.(png|j?g|svg|gif)?$/,
+                use: 'file-loader'
          }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
-        // new webpack.DefinePlugin( {
-        //     "process.env": dotenv.parsed
-        // } ),
         new webpack.ProgressPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'REACT_APP_BACKEND_LINK': JSON.stringify(process.env.REACT_APP_BACKEND_LINK)
+            }
+        }),
         new Dotenv()
     ],
 });
