@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/build"),
         filename: 'bundle.js',
-        publicPath: '/'
+        publicPath: './'
     },
     mode:  process.env.NODE_ENV || 'development',
     devServer: {
@@ -48,7 +48,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
+        new HtmlWebpackPlugin({template:path.resolve(__dirname,"public/index.html") , filename: 'index.html'}),        
         new webpack.DefinePlugin({
             'process.env': {
                 REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK),
