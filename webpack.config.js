@@ -1,47 +1,36 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
-module.exports = (env) => ({
-    entry: './src/index.js',
-    mode: env.environment,
-    devServer: {
-        historyApiFallback: true
-      },
-    context: __dirname,
+module.exports = {
+    entry: {
+        index: path.join(__dirname, 'src', 'index.js'),
+    },
     output: {
+        path: path.join(__dirname, "/build"),
         filename: 'bundle.js',
-        path: path.resolve(__dirname, "build"),
         publicPath: '/'
     },
-    performance : {
-    hints : false
-    },
-    optimization: {
-    moduleIds: 'deterministic',
-    chunkIds: 'deterministic',
-    mangleExports: 'deterministic',
-    nodeEnv: 'production',
-    flagIncludedChunks: true,
-    concatenateModules: true,
-    splitChunks: {
-        hidePathInfo: true,
-        minSize: 30000,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-    },
-    emitOnErrors: false,
-    checkWasmTypes: true,
-    minimize: true,
-    },
+    mode:  process.env.NODE_ENV || 'development',
+    devServer: {
+        contentBase: path.join(__dirname, 'src'),
+        historyApiFallback: true,
+        clientLogLevel: 'silent',
+        inline: true,
+        open: true,
+        port: process.env.PORT,
+        hot: true,
+      },
     module : {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ["babel-loader"]
+                loader: "babel-loader",
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                  }
             },
             {
                 test: /(\.css)$/,
@@ -60,12 +49,10 @@ module.exports = (env) => ({
     },
     plugins: [
         new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
-        new webpack.ProgressPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                'REACT_APP_BACKEND_LINK': JSON.stringify(process.env.REACT_APP_BACKEND_LINK)
+                REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK)
             }
         }),
-        new Dotenv()
     ],
-});
+};
