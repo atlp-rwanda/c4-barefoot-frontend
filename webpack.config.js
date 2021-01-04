@@ -1,47 +1,36 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
-module.exports = () => ({
-    entry: './src/index.js',
-    mode: 'development',
-    devServer: {
-        historyApiFallback: true
-      },
-    context: __dirname,
+module.exports = {
+    entry: {
+        index: path.join(__dirname, 'src', 'index.js'),
+    },
     output: {
+        path: path.join(__dirname, "/build"),
         filename: 'bundle.js',
-        path: path.resolve(__dirname, "build"),
         publicPath: '/'
     },
-    performance : {
-    hints : false
-    },
-    optimization: {
-    moduleIds: 'deterministic',
-    chunkIds: 'deterministic',
-    mangleExports: 'deterministic',
-    nodeEnv: 'development',
-    flagIncludedChunks: true,
-    concatenateModules: true,
-    splitChunks: {
-        hidePathInfo: true,
-        minSize: 30000,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-    },
-    emitOnErrors: false,
-    checkWasmTypes: true,
-    minimize: true,
-    },
+    mode:  process.env.NODE_ENV || 'development',
+    devServer: {
+        contentBase: path.join(__dirname, 'src'),
+        historyApiFallback: true,
+        clientLogLevel: 'silent',
+        inline: true,
+        open: true,
+        port: process.env.PORT,
+        hot: true,
+      },
     module : {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ["babel-loader"]
+                loader: "babel-loader",
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                  }
             },
             {
                 test: /(\.css)$/,
@@ -49,21 +38,23 @@ module.exports = () => ({
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                    loader: "html-loader"
-                    }
-                ]
+                use: ["html-loader"]
+                
             },
             {
                 test: /\.(png|j?g|svg|gif)?$/,
-                use:['file-loader', 'url-loader']
-            }
+                use: 'file-loader'
+         }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({template: "./public/index.html", filename: 'index.html'}),
-        new webpack.ProgressPlugin(),
-        new Dotenv()
+        new webpack.DefinePlugin({
+            'process.env': {
+                REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK),
+                IMAGE_UPLOAD_LINK: JSON.stringify(processs.env.IMAGE_UPLOAD_LINK),
+                UPLOAD_PRESET: JSON.stringify(process.env.UPLOAD_PRESET)
+            }
+        }),
     ],
-});
+};
