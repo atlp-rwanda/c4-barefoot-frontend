@@ -52,7 +52,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK),
-                IMAGE_UPLOAD_LINK: JSON.stringify(processs.env.IMAGE_UPLOAD_LINK),
+                IMAGE_UPLOAD_LINK: JSON.stringify(process.env.IMAGE_UPLOAD_LINK),
                 UPLOAD_PRESET: JSON.stringify(process.env.UPLOAD_PRESET)
             }
         }),
