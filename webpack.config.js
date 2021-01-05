@@ -54,7 +54,6 @@ module.exports = {
                 REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK),
                 IMAGE_UPLOAD_LINK: JSON.stringify(process.env.IMAGE_UPLOAD_LINK),
                 UPLOAD_PRESET: JSON.stringify(process.env.UPLOAD_PRESET),
-                PORT: JSON.stringify(process.env.PORT)
             }
         }),
     ],
