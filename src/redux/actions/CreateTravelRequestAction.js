@@ -17,6 +17,9 @@ export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUES
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
+import { locations } from './searchDummyData';
+import { accommodationsPayload } from '../../../dummyData';
+
 import axios from 'axios';
 
 export const CheckReturningAction = (data) => dispatch => {
@@ -181,5 +184,50 @@ export const openModalAction = (data) => dispatch => {
 export const cancelTravelRequestAction = () => dispatch => {
     return dispatch({
         type: CANCEL_TRAVEL_REQUEST
+    })
+}
+export const searchCurrentLocationAction = (data) => dispatch => {
+
+    //get the text field id
+    const selectedOption = data.textField.split("-", 1)
+
+    if ((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")) {
+        if (!data.searchKeyword) {
+            return dispatch({
+                type: CURRENT_LOCATION,
+                payload: ''
+            })
+        }
+        dispatch({
+            type: CURRENT_LOCATION,
+            payload: data.searchKeyword
+        });
+    }
+    if (data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")) {
+        if (!data.searchKeyword) {
+            return dispatch({
+                type: DESTINATION_LOCATION,
+                payload: ''
+            })
+        }
+        dispatch({
+            type: DESTINATION_LOCATION,
+            payload: data.searchKeyword
+        });
+    }
+    return dispatch({
+        type: SEARCH_LOCATIONS,
+        payload: locations
+    })
+}
+
+export const searchAccommodationAction = (searchKeyword) => {
+    const location = searchKeyword.split(",", 2);
+    const city = location[0];
+    const country = location[1];
+    console.log(city, country);
+    return dispatch({
+        type: SEARCH_ACCOMMODATIONS,
+        payload: accommodationsPayload
     })
 }

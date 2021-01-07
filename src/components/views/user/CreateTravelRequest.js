@@ -72,8 +72,6 @@ const CreateTravelRequest = (props) => {
         </Grid>
     );
 }
-
-
 const mapStateToProps = state => ({
     travelRequest: state.createTravelRequest
 });

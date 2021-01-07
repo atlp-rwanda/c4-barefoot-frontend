@@ -32,7 +32,10 @@ const initialState = {
     Modal: {
         open: false,
         data: {}
-    }
+    },
+    searchLocations: [],
+    currentLocation: '',
+    destinationLocation: '',
 }
 
 export function CreateTravelRequestReducer(state = initialState, action) {
@@ -170,6 +173,26 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 displaySelection: false,
                 displaySelected: false,
                 travelReason: '',
+            }
+        case CURRENT_LOCATION:
+            return {
+                ...state,
+                currentLocation: action.payload
+            }
+        case DESTINATION_LOCATION:
+            return {
+                ...state,
+                destinationLocation: action.payload
+            }
+        case SEARCH_LOCATIONS:
+            return {
+                ...state,
+                searchLocations: action.payload
+            }
+        case SEARCH_ACCOMMODATIONS:
+            return {
+                ...state,
+                searchAccommodations: action.payload
             }
         default:
             return state

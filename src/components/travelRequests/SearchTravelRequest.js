@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import colors from '../colors';
-import colors from '../colors';
 import { Button, fade, FormControlLabel, Grid, InputBase, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction } from '../../redux/actions/CreateTravelRequestAction';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -12,7 +9,6 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
 import useStyles from '../styles/searchTraveRequest';
 import { Skeleton } from '@material-ui/lab';
 
@@ -59,6 +55,17 @@ const useStyles = makeStyles((theme) => ({
     addButton: {
         color: colors.primary100,
         margin: theme.spacing(3, 0, 0, 0)
+    },
+    searchCurrentLocation: {
+        width: 300,
+        padding: 0,
+        paddingLeft: '2em',
+        border: '1px solid white',
+
+    },
+    inputText: {
+        color: colors.neutralWhite,
+        margin: theme.spacing(0, 2)
     }
 }))
 
@@ -66,8 +73,6 @@ const SearchLocations = (props) => {
     useEffect(() => {
         console.log("props here");
         console.log(props);
-        console.log("DAte here");
-        console.log(new Date().toLocaleDateString());
     })
     const classes = useStyles();
     let data = {
@@ -76,11 +81,11 @@ const SearchLocations = (props) => {
         returnDate: props.travelRequest.returnDate
     };
     const handleDepartureDateChange = (date) => {
-        data.departureDate = date.toISOString();
+        data.departureDate = date.toLocaleDateString();
         return props.checkTravelDatesAction(data);
     }
     const handleReturnDateChange = (date) => {
-        data.returnDate = date.toISOString();
+        data.returnDate = date.toLocaleDateString();
         return props.checkTravelDatesAction(data);
     }
     const handleCheckboxChange = (event) => {
