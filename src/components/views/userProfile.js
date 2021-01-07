@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -81,49 +82,56 @@ const validationSchema = yup.object().shape({
 });
 
 const UserProfile = (props) => {
-    const [userProfileInfo, setUserProfileInfo] = useState({})
+    const [userProfileInfo, setUserProfileInfo] = useState(null)
     const [edit, setEdit] = useState(true);
     useEffect(() => {
         props.fetchUserProfile();
     }, []);
-    let data = {}
+    let data = null
     if (props.userProfile.user.data) {
         let result = props.userProfile.user.data;
         const { id, username, refreshtoken, verified, ...rest } = result
         data = rest
+        setUserProfileInfo({ ...data })
+        console.log(userProfileInfo)
     }
+
     const classes = useStyles();
-    /*  const onChange = (e) => {
-         const profile_picture = e.target.file;
-         const formData = new FormData()
-         formData.append('upload_preset', 'l9dhzfdi')
-         formData.append('file', profile_picture)
-         setLoading(true)
-         setPhoto('')
-         axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
-             .then(res => { console.log(res) })
-             .catch(err => { console.log(err) })
-     } */
+    const onChange = (e) => {
+        const profile_picture = e.target.files[0];
+        const formData = new FormData()
+        formData.append('upload_preset', 'l9dhzfdi')
+        formData.append('file', profile_picture)
+        axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
+            .then(res => { setUserProfileInfo({ ...userProfileInfo, profile_picture: res.data.secure_url }) })
+            .then(() => {
+
+            })
+            .catch(err => { console.log(err) })
+    }
 
     return (
         <React.Fragment >
             <div className={classes.root}>
-                <Avatar src={data.profile_picture} className={classes.large} />
-                <Button variant="contained" color="primary" >
-                    <label>
-                        <input type="file" style={{ display: "none" }} />
-                        <PhotoCameraIcon /> Change Profile Picture
-                    </label>
-                </Button>
+
+
 
                 {props.userProfile.loading ? (
-                    <Skeleton animation="wave" />
+                    <div>
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                        <Skeleton animation="wave" className={classes.form} height={80} />
+                    </div>
                 ) : (
                         <div>
                             <Formik
                                 enableReinitialize
-                                initialValues={data ? data : {}}
                                 validationSchema={validationSchema}
+                                initialValues={userProfileInfo}
                                 onSubmit={values => {
                                     // same shape as initial values
                                     console.log(values);
