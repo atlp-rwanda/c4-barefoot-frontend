@@ -80,7 +80,9 @@ function NewPassword(props) {
             return opened;
         }
     };
-
+   if(props.newpassword.success){
+     props.history.push('/login');
+   }
     function Alert(props){
         return < MuiAlert elevation={6} variant="filled" {...props}/>
     };

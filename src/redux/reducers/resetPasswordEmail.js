@@ -2,6 +2,7 @@ import { LOADING, SEND_RESET_EMAIL_FAIL, CLOSE_SNACKBAR, SEND_RESET_EMAIL_SUCCES
 
 const initialState = {
     isLoading:false,
+    success:false,
     open:false,
     error: '',
     message:''
@@ -12,6 +13,7 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 isLoading: true,
+                success:false,
                 open: false
             };
         case SEND_RESET_EMAIL_SUCCESS:
@@ -19,6 +21,7 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
                 ...state,
                 isLoading: false,
                 open:true,
+                success:true,
                 message: action.message
             };
         case SEND_RESET_EMAIL_FAIL:
@@ -26,6 +29,7 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
                     ...state,
                     isLoading: false,
                     error: action.error,
+                    success:false,
                     open:true,
                     message:''
                 };
@@ -46,12 +50,14 @@ export const NewPasswordReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
+                success:false,
                 open:false
             }
         case RESET_PASSWORD_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
+                success:true,
                 open:true,
                 error:'',
                 message: action.message
@@ -61,6 +67,7 @@ export const NewPasswordReducer = (state = initialState, action) => {
                     ...state,
                     isLoading:false,
                    error: action.error,
+                   success:false,
                    open:true,
                    message:''
             };
