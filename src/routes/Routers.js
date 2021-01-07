@@ -1,14 +1,18 @@
 import React from 'react';
 import Login from '../components/views/Login'
-import Signup from '../components/views/Signup';
+import signup from '../components/views/Signup'
+import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
-import PageNotFound from '../components/views/PageNotFound';
-import UserProfile from '../components/views/userProfile';
-import ChangePassword from '../components/views/changePassword';
+import PageNotFound from '../components/views/PageNotFound'
+import Profile from '../components/views/Profile';
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import { DefaultLayout } from '../components/layouts';
+import { DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import Logout from '../components/views/Logout';
+import UserProfile from '../components/views/userProfile';
+import ChangePassword from '../components/views/changePassword';
 import LoggedInUserLayout from '../components/layouts/LoggedInUser/LoggedInUser';
+
 const Routes = () => {
   return (
     <Switch>
@@ -30,10 +34,16 @@ const Routes = () => {
         path="/login"
       />
       <RouteWithLayout
-        component={Signup}
+        component={Profile}
         exact
-        layout={DefaultLayout}
-        path="/signup"
+        layout={AuthorizedUserLayout}
+        path="/profile"
+      />
+      <RouteWithLayout
+        component={Logout}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/logout"
       />
       <RouteWithLayout
         component={UserProfile}
@@ -53,10 +63,24 @@ const Routes = () => {
         layout={DefaultLayout}
         path="/PageNotFound"
       />
+      <RouteWithLayout
+        path="/signup"
+        component={signup}
+        layout={DefaultLayout}
+      />
+      <RouteWithLayout
+        path="/user/verification/:token"
+        component={verifyAccount}
+        layout={DefaultLayout}
+      />
+      <RouteWithLayout
+        path="/user/verification/"
+        component={verifyAccount}
+        layout={DefaultLayout}
+      />
 
       <Redirect to="/PageNotFound" />
     </Switch>
   );
 };
-
 export default Routes;
