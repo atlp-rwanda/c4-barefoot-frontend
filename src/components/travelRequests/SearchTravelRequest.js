@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import colors from '../colors';
-import { Button, fade, FormControlLabel, Grid, InputBase, makeStyles, Typography, Checkbox } from '@material-ui/core';
+import { Button, fade, FormControlLabel, Grid, makeStyles, Typography, Checkbox, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction } from '../../redux/actions/CreateTravelRequestAction';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
   } from '@material-ui/pickers';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 
 const useStyles = makeStyles((theme) => ({
     main:{
@@ -54,6 +54,17 @@ const useStyles = makeStyles((theme) => ({
     addButton:{
         color: colors.primary100,
         margin: theme.spacing(3,0,0,0)
+    },
+    searchCurrentLocation:{
+        width: 300,
+        padding:0,
+        paddingLeft: '2em',
+        border: '1px solid white',
+
+    },
+    inputText:{
+        color: colors.neutralWhite,
+        margin: theme.spacing(0,2)
     }
 }))
 
@@ -61,8 +72,6 @@ const SearchLocations = (props) => {
     useEffect(() => {
         console.log("props here");
         console.log(props);
-        console.log("DAte here");
-        console.log(new Date().toLocaleDateString());
     })
     const classes = useStyles();
     let data = {
@@ -71,20 +80,33 @@ const SearchLocations = (props) => {
         returnDate: props.travelRequest.returnDate
     };
     const  handleDepartureDateChange=(date) => {
-        console.log('clicked!!!!!!!!!!!!');
-        console.log(date);
-        data.departureDate = date;
+        data.departureDate = date.toLocaleDateString();
         return props.checkTravelDatesAction(data);
     }
     const  handleReturnDateChange=(date) => {
-        data.returnDate = date;
+        data.returnDate = date.toLocaleDateString();
         return props.checkTravelDatesAction(data);
     }
     const handleCheckboxChange =(event) => {
         data.isReturning = event.target.checked
         return props.CheckReturningAction(data);
     }
-
+    const handleCurrentLocationChange = (event,newValue) =>{
+        const data = {
+            textField: event.target.id,
+            searchKeyword: newValue
+        }
+        if(!newValue){
+            return props.searchCurrentLocationAction(data);
+        }
+        if(newValue && newValue.length >= 2){
+            return props.searchCurrentLocationAction(data);
+        }
+        return 0;
+    }
+    const handleAddTravelRequest = () =>{
+        return console.log(props);
+    }
 
     return ( 
         <Grid container direction="row" className={classes.main} >
@@ -94,9 +116,25 @@ const SearchLocations = (props) => {
                     <div className={classes.searchIcon}>
                         <SearchIcon />
                     </div>
-                    <InputBase
-                        placeholder="Search your Location ..."
-                        className={classes.searchInput}
+                    <Autocomplete
+                        id="currentLocationId"
+                        options={props.travelRequest.searchLocations}
+                        className={classes.searchCurrentLocation}
+                        classes={{input:classes.inputText}}
+                        getOptionLabel={(option) => (`${option.LocationName}, ${option.country}`)}
+                        onInputChange={handleCurrentLocationChange}
+                        onChange={handleCurrentLocationChange}
+                        autoComplete
+                        includeInputInList
+                        clearText="no value"
+                        closeIcon={<closeIcon fontSize='small' />}
+                        renderInput={(params) => (
+                            <TextField 
+                                {...params}
+                                placeholder="Search your Location ..."
+                            />
+                            
+                        )}
                     />
 
                 </div>
@@ -107,15 +145,30 @@ const SearchLocations = (props) => {
                     <div className={classes.searchIcon}>
                         <SearchIcon />
                     </div>
-                    <InputBase
-                        placeholder="Search your Destination ..."
-                        className={classes.searchInput}
+                    <Autocomplete
+                        id="destinationLocationId"
+                        options={props.travelRequest.searchLocations}
+                        className={classes.searchCurrentLocation}
+                        classes={{input:classes.inputText}}
+                        getOptionLabel={(option) => (`${option.LocationName}, ${option.country}`)}
+                        onInputChange={handleCurrentLocationChange}
+                        onChange={handleCurrentLocationChange}
+                        includeInputInList
+                        clearText="no value"
+                        closeIcon={<closeIcon fontSize='small' />}
+                        renderInput={(params) => (
+                            <TextField 
+                                {...params}
+                                placeholder="Search your Destionation ..."
+                            />
+                            
+                        )}
                     />
 
                 </div>
             </Grid>
             <Grid item direction="column">
-                <Button variant="contained" className={classes.addButton}>Add</Button>
+                <Button variant="contained" onClick={handleAddTravelRequest} className={classes.addButton}>Add</Button>
             </Grid>
             <Grid item direction="column" >
                 <Typography>Date of travel</Typography>
@@ -167,7 +220,4 @@ const SearchLocations = (props) => {
      );
 }
  
-const mapStateToProps = state =>({
-    travelRequest: state.createTravelRequest
-});
-export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction})(SearchLocations);
+export default SearchLocations;

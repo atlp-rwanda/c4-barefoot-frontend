@@ -1,8 +1,12 @@
-import { RETURNING, TRAVEL_DATES } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS } from '../actions/CreateTravelRequestAction';
 const initialState = {
     isReturning: false,
-    departureDate: new Date().toLocaleDateString(),
-    returnDate: new Date().toLocaleDateString()
+    departureDate: '',
+    returnDate: '',
+    searchLocations: [],
+    currentLocation: '',
+    destinationLocation: '',
+    searchAccommodations: []
 }
 
 export function CreateTravelRequestReducer (state = initialState, action) {
@@ -17,6 +21,26 @@ export function CreateTravelRequestReducer (state = initialState, action) {
             return {
                 ...state,
                 isReturning: action.payload
+            }
+        case CURRENT_LOCATION :
+            return {
+                ...state,
+                currentLocation: action.payload
+            }
+        case DESTINATION_LOCATION :
+            return {
+                ...state,
+                destinationLocation: action.payload
+            }
+        case SEARCH_LOCATIONS :
+            return {
+                ...state,
+                searchLocations: action.payload
+            }
+        case SEARCH_ACCOMMODATIONS :
+            return {
+                ...state,
+                searchAccommodations: action.payload
             }
         default:
             return state

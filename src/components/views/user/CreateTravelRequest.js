@@ -2,6 +2,9 @@ import React from 'react';
 import SearchLocations from '../../travelRequests/SearchTravelRequest';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import colors from '../../colors'
+import { connect } from 'react-redux';
+import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction } from '../../../redux/actions/CreateTravelRequestAction';
+
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -29,10 +32,15 @@ const CreateTravelRequest = (props) => {
                 </Typography>
             </Grid>
             <Grid item xs={12} className={classes.content}>
-                <SearchLocations/>
+                <SearchLocations {...props} />
             </Grid>
         </Grid>
      );
 }
  
-export default CreateTravelRequest;
+
+const mapStateToProps = state =>({
+    travelRequest: state.createTravelRequest
+});
+export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction})(CreateTravelRequest);
+
