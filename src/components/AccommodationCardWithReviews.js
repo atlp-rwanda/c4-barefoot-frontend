@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox } from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
+import { connect } from 'react-redux'
 import colors from './colors';
 import Ratings from './RatingStars';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    height: 360,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -17,18 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 140
-  },
-  checkbox: {
-    display: 'block',
-    position: 'absolute',
-    color: 'secondary',
-    right: 0,
-    fontSize: '25px'
-  },
-  cardActions: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
   },
   reviews: {
     fontSize: '14px',
@@ -40,10 +28,22 @@ const useStyles = makeStyles((theme) => ({
   titleText: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
-    }
+    },
+    checkbox: {
+      display: 'block',
+      position: 'absolute',
+      color: 'secondary',
+      right: 0,
+      fontSize: '25px'
+    },
+    cardActions: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      border: '1px solid cyan'
+    },
   }
 }));
-
 function Accommodations(props) {
   const classes = useStyles();
   const open = false;
@@ -56,8 +56,6 @@ function Accommodations(props) {
     return props.selectAccommodationAction(accommodation);
 
   }
-
-
   let check = false;
   props.travelRequest.selectedAccommodation.map(selected => {
     selected.id === props.accommodation.id ? check = true : null
@@ -116,3 +114,8 @@ function Accommodations(props) {
 }
 
 export default Accommodations;
+const mapStateToProps = state => ({
+  pending: state.fetchAccommodations.pending,
+})
+
+export default connect(mapStateToProps, null)(Accommodations);

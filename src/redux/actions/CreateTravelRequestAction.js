@@ -231,3 +231,10 @@ export const searchAccommodationAction = (searchKeyword) => {
         payload: accommodationsPayload
     })
 }
+
+export const selectAccommodationAction = (accommodationId) => dispatch => {
+    return dispatch({
+        type: SELECT_ACCOMMODATION,
+        payload: accommodationId
+    })
+}

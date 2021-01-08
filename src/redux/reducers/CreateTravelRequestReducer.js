@@ -36,6 +36,8 @@ const initialState = {
     searchLocations: [],
     currentLocation: '',
     destinationLocation: '',
+    searchAccommodations: [],
+    selectedAccommodation: '',
 }
 
 export function CreateTravelRequestReducer(state = initialState, action) {
@@ -193,6 +195,11 @@ export function CreateTravelRequestReducer(state = initialState, action) {
             return {
                 ...state,
                 searchAccommodations: action.payload
+            }
+        case SELECT_ACCOMMODATION:
+            return {
+                ...state,
+                selectedAccommodation: action.payload
             }
         default:
             return state

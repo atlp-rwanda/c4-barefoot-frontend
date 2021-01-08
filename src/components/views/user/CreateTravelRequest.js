@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SearchLocations from '../../travelRequests/SearchTravelRequest';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Container, GridListTileBar } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
 import {
@@ -61,7 +61,7 @@ const CreateTravelRequest = (props) => {
             <Grid item xs={12} className={classes.content}>
                 <SearchLocations {...props} />
             </Grid>
-            <Grid item container xs={12}>
+            <Grid item container xs={12} style={{ border: '1px solid blue' }}>
                 <Grid container style={{ display: display }}>
                     <AddAccommodation {...props} />
                 </Grid>
