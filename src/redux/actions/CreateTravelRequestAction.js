@@ -4,6 +4,7 @@ export const SEARCH_LOCATIONS = 'SEARCH_LOCATIONS';
 export const DESTINATION_LOCATION = 'DESTINATION_LOCATION';
 export const CURRENT_LOCATION = 'CURRENT_LOCATION';
 export const SEARCH_ACCOMMODATIONS = 'SEARCH_ACCOMMODATIONS';
+export const SELECT_ACCOMMODATION = 'SELECT_ACCOMMODATION';
 
 import { locations } from './searchDummyData';
 import { accommodationsPayload } from '../../../dummyData';
@@ -57,7 +58,7 @@ export const searchCurrentLocationAction = (data) => dispatch =>{
     })
 }
 
-export const searchAccommodationAction = (searchKeyword) =>{
+export const searchAccommodationAction = (searchKeyword) => dispatch =>{
     const location = searchKeyword.split(",",2);
     const city = location[0];
     const country = location[1];
@@ -65,5 +66,12 @@ export const searchAccommodationAction = (searchKeyword) =>{
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
         payload: accommodationsPayload
+    })
+}
+
+export const selectAccommodationAction = (accommodationId) => dispatch => {
+    return dispatch({
+        type: SELECT_ACCOMMODATION,
+        payload: accommodationId
     })
 }

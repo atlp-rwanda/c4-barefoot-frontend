@@ -1,9 +1,10 @@
 import React from 'react';
 import SearchLocations from '../../travelRequests/SearchTravelRequest';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Container, GridListTileBar } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
 import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction } from '../../../redux/actions/CreateTravelRequestAction';
+import AddAccommodation from '../../travelRequests/searchAccommodations';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -24,6 +25,8 @@ const useStyles = makeStyles((theme) =>({
 
 const CreateTravelRequest = (props) => {
     const classes = useStyles();
+
+    const display = 'block';
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Grid item xs={12} className={classes.title}>
@@ -31,8 +34,15 @@ const CreateTravelRequest = (props) => {
                     Create Travel Request
                 </Typography>
             </Grid>
+            
             <Grid item xs={12} className={classes.content}>
                 <SearchLocations {...props} />
+            </Grid>
+            <Grid item container xs={12} style={{border: '1px solid blue'}}>
+                <Grid container style={{display: display}}>
+                   <AddAccommodation /> 
+                </Grid>
+                
             </Grid>
         </Grid>
      );

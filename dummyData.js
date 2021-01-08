@@ -31,7 +31,7 @@ export const locationsPayload = [
 export const accommodationsPayload = [
     {
       
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        id: "1ce36391-2c08-3074-bddb-a4ea8cccbbc5",
         country: "Rwanda",
         city: "Kigali",
         title: "Marriot Hotel",
@@ -41,7 +41,7 @@ export const accommodationsPayload = [
     },
     {
       
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        id: "2ce36391-2c08-3074-bddb-a4ea8cccbbc5",
         country: "Rwanda",
         city: "Kicukiro",
         title: "Kicukiro Hotel",
@@ -51,34 +51,14 @@ export const accommodationsPayload = [
     },
     {
       
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        id: "3ce36391-2c08-3074-bddb-a4ea8cccbbc5",
         country: "German",
         city: "Berlin",
         title: "Berlin Hotel",
         description: "A serene environment for relaxation",
         photos: "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
     
-    },
-    {
-      
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-        country: "Kenya",
-        city: "Nairobi",
-        title: "Naiobi Hotel",
-        description: "A serene environment for relaxation",
-        photos: "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
-    
-    },
-    {
-      
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-        country: "Russia",
-        city: "Moscow",
-        title: "Moscow Hotel",
-        description: "A serene environment for relaxation",
-        photos: "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
-    
-    },
+    }
   ]
 
   export const accommodationState = {
