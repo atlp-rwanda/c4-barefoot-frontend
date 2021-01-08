@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, { mount, shallow } from "enzyme";
 import toJson from 'enzyme-to-json';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { Field, Form, Formik } from 'formik'
@@ -19,6 +19,7 @@ import { ResetPasswordEmailForm } from '../../../src/components/resetPassword/Re
      it('it match snapshoot', () => {
          const props ={
              resetPassword: jest.fn(),
+             closeSnackbar : jest.fn(),
              sendemail: {
                 isLoading:false,
                     open:false,
@@ -39,6 +40,7 @@ import { ResetPasswordEmailForm } from '../../../src/components/resetPassword/Re
      it('should Snackbar', ()=>{
          const props ={
              resetPassword: jest.fn(),
+              closeSnackbar : jest.fn(),
              sendemail: {
                 isLoading:false,
                     open:false,

@@ -7,8 +7,6 @@ export const sendEmail = (userEmail) => dispatch =>{
     });
    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/request-reset-password`, {email:userEmail.email})
     .then((res)=> {
-        console.log(res)
-        console.log(res.data.message)
         dispatch({
             type:SEND_RESET_EMAIL_SUCCESS,
             message: res.data.message
@@ -16,7 +14,6 @@ export const sendEmail = (userEmail) => dispatch =>{
     })
     .catch(err => {
         // if(err.response){
-        console.log(err.response.data.error);
         dispatch({
             type: SEND_RESET_EMAIL_FAIL,
             error: err.response.data.error
@@ -34,7 +31,6 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
         confirmPassword: newPassword.confirmPassword
     })
     .then((res) => {
-        console.log(res)
         dispatch({
             type: RESET_PASSWORD_SUCCESS,
             message:res.data.message
@@ -50,7 +46,7 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
         }
     })
 };
-export const closeSnackbar = () => {
+export const closeSnackbar = () => dispatch => {
     dispatch({
         type: CLOSE_SNACKBAR
     });

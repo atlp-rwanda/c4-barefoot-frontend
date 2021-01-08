@@ -33,12 +33,14 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
                     open:true,
                     message:''
                 };
-        // case CLOSE_SNACKBAR:
-        //     return {
-        //         ...state,
-        //         open: false,
-        //         isLoading: false,
-        //     }
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                open: false,
+                isLoading: false,
+                message:'',
+                error:''
+            }
         default:
             return state;
     }
@@ -71,11 +73,13 @@ export const NewPasswordReducer = (state = initialState, action) => {
                    open:true,
                    message:''
             };
-        // case CLOSE_SNACKBAR:
-        //     return {
-        //         ...state,
-        //         open: false
-        //     }
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                open: false,
+                message:'',
+                error:''
+            }
         default:
             return state
     }

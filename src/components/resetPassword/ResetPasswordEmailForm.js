@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, connect } from 'react-redux'
+import { useSelector, connect, useDispatch } from 'react-redux'
 import { FormGroup, Grid, makeStyles, Paper, TextField, Typography, Button, CircularProgress, Snackbar, Slide, Container  } from '@material-ui/core'
 import { Field, Form, Formik } from 'formik'
 import { sendEmail, closeSnackbar } from "../../redux/actions/resetPasswordAction";
@@ -70,6 +70,7 @@ const initialValues = {
 }
 
 function ResetPasswordEmailForm(props){
+    // const dispatch = useDispatch()
 
     const [Email, setEmail] = useState({email:''})
     const [loading, SetLoading] = useState(false)
@@ -101,30 +102,25 @@ function ResetPasswordEmailForm(props){
     }, []);
 
     const handleSubmition = (values)=>{
-        console.log(values)
-        console.log(errors)
         props.sendEmail(values)
         values=''
     };
-
-    function handleClose(event, reason){
-        if(reason === 'clickaway'){
-            dispatch(closeSnackbar(opened=false))
-        }
-        opened
+    function handleClose(){
+        props.closeSnackbar()
+        //  dispatch(closeSnackbar())
     };
 
     function Alert(props){
-        return < MuiAlert elevation={6} variant="filled" {...props}/>
+        return < MuiAlert elevation={6} variant="filled" {...props} itemID='alert' />
     };
         return (
             <>
-            {errors ? (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
-                <Alert onclose={handleClose} severity="error">
+            {errors ? (<Snackbar open={opened} autoHideDuration={5000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error">
                     Error: {errors}
                 </Alert>
-            </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
-                <Alert onclose={handleClose} severity="success">
+            </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
                     successful: {messages}
                 </Alert>
             </Snackbar>)}

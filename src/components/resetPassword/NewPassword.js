@@ -63,7 +63,6 @@ function NewPassword(props) {
 
    const { history } = props
    const query = history.location.search
-  console.log('this is query token ' + query);
    const errors = props.newpassword.error
     const opened = props.newpassword.open
     const anyLoading = props.newpassword.isLoading
@@ -72,7 +71,6 @@ function NewPassword(props) {
   const handleSubmition = (values)=>{
         event.preventDefault()
         props.resetNewPassword(values, query)
-        console.log(values)
         values=''
     };
   function handleClose(event, reason){
