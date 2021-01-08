@@ -3,6 +3,7 @@ import {LOADING, SEND_RESET_EMAIL, RESET_PASSWORD, RESET_PASSWORD_SUCCESS, RESET
 const initialState = {
     isLoading:false,
     open:false,
+    success:false,
     error: '',
     message:''
 }
@@ -38,6 +39,7 @@ it('Should handle RESET_PASSWORD without error', () => {
             ...initialState,
             isLoading:false,
             error: '',
+            success:true,
             open:true,
             message:'password reset successfully 👍 you can login with new password'
         })

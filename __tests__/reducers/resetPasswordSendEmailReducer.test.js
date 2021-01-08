@@ -3,6 +3,7 @@ import {LOADING, SEND_RESET_EMAIL_SUCCESS, SEND_RESET_EMAIL_FAIL} from '../../sr
 const initialState = {
     isLoading:false,
     open:false,
+    success:false,
     error: '',
     message:''
 }
@@ -38,6 +39,7 @@ it('Should handle SEND_RESET_EMAIL without error', () => {
             ...initialState,
             isLoading:false,
             error: '',
+            success:true,
             open:true,
             message:'Request sent successfully, please check your email to reset your password'
         })
