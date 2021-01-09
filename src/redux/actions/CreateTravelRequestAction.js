@@ -17,8 +17,7 @@ export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUES
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
-import { locations } from './searchDummyData';
-import { accommodationsPayload } from '../../../dummyData';
+import axios from 'axios';
 
 import axios from 'axios';
 
@@ -174,6 +173,19 @@ export const removeMultiCityAction = (data) => dispatch => {
     })
 
 }
+export const getLocationsAction = () => async (dispatch) => {
+    try {
+        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
+        console.log(getData);
+        return dispatch({
+            type: SEARCH_LOCATIONS,
+            payload: getData.data.locations.rows
+        })
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 export const openModalAction = (data) => dispatch => {
     return dispatch({
@@ -215,26 +227,53 @@ export const searchCurrentLocationAction = (data) => dispatch => {
             payload: data.searchKeyword
         });
     }
-    return dispatch({
-        type: SEARCH_LOCATIONS,
-        payload: locations
-    })
 }
 
 export const searchAccommodationAction = (searchKeyword) => {
     const location = searchKeyword.split(",", 2);
     const city = location[0];
     const country = location[1];
-    console.log(city, country);
+    // console.log(city,country);
+    dispatch({
+        type: SEARCH_LOCATIONS,
+        payload: 'locations'
+    })
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
-        payload: accommodationsPayload
+        payload: true
     })
 }
 
-export const selectAccommodationAction = (accommodationId) => dispatch => {
+export const selectAccommodationAction = (accommodation) => dispatch => {
+    if (accommodation.checked) {
+        return dispatch({
+            type: SELECT_ACCOMMODATION,
+            payload: {
+                accommodation: accommodation.selected,
+                displaySelection: !accommodation.checked,
+                displaySelected: accommodation.checked
+            }
+        })
+    }
     return dispatch({
         type: SELECT_ACCOMMODATION,
-        payload: accommodationId
+        payload: {
+            accommodationId: [],
+            displaySelection: accommodation.checked,
+            displaySelected: !accommodation.checked
+        }
     })
+}
+
+export const handleErrorsAction = (errorMessage) => dispatch => {
+    return dispatch({
+        type: HANDLE_ERRORS,
+        payload: errorMessage
+    })
+}
+
+export const closeSnackbar = () => dispatch => {
+    dispatch({
+        type: CLOSE_SNACKBAR
+    });
 }

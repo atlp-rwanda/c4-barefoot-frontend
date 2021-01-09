@@ -36,6 +36,9 @@ const initialState = {
     searchLocations: [],
     currentLocation: '',
     destinationLocation: '',
+    isReturning: false,
+    departureDate: '',
+    returnDate: '',
     searchAccommodations: [],
     selectedAccommodation: '',
 }
@@ -177,29 +180,37 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 travelReason: '',
             }
         case CURRENT_LOCATION:
-            return {
-                ...state,
-                currentLocation: action.payload
-            }
         case DESTINATION_LOCATION:
             return {
                 ...state,
                 destinationLocation: action.payload
             }
-        case SEARCH_LOCATIONS:
-            return {
-                ...state,
-                searchLocations: action.payload
-            }
+        case DESTINATION_LOCATION:
         case SEARCH_ACCOMMODATIONS:
             return {
                 ...state,
-                searchAccommodations: action.payload
+                displaySelection: action.payload
             }
+        case SEARCH_LOCATIONS:
         case SELECT_ACCOMMODATION:
             return {
                 ...state,
-                selectedAccommodation: action.payload
+                selectedAccommodation: action.payload.accommodation,
+                displaySelection: action.payload.displaySelection,
+                displaySelected: action.payload.displaySelected
+            }
+        case SEARCH_ACCOMMODATIONS:
+        case HANDLE_ERRORS:
+            return {
+                ...state,
+                errors: action.payload,
+                snackbarOpen: true
+            }
+        case SELECT_ACCOMMODATION:
+        case CLOSE_SNACKBAR:
+            return {
+                ...state,
+                snackbarOpen: false,
             }
         default:
             return state

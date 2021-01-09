@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'flex-start',
       border: '1px solid cyan'
     },
+
+    reviews: {
+      fontSize: '14px',
+      color: colors.primary100,
+    }
   }
 }));
 function Accommodations(props) {
@@ -63,8 +68,6 @@ function Accommodations(props) {
   const handleViewMore = () => {
     return props.openModalAction({ open: true, data: props.accommodation });
   }
-
-
   return (
     <Card className={classes.root} >
       {(props.pending ?

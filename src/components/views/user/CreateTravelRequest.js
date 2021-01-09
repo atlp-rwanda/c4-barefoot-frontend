@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SearchLocations from '../../travelRequests/SearchTravelRequest';
-import { Grid, makeStyles, Typography, Container, GridListTileBar } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Container, GridListTileBar, Button } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
 import {
@@ -8,6 +8,7 @@ import {
     searchCurrentLocationAction, selectAccommodationAction,
     getLocationsAction, closeSnackbar,
     handleErrorsAction, addTravelReasonAction,
+    searchAccommodationAction,
     sendTravelRequestAction, addMultiCityAction,
     removeMultiCityAction, openModalAction, cancelTravelRequestAction
 } from '../../../redux/actions/CreateTravelRequestAction';
@@ -85,7 +86,7 @@ export default connect(
         getLocationsAction, closeSnackbar, handleErrorsAction,
         addTravelReasonAction, sendTravelRequestAction,
         addMultiCityAction, removeMultiCityAction, openModalAction,
-        cancelTravelRequestAction
+        cancelTravelRequestAction,
+        searchAccommodationAction
     }
 )(CreateTravelRequest);
-

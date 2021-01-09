@@ -1,6 +1,7 @@
 import React from 'react';
-import { Checkbox, Grid, makeStyles } from '@material-ui/core';
+import { Checkbox, Grid, makeStyles, FormControlLabel } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
+import { Favorite, FavoriteBorder } from '@material-ui/icons';
 
 
 const RatingStars = (props) => {
