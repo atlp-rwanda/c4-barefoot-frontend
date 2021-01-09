@@ -9,7 +9,7 @@ import {
     KeyboardDatePicker
   } from '@material-ui/pickers';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import SnackBarMessage from '../SnackBarMessage';
 
 const useStyles = makeStyles((theme) => ({
     main:{
@@ -69,27 +69,30 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SearchLocations = (props) => {
-    useEffect(() => {
-        console.log("props here");
-        console.log(props);
-    })
     const classes = useStyles();
+    useEffect(() => {
+        // console.log("props here");
+        // console.log(props);
+        // props.getLocationsAction();
+        
+    })
+    
     let data = {
         isReturning: props.travelRequest.isReturning,
         departureDate: props.travelRequest.departureDate,
         returnDate: props.travelRequest.returnDate
     };
     const  handleDepartureDateChange=(date) => {
-        data.departureDate = date.toLocaleDateString();
-        return props.checkTravelDatesAction(data);
+        // data.departureDate = date.toLocaleDateString();
+        // return props.checkTravelDatesAction(data);
     }
     const  handleReturnDateChange=(date) => {
-        data.returnDate = date.toLocaleDateString();
-        return props.checkTravelDatesAction(data);
+        // data.returnDate = date.toLocaleDateString();
+        // return props.checkTravelDatesAction(data);
     }
     const handleCheckboxChange =(event) => {
-        data.isReturning = event.target.checked
-        return props.CheckReturningAction(data);
+        // data.isReturning = event.target.checked
+        // return props.CheckReturningAction(data);
     }
     const handleCurrentLocationChange = (event,newValue) =>{
         const data = {
@@ -105,8 +108,26 @@ const SearchLocations = (props) => {
         return 0;
     }
     const handleAddTravelRequest = () =>{
-        return console.log(props);
+        // console.log(props);
+        // return props.searchAccommodationAction('a,location');
+        if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
+            return props.handleErrorsAction('Current and Destination place can not be the same!');
+        }
+        if(!props.travelRequest.currentLocation){
+            return props.handleErrorsAction('Please add your current location!');
+        }
+
     }
+    const closeSnackbarTimer = ()=>{
+        props.closeSnackbar();
+    };
+    const snackbar ={
+        open: props.travelRequest.snackbarOpen,
+        closeTimer: closeSnackbarTimer,
+        severity: props.travelRequest.success ? 'success' : 'error',
+        error: props.travelRequest.errors,
+    }
+    console.log(snackbar);
 
     return ( 
         <Grid container direction="row" className={classes.main} >
@@ -215,7 +236,7 @@ const SearchLocations = (props) => {
                 </div>
                 
             </Grid>
-
+            <SnackBarMessage snackbar={snackbar} />
         </Grid>
      );
 }

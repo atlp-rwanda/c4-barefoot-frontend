@@ -5,8 +5,7 @@ import { accommodationsPayload } from '../../../dummyData';
 import colors from '../colors';
 
 const useStyles = makeStyles((theme) => ({
-    borders:{
-        border: '1px solid red',
+    container:{
         width: '80%',
         display: 'flex',
         flexDirection: 'row',
@@ -14,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'center'
 
     },
-    borders2:{
-        border: '1px solid red',
+    insideGrid:{
         margin: theme.spacing(2,0,0,2)
     },
     title:{
@@ -34,11 +32,11 @@ function AddAccommodation(props) {
                     Choose Accommodation:
                 </Typography>
             </Grid>
-            <Container className={classes.borders}>
+            <Container className={classes.container}>
                 
                 {accommodationsPayload.map((accommodation) =>(
-                    <Grid item className={classes.borders2}>
-                        <AccommodationCard pending={false} accommodation={accommodation}  />
+                    <Grid item className={classes.insideGrid}>
+                        <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
                     </Grid>
                 ))}
             </Container>

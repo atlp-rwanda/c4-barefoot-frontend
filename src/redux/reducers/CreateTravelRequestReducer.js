@@ -1,17 +1,32 @@
-import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR } from '../actions/CreateTravelRequestAction';
 const initialState = {
-    isReturning: false,
-    departureDate: '',
-    returnDate: '',
     searchLocations: [],
     currentLocation: '',
     destinationLocation: '',
+    isReturning: false,
+    departureDate: '',
+    returnDate: '',
     searchAccommodations: [],
-    selectedAccommodation:'',
+    selectedAccommodation:[],
+    displaySelection:false,
+    displaySelected: false,
+    errors:'',
+    success: false,
+    snackbarOpen: false
 }
 
 export function CreateTravelRequestReducer (state = initialState, action) {
     switch(action.type){
+        case SEARCH_LOCATIONS :
+            return {
+                ...state,
+                searchLocations: action.payload
+            }
+        case CURRENT_LOCATION :
+            return {
+                ...state,
+                currentLocation: action.payload
+            }
         case TRAVEL_DATES :
             return {
                 ...state,
@@ -23,30 +38,33 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 ...state,
                 isReturning: action.payload
             }
-        case CURRENT_LOCATION :
-            return {
-                ...state,
-                currentLocation: action.payload
-            }
         case DESTINATION_LOCATION :
             return {
                 ...state,
                 destinationLocation: action.payload
             }
-        case SEARCH_LOCATIONS :
-            return {
-                ...state,
-                searchLocations: action.payload
-            }
         case SEARCH_ACCOMMODATIONS :
             return {
                 ...state,
-                searchAccommodations: action.payload
+                displaySelection: action.payload
             }
         case SELECT_ACCOMMODATION :
             return {
                 ...state,
-                selectedAccommodation: action.payload
+                selectedAccommodation: action.payload.accommodation,
+                displaySelection: action.payload.displaySelection,
+                displaySelected: action.payload.displaySelected
+            }
+        case HANDLE_ERRORS :
+            return {
+                ...state,
+                errors: action.payload,
+                snackbarOpen: true
+            }
+        case CLOSE_SNACKBAR :
+            return {
+                ...state,
+                snackbarOpen: false,
             }
         default:
             return state

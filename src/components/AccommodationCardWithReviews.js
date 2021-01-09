@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection:'column',
       alignItems:'flex-start',
-      border: '1px solid cyan'
   },
   reviews:{
       fontSize: '14px',
@@ -41,15 +40,25 @@ function Accommodations(props) {
     const classes = useStyles();
 
     const handleSelection = (event) =>{
-        console.log(event.target.id);
+      const accommodation={
+        selected:[props.accommodation],
+        checked: event.target.checked
+      };
+      return props.selectAccommodationAction(accommodation);
+
     }    
+    // console.log('props from the actual card');
+    // console.log(props);
+    const check = props.travelRequest.selectedAccommodation.length ? true : false;
+    // console.log('+++++++++the only prop');
+    // console.log(props.accommodation, check);
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <Checkbox
-        id={props.accommodation.id}
         onChange={handleSelection}
+        checked={check}
         className={classes.checkbox}/>
         <CardMedia
           className={classes.media}
@@ -76,8 +85,4 @@ function Accommodations(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  pending: state.fetchAccommodations.pending,
-})
-
-export default connect(mapStateToProps, null)(Accommodations);
+export default Accommodations;

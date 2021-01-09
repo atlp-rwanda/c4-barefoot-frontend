@@ -73,3 +73,4 @@ export const accommodationsPayload = [
     error: null
   }
 
+let a = 'https://barefoot-nomad-app-v1.herokuapp.com'

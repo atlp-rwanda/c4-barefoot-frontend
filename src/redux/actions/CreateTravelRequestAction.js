@@ -5,9 +5,10 @@ export const DESTINATION_LOCATION = 'DESTINATION_LOCATION';
 export const CURRENT_LOCATION = 'CURRENT_LOCATION';
 export const SEARCH_ACCOMMODATIONS = 'SEARCH_ACCOMMODATIONS';
 export const SELECT_ACCOMMODATION = 'SELECT_ACCOMMODATION';
+export const HANDLE_ERRORS = 'HANDLE_ERRORS';
+export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 
-import { locations } from './searchDummyData';
-import { accommodationsPayload } from '../../../dummyData';
+import axios from 'axios';
 
 export const CheckReturningAction = (data) => dispatch =>{
     return dispatch({
@@ -21,6 +22,19 @@ export const checkTravelDatesAction = (data) => dispatch =>{
         type: TRAVEL_DATES,
         payload: data
     })
+}
+export const getLocationsAction = () => async (dispatch) =>{
+    try{
+        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
+        console.log(getData);
+        return dispatch({
+            type: SEARCH_LOCATIONS,
+            payload: getData.data.locations.rows
+        })
+    }catch(error){
+        console.log(error);
+    }
+    
 }
 
 export const searchCurrentLocationAction = (data) => dispatch =>{
@@ -52,26 +66,53 @@ export const searchCurrentLocationAction = (data) => dispatch =>{
             payload: data.searchKeyword
         });
     }
-    return dispatch({
-        type: SEARCH_LOCATIONS,
-        payload: locations
-    })
 }
 
 export const searchAccommodationAction = (searchKeyword) => dispatch =>{
     const location = searchKeyword.split(",",2);
     const city = location[0];
     const country = location[1];
-    console.log(city,country);
+    // console.log(city,country);
+    dispatch({
+        type: SEARCH_LOCATIONS,
+        payload: 'locations'
+    })
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
-        payload: accommodationsPayload
+        payload: true
     })
 }
 
-export const selectAccommodationAction = (accommodationId) => dispatch => {
+export const selectAccommodationAction = (accommodation) => dispatch => {
+    if(accommodation.checked){
+        return dispatch({
+            type: SELECT_ACCOMMODATION,
+            payload: {
+                accommodation: accommodation.selected,
+                displaySelection: !accommodation.checked,
+                displaySelected: accommodation.checked
+            }
+        })
+    }
     return dispatch({
         type: SELECT_ACCOMMODATION,
-        payload: accommodationId
+        payload: {
+            accommodationId: [],
+            displaySelection: accommodation.checked,
+            displaySelected: !accommodation.checked
+        }
     })
+}
+
+export const handleErrorsAction = (errorMessage) => dispatch =>{
+    return dispatch({
+        type: HANDLE_ERRORS,
+        payload: errorMessage
+    })
+}
+
+export const closeSnackbar = () => dispatch =>{
+    dispatch({
+        type: CLOSE_SNACKBAR
+    });
 }

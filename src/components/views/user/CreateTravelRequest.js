@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import SearchLocations from '../../travelRequests/SearchTravelRequest';
-import { Grid, makeStyles, Typography, Container, GridListTileBar } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Container, GridListTileBar, Button } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction } from '../../../redux/actions/CreateTravelRequestAction';
-import AddAccommodation from '../../travelRequests/searchAccommodations';
-
+import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction } from '../../../redux/actions/CreateTravelRequestAction';
+import AddAccommodation from '../../travelRequests/addAccommodation';
+import AddTravelReason from '../../travelRequests/addTravelReason';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -25,8 +25,15 @@ const useStyles = makeStyles((theme) =>({
 
 const CreateTravelRequest = (props) => {
     const classes = useStyles();
-
-    const display = 'block';
+    useEffect(()=>{
+        console.log('the engine starts');
+        props.getLocationsAction();
+    },[])
+    console.log('locations');
+    console.log(props.travelRequest.searchLocations);
+    const display = props.travelRequest.displaySelection ? 'block' : 'none';
+    // const display2 = 'block';
+    const display2 = props.travelRequest.displaySelected ? 'block' : 'none';
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Grid item xs={12} className={classes.title}>
@@ -38,11 +45,13 @@ const CreateTravelRequest = (props) => {
             <Grid item xs={12} className={classes.content}>
                 <SearchLocations {...props} />
             </Grid>
-            <Grid item container xs={12} style={{border: '1px solid blue'}}>
-                <Grid container style={{display: display}}>
-                   <AddAccommodation /> 
+            <Grid item container xs={12}>
+                <Grid container style={{display:display}}>
+                   <AddAccommodation {...props} /> 
                 </Grid>
-                
+                <Grid container style={{display:display2}}>
+                   <AddTravelReason {...props} /> 
+                </Grid>
             </Grid>
         </Grid>
      );
@@ -52,5 +61,5 @@ const CreateTravelRequest = (props) => {
 const mapStateToProps = state =>({
     travelRequest: state.createTravelRequest
 });
-export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction})(CreateTravelRequest);
+export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction})(CreateTravelRequest);
 
