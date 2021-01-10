@@ -17,6 +17,7 @@ export function fetchAccommodationsReducer(state = initialState, action){
       return {
         ...state,
         pending: false,
+        count: action.count,
         accommodations: action.payload
       }
     case FETCH_ACCOMMODATIONS_ERROR:

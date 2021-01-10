@@ -9,6 +9,15 @@ import Profile from '../components/views/Profile';
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout } from '../components/layouts';
+import TravelAdminDefault  from '../components/travelAdminLayoutRoute/Default';
+import { createLocation } from '../components/views/admin/createLocations';
+import { createAccomodations } from '../components/views/admin/createAccommodations';
+import { TravelAdmin } from '../components/views/admin';
+import TravelAdminRoute from '../components/travelAdminLayoutRoute';
+import ListLocations from '../components/views/admin/viewLocations';
+import ListAccommodation from '../components/views/admin/viewAccommodations';
+// import { redirectUser, toBeRedirected } from '../../../services/userInfo';
+
 const Routes = () => {
     return (
       <Switch>
@@ -55,6 +64,32 @@ const Routes = () => {
             path="/user/verification/" 
             component={ verifyAccount }
             layout={DefaultLayout}
+        />
+        <TravelAdminRoute 
+            path="/admin/travel" 
+            exact
+            component={ TravelAdmin }
+            layout={TravelAdminDefault}
+        />
+        <RouteWithLayout 
+            path="/admin/travel/location/create" 
+            component={ createLocation }
+            layout={TravelAdminDefault}
+        />
+        <RouteWithLayout 
+            path="/admin/travel/location/view" 
+            component={ ListLocations }
+            layout={TravelAdminDefault}
+        />
+        <RouteWithLayout 
+            path="/admin/travel/accommodations/create" 
+            component={ createAccomodations }
+            layout={TravelAdminDefault}
+        />
+        <RouteWithLayout 
+            path="/admin/travel/accommodations/view" 
+            component={ ListAccommodation }
+            layout={TravelAdminDefault}
         />
         
         <Redirect to="/PageNotFound" />

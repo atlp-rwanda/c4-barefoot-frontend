@@ -5,14 +5,15 @@ export const  FETCH_ACCOMMODATIONS_SUCCESS = 'FETCH_ACCOMMODATIONS_SUCCESS'
 export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
 
 
-export const getAccommodations = () => dispatch => {
+export const getAccommodations = (page) => dispatch => {
   dispatch({
     type: FETCH_ACCOMMODATIONS_PENDING
   })
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`)
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`, { params: { page: page }})
     .then(res => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_SUCCESS,
+        count: res.data.accommodations.count,
         payload: res.data.accommodations.rows
       })
       }

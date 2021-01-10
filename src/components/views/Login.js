@@ -192,7 +192,7 @@ function Login(props) {
                             variant="contained"
                             disabled={load}
                             className={classes.social_media}
-                            startIcon={<Avatar src={'../src/images/facebook.png'}/>}
+                            startIcon={<Avatar src={'../images/facebook.png'}/>}
                             >
                             Facebook
                             </Button>
