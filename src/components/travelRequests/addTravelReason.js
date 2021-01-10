@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Container, makeStyles, Typography,TextField, Button } from '@material-ui/core';
 import AccommodationCard from '../AccommodationCardWithReviews';
-import { accommodationsPayload } from '../../../dummyData';
 
 import colors from '../colors';
 
@@ -43,7 +42,40 @@ function AddTravelReason(props) {
     // console.log(props);
     
     const handleSendTravelRequest = () =>{
-        alert(...props.travelRequest);
+        console.log('send clicked');
+        if(!props.travelRequest.travelReason){
+            return props.handleErrorsAction('Please add a reason of travel!');
+        }
+        if(!props.travelRequest.selectedAccommodation.length){
+            return props.handleErrorsAction('Please add the accommodation of your chose!');
+        }
+        const userToken = localStorage.getItem('barefootUserToken');
+        const originCity=props.travelRequest.currentLocation.split(',',1);
+        const destCity= props.travelRequest.destinationLocation.split(',',1);
+        const tripRequest = {
+            trip:[{
+                originCity:originCity[0],
+                destination:destCity[0],
+                tripDate:props.travelRequest.departureDate,
+                returnDate:props.travelRequest.returnDate,
+                accommodationId:props.travelRequest.selectedAccommodation[0].id,
+                reason: props.travelRequest.travelReason
+            }]
+            
+        }
+        if(userToken){
+            
+            const data={
+                authToken : userToken,
+                travelRequest: tripRequest
+            }
+            console.log('the request', props.travelRequest);
+            return props.sendTravelRequestAction(data);
+        }
+    }
+
+    const handleTravelReasonChange = (event) =>{
+        return props.addTravelReasonAction(event.target.value);
     }
     const selectedAccommodation= props.travelRequest.selectedAccommodation ? props.travelRequest.selectedAccommodation : [{id:'',country:'',city:'',title:'',description:'',photos:''}];
     return (
@@ -65,6 +97,7 @@ function AddTravelReason(props) {
                 placeholder="Please add a reason of travel"
                 multiline
                 variant="outlined"
+                onChange={handleTravelReasonChange}
                 rows={10}
                 style={{width:'50%',border:'1px solid primary'}}
                 />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Container, makeStyles, Typography } from '@material-ui/core';
 import AccommodationCard from '../AccommodationCardWithReviews';
-import { accommodationsPayload } from '../../../dummyData';
 import colors from '../colors';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AddAccommodation(props) {
     const classes = useStyles();
-
+    const accommodations = props.travelRequest.searchAccommodations;
     return (
         <React.Fragment>
             <Grid item xs={12} className={classes.title}>
@@ -34,7 +33,7 @@ function AddAccommodation(props) {
             </Grid>
             <Container className={classes.container}>
                 
-                {accommodationsPayload.map((accommodation) =>(
+                {accommodations.map((accommodation) =>(
                     <Grid item className={classes.insideGrid}>
                         <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
                     </Grid>

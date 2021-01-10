@@ -75,7 +75,7 @@ function Accommodations(props) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.city} </Button>
+        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.state}, {props.accommodation.city} </Button>
         <Ratings highRating={3} />
         <Typography className={classes.reviews}>
             25 Reviews

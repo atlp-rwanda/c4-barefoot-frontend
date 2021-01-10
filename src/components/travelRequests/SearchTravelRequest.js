@@ -9,7 +9,6 @@ import {
     KeyboardDatePicker
   } from '@material-ui/pickers';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import SnackBarMessage from '../SnackBarMessage';
 
 const useStyles = makeStyles((theme) => ({
     main:{
@@ -74,8 +73,11 @@ const SearchLocations = (props) => {
         // console.log("props here");
         // console.log(props);
         // props.getLocationsAction();
+        const d= new Date();
+
+        console.log('ISO', d.toISOString());
         
-    })
+    },[])
     
     let data = {
         isReturning: props.travelRequest.isReturning,
@@ -83,16 +85,16 @@ const SearchLocations = (props) => {
         returnDate: props.travelRequest.returnDate
     };
     const  handleDepartureDateChange=(date) => {
-        // data.departureDate = date.toLocaleDateString();
-        // return props.checkTravelDatesAction(data);
+        data.departureDate = date.toISOString();
+        return props.checkTravelDatesAction(data);
     }
     const  handleReturnDateChange=(date) => {
-        // data.returnDate = date.toLocaleDateString();
-        // return props.checkTravelDatesAction(data);
+        data.returnDate = date.toISOString();
+        return props.checkTravelDatesAction(data);
     }
     const handleCheckboxChange =(event) => {
-        // data.isReturning = event.target.checked
-        // return props.CheckReturningAction(data);
+        data.isReturning = event.target.checked
+        return props.CheckReturningAction(data);
     }
     const handleCurrentLocationChange = (event,newValue) =>{
         const data = {
@@ -109,25 +111,29 @@ const SearchLocations = (props) => {
     }
     const handleAddTravelRequest = () =>{
         // console.log(props);
-        // return props.searchAccommodationAction('a,location');
+        // 
+        if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
+            return props.handleErrorsAction('Please add the current and destination location!');
+        }
         if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
             return props.handleErrorsAction('Current and Destination place can not be the same!');
         }
         if(!props.travelRequest.currentLocation){
             return props.handleErrorsAction('Please add your current location!');
         }
+        if(!props.travelRequest.destinationLocation){
+            return props.handleErrorsAction('Please add your Destination location!');
+        }
+        if(!props.travelRequest.departureDate){
+            return props.handleErrorsAction('Please add the departure date!');
+        }
+        if(!props.travelRequest.returnDate && props.travelRequest.isReturning){
+            return props.handleErrorsAction('Please add the return date!');
+        }
+
+        return props.searchAccommodationAction(props.travelRequest.destinationLocation);
 
     }
-    const closeSnackbarTimer = ()=>{
-        props.closeSnackbar();
-    };
-    const snackbar ={
-        open: props.travelRequest.snackbarOpen,
-        closeTimer: closeSnackbarTimer,
-        severity: props.travelRequest.success ? 'success' : 'error',
-        error: props.travelRequest.errors,
-    }
-    console.log(snackbar);
 
     return ( 
         <Grid container direction="row" className={classes.main} >
@@ -152,6 +158,7 @@ const SearchLocations = (props) => {
                         renderInput={(params) => (
                             <TextField 
                                 {...params}
+                                value={props.travelRequest.currentLocation}
                                 placeholder="Search your Location ..."
                             />
                             
@@ -199,7 +206,7 @@ const SearchLocations = (props) => {
                         variant="dialog"
                         inputVariant="filled"
                         format="MM/dd/yyyy"
-                        value={data.departureDate}
+                        value={props.travelRequest.departureDate}
                         onChange={handleDepartureDateChange}
                         InputProps={{className: classes.datesPicker}}
                     />
@@ -236,7 +243,7 @@ const SearchLocations = (props) => {
                 </div>
                 
             </Grid>
-            <SnackBarMessage snackbar={snackbar} />
+            
         </Grid>
      );
 }

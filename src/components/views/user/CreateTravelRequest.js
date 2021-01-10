@@ -3,9 +3,11 @@ import SearchLocations from '../../travelRequests/SearchTravelRequest';
 import { Grid, makeStyles, Typography, Container, GridListTileBar, Button } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction } from '../../../redux/actions/CreateTravelRequestAction';
+import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction } from '../../../redux/actions/CreateTravelRequestAction';
 import AddAccommodation from '../../travelRequests/addAccommodation';
 import AddTravelReason from '../../travelRequests/addTravelReason';
+import SnackBarMessage from '../../SnackBarMessage';
+import Loader from '../../Loader';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -34,8 +36,22 @@ const CreateTravelRequest = (props) => {
     const display = props.travelRequest.displaySelection ? 'block' : 'none';
     // const display2 = 'block';
     const display2 = props.travelRequest.displaySelected ? 'block' : 'none';
+
+    
+    const closeSnackbarTimer = ()=>{
+        props.closeSnackbar();
+    };
+    const snackbar ={
+        open: props.travelRequest.snackbarOpen,
+        closeTimer: closeSnackbarTimer,
+        severity: props.travelRequest.success ? 'success' : 'error',
+        error: props.travelRequest.errors,
+    }
+    console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
+            <Loader open={props.travelRequest.sendLoading} />
+            <SnackBarMessage snackbar={snackbar} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
                     Create Travel Request
@@ -61,5 +77,5 @@ const CreateTravelRequest = (props) => {
 const mapStateToProps = state =>({
     travelRequest: state.createTravelRequest
 });
-export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction})(CreateTravelRequest);
+export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, searchAccommodationAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction})(CreateTravelRequest);
 
