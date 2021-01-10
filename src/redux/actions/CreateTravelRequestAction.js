@@ -12,10 +12,13 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const ADD_TRAVEL_REASON = 'ADD_TRAVEL_REASON';
 export const SEND_TRAVEL_REQUEST = 'SEND_TRAVEL_REQUEST';
 export const SEND_TRAVEL_REQUEST_LOADING = 'SEND_TRAVEL_REQUEST_LOADING';
+<<<<<<< HEAD
 export const ADD_MULTI_CITY_TRAVEL_REQUEST = 'ADD_MULTI_CITY_TRAVEL_REQUEST';
 export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUEST';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
+=======
+>>>>>>> sends first travel request
 
 import axios from 'axios';
 
@@ -229,18 +232,22 @@ export const searchCurrentLocationAction = (data) => dispatch => {
     }
 }
 
+<<<<<<< HEAD
 export const searchAccommodationAction = (searchKeyword) => {
     const location = searchKeyword.split(",", 2);
+=======
+export const searchAccommodationAction = (searchKeyword) => async(dispatch) =>{
+    const location = searchKeyword.split(", ",2);
+>>>>>>> sends first travel request
     const city = location[0];
     const country = location[1];
-    // console.log(city,country);
-    dispatch({
-        type: SEARCH_LOCATIONS,
-        payload: 'locations'
-    })
+    console.log('the city and country to search');
+    console.log(city,country);
+    const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
+    console.log('accommodations', getAccommodations.data.rows);
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
-        payload: true
+        payload: getAccommodations.data.rows
     })
 }
 
@@ -258,9 +265,9 @@ export const selectAccommodationAction = (accommodation) => dispatch => {
     return dispatch({
         type: SELECT_ACCOMMODATION,
         payload: {
-            accommodationId: [],
-            displaySelection: accommodation.checked,
-            displaySelected: !accommodation.checked
+            accommodation: [],
+            displaySelection: !accommodation.checked,
+            displaySelected: accommodation.checked
         }
     })
 }
@@ -277,3 +284,33 @@ export const closeSnackbar = () => dispatch => {
         type: CLOSE_SNACKBAR
     });
 }
+<<<<<<< HEAD
+=======
+
+export const addTravelReasonAction = (data) => dispatch =>{
+    return dispatch({
+        type: ADD_TRAVEL_REASON,
+        payload: data
+    })
+}
+
+export const sendTravelRequestAction = (data) => async (dispatch) =>{
+    try{
+        dispatch({
+            type: SEND_TRAVEL_REQUEST_LOADING,
+        })
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
+        console.log('before sending', data.authToken);
+        const sendTrip = await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
+        console.log('the response', sendTrip);
+        return dispatch({
+            type: SEND_TRAVEL_REQUEST,
+            payload: true
+        })
+        
+    }
+    catch(error){
+        console.log('error from sending travel request', error);
+    }
+}
+>>>>>>> sends first travel request

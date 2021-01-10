@@ -56,7 +56,6 @@ function AddTravelReason(props) {
             return props.sendTravelRequestAction(data);
         }
     }
-
     const handleTravelReasonChange = (event) => {
         return props.addTravelReasonAction(event.target.value);
     }

@@ -189,7 +189,8 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case SEARCH_ACCOMMODATIONS:
             return {
                 ...state,
-                displaySelection: action.payload
+                searchAccommodations: action.payload,
+                displaySelection: true
             }
         case SEARCH_LOCATIONS:
         case SELECT_ACCOMMODATION:
@@ -211,6 +212,33 @@ export function CreateTravelRequestReducer(state = initialState, action) {
             return {
                 ...state,
                 snackbarOpen: false,
+            }
+        case ADD_TRAVEL_REASON:
+            return {
+                ...state,
+                travelReason: action.payload
+            }
+        case SEND_TRAVEL_REQUEST_LOADING:
+            return {
+                ...state,
+                sendLoading: true
+            }
+        case SEND_TRAVEL_REQUEST:
+            return {
+                ...state,
+                success: action.payload,
+                errors: 'The travel request is successfully sent!',
+                snackbarOpen: true,
+                sendLoading: false,
+                displaySelection: false,
+                displaySelected: false,
+                currentLocation: '',
+                destinationLocation: '',
+                departureDate: '',
+                returnDate: '',
+                isReturning: false,
+                selectedAccommodation: [],
+                travelReason: ''
             }
         default:
             return state
