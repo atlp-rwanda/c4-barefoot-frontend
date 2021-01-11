@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         color: colors.neutralWhite,
         justifyContent: 'space-evenly',
-        padding: theme.spacing(3)
+        padding: theme.spacing(3),
     },
     searchLocation: {
         display: 'flex',

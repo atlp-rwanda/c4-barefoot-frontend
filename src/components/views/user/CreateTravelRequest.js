@@ -21,9 +21,15 @@ const useStyles = makeStyles((theme) => ({
     main: {
         justifyContent: 'center',
         alignItems: 'center',
+<<<<<<< HEAD
         padding: theme.spacing(1, 0),
         [theme.breakpoints.up('sm')]: {
             margin: theme.spacing(7, 0, 0, 0)
+=======
+        padding: theme.spacing(1,0),
+        [theme.breakpoints.up('sm')]:{
+            margin: theme.spacing(7,0,0,0)
+>>>>>>> adds a little authorization
         }
     },
     title: {
