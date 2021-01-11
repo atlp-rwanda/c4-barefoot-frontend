@@ -112,24 +112,24 @@ const SearchLocations = (props) => {
     const handleAddTravelRequest = () =>{
         // console.log(props);
         
-        if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Please add the current and destination location!');
-        }
-        if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Current and Destination place can not be the same!');
-        }
-        if(!props.travelRequest.currentLocation){
-            return props.handleErrorsAction('Please add your current location!');
-        }
-        if(!props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Please add your Destination location!');
-        }
-        if(!props.travelRequest.departureDate){
-            return props.handleErrorsAction('Please add the departure date!');
-        }
-        if(!props.travelRequest.returnDate && props.travelRequest.isReturning){
-            return props.handleErrorsAction('Please add the return date!');
-        }
+        // if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Please add the current and destination location!');
+        // }
+        // if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Current and Destination place can not be the same!');
+        // }
+        // if(!props.travelRequest.currentLocation){
+        //     return props.handleErrorsAction('Please add your current location!');
+        // }
+        // if(!props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Please add your Destination location!');
+        // }
+        // if(!props.travelRequest.departureDate){
+        //     return props.handleErrorsAction('Please add the departure date!');
+        // }
+        // if(!props.travelRequest.returnDate && props.travelRequest.isReturning){
+        //     return props.handleErrorsAction('Please add the return date!');
+        // }
 
         return props.searchAccommodationAction(props.travelRequest.destinationLocation);
 
