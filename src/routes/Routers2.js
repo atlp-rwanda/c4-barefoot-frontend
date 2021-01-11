@@ -10,6 +10,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout } from '../components/layouts';
 import RequesterDefault  from '../components/RequesterLayoutRoute/Default';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+import ViewTravelRequest from '../components/views/user/ViewTravelRequest';
 import RequesterRoute from '../components/RequesterLayoutRoute';
 import Logout from '../components/views/Logout';
 
@@ -72,6 +73,12 @@ const Routes = () => {
             path="/requester/create-travel-request" 
             exact
             component={ CreateTravelRequest }
+            layout={RequesterDefault}
+        />
+        <RequesterRoute 
+            path="/requester/view-travel-requests" 
+            exact
+            component={ ViewTravelRequest }
             layout={RequesterDefault}
         />
         
