@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import colors from '../colors';
-import { Button, fade, FormControlLabel, Grid, makeStyles, Typography, Checkbox, TextField } from '@material-ui/core';
+import { Button, fade, FormControlLabel, Grid, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -111,7 +111,7 @@ const SearchLocations = (props) => {
     }
     const handleAddTravelRequest = () =>{
         // console.log(props);
-        // 
+        
         if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
             return props.handleErrorsAction('Please add the current and destination location!');
         }
@@ -196,7 +196,10 @@ const SearchLocations = (props) => {
                 </div>
             </Grid>
             <Grid item direction="column">
-                <Button variant="contained" onClick={handleAddTravelRequest} className={classes.addButton}>Add</Button>
+                <Tooltip title="Click here to search accommodations" placement="bottom-end" arrow>
+                    <Button variant="contained" onClick={handleAddTravelRequest} className={classes.addButton}>Add</Button>
+                </Tooltip>
+                
             </Grid>
             <Grid item direction="column" >
                 <Typography>Date of travel</Typography>

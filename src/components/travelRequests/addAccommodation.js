@@ -1,23 +1,23 @@
 import React from 'react';
-import { Grid, Container, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Container, makeStyles, Typography, Divider } from '@material-ui/core';
 import AccommodationCard from '../AccommodationCardWithReviews';
 import colors from '../colors';
+import { Place } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     container:{
-        width: '80%',
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems:'center'
-
+        alignItems: 'center'
     },
     insideGrid:{
-        margin: theme.spacing(2,0,0,2)
+        margin: theme.spacing(2,0,0,2),
     },
     title:{
         padding: theme.spacing(1),
-        textAlign: 'center'
+        flexDirection:'column',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }))
 
@@ -26,19 +26,24 @@ function AddAccommodation(props) {
     const accommodations = props.travelRequest.searchAccommodations;
     return (
         <React.Fragment>
-            <Grid item xs={12} className={classes.title}>
+            <Grid container item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
                     Choose Accommodation:
                 </Typography>
+                <Divider style={{width:'50%'}} variant='middle' />
+                <Typography variant="subtitle1" style={{color: colors.primary100}}> 
+                    <Place color="secondary"/> {props.travelRequest.destinationLocation}
+                </Typography>            
+
             </Grid>
-            <Container className={classes.container}>
+            <Grid container className={classes.container}>
                 
                 {accommodations.map((accommodation) =>(
-                    <Grid item className={classes.insideGrid}>
+                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid}>
                         <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
                     </Grid>
                 ))}
-            </Container>
+            </Grid>
         </React.Fragment>
     )
 }

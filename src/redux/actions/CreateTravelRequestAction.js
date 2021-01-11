@@ -78,7 +78,7 @@ export const searchAccommodationAction = (searchKeyword) => async(dispatch) =>{
     console.log('the city and country to search');
     console.log(city,country);
     const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
-    console.log('accommodations', getAccommodations.data.rows);
+    console.log('accommodations', getAccommodations.data);
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
         payload: getAccommodations.data.rows

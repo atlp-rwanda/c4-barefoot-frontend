@@ -10,10 +10,13 @@ const initialState = {
     selectedAccommodation:[],
     displaySelection:false,
     displaySelected: false,
-    errors:'',
+    snackBarMessage:{
+        open: false,
+        message: null,
+        severity: ''
+    },
     success: false,
     sendLoading:false,
-    snackbarOpen: false,
     travelReason: ''
 }
 
@@ -61,13 +64,20 @@ export function CreateTravelRequestReducer (state = initialState, action) {
         case HANDLE_ERRORS :
             return {
                 ...state,
-                errors: action.payload,
-                snackbarOpen: true
+                snackBarMessage:{
+                    open: true,
+                    severity: 'error',
+                    message: action.payload
+                },
             }
         case CLOSE_SNACKBAR :
             return {
                 ...state,
-                snackbarOpen: false,
+                snackBarMessage:{
+                    open: false,
+                    severity:'',
+                    message: null
+                },
             }
         case ADD_TRAVEL_REASON :
             return {
@@ -83,8 +93,6 @@ export function CreateTravelRequestReducer (state = initialState, action) {
             return {
                 ...state,
                 success: action.payload,
-                errors:'The travel request is successfully sent!',
-                snackbarOpen: true,
                 sendLoading: false,
                 displaySelection: false,
                 displaySelected: false,
@@ -94,7 +102,12 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 returnDate: '',
                 isReturning:false,
                 selectedAccommodation:[],
-                travelReason: ''
+                travelReason: '',
+                snackBarMessage:{
+                    open: true,
+                    message: action.payload,
+                    severity: 'success'
+                }
             }
         default:
             return state

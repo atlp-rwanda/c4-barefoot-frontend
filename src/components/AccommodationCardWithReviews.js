@@ -10,6 +10,7 @@ import Ratings from './RatingStars';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    height: 360,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -33,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
   reviews:{
       fontSize: '14px',
       color: colors.primary100,
+  },
+  cardContent:{
+    overflow: 'hidden'
+  },
+  titleText:{
+    [theme.breakpoints.down('sm')]:{
+      fontSize:'18px',
+    }
   }
 }));
 
@@ -65,17 +74,17 @@ function Accommodations(props) {
           image={props.accommodation.photos}
           title={props.accommodation.title}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent className={classes.cardContent} >
+          <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
            {props.accommodation.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="p" noWrap >
             {props.accommodation.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" startIcon={<Place />}> {props.accommodation.state}, {props.accommodation.city} </Button>
+        <Button size="small" color="primary" startIcon={<Place color="secondary" />}> {props.accommodation.state}, {props.accommodation.city} </Button>
         <Ratings highRating={3} />
         <Typography className={classes.reviews}>
             25 Reviews

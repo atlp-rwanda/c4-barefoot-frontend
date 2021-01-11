@@ -37,21 +37,11 @@ const CreateTravelRequest = (props) => {
     // const display2 = 'block';
     const display2 = props.travelRequest.displaySelected ? 'block' : 'none';
 
-    
-    const closeSnackbarTimer = ()=>{
-        props.closeSnackbar();
-    };
-    const snackbar ={
-        open: props.travelRequest.snackbarOpen,
-        closeTimer: closeSnackbarTimer,
-        severity: props.travelRequest.success ? 'success' : 'error',
-        error: props.travelRequest.errors,
-    }
     console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Loader open={props.travelRequest.sendLoading} />
-            <SnackBarMessage snackbar={snackbar} />
+            <SnackBarMessage {...props} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
                     Create Travel Request

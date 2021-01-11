@@ -1,16 +1,13 @@
 import React from 'react';
-import { Grid, Container, makeStyles, Typography,TextField, Button } from '@material-ui/core';
+import { Grid, Container, makeStyles, Typography,TextField, Button, Divider } from '@material-ui/core';
 import AccommodationCard from '../AccommodationCardWithReviews';
 
 import colors from '../colors';
 
 const useStyles = makeStyles((theme) => ({
     container:{
-        width: '80%',
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems:'center'
+        alignItems: 'center'
 
     },
     insideGrid:{
@@ -18,13 +15,15 @@ const useStyles = makeStyles((theme) => ({
     },
     title:{
         padding: theme.spacing(1),
-        textAlign: 'center'
+        flexDirection:'column',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textFieldGrid:{
-        display: 'flex',
         justifyContent:'center',
         alignItems:'center',
-        margin: theme.spacing(3),
+        margin: theme.spacing(3,0),
         flexDirection: 'column'
     },
     buttons:{
@@ -33,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
     },
     cancelButton:{
         margin:theme.spacing(0,3)
+    },
+    textField:{
+        width:'60%',
+        [theme.breakpoints.down('sm')]:{
+            width: '90%'
+        }
     }
 }))
  
@@ -80,26 +85,28 @@ function AddTravelReason(props) {
     const selectedAccommodation= props.travelRequest.selectedAccommodation ? props.travelRequest.selectedAccommodation : [{id:'',country:'',city:'',title:'',description:'',photos:''}];
     return (
         <React.Fragment>
-            <Grid item xs={12} className={classes.title}>
+            <Grid container item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
                     Please add a reason of travel:
                 </Typography>
+                <Divider style={{width: '50%'}} />
             </Grid>
-            <Container className={classes.container}>
+            <Grid container className={classes.container}>
                 <Grid item className={classes.insideGrid}>
                     {selectedAccommodation.map((accommodation) =>(
                         <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
                     ))}
                 </Grid>
-            </Container>
+            </Grid>
             <Grid container className={classes.textFieldGrid}>
                 <TextField
                 placeholder="Please add a reason of travel"
                 multiline
                 variant="outlined"
+                label="Please add the reason of travel"
                 onChange={handleTravelReasonChange}
                 rows={10}
-                style={{width:'50%',border:'1px solid primary'}}
+                className={classes.textField}
                 />
                 <Grid item contained className={classes.buttons}>
                     <Button variant="contained" color="secondary" className={classes.cancelButton}>Cancel</Button>
