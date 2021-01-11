@@ -10,7 +10,7 @@ export const  UPDATE_ACCOMMODATION_SUCCESS = 'UPDATE_LOCATION_SUCCESS'
 export const UPDATE_ACCOMMODATION_ERROR = 'UPDATE_LOCATION_ERROR'
 
 
-export const createAccommodation= (accommodation, token) => dispatch => {
+export const createAccommodation= (accommodation, amenitities, token) => dispatch => {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
@@ -19,6 +19,7 @@ export const createAccommodation= (accommodation, token) => dispatch => {
   })
   return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`, accommodation, config)
     .then(res => {
+      axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/amenities`,)
       dispatch({
         type: CREATE_ACCOMMODATION_SUCCESS,
         payload: res.data

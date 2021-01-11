@@ -126,11 +126,14 @@ const renderSelectField = ({
     {...custom}
   />
 )
+
 const imageIsRequired = value => (!value ? "Required" : undefined);
 
 export function CreateAccommodation(props) {
   const [expanded, setExpanded] = React.useState('panel1');
   const [Thumb, setThumb] = React.useState('')
+  const [suggestion, setSuggestion] = React.useState([])
+  // const [locationId, setLocationId] = React.useState()
   const classes = useStyle();
   const { handleSubmit, pristine, reset, submitting } = props
   const handleChange = (panel) => (event, newExpanded) => {
@@ -143,19 +146,35 @@ export function CreateAccommodation(props) {
     const accommodation_picture = formProps.location_image[0]
     formData.append('upload_preset', process.env.UPLOAD_PRESET)
     formData.append('file', accommodation_picture)
+    const amenities = (
+        {wifi=false,airConditioner=false,shampoo=false,ironing=false,tv=false,smokeDetector=false,fireExtinguisher=false,lockOnDoor=false}
+      )=>(
+        {wifi,airConditioner,shampoo,ironing,tv,smokeDetector,fireExtinguisher,lockOnDoor}
+      )
+    const amenitiesData = amenities(...formData)
     axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
       .then(res => {
-        const {accommodation_picture,...data} = {...formProps}
+        const {name, locationId , country} = formProps.city
+        console.log(name, locationId)
+        const {accommodation_picture, location_image, city,...data} = {...formProps}
         data.photos = res.data.secure_url
+        data.city = name
+        data.country = country
+        data.locationID = locationId
         alert(JSON.stringify(data, null, 4));
-        const { dispatch } = props;                
-        dispatch(createAccommodation(data, token));
+        props.dispatch(createAccommodation(data, amenitiesData, token));
       })
       .catch(err => { console.log(err) })
     
     // append any additional Redux form fields
     // create an AJAX request here with the created formData
   };
+  const handleSuggestions = (value) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`,{ params: { search: 'k' }})
+    .then(res => {
+      setSuggestion(res.data.locations.rows)
+    })
+  }
   const handleClose = () => {
     props.dispatch(closeSnackbar());
   };
@@ -207,37 +226,46 @@ export function CreateAccommodation(props) {
                         name="country"
                         label="Country/Region"
                         component={renderTextField}
+                        onChange={handleSuggestions}
                         fullWidth={true}
                       />
                     </div> */}
                     <div>
                       <Field
-                        name="country"
+                        name="city"
                         component={renderSelectField}
-                        label="Country/Region"
+                        label="City"
+                        onClick={handleSuggestions}
                         fullWidth={true}
                       >
-                        <MenuItem value="Hostel" primaryText="Hostel" />
+                        {location 
+                          ?(suggestion.map(location => (
+                            <MenuItem value={{name:location.LocationName, locationId:location.id, country:location.country}} primaryText={location.LocationName} /> ))) 
+                          : 'no location'}
+                        
                         <MenuItem value="Motel" primaryText="Motel" />
                         <MenuItem value="Lodge" primaryText="Lodge" />
                       </Field>
                     </div>
-                    <Box className={classes.col_box}>
-                      <div>
+                    {/* <Box className={classes.col_box}> */}
+                      {/* <div>
                         <Field
                           name="city"
                           label="City"
                           component={renderTextField}
+                          defaultValue={''}
                         />
-                      </div>
+                      </div> */}
+                      {/* {console.log(props.form)} */}
                       <div style={{marginLeft:'5px'}}>
                         <Field
                           name="state"
                           label="State"
                           component={renderTextField}
+                          fullWidth={true}
                         />
                       </div>
-                    </Box>
+                    {/* </Box> */}
                     <div>
                         <Field
                           name="streetAddress"
@@ -382,7 +410,6 @@ export function CreateAccommodation(props) {
                     ))}
                     
                   </div>
-                    {/* <Field name='amenities' component={ReduxCheckbox(Checkboxes)} data={weekdayOptions} className='you'/> */}
                   </Typography>
                 </AccordionDetails>
               </Accordion>

@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core'
 import React, {Component} from 'react'
 import Devider from '@material-ui/core/Divider'
+import { connect, useDispatch } from 'react-redux'
+import { getAccommodations } from '../../../redux/actions/fetchAccommodations'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -23,8 +25,14 @@ const useStyles = makeStyles((theme) => ({
         color: '#257AAA'
     }
   }))
-export function TravelAdmin(){
+function TravelAdmin(props){
+    const dispatch = useDispatch()
     const classes = useStyles()
+    // const getLocationCount = () =>{
+    props.dispatch(getAccommodations(1))
+    // }
+    // const a = getLocationCount()
+    console.log(props)
     return(
         <div className={classes.container}>
             <div >
@@ -40,3 +48,10 @@ export function TravelAdmin(){
         
     )
 }
+
+const mapStateToProps = state => ({
+    accommodationsData: state.fetchAccommodations
+  })
+
+export {TravelAdmin}
+export default connect(mapStateToProps, { getAccommodations })(TravelAdmin)

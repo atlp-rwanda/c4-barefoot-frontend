@@ -4,6 +4,7 @@ import { AddLocation, Business, Home, LocationCity, Menu, PinDrop } from "@mater
 import { useState } from "react"
 import { Link } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles"
+import Divider from '@material-ui/core/Divider'
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -73,6 +74,7 @@ const SideDrawer = ({navLinks}) => {
                 <Typography><Avatar/></Typography>
                 <Typography>Admin Name</Typography>
             </Box>
+            <Divider/>
             <Typography className={classes.a} href='/admin/travel' component='a'>
               <ListItem className={classes.linkBox}>
                   <Typography><Home/></Typography>

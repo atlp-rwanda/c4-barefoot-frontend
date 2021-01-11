@@ -10,12 +10,12 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import {  DefaultLayout } from '../components/layouts';
 import TravelAdminDefault  from '../components/travelAdminLayoutRoute/Default';
-import { createLocation } from '../components/views/admin/createLocations';
-import { createAccomodations } from '../components/views/admin/createAccommodations';
-import { TravelAdmin } from '../components/views/admin';
+import { createLocation } from '../components/views/travelAdmin/createLocations';
+import { createAccomodations } from '../components/views/travelAdmin/createAccommodations';
+import { TravelAdmin } from '../components/views/travelAdmin';
 import TravelAdminRoute from '../components/travelAdminLayoutRoute';
-import ListLocations from '../components/views/admin/viewLocations';
-import ListAccommodation from '../components/views/admin/viewAccommodations';
+import ListLocations from '../components/views/travelAdmin/viewLocations';
+import ListAccommodation from '../components/views/travelAdmin/viewAccommodations';
 // import { redirectUser, toBeRedirected } from '../../../services/userInfo';
 
 const Routes = () => {
@@ -65,7 +65,7 @@ const Routes = () => {
             component={ verifyAccount }
             layout={DefaultLayout}
         />
-        <TravelAdminRoute 
+        <RouteWithLayout 
             path="/admin/travel" 
             exact
             component={ TravelAdmin }

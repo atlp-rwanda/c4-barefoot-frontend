@@ -45,7 +45,7 @@ function ListAccommodation(props) {
     props.getAccommodations(value)
   };
 
-  console.log(props.accommodationsData.locations)
+  console.log(props.accommodationsData.count)
   return (
     <>
       <Box className={classes.root}>
@@ -57,7 +57,6 @@ function ListAccommodation(props) {
       </Box>
       <Box className={classes.paginationBox}>
         <div className={classes.pagination}>
-          {/* <Typography>Page: {page}</Typography> */}
           <Pagination count={pageNumber} page={page} onChange={handleChange} />
         </div>
       </Box>
