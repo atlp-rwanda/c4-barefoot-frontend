@@ -10,6 +10,7 @@ import Ratings from './RatingStars';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    height: 360,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',

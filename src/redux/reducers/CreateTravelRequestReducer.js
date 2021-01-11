@@ -204,14 +204,21 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case HANDLE_ERRORS:
             return {
                 ...state,
-                errors: action.payload,
-                snackbarOpen: true
+                snackBarMessage: {
+                    open: true,
+                    severity: 'error',
+                    message: action.payload
+                },
             }
         case SELECT_ACCOMMODATION:
         case CLOSE_SNACKBAR:
             return {
                 ...state,
-                snackbarOpen: false,
+                snackBarMessage: {
+                    open: false,
+                    severity: '',
+                    message: null
+                },
             }
         case ADD_TRAVEL_REASON:
             return {
