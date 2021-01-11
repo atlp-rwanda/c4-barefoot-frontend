@@ -11,6 +11,8 @@ import {  DefaultLayout } from '../components/layouts';
 import RequesterDefault  from '../components/RequesterLayoutRoute/Default';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import RequesterRoute from '../components/RequesterLayoutRoute';
+import Logout from '../components/views/Logout';
+
 // import { redirectUser, toBeRedirected } from '../../../services/userInfo';
 
 const Routes = () => {
@@ -33,10 +35,16 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-         <RouteWithLayout
+        <RequesterRoute
+          component={Logout}
+          exact
+          layout={RequesterDefault}
+          path="/logout"
+        />
+         <RequesterRoute
           component={Profile}
           exact
-          layout={DefaultLayout}
+          layout={RequesterDefault}
           path="/profile"
         />
         <RouteWithLayout
