@@ -5,6 +5,7 @@ import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 import { logoutReducer } from './logoutReducer';
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
+import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
   signup: signupRequestReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
-  createTravelRequest: CreateTravelRequestReducer
+  createTravelRequest: CreateTravelRequestReducer,
+  viewTravelRequest: ViewTravelRequestReducer
   
 })
 

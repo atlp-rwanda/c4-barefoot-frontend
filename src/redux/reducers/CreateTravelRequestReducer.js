@@ -105,7 +105,7 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 travelReason: '',
                 snackBarMessage:{
                     open: true,
-                    message: action.payload,
+                    message: 'The travel request is successfully sent!',
                     severity: 'success'
                 }
             }

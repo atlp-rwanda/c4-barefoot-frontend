@@ -5,7 +5,10 @@ const colors = {
     primary400: '#ABD5ED',
     primary500: '#EAF4FB',
     neutralWhite: '#FFFFFF',
-    neutralBlack: '#000000'
+    neutralBlack: '#000000',
+    grey5: '#E0E0E0',
+    grey6:'#F2F2F2',
+
 }
 
 export default colors;

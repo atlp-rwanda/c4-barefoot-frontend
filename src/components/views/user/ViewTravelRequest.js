@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { Grid, makeStyles, Typography, Container, GridListTileBar, Button } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
+import { GetTravelRequestsAction } from '../../../redux/actions/ViewTravelRequestAction';
 import DisplayTravelRequest from '../../travelRequests/DisplayTravelRequest';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
@@ -29,13 +30,18 @@ const useStyles = makeStyles((theme) =>({
 const ViewTravelRequest = (props) => {
     const classes = useStyles();
     useEffect(()=>{
-    },[])
+        const userToken = localStorage.getItem('barefootUserToken');
+        console.log("usertoken", userToken)
+        if(userToken){
+            return props.GetTravelRequestsAction(userToken);
+        }
+        console.log('dont have the token here');
+        },[])
 
-    console.log('props for loading', props.travelRequest);
+    // console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
-            <Loader open={props.travelRequest.sendLoading} />
-            <SnackBarMessage {...props} />
+            <Loader open={false} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
                     View Travel Requests
@@ -52,7 +58,7 @@ const ViewTravelRequest = (props) => {
  
 
 const mapStateToProps = state =>({
-    travelRequest: state.createTravelRequest
+    listTravelRequest: state.viewTravelRequest
 });
-export default connect(mapStateToProps, null)(ViewTravelRequest);
+export default connect(mapStateToProps, {GetTravelRequestsAction})(ViewTravelRequest);
 

@@ -34,13 +34,13 @@ const CreateTravelRequest = (props) => {
         console.log('the engine starts');
         props.getLocationsAction();
     },[])
-    console.log('locations');
-    console.log(props.travelRequest.searchLocations);
+    // console.log('locations');
+    // console.log(props.travelRequest.searchLocations);
     const display = props.travelRequest.displaySelection ? 'block' : 'none';
     // const display2 = 'block';
     const display2 = props.travelRequest.displaySelected ? 'block' : 'none';
 
-    console.log('props for loading', props.travelRequest);
+    // console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Loader open={props.travelRequest.sendLoading} />

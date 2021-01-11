@@ -74,6 +74,12 @@ export function SideBar(){
                     <Typography className={classes.menuText}>View Travel Requests</Typography>
                 </ListItem>
                 </Typography>
+                <Typography className={classes.a} href='/manager/direct-reports' component='a'>
+                <ListItem className={classes.linkBox}>
+                    <Typography><PinDrop/></Typography>
+                    <Typography className={classes.menuText}>Direct reports</Typography>
+                </ListItem>
+                </Typography>
                 <Divider/>
             </List>
         </div>

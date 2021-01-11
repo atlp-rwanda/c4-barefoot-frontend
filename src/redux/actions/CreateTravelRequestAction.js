@@ -29,7 +29,7 @@ export const checkTravelDatesAction = (data) => dispatch =>{
 export const getLocationsAction = () => async (dispatch) =>{
     try{
         const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
-        console.log(getData);
+        // console.log(getData);
         return dispatch({
             type: SEARCH_LOCATIONS,
             payload: getData.data.locations.rows
@@ -75,10 +75,10 @@ export const searchAccommodationAction = (searchKeyword) => async(dispatch) =>{
     const location = searchKeyword.split(", ",2);
     const city = location[0];
     const country = location[1];
-    console.log('the city and country to search');
-    console.log(city,country);
+    // console.log('the city and country to search');
+    // console.log(city,country);
     const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
-    console.log('accommodations', getAccommodations.data);
+    // console.log('accommodations', getAccommodations.data);
     return dispatch({
         type: SEARCH_ACCOMMODATIONS,
         payload: getAccommodations.data.rows
@@ -132,9 +132,9 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
-        console.log('before sending', data.authToken);
+        // console.log('before sending', data.authToken);
         const sendTrip = await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
-        console.log('the response', sendTrip);
+        // console.log('the response', sendTrip);
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: true
