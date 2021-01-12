@@ -2,7 +2,7 @@ import { CLOSE_SNACKBAR } from '../actions/CreateTravelRequestAction';
 import { FETCH_TRAVEL_REQUEST_LOADING, FETCH_TRAVEL_REQUEST_FAIL,FETCH_TRAVEL_REQUEST_SUCCESS } from '../actions/ViewTravelRequestAction';
 
 const initialState = {
-    travelRquests: [],
+    travelRequests: [],
     fetchLoading:false,
     snackBarMessage:{
         open: false,
@@ -21,7 +21,7 @@ export const ViewTravelRequestReducer = (state= initialState, action) =>{
         case FETCH_TRAVEL_REQUEST_SUCCESS :
             return {
                 ...state,
-                travelRequest: action.payload,
+                travelRequests: action.payload,
             }
         case FETCH_TRAVEL_REQUEST_FAIL :
             return {

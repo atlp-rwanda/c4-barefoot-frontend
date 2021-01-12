@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     },
     titleButtons:{
         justifyContent: 'flex-end',
-        flexDirection:'row'
+        flexDirection:'row',
+        margin: theme.spacing(1,0),
     },
     headers:{
         fontSize:'18px',
@@ -31,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0,0,3,0),
         border:'2px solid #257AAA',
         padding:theme.spacing(2),
+    },
+    editButton:{
+        margin:theme.spacing(0,2)
+    },
+    reasonOfTravel:{
+        overflow:'hidden',
+        flexDirection:'column'
     }
 }))
 
@@ -49,96 +57,60 @@ const DisplayTravelRequest = (props) => {
         return 0;
 
     }
+    console.log(props);
+    const travelRequests = props.listTravelRequest.travelRequests;
 
     return ( 
         <Grid container  className={classes.main} >
-            <Grid container item className={classes.requestGrid}>          
+            {travelRequests.map((request) =>{
+                
+                let color = colors.neutralBlack;
+                if(request.status === 'pending'){
+                    color = colors.orange100;
+                }
+                else if(request.status === 'approved'){
+                    color = colors.green3;
+                }else{
+                    color = colors.red;
+                }
+            
+            return (<Grid container item className={classes.requestGrid} key={request.travelId}>          
                 <Typography>
-                    Status: Pending...
+                    Status: <Button style={{color: color}}>{request.status}</Button>
                 </Typography>
                 <Grid container item className={classes.travelData}>
                     <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
                         <Typography variant="h6" component="h6" className={classes.headers}>Location - Destination</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
+                        {request.Trip.map((trip) =>(
+                            <Typography variant="subtitle2" key={trip.tripId}>{trip.originCity} to {trip.destination}</Typography>
+                        ))}
+                        
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
+                        <Typography variant="h6">Date of travel</Typography>
+                        {request.Trip.map((trip) =>{
+                            const date= trip.tripDate.split('T',1);
+                            return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
+                        })}
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Returning</Typography>
-                        <Typography variant="subtitle2"> True </Typography>
+                        <Typography variant="h6">Return date</Typography>
+                        {request.Trip.map((trip) =>{
+                            const date= trip.returnDate.split('T',1);
+                            return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
+                        })}
                     </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
+                    <Grid container item  xs={10} sm={4} md={3} className={classes.reasonOfTravel}>
+                        <Typography variant="h6">Reason of travel</Typography>
+                        <Typography gutterBottom variant="subtitle2" noWrap>{request.Trip[0].reason}</Typography>
                     </Grid>
                 </Grid>
                 <Grid container item className={classes.titleButtons} >
-                    <Button variant="contained">Edit</Button>
-                    <Button variant="contained" color="secondary">Cancel Travel request</Button>
+                    <Button variant="contained" className={classes.editButton} key={request.travelId}>Edit</Button>
+                    <Button variant="contained" color="secondary" key={request.travelId}>Cancel Travel request</Button>
                 </Grid>
             </Grid>
-            <Grid container item className={classes.requestGrid}>          
-                <Typography>
-                    Status: Pending...
-                </Typography>
-                <Grid container item className={classes.travelData}>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6" component="h6" className={classes.headers}>Location - Destination</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Returning</Typography>
-                        <Typography variant="subtitle2"> True </Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
-                    </Grid>
-                </Grid>
-                <Grid container item className={classes.titleButtons} >
-                    <Button variant="contained">Edit</Button>
-                    <Button variant="contained" color="secondary">Cancel Travel request</Button>
-                </Grid>
-            </Grid>
-            <Grid container item className={classes.requestGrid}>          
-                <Typography>
-                    Status: Pending...
-                </Typography>
-                <Grid container item className={classes.travelData}>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6" component="h6" className={classes.headers}>Location - Destination</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                        <Typography variant="subtitle2">Kigali, Rwanda to Nairobi, Kenya</Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Returning</Typography>
-                        <Typography variant="subtitle2"> True </Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6">Date of Travel</Typography>
-                        <Typography variant="subtitle2"> 2021-05-03</Typography>
-                    </Grid>
-                </Grid>
-                <Grid container item className={classes.titleButtons} >
-                    <Button variant="contained">Edit</Button>
-                    <Button variant="contained" color="secondary">Cancel Travel request</Button>
-                </Grid>
-            </Grid>
+            )})}
         </Grid>
      );
 }

@@ -8,6 +8,9 @@ const colors = {
     neutralBlack: '#000000',
     grey5: '#E0E0E0',
     grey6:'#F2F2F2',
+    orange100: '#F2994A',
+    green3: '#6FCF97',
+    red: '#EB5757'
 
 }
 
