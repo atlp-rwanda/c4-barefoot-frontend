@@ -44,20 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 const DisplayTravelRequest = (props) => {
     const classes = useStyles();
-    useEffect(() => {
-        // console.log("props here");
-        // console.log(props);
-        // props.getLocationsAction();
-        
-    },[])
-    const handleAddTravelRequest = () =>{
-        // console.log(props);
-        
-        
-        return 0;
-
-    }
-    console.log(props);
     const travelRequests = props.listTravelRequest.travelRequests;
 
     return ( 
@@ -73,6 +59,7 @@ const DisplayTravelRequest = (props) => {
                 }else{
                     color = colors.red;
                 }
+                const returning= request.Trip[0].returnDate ? 'Yes' : 'No';
             
             return (<Grid container item className={classes.requestGrid} key={request.travelId}>          
                 <Typography>
@@ -94,9 +81,13 @@ const DisplayTravelRequest = (props) => {
                         })}
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
+                        <Typography variant="h6">Returning</Typography>
+                        <Typography variant="subtitle2">{returning}</Typography>
+                    </Grid>
+                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
                         <Typography variant="h6">Return date</Typography>
                         {request.Trip.map((trip) =>{
-                            const date= trip.returnDate.split('T',1);
+                            const date= trip.returnDate ? trip.returnDate.split('T',1) : ['-'];
                             return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
                         })}
                     </Grid>
