@@ -4,9 +4,9 @@ export const FETCH_ACCOMMODATIONS_PENDING = 'FETCH_ACCOMMODATIONS_PENDING'
 export const  FETCH_ACCOMMODATIONS_SUCCESS = 'FETCH_ACCOMMODATIONS_SUCCESS'
 export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
 
-export const FETCH_AMENITIES_PENDING = 'FETCH_AMENITIES_PENDING'
-export const  FETCH_AMENITIES_SUCCESS = 'FETCH_AMENITIES_SUCCESS'
-export const FETCH_AMENITIES_ERROR = 'FETCH_AMENITIES_ERROR'
+export const FETCH_SINGLE_ACCOMMODATIONS_PENDING = 'FETCH_SINGLE_ACCOMMODATIONS_PENDING'
+export const  FETCH_SINGLE_ACCOMMODATIONS_SUCCESS = 'FETCH_SINGLE_ACCOMMODATIONS_SUCCESS'
+export const FETCH_SINGLE_ACCOMMODATIONS_ERROR = 'FETCH_SINGLE_ACCOMMODATIONS_ERROR'
 
 
 export const getAccommodations = (page) => dispatch => {
@@ -30,22 +30,25 @@ export const getAccommodations = (page) => dispatch => {
     })
 }
 
-export const getAmenities = (id) => dispatch => {
+export const getSingleAccommodation = (id, token) => dispatch => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
   dispatch({
-    type: FETCH_AMENITIES_PENDING
+    type: FETCH_SINGLE_ACCOMMODATIONS_PENDING
   })
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/amenities/${id}`)
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations/${id}`, config)
     .then(res => {
       dispatch({
-        type: FETCH_AMENITIES_SUCCESS,
-        // count: res.data.amenities.count,
+        type: FETCH_SINGLE_ACCOMMODATIONS_SUCCESS,
+        // count: res.data.accommodations.count,
         payload: res.data.amenities
       })
       }
     )
     .catch(err => {
       dispatch({
-        type: FETCH_AMENITIES_ERROR,
+        type: FETCH_SINGLE_ACCOMMODATIONS_ERROR,
         error: err
       })
     })

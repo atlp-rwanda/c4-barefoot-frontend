@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Typography } from '@material-ui/core';
 import AccommodationCard from './AccommodationCard';
-import { getAccommodations } from '../../../redux/actions/fetchAccommodations'
+import { getAccommodations, getSingleAccommodation } from '../../../redux/actions/fetchAccommodations'
 import { Pagination } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const accommodationSkeleton = <Grid item xs={12} sm={6} md={4}> <AccommodationCard/> </Grid>
 
 function ListAccommodation(props) {
+  // console.log(props)
   const [page, setPage] = React.useState(1);
   const classes = useStyles();
   const pageNumber = Math.ceil(props.accommodationsData.count / 2)
@@ -51,7 +52,7 @@ function ListAccommodation(props) {
       <Box className={classes.root}>
           {props.accommodationsData.pending ? accommodationSkeleton : props.accommodationsData.accommodations.map((accommodation)=> (
               <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {accommodation.id}>
-                  <AccommodationCard accommodation={accommodation}/>
+                  <AccommodationCard accommodation={accommodation} singleAccommodation={props.singleAccommodationData}/>
               </Grid>
           ))}
       </Box>
@@ -65,10 +66,12 @@ function ListAccommodation(props) {
 }
 
 const mapStateToProps = state => ({
-    accommodationsData: state.fetchAccommodations
+    accommodationsData: state.fetchAccommodations,
+    singleAccommodationsData: state.fetchSingleAccommodations
   })
   
+const actions = {getAccommodations, getSingleAccommodation}
   export {ListAccommodation}
-  export default connect(mapStateToProps, { getAccommodations })(ListAccommodation)
+  export default connect(mapStateToProps, actions)(ListAccommodation)
   
   

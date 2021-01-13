@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Box, IconButton, Snackbar, Grid, FormControlLabel} from '@material-ui/core';
 import { CheckBox, Delete, Edit, Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import Modal from '@material-ui/core/Modal';
 import { closeDeleteSnackbar, deleteAccommodation } from '../../../redux/actions/deleteLocationAction';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
@@ -14,7 +14,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import CreateAccommodation from '../../accommodations'
 // import Field from 'redux-form/lib/Field';
 import Checkbox from 'material-ui/Checkbox'
-import { getAccommodations } from '../../../redux/actions/fetchAccommodations';
+import { getAccommodations, getSingleAccommodation } from '../../../redux/actions/fetchAccommodations';
 import { UpdateAccommodation } from '../../accommodations/editAccommodation';
 
 
@@ -50,17 +50,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:'#fff'
   }
 }));
-const amenities = [
-  // 'AccommodationId',
-  'wifi',
-  'airConditioner',
-  'shampoo',
-  'ironing',
-  'tv',
-  'smokeDetector',
-  'fireExtinguisher',
-  'lockOnDoor'
-];
+// const amenities = [
+//   // 'AccommodationId',
+//   'wifi',
+//   'airConditioner',
+//   'shampoo',
+//   'ironing',
+//   'tv',
+//   'smokeDetector',
+//   'fireExtinguisher',
+//   'lockOnDoor'
+// ];
 function getModalStyle() {
   const top = 10;
   return {
@@ -80,14 +80,24 @@ function Accommodations(props) {
   const [open, setOpen] = React.useState(false);
   const [openEdit, setOpenEdit] = React.useState(false)
   const classes = useStyles();
+  const dispatch = useDispatch()
   const [modalStyle] = React.useState(getModalStyle);
   const token = localStorage.getItem('barefootUserToken'); 
+  let amenities = []
+  // let accommodationId = props.accommodation.id
+
+  // useEffect( () => {
+    
+    
+  // })
   const handleDelete = ()=>{
     // console.log(props.accommodation.id)
-    props.dispatch(deleteAccommodation(props.accommodation.id, token));
+    dispatch(deleteAccommodation(props.accommodation.id, token));
   }
   const handleOpen = () => {
     setOpen(true);
+    dispatch(getSingleAccommodation(props.accommodation.id, token))
+    console.log("ACCOMMODATION AMENITIES")
   };
   const handleEditOpen = () => {
     setOpenEdit(true);
@@ -95,14 +105,15 @@ function Accommodations(props) {
   const handleClose = () => {
     setOpen(false);
     setOpenEdit(false)
-    props.dispatch(closeDeleteSnackbar())
+    dispatch(closeDeleteSnackbar())
     // props.dispatch(getAccommodations())
   };
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}  itemID='alert' />;
   }
-  // console.log("PROPS: " + props.updateAccommodation)
-  {console.log(props.accommodation)}
+  amenities = {...(props.amenityData.amenities)}
+  // amenities = props.amenityData.amenities
+  // {console.log(props.accommodation)}
   const body = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Card style={modalStyle} className={classes.paper}>
@@ -151,16 +162,18 @@ function Accommodations(props) {
                 <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.numberOfRooms)}</p>
                 <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.typeOfBed)}</p>
               </Grid>
-              <Grid item>
+              {/* {props.amenityData.amenities ? amenities = Object.keys(props.amenityData.amenities) : ''} */}
+              {props.amenityData.amenities ? (<Grid item>
                 <h4>Amenities</h4>
                 <div style={{display:'grid', gridTemplateColumns:'1fr' }}>
-                  {amenities.map(option => (
+                  {Object.keys(props.amenityData.amenities).filter(item => item !== ('id') && item !== 'AccommodationId').map((option, value, arr) => (
                     <Box style={{display:"flex"}}>
-                      <input type='checkbox' disabled name={option} style={{margin:0, padding:0}} /> {option}
+                      <input type='checkbox' disabled checked={props.amenityData.amenities[option]} name={option} style={{margin:0, padding:0}} /> {option}
+                      {console.log()}
                     </Box>
                   ))}
                 </div>
-              </Grid>
+              </Grid>) : ''}
             </Grid>
           </CardActions>
         </Card>
@@ -266,6 +279,7 @@ const mapStateToProps = state => ({
   pending: state.fetchAccommodations.pending,
   delete: state.deleteLocation,
   AccommodationState: state.updateAccommodation,
+  amenityData: state.fetchSingleAccommodation
 })
 
 export default connect(mapStateToProps, null)(Accommodations);

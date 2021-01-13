@@ -4,7 +4,7 @@ import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEm
 import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
-import { fetchAccommodationsReducer } from './accommodationsReducer'
+import { fetchAccommodationsReducer, fetchSingleAccommodationsReducer } from './accommodationsReducer'
 import { createLocationReducer } from './createLocationReduce';
 import { createAccommodationReducer } from './createAccommodationReducer';
 import { deleteLocationReducer } from './deleteLocationReducer'
@@ -30,7 +30,8 @@ const reducers = combineReducers({
   signup: signupRequestReducer,
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
-  fetchAccommodations: fetchAccommodationsReducer
+  fetchAccommodations: fetchAccommodationsReducer,
+  fetchSingleAccommodation: fetchSingleAccommodationsReducer
   })
 
 export default reducers
