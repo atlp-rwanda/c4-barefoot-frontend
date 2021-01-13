@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
         height: '200px',
         border:'1px solid blue',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        textAlign:'center',
+        opacity:'0.5',
     }
 }))
 

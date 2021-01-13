@@ -3,11 +3,12 @@ import SearchLocations from '../../travelRequests/SearchTravelRequest';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction } from '../../../redux/actions/CreateTravelRequestAction';
+import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction, openModalAction } from '../../../redux/actions/CreateTravelRequestAction';
 import AddAccommodation from '../../travelRequests/addAccommodation';
 import AddTravelReason from '../../travelRequests/addTravelReason';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
+import AccommodationModal from '../../AccommodationModal';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -44,6 +45,11 @@ const CreateTravelRequest = (props) => {
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Loader open={props.travelRequest.sendLoading} />
+            <AccommodationModal 
+            open={props.travelRequest.Modal.open}
+            data={props.travelRequest.Modal.data}
+            {...props}
+             />
             <SnackBarMessage {...props} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
@@ -70,5 +76,5 @@ const CreateTravelRequest = (props) => {
 const mapStateToProps = state =>({
     travelRequest: state.createTravelRequest
 });
-export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction})(CreateTravelRequest);
+export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction,openModalAction})(CreateTravelRequest);
 

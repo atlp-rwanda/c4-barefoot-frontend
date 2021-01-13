@@ -1,4 +1,4 @@
-import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING, OPEN_MODAL } from '../actions/CreateTravelRequestAction';
 const initialState = {
     searchLocations: [],
     searchLocationsLoading: false,
@@ -20,7 +20,11 @@ const initialState = {
     },
     success: false,
     sendLoading:false,
-    travelReason: ''
+    travelReason: '',
+    Modal: {
+        open: false,
+        data:{}
+    }
 }
 
 export function CreateTravelRequestReducer (state = initialState, action) {
@@ -103,6 +107,14 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                     open: false,
                     severity:'',
                     message: null
+                },
+            }
+        case OPEN_MODAL :
+            return {
+                ...state,
+                Modal:{
+                    open: action.payload.open,
+                    data: action.payload.data
                 },
             }
         case ADD_TRAVEL_REASON :

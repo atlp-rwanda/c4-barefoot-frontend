@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import colors from '../colors';
 import { Button, fade, FormControlLabel, Grid, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
     main:{
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DisplayTravelRequest = (props) => {
     const classes = useStyles();
-    const travelRequests = props.listTravelRequest.travelRequests;
+    const travelRequests = !props.listTravelRequest.fetchLoading ? props.listTravelRequest.travelRequests : [{Trip:[{}]},{Trip:[{}]}];
 
     return ( 
         <Grid container  className={classes.main} >
@@ -61,7 +62,27 @@ const DisplayTravelRequest = (props) => {
                 }
                 const returning= request.Trip[0].returnDate ? 'Yes' : 'No';
             
-            return (<Grid container item className={classes.requestGrid} key={request.travelId}>          
+            return (
+            <Grid container item className={classes.requestGrid} key={request.travelId}>      
+                {(props.listTravelRequest.fetchLoading? 
+                    <>
+                        <Skeleton animation="wave" variant="rect" style={{width:'40%'}}/>
+                        <Grid container item className={classes.travelData}>
+                            <Grid container item  xs={12} sm={12} md={12}  className={classes.data}>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'30px', margin:'2px'}}/>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
+                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
+                            </Grid>
+                            <Grid container item className={classes.titleButtons} >
+                                <Skeleton animation="wave" variant="rect" style={{width:'40%', height:'30px', marginRight:'20px'}}/>
+                            </Grid>
+                        </Grid>
+                    </>
+                :
+                <>
                 <Typography>
                     Status: <Button style={{color: color}}>{request.status}</Button>
                 </Typography>
@@ -100,6 +121,8 @@ const DisplayTravelRequest = (props) => {
                     <Button variant="contained" className={classes.editButton} key={request.travelId}>Edit</Button>
                     <Button variant="contained" color="secondary" key={request.travelId}>Cancel Travel request</Button>
                 </Grid>
+                </>
+                )}
             </Grid>
             )})}
         </Grid>

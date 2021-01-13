@@ -22,6 +22,7 @@ export const ViewTravelRequestReducer = (state= initialState, action) =>{
             return {
                 ...state,
                 travelRequests: action.payload,
+                fetchLoading: false,
             }
         case FETCH_TRAVEL_REQUEST_FAIL :
             return {

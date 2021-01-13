@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import colors from './colors';
 import Ratings from './RatingStars';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Accommodations(props) {
     const classes = useStyles();
-
+    const open = false; 
     const handleSelection = (event) =>{
       const accommodation={
         selected:[props.accommodation],
@@ -64,6 +63,8 @@ function Accommodations(props) {
     // console.log(props.accommodation, check);
     const handleViewMore =() =>{
       console.log('image clicked');
+      console.log(props.accommodation);
+      return props.openModalAction({open: true, data: props.accommodation});
     }
 
 
@@ -82,7 +83,7 @@ function Accommodations(props) {
         </CardActionArea>
         :
       <>
-      <CardActionArea onClick={handleViewMore}>
+      <CardActionArea>
         <Checkbox
         onChange={handleSelection}
         checked={check}
@@ -93,7 +94,7 @@ function Accommodations(props) {
           image={props.accommodation.photos}
           title={props.accommodation.title}
         />
-        <CardContent className={classes.cardContent} >
+        <CardContent onClick={handleViewMore} className={classes.cardContent} >
           <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
            {props.accommodation.title}
           </Typography>
@@ -103,7 +104,7 @@ function Accommodations(props) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" startIcon={<Place color="secondary" />}> {props.accommodation.state}, {props.accommodation.city} </Button>
+        <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodation.state}, {props.accommodation.city} </Button>
         <Ratings highRating={3} />
         <Typography className={classes.reviews}>
             25 Reviews

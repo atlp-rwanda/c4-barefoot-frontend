@@ -14,6 +14,7 @@ export const SEND_TRAVEL_REQUEST = 'SEND_TRAVEL_REQUEST';
 export const SEND_TRAVEL_REQUEST_LOADING = 'SEND_TRAVEL_REQUEST_LOADING';
 export const ADD_MULTI_CITY_TRAVEL_REQUEST = 'ADD_MULTI_CITY_TRAVEL_REQUEST';
 export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUEST';
+export const OPEN_MODAL = 'OPEN_MODAL';
 
 import axios from 'axios';
 
@@ -182,4 +183,11 @@ export const removeMultiCityAction = (data) => dispatch =>{
     catch(err){
         console.log(err);
     }
+}
+
+export const openModalAction = (data) => dispatch =>{
+    return dispatch({
+        type: OPEN_MODAL,
+        payload:data
+    });
 }
