@@ -52,7 +52,7 @@ export const closeSnackbar = () => dispatch =>{
   });
 }
 
-export const updateAccommodation= (accommodation, token) => dispatch => {
+export const updateAccommodation= (accommodation, amenities, token) => dispatch => {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
@@ -86,3 +86,4 @@ export const updateAccommodation= (accommodation, token) => dispatch => {
       }
     })
 }
+

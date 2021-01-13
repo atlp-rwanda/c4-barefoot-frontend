@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -13,9 +13,9 @@ import TextField from 'material-ui/TextField';
 import DropZoneField from "../locations/dropzoneField";
 import MuiAlert from '@material-ui/lab/Alert';
 import { ReduxCheckbox, Checkboxes } from 'react-form-checkbox';
-import { Field, Form, reduxForm } from 'redux-form';
+import { Field, Form, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import { closeSnackbar, createAccommodation } from '../../redux/actions/createAccommodationAction'
+import { closeSnackbar, createAccommodation, updateAccommodation } from '../../redux/actions/createAccommodationAction'
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem'
 import SelectField from 'material-ui/SelectField'
@@ -64,6 +64,7 @@ const AccordionDetails = withStyles((theme) => ({
     justifyContent:'center'
   },
 }))(MuiAccordionDetails);
+
 const useStyle = makeStyles(theme => ({
   col_box:{
     display:'flex',
@@ -78,6 +79,7 @@ const useStyle = makeStyles(theme => ({
     width:'100%'
   }
 }))
+
 const renderCheckbox = ({ input, label }) => (
   <Checkbox
     label={label}
@@ -85,6 +87,7 @@ const renderCheckbox = ({ input, label }) => (
     onCheck={input.onChange}
   />
   );
+
 const renderTextField = (
   { input, type, label, meta: { touched, error }, ...custom },
 ) => (
@@ -96,9 +99,10 @@ const renderTextField = (
     {...custom}
   />
 );
+
 const renderField = ({ input, label, type, textarea, meta: { touched, error, warning, invalid } }) => {
-  const textareaType = <textarea {...input} /*placeholder={label}*/  type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
-  const inputType = <input {...input} /*placeholder={label}*/  type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+  const textareaType = <textarea {...input} type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+  const inputType = <input {...input} type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
 
   return (
       <div>
@@ -110,81 +114,123 @@ const renderField = ({ input, label, type, textarea, meta: { touched, error, war
       </div>
   );
 };
+
 const renderSelectField = ({
   input,
   label,
+  data,
   meta: { touched, error },
   children,
   ...custom
 }) => (
+  <>
   <SelectField
     floatingLabelText={label}
     errorText={touched && error}
+    // name={'city'}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
+    
     children={children}
     {...custom}
   />
+  </>
 )
 
-const imageIsRequired = value => (!value ? "Required" : undefined);
+const formSelector = formValueSelector('CreateAccommodation')
+let city={}
+const imageIsRequired = (value) => (!value ? "Required" : undefined);
 
 export function CreateAccommodation(props) {
   const [expanded, setExpanded] = React.useState('panel1');
   const [Thumb, setThumb] = React.useState('')
   const [suggestion, setSuggestion] = React.useState([])
-  // const [locationId, setLocationId] = React.useState()
+  const [executed, setExecuted] = React.useState(false)
+  const [isUpdate, setIsUpdate] = React.useState(true)
+  // const [selected, setSelected] = React.useState({});
   const classes = useStyle();
-  const { handleSubmit, pristine, reset, submitting } = props
+const { handleSubmit, pristine, reset, submitting } = props
+  
+  // helps to expand or collapse the accordion
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
+
+  // helps to know if we are in create mode or update mode. it runs once to avoid 'too many re-renders error'
+  const createOrUpdate = () => {
+    if(!executed){
+      setExecuted(true)
+      props.initialValues
+        ? setIsUpdate(true)
+        : setIsUpdate(false)
+    }
+  }
+  createOrUpdate()
   const token = localStorage.getItem('barefootUserToken');
   const handleFormSubmit = formProps => {
-    console.log("Clicked")
     const formData = new FormData();
     const accommodation_picture = formProps.location_image[0]
     formData.append('upload_preset', process.env.UPLOAD_PRESET)
-    formData.append('file', accommodation_picture)
+    formData.append('file', accommodation_picture)    
+    const {name, locationId , country} = formProps.city
+    const {location_image, city,...data} = {...formProps}
+    
+    data.city = name ? name : props.initialValues.city
+    data.country = country ? country :props.initialValues.country
+    data.locationID = locationId ? locationId : props.initialValues.locationID
+
+    //this help to get only amenities from form data
     const amenities = (
         {wifi=false,airConditioner=false,shampoo=false,ironing=false,tv=false,smokeDetector=false,fireExtinguisher=false,lockOnDoor=false}
       )=>(
         {wifi,airConditioner,shampoo,ironing,tv,smokeDetector,fireExtinguisher,lockOnDoor}
       )
     const amenitiesData = amenities(...formData)
-    axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
+    if(isUpdate && !formData){
+      //this is run when you update anything else without updating image
+      props.dispatch(updateAccommodation(data, amenitiesData, token))
+    }else{
+      axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
       .then(res => {
-        const {name, locationId , country} = formProps.city
-        console.log(name, locationId)
-        const {accommodation_picture, location_image, city,...data} = {...formProps}
         data.photos = res.data.secure_url
-        data.city = name
-        data.country = country
-        data.locationID = locationId
-        alert(JSON.stringify(data, null, 4));
-        props.dispatch(createAccommodation(data, amenitiesData, token));
+        // alert(JSON.stringify(data, null, 4));
+        //this help create accommodation or update accommodation with image
+        isUpdate 
+          ? props.dispatch(updateAccommodation(data, amenitiesData, token))
+          : props.dispatch(createAccommodation(data, amenitiesData, token));
       })
       .catch(err => { console.log(err) })
-    
-    // append any additional Redux form fields
-    // create an AJAX request here with the created formData
+    }
   };
+
   const handleSuggestions = (value) => {
-    axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`,{ params: { search: 'k' }})
+    axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`)
     .then(res => {
       setSuggestion(res.data.locations.rows)
     })
   }
+
+  // load locations data from database for a city dropdown
+  window.onload = function(){
+    setExecuted(true)
+    handleSuggestions()
+  }
+
+  useEffect(() => {
+    handleSuggestions()
+  }, []);
+
   const handleClose = () => {
     props.dispatch(closeSnackbar());
   };
-  const handleOnDrop = newImageFile => {setThumb(newImageFile); console.log("Image:"+newImageFile)};
+
+  const handleOnDrop = newImageFile => {setThumb(newImageFile);};
 
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}  itemID='alert' />;
   }
-  const weekdayOptions = [
-    // 'AccommodationId',
+  
+  const amenities = [
     'wifi',
     'airConditioner',
     'shampoo',
@@ -195,21 +241,27 @@ export function CreateAccommodation(props) {
     'lockOnDoor'
   ];
 
+  // helps to populate form with message depanding on functionality
+  const text ={
+    title: isUpdate ? 'Update Accommodation' : 'Create accommodation',
+    successMessage: isUpdate ? 'Updated Successfully' : 'Created Successfully'
+  }
+
   return (
     <div>
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Snackbar open={props.AccommodationState.errorOpen} autoHideDuration={6000} onClose={handleClose} >
         <Alert onClose={handleClose} severity="error" >
-          Error: {props.AccommodationState.error ? JSON.stringify(props.AccommodationState.error).replace(/[\\'"]+/g, '') : 'Error Not set'}
+          Error: {props.AccommodationState.error ? JSON.stringify(props.AccommodationState.error).replace(/[\\'"]+/g, '') : 'Error'}
         </Alert>
       </Snackbar>
       <Snackbar open={props.AccommodationState.successOpen} autoHideDuration={6000} onClose={handleClose} >
         <Alert onClose={handleClose} severity="success" >
-          Success: {props.AccommodationState.successMessage ? 'Accommodation created successfully' : 'Message Not set'}
+          Success: {props.AccommodationState.successMessage ? text.successMessage : 'Message Not set'}
         </Alert>
       </Snackbar>
         <Box>
-          <div style={{textAlign:'center'}}><p>Create New Accommodations</p></div>
+  <div style={{textAlign:'center'}}><p>{text.title}</p></div>
           <Box style={{margin:'10px'}}>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -235,28 +287,15 @@ export function CreateAccommodation(props) {
                         name="city"
                         component={renderSelectField}
                         label="City"
-                        onClick={handleSuggestions}
+                        data={city ? city.name : 'Motel'}
                         fullWidth={true}
                       >
-                        {location 
-                          ?(suggestion.map(location => (
-                            <MenuItem value={{name:location.LocationName, locationId:location.id, country:location.country}} primaryText={location.LocationName} /> ))) 
-                          : 'no location'}
+                        {(suggestion.map(location => (<MenuItem value={{name:location.LocationName, locationId:location.id, country:location.country}} primaryText={location.LocationName} /> ))) }
                         
                         <MenuItem value="Motel" primaryText="Motel" />
                         <MenuItem value="Lodge" primaryText="Lodge" />
                       </Field>
                     </div>
-                    {/* <Box className={classes.col_box}> */}
-                      {/* <div>
-                        <Field
-                          name="city"
-                          label="City"
-                          component={renderTextField}
-                          defaultValue={''}
-                        />
-                      </div> */}
-                      {/* {console.log(props.form)} */}
                       <div style={{marginLeft:'5px'}}>
                         <Field
                           name="state"
@@ -265,7 +304,6 @@ export function CreateAccommodation(props) {
                           fullWidth={true}
                         />
                       </div>
-                    {/* </Box> */}
                     <div>
                         <Field
                           name="streetAddress"
@@ -285,14 +323,6 @@ export function CreateAccommodation(props) {
                 <AccordionDetails>
                   <Typography>
                     <Typography>What type or capacity of this accommodation?</Typography>
-                    {/* <div>
-                      <Field
-                        name="propertyType"
-                        label="Choose a property type"
-                        component={renderTextField}
-                        fullWidth={true}
-                      />
-                    </div> */}
                     <div>
                       <Field
                         name="propertyType"
@@ -304,18 +334,6 @@ export function CreateAccommodation(props) {
                         <MenuItem value="Motel" primaryText="Motel" />
                         <MenuItem value="Lodge" primaryText="Lodge" />
                       </Field>
-                    </div>
-                    <div>
-                      <Field
-                        name="numberOfBedrooms"
-                        label="Number Of Bedrooms"
-                        type='number'
-                        InputProps={{ inputProps: { min: 0, max: 10 } }}
-                        // format={formatOption}
-                        // normalize={normalizeOption}
-                        component={renderTextField}
-                        fullWidth={true}
-                      />
                     </div>
                     <div >
                       <Field
@@ -341,14 +359,6 @@ export function CreateAccommodation(props) {
                         <MenuItem value="Poster" primaryText="Poster" />
                       </Field>
                     </div>
-                    {/* <div>
-                      <Field
-                        name="typeOfBed"
-                        label="Type Of Bed"
-                        component={renderTextField}
-                        fullWidth={true}
-                      />
-                    </div> */}
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -392,7 +402,7 @@ export function CreateAccommodation(props) {
                       type="file"
                       imagefile={Thumb}
                       handleOnDrop={handleOnDrop}
-                      validate={[imageIsRequired]}
+                      validate={!isUpdate ? [imageIsRequired] : ''}
                     />
                   </Typography>
                 </AccordionDetails>
@@ -405,7 +415,7 @@ export function CreateAccommodation(props) {
                 <AccordionDetails>
                   <Typography>
                   <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', columnGap:'10px' }}>
-                    {weekdayOptions.map(option => (
+                    {amenities.map(option => (
                       <Field name={option} component={renderCheckbox} label={option} />
                     ))}
                     
@@ -445,6 +455,8 @@ export function CreateAccommodation(props) {
 }
 
 const mapStateToProps = state => {
+  city = formSelector(state, 'city')
+  
   return{AccommodationState: state.createAccommodation,}
   
 }

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { reducer as reduxFormReducer } from "redux-form";
+import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
 import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
@@ -10,8 +11,10 @@ import { deleteLocationReducer } from './deleteLocationReducer'
 import { deleteAccommodation } from '../actions/deleteLocationAction';
 import { updateLocation } from '../actions/createLocationAction';
 import { updateAccommodation } from '../actions/createAccommodationAction';
+import { logoutReducer } from './logoutReducer';
 
 const reducers = combineReducers({
+  logout: logoutReducer,
   login: loginReducer,
   signup: signupRequestReducer,
   fetchLocations: fetchLocationsReducer,
@@ -23,6 +26,13 @@ const reducers = combineReducers({
   updateLocation: updateLocation,
   updateAccommodation: updateAccommodation,
   form: reduxFormReducer,  
-})
+  sendEmail: ResetPasswordEmailReducer,
+  signup: signupRequestReducer,
+  newPassword: NewPasswordReducer,
+  fetchLocations: fetchLocationsReducer,
+  fetchAccommodations: fetchAccommodationsReducer
+  })
 
 export default reducers
+
+

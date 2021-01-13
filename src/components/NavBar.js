@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typograph
 import {PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
 import SideDrawer from './SideDrawer'
 
+
 const navLinks = [
     {title: 'Login', path: '/login'},
     {title: 'Signup', path: '/signup'}

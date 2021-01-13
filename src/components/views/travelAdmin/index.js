@@ -29,7 +29,7 @@ function TravelAdmin(props){
     const dispatch = useDispatch()
     const classes = useStyles()
     // const getLocationCount = () =>{
-    props.dispatch(getAccommodations(1))
+    // props.dispatch(getAccommodations(1))
     // }
     // const a = getLocationCount()
     console.log(props)

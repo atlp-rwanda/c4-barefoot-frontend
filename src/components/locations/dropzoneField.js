@@ -24,8 +24,7 @@ const DropZoneField = ({
       {imagefile && imagefile.length > 0 ? (
         <ImagePreview imagefile={imagefile}  />
       ) : (
-        <ImagePreview editImagefile={editPreview} />
-        // <Placeholder error={error} touched={touched} />
+        editPreview ? <ImagePreview editImagefile={editPreview} /> : <Placeholder error={error} touched={touched} />
       )}
     </DropZone>
 {touched && error && <ShowError error={error} />}

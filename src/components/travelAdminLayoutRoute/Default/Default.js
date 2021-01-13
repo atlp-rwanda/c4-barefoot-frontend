@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 import { SideBar } from '../sideNav';
+import header from '../../AuthorizedUserNavBar'
 
 
 const useStyles = makeStyles(() => ({

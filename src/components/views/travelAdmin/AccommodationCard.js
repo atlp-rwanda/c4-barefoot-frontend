@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Box, IconButton, Snackbar} from '@material-ui/core';
-import { Delete, Edit, Place } from '@material-ui/icons'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Box, IconButton, Snackbar, Grid, FormControlLabel} from '@material-ui/core';
+import { CheckBox, Delete, Edit, Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { connect } from 'react-redux'
 import Modal from '@material-ui/core/Modal';
@@ -10,6 +12,8 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Popover from '@material-ui/core/Popover';
 import MuiAlert from '@material-ui/lab/Alert';
 import CreateAccommodation from '../../accommodations'
+// import Field from 'redux-form/lib/Field';
+import Checkbox from 'material-ui/Checkbox'
 import { getAccommodations } from '../../../redux/actions/fetchAccommodations';
 import { UpdateAccommodation } from '../../accommodations/editAccommodation';
 
@@ -25,22 +29,52 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 140
   },
+  mediaModel: {
+    height: 300
+  },
   editButtons:{
     display:'flex',
     justifyContent:'space-between',
     width:'100px'
   },
+  paper: {
+    position: 'absolute',
+    width: '80%',
+    margin:'0 auto',
+    backgroundColor: '#EAF4FB',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    
+  },
   editModel:{
     backgroundColor:'#fff'
   }
 }));
+const amenities = [
+  // 'AccommodationId',
+  'wifi',
+  'airConditioner',
+  'shampoo',
+  'ironing',
+  'tv',
+  'smokeDetector',
+  'fireExtinguisher',
+  'lockOnDoor'
+];
 function getModalStyle() {
   const top = 10;
   return {
     top: `${top}%`,
-    margin: 'auto'
+    margin: 'auto',
   };
 }
+const renderCheckbox = ({ input, label }) => (
+  <Checkbox
+    label={label}
+    checked={input.value ? true : false}
+    onCheck={input.onChange}
+  />
+  );
 
 function Accommodations(props) {
   const [open, setOpen] = React.useState(false);
@@ -62,7 +96,7 @@ function Accommodations(props) {
     setOpen(false);
     setOpenEdit(false)
     props.dispatch(closeDeleteSnackbar())
-    props.dispatch(getAccommodations())
+    // props.dispatch(getAccommodations())
   };
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}  itemID='alert' />;
@@ -70,40 +104,67 @@ function Accommodations(props) {
   // console.log("PROPS: " + props.updateAccommodation)
   {console.log(props.accommodation)}
   const body = (
-    <Card style={modalStyle} className={classes.paper}>
-      <CardActionArea>
-        
-        { props.pending ? (
-          <Skeleton variant='rect' animation="wave" className={classes.media} />
-        )
-        :(<CardMedia
-          className={classes.media}
-          image={props.accommodation.photos}
-          title={props.accommodation.title}/>)}
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.title)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            { props.pending ? (
-            <React.Fragment>
-              <Skeleton animation="wave"/>
-              <Skeleton animation="wave" width='80%' />
-            </React.Fragment>) : 
-            (props.accommodation.description)}
-          </Typography>
-        </CardContent>
-        </CardActionArea>
-        <CardActions style={{justifyContent:'space-between'}}>
-          <Button size="small" color="primary" onClick={handleOpen}>
-            { props.pending ? 
-            <Skeleton animation='wave' width='100%'/> 
-            :
-            <Typography href={props.accommodation.link} component='a' className={classes.a}>Read more about this on wikipedia</Typography>
-            }
-          </Button>
-        </CardActions>
-      </Card>
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Card style={modalStyle} className={classes.paper}>
+        <CardActionArea>
+          
+          { props.pending ? (
+            <Skeleton variant='rect' animation="wave" className={classes.media} />
+          )
+          :(<CardMedia
+            className={classes.mediaModel}
+            image={props.accommodation.photos}
+            title={props.accommodation.title}/>)}
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.title)}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              { props.pending ? (
+              <React.Fragment>
+                <Skeleton animation="wave"/>
+                <Skeleton animation="wave" width='80%' />
+              </React.Fragment>) : 
+              (props.accommodation.description)}
+            </Typography>
+          </CardContent>
+          </CardActionArea>
+          <CardActions style={{justifyContent:'space-between'}}>
+            {/* <Button size="small" color="primary" onClick={handleOpen}>
+              { props.pending ? 
+              <Skeleton animation='wave' width='100%'/> 
+              :
+              <Typography href={props.accommodation.link} component='a' className={classes.a}>Read more about this on wikipedia</Typography>
+              }
+            </Button> */}
+            <Grid container style={{justifyContent:'space-between'}}>
+              <Grid item>
+                <h4>Location</h4>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.country)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.city)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.state)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.streetAddress)}</p>
+              </Grid>
+              <Grid item>
+                <h4>Capacity</h4>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.propertyType)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.numberOfRooms)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.typeOfBed)}</p>
+              </Grid>
+              <Grid item>
+                <h4>Amenities</h4>
+                <div style={{display:'grid', gridTemplateColumns:'1fr' }}>
+                  {amenities.map(option => (
+                    <Box style={{display:"flex"}}>
+                      <input type='checkbox' disabled name={option} style={{margin:0, padding:0}} /> {option}
+                    </Box>
+                  ))}
+                </div>
+              </Grid>
+            </Grid>
+          </CardActions>
+        </Card>
+      </MuiThemeProvider>
   );
 
   const DeleteButton = (
