@@ -1,12 +1,14 @@
-import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING } from '../actions/CreateTravelRequestAction';
 const initialState = {
     searchLocations: [],
+    searchLocationsLoading: false,
     currentLocation: '',
     destinationLocation: '',
     isReturning: false,
     departureDate: '',
     returnDate: '',
     searchAccommodations: [],
+    searchAccommodationsLoading:false,
     selectedAccommodation:[],
     selectedLocations:[],
     displaySelection:false,
@@ -26,7 +28,13 @@ export function CreateTravelRequestReducer (state = initialState, action) {
         case SEARCH_LOCATIONS :
             return {
                 ...state,
-                searchLocations: action.payload
+                searchLocations: action.payload,
+                searchLocationsLoading: false
+            }
+        case SEARCH_LOCATIONS_LOADING :
+            return {
+                ...state,
+                searchLocationsLoading: true
             }
         case CURRENT_LOCATION :
             return {
@@ -53,12 +61,19 @@ export function CreateTravelRequestReducer (state = initialState, action) {
             return {
                 ...state,
                 searchAccommodations: action.payload,
+                searchAccommodationsLoading: false,
+                displaySelection: true
+            }
+        case SEARCH_ACCOMMODATIONS_LOADING :
+            return {
+                ...state,
+                searchAccommodationsLoading: true,
                 displaySelection: true
             }
         case ADD_MULTI_CITY_TRAVEL_REQUEST :
             return {
                 ...state,
-                selectedLocations: [...state.selectedLocations,action.payload],
+                selectedLocations: [action.payload],
             }
         case REMOVE_MULTI_CITY_TRAVEL_REQUEST :
             return {

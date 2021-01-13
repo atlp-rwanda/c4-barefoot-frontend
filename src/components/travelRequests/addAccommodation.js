@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AddAccommodation(props) {
     const classes = useStyles();
-    const accommodations = props.travelRequest.searchAccommodations;
+    const accommodations = !props.travelRequest.searchAccommodationsLoading ? props.travelRequest.searchAccommodations : [{},{},{}];
     const display = accommodations.length ? 'none' : 'flex';
     return (
         <React.Fragment>
@@ -47,7 +47,7 @@ function AddAccommodation(props) {
                 
                 {accommodations.map((accommodation) =>(
                     <Grid item xs={10} sm={4} md={3} className={classes.insideGrid}>
-                        <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
+                        <AccommodationCard pending={props.travelRequest.searchAccommodationsLoading} accommodation={accommodation} {...props}  />
                     </Grid>
                 ))}
                 <Grid container item style={{display: display}} className={classes.notFound}>

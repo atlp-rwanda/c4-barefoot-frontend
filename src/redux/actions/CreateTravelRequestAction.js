@@ -1,9 +1,11 @@
 export const RETURNING = 'RETURNING';
 export const TRAVEL_DATES = 'TRAVEL_DATES';
 export const SEARCH_LOCATIONS = 'SEARCH_LOCATIONS';
+export const SEARCH_LOCATIONS_LOADING = 'SEARCH_LOCATIONS_LOADING';
 export const DESTINATION_LOCATION = 'DESTINATION_LOCATION';
 export const CURRENT_LOCATION = 'CURRENT_LOCATION';
 export const SEARCH_ACCOMMODATIONS = 'SEARCH_ACCOMMODATIONS';
+export const SEARCH_ACCOMMODATIONS_LOADING = 'SEARCH_ACCOMMODATIONS_LOADING';
 export const SELECT_ACCOMMODATION = 'SELECT_ACCOMMODATION';
 export const HANDLE_ERRORS = 'HANDLE_ERRORS';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
@@ -30,6 +32,9 @@ export const checkTravelDatesAction = (data) => dispatch =>{
 }
 export const getLocationsAction = () => async (dispatch) =>{
     try{
+        dispatch({
+            type: SEARCH_LOCATIONS_LOADING
+        })
         const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
         // console.log(getData);
         return dispatch({
@@ -44,6 +49,7 @@ export const getLocationsAction = () => async (dispatch) =>{
 
 export const searchCurrentLocationAction = (data) => async (dispatch) =>{
     //get the text field id
+    console.log('selected', data.searchKeyword);
     const selectedOption = data.textField.split("-",1)
 
     if((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")){
@@ -55,7 +61,7 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
         }
         dispatch({
             type: CURRENT_LOCATION,
-            payload: `${data.searchKeyword.LocationName}, ${data.searchKeyword.country}`
+            payload:data.searchKeyword
         });
     }
     if(data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")){
@@ -71,6 +77,9 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
             type: DESTINATION_LOCATION,
             payload: `${city}, ${country}`
         });
+        dispatch({
+            type: SEARCH_ACCOMMODATIONS_LOADING
+        })
         try{
             const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
             return dispatch({
@@ -89,26 +98,6 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
     }
 }
 
-export const searchAccommodationAction = (searchKeyword) => async(dispatch) =>{
-    const location = searchKeyword.split(", ",2);
-    const city = location[0];
-    const country = location[1];
-    // console.log('the city and country to search');
-    // console.log(city,country);
-    try{
-        console.log('accommodations---------------');
-        const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
-        
-        // console.log('accommodations', getAccommodations.data);
-        return dispatch({
-            type: SEARCH_ACCOMMODATIONS,
-            payload: getAccommodations.data.rows
-        })
-    }
-    catch(error){
-        console.log('error response',error.response);
-    }
-}
 
 export const selectAccommodationAction = (accommodation) => dispatch => {
     if(accommodation.checked){
@@ -158,9 +147,7 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         })
         console.log('the request', data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
-        // console.log('before sending', data.authToken);
-        const sendTrip = await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
-        // console.log('the response', sendTrip);
+        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: true

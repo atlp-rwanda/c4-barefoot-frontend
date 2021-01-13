@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import colors from './colors';
 import Ratings from './RatingStars';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -61,15 +62,33 @@ function Accommodations(props) {
     const check = props.travelRequest.selectedAccommodation.length ? true : false;
     // console.log('+++++++++the only prop');
     // console.log(props.accommodation, check);
+    const handleViewMore =() =>{
+      console.log('image clicked');
+    }
+
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
+    <Card className={classes.root} >
+      {(props.pending ? 
+        <CardActionArea>
+          <Skeleton animation="wave" variant="rect" className={classes.media} />
+          <CardContent className={classes.cardContent} >
+            <Skeleton animation="wave" height={30} width="60%" />
+            <Skeleton animation="wave" height={10} width="80%" />
+          </CardContent>
+          <CardActions className={classes.cardActions}>
+            <Skeleton animation="wave" height={30} width="60%" />
+          </CardActions>
+        </CardActionArea>
+        :
+      <>
+      <CardActionArea onClick={handleViewMore}>
         <Checkbox
         onChange={handleSelection}
         checked={check}
         className={classes.checkbox}/>
         <CardMedia
+          onClick={handleViewMore}
           className={classes.media}
           image={props.accommodation.photos}
           title={props.accommodation.title}
@@ -90,6 +109,8 @@ function Accommodations(props) {
             25 Reviews
         </Typography>
       </CardActions>
+      </>
+      )}
     </Card>
   );
 }

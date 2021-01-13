@@ -55,24 +55,40 @@ function AddTravelReason(props) {
             return props.handleErrorsAction('Please add the accommodation of your chose!');
         }
         const userToken = localStorage.getItem('barefootUserToken');
-        const originCity=props.travelRequest.currentLocation.split(',',1);
-        const destCity= props.travelRequest.destinationLocation.split(',',1);
-        const tripRequest = {
-            trip:[{
-                originCity:originCity[0],
-                destination:destCity[0],
-                tripDate:props.travelRequest.departureDate,
-                returnDate:props.travelRequest.returnDate,
-                accommodationId:props.travelRequest.selectedAccommodation[0].id,
-                reason: props.travelRequest.travelReason
-            }]
-            
+        if(!props.travelRequest.selectedLocations.length){
+            props.handleErrorsAction('Please add the current and destination locations');
         }
+            
+        let trip = [];
+            
+        if(!props.travelRequest.isReturning){
+            props.travelRequest.selectedLocations.map(selected =>{
+                trip.push({
+                    originCity: selected.current,
+                    destination: selected.destination,
+                    tripDate:props.travelRequest.departureDate,
+                    accommodationId:props.travelRequest.selectedAccommodation[0].id,
+                    reason: props.travelRequest.travelReason
+                })
+            })
+        }else{
+            props.travelRequest.selectedLocations.map(selected =>{
+                trip.push({
+                    originCity: selected.current,
+                    destination: selected.destination,
+                    tripDate:props.travelRequest.departureDate,
+                    returnDate:props.travelRequest.returnDate,
+                    accommodationId:props.travelRequest.selectedAccommodation[0].id,
+                    reason: props.travelRequest.travelReason
+                })
+            })
+        }
+        console.log('the trip', trip);
         if(userToken){
             
             const data={
                 authToken : userToken,
-                travelRequest: tripRequest
+                travelRequest: {trip}
             }
             console.log('the request', props.travelRequest);
             return props.sendTravelRequestAction(data);
@@ -87,7 +103,7 @@ function AddTravelReason(props) {
         <React.Fragment>
             <Grid container item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
-                    Please add a reason of travel:
+                    Selected accommodation:
                 </Typography>
                 <Divider style={{width: '50%'}} />
             </Grid>
@@ -99,6 +115,12 @@ function AddTravelReason(props) {
                 </Grid>
             </Grid>
             <Grid container className={classes.textFieldGrid}>
+                <Grid container item xs={12} className={classes.title}>
+                    <Typography variant="h6" style={{color: colors.primary100}}> 
+                        Please add a reason of travel:
+                    </Typography>
+                    <Divider style={{width: '50%'}} />
+                </Grid>
                 <TextField
                 placeholder="Please add a reason of travel"
                 multiline
