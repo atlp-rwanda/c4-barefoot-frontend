@@ -64,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
         color: colors.neutralWhite,
         margin: theme.spacing(0,2)
     },
-    selectedLocations:{
-        border:'1px solid white',
-    },
     oneSelected:{
         margin:theme.spacing(0,0,1,0),
         color: colors.primary100,
@@ -83,11 +80,10 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         float:'right',
         fontWeight: 'bold',
-        fontSize:'16px'
+        fontSize:'20px'
     },
     citiesSelected:{
         background:colors.neutralWhite,
-        border: '1px solid yellow',
         display:"block",
         padding: theme.spacing(1),
         borderRadius: '3px 15px 3px 3px',
@@ -125,7 +121,7 @@ const SearchLocations = (props) => {
     const handleCurrentLocationChange = (event,newValue) =>{
         console.log('other values', event);
         const data = {
-            textField: 'event.target.id',
+            textField: event.target.id,
             searchKeyword: newValue
         }
         if(!newValue){
@@ -136,30 +132,33 @@ const SearchLocations = (props) => {
     const handleAddTravelRequest = () =>{
         // console.log(props);
         
-        if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Please add the current and destination location!');
-        }
-        if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Current and Destination place can not be the same!');
-        }
-        if(!props.travelRequest.currentLocation){
-            return props.handleErrorsAction('Please add your current location!');
-        }
-        if(!props.travelRequest.destinationLocation){
-            return props.handleErrorsAction('Please add your Destination location!');
-        }
-        if(!props.travelRequest.departureDate){
-            return props.handleErrorsAction('Please add the departure date!');
-        }
-        if(!props.travelRequest.returnDate && props.travelRequest.isReturning){
-            return props.handleErrorsAction('Please add the return date!');
-        }
+        // if(!props.travelRequest.currentLocation && !props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Please add the current and destination location!');
+        // }
+        // if(props.travelRequest.currentLocation === props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Current and Destination place can not be the same!');
+        // }
+        // if(!props.travelRequest.currentLocation){
+        //     return props.handleErrorsAction('Please add your current location!');
+        // }
+        // if(!props.travelRequest.destinationLocation){
+        //     return props.handleErrorsAction('Please add your Destination location!');
+        // }
+        // if(!props.travelRequest.departureDate){
+        //     return props.handleErrorsAction('Please add the departure date!');
+        // }
+        // if(!props.travelRequest.returnDate && props.travelRequest.isReturning){
+        //     return props.handleErrorsAction('Please add the return date!');
+        // }
+
+         
+
 
         return props.searchAccommodationAction(props.travelRequest.destinationLocation);
 
     }
     const handleSelectDestination = (event, newValue) =>{
-        console.log('values 0000', event.target);
+        console.log('values 0000', event.target, newValue);
         return handleCurrentLocationChange(event,newValue );
         // console.log('selecting....', props.travelRequest);
         // props.searchAccommodationAction(props.travelRequest.destinationLocation);
@@ -167,7 +166,31 @@ const SearchLocations = (props) => {
     const handleChangingDestination = () =>{
         console.log('changing....')
     }
+    const handleAddMultiCity = () =>{
+        const locations = {
+            current: props.travelRequest.currentLocation,
+            destination: props.travelRequest.destinationLocation,
+            selected: props.travelRequest.selectedLocations
+        }
 
+        return props.addMultiCityAction(locations);
+    }
+    const handleClose = (event) =>{
+        console.log('close clicked', event.target.id);
+        const closeId = event.target.id.split('-',2);
+        const tabIndex = closeId[1];
+        const tab = document.getElementById(`tab-${tabIndex}`);
+        console.log('the tab',tab.id);
+        const selected = props.travelRequest.selectedLocations;
+        const removed = selected.filter(location => location !== selected[tabIndex]);
+        console.log('removed',removed);
+        return props.removeMultiCityAction(removed);
+    }
+    // document.getElementById('currentLocationId').value=props.travelRequest.currentLocation
+
+    let {selectedLocations}= props.travelRequest
+    selectedLocations = selectedLocations ? selectedLocations : [{current:'', destination:''}];
+    const display = selectedLocations ? 'flex' : 'none';
     return ( 
         <Grid container direction="row" className={classes.main} >
             <Grid  item direction="column">
@@ -198,7 +221,6 @@ const SearchLocations = (props) => {
                             
                         )}
                     />
-
                 </div>
             </Grid>
             <Grid item direction="column">
@@ -231,7 +253,7 @@ const SearchLocations = (props) => {
             </Grid>
             <Grid item direction="column">
                 <Tooltip title="Click here to search accommodations" placement="bottom-end" arrow>
-                    <Button variant="contained" onClick={handleAddTravelRequest} className={classes.addButton}>Add</Button>
+                    <Button variant="contained" onClick={handleAddMultiCity} className={classes.addButton}>Add</Button>
                 </Tooltip>
                 
             </Grid>
@@ -280,32 +302,22 @@ const SearchLocations = (props) => {
                 </div>
                 
             </Grid>
-            <Grid container item className={classes.selectedLocations}>
-                    
-                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
-                        <div className={classes.closeSelectedLocations}>&times;</div>
-                        <di className={classes.citiesSelected}>
-                            <Typography>Kigali, Rwanda -</Typography>
-                            <Typography>Nairobi, Kenya </Typography>
-                        </di>
-                        
-                    </Grid>
-                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
-                        <div className={classes.closeSelectedLocations}>&times;</div>
-                        <di className={classes.citiesSelected}>
-                            <Typography>Kigali, Rwanda -</Typography>
-                            <Typography>Nairobi, Kenya </Typography>
-                        </di>
-                        
-                    </Grid>
-                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
-                        <div className={classes.closeSelectedLocations}>&times;</div>
-                        <di className={classes.citiesSelected}>
-                            <Typography>Kigali, Rwanda -</Typography>
-                            <Typography>Nairobi, Kenya </Typography>
-                        </di>
-                        
-                    </Grid>
+            <Grid container item style={{display: display}} className={classes.selectedLocations}>
+                    {selectedLocations.map((location, index) =>(
+                        <Grid xs={6} sm={3} md={2} item id={`tab-${index}`} className={classes.oneSelected}>
+                            <div 
+                            className={classes.closeSelectedLocations} 
+                            id={`close-${index}`} 
+                            onClick={handleClose}>
+                                &times;
+                            </div>
+                            <di className={classes.citiesSelected}>
+                                <Typography>{location.current}-</Typography>
+                                <Typography>{location.destination} </Typography>
+                            </di>
+                            
+                        </Grid>
+                    ))}
                     
             </Grid>
             

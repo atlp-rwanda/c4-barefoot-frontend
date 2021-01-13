@@ -18,12 +18,19 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    notFound:{
+        height: '200px',
+        border:'1px solid blue',
+        justifyContent:'center',
+        alignItems:'center'
     }
 }))
 
 function AddAccommodation(props) {
     const classes = useStyles();
     const accommodations = props.travelRequest.searchAccommodations;
+    const display = accommodations.length ? 'none' : 'flex';
     return (
         <React.Fragment>
             <Grid container item xs={12} className={classes.title}>
@@ -43,6 +50,9 @@ function AddAccommodation(props) {
                         <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
                     </Grid>
                 ))}
+                <Grid container item style={{display: display}} className={classes.notFound}>
+                    <Typography variant="h6" color="secondary" component="h6">No Accommodations found in {props.travelRequest.destinationLocation}</Typography>
+                </Grid>
             </Grid>
         </React.Fragment>
     )

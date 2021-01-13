@@ -1,4 +1,4 @@
-import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST } from '../actions/CreateTravelRequestAction';
 const initialState = {
     searchLocations: [],
     currentLocation: '',
@@ -8,6 +8,7 @@ const initialState = {
     returnDate: '',
     searchAccommodations: [],
     selectedAccommodation:[],
+    selectedLocations:[],
     displaySelection:false,
     displaySelected: false,
     snackBarMessage:{
@@ -54,6 +55,16 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 searchAccommodations: action.payload,
                 displaySelection: true
             }
+        case ADD_MULTI_CITY_TRAVEL_REQUEST :
+            return {
+                ...state,
+                selectedLocations: [...state.selectedLocations,action.payload],
+            }
+        case REMOVE_MULTI_CITY_TRAVEL_REQUEST :
+            return {
+                ...state,
+                selectedLocations:action.payload,
+            }
         case SELECT_ACCOMMODATION :
             return {
                 ...state,
@@ -96,8 +107,8 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 sendLoading: false,
                 displaySelection: false,
                 displaySelected: false,
-                currentLocation: '',
-                destinationLocation: '',
+                currentLocation: [],
+                destinationLocation: [],
                 departureDate: '',
                 returnDate: '',
                 isReturning:false,

@@ -10,6 +10,8 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const ADD_TRAVEL_REASON = 'ADD_TRAVEL_REASON';
 export const SEND_TRAVEL_REQUEST = 'SEND_TRAVEL_REQUEST';
 export const SEND_TRAVEL_REQUEST_LOADING = 'SEND_TRAVEL_REQUEST_LOADING';
+export const ADD_MULTI_CITY_TRAVEL_REQUEST = 'ADD_MULTI_CITY_TRAVEL_REQUEST';
+export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUEST';
 
 import axios from 'axios';
 
@@ -65,16 +67,25 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
         }
         const country = data.searchKeyword.country;
         const city = data.searchKeyword.LocationName;
-        const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
-        
         dispatch({
             type: DESTINATION_LOCATION,
             payload: `${city}, ${country}`
         });
-        return dispatch({
-            type: SEARCH_ACCOMMODATIONS,
-            payload: getAccommodations.data.rows
-        })
+        try{
+            const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
+            return dispatch({
+                type: SEARCH_ACCOMMODATIONS,
+                payload: getAccommodations.data.rows
+            })
+        }catch(error){
+            console.log('response errro', error.response);
+            if(error.response.status === 404){
+                return dispatch({
+                    type:SEARCH_ACCOMMODATIONS,
+                    payload: []
+                })
+            }
+        }
     }
 }
 
@@ -84,12 +95,19 @@ export const searchAccommodationAction = (searchKeyword) => async(dispatch) =>{
     const country = location[1];
     // console.log('the city and country to search');
     // console.log(city,country);
-    const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
-    // console.log('accommodations', getAccommodations.data);
-    return dispatch({
-        type: SEARCH_ACCOMMODATIONS,
-        payload: getAccommodations.data.rows
-    })
+    try{
+        console.log('accommodations---------------');
+        const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
+        
+        // console.log('accommodations', getAccommodations.data);
+        return dispatch({
+            type: SEARCH_ACCOMMODATIONS,
+            payload: getAccommodations.data.rows
+        })
+    }
+    catch(error){
+        console.log('error response',error.response);
+    }
 }
 
 export const selectAccommodationAction = (accommodation) => dispatch => {
@@ -138,6 +156,7 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         dispatch({
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
+        console.log('the request', data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
         // console.log('before sending', data.authToken);
         const sendTrip = await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
@@ -149,6 +168,31 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         
     }
     catch(error){
-        console.log('error from sending travel request', error);
+        console.log('error from sending travel request', error.response);
+    }
+}
+
+export const addMultiCityAction = (data) => dispatch =>{
+    console.log('locations----------',data);
+    try{
+        dispatch({
+            type: ADD_MULTI_CITY_TRAVEL_REQUEST,
+            payload: {current: data.current, destination: data.destination}
+        })
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+export const removeMultiCityAction = (data) => dispatch =>{
+    console.log('locations----------',data);
+    try{
+        dispatch({
+            type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,
+            payload: data
+        })
+    }
+    catch(err){
+        console.log(err);
     }
 }
