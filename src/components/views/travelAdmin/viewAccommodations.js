@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const accommodationSkeleton = <Grid item xs={12} sm={6} md={4}> <AccommodationCard/> </Grid>
 
 function ListAccommodation(props) {
-  // console.log(props)
   const [page, setPage] = React.useState(1);
   const classes = useStyles();
   const pageNumber = Math.ceil(props.accommodationsData.count / 2)

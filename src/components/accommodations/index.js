@@ -147,6 +147,7 @@ export function CreateAccommodation(props) {
   const [suggestion, setSuggestion] = React.useState([])
   const [executed, setExecuted] = React.useState(false)
   const [isUpdate, setIsUpdate] = React.useState(true)
+  let {locationID, country} = ''
   // const [selected, setSelected] = React.useState({});
   const classes = useStyle();
 const { handleSubmit, pristine, reset, submitting } = props
@@ -169,9 +170,10 @@ const { handleSubmit, pristine, reset, submitting } = props
   const token = localStorage.getItem('barefootUserToken');
   const handleFormSubmit = formProps => {
     const formData = new FormData();
-    const accommodation_picture = formProps.location_image[0]
+    const accommodation_picture = isUpdate ? '' : formProps.location_image[0]
     formData.append('upload_preset', process.env.UPLOAD_PRESET)
-    formData.append('file', accommodation_picture)    
+    formData.append('file', accommodation_picture)  
+      
     const {name, locationId , country} = formProps.city
     const {location_image, city,...data} = {...formProps}
     
@@ -180,16 +182,20 @@ const { handleSubmit, pristine, reset, submitting } = props
     data.locationID = locationId ? locationId : props.initialValues.locationID
 
     //this help to get only amenities from form data
-    const amenities = (
+    const amenitiesFilter = (
         {wifi=false,airConditioner=false,shampoo=false,ironing=false,tv=false,smokeDetector=false,fireExtinguisher=false,lockOnDoor=false}
       )=>(
         {wifi,airConditioner,shampoo,ironing,tv,smokeDetector,fireExtinguisher,lockOnDoor}
       )
-    const amenitiesData = amenities(...formData)
-    if(isUpdate && !formData){
+      console.log(formData)
+    const amenitiesData = amenitiesFilter(formProps)
+    // console.log(formData)
+    if(isUpdate && !formData.entries().next().done){
+      console.log('update')
       //this is run when you update anything else without updating image
       props.dispatch(updateAccommodation(data, amenitiesData, token))
     }else{
+      console.log('create')
       axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
       .then(res => {
         data.photos = res.data.secure_url
@@ -287,10 +293,14 @@ const { handleSubmit, pristine, reset, submitting } = props
                         name="city"
                         component={renderSelectField}
                         label="City"
-                        data={city ? city.name : 'Motel'}
+                        defaultValue="Motel"
+                        // data={city ? city.name : 'Motel'}
                         fullWidth={true}
                       >
-                        {(suggestion.map(location => (<MenuItem value={{name:location.LocationName, locationId:location.id, country:location.country}} primaryText={location.LocationName} /> ))) }
+                        {
+                        (suggestion.map(location => (
+                        <MenuItem value={ {name : location.LocationName, locationID:location.id, country:location.country}}  primaryText={location.LocationName} />
+                         ))) }
                         
                         <MenuItem value="Motel" primaryText="Motel" />
                         <MenuItem value="Lodge" primaryText="Lodge" />

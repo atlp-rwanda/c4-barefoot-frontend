@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Box, IconButton, Snackbar, Grid, FormControlLabel} from '@material-ui/core';
-import { CheckBox, Delete, Edit, Place } from '@material-ui/icons'
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Box, IconButton, Snackbar, Grid} from '@material-ui/core';
+import { Delete, Edit } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { connect, useDispatch } from 'react-redux'
 import Modal from '@material-ui/core/Modal';
@@ -12,10 +12,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Popover from '@material-ui/core/Popover';
 import MuiAlert from '@material-ui/lab/Alert';
 import CreateAccommodation from '../../accommodations'
-// import Field from 'redux-form/lib/Field';
-import Checkbox from 'material-ui/Checkbox'
-import { getAccommodations, getSingleAccommodation } from '../../../redux/actions/fetchAccommodations';
-import { UpdateAccommodation } from '../../accommodations/editAccommodation';
+import { getSingleAccommodation } from '../../../redux/actions/fetchAccommodations';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,27 +37,19 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: '80%',
+    maxHeight: '80%',
     margin:'0 auto',
     backgroundColor: '#EAF4FB',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    overflowY: 'auto',
     
   },
   editModel:{
     backgroundColor:'#fff'
   }
 }));
-// const amenities = [
-//   // 'AccommodationId',
-//   'wifi',
-//   'airConditioner',
-//   'shampoo',
-//   'ironing',
-//   'tv',
-//   'smokeDetector',
-//   'fireExtinguisher',
-//   'lockOnDoor'
-// ];
+
 function getModalStyle() {
   const top = 10;
   return {
@@ -68,13 +57,14 @@ function getModalStyle() {
     margin: 'auto',
   };
 }
-const renderCheckbox = ({ input, label }) => (
-  <Checkbox
-    label={label}
-    checked={input.value ? true : false}
-    onCheck={input.onChange}
-  />
-  );
+
+// const renderCheckbox = ({ input, label }) => (
+//   <Checkbox
+//     label={label}
+//     checked={input.value ? true : false}
+//     onCheck={input.onChange}
+//   />
+//   );
 
 function Accommodations(props) {
   const [open, setOpen] = React.useState(false);
@@ -83,37 +73,33 @@ function Accommodations(props) {
   const dispatch = useDispatch()
   const [modalStyle] = React.useState(getModalStyle);
   const token = localStorage.getItem('barefootUserToken'); 
-  let amenities = []
-  // let accommodationId = props.accommodation.id
-
-  // useEffect( () => {
-    
-    
-  // })
+ 
   const handleDelete = ()=>{
-    // console.log(props.accommodation.id)
     dispatch(deleteAccommodation(props.accommodation.id, token));
   }
   const handleOpen = () => {
     setOpen(true);
     dispatch(getSingleAccommodation(props.accommodation.id, token))
-    console.log("ACCOMMODATION AMENITIES")
   };
+
+  // Close Edit Model 
   const handleEditOpen = () => {
     setOpenEdit(true);
   };
+
+  // Close Snackbar  
   const handleClose = () => {
     setOpen(false);
     setOpenEdit(false)
     dispatch(closeDeleteSnackbar())
-    // props.dispatch(getAccommodations())
   };
+
+  // render alert
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}  itemID='alert' />;
   }
-  amenities = {...(props.amenityData.amenities)}
-  // amenities = props.amenityData.amenities
-  // {console.log(props.accommodation)}
+  
+  // Detail model
   const body = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Card style={modalStyle} className={classes.paper}>
@@ -141,13 +127,6 @@ function Accommodations(props) {
           </CardContent>
           </CardActionArea>
           <CardActions style={{justifyContent:'space-between'}}>
-            {/* <Button size="small" color="primary" onClick={handleOpen}>
-              { props.pending ? 
-              <Skeleton animation='wave' width='100%'/> 
-              :
-              <Typography href={props.accommodation.link} component='a' className={classes.a}>Read more about this on wikipedia</Typography>
-              }
-            </Button> */}
             <Grid container style={{justifyContent:'space-between'}}>
               <Grid item>
                 <h4>Location</h4>
@@ -162,7 +141,6 @@ function Accommodations(props) {
                 <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.numberOfRooms)}</p>
                 <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.typeOfBed)}</p>
               </Grid>
-              {/* {props.amenityData.amenities ? amenities = Object.keys(props.amenityData.amenities) : ''} */}
               {props.amenityData.amenities ? (<Grid item>
                 <h4>Amenities</h4>
                 <div style={{display:'grid', gridTemplateColumns:'1fr' }}>
@@ -180,6 +158,7 @@ function Accommodations(props) {
       </MuiThemeProvider>
   );
 
+  // Delete button popup
   const DeleteButton = (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
@@ -200,7 +179,6 @@ function Accommodations(props) {
 
   return (
     <>
-    {/* {console.log(props.delete)} */}
       <Snackbar open={props.delete.errorOpen} autoHideDuration={6000} onClose={handleClose} >
         <Alert onClose={handleClose} severity="error" >
           Error: {props.delete.error ? JSON.stringify(props.delete.error).replace(/[\\'"]+/g, '') : 'Error Not set'}
