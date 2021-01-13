@@ -58,12 +58,41 @@ const useStyles = makeStyles((theme) => ({
         width: 300,
         padding:0,
         paddingLeft: '2em',
-        border: '1px solid white',
 
     },
     inputText:{
         color: colors.neutralWhite,
         margin: theme.spacing(0,2)
+    },
+    selectedLocations:{
+        border:'1px solid white',
+    },
+    oneSelected:{
+        margin:theme.spacing(0,0,1,0),
+        color: colors.primary100,
+        justifyContent:'flex-end'
+    },
+    closeSelectedLocations:{
+        background:colors.red,
+        display: 'block',
+        color: colors.neutralWhite,
+        borderRadius: '50%',
+        padding: theme.spacing(0,1),
+        paddingTop: '5px',
+        paddingBottom:'5px',
+        cursor: 'pointer',
+        float:'right',
+        fontWeight: 'bold',
+        fontSize:'16px'
+    },
+    citiesSelected:{
+        background:colors.neutralWhite,
+        border: '1px solid yellow',
+        display:"block",
+        padding: theme.spacing(1),
+        borderRadius: '3px 15px 3px 3px',
+        margin: theme.spacing(1),
+
     }
 }))
 
@@ -94,17 +123,15 @@ const SearchLocations = (props) => {
         return props.CheckReturningAction(data);
     }
     const handleCurrentLocationChange = (event,newValue) =>{
+        console.log('other values', event);
         const data = {
-            textField: event.target.id,
+            textField: 'event.target.id',
             searchKeyword: newValue
         }
         if(!newValue){
             return props.searchCurrentLocationAction(data);
         }
-        if(newValue && newValue.length >= 2){
-            return props.searchCurrentLocationAction(data);
-        }
-        return 0;
+        return props.searchCurrentLocationAction(data);
     }
     const handleAddTravelRequest = () =>{
         // console.log(props);
@@ -130,6 +157,15 @@ const SearchLocations = (props) => {
 
         return props.searchAccommodationAction(props.travelRequest.destinationLocation);
 
+    }
+    const handleSelectDestination = (event, newValue) =>{
+        console.log('values 0000', event.target);
+        return handleCurrentLocationChange(event,newValue );
+        // console.log('selecting....', props.travelRequest);
+        // props.searchAccommodationAction(props.travelRequest.destinationLocation);
+    }
+    const handleChangingDestination = () =>{
+        console.log('changing....')
     }
 
     return ( 
@@ -157,6 +193,7 @@ const SearchLocations = (props) => {
                                 {...params}
                                 value={props.travelRequest.currentLocation}
                                 placeholder="Search your Location ..."
+                                id='currentLocationId'
                             />
                             
                         )}
@@ -176,8 +213,8 @@ const SearchLocations = (props) => {
                         className={classes.searchCurrentLocation}
                         classes={{input:classes.inputText}}
                         getOptionLabel={(option) => (`${option.LocationName}, ${option.country}`)}
-                        onInputChange={handleCurrentLocationChange}
-                        onChange={handleCurrentLocationChange}
+                        onInputChange={handleChangingDestination}
+                        onChange={handleSelectDestination}
                         includeInputInList
                         clearText="no value"
                         closeIcon={<closeIcon fontSize='small' />}
@@ -242,6 +279,34 @@ const SearchLocations = (props) => {
                     </MuiPickersUtilsProvider>
                 </div>
                 
+            </Grid>
+            <Grid container item className={classes.selectedLocations}>
+                    
+                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
+                        <div className={classes.closeSelectedLocations}>&times;</div>
+                        <di className={classes.citiesSelected}>
+                            <Typography>Kigali, Rwanda -</Typography>
+                            <Typography>Nairobi, Kenya </Typography>
+                        </di>
+                        
+                    </Grid>
+                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
+                        <div className={classes.closeSelectedLocations}>&times;</div>
+                        <di className={classes.citiesSelected}>
+                            <Typography>Kigali, Rwanda -</Typography>
+                            <Typography>Nairobi, Kenya </Typography>
+                        </di>
+                        
+                    </Grid>
+                    <Grid xs={6} sm={3} md={2} item className={classes.oneSelected}>
+                        <div className={classes.closeSelectedLocations}>&times;</div>
+                        <di className={classes.citiesSelected}>
+                            <Typography>Kigali, Rwanda -</Typography>
+                            <Typography>Nairobi, Kenya </Typography>
+                        </di>
+                        
+                    </Grid>
+                    
             </Grid>
             
         </Grid>

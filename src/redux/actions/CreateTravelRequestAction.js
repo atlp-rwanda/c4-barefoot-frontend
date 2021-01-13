@@ -40,8 +40,7 @@ export const getLocationsAction = () => async (dispatch) =>{
     
 }
 
-export const searchCurrentLocationAction = (data) => dispatch =>{
-
+export const searchCurrentLocationAction = (data) => async (dispatch) =>{
     //get the text field id
     const selectedOption = data.textField.split("-",1)
 
@@ -54,7 +53,7 @@ export const searchCurrentLocationAction = (data) => dispatch =>{
         }
         dispatch({
             type: CURRENT_LOCATION,
-            payload: data.searchKeyword
+            payload: `${data.searchKeyword.LocationName}, ${data.searchKeyword.country}`
         });
     }
     if(data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")){
@@ -64,10 +63,18 @@ export const searchCurrentLocationAction = (data) => dispatch =>{
                 payload: ''
             })            
         }
+        const country = data.searchKeyword.country;
+        const city = data.searchKeyword.LocationName;
+        const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
+        
         dispatch({
             type: DESTINATION_LOCATION,
-            payload: data.searchKeyword
+            payload: `${city}, ${country}`
         });
+        return dispatch({
+            type: SEARCH_ACCOMMODATIONS,
+            payload: getAccommodations.data.rows
+        })
     }
 }
 
