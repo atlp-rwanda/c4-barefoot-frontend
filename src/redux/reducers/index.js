@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
 import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
@@ -10,7 +11,9 @@ import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
 const reducers = combineReducers({
   logout: logoutReducer,
   login: loginReducer,
+  sendEmail: ResetPasswordEmailReducer,
   signup: signupRequestReducer,
+  newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
   createTravelRequest: CreateTravelRequestReducer,
@@ -19,3 +22,5 @@ const reducers = combineReducers({
 })
 
 export default reducers
+
+
