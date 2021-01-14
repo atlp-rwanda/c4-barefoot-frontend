@@ -72,6 +72,7 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
         }
         const country = data.searchKeyword.country;
         const city = data.searchKeyword.LocationName;
+        const page = data.page || 1;
         dispatch({
             type: DESTINATION_LOCATION,
             payload: `${city}, ${country}`
@@ -80,7 +81,7 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
             type: SEARCH_ACCOMMODATIONS_LOADING
         })
         try{
-            const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}`);
+            const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}&page=${page}&limit=6`);
             return dispatch({
                 type: SEARCH_ACCOMMODATIONS,
                 payload: getAccommodations.data.rows

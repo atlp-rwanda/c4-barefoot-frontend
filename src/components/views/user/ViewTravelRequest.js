@@ -6,6 +6,7 @@ import { GetTravelRequestsAction } from '../../../redux/actions/ViewTravelReques
 import DisplayTravelRequest from '../../travelRequests/DisplayTravelRequest';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
+import { Pagination } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -31,9 +32,17 @@ const ViewTravelRequest = (props) => {
     useEffect(()=>{
         const userToken = localStorage.getItem('barefootUserToken');
         if(userToken){
-            return props.GetTravelRequestsAction(userToken);
+            return props.GetTravelRequestsAction({userToken});
         }
         },[])
+
+        const getNextPage = (event,value) =>{
+            const userToken = localStorage.getItem('barefootUserToken');
+            if(userToken){
+                return props.GetTravelRequestsAction({userToken, page:value});
+            }
+            return 0;
+        }
 
     return ( 
         <Grid container direction="column" className = {classes.main}>
@@ -46,6 +55,9 @@ const ViewTravelRequest = (props) => {
             
             <Grid item xs={12} className={classes.content}>
                 <DisplayTravelRequest {...props} />
+            </Grid>
+            <Grid container item justify="center" style={{marginTop:'50px'}}>
+                <Pagination count={10} variant="outlined" color="primary" onChange={getNextPage} />
             </Grid>
             
         </Grid>

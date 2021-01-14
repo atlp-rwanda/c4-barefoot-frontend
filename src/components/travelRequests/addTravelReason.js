@@ -19,6 +19,9 @@ function AddTravelReason(props) {
         if(!props.travelRequest.selectedLocations.length){
             props.handleErrorsAction('Please add the current and destination locations');
         }
+        if(props.travelRequest.selectedAccommodation.length !== props.travelRequest.selectedLocations.length){
+            return props.handleErrorsAction('Please add all accommodations or cancel to start again!');
+        }
             
         let trip = [];
             
@@ -87,6 +90,7 @@ function AddTravelReason(props) {
                 <TextField
                 placeholder="Please add a reason of travel"
                 multiline
+                value={props.travelRequest.travelReason}
                 variant="outlined"
                 label="Please add the reason of travel"
                 onChange={handleTravelReasonChange}

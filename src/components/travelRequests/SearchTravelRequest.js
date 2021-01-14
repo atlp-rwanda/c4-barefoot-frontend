@@ -43,9 +43,6 @@ const SearchLocations = (props) => {
             textField: event.target.id,
             searchKeyword: newValue
         }
-        if(!newValue){
-            return props.searchCurrentLocationAction(data);
-        }
         return props.searchCurrentLocationAction(data);
     }
     

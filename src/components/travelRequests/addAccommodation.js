@@ -3,6 +3,7 @@ import { Grid, Container, makeStyles, Typography, Divider } from '@material-ui/c
 import AccommodationCard from '../AccommodationCardWithReviews';
 import colors from '../colors';
 import { Place } from '@material-ui/icons';
+import { Pagination } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -33,6 +34,16 @@ function AddAccommodation(props) {
     const classes = useStyles();
     const accommodations = !props.travelRequest.searchAccommodationsLoading ? props.travelRequest.searchAccommodations : [{},{},{}];
     const display = accommodations.length ? 'none' : 'flex';
+    const getNextPage = (event, value)=>{
+        const search = props.travelRequest.destinationLocation.split(', ',2);
+        const data = {
+            textField: 'destinationLocationId',
+            searchKeyword: {country: search[1], LocationName: search[0]},
+            page: value
+        }
+        return props.searchCurrentLocationAction(data);
+    }
+
     return (
         <React.Fragment>
             <Grid container item xs={12} className={classes.title}>
@@ -52,8 +63,12 @@ function AddAccommodation(props) {
                         <AccommodationCard pending={props.travelRequest.searchAccommodationsLoading} accommodation={accommodation} {...props}  />
                     </Grid>
                 ))}
+                
                 <Grid container item style={{display: display}} className={classes.notFound}>
                     <Typography variant="h6" color="secondary" component="h6">No Accommodations found in {props.travelRequest.destinationLocation}</Typography>
+                </Grid>
+                <Grid container item justify="center" style={{marginTop:'50px'}}>
+                   <Pagination count={10} variant="outlined" color="primary" onChange={getNextPage} />
                 </Grid>
             </Grid>
         </React.Fragment>
