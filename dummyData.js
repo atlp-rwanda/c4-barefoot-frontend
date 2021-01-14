@@ -74,3 +74,44 @@ export const accommodationsPayload = [
   }
 
 let a = 'https://barefoot-nomad-app-v1.herokuapp.com'
+export const props = {
+  CheckReturningAction : jest.fn(),
+  checkTravelDatesAction: jest.fn(),
+  getLocationsAction: jest.fn(),
+  searchCurrentLocationAction: jest.fn(),
+  selectAccommodationAction: jest.fn(),
+  handleErrorsAction:jest.fn(),
+  closeSnackbar: jest.fn(),
+  addTravelReasonAction: jest.fn(),
+  sendTravelRequestAction: jest.fn(),
+  addMultiCityAction: jest.fn(),
+  removeMultiCityAction: jest.fn(),
+  openModalAction: jest.fn(),
+}
+export const props2={
+  searchLocations: [],
+  searchLocationsLoading: false,
+  currentLocation: '',
+  destinationLocation: '',
+  isReturning: false,
+  departureDate: '',
+  returnDate: '',
+  searchAccommodations: [],
+  searchAccommodationsLoading:false,
+  selectedAccommodation:[],
+  selectedLocations:[],
+  displaySelection:false,
+  displaySelected: false,
+  snackBarMessage:{
+      open: false,
+      message: null,
+      severity: ''
+  },
+  success: false,
+  sendLoading:false,
+  travelReason: '',
+  Modal: {
+      open: false,
+      data:{}
+  }
+}

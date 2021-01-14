@@ -68,5 +68,6 @@ const ViewTravelRequest = (props) => {
 const mapStateToProps = state =>({
     listTravelRequest: state.viewTravelRequest
 });
+export {ViewTravelRequest};
 export default connect(mapStateToProps, {GetTravelRequestsAction})(ViewTravelRequest);
 
