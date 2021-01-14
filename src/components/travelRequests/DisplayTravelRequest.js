@@ -88,32 +88,32 @@ const DisplayTravelRequest = (props) => {
                 </Typography>
                 <Grid container item className={classes.travelData}>
                     <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6" component="h6" className={classes.headers}>Location - Destination</Typography>
+                        <Typography variant="h6" component="h6" className={classes.headers} color="primary">Location - Destination</Typography>
                         {request.Trip.map((trip) =>(
                             <Typography variant="subtitle2" key={trip.tripId}>{trip.originCity} to {trip.destination}</Typography>
                         ))}
                         
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6">Date of travel</Typography>
+                        <Typography variant="h6" color="primary">Date of travel</Typography>
                         {request.Trip.map((trip) =>{
                             const date= trip.tripDate.split('T',1);
                             return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
                         })}
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6">Returning</Typography>
+                        <Typography variant="h6" color="primary">Returning</Typography>
                         <Typography variant="subtitle2">{returning}</Typography>
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6">Return date</Typography>
+                        <Typography variant="h6" color="primary">Return date</Typography>
                         {request.Trip.map((trip) =>{
                             const date= trip.returnDate ? trip.returnDate.split('T',1) : ['-'];
                             return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
                         })}
                     </Grid>
                     <Grid container item  xs={10} sm={4} md={2} className={classes.reasonOfTravel}>
-                        <Typography variant="h6">Reason of travel</Typography>
+                        <Typography variant="h6" color="primary">Reason of travel</Typography>
                         <Typography gutterBottom variant="subtitle2" noWrap>{request.Trip[0].reason}</Typography>
                     </Grid>
                 </Grid>

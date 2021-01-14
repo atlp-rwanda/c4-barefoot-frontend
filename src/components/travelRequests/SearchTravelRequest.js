@@ -60,10 +60,16 @@ const SearchLocations = (props) => {
             travelDate: props.travelRequest.departureDate,
             returnDate: props.travelRequest.returnDate,
         }
-
+        if(!props.travelRequest.currentLocation){
+            return props.handleErrorsAction('Please add the current location');
+        }
+        if(!props.travelRequest.destinationLocation){
+            return props.handleErrorsAction('Please add the destination location');
+        }
         if(!props.travelRequest.departureDate){
             return props.handleErrorsAction('Please add the departure date!');
         }
+        
         return props.addMultiCityAction(locations);
     }
     const handleClose = (event) =>{

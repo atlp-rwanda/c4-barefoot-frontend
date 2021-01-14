@@ -3,44 +3,8 @@ import { Grid, Container, makeStyles, Typography,TextField, Button, Divider } fr
 import AccommodationCard from '../AccommodationCardWithReviews';
 
 import colors from '../colors';
+import useStyles from '../styles/addTravelReason';
 
-const useStyles = makeStyles((theme) => ({
-    container:{
-        justifyContent: 'center',
-        alignItems: 'center'
-
-    },
-    insideGrid:{
-        margin: theme.spacing(2,0,0,2)
-    },
-    title:{
-        padding: theme.spacing(1),
-        flexDirection:'column',
-        textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    textFieldGrid:{
-        justifyContent:'center',
-        alignItems:'center',
-        margin: theme.spacing(3,0),
-        flexDirection: 'column'
-    },
-    buttons:{
-        margin: theme.spacing(3),
-        justifyContent: 'space-between'
-    },
-    cancelButton:{
-        margin:theme.spacing(0,3)
-    },
-    textField:{
-        width:'60%',
-        [theme.breakpoints.down('sm')]:{
-            width: '90%'
-        }
-    }
-}))
- 
 function AddTravelReason(props) {
     const classes = useStyles();
     
@@ -93,6 +57,10 @@ function AddTravelReason(props) {
     const handleTravelReasonChange = (event) =>{
         return props.addTravelReasonAction(event.target.value);
     }
+
+    const handleCancelTravelRequest = () =>{
+        return props.cancelTravelRequestAction();
+    }
     const selectedAccommodation= props.travelRequest.selectedAccommodation ? props.travelRequest.selectedAccommodation : [{id:'',country:'',city:'',title:'',description:'',photos:''}];
     return (
         <React.Fragment>
@@ -126,7 +94,7 @@ function AddTravelReason(props) {
                 className={classes.textField}
                 />
                 <Grid item contained className={classes.buttons}>
-                    <Button variant="contained" color="secondary" className={classes.cancelButton}>Cancel</Button>
+                    <Button variant="contained" color="secondary" onClick={handleCancelTravelRequest} className={classes.cancelButton}>Cancel</Button>
                     <Button variant="contained"  onClick={handleSendTravelRequest} color="primary">Send Travel Request</Button>
                 </Grid>
             </Grid>

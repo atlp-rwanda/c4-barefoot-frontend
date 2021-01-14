@@ -1,4 +1,10 @@
-import { RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION, SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS, CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING, ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING, OPEN_MODAL } from '../actions/CreateTravelRequestAction';
+import { RETURNING, TRAVEL_DATES,CURRENT_LOCATION, DESTINATION_LOCATION,
+    SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS,SELECT_ACCOMMODATION, HANDLE_ERRORS,
+    CLOSE_SNACKBAR, ADD_TRAVEL_REASON,SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING,
+    ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, 
+    SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING,OPEN_MODAL, 
+    CANCEL_TRAVEL_REQUEST } from '../actions/CreateTravelRequestAction';
+
 const initialState = {
     searchLocations: [],
     searchLocationsLoading: false,
@@ -147,6 +153,21 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                     severity: 'success'
                 },
                 selectedLocations:[],
+            }
+        case CANCEL_TRAVEL_REQUEST :
+            return {
+                ...state,
+                currentLocation: '',
+                destinationLocation: '',
+                isReturning: false,
+                departureDate: '',
+                returnDate: '',
+                searchAccommodations: [],
+                selectedAccommodation:[],
+                selectedLocations:[],
+                displaySelection:false,
+                displaySelected: false,
+                travelReason: '',
             }
         default:
             return state

@@ -18,6 +18,7 @@ const SnackBarMessage = (props) => {
             onClose={closeTimer}
             autoHideDuration={5000}
             TransitionComponent={transitionSnackbar}
+            key={`${props.travelRequest.snackBarMessage.message}`}
             >
                 <MuiAlert 
                 severity={props.travelRequest.snackBarMessage.severity} 

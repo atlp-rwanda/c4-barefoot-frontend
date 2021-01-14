@@ -3,14 +3,12 @@ import SearchLocations from '../../travelRequests/SearchTravelRequest';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { CheckReturningAction,
-     checkTravelDatesAction,
-      searchCurrentLocationAction,
-       selectAccommodationAction,
-        getLocationsAction, closeSnackbar,
-         handleErrorsAction, addTravelReasonAction,
-          sendTravelRequestAction, addMultiCityAction,
-           removeMultiCityAction, openModalAction } from '../../../redux/actions/CreateTravelRequestAction';
+import { CheckReturningAction,checkTravelDatesAction,
+    searchCurrentLocationAction,selectAccommodationAction,
+    getLocationsAction, closeSnackbar,
+    handleErrorsAction, addTravelReasonAction,
+    sendTravelRequestAction, addMultiCityAction,
+    removeMultiCityAction, openModalAction, cancelTravelRequestAction } from '../../../redux/actions/CreateTravelRequestAction';
 import AddAccommodation from '../../travelRequests/addAccommodation';
 import AddTravelReason from '../../travelRequests/addTravelReason';
 import SnackBarMessage from '../../SnackBarMessage';
@@ -80,5 +78,13 @@ const mapStateToProps = state =>({
 });
 
 export {CreateTravelRequest};
-export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction,openModalAction})(CreateTravelRequest);
+export default connect(
+    mapStateToProps, 
+    {CheckReturningAction, checkTravelDatesAction, 
+    searchCurrentLocationAction, selectAccommodationAction, 
+    getLocationsAction, closeSnackbar, handleErrorsAction, 
+    addTravelReasonAction, sendTravelRequestAction, 
+    addMultiCityAction, removeMultiCityAction,openModalAction,
+    cancelTravelRequestAction}
+    )(CreateTravelRequest);
 

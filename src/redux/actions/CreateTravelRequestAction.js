@@ -15,6 +15,7 @@ export const SEND_TRAVEL_REQUEST_LOADING = 'SEND_TRAVEL_REQUEST_LOADING';
 export const ADD_MULTI_CITY_TRAVEL_REQUEST = 'ADD_MULTI_CITY_TRAVEL_REQUEST';
 export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUEST';
 export const OPEN_MODAL = 'OPEN_MODAL';
+export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
 import axios from 'axios';
 
@@ -157,7 +158,10 @@ export const addMultiCityAction = (data) => dispatch =>{
         type: ADD_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
-    
+    return dispatch({
+        type: TRAVEL_DATES,
+        payload:{departureDate: '', returnDate:''}
+    })
 }
 export const removeMultiCityAction = (data) => dispatch =>{
     dispatch({
@@ -172,4 +176,9 @@ export const openModalAction = (data) => dispatch =>{
         type: OPEN_MODAL,
         payload:data
     });
+}
+export const cancelTravelRequestAction = () => dispatch  =>{
+    return dispatch({
+        type: CANCEL_TRAVEL_REQUEST
+    })
 }
