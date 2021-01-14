@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core'
-import React, {Component} from 'react'
+import React, {Component, useEffect} from 'react'
 import Devider from '@material-ui/core/Divider'
 import { connect, useDispatch } from 'react-redux'
 import { getAccommodations } from '../../../redux/actions/fetchAccommodations'
+import { getLocations } from '../../../redux/actions/fetchLocationsAction'
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -28,30 +30,38 @@ const useStyles = makeStyles((theme) => ({
 function TravelAdmin(props){
     const dispatch = useDispatch()
     const classes = useStyles()
-    // const getLocationCount = () =>{
-    // props.dispatch(getAccommodations(1))
-    // }
-    // const a = getLocationCount()
-    console.log(props)
+    
+    useEffect(() => {
+        props.getLocations()
+        props.getAccommodations()
+      }, [])
+
+    const skeletonData = (<Skeleton variant='text' width='200px'/>)
+
+    console.log(props.locationsData.pending)
     return(
         <div className={classes.container}>
             <div >
                 <p>Welcome back the adminstrator!</p>
                 <p>This is how your system looks so far</p>
             </div>
-            <div className={classes.counter}>
-                <div>0 locations </div>
+            {props.locationsData.pending 
+            ? skeletonData 
+            :(<div className={classes.counter}>
+                <div>{ props.locationsData.count} locations </div>
                 <Devider className={classes.hr}/>
-                <div>0 accommodations</div>
-            </div>
+                <div>{props.accommodationsData.count} accommodations</div>
+            </div>)
+            }
         </div>
         
     )
 }
 
 const mapStateToProps = state => ({
-    accommodationsData: state.fetchAccommodations
-  })
+    locationsData: state.fetchLocations,
+    accommodationsData: state.fetchAccommodations,
 
-export {TravelAdmin}
-export default connect(mapStateToProps, { getAccommodations })(TravelAdmin)
+})
+
+export default connect(mapStateToProps,{getLocations, getAccommodations})(TravelAdmin)

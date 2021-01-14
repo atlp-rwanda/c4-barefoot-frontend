@@ -13,7 +13,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import TravelAdminDefault  from '../components/travelAdminLayoutRoute/Default';
 import { createLocation } from '../components/views/travelAdmin/createLocations';
 import { createAccomodations } from '../components/views/travelAdmin/createAccommodations';
-import { TravelAdmin } from '../components/views/travelAdmin';
+import TravelAdmin from '../components/views/travelAdmin';
 import TravelAdminRoute from '../components/travelAdminLayoutRoute';
 import ListLocations from '../components/views/travelAdmin/viewLocations';
 import ListAccommodation from '../components/views/travelAdmin/viewAccommodations';

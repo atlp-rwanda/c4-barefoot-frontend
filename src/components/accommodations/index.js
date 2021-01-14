@@ -188,8 +188,6 @@ const { handleSubmit, pristine, reset, submitting } = props
       )=>(
         {wifi,airConditioner,shampoo,ironing,tv,smokeDetector,fireExtinguisher,lockOnDoor}
       )
-      console.log(formProps.location_image)
-      console.log(formData.entries().next().done)
     const amenitiesData = amenitiesFilter(formProps)
     // console.log(formData)
     if(isUpdate && !formProps.location_image){

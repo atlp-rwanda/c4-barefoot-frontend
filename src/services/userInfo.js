@@ -70,3 +70,13 @@ export function toBeRedirected(){
         return false
     }
 }
+
+export function isAdmin(){
+    const admin = ['travel-admin', 'manager','administrator']
+    const user = checkUser(token)
+    if(admin.find(item => item == user)){
+        return true
+    }else{
+        return false
+    }
+}

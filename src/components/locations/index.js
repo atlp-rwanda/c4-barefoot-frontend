@@ -39,7 +39,7 @@ class CreateLocation extends Component {
       .then(res => {
         const {location_image,...data} = {...formProps}
         data.LocationImage = res.data.secure_url
-        alert(JSON.stringify(data, null, 4));
+        // alert(JSON.stringify(data, null, 4));
         const { dispatch } = this.props;                
         dispatch(createLocation(data, this.token));
       })
