@@ -161,6 +161,7 @@ const { handleSubmit, pristine, reset, submitting } = props
   const createOrUpdate = () => {
     if(!executed){
       setExecuted(true)
+      console.log("CHOOSE")
       props.initialValues
         ? setIsUpdate(true)
         : setIsUpdate(false)
@@ -170,16 +171,16 @@ const { handleSubmit, pristine, reset, submitting } = props
   const token = localStorage.getItem('barefootUserToken');
   const handleFormSubmit = formProps => {
     const formData = new FormData();
-    const accommodation_picture = isUpdate ? '' : formProps.location_image[0]
+    const accommodation_picture = formProps.location_image ? formProps.location_image[0] : ''
     formData.append('upload_preset', process.env.UPLOAD_PRESET)
     formData.append('file', accommodation_picture)  
       
     const {name, locationId , country} = formProps.city
     const {location_image, city,...data} = {...formProps}
     
-    data.city = name ? name : props.initialValues.city
-    data.country = country ? country :props.initialValues.country
-    data.locationID = locationId ? locationId : props.initialValues.locationID
+    data.city = name 
+    data.country = country  
+    data.locationID = locationId  
 
     //this help to get only amenities from form data
     const amenitiesFilter = (
@@ -187,10 +188,11 @@ const { handleSubmit, pristine, reset, submitting } = props
       )=>(
         {wifi,airConditioner,shampoo,ironing,tv,smokeDetector,fireExtinguisher,lockOnDoor}
       )
-      console.log(formData)
+      console.log(formProps.location_image)
+      console.log(formData.entries().next().done)
     const amenitiesData = amenitiesFilter(formProps)
     // console.log(formData)
-    if(isUpdate && !formData.entries().next().done){
+    if(isUpdate && !formProps.location_image){
       console.log('update')
       //this is run when you update anything else without updating image
       props.dispatch(updateAccommodation(data, amenitiesData, token))

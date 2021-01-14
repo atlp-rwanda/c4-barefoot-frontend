@@ -137,9 +137,9 @@ function Accommodations(props) {
               </Grid>
               <Grid item>
                 <h4>Capacity</h4>
-                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.propertyType)}</p>
-                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.numberOfRooms)}</p>
-                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : (props.accommodation.typeOfBed)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : 'Property : ' + (props.accommodation.propertyType)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : 'Rooms : ' + (props.accommodation.numberOfRooms)}</p>
+                <p>{props.pending ? (<Skeleton animation="wave"  width="50%"/>) : 'Type of Bed : ' + (props.accommodation.typeOfBed)}</p>
               </Grid>
               {props.amenityData.amenities ? (<Grid item>
                 <h4>Amenities</h4>
