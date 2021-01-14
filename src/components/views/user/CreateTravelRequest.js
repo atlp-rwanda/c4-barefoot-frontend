@@ -3,7 +3,14 @@ import SearchLocations from '../../travelRequests/SearchTravelRequest';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction, openModalAction } from '../../../redux/actions/CreateTravelRequestAction';
+import { CheckReturningAction,
+     checkTravelDatesAction,
+      searchCurrentLocationAction,
+       selectAccommodationAction,
+        getLocationsAction, closeSnackbar,
+         handleErrorsAction, addTravelReasonAction,
+          sendTravelRequestAction, addMultiCityAction,
+           removeMultiCityAction, openModalAction } from '../../../redux/actions/CreateTravelRequestAction';
 import AddAccommodation from '../../travelRequests/addAccommodation';
 import AddTravelReason from '../../travelRequests/addTravelReason';
 import SnackBarMessage from '../../SnackBarMessage';
@@ -32,16 +39,11 @@ const useStyles = makeStyles((theme) =>({
 const CreateTravelRequest = (props) => {
     const classes = useStyles();
     useEffect(()=>{
-        console.log('the engine starts');
         props.getLocationsAction();
     },[])
-    // console.log('locations');
-    // console.log(props.travelRequest.searchLocations);
     const display = props.travelRequest.displaySelection ? 'block' : 'none';
-    // const display2 = 'block';
     const display2 = props.travelRequest.displaySelected ? 'block' : 'none';
 
-    // console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Loader open={props.travelRequest.sendLoading} />

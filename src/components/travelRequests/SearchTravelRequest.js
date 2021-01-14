@@ -58,7 +58,8 @@ const SearchLocations = (props) => {
         const locations = {            
             current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
             destination: props.travelRequest.destinationLocation,
-            selected: props.travelRequest.selectedLocations
+            travelDate: props.travelRequest.departureDate,
+            returnDate: props.travelRequest.returnDate,
         }
 
         if(!props.travelRequest.departureDate){
@@ -79,7 +80,16 @@ const SearchLocations = (props) => {
     let {selectedLocations}= props.travelRequest
     selectedLocations = selectedLocations ? selectedLocations : [{current:'', destination:''}];
     const display = selectedLocations ? 'flex' : 'none';
-    
+    const disabled = selectedLocations.length ? true : false;
+    const handleTagClick = (event) =>{
+        let ev = {target:{
+            id: 'destinationLocationId'
+        }}
+        const index = event.target.id.split('-',2);
+
+        let newValue= props.travelRequest.selectedLocations[Number(index[1])].destination.split(', ',2);
+        return handleCurrentLocationChange(ev, {country: newValue[1], LocationName:newValue[0]});
+    }
     return ( 
         <>
         {(props.travelRequest.searchLocationsLoading ? 
@@ -107,6 +117,7 @@ const SearchLocations = (props) => {
                     </div>
                     <Autocomplete
                         id="currentLocationId"
+                        key={`${props.travelRequest.selectedLocations}`}
                         options={props.travelRequest.searchLocations}
                         className={classes.searchCurrentLocation}
                         classes={{input:classes.inputText}}
@@ -137,6 +148,7 @@ const SearchLocations = (props) => {
                     </div>
                     <Autocomplete
                         id="destinationLocationId"
+                        key={`${props.travelRequest.selectedLocations}`}
                         options={destinationLocationOptions}
                         className={classes.searchCurrentLocation}
                         classes={{input:classes.inputText}}
@@ -167,6 +179,7 @@ const SearchLocations = (props) => {
                 <Typography>Date of travel</Typography>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker 
+                        key={`${props.travelRequest.selectedLocations}`}
                         disableToolbar
                         variant="dialog"
                         inputVariant="filled"
@@ -181,6 +194,7 @@ const SearchLocations = (props) => {
                     control={
                         <Checkbox
                         checked={props.travelRequest.isReturning}
+                        disabled={disabled}
                         fontSize="small"
                         style={{color:colors.neutralWhite}}
                         onChange={handleCheckboxChange}
@@ -196,6 +210,7 @@ const SearchLocations = (props) => {
                     <Typography>Date of return</Typography>
                     <MuiPickersUtilsProvider utils={DateFnsUtils} >
                         <KeyboardDatePicker 
+                            key={`${props.travelRequest.selectedLocations}`}
                             disableToolbar
                             variant="dialog"
                             inputVariant="filled"
@@ -210,16 +225,16 @@ const SearchLocations = (props) => {
             </Grid>
             <Grid container item style={{display: display}} className={classes.selectedLocations}>
                     {selectedLocations.map((location, index) =>(
-                        <Grid xs={6} sm={3} md={2} item id={`tab-${index}`} className={classes.oneSelected}>
+                        <Grid xs={6} sm={3} md={2} item id={`tab-${index}`}className={classes.oneSelected}>
                             <div 
                             className={classes.closeSelectedLocations} 
                             id={`close-${index}`} 
                             onClick={handleClose}>
                                 &times;
                             </div>
-                            <di className={classes.citiesSelected}>
-                                <Typography>{location.current}-</Typography>
-                                <Typography>{location.destination} </Typography>
+                            <di className={classes.citiesSelected} id={`div-${index}`} onClick={handleTagClick} >
+                                <Typography  id={`text1-${index}`}>{location.current}-</Typography>
+                                <Typography  id={`text2-${index}`}>{location.destination} </Typography>
                             </di>
                             
                         </Grid>

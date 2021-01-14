@@ -57,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
     oneSelected:{
         margin:theme.spacing(0,0,1,0),
         color: colors.primary100,
-        justifyContent:'flex-end'
+        justifyContent:'flex-end',
+        cursor: 'pointer',
     },
     closeSelectedLocations:{
         background:colors.red,

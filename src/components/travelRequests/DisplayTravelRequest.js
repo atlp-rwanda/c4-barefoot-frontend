@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import colors from '../colors';
-import { Button, fade, FormControlLabel, Grid, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
+import { Button,  Grid, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({

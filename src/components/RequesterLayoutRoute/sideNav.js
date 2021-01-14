@@ -1,6 +1,6 @@
 import { Avatar, Box, List, ListItem, makeStyles, Typography } from '@material-ui/core'
-import { AccountCircle, AddLocation, Business, Home, LocationCity, Person, PinDrop } from '@material-ui/icons'
-import React, { useState } from 'react'
+import {  AddLocation,Person, Business, Home, LocationCity,  PinDrop } from '@material-ui/icons'
+import React from 'react'
 import Divider from '@material-ui/core/Divider'
 
 const useStyles = makeStyles((theme) => ({
@@ -72,12 +72,6 @@ export function SideBar(){
                 <ListItem className={classes.linkBox}>
                     <Typography><PinDrop/></Typography>
                     <Typography className={classes.menuText}>View Travel Requests</Typography>
-                </ListItem>
-                </Typography>
-                <Typography className={classes.a} href='/manager/direct-reports' component='a'>
-                <ListItem className={classes.linkBox}>
-                    <Typography><PinDrop/></Typography>
-                    <Typography className={classes.menuText}>Direct reports</Typography>
                 </ListItem>
                 </Typography>
                 <Divider/>

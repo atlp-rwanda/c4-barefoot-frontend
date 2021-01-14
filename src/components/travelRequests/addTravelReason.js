@@ -43,11 +43,8 @@ const useStyles = makeStyles((theme) => ({
  
 function AddTravelReason(props) {
     const classes = useStyles();
-    // console.log('--------------------props from reason of travel');
-    // console.log(props);
     
     const handleSendTravelRequest = () =>{
-        console.log('send clicked');
         if(!props.travelRequest.travelReason){
             return props.handleErrorsAction('Please add a reason of travel!');
         }
@@ -62,12 +59,12 @@ function AddTravelReason(props) {
         let trip = [];
             
         if(!props.travelRequest.isReturning){
-            props.travelRequest.selectedLocations.map(selected =>{
+            props.travelRequest.selectedLocations.map((selected,index) =>{
                 trip.push({
                     originCity: selected.current,
                     destination: selected.destination,
-                    tripDate:props.travelRequest.departureDate,
-                    accommodationId:props.travelRequest.selectedAccommodation[0].id,
+                    tripDate:selected.travelDate,
+                    accommodationId:props.travelRequest.selectedAccommodation[index].id,
                     reason: props.travelRequest.travelReason
                 })
             })
@@ -76,21 +73,19 @@ function AddTravelReason(props) {
                 trip.push({
                     originCity: selected.current,
                     destination: selected.destination,
-                    tripDate:props.travelRequest.departureDate,
-                    returnDate:props.travelRequest.returnDate,
+                    tripDate:selected.travelDate,
+                    returnDate:selected.returnDate,
                     accommodationId:props.travelRequest.selectedAccommodation[0].id,
                     reason: props.travelRequest.travelReason
                 })
             })
         }
-        console.log('the trip', trip);
         if(userToken){
             
             const data={
                 authToken : userToken,
                 travelRequest: {trip}
             }
-            console.log('the request', props.travelRequest);
             return props.sendTravelRequestAction(data);
         }
     }

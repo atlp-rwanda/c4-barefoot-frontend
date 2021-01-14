@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox} from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
-import { connect } from 'react-redux'
 import colors from './colors';
 import Ratings from './RatingStars';
 
@@ -50,20 +49,20 @@ function Accommodations(props) {
     const open = false; 
     const handleSelection = (event) =>{
       const accommodation={
-        selected:[props.accommodation],
-        checked: event.target.checked
+        selected:props.accommodation,
+        checked: event.target.checked,
       };
+    
       return props.selectAccommodationAction(accommodation);
 
     }    
-    // console.log('props from the actual card');
-    // console.log(props);
-    const check = props.travelRequest.selectedAccommodation.length ? true : false;
-    // console.log('+++++++++the only prop');
-    // console.log(props.accommodation, check);
+    
+    
+    let check=false;
+    props.travelRequest.selectedAccommodation.map( selected =>{
+      selected.id === props.accommodation.id ? check=true : null
+    })
     const handleViewMore =() =>{
-      console.log('image clicked');
-      console.log(props.accommodation);
       return props.openModalAction({open: true, data: props.accommodation});
     }
 

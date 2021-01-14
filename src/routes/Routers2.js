@@ -13,7 +13,6 @@ import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import ViewTravelRequest from '../components/views/user/ViewTravelRequest';
 import RequesterRoute from '../components/RequesterLayoutRoute';
 import Logout from '../components/views/Logout';
-import DirectReports from '../components/views/user/DirectReports';
 
 // import { redirectUser, toBeRedirected } from '../../../services/userInfo';
 
@@ -80,12 +79,6 @@ const Routes = () => {
             path="/requester/view-travel-requests" 
             exact
             component={ ViewTravelRequest }
-            layout={RequesterDefault}
-        />
-        <RequesterRoute 
-            path="/manager/direct-reports" 
-            exact
-            component={ DirectReports }
             layout={RequesterDefault}
         />
         

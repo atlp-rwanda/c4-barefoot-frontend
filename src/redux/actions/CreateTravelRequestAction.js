@@ -111,14 +111,7 @@ export const selectAccommodationAction = (accommodation) => dispatch => {
             }
         })
     }
-    return dispatch({
-        type: SELECT_ACCOMMODATION,
-        payload: {
-            accommodation: [],
-            displaySelection: !accommodation.checked,
-            displaySelected: accommodation.checked
-        }
-    })
+    
 }
 
 export const handleErrorsAction = (errorMessage) => dispatch =>{
@@ -146,7 +139,6 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         dispatch({
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
-        console.log('the request', data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
         await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
         return dispatch({
@@ -156,16 +148,14 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         
     }
     catch(error){
-        console.log('error from sending travel request', error.response);
     }
 }
 
 export const addMultiCityAction = (data) => dispatch =>{
-    console.log('locations----------',data);
     try{
         dispatch({
             type: ADD_MULTI_CITY_TRAVEL_REQUEST,
-            payload: {current: data.current, destination: data.destination}
+            payload: data
         })
     }
     catch(err){
@@ -173,7 +163,6 @@ export const addMultiCityAction = (data) => dispatch =>{
     }
 }
 export const removeMultiCityAction = (data) => dispatch =>{
-    console.log('locations----------',data);
     try{
         dispatch({
             type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,

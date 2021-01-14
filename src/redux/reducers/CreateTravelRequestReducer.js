@@ -77,7 +77,7 @@ export function CreateTravelRequestReducer (state = initialState, action) {
         case ADD_MULTI_CITY_TRAVEL_REQUEST :
             return {
                 ...state,
-                selectedLocations: [action.payload],
+                selectedLocations: [...state.selectedLocations,action.payload],
             }
         case REMOVE_MULTI_CITY_TRAVEL_REQUEST :
             return {
@@ -87,7 +87,7 @@ export function CreateTravelRequestReducer (state = initialState, action) {
         case SELECT_ACCOMMODATION :
             return {
                 ...state,
-                selectedAccommodation: action.payload.accommodation,
+                selectedAccommodation: [...state.selectedAccommodation,action.payload.accommodation],
                 displaySelection: action.payload.displaySelection,
                 displaySelected: action.payload.displaySelected
             }
@@ -145,7 +145,8 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                     open: true,
                     message: 'The travel request is successfully sent!',
                     severity: 'success'
-                }
+                },
+                selectedLocations:[],
             }
         default:
             return state

@@ -21,8 +21,11 @@ const useStyles = makeStyles((theme) =>({
         }
     },
     media:{
-        height:"auto",
+        height:"300px",
         border:"1px solid red",
+        [theme.breakpoints.down('sm')]:{
+            height:"200px"
+        }
     },
     otherInfo:{
         borderTop: '1px solid darkCyan',
@@ -34,7 +37,7 @@ const useStyles = makeStyles((theme) =>({
 
 }));
 
-function Loader (props) {
+function AccommodationModal (props) {
 
     const classes = useStyles();
     const handleCloseModal = () =>{
@@ -79,4 +82,4 @@ function Loader (props) {
     )
 }
 
-export default Loader;
+export default AccommodationModal;
