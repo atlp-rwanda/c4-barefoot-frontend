@@ -78,5 +78,7 @@ const CreateTravelRequest = (props) => {
 const mapStateToProps = state =>({
     travelRequest: state.createTravelRequest
 });
+
+export {CreateTravelRequest};
 export default connect(mapStateToProps, {CheckReturningAction, checkTravelDatesAction, searchCurrentLocationAction, selectAccommodationAction, getLocationsAction, closeSnackbar, handleErrorsAction, addTravelReasonAction, sendTravelRequestAction, addMultiCityAction, removeMultiCityAction,openModalAction})(CreateTravelRequest);
 
