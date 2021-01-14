@@ -13,6 +13,10 @@ import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+import RequesterDefault  from '../components/RequesterLayoutRoute/Default';
+import ViewTravelRequest from '../components/views/user/ViewTravelRequest';
+import RequesterRoute from '../components/RequesterLayoutRoute';
+
 
 const Routes = () => {
     return (
@@ -34,10 +38,10 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-        <RouteWithLayout
+        <RequesterRoute
           component={Profile}
           exact
-          layout={AuthorizedUserLayout}
+          layout={RequesterDefault}
           path="/profile"
         />
          <RouteWithLayout
@@ -58,10 +62,10 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/user/reset-password"
         />
-        <RouteWithLayout
+        <RequesterRoute
           component={Logout}
           exact
-          layout={AuthorizedUserLayout}
+          layout={RequesterDefault}
           path="/logout"
         />
         <RouteWithLayout
@@ -69,11 +73,6 @@ const Routes = () => {
           exact
           layout={DefaultLayout}
           path="/PageNotFound"
-        />
-        <RouteWithLayout 
-            path="/signup" 
-            component={signup}
-            layout={DefaultLayout}
         />
         <RouteWithLayout 
             path="/user/verification/:token" 
@@ -85,10 +84,17 @@ const Routes = () => {
             component={ verifyAccount }
             layout={DefaultLayout}
         />
-        <RouteWithLayout 
-            path="/user/create-travel-request" 
+        <RequesterRoute 
+            path="/requester/create-travel-request" 
             component={ CreateTravelRequest }
-            layout={AuthorizedUserLayout}
+            layout={RequesterDefault}
+        />
+        
+        <RequesterRoute 
+            path="/requester/view-travel-requests" 
+            exact
+            component={ ViewTravelRequest }
+            layout={RequesterDefault}
         />
         
         <Redirect to="/PageNotFound" />
