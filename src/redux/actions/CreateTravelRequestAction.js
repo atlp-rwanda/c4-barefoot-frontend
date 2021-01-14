@@ -37,20 +37,17 @@ export const getLocationsAction = () => async (dispatch) =>{
             type: SEARCH_LOCATIONS_LOADING
         })
         const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
-        // console.log(getData);
         return dispatch({
             type: SEARCH_LOCATIONS,
             payload: getData.data.locations.rows
         })
     }catch(error){
-        console.log(error);
     }
     
 }
 
 export const searchCurrentLocationAction = (data) => async (dispatch) =>{
     //get the text field id
-    console.log('selected', data.searchKeyword);
     const selectedOption = data.textField.split("-",1)
 
     if((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")){
@@ -88,7 +85,6 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
                 payload: getAccommodations.data.rows
             })
         }catch(error){
-            console.log('response errro', error.response);
             if(error.response.status === 404){
                 return dispatch({
                     type:SEARCH_ACCOMMODATIONS,
@@ -148,30 +144,27 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
         
     }
     catch(error){
+        return dispatch({
+            type: SEND_TRAVEL_REQUEST,
+            payload: false
+        })
     }
 }
 
 export const addMultiCityAction = (data) => dispatch =>{
-    try{
-        dispatch({
-            type: ADD_MULTI_CITY_TRAVEL_REQUEST,
-            payload: data
-        })
-    }
-    catch(err){
-        console.log(err);
-    }
+    
+    dispatch({
+        type: ADD_MULTI_CITY_TRAVEL_REQUEST,
+        payload: data
+    })
+    
 }
 export const removeMultiCityAction = (data) => dispatch =>{
-    try{
-        dispatch({
-            type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,
-            payload: data
-        })
-    }
-    catch(err){
-        console.log(err);
-    }
+    dispatch({
+        type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,
+        payload: data
+    })
+    
 }
 
 export const openModalAction = (data) => dispatch =>{

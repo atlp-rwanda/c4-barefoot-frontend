@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) =>({
     },
     media:{
         height:"300px",
-        border:"1px solid red",
         [theme.breakpoints.down('sm')]:{
             height:"200px"
         }
@@ -41,7 +40,6 @@ function AccommodationModal (props) {
 
     const classes = useStyles();
     const handleCloseModal = () =>{
-        console.log('close the modal');
         return props.openModalAction({open:false,data:props.data});
     }
     return (

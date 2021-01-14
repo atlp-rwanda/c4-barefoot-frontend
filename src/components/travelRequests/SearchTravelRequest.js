@@ -39,7 +39,6 @@ const SearchLocations = (props) => {
         return props.CheckReturningAction(data);
     }
     const handleCurrentLocationChange = (event,newValue) =>{
-        console.log('other values', event);
         const data = {
             textField: event.target.id,
             searchKeyword: newValue

@@ -12,14 +12,12 @@ export const GetTravelRequestsAction = (userToken) =>  async (dispatch) => {
     
     try{
         const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests`);
-        console.log('requests', res.data);
         return dispatch({
             type: FETCH_TRAVEL_REQUEST_SUCCESS,
             payload: res.data
         });
     }
     catch(error){
-        console.log('errors', error);
         return dispatch({
             type: FETCH_TRAVEL_REQUEST_FAIL,
             payload: 'the errors'

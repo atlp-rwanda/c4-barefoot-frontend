@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) =>({
     main:{
         justifyContent: 'center',
         alignItems: 'center',
-        border:'1px solid blue',
         padding: theme.spacing(1,0),
         [theme.breakpoints.up('sm')]:{
             margin: theme.spacing(7,0,0,0)
@@ -31,14 +30,11 @@ const ViewTravelRequest = (props) => {
     const classes = useStyles();
     useEffect(()=>{
         const userToken = localStorage.getItem('barefootUserToken');
-        console.log("usertoken", userToken)
         if(userToken){
             return props.GetTravelRequestsAction(userToken);
         }
-        console.log('dont have the token here');
         },[])
 
-    // console.log('props for loading', props.travelRequest);
     return ( 
         <Grid container direction="column" className = {classes.main}>
             <Loader open={false} />

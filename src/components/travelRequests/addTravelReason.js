@@ -103,11 +103,11 @@ function AddTravelReason(props) {
                 <Divider style={{width: '50%'}} />
             </Grid>
             <Grid container className={classes.container}>
-                <Grid item className={classes.insideGrid}>
-                    {selectedAccommodation.map((accommodation) =>(
+                {selectedAccommodation.map((accommodation) =>(
+                    <Grid item  xs={10} sm={4} md={3} className={classes.insideGrid}>
                         <AccommodationCard pending={false} accommodation={accommodation} {...props}  />
-                    ))}
-                </Grid>
+                    </Grid>
+                 ))}
             </Grid>
             <Grid container className={classes.textFieldGrid}>
                 <Grid container item xs={12} className={classes.title}>

@@ -94,25 +94,25 @@ const DisplayTravelRequest = (props) => {
                         ))}
                         
                     </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
+                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
                         <Typography variant="h6">Date of travel</Typography>
                         {request.Trip.map((trip) =>{
                             const date= trip.tripDate.split('T',1);
                             return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
                         })}
                     </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
+                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
                         <Typography variant="h6">Returning</Typography>
                         <Typography variant="subtitle2">{returning}</Typography>
                     </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
+                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
                         <Typography variant="h6">Return date</Typography>
                         {request.Trip.map((trip) =>{
                             const date= trip.returnDate ? trip.returnDate.split('T',1) : ['-'];
                             return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
                         })}
                     </Grid>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.reasonOfTravel}>
+                    <Grid container item  xs={10} sm={4} md={2} className={classes.reasonOfTravel}>
                         <Typography variant="h6">Reason of travel</Typography>
                         <Typography gutterBottom variant="subtitle2" noWrap>{request.Trip[0].reason}</Typography>
                     </Grid>

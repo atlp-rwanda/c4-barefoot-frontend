@@ -4,17 +4,14 @@ import { makeStyles } from '@material-ui/styles';
 import NavBar from '../NavBar'
 import Footer from '../../AuthorizeUserFooter'
 import { SideBar } from '../sideNav';
+import SideDrawer from '../SideDrawer';
 import jwt from 'jwt-decode';
 
 const useStyles = makeStyles(() => ({
   
   content: {
     height: '100%',
-    paddingLeft:'220px',
-    marginBottom:'70px',
-    '@media(max-width:840px)':{
-      paddingLeft:'inherit'
-    }
+    marginBottom:'70px'
   }
 }));
 
@@ -39,7 +36,6 @@ const RequesterDefault = props => {
   return (
     <div >
       <NavBar />
-      <SideBar/>
       <main className={classes.content}>
         {children}
       </main>

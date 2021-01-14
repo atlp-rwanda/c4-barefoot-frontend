@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     notFound:{
         height: '200px',
-        border:'1px solid blue',
+        borderBottom:'1px solid blue',
         justifyContent:'center',
         alignItems:'center',
         textAlign:'center',
