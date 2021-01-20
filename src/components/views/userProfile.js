@@ -11,10 +11,13 @@ import EmailIcon from '@material-ui/icons/Email';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { fetchUserProfile } from '../../redux/actions/userProfileAction';
+import { fetchUserProfile, updateUserProfile } from '../../redux/actions/userProfileAction';
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -75,66 +78,95 @@ const validationSchema = yup.object().shape({
         .required(),
     occupation: yup
         .string('Enter Your occupation')
-        .required(),
-    line_manager: yup
-        .string('Enter your Line manager')
-        .required(),
+        .required()
 });
 
 const UserProfile = (props) => {
-    const [userProfileInfo, setUserProfileInfo] = useState(null)
     const [edit, setEdit] = useState(true);
+    const [uploading, setUploading] = useState(false);
     useEffect(() => {
+        /* let authToken = localStorage.getItem("barefootUserToken");
+        if (!authToken) props.history.push('/login'); */
         props.fetchUserProfile();
     }, []);
     let data = null
     if (props.userProfile.user.data) {
+        if (!props.userProfile.user.data) data = null
         let result = props.userProfile.user.data;
         const { id, username, refreshtoken, verified, ...rest } = result
         data = rest
-        setUserProfileInfo({ ...data })
-        console.log(userProfileInfo)
     }
-
     const classes = useStyles();
     const onChange = (e) => {
         const profile_picture = e.target.files[0];
         const formData = new FormData()
         formData.append('upload_preset', 'l9dhzfdi')
         formData.append('file', profile_picture)
+        setUploading(true)
         axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
-            .then(res => { setUserProfileInfo({ ...userProfileInfo, profile_picture: res.data.secure_url }) })
-            .then(() => {
-
+            .then(res => {
+                setUploading(false)
+                props.updateUserProfile({ profile_picture: res.data.secure_url })
+                    .then(() => props.fetchUserProfile())
             })
-            .catch(err => { console.log(err) })
+            .catch(err => console.log(err))
     }
-
     return (
         <React.Fragment >
-            <div className={classes.root}>
-
-
-
-                {props.userProfile.loading ? (
-                    <div>
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                        <Skeleton animation="wave" className={classes.form} height={80} />
-                    </div>
-                ) : (
-                        <div>
+            {props.userProfile.loading && !data ? (
+                <div className={classes.root}>
+                    <Skeleton animation="wave" variant="circle" className={classes.large} />
+                    <Skeleton animation="wave" height={80} width={150} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                    <Skeleton animation="wave" className={classes.form} height={80} />
+                </div>
+            ) : (
+                    <div className={classes.root}>
+                        <Avatar src={data ? data.profile_picture : ""} className={classes.large} />
+                        <Button variant="contained" color="primary" >
+                            <label>
+                                <input type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
+                                {props.updated.loading || props.userProfile.loading || uploading ? (
+                                    <CircularProgress color="secondary" />
+                                ) : <div> <PhotoCameraIcon /> Change Profile Picture </div>}
+                            </label>
+                        </Button>
+                        < div >
+                            <Snackbar
+                                open={props.updated.snackbarOpen || props.userProfile.snackbarOpen}
+                                autoHideDuration={6000}
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                            >
+                                <MuiAlert
+                                    severity={props.userProfile.success || props.updated.success ? "success" : "error"}
+                                    variant="filled"
+                                    elevation={6}
+                                >{props.updated.error || props.updated.successMsg || props.userProfile.error || "succesfully updated your profile picture"}</MuiAlert>
+                            </Snackbar>
                             <Formik
                                 enableReinitialize
                                 validationSchema={validationSchema}
-                                initialValues={userProfileInfo}
+                                initialValues={data ?
+                                    ({
+                                        first_name: data.first_name,
+                                        last_name: data.last_name,
+                                        email: data.email,
+                                        language: data.language,
+                                        address: data.address,
+                                        occupation: data.occupation,
+                                        line_manager: data.line_manager
+                                    })
+                                    : ({})
+                                }
                                 onSubmit={values => {
-                                    // same shape as initial values
-                                    console.log(values);
+                                    const { email, line_manager, ...rest } = values
+                                    props.updateUserProfile(rest)
+                                        .then(() => props.fetchUserProfile())
                                 }}
                             >
                                 {({ errors, touched }) => (
@@ -175,7 +207,6 @@ const UserProfile = (props) => {
                                         />
                                         <InputLabel htmlFor="email" className={classes.inputLabel}><EmailIcon color="primary" /> Email </InputLabel>
                                         <Field
-                                            error={errors.email && touched.email ? true : false}
                                             as={TextField}
                                             fullWidth
                                             id="email"
@@ -186,7 +217,6 @@ const UserProfile = (props) => {
                                                 },
                                             }}
                                             disabled
-                                            helperText={errors.email || null}
                                         />
                                         <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />Preferred Language</InputLabel>
                                         <Field
@@ -220,7 +250,7 @@ const UserProfile = (props) => {
                                             onMouseEnter={() => { setEdit(false); }}
                                             onMouseLeave={() => { setEdit(true); }}
                                             disabled={edit}
-                                            helperText={errors.first_name || null}
+                                            helperText={errors.address || null}
                                         />
                                         <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Occupation </InputLabel>
                                         <Field
@@ -238,11 +268,10 @@ const UserProfile = (props) => {
                                             onMouseEnter={() => { setEdit(false); }}
                                             onMouseLeave={() => { setEdit(true); }}
                                             disabled={edit}
-                                            helperText={errors.first_name || null}
+                                            helperText={errors.occupation || null}
                                         />
                                         <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Line Manager </InputLabel>
                                         <Field
-                                            error={errors.line_manager && touched.line_manager ? true : false}
                                             as={TextField}
                                             fullWidth
                                             id="line_manager"
@@ -252,10 +281,7 @@ const UserProfile = (props) => {
                                                     disabled: classes.disabledTextField
                                                 },
                                             }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.first_name || null}
+                                            disabled
                                         />
                                         <div className={classes.btnGrp} spacing={10}>
                                             <Button
@@ -264,8 +290,12 @@ const UserProfile = (props) => {
                                                 variant="contained"
                                                 className={classes.btn}
                                             >
-                                                Save
-                        </Button>
+                                                {props.updated.loading ? (
+                                                    <div>
+                                                        <CircularProgress color="secondary" />
+                                                    </div>
+                                                ) : <div> save </div>}
+                                            </Button>
                                             <Button
                                                 type="reset"
                                                 color="secondary"
@@ -273,26 +303,30 @@ const UserProfile = (props) => {
                                                 className={classes.btn}
                                             >
                                                 Cancel
-                        </Button>
+                                            </Button>
                                         </div>
                                     </Form>
                                 )}
                             </Formik>
                         </div>
-                    )}
-            </div>
+                    </div>
+                )
+            }
+
         </React.Fragment >
     )
 }
 
 const mapStateToProps = state => {
     return {
-        userProfile: state.fetchUserProfile
+        userProfile: state.fetchUserProfile,
+        updated: state.updateUserProfile
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUserProfile: () => dispatch(fetchUserProfile())
+        fetchUserProfile: () => dispatch(fetchUserProfile()),
+        updateUserProfile: (body) => dispatch(updateUserProfile(body))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

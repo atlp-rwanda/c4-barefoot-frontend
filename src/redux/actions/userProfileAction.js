@@ -1,21 +1,19 @@
-import axios from 'axios'
-import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, CHANGE_USER_PASSWORD_SUCCESS, CHANGE_USER_PASSWORD_FAILED, LOADING } from "../types/userProfileTypes";
-import authHeader from '../../helper/authHeader';
-const userCredentials = {
-    email: "manager_id@gmail.com",
-    password: "manager_id"
-};
+import { API } from './AxiosAPI';
+import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, CHANGE_USER_PASSWORD_SUCCESS, CHANGE_USER_PASSWORD_FAILED, FETCH_USER_PROFILE_LOADING, UPDATE_USER_PROFILE_LOADING, CHANGE_USER_PASSWORD_LOADING, CLOSE_SNACKBAR } from "../types/userProfileTypes";
+import { authHeader, getUserProfile } from '../../helper/sessionData';
 
 export const fetchUserProfile = () => async dispatch => {
-    let username = null;
     dispatch({
-        type: LOADING
-    })
-
-    axios.post("https://barefoot-nomad-app-v1.herokuapp.com/api/v1//user/login", userCredentials)
-        .then((res) => { localStorage.setItem('barefootUserToken', res.data.data) })
-
-    return axios.get("https://barefoot-nomad-app-v1.herokuapp.com/api/v1/profile/manager_id", { headers: authHeader() })
+        type: FETCH_USER_PROFILE_LOADING
+    });
+    const { username } = getUserProfile();
+    /* if (!username) {
+        dispatch({
+            type: FETCH_USER_PROFILE_FAILED,
+            payload: "no user profile info found"
+        });
+    } */
+    return API.get(`profile/${username}`, { headers: authHeader() })
         .then(res => {
             dispatch({
                 type: FETCH_USER_PROFILE_SUCCESS,
@@ -23,31 +21,96 @@ export const fetchUserProfile = () => async dispatch => {
             });
         })
         .catch(err => {
-            dispatch({
-                type: FETCH_USER_PROFILE_FAILED,
-                payload: err
-            });
-        });
+            if (err.message) {
+                dispatch({
+                    type: FETCH_USER_PROFILE_FAILED,
+                    payload: "network error occured failed to fetch your profile info"
+                });
+            }
+            if (err.response) {
+                dispatch({
+                    type: FETCH_USER_PROFILE_FAILED,
+                    payload: "no user profile info found"
+                });
+            }
+        })
+        .finally(() => {
+            setTimeout(() => {
+                dispatch({
+                    type: CLOSE_SNACKBAR
+                })
+            }, 6000)
+        })
 }
 
-export const updateUserProfile = () => async dispatch => {
+export const updateUserProfile = body => dispatch => {
     dispatch({
-        type: LOADING
+        type: UPDATE_USER_PROFILE_LOADING
     })
-    axios.post("https://barefoot-nomad-app-v1.herokuapp.com/api/v1//user/login", userCredentials)
-        .then((res) => { localStorage.setItem('barefootUserToken', res.data.data) });
-
-    return axios.post("https://barefoot-nomad-app-v1.herokuapp.com/api/v1/profile/manager_id", { headers: authHeader() }, {})
+    return API.patch("/profile/update-profile", body, { headers: authHeader() })
         .then(res => {
             dispatch({
                 type: UPDATE_USER_PROFILE_SUCCESS,
-                payload: res.data
+                payload: res.data.message
             });
         })
         .catch(err => {
+            if (err.message) {
+                dispatch({
+                    type: UPDATE_USER_PROFILE_FAILED,
+                    payload: "network error occured failed to update profile info"
+                });
+            }
+            if (err.response) {
+
+                dispatch({
+                    type: UPDATE_USER_PROFILE_FAILED,
+                    payload: "failed to update your profile info"
+                });
+            }
+
+        })
+        .finally(() => {
+            setTimeout(() => {
+                dispatch({
+                    type: CLOSE_SNACKBAR
+                })
+            }, 6000)
+        })
+}
+
+export const changeUserPassword = body => dispatch => {
+    dispatch({
+        type: CHANGE_USER_PASSWORD_LOADING
+    })
+    return API.patch("/profile/change-password", body, { headers: authHeader() })
+        .then(res => {
             dispatch({
-                type: UPDATE_USER_PROFILE_FAILED,
-                payload: err
+                type: CHANGE_USER_PASSWORD_SUCCESS,
+                payload: res.data.message
             });
-        });
+        })
+        .catch(err => {
+            if (err.message) {
+                dispatch({
+                    type: CHANGE_USER_PASSWORD_FAILED,
+                    payload: "network error occured failed to change your password"
+                });
+            }
+            if (err.response) {
+                dispatch({
+                    type: CHANGE_USER_PASSWORD_FAILED,
+                    payload: "no user with this password found "
+                });
+            }
+
+        })
+        .finally(() => {
+            setTimeout(() => {
+                dispatch({
+                    type: CLOSE_SNACKBAR
+                })
+            }, 6000)
+        })
+
 }

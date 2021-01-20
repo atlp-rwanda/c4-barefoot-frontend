@@ -8,9 +8,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 import { Formik, Form, Field } from 'formik';
+import { changeUserPassword } from '../../redux/actions/userProfileAction';
+import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import * as yup from 'yup';
+
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -67,13 +72,29 @@ const validationSchema = yup.object().shape({
         .min(8, 'Password should be of minimum 8 characters length'),
 });
 
-const ChangePassword = () => {
+const ChangePassword = (props) => {
     const classes = useStyles();
-    const [showPassword, setShowPassword] = useState(false);
+    useEffect(() => {
+        /*  if (props.passwordChanged.success) props.history.push('/logout'); */
+    })
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showChangePassword, setShowChangePassword] = useState(false);
     return (
         <React.Fragment >
             <div className={classes.root}>
                 <h2> Change your password</h2>
+                <Snackbar
+                    open={props.passwordChanged.snackbarOpen}
+                    autoHideDuration={300}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    onClose={() => console.log()}
+                >
+                    <MuiAlert
+                        severity={props.passwordChanged.success ? "success" : "error"}
+                        variant="filled"
+                        elevation={6}
+                    >{props.passwordChanged.error || props.passwordChanged.successMsg}</MuiAlert>
+                </Snackbar>
                 <div>
                     <Formik
                         initialValues={{
@@ -81,9 +102,9 @@ const ChangePassword = () => {
                             new_password: ""
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={values => {
-                            // same shape as initial values
-                            console.log(values);
+                        onSubmit={(values, { resetForm }) => {
+                            props.changeUserPassword(values)
+                            resetForm()
                         }}
                     >
                         {({ errors, touched }) => (
@@ -95,16 +116,16 @@ const ChangePassword = () => {
                                     fullWidth
                                     id="current_password"
                                     name="current_password"
-                                    type={showPassword ? 'text' : 'password'}
+                                    type={showCurrentPassword ? 'text' : 'password'}
                                     helperText={errors.current_password || null}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
-                                                    onClick={() => setShowPassword(!showPassword)}
+                                                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                                                 >
-                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    {showCurrentPassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
                                             </InputAdornment>
                                         )
@@ -117,16 +138,16 @@ const ChangePassword = () => {
                                     fullWidth
                                     id="new_password"
                                     name="new_password"
-                                    type={showPassword ? 'text' : 'password'}
+                                    type={showChangePassword ? 'text' : 'password'}
                                     helperText={errors.new_password || null}
                                     InputProps={{
                                         endAdornment: (
                                             < InputAdornment position="end" >
                                                 <IconButton
                                                     aria-label="toggle password visibility"
-                                                    onClick={() => setShowPassword(!showPassword)}
+                                                    onClick={() => setShowChangePassword(!showChangePassword)}
                                                 >
-                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    {showChangePassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
                                             </InputAdornment>
                                         )
@@ -140,8 +161,12 @@ const ChangePassword = () => {
                                         variant="contained"
                                         className={classes.btn}
                                     >
-                                        Submit
-                        </Button>
+                                        {props.passwordChanged.loading ? (
+                                            <div>
+                                                <CircularProgress color="secondary" />
+                                            </div>
+                                        ) : <div> Submit </div>}
+                                    </Button>
                                     <Button
                                         type="reset"
                                         color="secondary"
@@ -160,4 +185,16 @@ const ChangePassword = () => {
     )
 }
 
-export default ChangePassword;
+const mapStateToProps = state => {
+    return {
+        passwordChanged: state.changeUserPassword,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        changeUserPassword: (body) => dispatch(changeUserPassword(body))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);

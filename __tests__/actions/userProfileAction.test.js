@@ -1,0 +1,59 @@
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import * as actions from '../../src/redux/actions/userProfileAction';
+import moxios from 'moxios';
+import axios from 'axios';
+import { user } from '../../dummyData'
+
+const middleware = [thunk];
+const mockStore = configureStore(middleware);
+
+describe('get user profile', () => {
+    let store;
+
+    beforeEach(() => {
+        moxios.install();
+        store = mockStore({ fetchUserProfile: {} })
+    });
+
+    afterEach(() => moxios.uninstall());
+
+    it('dispatches FETCH_USER_PROFILE_FAILED after fetchUserProfile failed ', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                response: {
+                    error: "no user profile info found"
+                }
+            });
+        });
+
+        return store.dispatch(actions.fetchUserProfile()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
+            expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_FAILED');
+            /* expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
+        })
+
+    })
+
+    it.skip('dispatches FETCH_USER_PROFILE_SUCCESS after fetchUserProfile success ', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            });
+        });
+
+        return store.dispatch(actions.fetchUserProfile()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
+            expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_SUCCESS');
+            /* expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
+        })
+
+    });
+
+
+
+})

@@ -33,12 +33,12 @@ const Routes = () => {
         layout={DefaultLayout}
         path="/login"
       />
-      <RouteWithLayout
+      {/*   <RouteWithLayout
         component={Profile}
         exact
         layout={AuthorizedUserLayout}
         path="/profile"
-      />
+      /> */}
       <RouteWithLayout
         component={Logout}
         exact

@@ -9,7 +9,6 @@ import {
     ListItemText, AppBar
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import ListItemIcon from '@material-ui/icons/List';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import clsx from 'clsx';
 
@@ -116,12 +115,12 @@ const PhoneView = (props) => {
                         </Link>
                     </Typography>
                     <Typography className={classes.subTitle}>
-                        <Link className={classes.navLinks}>
+                        <Link className={classes.navLinks} to="/">
                             Home
                         </Link>
                     </Typography>
                     <Typography className={classes.subTitle}>
-                        <Link className={classes.navLinks}>
+                        <Link className={classes.navLinks} to="/logout">
                             Logout
                         </Link>
                     </Typography>
@@ -141,7 +140,7 @@ const PhoneView = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button component={Link} to="/updateProfile">
+                    <ListItem button component={Link} to="/profile">
                         <ListItemText primary="Profile" />
                     </ListItem>
                     <ListItem button component={Link} to="/changePassword" >
@@ -180,19 +179,18 @@ const LoggedInUserLayout = props => {
                 className={classes.appBar}
             >
                 <Toolbar>
-
                     <Typography variant="h5" color="primary" className={classes.title} noWrap>
                         <Link className={classes.navLinks}>
                             Barefoot Nomad
                         </Link>
                     </Typography>
                     <Typography className={classes.subTitle}>
-                        <Link className={classes.navLinks}>
+                        <Link className={classes.navLinks} to="/">
                             Home
                         </Link>
                     </Typography>
                     <Typography className={classes.subTitle}>
-                        <Link className={classes.navLinks}>
+                        <Link className={classes.navLinks} to="/logout">
                             Logout
                         </Link>
                     </Typography>
@@ -208,7 +206,7 @@ const LoggedInUserLayout = props => {
             >
                 <Divider />
                 <List className={classes.sideNav}>
-                    <ListItem button component={Link} to="/updateProfile">
+                    <ListItem button component={Link} to="/profile">
                         <ListItemText primary="Profile" />
                     </ListItem>
                     <ListItem button component={Link} to="/changePassword" >
