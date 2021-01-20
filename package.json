@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --serve --mode development && node ./server/index.js",
-    "start": "webpack --serve --mode production && node ./server/index.js",
+    "dev": "webpack-dev-server --mode development",
+    "start": "webpack --mode production",
     "test": "jest --coverage --detectOpenHandles --silent",
     "test:e2e": "jest -c e2e/jest.config.js",
     "coverage": "npm run test && jest --coverage && cat ./coverage/lcov.info | coveralls"
@@ -39,6 +39,8 @@
     "history": "^5.0.0",
     "jest-canvas-mock": "^2.3.0",
     "jest-localstorage-mock": "^2.4.6",
+    "jsonwebtoken": "^8.5.1",
+    "material-react-toastify": "^1.0.1",
     "query-string": "^6.13.7",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
