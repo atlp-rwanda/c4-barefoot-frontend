@@ -2,8 +2,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../../src/redux/actions/userProfileAction';
 import moxios from 'moxios';
-import axios from 'axios';
-import { user } from '../../dummyData'
+import { userProfile } from '../../dummyData'
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -12,7 +11,7 @@ describe('get user profile', () => {
     let store;
 
     beforeEach(() => {
-        moxios.install();
+        moxios.install()
         store = mockStore({ fetchUserProfile: {} })
     });
 
@@ -22,8 +21,9 @@ describe('get user profile', () => {
         moxios.wait(() => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
+                status: 200,
                 response: {
-                    error: "no user profile info found"
+                    user: userProfile
                 }
             });
         });
@@ -32,16 +32,21 @@ describe('get user profile', () => {
             const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
             expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_FAILED');
-            /* expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
+            expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR');
         })
 
     })
 
-    it.skip('dispatches FETCH_USER_PROFILE_SUCCESS after fetchUserProfile success ', () => {
+    it('dispatches FETCH_USER_PROFILE_LOADING and FETCH_USER_PROFILE_SUCCESS  after fetchUserProfile success ', () => {
         moxios.wait(() => {
             const request = moxios.requests.mostRecent()
             request.respondWith({
-                status: 200
+                status: 200,
+                response: {
+                    user: {
+                        datas: userProfile
+                    }
+                }
             });
         });
 
@@ -49,7 +54,7 @@ describe('get user profile', () => {
             const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
             expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_SUCCESS');
-            /* expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
+            /*  expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
         })
 
     });

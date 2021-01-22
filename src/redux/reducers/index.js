@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux'
 import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
-import { loginReducer } from './loginReducer'
-import { signupRequestReducer } from './signupReducer'
 import { fetchLocationsReducer } from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 import { fetchUserProfileReducer, updateUserProfileReducer, changeUserPasswordeReducer } from './userProfileReducer'
@@ -16,7 +14,10 @@ const reducers = combineReducers({
   signup: signupRequestReducer,
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
-  fetchAccommodations: fetchAccommodationsReducer
+  fetchAccommodations: fetchAccommodationsReducer,
+  fetchUserProfile: fetchUserProfileReducer,
+  updateUserProfile: updateUserProfileReducer,
+  changeUserPassword: changeUserPasswordeReducer
 })
 
 export default reducers

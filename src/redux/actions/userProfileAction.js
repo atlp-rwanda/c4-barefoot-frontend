@@ -3,18 +3,14 @@ import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROF
 import { authHeader, getUserProfile } from '../../helper/sessionData';
 
 export const fetchUserProfile = () => async dispatch => {
+    console.log('loading dispatched')
     dispatch({
         type: FETCH_USER_PROFILE_LOADING
     });
     const { username } = getUserProfile();
-    /* if (!username) {
-        dispatch({
-            type: FETCH_USER_PROFILE_FAILED,
-            payload: "no user profile info found"
-        });
-    } */
     return API.get(`profile/${username}`, { headers: authHeader() })
         .then(res => {
+            console.log('success dispatched')
             dispatch({
                 type: FETCH_USER_PROFILE_SUCCESS,
                 payload: res.data
@@ -22,28 +18,24 @@ export const fetchUserProfile = () => async dispatch => {
         })
         .catch(err => {
             if (err.message) {
+                console.log('error dispatched')
                 dispatch({
                     type: FETCH_USER_PROFILE_FAILED,
                     payload: "network error occured failed to fetch your profile info"
                 });
             }
             if (err.response) {
+                console.log('error dispatched')
                 dispatch({
                     type: FETCH_USER_PROFILE_FAILED,
                     payload: "no user profile info found"
                 });
             }
         })
-        .finally(() => {
-            setTimeout(() => {
-                dispatch({
-                    type: CLOSE_SNACKBAR
-                })
-            }, 6000)
-        })
+
 }
 
-export const updateUserProfile = body => dispatch => {
+export const updateUserProfile = (body) => dispatch => {
     dispatch({
         type: UPDATE_USER_PROFILE_LOADING
     })
@@ -62,7 +54,6 @@ export const updateUserProfile = body => dispatch => {
                 });
             }
             if (err.response) {
-
                 dispatch({
                     type: UPDATE_USER_PROFILE_FAILED,
                     payload: "failed to update your profile info"
@@ -70,16 +61,9 @@ export const updateUserProfile = body => dispatch => {
             }
 
         })
-        .finally(() => {
-            setTimeout(() => {
-                dispatch({
-                    type: CLOSE_SNACKBAR
-                })
-            }, 6000)
-        })
 }
 
-export const changeUserPassword = body => dispatch => {
+export const changeUserPassword = (body) => dispatch => {
     dispatch({
         type: CHANGE_USER_PASSWORD_LOADING
     })
@@ -105,12 +89,10 @@ export const changeUserPassword = body => dispatch => {
             }
 
         })
-        .finally(() => {
-            setTimeout(() => {
-                dispatch({
-                    type: CLOSE_SNACKBAR
-                })
-            }, 6000)
-        })
+}
 
+export const closeSnackbar = () => dispatch => {
+    dispatch({
+        type: CLOSE_SNACKBAR
+    });
 }

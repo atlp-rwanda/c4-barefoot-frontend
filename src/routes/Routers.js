@@ -37,10 +37,16 @@ const Routes = () => {
         path="/login"
       />
       <RouteWithLayout
-        component={Profile}
+        component={UserProfile}
         exact
-        layout={AuthorizedUserLayout}
+        layout={LoggedInUserLayout}
         path="/profile"
+      />
+      <RouteWithLayout
+        component={ChangePassword}
+        exact
+        layout={LoggedInUserLayout}
+        path="/changePassword"
       />
       <RouteWithLayout
         component={signup}

@@ -17,7 +17,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { fetchUserProfile, updateUserProfile } from '../../redux/actions/userProfileAction';
+import { fetchUserProfile, updateUserProfile, closeSnackbar } from '../../redux/actions/userProfileAction';
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -85,8 +85,6 @@ const UserProfile = (props) => {
     const [edit, setEdit] = useState(true);
     const [uploading, setUploading] = useState(false);
     useEffect(() => {
-        /* let authToken = localStorage.getItem("barefootUserToken");
-        if (!authToken) props.history.push('/login'); */
         props.fetchUserProfile();
     }, []);
     let data = null
@@ -111,6 +109,12 @@ const UserProfile = (props) => {
             })
             .catch(err => console.log(err))
     }
+    function handleClose() {
+        props.closeSnackbar()
+    };
+    function Alert(props) {
+        return < MuiAlert elevation={6} variant="filled" {...props} itemID='alert' />
+    };
     return (
         <React.Fragment >
             {props.userProfile.loading && !data ? (
@@ -139,14 +143,16 @@ const UserProfile = (props) => {
                         < div >
                             <Snackbar
                                 open={props.updated.snackbarOpen || props.userProfile.snackbarOpen}
-                                autoHideDuration={6000}
+                                autoHideDuration={5000}
+                                onClose={handleClose}
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                             >
-                                <MuiAlert
+                                <Alert
                                     severity={props.userProfile.success || props.updated.success ? "success" : "error"}
-                                    variant="filled"
-                                    elevation={6}
-                                >{props.updated.error || props.updated.successMsg || props.userProfile.error || "succesfully updated your profile picture"}</MuiAlert>
+                                    /* variant="filled"
+                                    elevation={6} */
+                                    onClose={handleClose}
+                                >{props.updated.error || props.updated.successMsg || props.userProfile.error || "succesfully updated your profile picture"}</Alert>
                             </Snackbar>
                             <Formik
                                 enableReinitialize
@@ -326,7 +332,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchUserProfile: () => dispatch(fetchUserProfile()),
-        updateUserProfile: (body) => dispatch(updateUserProfile(body))
+        updateUserProfile: (body) => dispatch(updateUserProfile(body)),
+        closeSnackbar: () => closeSnackbar()
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
