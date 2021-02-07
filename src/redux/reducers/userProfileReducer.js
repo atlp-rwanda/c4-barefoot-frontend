@@ -3,9 +3,7 @@ import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROF
 const fetchUserInitialState = {
     loading: false,
     user: {},
-    error: null,
-    success: false,
-    snackbarOpen: false
+    error: null
 }
 
 const updateUserProfileInitialState = {
@@ -16,6 +14,13 @@ const updateUserProfileInitialState = {
     success: false
 }
 
+const changeUserPasswordInitialState = {
+    loading: false,
+    successMsg: null,
+    error: null,
+    snackbarOpen: false,
+    success: false
+}
 
 export function fetchUserProfileReducer(state = fetchUserInitialState, action) {
     switch (action.type) {
@@ -28,23 +33,13 @@ export function fetchUserProfileReducer(state = fetchUserInitialState, action) {
             return {
                 loading: false,
                 user: action.payload,
-                error: null,
-                success: true,
-                snackbarOpen: false,
+                error: null
             }
         case FETCH_USER_PROFILE_FAILED:
             return {
                 loading: false,
                 user: {},
-                error: action.payload,
-                success: false,
-                snackbarOpen: true,
-            }
-
-        case CLOSE_SNACKBAR:
-            return {
-                ...state,
-                snackbarOpen: false,
+                error: action.payload
             }
         default:
             return state
@@ -61,7 +56,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
         case UPDATE_USER_PROFILE_SUCCESS:
             return {
                 loading: false,
-                successMsg: action.payload,
+                successMsg: "successfully update your profile",
                 error: null,
                 success: true,
                 snackbarOpen: true,
@@ -76,7 +71,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
             }
         case CLOSE_SNACKBAR:
             return {
-                ...state,
+                ...updateUserProfileInitialState,
                 snackbarOpen: false,
             }
         default:
@@ -84,7 +79,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
     }
 }
 
-export function changeUserPasswordeReducer(state = updateUserProfileInitialState, action) {
+export function changeUserPasswordeReducer(state = changeUserPasswordInitialState, action) {
     switch (action.type) {
         case CHANGE_USER_PASSWORD_LOADING:
             return {
@@ -109,7 +104,7 @@ export function changeUserPasswordeReducer(state = updateUserProfileInitialState
             }
         case CLOSE_SNACKBAR:
             return {
-                ...state,
+                ...updateUserProfileInitialState,
                 snackbarOpen: false,
             }
         default:

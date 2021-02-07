@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -81,15 +80,18 @@ const validationSchema = yup.object().shape({
         .required()
 });
 
+function Alert(props) {
+    return < MuiAlert elevation={6} variant="filled" {...props} />
+};
+
 const UserProfile = (props) => {
     const [edit, setEdit] = useState(true);
-    const [uploading, setUploading] = useState(false);
     useEffect(() => {
         props.fetchUserProfile();
     }, []);
+
     let data = null
     if (props.userProfile.user.data) {
-        if (!props.userProfile.user.data) data = null
         let result = props.userProfile.user.data;
         const { id, username, refreshtoken, verified, ...rest } = result
         data = rest
@@ -100,25 +102,15 @@ const UserProfile = (props) => {
         const formData = new FormData()
         formData.append('upload_preset', 'l9dhzfdi')
         formData.append('file', profile_picture)
-        setUploading(true)
-        axios.post(' https://api.cloudinary.com/v1_1/mjackson/image/upload', formData)
-            .then(res => {
-                setUploading(false)
-                props.updateUserProfile({ profile_picture: res.data.secure_url })
-                    .then(() => props.fetchUserProfile())
-            })
-            .catch(err => console.log(err))
+        props.updateUserProfile({ profile_picture: formData })
     }
-    function handleClose() {
-        props.closeSnackbar()
-    };
-    function Alert(props) {
-        return < MuiAlert elevation={6} variant="filled" {...props} itemID='alert' />
-    };
+
+    const handleClose = () => props.closeSnackbar();
+
     return (
         <React.Fragment >
             {props.userProfile.loading && !data ? (
-                <div className={classes.root}>
+                <div className={classes.root} id="#skeletonContainer">
                     <Skeleton animation="wave" variant="circle" className={classes.large} />
                     <Skeleton animation="wave" height={80} width={150} />
                     <Skeleton animation="wave" className={classes.form} height={80} />
@@ -134,25 +126,23 @@ const UserProfile = (props) => {
                         <Avatar src={data ? data.profile_picture : ""} className={classes.large} />
                         <Button variant="contained" color="primary" >
                             <label>
-                                <input type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
-                                {props.updated.loading || props.userProfile.loading || uploading ? (
+                                <input id="file" type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
+                                {props.updated.loading || props.userProfile.loading ? (
                                     <CircularProgress color="secondary" />
-                                ) : <div> <PhotoCameraIcon /> Change Profile Picture </div>}
+                                ) : <div id="profilePicture"> <PhotoCameraIcon /> Change Profile Picture </div>}
                             </label>
                         </Button>
                         < div >
                             <Snackbar
-                                open={props.updated.snackbarOpen || props.userProfile.snackbarOpen}
+                                open={props.updated.snackbarOpen}
                                 autoHideDuration={5000}
                                 onClose={handleClose}
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                             >
                                 <Alert
-                                    severity={props.userProfile.success || props.updated.success ? "success" : "error"}
-                                    /* variant="filled"
-                                    elevation={6} */
+                                    severity={props.updated.error ? "error" : "success"}
                                     onClose={handleClose}
-                                >{props.updated.error || props.updated.successMsg || props.userProfile.error || "succesfully updated your profile picture"}</Alert>
+                                >{props.updated.error || props.updated.successMsg}</Alert>
                             </Snackbar>
                             <Formik
                                 enableReinitialize
@@ -172,7 +162,6 @@ const UserProfile = (props) => {
                                 onSubmit={values => {
                                     const { email, line_manager, ...rest } = values
                                     props.updateUserProfile(rest)
-                                        .then(() => props.fetchUserProfile())
                                 }}
                             >
                                 {({ errors, touched }) => (
@@ -300,7 +289,7 @@ const UserProfile = (props) => {
                                                     <div>
                                                         <CircularProgress color="secondary" />
                                                     </div>
-                                                ) : <div> save </div>}
+                                                ) : "Save"}
                                             </Button>
                                             <Button
                                                 type="reset"
@@ -323,17 +312,10 @@ const UserProfile = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        userProfile: state.fetchUserProfile,
-        updated: state.updateUserProfile
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchUserProfile: () => dispatch(fetchUserProfile()),
-        updateUserProfile: (body) => dispatch(updateUserProfile(body)),
-        closeSnackbar: () => closeSnackbar()
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+const mapStateToProps = state => ({
+    userProfile: state.fetchUserProfile,
+    updated: state.updateUserProfile
+})
+
+export { UserProfile, Alert };
+export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile, closeSnackbar })(UserProfile);

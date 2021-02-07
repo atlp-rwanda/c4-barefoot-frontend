@@ -9,7 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, Field } from 'formik';
-import { changeUserPassword } from '../../redux/actions/userProfileAction';
+import { changeUserPassword, closeSnackbar } from '../../redux/actions/userProfileAction';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -72,39 +72,40 @@ const validationSchema = yup.object().shape({
         .min(8, 'Password should be of minimum 8 characters length'),
 });
 
+function Alert(props) {
+    return < MuiAlert elevation={6} variant="filled" {...props} />
+};
+
 const ChangePassword = (props) => {
     const classes = useStyles();
-    useEffect(() => {
-        /*  if (props.passwordChanged.success) props.history.push('/logout'); */
-    })
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showChangePassword, setShowChangePassword] = useState(false);
+    const handleClose = () => props.closeSnackbar();
     return (
         <React.Fragment >
             <div className={classes.root}>
                 <h2> Change your password</h2>
                 <Snackbar
                     open={props.passwordChanged.snackbarOpen}
-                    autoHideDuration={300}
+                    autoHideDuration={5000}
+                    onClose={handleClose}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                    onClose={() => console.log()}
                 >
-                    <MuiAlert
-                        severity={props.passwordChanged.success ? "success" : "error"}
-                        variant="filled"
-                        elevation={6}
-                    >{props.passwordChanged.error || props.passwordChanged.successMsg}</MuiAlert>
+                    <Alert
+                        severity={props.passwordChanged.error ? "error" : "success"}
+                        onClose={handleClose}
+                    >{props.passwordChanged.error || props.passwordChanged.successMsg}</Alert>
                 </Snackbar>
                 <div>
                     <Formik
+                        enableReinitialize
                         initialValues={{
                             current_password: "",
                             new_password: ""
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { resetForm }) => {
+                        onSubmit={values => {
                             props.changeUserPassword(values)
-                            resetForm()
                         }}
                     >
                         {({ errors, touched }) => (
@@ -123,6 +124,7 @@ const ChangePassword = (props) => {
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
+                                                    id="currentPassword"
                                                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                                                 >
                                                     {showCurrentPassword ? <Visibility /> : <VisibilityOff />}
@@ -141,9 +143,11 @@ const ChangePassword = (props) => {
                                     type={showChangePassword ? 'text' : 'password'}
                                     helperText={errors.new_password || null}
                                     InputProps={{
+                                        "id": "bio",
                                         endAdornment: (
                                             < InputAdornment position="end" >
                                                 <IconButton
+                                                    id="newPassword"
                                                     aria-label="toggle password visibility"
                                                     onClick={() => setShowChangePassword(!showChangePassword)}
                                                 >
@@ -165,7 +169,7 @@ const ChangePassword = (props) => {
                                             <div>
                                                 <CircularProgress color="secondary" />
                                             </div>
-                                        ) : <div> Submit </div>}
+                                        ) : "Submit"}
                                     </Button>
                                     <Button
                                         type="reset"
@@ -185,16 +189,10 @@ const ChangePassword = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        passwordChanged: state.changeUserPassword,
-    }
-}
+const mapStateToProps = state => ({
+    passwordChanged: state.changeUserPassword,
+})
 
-const mapDispatchToProps = dispatch => {
-    return {
-        changeUserPassword: (body) => dispatch(changeUserPassword(body))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
+export { ChangePassword, Alert };
+export default connect(mapStateToProps, { changeUserPassword, closeSnackbar })(ChangePassword);

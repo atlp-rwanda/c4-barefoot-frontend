@@ -16,12 +16,11 @@ describe('get user profile', () => {
     });
 
     afterEach(() => moxios.uninstall());
-
     it('dispatches FETCH_USER_PROFILE_FAILED after fetchUserProfile failed ', () => {
         moxios.wait(() => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
-                status: 200,
+                status: 404,
                 response: {
                     user: userProfile
                 }
@@ -32,7 +31,6 @@ describe('get user profile', () => {
             const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
             expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_FAILED');
-            expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR');
         })
 
     })
@@ -44,7 +42,7 @@ describe('get user profile', () => {
                 status: 200,
                 response: {
                     user: {
-                        datas: userProfile
+                        data: userProfile
                     }
                 }
             });
@@ -54,7 +52,6 @@ describe('get user profile', () => {
             const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('FETCH_USER_PROFILE_LOADING');
             expect(expectedActions[1].type).toEqual('FETCH_USER_PROFILE_SUCCESS');
-            /*  expect(expectedActions[2].type).toEqual('CLOSE_SNACKBAR'); */
         })
 
     });
