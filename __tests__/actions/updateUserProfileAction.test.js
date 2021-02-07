@@ -6,7 +6,7 @@ import moxios from 'moxios';
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
 
-describe('get user profile', () => {
+describe('update user profile', () => {
     let store;
 
     beforeEach(() => {
@@ -52,7 +52,11 @@ describe('get user profile', () => {
         })
 
     });
+    it('dispatches CLOSE_SNACKBAR ', () => {
+        return store.dispatch(actions.closeSnackbar()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('CLOSE_SNACKBAR');
+        })
 
-
-
+    });
 })

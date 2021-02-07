@@ -53,6 +53,11 @@ describe('get user profile', () => {
 
     });
 
+    it('dispatches CLOSE_SNACKBAR ', () => {
+        return store.dispatch(actions.closeSnackbar()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('CLOSE_SNACKBAR');
+        })
 
-
+    });
 })

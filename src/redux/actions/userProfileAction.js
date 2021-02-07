@@ -16,20 +16,11 @@ export const fetchUserProfile = () => dispatch => {
             });
         })
         .catch(err => {
-            if (err.message) {
-                dispatch({
-                    type: FETCH_USER_PROFILE_FAILED,
-                    payload: "network error occured failed to fetch your profile info"
-                });
-            }
-            if (err.response) {
-                dispatch({
-                    type: FETCH_USER_PROFILE_FAILED,
-                    payload: "no user profile info found"
-                });
-            }
+            dispatch({
+                type: FETCH_USER_PROFILE_FAILED,
+                payload: "no user profile info found"
+            });
         })
-
 }
 
 export const updateUserProfile = (body) => async dispatch => {
@@ -55,19 +46,10 @@ export const updateUserProfile = (body) => async dispatch => {
             dispatch(fetchUserProfile())
         })
         .catch(err => {
-            if (err.message) {
-                dispatch({
-                    type: UPDATE_USER_PROFILE_FAILED,
-                    payload: "network error occured failed to update profile info"
-                });
-            }
-            if (err.response) {
-                dispatch({
-                    type: UPDATE_USER_PROFILE_FAILED,
-                    payload: "failed to update your profile info"
-                });
-            }
-
+            dispatch({
+                type: UPDATE_USER_PROFILE_FAILED,
+                payload: "failed to update your profile info"
+            });
         })
 }
 
@@ -75,7 +57,6 @@ export const changeUserPassword = (body) => async dispatch => {
     dispatch({
         type: CHANGE_USER_PASSWORD_LOADING
     })
-    const token = localStorage.getItem("barefootUserToken");
     return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/change-password`, body, { headers: authHeader() })
         .then(async res => {
             await dispatch({
@@ -84,23 +65,14 @@ export const changeUserPassword = (body) => async dispatch => {
             });
         })
         .catch(err => {
-            if (err.message) {
-                dispatch({
-                    type: CHANGE_USER_PASSWORD_FAILED,
-                    payload: "network error occured failed to change your password"
-                });
-            }
-            if (err.response) {
-                dispatch({
-                    type: CHANGE_USER_PASSWORD_FAILED,
-                    payload: "no user with this password found "
-                });
-            }
-
+            dispatch({
+                type: CHANGE_USER_PASSWORD_FAILED,
+                payload: "no user with this password found "
+            });
         })
 }
 
-export const closeSnackbar = () => dispatch => {
+export const closeSnackbar = () => async dispatch => {
     dispatch({
         type: CLOSE_SNACKBAR
     });
