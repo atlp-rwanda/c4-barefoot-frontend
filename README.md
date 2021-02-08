@@ -1,4 +1,4 @@
-# c1-barefoot-frontend
+# c2-barefoot-frontend
 
 [![Build Status](https://travis-ci.org/atlp-rwanda/c2-barefoot-frontend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/c2-barefoot-frontend)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0e0e17e256bddb871c2b/maintainability)](https://codeclimate.com/github/atlp-rwanda/c2-barefoot-frontend/maintainability)
