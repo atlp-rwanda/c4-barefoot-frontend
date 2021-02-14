@@ -28,7 +28,7 @@ function Logout(props) {
     useEffect(() => {
         const authToken = localStorage.getItem('barefootUserToken');
         props.logoutAction(authToken);
-        return localStorage.clear();
+        return localStorage.removeItem('barefootUserToken');
     }, []);
 
     const closeSnackbarTimer = () => {
