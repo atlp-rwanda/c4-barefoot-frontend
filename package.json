@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atlp-rwanda/c2-barefoot-frontend.git"
+    "url": "git+https://github.com/atlp-rwanda/c4-barefoot-frontend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/atlp-rwanda/c2-barefoot-frontend/issues"
+    "url": "https://github.com/atlp-rwanda/c4-barefoot-frontend/issues"
   },
-  "homepage": "https://github.com/atlp-rwanda/c2-barefoot-frontend#readme",
+  "homepage": "https://github.com/atlp-rwanda/c4-barefoot-frontend#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "@material-ui/core": "^4.11.1",
