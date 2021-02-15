@@ -1,6 +1,6 @@
 # c4-barefoot-frontend
 
-[![Build Status](https://travis-ci.com/atlp-rwanda/c4-barefoot-frontend.svg?token=oxv6xTfkb8D3wputzvor&branch=develop)](https://travis-ci.com/atlp-rwanda/c4-barefoot-frontend)
+![Build status](https://github.com/actions/c4-barefoot-frontend/workflows/build/badge.svg?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0e0e17e256bddb871c2b/maintainability)](https://codeclimate.com/github/atlp-rwanda/c2-barefoot-frontend/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/c2-barefoot-frontend/badge.svg?branch=develop)](https://coveralls.io/github/atlp-rwanda/c2-barefoot-frontend?branch=develop)
 
