@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-prebuild": "npm install --dev",
     "dev": "webpack-dev-server --mode development",
     "start": "webpack --mode production",
     "test": "jest --coverage --detectOpenHandles --silent",
