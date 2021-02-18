@@ -16,5 +16,5 @@ app.get('*', (req, res) => {
   res.sendFile(htmlIndex);
 });
 app.listen(port, () => {
-  console.log(`Barefoot normand is  running on port: ${port}`);
+  console.log(`Barefoot nomad is  running on port: ${port}`);
 });
