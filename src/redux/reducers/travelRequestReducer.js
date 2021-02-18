@@ -23,7 +23,7 @@ export const fetchTravelReducer = (state=initialState, action) => {
             return{
                 ...state,
                 loading:false,
-                error:action.payload
+                error:action.error
             }
         default:
             return state

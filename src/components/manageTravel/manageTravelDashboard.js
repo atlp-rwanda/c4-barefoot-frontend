@@ -2,7 +2,7 @@ import React, {useState, useEffect}from 'react'
 import { Typography, makeStyles, useTheme, Drawer, Grid, TextField, Card, GridList, GridListTile, CardActionArea, CardMedia, CardContent, IconButton, CardActions, Avatar, Button, Paper, Modal } from "@material-ui/core";
 import { connect } from 'react-redux'
  import dateFormat from 'dateformat';
-import Model from "./Modal";
+import Model from "./viewTravelModal";
 import { Skeleton } from "@material-ui/lab";
 import Pagination from '@material-ui/lab/Pagination';
 import { getTravelRequest } from "../../redux/actions/fetchTravelRequestAction";
@@ -22,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
     },
     
   root: {
-    padding:'0%',
+    padding:'20px',
     display: 'flex',
     justifyContent:'center',
     alignItems:'center',
     // width:'80%',
-    marginTop:'20px'
+    marginTop:'20px',
+    backgroundColor: '#EAF4FB'
   },
   details: {
     display: 'flex',
@@ -175,9 +176,9 @@ function manageTravelDashboard(props) {
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
                         <div className={classes.requesterProfi}>
-                          <Avatar alt="Remy Sharp" src={trav.profile_picture} /> 
+                          <Avatar alt="Remy Sharp" src={"trav.profile_picture"} /> 
                         <Typography component="h5" variant="h5" className={classes.name}>
-                          {trav.requesterInfo.first_name} {trav.requesterInfo.last_name}
+                          {"trav.requesterInfo.first_name"} {"trav.requesterInfo.last_name"}
                         </Typography>
                         
                         

@@ -6,13 +6,14 @@ export const FETCH_TRAVEL_REQUEST_ERROR= 'FETCH_TRAVEL_REQUEST_ERROR'
 
 
 const token = localStorage.getItem('barefootUserToken')
+console.log(token);
 
 export const getTravelRequest = () => dispatch => {
     console.log(token)
     dispatch({
         type:FETCH_TRAVEL_REQUEST_LOADING
     })
-    return axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/directReports', {
+    return axios.get('https://nomad-barefoot.herokuapp.com/api/v1/directReports', {
         headers:{
             Authorization: `Bearer ${token}`
         }
@@ -35,6 +36,12 @@ export const getTravelRequest = () => dispatch => {
             dispatch({
                 type:FETCH_TRAVEL_REQUEST_ERROR,
                 error:err
+            })
+        }
+        if(err.request){
+            dispatch({
+                type:FETCH_TRAVEL_REQUEST_ERROR,
+                error:JSON.parse(err.request.response)
             })
         }
     })

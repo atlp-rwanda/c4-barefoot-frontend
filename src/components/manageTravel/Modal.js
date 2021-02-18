@@ -3,15 +3,19 @@ import {connect} from 'react-redux'
 import { makeStyles, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Grid, Paper, Card, CardActions, CardActionArea, Avatar, CardMedia, Typography, Button, Divider } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
+import { Skeleton } from '@material-ui/lab';
 
 const useStyle = makeStyles(theme => ({
+    dialog:{
+        padding: 60,
+    },
     grid:{
         width:'100%',
         justifyContent:'center'
     },
     originCityImage:{
         width:'100%',
-        height:'300px'
+        height:'400px'
     },
      gridDestination:{
         width:'300px',
@@ -103,7 +107,7 @@ function Modal(props) {
         
     }, [])
     const travelrequest = singleTravel.travel[0]
-    const requester = singleTravel.travel[0].requesterInfo
+    // const requester = singleTravel.travel[0].requesterInfo
 
     console.log(travelrequest);
 
@@ -112,15 +116,24 @@ function Modal(props) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
     return (
-       <Dialog open={openModal} TransitionComponent={Transition} onClose={onClose} maxWidth='md'>
+       <Dialog open={openModal} TransitionComponent={Transition} onClose={onClose} maxWidth='md' className={classes.dialog} >
+           { singleTravel.travel.length === 0 ? (
+           <div>
+               <Skeleton variant='text'/>
+               <Skeleton variant='circle' height={40} width={40} />
+               <Skeleton variant='rect' width={500} height={300}/>
+           </div>
+           )
+           :
+           <React.Fragment>
             <DialogTitle style={{textAlign:'center'}}>
                 Travel request details
-                <CloseIcon className={classes.closeIcon}/>
+                <CloseIcon className={classes.closeIcon} />
             </DialogTitle>
             <DialogContent>
                 <Card>
                 <CardActionArea>
-                <Grid className={classes.grid}>
+                    <Grid className={classes.grid}>
                         
                         <Paper className={classes.originCityImage}>
                             <img src={cardImage} alt='card image' className={classes.originCityImage}/>
@@ -131,8 +144,8 @@ function Modal(props) {
                         <Paper className={classes.travelDetails}>
                             <Typography variant='h6' component='h6' >Travel information</Typography>
                             <div className={classes.profile}> 
-                                <Avatar alt="Remy Sharp" src={requester.profile_picture} /> 
-                                <Typography style={{marginLeft:'20px'}}>{requester.first_name} {requester.last_name}</Typography>
+                                <Avatar alt="Remy Sharp" src={"requester.profile_picture"} /> 
+                                <Typography style={{marginLeft:'20px'}}>{"requester.first_name"} {"requester.last_name"}</Typography>
                             </div>
                             <div className={classes.status}>
                                 <Typography variant='h6' component='h6'>status:</Typography>
@@ -141,7 +154,7 @@ function Modal(props) {
                         </Paper>
                     </Grid>
                     <Divider />
-                    <Typography varient='h6' component="he" className={classes.trips} style={{textAlign:'center', marginTop:'20px'}}>{travelrequest.Trip.length} Trips</Typography>
+                    <Typography varient='h6' component="h6" className={classes.trips} style={{textAlign:'center', marginTop:'20px'}}>{travelrequest.Trip.length} Trips</Typography>
                     {travelrequest.Trip.map( data => (
                     <Grid className={classes.travelAddress} key={data.tripId}>
                     <Paper className={classes.addressPaper}>
@@ -181,6 +194,8 @@ function Modal(props) {
                 </CardActionArea>
                 </Card>
             </DialogContent>
+            </React.Fragment>}
+
        </Dialog>
     )
 }
