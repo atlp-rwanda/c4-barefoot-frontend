@@ -8,11 +8,20 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Box, Grid, Typography } from '@material-ui/core';
+import { connect } from 'react-redux';
+import {getSingleTravelRequest} from '../../redux/actions/singleTravelAction'
+import { Skeleton } from '@material-ui/lab';
 
-export default function ViewTravelModal({ openModal, onClose, setOpenModal}) {
+
+const ViewTravelModal= (props)=> {
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const { openModal, onClose, setOpenModal, singleTravel } = props
+
+
+  // Styles for dialog box
+
   const useStyles= makeStyles((theme)=>({
       root:{
           backgroundColor: "yellow"
@@ -44,6 +53,10 @@ export default function ViewTravelModal({ openModal, onClose, setOpenModal}) {
       }
   }));
 
+
+
+  const travelRequestArray= singleTravel.travel;
+
   const classes= useStyles();
 
 //   const handleClickOpen = () => {
@@ -68,6 +81,20 @@ export default function ViewTravelModal({ openModal, onClose, setOpenModal}) {
 
       >
         <center><DialogTitle id="responsive-dialog-title">View Travel Request</DialogTitle></center>
+        { travelRequestArray.length === 0 ? (
+            <Box style={{margin:'50px'}}>
+                <Skeleton variant='rect' height={400} width={800} />
+                <Skeleton variant='text'  />
+                <Skeleton variant='text'  />
+                <Skeleton variant='text'  />
+
+            </Box>
+        )
+        :
+        (
+            <React.Fragment>
+
+
         <DialogContent>
             <Box className={classes.imageContainer} >
                 <img alt="dialog image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg" style={{width:"100%"}} />
@@ -96,51 +123,34 @@ export default function ViewTravelModal({ openModal, onClose, setOpenModal}) {
                     </Grid>
 
                 </Grid>
-                <Grid container spacing={2} >
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true} >
-                            Kigali-Kampala
-                        </Typography>
-                                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            2021-01-22T11:04:43.863Z
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            True
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            2021-01-22T11:04:43.863Z
-                        </Typography>
-                    </Grid>
-                </Grid>
 
-                <Grid container spacing={2} >
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true} >
-                            Kigali-Kampala
-                        </Typography>
-                                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            2021-01-22T11:04:43.863Z
-                        </Typography>
+                { travelRequestArray[0].Trip.map( (trip)=>(
+
+                    <Grid container spacing={2} key={trip.tripId}>
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Typography variant="caption" component="h2" gutterBottom={true} >
+                                {`${trip.originCity}-${trip.destination}`}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                {trip.tripDate}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                True
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                {trip.returnDate}
+                            </Typography>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            True
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            2021-01-22T11:04:43.863Z
-                        </Typography>
-                    </Grid>
-                </Grid> 
+                ))}
+
+
                 <Box className={classes.hotelAndReasonBoxes}>
                     <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
                         Reason
@@ -172,14 +182,24 @@ export default function ViewTravelModal({ openModal, onClose, setOpenModal}) {
                 </Box>   
             </Box>
         </DialogContent>
+
+        </React.Fragment>
+        )}
         <DialogActions>
           <Button autoFocus onClick={onClose} color="primary">
-            Disagree
+            Approve
           </Button>
-          <Button onClick={onClose} color="primary" autoFocus>
-            Agree
+          <Button onClick={onClose} color="secondary" autoFocus>
+            Reject
           </Button>
         </DialogActions>
       </Dialog>
   );
 }
+
+const mapStateToProps = state => ({
+    singleTravel:state.manageSingleTravel
+})
+
+// export default ViewTravelModal;
+export default connect(mapStateToProps, {getSingleTravelRequest})(ViewTravelModal)
