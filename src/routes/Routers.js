@@ -1,6 +1,5 @@
 import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
 import NewPassword from '../components/resetPassword/NewPassword'
-
 import React from 'react';
 import Login from '../components/views/Login'
 import SignUp from '../components/signup';
@@ -13,6 +12,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+import ProtectedRoute from './protected.route'
 
 const Routes = () => {
     return (
@@ -34,7 +34,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={Profile}
           exact
           layout={AuthorizedUserLayout}
@@ -58,7 +58,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/user/reset-password"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={Logout}
           exact
           layout={AuthorizedUserLayout}
