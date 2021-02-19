@@ -16,7 +16,11 @@ const useStyles = makeStyles(() => ({
 
 const DefaultM = props => {
   const { children } = props;
+  console.log(children.props);
   const classes = useStyles();
+  const token =  localStorage.getItem('barefootUserToken');
+  if(!token)
+    children.props.history.push('/login');
   return (
     <div >
       <NavBar />
