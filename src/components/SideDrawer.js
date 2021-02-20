@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const SideDrawer = ({navLinks}) => {
+const SideDrawer = ({ navLinks }) => {
   const classes = useStyles()
   const [state, setState] = useState({ right: false })
 
@@ -54,22 +54,22 @@ const SideDrawer = ({navLinks}) => {
 
   return (
     <React.Fragment>
-      <IconButton 
-      edge="start" 
-      aria-label="menu"
-      onClick={toggleDrawer("right", true)}
+      <IconButton
+        edge="start"
+        aria-label="menu"
+        onClick={toggleDrawer("right", true)}
       >
-        <Menu fontSize='large' className={classes.menuIcon}/>
+        <Menu fontSize='large' className={classes.menuIcon} />
       </IconButton>
       <Drawer
         anchor="right"
         open={state.right}
         onOpen={toggleDrawer("right", true)}
         onClose={toggleDrawer("right", false)}
-        
+
       >
-  {sideDrawerList("right")}
-</Drawer>
+        {sideDrawerList("right")}
+      </Drawer>
     </React.Fragment>
   )
 }
