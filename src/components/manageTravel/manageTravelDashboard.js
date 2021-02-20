@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems:'center',
     // width:'80%',
     marginTop:'20px',
-    backgroundColor: '#EAF4FB'
+    backgroundColor: '#EAF4FB',
+    position: 'relative'
   },
   details: {
     display: 'flex',
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     width: 151,
   },
   image:{
-      width:'300px',
+      width:'100%',
       height:'300px'
   },
   name:{
@@ -71,8 +72,9 @@ const useStyles = makeStyles((theme) => ({
   },
   imageContainer:{
       width:'300px',
-      height:'300px',
-      marginLeft:'0%'
+      height:'200px',
+      marginLeft:'0%',
+      overflow: 'hidden'
   },
   approveButton:{
       backgroundColor:'#219653',
@@ -177,20 +179,20 @@ function manageTravelDashboard(props) {
                     <CardContent className={classes.content}>
                         <div className={classes.requesterProfi}>
                           <Avatar alt="Remy Sharp" src={"trav.profile_picture"} /> 
-                        <Typography component="h5" variant="h5" className={classes.name}>
+                        <Typography component="h5" variant="subtitle1" className={classes.name}>
                           {"trav.requesterInfo.first_name"} {"trav.requesterInfo.last_name"}
                         </Typography>
                         
                         
-                        <Typography style={{float:'right', color:'#54AD7D', right:'0px'}}>{trav.createdAt}</Typography>
+                        <Typography variant='caption' component='h6' style={{position:'absolute', color:'#54AD7D', right:'10px', top:'10px'}}>{trav.createdAt}</Typography>
                     </div>
-                    <Typography component="h6" variant="h6" style={{textAlign:'start'}}>
+                        <Typography component="h6" variant="h6" style={{textAlign:'start'}}>
                            Trips on this Travel request
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary" className={classes.description}>
                         {trav.Trip.length} Trip(s)
                         </Typography>
-                        </CardContent>
+                    </CardContent>
                         <div className={classes.controls}>
                         <>
                         <Button color="primary" onClick={() => handleSingleTravel(trav.travelId)}>view more</Button>    

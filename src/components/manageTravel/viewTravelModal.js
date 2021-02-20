@@ -101,22 +101,18 @@ const ViewTravelModal= (props)=> {
             </Box>
             <Box className={classes.detailsContainer}>
                 <Grid container spacing={2} >
-                    <Grid item xs={12} sm={6} md={3} >
+                    <Grid item xs={12} sm={6} md={4} >
                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
                         Location-destination
                         </Typography>
                                     </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
+                    <Grid item xs={12} sm={6} md={4} >
                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
                         Date of travel
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
-                        <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
-                        Rertuning
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} >
+
+                    <Grid item xs={12} sm={6} md={4} >
                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
                         Date of return
                         </Typography>
@@ -127,22 +123,18 @@ const ViewTravelModal= (props)=> {
                 { travelRequestArray[0].Trip.map( (trip)=>(
 
                     <Grid container spacing={2} key={trip.tripId}>
-                        <Grid item xs={12} sm={6} md={3} >
+                        <Grid item xs={12} sm={6} md={4} >
                             <Typography variant="caption" component="h2" gutterBottom={true} >
                                 {`${trip.originCity}-${trip.destination}`}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3} >
+                        <Grid item xs={12} sm={6} md={4} >
                             <Typography variant="caption" component="h2" gutterBottom={true}  >
                                 {trip.tripDate}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3} >
-                            <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                True
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={3} >
+
+                        <Grid item xs={12} sm={6} md={4} >
                             <Typography variant="caption" component="h2" gutterBottom={true}  >
                                 {trip.returnDate}
                             </Typography>
