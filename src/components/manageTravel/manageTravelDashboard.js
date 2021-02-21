@@ -8,6 +8,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import { getTravelRequest } from "../../redux/actions/fetchTravelRequestAction";
 import { updateSingleTravelRequest } from "../../redux/actions/updateTravelRequestAction";
 import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
+import ErrorModal from './ErrorModal';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -102,8 +103,10 @@ function manageTravelDashboard(props) {
     const classes = useStyles()
      const theme = useTheme();
      const loading = props.travelRequest.loading;
-     const travel = props.travelRequest.travel
+     const travel = props.travelRequest.travel;
+     const error= props.travelRequest.error
      const [openModal, setOpenModal] = useState(false)
+     const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
 
      useEffect(() => {
          props.getTravelRequest()
@@ -129,7 +132,7 @@ function manageTravelDashboard(props) {
          props.getSingleTravelRequest(id)
      }
 
-     console.log(props.travelRequest)
+     console.log(error)
      const cardImage = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg";
 
      // closing modal
@@ -209,7 +212,8 @@ function manageTravelDashboard(props) {
             </Card>
            ))}
 
-            
+        <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
+        {/* <button onClick={ ()=> setIsErrorModalOpen(true)} >open</button> */}
         <div className={classes.paganete}>
             <Pagination count={10} color="primary" />
         </div>

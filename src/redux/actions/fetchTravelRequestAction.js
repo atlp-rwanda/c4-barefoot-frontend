@@ -32,12 +32,12 @@ export const getTravelRequest = () => dispatch => {
                 error:err.message
             })
         }
-        if(err.response){
-            dispatch({
-                type:FETCH_TRAVEL_REQUEST_ERROR,
-                error:err
-            })
-        }
+        // if(err.response){
+        //     dispatch({
+        //         type:FETCH_TRAVEL_REQUEST_ERROR,
+        //         error:err
+        //     })
+        // }
         if(err.request){
             dispatch({
                 type:FETCH_TRAVEL_REQUEST_ERROR,
