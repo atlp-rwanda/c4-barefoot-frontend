@@ -58,7 +58,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/user/reset-password"
         />
-        <ProtectedRoute
+        <RouteWithLayout
           component={Logout}
           exact
           layout={AuthorizedUserLayout}
