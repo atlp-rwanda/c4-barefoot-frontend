@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Landing (props){
 
-  useEffect(() => {
-    props.getLocations()
-    props.getAccommodations()
-  }, [])
+  // useEffect(() => {
+  //   props.getLocations()
+  //   props.getAccommodations()
+  // }, [])
   
   const locationSkeleton = (<Grid item xs={12} sm={6} md={4}> <LocationCard/> </Grid>)
 

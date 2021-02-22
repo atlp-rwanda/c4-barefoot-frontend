@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {API} from './AxiosAPI';
 const token = window.localStorage.getItem('barefootUserToken')
 
 export const DELETE_ROLE_PENDING = 'DELETE_ROLE_PENDING'
@@ -34,7 +34,7 @@ export const deleteRoleAction = (payload, title) => dispatch => {
   dispatch({
     type: DELETE_ROLE_PENDING
   })
-  return axios.delete(`${process.env.REACT_APP_BACKEND_LINK}/admin/roles`,
+  return API.delete('/admin/roles',
   {
     headers: {
       Authorization: `Bearer ${token}`,

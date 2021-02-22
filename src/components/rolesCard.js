@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     backgroundColor: '#ABD5ED',
-    borderRadius: 0,                                                             
+    borderRadius: 0,                                                            
     
   }
 }))
@@ -20,15 +20,15 @@ function RolesCard(props) {
     props.deleteRoleAction(props.idx, props.roleTitle)
   }
   
-  const handlePermissions = () => {
-    props.getPermissions(props.roleTitle)
-  }
+  // const handlePermissions = () => {
+  //   props.getPermissions(props.roleTitle)
+  // }
 
   const classes = useStyles()
   return (
       <div className={classes.root}>
 
-        <Card className={classes.card} onClick={handlePermissions}>
+        <Card className={classes.card} onClick={handleDelete}>
           <CardActionArea >
             <CardContent>
               <Typography  variant='h6' component='h2'>{props.pending ? (<Skeleton variant='text'/>) : props.roleTitle}

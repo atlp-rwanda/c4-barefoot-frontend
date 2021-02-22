@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {API} from './AxiosAPI';
 export const REQUEST_SIGNUP = 'REQUEST_SIGNUP'
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
@@ -10,7 +10,7 @@ export const requestSignup = (user, nextStep) => async dispatch => {
   dispatch({
     type: REQUEST_SIGNUP
   })
-  return axios.post( `https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/signup`, user)
+  return API.post( 'user/signup', user)
     .then(res => {
       dispatch({
         type: REQUEST_SUCCESS,

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {makeStyles, Slide,Snackbar,Grid, CssBaseline} from '@material-ui/core'
+import {Typography, makeStyles, Slide, Box, Snackbar, Divider, Grid, CssBaseline, Checkbox, FormControlLabel, TextField, FormGroup, Button} from '@material-ui/core'
 import { connect } from 'react-redux'
 import { getRoles, clearSnackBar } from '../../../redux/actions/fetchRolesAction'
 import RolesCard from '../../rolesCard'
@@ -35,6 +35,31 @@ function ListOfRoles(props){
   const closeRoleSnackBarTimer = () => {
     props.clearSnackBar()
   }
+
+  const closePermissionsSnackBarTimer = () => {
+    props.clearPermissionSnackbar()
+  }
+
+  const handleCheckBox = (event) => {
+    let allowed = event.target.checked ? 1 : 0
+    const changed = [event.target.name, allowed]
+    const index = event.target.id
+    console.log(event.target.value)
+    props.changePermission(index, changed)
+  }
+
+function Perm(){
+    props.permissions.permissions.map(([name, allowed]) => (
+      this[name] = allowed
+    ))
+  }
+  
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    props.updatePermission(new Perm, props.permissions.selectedRole)
+   
+  }
+
   return(
     <>
       <Grid 
@@ -48,6 +73,7 @@ function ListOfRoles(props){
         <CssBaseline/>
 
         <Loader open={load}/>
+        <Loader open={props.permissions.pending}/>
 
         {/* This snackbar is for the roles column */}
         <Snackbar

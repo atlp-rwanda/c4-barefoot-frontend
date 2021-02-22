@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
 
   const firstLinks = [
     {title: 'Create Roles', path: '/admin/roles'},
-    {title: 'Set permissions', path:'/admin/permissions'}
+    {title: 'list of roles', path:'/admin/roleslist'}
   ]
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -63,8 +63,8 @@ export default function TemporaryDrawer() {
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      // onClick={toggleDrawer(anchor, false)}
+      // onKeyDown={toggleDrawer(anchor, false)}
     >
       <Box className={classes.accountInfo}>
         <Avatar className={classes.paper}>
