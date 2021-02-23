@@ -64,9 +64,8 @@ const SideDrawer = ({navLinks}) => {
       <Drawer
         anchor="right"
         open={state.right}
-        onOpen={toggleDrawer("right", true)}
-        onClose={toggleDrawer("right", false)}
-        
+        // onOpen={toggleDrawer("right", true)}
+        // onClose={toggleDrawer("right", false)}
       >
   {sideDrawerList("right")}
 </Drawer>
