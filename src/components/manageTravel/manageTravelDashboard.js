@@ -8,6 +8,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import { getTravelRequest } from "../../redux/actions/fetchTravelRequestAction";
 import { updateSingleTravelRequest } from "../../redux/actions/updateTravelRequestAction";
 import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   details: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'flex-start'
   },
   content: {
     flex: '1 0 auto',
@@ -47,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
       height:'300px'
   },
   name:{
-      left:'10px'
+      marginLeft:'10px',
+      marginTop: "-5px"
   },
   controls: {
     display: 'flex',
@@ -67,9 +70,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       width:'350px',
       flexDirection:'row',
-      padding:'10px',
-      marginTop:'0px',
-      justifyContent:'space-between'
+      justifyContent:'flex-start'
   },
   imageContainer:{
       width:'300px',
@@ -181,18 +182,18 @@ function manageTravelDashboard(props) {
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
                         <div className={classes.requesterProfi}>
-                          <Avatar alt="Remy Sharp" src={"trav.profile_picture"} /> 
-                        <Typography component="h5" variant="subtitle1" className={classes.name}>
-                          {"trav.requesterInfo.first_name"} {"trav.requesterInfo.last_name"}
-                        </Typography>
+                            <AccountCircleIcon  /> 
+                            <Typography component="h5" variant="h6" className={classes.name}>
+                            {"useraname"}
+                            </Typography>
                         
                         
                         <Typography variant='caption' component='h6' style={{position:'absolute', color:'#54AD7D', right:'10px', top:'10px'}}>{trav.createdAt}</Typography>
                     </div>
-                        <Typography component="h6" variant="h6" style={{textAlign:'start'}}>
+                        <Typography component="h6" variant="subtitle1" style={{textAlign:'start'}}>
                            Trips on this Travel request
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary" className={classes.description}>
+                        <Typography variant="caption" color="textSecondary" className={classes.description}>
                         {trav.Trip.length} Trip(s)
                         </Typography>
                     </CardContent>

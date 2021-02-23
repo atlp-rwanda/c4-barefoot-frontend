@@ -12,7 +12,7 @@ export const getSingleTravelRequest = (id) => dispatch => {
     dispatch({
         type:FETCH_SINGLE_TRAVEL_REQUEST_LOADING
     })
-    return axios.get(`https://nomad-barefoot.herokuapp.com/api/v1/directReports/${id}`, {
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports/${id}`, {
         headers:{
             Authorization: `Bearer ${token}`
         }

@@ -13,7 +13,7 @@ export const getTravelRequest = () => dispatch => {
     dispatch({
         type:FETCH_TRAVEL_REQUEST_LOADING
     })
-    return axios.get('https://nomad-barefoot.herokuapp.com/api/v1/directReports', {
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, {
         headers:{
             Authorization: `Bearer ${token}`
         }
