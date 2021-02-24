@@ -1,5 +1,5 @@
 import React, {useState, useEffect}from 'react'
-import { Typography, makeStyles, useTheme, Drawer, Grid, TextField, Card, GridList, GridListTile, CardActionArea, CardMedia, CardContent, IconButton, CardActions, Avatar, Button, Paper, Modal } from "@material-ui/core";
+import { Typography, makeStyles, useTheme, Drawer, Grid, TextField, Card, GridList, GridListTile, CardActionArea, CardMedia, CardContent, IconButton, CardActions, Avatar, Button, Paper, Modal, Container, Box } from "@material-ui/core";
 import { connect } from 'react-redux'
  import dateFormat from 'dateformat';
 import Model from "./viewTravelModal";
@@ -10,28 +10,34 @@ import { updateSingleTravelRequest } from "../../redux/actions/updateTravelReque
 import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
+import TravelRequestCard from './TravelRequestCard';
 
 const useStyles = makeStyles((theme) => ({
     container:{
-        // height:'100vh',
-    display: 'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    padding:'0%',
-    marginTop:'20px',
-    flexDirection:'column',
-    paddingBottom:'80px'
+        minHeight:'78vh',
+        display: 'flex',
+        alignItems:'center',
+        padding:'0%',
+        marginTop:'20px',
+        flexDirection:'column',
+        paddingBottom:'20px',
     },
-    
+    cardContainer:{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '75vh',
+        position: 'relative',
+        justifyContent: 'space-between',
+    },
   root: {
     padding:'20px',
     display: 'flex',
+    flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
-    // width:'80%',
+    boxShadow: 'none',
     marginTop:'20px',
-    backgroundColor: '#EAF4FB',
-    position: 'relative'
+    position: 'relative',
   },
   details: {
     display: 'flex',
@@ -87,7 +93,11 @@ const useStyles = makeStyles((theme) => ({
       marginLeft:'20px'
   },
   paganete:{
-    marginTop:'30px',
+    marginTop:'20px',
+    width: '100%',
+    display: 'flex',
+    justifyContent:'center',
+    marginBottom: '15px',
     '& > *': {
       marginTop: theme.spacing(2),
     },
@@ -142,6 +152,7 @@ function manageTravelDashboard(props) {
      }
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
+            <Typography variant='h6' component='h6'>Direct report travel Request</Typography>
            {
            loading? <>
            <Card className={classes.root} style={{boxShadow:'none'}}>
@@ -169,56 +180,36 @@ function manageTravelDashboard(props) {
            </Card>
            </>
             : 
-           <>
+           <Container maxWidth="md" className={classes.cardContainer}>
+               <Box>
            {travel.map((trav)=> (
 
             <Card className={classes.root} key={trav.travelId}>
-                        <Grid>
-                        <Paper className={classes.imageContainer}>
-                            <img src={cardImage} alt='card image' className={classes.image} /> 
-                        </Paper>
-                                   
-                    </Grid>
-                <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                        <div className={classes.requesterProfi}>
-                            <AccountCircleIcon  /> 
-                            <Typography component="h5" variant="h6" className={classes.name}>
-                            {"useraname"}
-                            </Typography>
-                        
-                        
-                        <Typography variant='caption' component='h6' style={{position:'absolute', color:'#54AD7D', right:'10px', top:'10px'}}>{trav.createdAt}</Typography>
-                    </div>
-                        <Typography component="h6" variant="subtitle1" style={{textAlign:'start'}}>
-                           Trips on this Travel request
-                        </Typography>
-                        <Typography variant="caption" color="textSecondary" className={classes.description}>
-                        {trav.Trip.length} Trip(s)
-                        </Typography>
-                    </CardContent>
-                        <div className={classes.controls}>
-                        <>
-                        <Button color="primary" onClick={() => handleSingleTravel(trav.travelId)}>view more</Button>    
-                        </>
-                        <div className={classes.buttons}>
-                            <Button variant="contained" onClick={() => handleUpdateTravel(trav.travelId)}color="primary" className={classes.approveButton}>Approve</Button>
-                            <Button variant="contained" color="secondary" className={classes.rejectButton}>Reject</Button>
-                        </div>
-                        </div>
-                    </div>
-                    <Model openModal={openModal} setOpenModal={setOpenModal} onClose={handleModalClose}>
+
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+
+                <Model openModal={openModal} setOpenModal={setOpenModal} onClose={handleModalClose}>
                     <div>this is details of travel request</div>
-                    </Model>
+                </Model>
+                
             </Card>
            ))}
-
+           </Box>
+        <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
         {/* <button onClick={ ()=> setIsErrorModalOpen(true)} >open</button> */}
         <div className={classes.paganete}>
             <Pagination count={10} color="primary" />
         </div>
-        </>
+        </Box>
+        </Container>
            } 
     </div>
     )

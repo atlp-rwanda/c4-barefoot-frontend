@@ -9,7 +9,6 @@ import Footer from './Footer'
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   content: {
-    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
   }
