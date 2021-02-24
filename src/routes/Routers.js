@@ -13,6 +13,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+import SupportRoom from '../components/Chat/SupportRoom';
 
 const Routes = () => {
     return (
@@ -83,6 +84,11 @@ const Routes = () => {
         <RouteWithLayout 
             path="/user/verification/" 
             component={ verifyAccount }
+            layout={DefaultLayout}
+        />
+        <RouteWithLayout 
+            path="/chat/support-room" 
+            component={ SupportRoom }
             layout={DefaultLayout}
         />
         
