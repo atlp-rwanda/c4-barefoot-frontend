@@ -87,7 +87,7 @@ const Routes = () => {
             layout={DefaultLayout}
         />
         <RouteWithLayout 
-            path="/chat/support-room" 
+            path="/chat" 
             component={ SupportRoom }
             layout={DefaultLayout}
         />

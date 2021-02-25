@@ -1,13 +1,19 @@
 import React from 'react';
-import { TextField, InputAdornment, Typography, CssBaseline, AppBar, makeStyles, Toolbar, IconButton, Fab, ListItem, ListItemAvatar, ListItemText, ListSubheader, Avatar, Paper, List } from "@material-ui/core";
+import { TextField, Typography, CssBaseline, AppBar, makeStyles, Toolbar, IconButton, Fab, ListItem, ListItemAvatar, ListItemText, ListSubheader, Avatar, Paper, List } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
-import { useStyles } from './ChatStyles';
-import { users } from './Dummydata';
+import { connect } from 'react-redux';
+import { fetchUsersChat } from '../../redux/actions/SendMessageAction';
+import UsersList from './UsersList';
 
-export const ChatUsers = () => {
-    const classes = useStyles();
+class ChatUsers extends React.Component {
+    UNSAFE_componentWillMount() {
+        this.props.fetchUsersChat();
+    }
+render () {
+    const users = this.props.users;
+    console.log(users)
     return (
-        <React.Fragment >
+        <div>
             <CssBaseline/>
             <Paper position="fixed">
                 <TextField
@@ -17,36 +23,16 @@ export const ChatUsers = () => {
                     variant="filled"
                     style={{boxSizing: "border-box",width: '100%', padding: '10px', borderRadius: '50px'}}
                 ><Person/></TextField>
-                <List className={classes.list}>
-                    {
-                        users.map(({id, name, message, person}) => (
-                            <React.Fragment key={id}>
-                                <ListItem button>
-                                    <ListItemAvatar>
-                                        <Avatar alt="Profile Picture" src={person} />
-                                    </ListItemAvatar>
-                                    <ListItemText primary={name} secondary={message} />
-                                </ListItem>
-                            </React.Fragment>
-                        ))
-                    }
-                </List>
-                <Typography className={classes.title}>VISITORS</Typography>
-                <List className={classes.list}>
-                    {
-                        users.map(({id, name, message, person}) => (
-                            <React.Fragment key={id}>
-                                <ListItem button>
-                                    <ListItemAvatar>
-                                        <Avatar alt="Profile Picture" src={person} />
-                                    </ListItemAvatar>
-                                    <ListItemText primary={name} secondary={message} />
-                                </ListItem>
-                            </React.Fragment>
-                        ))
-                    }
-                </List>
+                <UsersList users={users}/>
+                <Typography>VISITORS</Typography>
             </Paper>
-        </React.Fragment>
+        </div>
     )
 }
+}
+
+const mapStateToProps = (state) => ({
+    users: state.chat.users
+})
+
+export default connect(mapStateToProps, { fetchUsersChat })(ChatUsers)

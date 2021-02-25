@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, AppBar, Toolbar, TextField } from "@material-ui/core";
-import { ChatUsers } from './ChatUsers';
-import { ChatMessages } from './ChatMessages';
+import ChatUsers from './ChatUsers';
+import ChatMessages from './ChatMessages';
 import { useStyles } from './ChatStyles';
 
 const SupportRoom = () => {
