@@ -31,7 +31,7 @@ function Header() {
                     {barefootLogo}
                     <Hidden smDown>
                         <List component='nav'>
-                            <Button href="/logout" color='inherit' startIcon={<LockIcon />}>Loout</Button>
+                            <Button href="/logout" color='inherit' startIcon={<LockIcon />}>Logout</Button>
                         </List>
                     </Hidden>
                     <Hidden mdUp>
