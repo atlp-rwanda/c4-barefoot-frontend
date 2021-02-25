@@ -60,14 +60,13 @@ function Login(props) {
         load = true;
     } else {
         load = false;
+         props.login.loading = false
     }
 
     if (props.login.success) {
         console.log("login");
-        props.login.success = false
-        props.login.error = false
-        props.login.loading = false
-        props.loadSkeletons(false)
+        // props.login.success = false
+        // props.login.error = false
         props.history.push('/profile');
     }
 
