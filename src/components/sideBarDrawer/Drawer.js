@@ -143,7 +143,7 @@ function DrawerComponent() {
                     <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
                         { list.subs.map((sub)=>(
-                          <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
+                          <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} onClick={toggleDrawer('left', false)} >
                             <ListItem button className={classes.subList}>
                               <ListItemIcon className={classes.listIcons}>
                                 {sub.icon}

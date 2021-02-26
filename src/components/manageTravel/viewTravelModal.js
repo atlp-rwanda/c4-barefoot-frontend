@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,13 +11,19 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {getSingleTravelRequest} from '../../redux/actions/singleTravelAction'
 import { Skeleton } from '@material-ui/lab';
+import { updateSingleTravelRequest } from '../../redux/actions/updateTravelRequestAction';
+import Loader from '../Loader'
+import ErrorModal from './ErrorModal';
 
 
 const ViewTravelModal= (props)=> {
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { openModal, onClose, setOpenModal, singleTravel } = props
+  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel } = props
+  const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
+  const error= props.updateSingleTravel.error
+
 
 
   // Styles for dialog box
@@ -54,6 +60,18 @@ const ViewTravelModal= (props)=> {
   }));
 
 
+ 
+
+    let load = false;
+
+    if(updateSingleTravel.loading){
+        load = true;
+    } else {
+        load = false;
+
+    } 
+
+
 
   const travelRequestArray= singleTravel.travel;
 
@@ -66,6 +84,9 @@ const ViewTravelModal= (props)=> {
   const handleClose = () => {
     setOpenModal(false);
   };
+  const handleActionButton= (id, action)=>{
+    handleUpdateTravel(id, action);
+  }
 
   return (
 
@@ -96,6 +117,7 @@ const ViewTravelModal= (props)=> {
 
 
         <DialogContent>
+            <Loader open={load} />
             <Box className={classes.imageContainer} >
                 <img alt="dialog image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg" style={{width:"100%"}} />
             </Box>
@@ -178,13 +200,15 @@ const ViewTravelModal= (props)=> {
         </React.Fragment>
         )}
         <DialogActions>
-          <Button autoFocus onClick={onClose} color="primary">
+          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'approve' )} color="primary">
             Approve
           </Button>
-          <Button onClick={onClose} color="secondary" autoFocus>
+          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'reject' )} color="secondary" autoFocus>
             Reject
           </Button>
         </DialogActions>
+        {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />}
+
       </Dialog>
   );
 }

@@ -6,8 +6,8 @@ import Model from "./viewTravelModal";
 import { Skeleton } from "@material-ui/lab";
 import Pagination from '@material-ui/lab/Pagination';
 import { getTravelRequest } from "../../redux/actions/fetchTravelRequestAction";
-import { updateSingleTravelRequest, clearUpdateTravelRequest } from "../../redux/actions/updateTravelRequestAction";
-import { clearSingleRequest, getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
+import { updateSingleTravelRequest } from "../../redux/actions/updateTravelRequestAction";
+import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 import TravelRequestCard from './TravelRequestCard';
@@ -122,7 +122,7 @@ function manageTravelDashboard(props) {
      const updateError= updateSingleTravel.error;
 
      const filtered= travel.filter( (trav)=>{
-         return trav.status === 'pending';
+         return trav.status === 'approved';
      });
 
      console.log('filtered', filtered);
@@ -155,9 +155,7 @@ function manageTravelDashboard(props) {
 
      // closing modal
      const handleModalClose = () => {
-         setOpenModal(false);
-         props.clearSingleRequest();
-         props.clearUpdateTravelRequest();
+         setOpenModal(false)
      }
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
@@ -229,4 +227,4 @@ const mapStateToProps = state => ({
     singleTravel: state.manageSingleTravel,
     updateSingleTravel: state.updateTravel
 })
-export default connect(mapStateToProps, {getTravelRequest, getSingleTravelRequest, updateSingleTravelRequest, clearSingleRequest, clearUpdateTravelRequest})(manageTravelDashboard)
+export default connect(mapStateToProps, {getTravelRequest, getSingleTravelRequest, updateSingleTravelRequest})(manageTravelDashboard)

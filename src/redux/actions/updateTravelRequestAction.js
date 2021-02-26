@@ -1,21 +1,23 @@
 import axios from "axios";
 import { FETCH_ACCOMMODATIONS_ERROR } from "./fetchAccommodations";
-export const FETCH_TRAVEL_REQUEST_LOADING = 'FETCH_TRAVEL_REQUEST_LOADING'
-export const FETCH_TRAVEL_REQUEST_SUCCESS= 'FETCH_TRAVEL_REQUEST_SUCCESS'
-export const FETCH_TRAVEL_REQUEST_ERROR= 'FETCH_TRAVEL_REQUEST_ERROR'
+export const UPDATE_TRAVEL_REQUEST_LOADING = 'UPDATE_TRAVEL_REQUEST_LOADING'
+export const UPDATE_TRAVEL_REQUEST_SUCCESS= 'UPDATE_TRAVEL_REQUEST_SUCCESS'
+export const UPDATE_TRAVEL_REQUEST_ERROR= 'UPDATE_TRAVEL_REQUEST_ERROR'
+export const UPDATE_TRAVEL_REQUEST_CLEAR= 'UPDATE_TRAVEL_REQUEST_CLEAR'
+
 
 
 const token = localStorage.getItem('barefootUserToken')
 
-export const updateSingleTravelRequest = (id) => dispatch => {
-    // console.log(token)
+export const updateSingleTravelRequest = (id, action) => dispatch => {
+    console.log(token)
     dispatch({
-        type:FETCH_TRAVEL_REQUEST_LOADING
+        type:UPDATE_TRAVEL_REQUEST_LOADING
     })
-    return axios.put(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/directReports${id}`, {
+    return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, {
         body:{
-            travelId:id,
-            status:'approved'
+            travelRequestId:id,
+            action
         },
         headers:{
             Authorization: `Bearer ${token}`
@@ -24,22 +26,36 @@ export const updateSingleTravelRequest = (id) => dispatch => {
     .then( res => {
         console.log(res.data)
         dispatch({
-            type: FETCH_TRAVEL_REQUEST_SUCCESS,
+            type: UPDATE_TRAVEL_REQUEST_SUCCESS,
             payload: res.data
         })
     })
     .catch(err => {
         if(err.message === 'Network Error'){
             dispatch({
-                type:FETCH_TRAVEL_REQUEST_ERROR,
+                type:UPDATE_TRAVEL_REQUEST_ERROR,
                 error:err.message
             })
         }
-        if(err.response){
+        // if(err.response){
+        //     dispatch({
+        //         type:UPDATE_TRAVEL_REQUEST_ERROR,
+        //         error:err
+        //     })
+        // }
+        if(err.request){
             dispatch({
-                type:FETCH_TRAVEL_REQUEST_ERROR,
-                error:err
+                type:UPDATE_TRAVEL_REQUEST_ERROR,
+                error:JSON.parse(err.request.response)
             })
         }
     })
+}
+
+export const clearUpdateTravelRequest = ()=> dispatch => {
+    dispatch( 
+        {
+            type: UPDATE_TRAVEL_REQUEST_CLEAR
+        }
+    )
 }

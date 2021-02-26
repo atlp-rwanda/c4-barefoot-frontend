@@ -15,6 +15,7 @@ import {  DefaultLayout, AuthorizedUserLayout, ManagerLayout } from '../componen
 import Logout from '../components/views/Logout';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
+import ApprovedReports from '../components/manageTravel/ApprovedReports';
 const Routes = () => {
     return (
       <Switch>
@@ -53,6 +54,13 @@ const Routes = () => {
           layout={ManagerLayout}
           path="/managerTravel"
         />
+        <RouteWithLayout
+          component={ApprovedReports}
+          exact
+          layout={ManagerLayout}
+          path="/managerTravel/approved"
+        />
+        
          <RouteWithLayout
           component={signup}
           exact

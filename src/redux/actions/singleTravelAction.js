@@ -3,6 +3,7 @@ import { FETCH_ACCOMMODATIONS_ERROR } from "./fetchAccommodations";
 export const FETCH_SINGLE_TRAVEL_REQUEST_LOADING = 'FETCH_SINGLE_TRAVEL_REQUEST_LOADING'
 export const FETCH_SINGLE_TRAVEL_REQUEST_SUCCESS= 'FETCH_SINGLE_TRAVEL_REQUEST_SUCCESS'
 export const FETCH_SINGLE_TRAVEL_REQUEST_ERROR= 'FETCH_SINGLE_TRAVEL_REQUEST_ERROR'
+export const CLEAR_SINGLE_TRAVEL_REQUEST= 'CLEAR_SINGLE_TRAVEL_REQUEST';
 
 
 const token = localStorage.getItem('barefootUserToken')
@@ -44,5 +45,11 @@ export const getSingleTravelRequest = (id) => dispatch => {
                 error:JSON.parse(err.request.response)
             })
         }
+    })
+}
+
+export const clearSingleRequest= ()=> dispatch =>{
+    dispatch({
+        type: CLEAR_SINGLE_TRAVEL_REQUEST
     })
 }

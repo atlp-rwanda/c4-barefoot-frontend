@@ -1,4 +1,4 @@
-import { FETCH_SINGLE_TRAVEL_REQUEST_LOADING, FETCH_SINGLE_TRAVEL_REQUEST_SUCCESS, FETCH_SINGLE_TRAVEL_REQUEST_ERROR } from "../actions/singleTravelAction";
+import { FETCH_SINGLE_TRAVEL_REQUEST_LOADING, FETCH_SINGLE_TRAVEL_REQUEST_SUCCESS, FETCH_SINGLE_TRAVEL_REQUEST_ERROR, CLEAR_SINGLE_TRAVEL_REQUEST } from "../actions/singleTravelAction";
 
 const initialState = {
     loading:false,
@@ -25,6 +25,10 @@ export const fetchSingleTravelReducer = (state=initialState, action) => {
                 loading:false,
                 error:action.err
             }
+            
+        case CLEAR_SINGLE_TRAVEL_REQUEST: 
+            return initialState
+
         default:
             return state
     }
