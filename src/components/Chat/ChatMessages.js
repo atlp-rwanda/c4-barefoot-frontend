@@ -1,29 +1,23 @@
 import React from 'react';
 import { CssBaseline, Paper, AppBar, Toolbar, Input, IconButton, InputAdornment, List, ListItem, ListItemAvatar, Avatar, ListItemText, Box  } from '@material-ui/core';
-import { useStyles } from './ChatStyles';
-import { NewMessage } from '../../redux/actions/SendMessageAction';
+import { getChats } from '../../redux/actions/ChatAction';
 import { connect } from 'react-redux';
+import MessageList from './MessageList';
 
-function ChatMessages() {
-    const [message,setMesg] = React.useState('');
+class ChatMessages extends React.Component {
 
-    const classes = useStyles();
-
-    
-    const handleChange = (e) => {
-        e.target.value = setMesg(e.target.value)
+    UNSAFE_componentWillMount () {
+        this.props.getChats();
     }
 
-    const handleClick = () => {
-        NewMessage(message)
-        console.log(message)
-    }
+render () {
 
+    const chats = this.props.chats;
 
     return (
         <React.Fragment>
             <CssBaseline />
-            <Paper square className={classes.paper} container="true">
+            <Paper square container="true">
                 <Paper>
                     <Toolbar>
                         <List>
@@ -34,17 +28,14 @@ function ChatMessages() {
                         </List>
                     </Toolbar>
                 </Paper>
-                <Box component="div" overflow="scroll">
-                    <Box component="span" display="block" bgcolor="background.paper"  p={2} m={1} width={1/4}>Received</Box>
-                    <Box component="span" display="block" p={2} m={1} bgcolor="info.main" className="classes.sent">Sent</Box>
-                </Box>
+                <MessageList chats={chats}/>
             </Paper>
             <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 50, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
-                <Toolbar position='fixed' color="primary" className={classes.appBar}>
-                    <Input border={0} variant="outlined" style={{width: '100%', borderRadius: 50}} value={message} onChange={handleChange} 
+                <Toolbar position='fixed' color="primary">
+                    <Input border={0} variant="outlined" style={{width: '100%', borderRadius: 50}}
                         endAdornment={
                             <InputAdornment position="end">
-                                <IconButton><p>Attach</p></IconButton><IconButton onClick={handleClick}><p>Send</p></IconButton>
+                                <IconButton><p>Attach</p></IconButton><IconButton><p>Send</p></IconButton>
                             </InputAdornment>
                         }
                     />
@@ -53,5 +44,10 @@ function ChatMessages() {
         </React.Fragment>
     )
 }
+}
 
-export default connect(null, { NewMessage }) (ChatMessages);
+const mapStateToProps= state => ({
+    chats: state.chat.allchats
+})
+
+export default connect(mapStateToProps, { getChats })(ChatMessages);

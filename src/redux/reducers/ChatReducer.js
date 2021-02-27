@@ -1,21 +1,32 @@
-import {NEW_MESSAGE,CHAT_USERS} from '../actions/SendMessageAction';
+import {CHATTED_USERS, LAST_MESSAGE, GETALL_CHATS} from '../actions/ChatAction';
 
 const initialState = {
     users: [],
-    message: {}
+    last: [],
+    allchats: [
+        {
+            id: 2,
+            name: 'ie'
+        }
+    ]
 }
 
-export default function chatReducer (state = initialState, action) {
+export default function ChatReducer (state = initialState, action) {
     switch (action.type) {
-        case NEW_MESSAGE:
+        case CHATTED_USERS:
             return {
                 ...state,
-                message: action.payload
+                users: action.payload
             }
-        case CHAT_USERS:
+        case LAST_MESSAGE:
             return {
                 ...state,
-                users: action.users,
+                last: action.payload
+            }
+        case GETALL_CHATS:
+            return {
+                ...state,
+                allchats: action.payload
             }
         default:
             return state

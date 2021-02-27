@@ -5,7 +5,7 @@ import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 import { logoutReducer } from './logoutReducer';
-import chatReducer from './ChatReducer';
+import ChatReducer from './ChatReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -15,7 +15,7 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
-  chat: chatReducer,
+  chat: ChatReducer,
   })
 
 export default reducers

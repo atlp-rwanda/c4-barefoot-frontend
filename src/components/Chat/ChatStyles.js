@@ -17,7 +17,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     list: {
       marginBottom: theme.spacing(2),
-      height: '400px',
       overflow: 'scroll'
     },
     subheader: {
