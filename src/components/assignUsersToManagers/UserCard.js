@@ -8,15 +8,15 @@ const UserCard = ({style}) => {
     let photo = 'https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw';
     photo = '';
     return (
-    <Card style={{maxWidth: 250, margin: 2, padding: 3}}>
+    <Card style={{maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'}}>
         <Avatar 
-            style={{width: '100%', height: '50%', minHeight: 250}}
+            style={{width: '100%', height: '50%', minHeight: 250, backgroundColor: '#ABD5ED'}}
             alt="user" 
             name='profile_picture' 
             margin='normal'
             src={photo ? photo : 'https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg' }
         />
-        <Typography gutterBottom component="h2" style={{fontWeight: 600}}>
+        <Typography gutterBottom component="h2" style={{fontWeight: 600, color: '#43A0D6'}}>
             FirstName lastName
         </Typography>
         <Select style={{width: '100%'}} defaultValue='none'>
