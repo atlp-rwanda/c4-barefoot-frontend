@@ -37,7 +37,7 @@ function Login(props) {
         }, 2000);
         return () => clearTimeout(timer);
 
-    }, []);
+     }, []);
     const userToken = localStorage.getItem("barefootUserToken");
 
     if (userToken) {
@@ -58,15 +58,11 @@ function Login(props) {
     let load = false;
     if (props.login.loading) {
         load = true;
-    } else {
-        load = false;
-         props.login.loading = false
-    }
+    } 
 
     if (props.login.success) {
         console.log("login");
-        // props.login.success = false
-        // props.login.error = false
+        props.login.success = false
         props.history.push('/profile');
     }
 
