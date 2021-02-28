@@ -13,6 +13,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+import AssignUsersToManagers from '../components/views/assignUsersToManagers';
 
 const Routes = () => {
     return (
@@ -85,7 +86,12 @@ const Routes = () => {
             component={ verifyAccount }
             layout={DefaultLayout}
         />
-        
+        <RouteWithLayout
+            path="/assign-users-to-managers/"
+            exact
+            component= { AssignUsersToManagers }
+           layout={AuthorizedUserLayout}
+        />
         <Redirect to="/PageNotFound" />
       </Switch>
     );
