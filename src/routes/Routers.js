@@ -30,6 +30,8 @@ import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
 
+import AssignUsersToManagers from '../components/views/assignUsersToManagers';
+
 const Routes = () => {
   return (
     <Switch>
@@ -215,6 +217,12 @@ const Routes = () => {
           path="/travelManager/locations/create"
         />
 
+        <RouteWithLayout
+            path="/assign-users-to-managers/"
+            exact
+            component= { AssignUsersToManagers }
+           layout={AuthorizedUserLayout}
+        />
         <Redirect to="/PageNotFound" />
       </Switch>
   );
