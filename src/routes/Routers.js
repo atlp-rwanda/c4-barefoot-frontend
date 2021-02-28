@@ -25,6 +25,7 @@ import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
 
+import AssignUsersToManagers from '../components/views/assignUsersToManagers';
 
 const Routes = () => {
     return (
@@ -177,7 +178,12 @@ const Routes = () => {
             component={ verifyAccount }
             layout={DefaultLayout}
         />
-        
+        <RouteWithLayout
+            path="/assign-users-to-managers/"
+            exact
+            component= { AssignUsersToManagers }
+           layout={AuthorizedUserLayout}
+        />
         <Redirect to="/PageNotFound" />
       </Switch>
     );
