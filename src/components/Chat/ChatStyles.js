@@ -57,6 +57,16 @@ export const useStyles = makeStyles((theme) => ({
     },
     sent: {
         textAlign: "right"
+    },
+    feedbackText: {
+      padding: '10px',
+      fontSize: '30px',
+      textAlign: 'center',
+      
+    },
+    userlist: {
+      height: 400,
+      overflow: 'scroll'
     }
   }));
   

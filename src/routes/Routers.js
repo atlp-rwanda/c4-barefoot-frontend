@@ -13,7 +13,7 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
-import SupportRoom from '../components/Chat/SupportRoom';
+import ChatRoom from '../components/Chat/ChatRoom';
 
 const Routes = () => {
     return (
@@ -88,7 +88,7 @@ const Routes = () => {
         />
         <RouteWithLayout 
             path="/chat" 
-            component={ SupportRoom }
+            component={ ChatRoom }
             layout={DefaultLayout}
         />
         

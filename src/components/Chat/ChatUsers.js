@@ -4,6 +4,8 @@ import { Person } from "@material-ui/icons";
 import { connect } from 'react-redux';
 import { fetchUsersChat } from '../../redux/actions/ChatAction';
 import UsersList from './UsersList';
+import useStyles from './ChatStyles';
+import { withStyles } from '@material-ui/core/styles';
 
 class ChatUsers extends React.Component {
     UNSAFE_componentWillMount() {
@@ -14,7 +16,7 @@ class ChatUsers extends React.Component {
         return (
             <div>
                 <CssBaseline/>
-                <Paper position="fixed">
+                <Paper position="fixed" elevation={1}>
                     <TextField
                         id="outlined-basic"
                         variant="outlined"

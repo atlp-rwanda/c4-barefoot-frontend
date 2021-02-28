@@ -3,12 +3,7 @@ import {CHATTED_USERS, LAST_MESSAGE, GETALL_CHATS} from '../actions/ChatAction';
 const initialState = {
     users: [],
     last: [],
-    allchats: [
-        {
-            id: 2,
-            name: 'ie'
-        }
-    ]
+    allchats: []
 }
 
 export default function ChatReducer (state = initialState, action) {

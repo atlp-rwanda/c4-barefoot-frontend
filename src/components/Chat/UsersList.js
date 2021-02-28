@@ -5,11 +5,11 @@ import {useStyles} from './ChatStyles';
 
 function UsersList({users}) {
     
-    
+    const classes = useStyles();
     return (
-        <div>
+        <div className={classes.userlist}>
             <List>
-                {users ? users.map(user => (
+                {users.length != 0 ? users.map(user => (
                     <div key={user.id} onClick={()=> localStorage.setItem('userId', user.id)}>
                         <a href='' style={{textDecoration: 'none', color: 'inherit'}}>
                             <ListItem button>
@@ -20,7 +20,7 @@ function UsersList({users}) {
                             </ListItem>
                         </a>
                     </div>
-                )): <p>No chats, find user to start a chat!</p>}
+                )): <p className={classes.feedbackText}>No chats, find user to start a chat!</p>}
             </List>
         </div>
     )

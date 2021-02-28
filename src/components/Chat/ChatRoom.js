@@ -4,7 +4,7 @@ import ChatUsers from './ChatUsers';
 import ChatMessages from './ChatMessages';
 import { useStyles } from './ChatStyles';
 
-const SupportRoom = () => {
+const ChatRoom = () => {
     const classes = useStyles();
     return (
         <Grid container spacing={1}>
@@ -18,4 +18,4 @@ const SupportRoom = () => {
     )
 }
 
-export default SupportRoom;
+export default ChatRoom;
