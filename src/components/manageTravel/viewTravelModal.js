@@ -14,6 +14,8 @@ import { Skeleton } from '@material-ui/lab';
 import { updateSingleTravelRequest } from '../../redux/actions/updateTravelRequestAction';
 import Loader from '../Loader'
 import ErrorModal from './ErrorModal';
+import ConfirmModal from './ConfirmModal';
+import {clearUpdateTravelRequest} from '../../redux/actions/updateTravelRequestAction'
 
 
 const ViewTravelModal= (props)=> {
@@ -23,6 +25,7 @@ const ViewTravelModal= (props)=> {
   const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage } = props
   const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
   const error= props.updateSingleTravel.error
+  const [isConfirmOpen, setIsConfirmOpen] = useState({open: false, action: ''});
 
 
   console.log(usage);
@@ -74,8 +77,24 @@ const ViewTravelModal= (props)=> {
 
       hotelImageContainer:{
           height: '160px',
-          overflow:'hidden'
-      }
+          overflow:'hidden',
+         
+      },
+      approveButton:{
+          backgroundColor:'#219653',
+          borderRadius:'0px',
+          color: 'white',
+          '&:hover':{
+            backgroundColor: '#035F0A',
+        }
+
+      },
+      rejectButton: {
+           borderRadius:'0px',
+           marginLeft:'20px',
+           backgroundColor:'EB5757',
+           color: 'white'
+       },
   }));
 
 
@@ -96,15 +115,17 @@ const ViewTravelModal= (props)=> {
 
   const classes= useStyles();
 
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+
 
   const handleClose = () => {
     setOpenModal(false);
   };
   const handleActionButton= (id, action)=>{
-    handleUpdateTravel(id, action);
+      setIsConfirmOpen({
+          action: action,
+          open:true
+      });
+    // handleUpdateTravel(id, action);
   }
 
   return (
@@ -137,6 +158,7 @@ const ViewTravelModal= (props)=> {
 
         <DialogContent>
             <Loader open={load} />
+            <ConfirmModal isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} handleUpdateTravel={handleUpdateTravel} travelId={travelRequestArray[0].travelId} />
             <Box className={classes.imageContainer} >
                 <img alt="dialog image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg" style={{width:"100%"}} />
             </Box>
@@ -219,14 +241,14 @@ const ViewTravelModal= (props)=> {
         </React.Fragment>
         )}
         <DialogActions>
-          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'approve' )} color="primary">
+          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'approve' )} className={classes.approveButton}>
             Approve
           </Button>
-          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'reject' )} color="secondary" autoFocus>
+          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'reject' )} variant='contained' color='secondary' >
             Reject
           </Button>
         </DialogActions>
-        {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />}
+        {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
 
       </Dialog>
   );
@@ -237,4 +259,4 @@ const mapStateToProps = state => ({
 })
 
 // export default ViewTravelModal;
-export default connect(mapStateToProps, {getSingleTravelRequest})(ViewTravelModal)
+export default connect(mapStateToProps, {getSingleTravelRequest, clearUpdateTravelRequest})(ViewTravelModal)

@@ -92,8 +92,7 @@ const TravelRequestCard = (props) => {
                         <Button color="primary" onClick={ ()=> handleSingleTravel(travel.travelId, 'view')}>View more</Button>
                     </Box>
                     <Box>
-                        <Button variant='contained' className={classes.approveBtn} onClick={ ()=> handleSingleTravel(travel.travelId, 'approve')}>Approve</Button>
-                        <Button variant='contained' className={classes.rejectBtn} onClick={ ()=> handleSingleTravel(travel.travelId, 'reject')}>Reject</Button>
+                       
                     </Box>
                 </Box>
             </Grid>
