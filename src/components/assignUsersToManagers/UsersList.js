@@ -1,6 +1,6 @@
-import { Grid, Typography, Skeleton } from '@material-ui/core';
+import { Divider, Grid, Typography, Skeleton, Container } from '@material-ui/core';
 import React from 'react';
-import UserCard from './userSkeleton';
+import UserCard from './UserCard';
 import styles from './styles';
 
 
@@ -8,18 +8,18 @@ const UsersList = () => {
     const classes = styles();
     let loading = true;
     return (
-        <div>
+        <Container style={{padding: 'unset'}}>
             <Typography variant='h4' className={classes.center}>
                 List of all users
             </Typography>
-            <hr />
-            <Grid container style={{width: '100%', backgroundColor: 'green'}} spacing={1} >
+            <Divider />
+            <Grid container style={{width: '100%'}} alignItems='flex-start' justify='space-evenly'>
                 <UserCard />
                 <UserCard />
                 <UserCard />
             </Grid>
-        </div>
+        </Container>
     )
-}
+};
 
 export default UsersList;
