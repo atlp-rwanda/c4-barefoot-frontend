@@ -6,8 +6,8 @@ import Model from "./viewTravelModal";
 import { Skeleton } from "@material-ui/lab";
 import Pagination from '@material-ui/lab/Pagination';
 import { getTravelRequest } from "../../redux/actions/fetchTravelRequestAction";
-import { updateSingleTravelRequest } from "../../redux/actions/updateTravelRequestAction";
-import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
+import { updateSingleTravelRequest, clearUpdateTravelRequest } from "../../redux/actions/updateTravelRequestAction";
+import { clearSingleRequest, getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 import TravelRequestCard from './TravelRequestCard';
@@ -120,9 +120,11 @@ function manageTravelDashboard(props) {
      const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
      const {updateSingleTravel}= props
      const updateError= updateSingleTravel.error;
+     const category= 'approved';
+     const [modalUsage, setModalUsage]= useState('view')
 
      const filtered= travel.filter( (trav)=>{
-         return trav.status === 'approved';
+         return trav.status === category;
      });
 
      console.log('filtered', filtered);
@@ -143,11 +145,12 @@ function manageTravelDashboard(props) {
          setOpenModal(true)
      }
      //getting single travel
-     const handleSingleTravel = (id) =>{
+     const handleSingleTravel = (id, usage) =>{
          console.log('single travel')
          console.log(id)
          handleModalOpen()
-         props.getSingleTravelRequest(id)
+         props.getSingleTravelRequest(id);
+         setModalUsage(usage);
      }
 
      console.log(error)
@@ -155,7 +158,9 @@ function manageTravelDashboard(props) {
 
      // closing modal
      const handleModalClose = () => {
-         setOpenModal(false)
+         setOpenModal(false);
+         props.clearSingleRequest();
+         props.clearUpdateTravelRequest();
      }
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
@@ -189,7 +194,7 @@ function manageTravelDashboard(props) {
             : 
            <Container maxWidth="md" className={classes.cardContainer}>
                <Box>
-           {filtered.map((trav)=> (
+           {filtered.length !== 0 ? filtered.map((trav)=> (
 
             <Card className={classes.root} key={trav.travelId}>
 
@@ -201,6 +206,7 @@ function manageTravelDashboard(props) {
                      onClose={handleModalClose} 
                      handleUpdateTravel={handleUpdateTravel} 
                      updateSingleTravel={updateSingleTravel}
+                     usage= {modalUsage}
                 >
 
                     <div>this is details of travel request</div>
@@ -208,13 +214,21 @@ function manageTravelDashboard(props) {
                 </Model>
                 
             </Card>
-           ))}
+           ))
+           :
+           <center>
+            <Box style={{ paddingTop: '50px'}}>
+               <Typography variant="subtitle1" component="h6">No {category} travel request found</Typography>
+           </Box>
+           </center>
+        
+        }
            </Box>
         <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
         {/* <button onClick={ ()=> setIsErrorModalOpen(true)} >open</button> */}
         <div className={classes.paganete}>
-            <Pagination count={10} color="primary" />
+            { filtered.length !== 0 &&  <Pagination count={10} color="primary" />}
         </div>
         </Box>
         </Container>
@@ -227,4 +241,4 @@ const mapStateToProps = state => ({
     singleTravel: state.manageSingleTravel,
     updateSingleTravel: state.updateTravel
 })
-export default connect(mapStateToProps, {getTravelRequest, getSingleTravelRequest, updateSingleTravelRequest})(manageTravelDashboard)
+export default connect(mapStateToProps, {getTravelRequest, getSingleTravelRequest, updateSingleTravelRequest, clearSingleRequest, clearUpdateTravelRequest})(manageTravelDashboard)

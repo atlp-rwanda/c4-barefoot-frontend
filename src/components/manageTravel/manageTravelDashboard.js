@@ -120,9 +120,11 @@ function manageTravelDashboard(props) {
      const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
      const {updateSingleTravel}= props
      const updateError= updateSingleTravel.error;
+     const category= 'pending';
+     const [modalUsage, setModalUsage]= useState('view')
 
      const filtered= travel.filter( (trav)=>{
-         return trav.status === 'pending';
+         return trav.status === category;
      });
 
      console.log('filtered', filtered);
@@ -143,11 +145,12 @@ function manageTravelDashboard(props) {
          setOpenModal(true)
      }
      //getting single travel
-     const handleSingleTravel = (id) =>{
+     const handleSingleTravel = (id, usage) =>{
          console.log('single travel')
          console.log(id)
          handleModalOpen()
-         props.getSingleTravelRequest(id)
+         props.getSingleTravelRequest(id);
+         setModalUsage(usage);
      }
 
      console.log(error)
@@ -191,7 +194,7 @@ function manageTravelDashboard(props) {
             : 
            <Container maxWidth="md" className={classes.cardContainer}>
                <Box>
-           {filtered.map((trav)=> (
+           {filtered.length !== 0 ? filtered.map((trav)=> (
 
             <Card className={classes.root} key={trav.travelId}>
 
@@ -203,6 +206,7 @@ function manageTravelDashboard(props) {
                      onClose={handleModalClose} 
                      handleUpdateTravel={handleUpdateTravel} 
                      updateSingleTravel={updateSingleTravel}
+                     usage= {modalUsage}
                 >
 
                     <div>this is details of travel request</div>
@@ -210,13 +214,21 @@ function manageTravelDashboard(props) {
                 </Model>
                 
             </Card>
-           ))}
+           ))
+           :
+           <center>
+            <Box style={{ paddingTop: '50px'}}>
+               <Typography variant="subtitle1" component="h6">No {category} travel request found</Typography>
+           </Box>
+           </center>
+        
+        }
            </Box>
         <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
         {/* <button onClick={ ()=> setIsErrorModalOpen(true)} >open</button> */}
         <div className={classes.paganete}>
-            <Pagination count={10} color="primary" />
+            { filtered.length !== 0 &&  <Pagination count={10} color="primary" />}
         </div>
         </Box>
         </Container>

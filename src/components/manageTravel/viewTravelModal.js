@@ -20,13 +20,32 @@ const ViewTravelModal= (props)=> {
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel } = props
+  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage } = props
   const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
   const error= props.updateSingleTravel.error
 
 
-
+  console.log(usage);
   // Styles for dialog box
+
+  let title = 'View Travel Request';
+
+  switch( usage){
+      case 'view':
+          title= 'View Travel Request';
+          break;
+
+      case 'approve':
+          title= "Approve Travel request";
+          break;
+          
+      case 'reject':
+          title= "Reject Travel request";
+          break;
+
+      default:
+        title= 'View Travel Request'
+    }
 
   const useStyles= makeStyles((theme)=>({
       root:{
@@ -101,7 +120,7 @@ const ViewTravelModal= (props)=> {
         
 
       >
-        <center><DialogTitle id="responsive-dialog-title">View Travel Request</DialogTitle></center>
+        <center><DialogTitle id="responsive-dialog-title">{title}</DialogTitle></center>
         { travelRequestArray.length === 0 ? (
             <Box style={{margin:'50px'}}>
                 <Skeleton variant='rect' height={400} width={800} />
