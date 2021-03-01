@@ -5,7 +5,7 @@ import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 import { logoutReducer } from './logoutReducer';
-import { fetchVerifiedUsers } from './assignUserReducers';
+import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -15,7 +15,8 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
-  fetchVerifiedUsers: fetchVerifiedUsers
+  fetchVerifiedUsers: fetchVerifiedUsers,
+  fetchAllManagers: fetchAllManagers
   });
 
 export default reducers;

@@ -15,7 +15,7 @@ const UserCardSkeleton = () => {
 };
 
 const UserCard = (props) => {
-    const { skeleton } = props;
+    const { skeleton, managersElements, user: USER } = props;
     let loading = true;
     let photo = 'https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw';
     const cardStyle = {maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'};
@@ -29,18 +29,16 @@ const UserCard = (props) => {
             alt="user" 
             name='profile_picture' 
             margin='normal'
-            src={photo ? photo : 'https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg' }
+            src={USER.profile_picture ? USER.profile_picture : 'https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg' }
         />
         <Typography gutterBottom component="h2" style={{fontWeight: 600, color: '#43A0D6'}}>
-            FirstName lastName
+            {`${USER.first_name} ${USER.last_name}`}
         </Typography>
         <Select style={{width: '100%'}} defaultValue='none'>
           <MenuItem value="none" disabled>
             <em>assign line manager</em>
           </MenuItem>
-          <MenuItem value={1}>Manager 1</MenuItem>
-          <MenuItem value={2}>Manager 2</MenuItem>
-          <MenuItem value={3}>Manager 3</MenuItem>
+           {managersElements} 
         </Select>
         <CardActions>
         
