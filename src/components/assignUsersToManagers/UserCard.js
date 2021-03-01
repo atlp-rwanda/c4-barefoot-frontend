@@ -3,12 +3,27 @@ import { Avatar, Card, CardContent, Typography, Button, CardActions,
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
 
-const UserCard = ({style}) => {
+const UserCardSkeleton = () => {
+  return (
+    <Card style={{margin: 15}}>
+      <Skeleton width={200} height={200} variant='circle' />
+      <Typography variant='h5'><Skeleton /></Typography>
+      <Typography variant='h5'><Skeleton /></Typography>
+      <Typography variant='h5' style={{width: '50%', float: 'right'}}><Skeleton /></Typography>
+    </Card>
+  )
+};
+
+const UserCard = (props) => {
+    const { skeleton } = props;
     let loading = true;
     let photo = 'https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw';
+    const cardStyle = {maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'};
     photo = '';
     return (
-    <Card style={{maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'}}>
+      skeleton
+    ? <UserCardSkeleton />
+    : <Card style={cardStyle}>
         <Avatar 
             style={{width: '100%', height: '50%', minHeight: 250, backgroundColor: '#ABD5ED'}}
             alt="user" 

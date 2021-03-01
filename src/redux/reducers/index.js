@@ -17,6 +17,7 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
+import { fetchVerifiedUsers } from './assignUserReducers';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -38,9 +39,8 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
-  managerReducer
-  
-})
-  
-export default reducers
+  fetchVerifiedUsers: fetchVerifiedUsers,
+  managerReducer  
+});
 
+export default reducers;
