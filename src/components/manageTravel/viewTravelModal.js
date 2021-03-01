@@ -28,7 +28,7 @@ const ViewTravelModal= (props)=> {
   const [isConfirmOpen, setIsConfirmOpen] = useState({open: false, action: ''});
 
 
-  console.log(usage);
+//   console.log(usage);
   // Styles for dialog box
 
   let title = 'View Travel Request';
@@ -158,7 +158,12 @@ const ViewTravelModal= (props)=> {
 
         <DialogContent>
             <Loader open={load} />
-            <ConfirmModal isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} handleUpdateTravel={handleUpdateTravel} travelId={travelRequestArray[0].travelId} />
+            <ConfirmModal 
+                isOpen={isConfirmOpen} 
+                setIsOpen={setIsConfirmOpen} 
+                handleUpdateTravel={handleUpdateTravel} 
+                travelId={travelRequestArray[0].travelRequestInfo.travelId} 
+            />
             <Box className={classes.imageContainer} >
                 <img alt="dialog image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg" style={{width:"100%"}} />
             </Box>
@@ -183,7 +188,7 @@ const ViewTravelModal= (props)=> {
 
                 </Grid>
 
-                { travelRequestArray[0].Trip.map( (trip)=>(
+                { travelRequestArray[0].travelRequestInfo.Trip.map( (trip)=>(
 
                     <Grid container spacing={2} key={trip.tripId}>
                         <Grid item xs={12} sm={6} md={4} >
@@ -211,11 +216,7 @@ const ViewTravelModal= (props)=> {
                         Reason
                     </Typography>
                     <Typography variant="caption" component="h2" gutterBottom={true}  >
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate 
-                            beatae hic voluptate perferendis, tempore quidem explicabo, alias, 
-                            maiores non sit omnis nihil minima. Atque iste numquam fuga tempora 
-                            iure tempore sint laudantium ratione. Nam, doloribus. Laboriosam velit, quibusdam aliquid soluta quam, 
-                            incidunt quae sint est veritatis in, impedit accusamus vero.
+                           { travelRequestArray[0].travelRequestInfo.Trip[0].reason}
                     </Typography>                    
                 </Box>
                 <Box className={classes.hotelAndReasonBoxes}>
@@ -241,10 +242,10 @@ const ViewTravelModal= (props)=> {
         </React.Fragment>
         )}
         <DialogActions>
-          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'approve' )} className={classes.approveButton}>
+          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'approve' )} className={classes.approveButton}>
             Approve
           </Button>
-          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelId, 'reject' )} variant='contained' color='secondary' >
+          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'reject' )} variant='contained' color='secondary' >
             Reject
           </Button>
         </DialogActions>

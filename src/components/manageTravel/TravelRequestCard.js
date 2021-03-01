@@ -2,6 +2,9 @@ import { Box, Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import React from 'react'
 
+
+const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
+
 const useStyles= makeStyles( (theme)=>({
     container:{
         display: 'flex',
@@ -58,17 +61,18 @@ const useStyles= makeStyles( (theme)=>({
     },
     approvedBadge:{
         padding: '3px 15px',
-        backgroundColor: 'blue',
+        backgroundColor: '#219653',
         borderRadius: '4px 4px 0px 0px',
         color: 'white',
     }
 }))
 const TravelRequestCard = (props) => {
 
-    const {travel, handleSingleTravel, category} = props;
-    console.log(travel);
+    const {travel, handleSingleTravel, category, userInfo,accomodationsInfo} = props;
+    // console.log(userInfo);
+    console.log(accomodationsInfo)
     const classes= useStyles();
-    const cardImage= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1613499405/image1_wk0wa0.jpg'
+    const cardImage= accomodationsInfo ? accomodationsInfo[0].photos : default_image 
     return ( 
         <Grid container className={ classes.container}>
             <Grid item xs={4}>
@@ -80,7 +84,7 @@ const TravelRequestCard = (props) => {
                 <Box>
                 <Box className={classes.requesterInfo}>
                     <AccountCircleIcon />
-                    <Typography variant="h6" component="h6" className={classes.username} > {travel.userId} </Typography>
+                    <Typography variant="h6" component="h6" className={classes.username} > {userInfo.username} </Typography>
                 </Box>
                 <Box className={classes.reasonArea}>
                     <Typography variant="subtitle2" component="h6" > {"Reason of travel"} </Typography>

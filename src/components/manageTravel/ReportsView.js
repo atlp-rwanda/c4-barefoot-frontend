@@ -109,10 +109,10 @@ function ReportsView(props) {
      const [modalUsage, setModalUsage]= useState('view')
 
      const filtered= travel.filter( (trav)=>{
-         return trav.status === category;
+         return trav.travelRequestInfo.status === category;
      });
 
-     console.log('filtered', filtered);
+    //  console.log('filtered', filtered);
      useEffect(() => {
          props.getTravelRequest()
      }, [])
@@ -183,7 +183,13 @@ function ReportsView(props) {
 
             <Card className={classes.root} key={trav.travelId}>
 
-                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} category={category} />
+                <TravelRequestCard 
+                    travel={trav.travelRequestInfo} 
+                    handleSingleTravel={handleSingleTravel} 
+                    category={category} 
+                    userInfo= {trav.userInfo}
+                    accomodationsInfo= {trav.accommodationInfo}
+                />
 
                 <Model
                      openModal={openModal}
@@ -192,6 +198,7 @@ function ReportsView(props) {
                      handleUpdateTravel={handleUpdateTravel} 
                      updateSingleTravel={updateSingleTravel}
                      usage= {modalUsage}
+
                 >
 
                     <div>this is details of travel request</div>
