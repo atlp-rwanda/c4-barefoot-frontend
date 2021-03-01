@@ -55,11 +55,17 @@ const useStyles= makeStyles( (theme)=>({
         '&:hover':{
             backgroundColor: '#71042B',
         }
+    },
+    approvedBadge:{
+        padding: '3px 15px',
+        backgroundColor: 'blue',
+        borderRadius: '4px 4px 0px 0px',
+        color: 'white',
     }
 }))
 const TravelRequestCard = (props) => {
 
-    const {travel, handleSingleTravel} = props;
+    const {travel, handleSingleTravel, category} = props;
     console.log(travel);
     const classes= useStyles();
     const cardImage= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1613499405/image1_wk0wa0.jpg'
@@ -79,7 +85,7 @@ const TravelRequestCard = (props) => {
                 <Box className={classes.reasonArea}>
                     <Typography variant="subtitle2" component="h6" > {"Reason of travel"} </Typography>
                     <Typography variant="caption" component="h6" >
-                         {travel.Trip[0].reason}
+                         { travel.Trip.length !== 0 ? travel.Trip[0].reason : "No available Trip reason"}
                     </Typography>
                 </Box>
                 <Box>
@@ -92,7 +98,7 @@ const TravelRequestCard = (props) => {
                         <Button color="primary" onClick={ ()=> handleSingleTravel(travel.travelId, 'view')}>View more</Button>
                     </Box>
                     <Box>
-                       
+                       {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}
                     </Box>
                 </Box>
             </Grid>

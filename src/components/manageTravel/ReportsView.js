@@ -183,7 +183,7 @@ function ReportsView(props) {
 
             <Card className={classes.root} key={trav.travelId}>
 
-                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} />
+                <TravelRequestCard travel={trav} handleSingleTravel={handleSingleTravel} category={category} />
 
                 <Model
                      openModal={openModal}
