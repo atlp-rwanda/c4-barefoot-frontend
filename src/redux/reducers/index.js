@@ -21,7 +21,7 @@ import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
-import { fetchVerifiedUsers } from './assignUserReducers';
+import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -48,6 +48,8 @@ const reducers = combineReducers({
   createAcc: createAccReducer,
   createLoc: createLocReducer,
   fetchVerifiedUsers: fetchVerifiedUsers,
-})
+  fetchAllManagers: fetchAllManagers,
+  managerReducer  
+});
 
 export default reducers
