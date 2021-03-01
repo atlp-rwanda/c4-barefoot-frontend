@@ -21,6 +21,7 @@ import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
+import { fetchVerifiedUsers } from './assignUserReducers';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -46,8 +47,7 @@ const reducers = combineReducers({
   createTravelRequest: CreateTravelRequestReducer,
   createAcc: createAccReducer,
   createLoc: createLocReducer,
+  fetchVerifiedUsers: fetchVerifiedUsers,
 })
 
 export default reducers
-
-

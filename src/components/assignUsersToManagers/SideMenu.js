@@ -51,7 +51,7 @@ const SideMenu = () => {
     let photo = '';
     photo = 'https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw';
     return (
-        <Container style={{width: 400, backgroundColor: '#EAF4FB', padding: 'unset'}}>
+        <Container style={{minWidth: 270, maxWidth: 270, backgroundColor: '#EAF4FB', padding: 'unset'}}>
             <Grid container alignItems='center'>
                 <Avatar 
                     style={{ backgroundColor: '#ABD5ED', height: 80, width: 80, margin: 5}}
