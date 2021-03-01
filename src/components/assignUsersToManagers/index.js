@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Container } from '@material-ui/core';
+import { connect, useDispatch } from 'react-redux';
 import UsersList from './UsersList';
 import SideMenu from './SideMenu';
-import { Container } from '@material-ui/core';
+import { getVerifiedUsers } from '../../redux/actions/assignUserActions';
 
-const AssignUsersToManagers = () => {
-  let loading = true;
+const AssignUsersToManagers = (props) => {
+  const { fetchVerifiedUsers } = props;
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log({dispatch, test: 'useEffect()'});
+  //   getVerifiedUsers(dispatch);
+  // });
+  useEffect(() => {
+    props.getVerifiedUsers(dispatch);
+  }, []);
+  console.log(props.fetchVerifiedUsers);
+
   return (
-    <div style={{display: 'flex', flexDirection: 'row', justify: 'flex-start'}}>
+    <Container style={{display: 'flex', flexDirection: 'row', justify: 'flex-start', padding: 'unset'}}>
       <SideMenu />
-      <UsersList />
-    </div>
+      <UsersList loading={fetchVerifiedUsers.pending}/>
+    </Container>
   );
 }
 
-export default AssignUsersToManagers;
+const mapStateToProps = state => ({
+  fetchVerifiedUsers: state.fetchVerifiedUsers
+});
+
+export { AssignUsersToManagers };
+
+export default connect(mapStateToProps, { getVerifiedUsers })(AssignUsersToManagers);
