@@ -16,17 +16,22 @@ import Loader from '../Loader'
 import ErrorModal from './ErrorModal';
 import ConfirmModal from './ConfirmModal';
 import {clearUpdateTravelRequest} from '../../redux/actions/updateTravelRequestAction'
+import SuccessModal from './SuccessModal';
 
+const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 
 const ViewTravelModal= (props)=> {
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage } = props
+  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage, accomodationsInfo } = props
   const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen]= useState(false)
   const error= props.updateSingleTravel.error
+  const success= props.updateSingleTravel.travel
   const [isConfirmOpen, setIsConfirmOpen] = useState({open: false, action: ''});
-
+//   const accomodationsInfo= singleTravel.travel[0]
+  console.log('single travel: ', singleTravel.travel.length === 0 ? 'no request info yet': singleTravel.travel[0] );
 
 //   console.log(usage);
   // Styles for dialog box
@@ -222,16 +227,14 @@ const ViewTravelModal= (props)=> {
                 <Box className={classes.hotelAndReasonBoxes}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
-                            <img alt="hotel image" src='https://res.cloudinary.com/nowo-ltd/image/upload/v1613499405/image1_wk0wa0.jpg' style={{width: '100%'}} />
+                            <img alt="hotel image" src={accomodationsInfo ? accomodationsInfo[0].photos : default_image } style={{width: '100%'}} />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                                Mariot Hotel
+                                {accomodationsInfo ? accomodationsInfo[0].title : 'No name available' }
                             </Typography>
                             <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate 
-                                    beatae hic voluptate perferendis, tempore quidem explicabo, alias, 
-                                    
+                                {accomodationsInfo ? accomodationsInfo[0].description : 'No accomodation decription available for this Trip' }     
                             </Typography> 
                         </Grid>
                     </Grid>
@@ -250,6 +253,7 @@ const ViewTravelModal= (props)=> {
           </Button>
         </DialogActions>
         {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
+        {success && <SuccessModal isOpen={isSuccessModalOpen} setIsOpen={setIsSuccessModalOpen} success={success} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
 
       </Dialog>
   );

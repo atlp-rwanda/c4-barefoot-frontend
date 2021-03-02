@@ -14,15 +14,17 @@ export const updateSingleTravelRequest = (id, action) => dispatch => {
     dispatch({
         type:UPDATE_TRAVEL_REQUEST_LOADING
     })
-    return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, {
-        body:{
+    return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, 
+        {
             travelRequestId:id,
             action
         },
-        headers:{
-            Authorization: `Bearer ${token}`
+        {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
         }
-    })
+    )
     .then( res => {
         console.log(res.data)
         dispatch({

@@ -198,6 +198,7 @@ function ReportsView(props) {
                      handleUpdateTravel={handleUpdateTravel} 
                      updateSingleTravel={updateSingleTravel}
                      usage= {modalUsage}
+                     accomodationsInfo= {trav.accommodationInfo}
 
                 >
 
