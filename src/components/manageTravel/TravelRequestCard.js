@@ -74,8 +74,7 @@ const useStyles= makeStyles( (theme)=>({
 const TravelRequestCard = (props) => {
 
     const {travel, handleSingleTravel, category, userInfo,accomodationsInfo} = props;
-    // console.log(userInfo);
-    console.log(accomodationsInfo)
+
     const classes= useStyles();
     const cardImage= accomodationsInfo ? accomodationsInfo[0].photos : default_image 
 

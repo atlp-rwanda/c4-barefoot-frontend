@@ -19,7 +19,7 @@ export const getTravelRequest = () => dispatch => {
         }
     })
     .then( res => {
-        console.log(res.data)
+        // console.log(res.data)
         dispatch({
             type: FETCH_TRAVEL_REQUEST_SUCCESS,
             payload: res.data

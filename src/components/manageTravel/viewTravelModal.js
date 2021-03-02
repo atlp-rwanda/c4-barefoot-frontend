@@ -30,10 +30,7 @@ const ViewTravelModal= (props)=> {
   const error= props.updateSingleTravel.error
   const success= props.updateSingleTravel.travel
   const [isConfirmOpen, setIsConfirmOpen] = useState({open: false, action: ''});
-//   const accomodationsInfo= singleTravel.travel[0]
-  console.log('single travel: ', singleTravel.travel.length === 0 ? 'no request info yet': singleTravel.travel[0] );
 
-//   console.log(usage);
   // Styles for dialog box
 
   let title = 'View Travel Request';
@@ -132,7 +129,6 @@ const ViewTravelModal= (props)=> {
           action: action,
           open:true
       });
-    // handleUpdateTravel(id, action);
   }
   const handleImageError= (e)=>{
       e.target.src= default_image

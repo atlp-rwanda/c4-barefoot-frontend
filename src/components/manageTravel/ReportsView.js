@@ -122,7 +122,6 @@ const filter= (travels, category)=>{
                 if( trav.travelRequestInfo.Trip.length !== 0){
                     return (trav.travelRequestInfo.Trip[ trav.travelRequestInfo.Trip.length -1 ].returnDate < Date.now()) &&( trav.travelRequestInfo.Trip[ trav.travelRequestInfo.Trip.length -1 ].returnDate);
                 }
-                // console.log(trav.travelRequestInfo.Trip);
             });
             return filteredArray;
         default: 
@@ -145,9 +144,7 @@ function ReportsView(props) {
      const [modalUsage, setModalUsage]= useState('view')
 
      const filtered=  filter(travel, category)
-     console.log('New filtered : ', filtered);
 
-    //  console.log('filtered', filtered);
      useEffect(() => {
          props.getTravelRequest()
      }, [])
@@ -166,15 +163,13 @@ function ReportsView(props) {
      }
      //getting single travel
      const handleSingleTravel = (id, usage) =>{
-         console.log('single travel')
-         console.log(id)
+
          handleModalOpen()
          props.getSingleTravelRequest(id);
          setModalUsage(usage);
      }
 
-     console.log(error)
-     const cardImage = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg";
+
 
      // closing modal
      const handleModalClose = () => {
@@ -256,7 +251,6 @@ function ReportsView(props) {
            </Box>
         <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
-        {/* <button onClick={ ()=> setIsErrorModalOpen(true)} >open</button> */}
         <div className={classes.paganete}>
             { filtered.length !== 0 &&  <Pagination count={10} color="primary" />}
         </div>
