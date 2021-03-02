@@ -6,6 +6,7 @@ import { Skeleton } from '@material-ui/lab'
 import { connect } from 'react-redux'
 import { getLocations } from '../../redux/actions/fetchLocationsAction'
 import { getAccommodations } from '../../redux/actions/fetchAccommodations'
+import VisitorsForm from '../Chat/Visitors/VisitorsForm';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -82,6 +83,7 @@ function Landing (props){
           ))}
            
         </Grid>
+        <VisitorsForm/>
       </Container>
     </React.Fragment>
 

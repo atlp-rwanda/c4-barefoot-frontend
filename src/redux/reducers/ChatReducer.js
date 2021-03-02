@@ -1,9 +1,10 @@
-import {CHATTED_USERS, LAST_MESSAGE, GETALL_CHATS} from '../actions/ChatAction';
+import {CHATTED_USERS, GETALL_CHATS, NEW_MESSAGE, VISITOR_MESSAGE} from '../actions/ChatAction';
 
 const initialState = {
     users: [],
-    last: [],
-    allchats: []
+    allchats: [],
+    chat: {},
+    message: {}
 }
 
 export default function ChatReducer (state = initialState, action) {
@@ -13,15 +14,20 @@ export default function ChatReducer (state = initialState, action) {
                 ...state,
                 users: action.payload
             }
-        case LAST_MESSAGE:
+        case NEW_MESSAGE:
             return {
                 ...state,
-                last: action.payload
+                chat: action.payload
             }
         case GETALL_CHATS:
             return {
                 ...state,
                 allchats: action.payload
+            }
+        case VISITOR_MESSAGE:
+            return {
+                ...state,
+                message: action.payload
             }
         default:
             return state

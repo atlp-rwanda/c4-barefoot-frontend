@@ -1,8 +1,9 @@
 import React from 'react';
-import { CssBaseline, Paper, AppBar, Toolbar, Input, IconButton, InputAdornment, List, ListItem, ListItemAvatar, Avatar, ListItemText, Box  } from '@material-ui/core';
+import { CssBaseline, Paper, AppBar, Toolbar, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core';
 import { getChats } from '../../redux/actions/ChatAction';
 import { connect } from 'react-redux';
-import MessageList from './MessageList';
+import MessageList from './Lists/MessageList';
+import NewMessage from './Lists/NewMessage';
 
 class ChatMessages extends React.Component {
 
@@ -13,6 +14,7 @@ class ChatMessages extends React.Component {
 render () {
 
     const chats = this.props.chats;
+    const user = localStorage.getItem('userName')
 
     return (
         <React.Fragment>
@@ -23,24 +25,14 @@ render () {
                         <List>
                             <ListItem>
                                 <ListItemAvatar><Avatar alt="Profile Picture" src="" /></ListItemAvatar>
-                                <ListItemText primary="Name" secondary="Online"/>
+                                <ListItemText primary={user} secondary="Online"/>
                             </ListItem>
                         </List>
                     </Toolbar>
                 </Paper>
                 <MessageList chats={chats}/>
             </Paper>
-            <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 50, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
-                <Toolbar position='fixed' color="primary">
-                    <Input border={0} variant="outlined" style={{width: '100%', borderRadius: 50}}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton><p>Attach</p></IconButton><IconButton><p>Send</p></IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                </Toolbar>
-            </Paper>
+            <NewMessage/>
         </React.Fragment>
     )
 }

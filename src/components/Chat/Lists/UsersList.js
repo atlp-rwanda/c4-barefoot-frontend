@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListItem, ListItemText, ListItemAvatar, List, Avatar } from '@material-ui/core';
-import {useStyles} from './ChatStyles';
+import {useStyles} from '../ChatStyles';
 
 
 function UsersList({users}) {
@@ -10,7 +10,10 @@ function UsersList({users}) {
         <div className={classes.userlist}>
             <List>
                 {users.length != 0 ? users.map(user => (
-                    <div key={user.id} onClick={()=> localStorage.setItem('userId', user.id)}>
+                    <div key={user.id} onClick={()=> {
+                        localStorage.setItem('userId', user.id),
+                        localStorage.setItem('userName', user.first_name)
+                    }}>
                         <a href='' style={{textDecoration: 'none', color: 'inherit'}}>
                             <ListItem button>
                                 <ListItemAvatar>

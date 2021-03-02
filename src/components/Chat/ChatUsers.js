@@ -3,8 +3,7 @@ import { TextField, Typography, CssBaseline, AppBar, makeStyles, Toolbar, IconBu
 import { Person } from "@material-ui/icons";
 import { connect } from 'react-redux';
 import { fetchUsersChat } from '../../redux/actions/ChatAction';
-import UsersList from './UsersList';
-import useStyles from './ChatStyles';
+import UsersList from './Lists/UsersList';
 import { withStyles } from '@material-ui/core/styles';
 
 class ChatUsers extends React.Component {

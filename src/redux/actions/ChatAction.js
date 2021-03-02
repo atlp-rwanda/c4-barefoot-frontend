@@ -4,26 +4,26 @@ export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const CHATTED_USERS = 'CHATTED_USERS';
 export const GETALL_CHATS = 'GETALL_CHATS';
 export const LAST_MESSAGE = 'LAST_MESSAGE';
+export const VISITOR_MESSAGE = 'VISITOR_MESSAGE';
 
-export const NewMessage = (messageData) => dispatch => {
-    const authToken = localStorage.getItem('BarefootUserToken')
-    console.log('fetching')
-    fetch('https://localhost:7000/api/v1/chat', {
+// send a new message to the user
+export const newMessageAction = (messageData) => dispatch => {
+    const authToken = localStorage.getItem('barefootUserToken')
+    fetch(`${process.env.REACT_APP_BACKEND_LINK}/chat`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${authToken}`
+        headers: { 
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify(messageData)
     })
-    .then(res = res.json())
-    .then(data => {
-        dispatch({
+    .then(res => res.json())
+    .then(data => dispatch({
             type: 'NEW_MESSAGE',
             payload: data
         })
-        console.log(data)
-    })
+    )
+    .catch(err => console.log(err.message))
 }
 
 // Get list of people you've chatted with
@@ -73,5 +73,15 @@ export const getChats = () => dispatch => {
             payload: res.data.chats
         })
     })
+    .catch(err => console.log(err.message))
+}
+
+// post a new visitor's message
+export const visitorsMessage = (message) => dispatch =>{
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitor`, message)
+    .then(res => dispatch({
+        type: VISITOR_MESSAGE,
+        payload: res.data
+    }))
     .catch(err => console.log(err.message))
 }

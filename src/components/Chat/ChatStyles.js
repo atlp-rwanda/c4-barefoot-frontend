@@ -17,7 +17,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     list: {
       marginBottom: theme.spacing(2),
-      overflow: 'scroll'
+      overflow: 'scroll',
+      margin: 10
     },
     subheader: {
       backgroundColor: theme.palette.background.paper,
@@ -67,6 +68,53 @@ export const useStyles = makeStyles((theme) => ({
     userlist: {
       height: 400,
       overflow: 'scroll'
+    },
+    chatIcon: {
+      boxShadow: '0 2.8px 2.2px rgba(27, 27, 27, 0.034), 0 6.7px 5.3px rgba(110, 110, 110, 0.048), 0 12.5px 10px rgba(117, 116, 116, 0.06)',
+      backgroundColor: '#376C7C',
+      bottom: 80,
+      left: 30,
+      position: 'fixed'
+    },
+    firstform: {
+      backgroundColor: '#376C7C',
+      position: 'fixed',
+      bottom: 130,
+      left: 70,
+      padding: 10,
+      borderRadius: 10
+    },
+    sendButton: {
+      color: '#fff',
+      opacity: 1000,
+      backgroundColor: '#479B7D',
+      marginTop: 20
+    },
+    supporttitle: {
+      boxSizing: 'border-box',
+      fontWeight: 100,
+      color: 'inherit',
+      textAlign: 'center',
+      opacity: 5000,
+      fontWeight: 700
+    },
+    secondform: {
+      backgroundColor: '#F0FAFF',
+      width: '30%',
+      position: 'fixed',
+      bottom: 130,
+      left: 70,
+      padding: 10,
+      borderRadius: 4
+    },
+    vChatContainer: {
+      height: 300,
+      width: '100%',
+    },
+    form: {
+      width: '100%',
+      backgroundColor: '#E5E5E5',
+      padding: 10,
+      boxSizing: 'border-box',
     }
   }));
-  

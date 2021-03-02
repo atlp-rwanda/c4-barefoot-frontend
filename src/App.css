@@ -5,3 +5,12 @@
    padding: 0;
    box-sizing: border-box;
 }
+.chatus {
+  color: #fff
+}
+.chatus:hover {
+  color: #376C7C
+}
+.chatus:active {
+  color: #376C7C
+}
