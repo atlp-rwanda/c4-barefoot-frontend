@@ -89,7 +89,7 @@ const Routes = () => {
         <RouteWithLayout 
             path="/chat" 
             component={ ChatRoom }
-            layout={DefaultLayout}
+            layout={AuthorizedUserLayout}
         />
         
         <Redirect to="/PageNotFound" />

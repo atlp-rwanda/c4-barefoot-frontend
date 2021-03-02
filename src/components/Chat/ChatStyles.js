@@ -116,5 +116,10 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#E5E5E5',
       padding: 10,
       boxSizing: 'border-box',
+    },
+    visitor: {
+      padding: 10,
+      borderBottom: '1px solid grey',
+      margin: 0.5
     }
   }));

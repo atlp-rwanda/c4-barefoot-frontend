@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssBaseline, Paper, AppBar, Toolbar, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core';
-import { getChats } from '../../redux/actions/ChatAction';
+import { getChats, getVisitorsMessages } from '../../redux/actions/ChatAction';
 import { connect } from 'react-redux';
 import MessageList from './Lists/MessageList';
 import NewMessage from './Lists/NewMessage';
@@ -9,12 +9,14 @@ class ChatMessages extends React.Component {
 
     UNSAFE_componentWillMount () {
         this.props.getChats();
+        this.props.getVisitorsMessages();
     }
 
 render () {
 
     const chats = this.props.chats;
     const user = localStorage.getItem('userName')
+    const vMessages = this.props.vmessages;
 
     return (
         <React.Fragment>
@@ -30,7 +32,7 @@ render () {
                         </List>
                     </Toolbar>
                 </Paper>
-                <MessageList chats={chats}/>
+                <MessageList chats={chats} vmessages={vMessages}/>
             </Paper>
             <NewMessage/>
         </React.Fragment>
@@ -39,7 +41,8 @@ render () {
 }
 
 const mapStateToProps= state => ({
-    chats: state.chat.allchats
+    chats: state.chat.allchats,
+    vmessages: state.chat.vmessages
 })
 
-export default connect(mapStateToProps, { getChats })(ChatMessages);
+export default connect(mapStateToProps, { getChats, getVisitorsMessages })(ChatMessages);

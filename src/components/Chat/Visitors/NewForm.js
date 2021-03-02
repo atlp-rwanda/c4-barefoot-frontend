@@ -5,7 +5,6 @@ import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {connect} from 'react-redux';
 import {visitorsMessage} from '../../../redux/actions/ChatAction';
-import ListMessages from './ListMessages';
 
 function NewForm(props){
     const classes = useStyles();

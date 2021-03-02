@@ -5,6 +5,9 @@ export const CHATTED_USERS = 'CHATTED_USERS';
 export const GETALL_CHATS = 'GETALL_CHATS';
 export const LAST_MESSAGE = 'LAST_MESSAGE';
 export const VISITOR_MESSAGE = 'VISITOR_MESSAGE';
+export const GET_VISITORS = 'GET_VISITORS';
+export const GETV_MESSAGES = 'GETV_MESSAGES';
+export const SUPPORT_RESPONDS = 'SUPPORT_RESPONDS';
 
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
@@ -81,6 +84,51 @@ export const visitorsMessage = (message) => dispatch =>{
     return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitor`, message)
     .then(res => dispatch({
         type: VISITOR_MESSAGE,
+        payload: res.data
+    }))
+    .catch(err => console.log(err.message))
+}
+
+//Get visitors list
+export const getVisitorsList = () => dispatch => {
+    const authToken = localStorage.getItem('barefootUserToken');
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitors`, {
+        headers: {
+            authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => {
+        dispatch({
+            type: GET_VISITORS,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err.message))
+}
+
+//Get visitor's messages 
+export const getVisitorsMessages = () => dispatch => {
+    const authToken = localStorage.getItem('barefootUserToken');
+    const visitor = localStorage.getItem('userId')
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/support?visitor=${visitor}`, {
+        headers: {
+            authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => {
+        dispatch({
+            type: GETV_MESSAGES,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err.message))
+}
+
+//support responds to the visitor
+export const supportResponds = (message) => dispatch =>{
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/support`, message)
+    .then(res => dispatch({
+        type: SUPPORT_RESPONDS,
         payload: res.data
     }))
     .catch(err => console.log(err.message))
