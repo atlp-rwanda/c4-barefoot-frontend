@@ -1,4 +1,3 @@
-import axios from 'axios'
 import {API} from './AxiosAPI';
 export const REQUEST_SIGNUP = 'REQUEST_SIGNUP'
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'

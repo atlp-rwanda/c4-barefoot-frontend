@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
-import { makeStyles, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, IconButton, Box, Avatar, Typography, Collapse} from '@material-ui/core';
-import { PlusOne, Home, People, Delete, Settings, Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
+import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import {sideBarData} from "../components/layouts/adminLayout/sidebardata";
+import { Link } from 'react-router-dom';
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles( theme =>({
+  root: {
+    background: '#EAF4FB'
+  },  
   list: {
-    width: 250,
+    width: 290,
   },
   menuIcon: {
     color: 'white'
@@ -29,44 +32,83 @@ const useStyles = makeStyles(theme => ({
   listIcons: {
     color: theme.palette.primary.main,
   },
+  subList: {
+    paddingLeft: theme.spacing(4),
+    textDecoration: `none`,
+    color: 'black'
+    
+  },
   nested: {
     paddingLeft: theme.spacing(4),
     textDecoration: `none`,
     color: 'black'
     
   },
-}));
+}))
 
-export default function TemporaryDrawer() {
-  const classes = useStyles();
-  const [state, setState] = useState({left: false});
-  const [drop, setDrop] = React.useState(false);
+function DrawerComponent() {
+    const classes = useStyles()
+    const [openDrawer, setOpenDrawer] = useState(true);
+    const [state, setState] = useState({left: false});
+    const [drop, setDrop] = React.useState( sideBarData.map( link=>{
+        return {
+          item: link.title,
+          open: false
+        }
+    })
+    );
+    const [collapse,setCollapse]= useState(false);
+    // console.log(sideBarData)
+    // console.log(drop);
 
-  const firstLinks = [
-    {title: 'Create Roles', path: '/admin/roles'},
-    {title: 'list of roles', path:'/admin/roleslist'}
-  ]
+    const checkIsOpen= ( title =>{
+      let isOpen= false;
+      drop.forEach( link => {
+        if( link.item === title){
+          isOpen= link.open
+        }
+      })
+      // console.log(title + ':' + isOpen);
+      return isOpen;
+    });
 
-  const toggleDrawer = (anchor, open) => (event) => {
+    // checkIsOpen('Travel requests');
+
+    const handleCollapse= (item)=>{
+      const newState= drop.map( (link)=>{
+        if(link.item === item){
+          return {
+            item: link.item,
+            open: !link.open
+          }
+        }
+        else{
+          return {
+            item: link.item,
+            open: false
+          }
+        }
+      });
+      setDrop(newState);
+      // setCollapse(!collapse);
+    }
+    const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
     setState({ [anchor]: open });
   };
-
-  const handleClick = () => {
-    setDrop(!drop)
-  }
-
-  const list = (anchor) => (
-    <div
-      className={classes.list}
-      role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <Box className={classes.accountInfo}>
+    const drawSideBar = (anchor) => (
+        <>
+        <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
+        </div>
+        <Box className={classes.accountInfo}>
         <Avatar className={classes.paper}>
           <AccountCircle fontSize='large' className={classes.listIcons}/>
         </Avatar>
@@ -74,68 +116,67 @@ export default function TemporaryDrawer() {
       </Box>
       <Divider/>
       <List>
-          <Link to='/admin' key='Home' className={classes.linkText} >
-            <ListItem button>
-              <ListItemIcon> <Home className={classes.listIcons}/> </ListItemIcon>
-              <ListItemText primary='Home' />
-            </ListItem>
-          </Link>
+          {sideBarData.map(list => (
+             list.subs.length === 0 ? (
+              <Link to={list.link} key={list.title} className={classes.nested}>
+                <ListItem button onClick={toggleDrawer('left', false)}>
+                    <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
+                    <ListItemText>
+                        {list.title}
+                    </ListItemText>
+                </ListItem>
 
-            <ListItem button onClick={handleClick}>
-              <ListItemIcon> <Settings className={classes.listIcons} /> </ListItemIcon>
-              <ListItemText primary='ROLES' />
-              {drop ? <ExpandLess/> : <ExpandMore/>}
-            </ListItem>
-            <Collapse in={drop} timeout='auto' unmountOnExit>
-              <List component='div' disablePadding>
-                {firstLinks.map(({title, path}) => (
-                  <Link to={path} key={title} className={classes.nested}>
-                    <ListItem button >
-                      <ListItemText primary={title}/>
-                    </ListItem>
-                  </Link>
-                ))}
-              </List>
-            </Collapse>
-      </List>
-      <Divider/>
-      <List>
-        <Link to='/users' key='List users' className={classes.linkText}>
-          <ListItem button>
-            <ListItemIcon> <People className={classes.listIcons}/> </ListItemIcon>
-            <ListItemText primary= 'List users' />
-          </ListItem>
-        </Link>
-      </List>
-      <Divider/>
-      <List>
-        <Link to='/trash' key='Trash' className={classes.linkText}>
-          <ListItem button>
-            <ListItemIcon> <Delete className={classes.listIcons}/> </ListItemIcon>
-            <ListItemText primary= 'Trash' />
-          </ListItem>
-        </Link>
-      </List>
-    </div>
-  )
+              </Link>
+              )
+               :
+              (
 
-  return(
-    <div>
-      
+                <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
+                <ListItem button >
+                    <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
+                    <ListItemText>
+                        {list.title}
+                    </ListItemText>
+                    {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
+                </ListItem>
+
+                    <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        { list.subs.map((sub)=>(
+                          <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
+                            <ListItem button className={classes.subList}>
+                              <ListItemIcon className={classes.listIcons}>
+                                {sub.icon}
+                              </ListItemIcon>
+                              <ListItemText> {sub.title} </ListItemText>
+                            </ListItem>
+                          </Link>
+                        ))}
+                      </List>
+                    </Collapse>
+
+              </Box>               
+
+              )
+          ))}
+                
+      </List>
+      </>
+    )
+    return (
         <React.Fragment>
-          <IconButton edge='start' onClick={toggleDrawer('left', true)}>
+         <IconButton edge='start' onClick={toggleDrawer('left', true)}>
             <Menu fontSize='large' className = {classes.menuIcon} />
           </IconButton>
-          <Drawer 
-            classes = {{paper: classes.paper}}
-            anchor='left' 
-            open={state.left} 
-            onOpen={toggleDrawer('left', true)}
-            onClose={toggleDrawer('left', false)}>
-            {list('left')}
-          </Drawer>
+        <Drawer 
+        classes= { {paper: classes.root}}
+        anchor='left'
+        open={state.left} 
+        onClose={toggleDrawer('left', false)}>
+            {drawSideBar('left')}
+        </Drawer>
         </React.Fragment>
-      
-    </div>
-  )
+    )
 }
+
+export default DrawerComponent

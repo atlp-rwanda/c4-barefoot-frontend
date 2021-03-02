@@ -1,5 +1,4 @@
-import axios from 'axios'
-
+import {API} from './AxiosAPI';
 const token = window.localStorage.getItem('barefootUserToken')
 
 export const FETCH_PERMISSIONS_PENDING = 'FETCH_PERMISSIONS_PENDING'
@@ -11,15 +10,12 @@ export const UPDATE_PERMISSIONS_SUCCESS = 'UPDATE_PERMISSIONS_SUCCESS'
 export const UPDATE_PERMISSIONS_ERROR = 'UPDATE_PERMISSIONS_ERROR'
 export const CLEAR_PERMISSIONS_SNACKBAR = ' CLEAR_PERMISSIONS_SNACKBAR'
 
-export const getPermissions = (payload) => dispatch => {
+export const getPermissions = (id,role) => dispatch => {
   dispatch({
     type: FETCH_PERMISSIONS_PENDING
   })
 
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/admin/permissions`, {
-    params: {
-      role: payload
-    },
+  return API.get(`/admin/permission/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -28,7 +24,7 @@ export const getPermissions = (payload) => dispatch => {
     dispatch({
       type: FETCH_PERMISSIONS_SUCCESS,
       payload: res.data,
-      role: payload
+      role: role
     })
   })
   .catch(err => {
@@ -39,11 +35,11 @@ export const getPermissions = (payload) => dispatch => {
   })
 }
 
-export const changePermission = (index,payload) => dispatch =>{
+export const changePermission = (property,payload) => dispatch =>{
   dispatch({
     type: CHECKBOX_CHANGED,
     payload: payload,
-    index: index
+    property: property
   })
 }
 
@@ -51,8 +47,8 @@ export const updatePermission = (payload, role) => dispatch => {
   dispatch({
     type: UPDATE_PERMISSIONS_PENDING
   })
-
-  return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/admin/roles/update`, {
+  
+  return API.put(`/admin/role/update`, {
     role: role,
     permissions: payload
   }, {

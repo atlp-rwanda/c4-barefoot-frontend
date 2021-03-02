@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import {API} from './AxiosAPI';
 const token = window.localStorage.getItem('barefootUserToken')
 
 
@@ -9,7 +8,7 @@ export const FETCH_MANAGERS_ERRORS = 'FETCH_MANAGERS_ERRORS'
 
 export const getManagers = () => dispatch => {
 
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/managers`, {
+  return API.get(`/assignUserstoManager/verified-users/managers`, {
     headers: {
       Authorization: `Bearer ${token}`
     }

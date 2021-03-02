@@ -1,16 +1,40 @@
 import React, {useEffect} from 'react'
-import {Typography, makeStyles, Slide, Box, Snackbar, Divider, Grid, CssBaseline, Checkbox, FormControlLabel, TextField, FormGroup, Button} from '@material-ui/core'
+import {Typography, makeStyles, Slide, Box, Snackbar, Divider, Grid, CssBaseline, Checkbox, FormControlLabel,FormControl,FormGroup, Button,Select, InputLabel, MenuItem} from '@material-ui/core'
 import { connect } from 'react-redux'
 import { getRoles, clearSnackBar } from '../../../redux/actions/fetchRolesAction'
 import RolesCard from '../../rolesCard'
 import Loader from '../../Loader'
-import { Alert } from '@material-ui/lab';
-import { changePermission, updatePermission, clearPermissionSnackbar } from '../../../redux/actions/PermissionsAction'
+import MuiAlert from '@material-ui/lab/Alert';
+import { changePermission, updatePermission, clearPermissionSnackbar,getPermissions} from '../../../redux/actions/PermissionsAction'
 
 const useStyles = makeStyles((theme) => ({
  root: {
-   height: '90vh'
- }
+   height: '420vh'
+ },
+ content:{
+   marginBottom:theme.spacing(3)
+ },
+ formControl:{
+  marginTop:theme.spacing(2),
+  marginBottom:theme.spacing(3),
+  minWidth:357
+},
+formButtons: {
+  marginTop: theme.spacing(2),
+  display: 'flex',
+  justifyContent: 'center',
+  justifyContent: 'space-evenly'
+},
+container:{
+  margin:'inherit',
+  width:'80%'
+},
+separate:{
+  marginTop:theme.spacing(3)
+},
+separetor:{
+  marginBottom:theme.spacing(4)
+}
 }))
 
 const skeletonData = (<Grid item sm={8} xs={10}><RolesCard/></Grid>)
@@ -21,134 +45,131 @@ function SetPermissions(props){
     props.getRoles()
   }, [])
 
+ const perm=props.permissions?(props.permissions):({
+    "edit profile": 0,"assign requesters to manager": 0,"create travel requests": 0,"view travel requests": 0,"edit travel requests": 0,"cancel travel requests": 0,"approve direct reports travel requests": 0,"view direct reports travel requests": 0,"reject direct reports travel requests": 0,"view accommodations": 0,"create accommodations": 0,"update accommodations": 0,"delete accommodations": 0,"book accommodations": 0,"view locations": 0,"create locations": 0,"update locations": 0,"delete locations": 0,"view statistics": 0
+})
+  //const [perms,setValues]=React.useState(perms);
+  const [value,setValue]=React.useState();
+  const [checked,setChecked]=React.useState(false);
   const classes = useStyles()
 
-  const load = props.savedRoles.load
+  const load = props.status
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
-  }
-
-  const closeRoleSnackBarTimer = () => {
-    props.clearSnackBar()
   }
 
   const closePermissionsSnackBarTimer = () => {
     props.clearPermissionSnackbar()
   }
 
-  const handleCheckBox = (event) => {
-    let allowed = event.target.checked ? 1 : 0
-    const changed = [event.target.name, allowed]
-    const index = event.target.id
-    console.log(event.target.value)
-    props.changePermission(index, changed)
+  const handleCheckBox = (e) => {
+    let allowed = e.target.checked ? 1 : 0
+    props.changePermission(e.target.name, allowed)
   }
 
-function Perm(){
-    props.permissions.permissions.map(([name, allowed]) => (
-      this[name] = allowed
-    ))
-  }
+  const populateChecbox=()=>{
+      let labels=[];
+      let label;
+      let count=0;
+      for(const property in perm){
+        label=<FormControlLabel
+              key={property}
+              control={<Checkbox checked={perm[property]==1?true:false} color={'primary'} name={property} id={count}  onChange={handleCheckBox} />}
+              label={property}
+        />
+        count++;
+        labels.push(label);
+      }
+      return labels;
+    }
   
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    props.updatePermission(new Perm, props.permissions.selectedRole)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    props.updatePermission(props.permissions, props.selectedRole)
    
   }
-
+  const hanldeSelectOnchange=(e)=>{
+      console.log(e.target.value)
+      const name=e.target.value;
+      const values=name.split(",");
+      console.log(values)
+      const id=values[0];
+      setValue(id)
+      const role=values[1];
+       console.log(id)
+      console.log(role)
+      props.getPermissions(id,role);
+  }
+  const handleCancel=()=>{
+    props.getPermissions(value, props.selectedRole);
+  }
+   const populateSelect= props.savedRoles.pending?(<MenuItem value={''}>Empty</MenuItem>):(props.savedRoles.roles.rows.map((role,index)=>{
+     return <MenuItem  key={role.name} name={role.name} value={role.id+","+role.name}>{role.name}</MenuItem>
+  }))
+  
   return(
-    <>
-      <Grid 
-      container 
-      component='main' 
-      justify='center'
-      spacing={4}>
-        
-        <CssBaseline/>
-
-        <Loader open={load}/>
-        <Loader open={props.permissions.pending}/>
-
-        {/* This snackbar is for the roles column */}
-        <Snackbar
-        open={props.savedRoles.snackBarMessage.open}
-        onClose={closeRoleSnackBarTimer}
-        autoHideDuration={4000}
-        TransitionComponent={TransitionUp}>
-          <Alert
-          severity={props.savedRoles.snackBarMessage.severity}
-          variant='filled'
-          elevation={6}>
-            {props.savedRoles.snackBarMessage.message}
-          </Alert>
-        </Snackbar>
-
-      {/* This snackbar is for the permisions column */}
-        <Snackbar
-        open={props.permissions.snackBarMessage.open}
-        onClose={closePermissionsSnackBarTimer}
-        autoHideDuration={4000}
-        TransitionComponent={TransitionUp}>
-          <Alert
-          severity={props.permissions.snackBarMessage.severity}
-          variant='filled'
-          elevation={6}>
-            {props.permissions.snackBarMessage.message}
-          </Alert>
-        </Snackbar>
-
-        <Grid container sm={4} xs={12}  justify='center'>
+   // <>
+        <Grid container  justify='center' spacing={3} className={classes.separator,classes.container}>
+          <CssBaseline/>
+          <Grid item md={6} sm={12} xs={12}>
+            <Loader open={load}/>
+            
+            <Snackbar
+            open={props.snackBarMessage.open}
+            onClose={closePermissionsSnackBarTimer}
+            autoHideDuration={4000}
+            TransitionComponent={TransitionUp}
+            >
+              <MuiAlert
+              severity={props.snackBarMessage.severity}
+              variant='filled'
+              elevation={6}
+              >{props.snackBarMessage.message}</MuiAlert>
+            </Snackbar>
           <Box>
-            <Typography variant='h5'>Created Roles</Typography>
+            <Typography variant='subtitle1' justify= 'center'  >Allow users to perform their operations</Typography>
             <Divider/>
           </Box>
-          <Grid container xs={12} justify='center'>
-          <form>
-            <TextField label='Search' variant='outlined'/>
-          </form>
-          </Grid>
+          <Grid container  sm={6} xs={4} className={classes.container}>
 
-          <Grid container justify='center' spacing={2} style={{maxHeight: '80%', overflow: 'auto'}}>
-
-            {props.savedRoles.pending ? skeletonData : props.savedRoles.roles.rows.map((role, index) => (
-               <Grid item sm={9} xs={10} key={role.id}>
-               <RolesCard roleTitle={role.name} idx={index}/>
-             </Grid>
-            ))}
-           
-          </Grid>
-        </Grid>
-        <Divider orientation='vertical'/>
-        <Grid container sm={4} xs={12} justify='center' spacing={3}>
-          <Box>
-            <Typography variant='h5' >Permissions</Typography>
-            <Divider/>
-          </Box>
-          <Grid container justify='center'>
-
-            <form onSubmit = {handleSubmit}>
+            <form onSubmit={handleSubmit} >
+              <FormControl className={classes.formControl}>
+                <InputLabel>Select the role</InputLabel>
+                <Select 
+                  labelId='select-roles'
+                  id='roles'
+                  value={value}
+                  onChange={hanldeSelectOnchange}
+                >
+                  {populateSelect}
+                </Select>
+              </FormControl>
+              <Box>
+                <Typography className={classes.content} variant='body2' >Assign all required permissions to the role:</Typography>
+              </Box>
               <FormGroup>
-                {props.permissions && props.permissions.permissions.map(([name, allowed], index) => (
-                  <FormControlLabel
-                  key={name}
-                  control={<Checkbox checked={allowed ? true : false}  name={name} id={index}  onChange={handleCheckBox} />}
-                  label={name}
-                />))}
+                {populateChecbox()}
               </FormGroup>
-              <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>Save</Button>
+                <Box className={classes.formButtons} >
+                <Button variant='contained' size='small' color='primary' type="submit" disabled={load} >set</Button>
+                <Button variant='contained' size='small' color='secondary' onClick={handleCancel} >Cancel</Button>
+              </Box>
             </form>
 
           </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </>
+   // </>
   )
 }
 
 const mapStateToProps = state =>({
   savedRoles: state.roles,
-  permissions: state.permissions
+  permissions: state.permissions.permissions,
+  selectedRole:state.permissions.selectedRole,
+  status:state.permissions.pending,
+  snackBarMessage:state.permissions.snackBarMessage
 })
 
-export default  connect(mapStateToProps, {getRoles, clearSnackBar, changePermission, updatePermission, clearPermissionSnackbar})(SetPermissions);
+export default  connect(mapStateToProps,{getRoles, clearSnackBar, changePermission, updatePermission, clearPermissionSnackbar,getPermissions})(SetPermissions);

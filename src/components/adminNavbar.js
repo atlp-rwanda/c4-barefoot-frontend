@@ -114,7 +114,7 @@ function Header (){
      return(
          <React.Fragment>
             <AppBar
-                position="static">
+                position="fixed">
                 {displayDesktop()}
             </AppBar>
          </React.Fragment>

@@ -1,8 +1,12 @@
-import { CREATE_ROLE_ERROR, CREATE_ROLE_PENDING, CREATE_ROLE_SUCCESS, CLEAR_SNACKBAR } from '../actions/createRoleAction'
+import { CREATE_ROLE_ERROR, CREATE_ROLE_PENDING, CREATE_ROLE_SUCCESS, CLEAR_SNACKBAR,UPDATE_ROLE,UPDATE_ROLE_FAILED } from '../actions/createRoleAction'
 
 const initialState ={
   pending: false,
-  snackBarMessage: false,
+  snackBarMessage:{
+    open: false,
+    severity: '',
+    message: null
+  },
   error: null
 }
 
@@ -17,10 +21,30 @@ export const createRoles = (state = initialState, action) => {
       return{
         ...state,
         pending: false,
-        snackBarMessage: true
+        snackBarMessage:{
+          open:true,
+          severity:"success",
+          message:"Role Successfully Created!"
+        } 
       }
     case CREATE_ROLE_ERROR:
       return{
+        ...state,
+        pending: false,
+        error: action.error
+      }
+      case UPDATE_ROLE:
+        return {
+        ...state,
+        pending: false,
+        snackBarMessage:{
+          open:true,
+          severity:"success",
+          message:"Role Successfully Updated!"
+        } 
+        }
+      case UPDATE_ROLE_FAILED:
+        return {
         ...state,
         pending: false,
         error: action.error

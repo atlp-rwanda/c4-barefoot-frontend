@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {API} from './AxiosAPI';
 const token = window.localStorage.getItem('barefootUserToken')
 
 export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
@@ -15,7 +15,7 @@ export const getUsers = (page) => dispatch => {
   dispatch({
     type: FETCH_USERS_PENDING
   })
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users`, {
+  return API.get(`/assignUserstoManager/verified-users`, {
     headers: {
       Authorization: `Bearer ${token}`
     },
@@ -43,7 +43,7 @@ export const deleteUser = (index, email) => dispatch => {
     type: DELETE_USERS_PENDING
   })
 
-  return axios.delete(`${process.env.REACT_APP_BACKEND_LINK}/admin/users`, {
+  return API.delete(`/admin/users`, {
     headers: {
       Authorization: `Bearer ${token}`
     },

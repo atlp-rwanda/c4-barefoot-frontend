@@ -1,5 +1,5 @@
 import {FETCH_ROLES_SUCCESS, FETCH_ROLES_ERROR} from '../actions/fetchRolesAction'
-import {DELETE_ROLE_SUCCESS, DELETE_ROLE_PENDING, DELETE_ROLE_ERROR, CLEAR_SNACKBAR} from '../actions/fetchRolesAction'
+import {DELETE_ROLE_SUCCESS, DELETE_ROLE_PENDING, DELETE_ROLE_ERROR, CLEAR_SNACKBAR,EDIT_ROLE,CLEAN_ROLE,UPDATE_ROLE,UPDATE_ROLE_FAILED} from '../actions/fetchRolesAction'
 
 const initialState = {
   pending: true,
@@ -10,7 +10,8 @@ const initialState = {
     open: false,
     severity: '',
     message: null
-  }
+  },
+  role:null
 }
 
 export function RolesReducer(state = initialState, action){
@@ -27,6 +28,26 @@ export function RolesReducer(state = initialState, action){
         pending: false,
         error: action.error
       }
+
+    case UPDATE_ROLE_FAILED:
+      return {
+      ...state,
+      pending: false,
+      error: action.error
+    }
+
+    case UPDATE_ROLE:
+      return {
+      ...state,
+      pending: false,
+      snackBarMessage: {
+        open: true,
+        severity: 'success',
+        message: 'Role updated successfully!'
+      },
+      role:null
+    }
+
     case DELETE_ROLE_PENDING:
       return {
         ...state,
@@ -46,6 +67,25 @@ export function RolesReducer(state = initialState, action){
           message: 'Role deleted successfully!'
         }
       }
+      case EDIT_ROLE:
+        const loop = ()=>{
+          for(let i=0;i<state.roles.rows.length;i++){
+            if(state.roles.rows[i].id == action.id){
+              return state.roles.rows[i];
+            }
+        }
+      }
+      const role=loop();
+        return {
+          ...state,
+          role: role
+        }
+      case CLEAN_ROLE:
+        
+        return {
+          ...state,
+          role: null
+        }
     case DELETE_ROLE_ERROR:
       return{
         ...state,

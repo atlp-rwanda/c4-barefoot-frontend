@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography, makeStyles, Divider, Box, Button, Grid} from '@material-ui/core'
 import { createRoleAction, clearSnackBar } from '../../../redux/actions/createRoleAction'
+import { cleanEditRoleAction,updateRoleAction} from '../../../redux/actions/fetchRolesAction'
 import { connect } from 'react-redux'
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
@@ -8,10 +9,7 @@ import { FormGroup, TextField, Slide, CssBaseline, Snackbar} from '@material-ui/
 import Loader from '../../Loader';
 import MuiAlert from '@material-ui/lab/Alert';
 
-const initialValues = {
-  role: '',
-  description: ''
-}
+
 //form validation with yup
 const roleForm = Yup.object().shape({
   role: Yup.string().required('The role name is required'),
@@ -41,15 +39,17 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function CreateRoles (props) {
+  let initialValues;
   const classes = useStyles()
 
   const handleSubmition = (payload, {resetForm}) => {
-    props.createRoleAction(payload)
+    if(props.role){
+      props.updateRoleAction(props.role.id,payload)
+    }else{(props.createRoleAction(payload))}
     resetForm({payload: ''})
-
-    
   }
 
+  
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
   }
@@ -57,6 +57,24 @@ function CreateRoles (props) {
   const closeSnackBarTimer = () => {
     props.clearSnackBar()
   }
+  initialValues = props.role?(
+    {
+      role:props.role.name,
+      description:props.role.description == null?(''):(props.role.description)
+    }
+  ):(
+    {
+      role: '',
+      description: ''
+    }
+)
+const message =props.role?('Role Successfully Updated!'):("Role Successfully Created!")
+const handelCancel=()=>{
+    
+    props.cleanEditRoleAction();
+    window.location.reload();
+}
+
 
   let load = props.createRoles.pending
 
@@ -71,16 +89,16 @@ function CreateRoles (props) {
         <Loader open={load}/>
         
         <Snackbar
-        open={props.createRoles.snackBarMessage}
+        open={props.createRoles.snackBarMessage.open}
         onClose={closeSnackBarTimer}
         autoHideDuration={4000}
         TransitionComponent={TransitionUp}
         >
           <MuiAlert
-          severity='success'
+          severity={props.createRoles.snackBarMessage.severity}
           variant='filled'
           elevation={6}
-          >Role Successfully Created!</MuiAlert>
+          >{props.createRoles.snackBarMessage.message}</MuiAlert>
         </Snackbar>
 
         <div className={classes.titleBox}>
@@ -118,7 +136,7 @@ function CreateRoles (props) {
                 </FormGroup>
             <Box className={classes.formButtons} >
               <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>Save</Button>
-              <Button variant='contained' size='medium' color='secondary'>Cancel</Button>
+              <Button variant='contained' size='medium' color='secondary' onClick={handelCancel}>Cancel</Button>
             </Box>
           </Form>
               
@@ -132,7 +150,8 @@ function CreateRoles (props) {
 }
 
 const mapStateToProps = state =>({
-  createRoles: state.createRoles
+  createRoles: state.createRoles,
+  role:state.roles.role
 })
 
-export default connect(mapStateToProps, {createRoleAction, clearSnackBar})(CreateRoles)
+export default connect(mapStateToProps, {createRoleAction, clearSnackBar,cleanEditRoleAction,updateRoleAction})(CreateRoles)

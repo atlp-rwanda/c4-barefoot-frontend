@@ -3,7 +3,7 @@ import { UPDATE_PERMISSIONS_ERROR,  UPDATE_PERMISSIONS_SUCCESS, UPDATE_PERMISSIO
 
 const initialState = {
   pending: false,
-  permissions: [],
+  permissions: null,
   error: null,
   selectedRole: '',
   snackBarMessage: {
@@ -25,7 +25,7 @@ export function permissionsReducer(state = initialState, action){
         ...state,
         pending: false,
         selectedRole: action.role,
-        permissions: Object.entries(action.payload)
+        permissions: action.payload.permissions
       }
     case FETCH_PERMISSIONS_ERROR:
       return {
@@ -38,11 +38,21 @@ export function permissionsReducer(state = initialState, action){
         }
       }
     case CHECKBOX_CHANGED:
-      const copy = state.permissions.slice()
-      copy[action.index] = action.payload
+       const copy =()=>{
+        let perm={};
+        for(const property in state.permissions){
+            if(property===action.property){
+              perm[property]=action.payload
+            }else{
+              perm[property]=state.permissions[property]
+
+            }
+        }
+        return perm;
+      } 
       return{
         ...state,
-        permissions: copy
+        permissions:copy()
       }
     case UPDATE_PERMISSIONS_PENDING:
       return {

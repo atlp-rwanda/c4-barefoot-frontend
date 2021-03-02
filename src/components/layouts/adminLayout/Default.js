@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
+  },
+  separate:{
+    marginBottom:theme.spacing(3)
   }
 }));
 
@@ -21,10 +24,10 @@ const DefaultM = props => {
     <div >
       <AdminNavBar/>
       <div className={classes.toolbar} />
-      <main className={classes.content}>
+      <main className={classes.content,classes.separate}>
         {children}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
