@@ -78,11 +78,18 @@ const TravelRequestCard = (props) => {
     console.log(accomodationsInfo)
     const classes= useStyles();
     const cardImage= accomodationsInfo ? accomodationsInfo[0].photos : default_image 
+
+    const handleImageError= (e)=>{
+        e.target.src= default_image
+        e.onError = "";
+        return true;
+    }
+
     return ( 
         <Grid container className={ classes.container}>
             <Grid item xs={4}>
                 <Box className={classes.imageContainer}>
-                    <img src={cardImage} alt="request image" width="100%" />
+                    <img src={cardImage} alt="request image" width="100%" onError= { (e)=> handleImageError(e)} />
                 </Box>
             </Grid>
             <Grid item xs={8} className={classes.requestDetails} >

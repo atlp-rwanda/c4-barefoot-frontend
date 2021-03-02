@@ -65,6 +65,8 @@ const ViewTravelModal= (props)=> {
       imageContainer:{
           height: '400px',
           overflow:"hidden",
+          minWidth: '90%',
+          margin: '0px auto'
       },
       detailsContainer:{
           padding: '20px',
@@ -132,6 +134,11 @@ const ViewTravelModal= (props)=> {
       });
     // handleUpdateTravel(id, action);
   }
+  const handleImageError= (e)=>{
+      e.target.src= default_image
+      e.onError = "";
+      return true;
+  }
 
   return (
 
@@ -170,7 +177,12 @@ const ViewTravelModal= (props)=> {
                 travelId={travelRequestArray[0].travelRequestInfo.travelId} 
             />
             <Box className={classes.imageContainer} >
-                <img alt="dialog image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg" style={{width:"100%"}} />
+                <img alt="dialog image" 
+                    src={accomodationsInfo ? accomodationsInfo[0].photos : default_image } 
+                    style={{width:"100%"}} 
+                    onError= { (e)=> handleImageError(e)}
+                    
+                    />
             </Box>
             <Box className={classes.detailsContainer}>
                 <Grid container spacing={2} >
@@ -221,13 +233,18 @@ const ViewTravelModal= (props)=> {
                         Reason
                     </Typography>
                     <Typography variant="caption" component="h2" gutterBottom={true}  >
-                           { travelRequestArray[0].travelRequestInfo.Trip[0].reason}
+                           { travelRequestArray[0].travelRequestInfo.Trip.length>0 ? travelRequestArray[0].travelRequestInfo.Trip[0].reason : 'No reason available'}
                     </Typography>                    
                 </Box>
                 <Box className={classes.hotelAndReasonBoxes}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
-                            <img alt="hotel image" src={accomodationsInfo ? accomodationsInfo[0].photos : default_image } style={{width: '100%'}} />
+                            <img 
+                                alt="hotel image" 
+                                src={accomodationsInfo ? accomodationsInfo[0].photos : default_image } 
+                                style={{width: '100%'}} 
+                                onError= { (e)=> handleImageError(e)}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
@@ -244,14 +261,27 @@ const ViewTravelModal= (props)=> {
 
         </React.Fragment>
         )}
-        <DialogActions>
-          <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'approve' )} className={classes.approveButton}>
-            Approve
-          </Button>
-          <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'reject' )} variant='contained' color='secondary' >
-            Reject
-          </Button>
-        </DialogActions>
+        {
+           travelRequestArray.length> 0 && travelRequestArray[0].travelRequestInfo.status === 'pending' ?
+             (
+                <DialogActions>
+                    <Button autoFocus onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'approve' )} className={classes.approveButton}>
+                        Approve
+                    </Button>
+                    <Button onClick={ ()=> handleActionButton( travelRequestArray[0].travelRequestInfo.travelId, 'reject' )} variant='contained' color='secondary' >
+                        Reject
+                    </Button>
+                </DialogActions>
+            )
+            :
+            (
+                <DialogActions>
+                    <Button onClick={ ()=> onClose()} variant='contained' color='secondary' >
+                        Close
+                    </Button>
+                </DialogActions>
+            )
+        }
         {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
         {success && <SuccessModal isOpen={isSuccessModalOpen} setIsOpen={setIsSuccessModalOpen} success={success} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
 

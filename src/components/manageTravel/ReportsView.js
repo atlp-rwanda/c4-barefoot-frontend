@@ -104,6 +104,11 @@ const filter= (travels, category)=>{
                 return trav.travelRequestInfo.status === category;
             });
             return filteredArray;
+        case 'pending':
+            filteredArray= travels.filter( (trav)=>{
+                return trav.travelRequestInfo.status === category;
+            });
+            return filteredArray;
 
         case 'canceled':
         case 'rejected':
@@ -176,6 +181,8 @@ function ReportsView(props) {
          setOpenModal(false);
          props.clearSingleRequest();
          props.clearUpdateTravelRequest();
+         props.getTravelRequest()
+
      }
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
