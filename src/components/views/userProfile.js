@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: '3em',
+        marginRight: 100
     },
     form: {
         [theme.breakpoints.up('lg')]: {
@@ -154,8 +155,7 @@ const UserProfile = (props) => {
                                         email: data.email,
                                         language: data.language,
                                         address: data.address,
-                                        occupation: data.occupation,
-                                        line_manager: data.line_manager
+                                        occupation: data.occupation
                                     })
                                     : ({})
                                 }
@@ -182,6 +182,7 @@ const UserProfile = (props) => {
                                             onMouseLeave={() => { setEdit(true); }}
                                             disabled={edit}
                                             helperText={errors.first_name || null}
+                                            
                                         />
                                         <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> Last Name </InputLabel>
                                         <Field
@@ -265,19 +266,7 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.occupation || null}
                                         />
-                                        <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Line Manager </InputLabel>
-                                        <Field
-                                            as={TextField}
-                                            fullWidth
-                                            id="line_manager"
-                                            name="line_manager"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            disabled
-                                        />
+                                        
                                         <div className={classes.btnGrp} spacing={10}>
                                             <Button
                                                 type="submit"
