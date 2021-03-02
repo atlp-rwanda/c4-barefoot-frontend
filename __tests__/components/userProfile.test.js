@@ -122,8 +122,8 @@ describe('<UserProfile />', () => {
 
     it('if it should render form with 8 input fields and 2 buttons', () => {
         expect(wrapper.find("Form").length).toBe(1);
-        expect(wrapper.find("input").length).toBe(8);
-        expect(wrapper.find("label").length).toBe(8);
+        expect(wrapper.find("input").length).toBe(7);
+        expect(wrapper.find("label").length).toBe(7);
         expect(wrapper.find({ children: 'Save' }).length).toBeTruthy();
         expect(wrapper.find({ children: 'Cancel' }).length).toBeTruthy();
     });
