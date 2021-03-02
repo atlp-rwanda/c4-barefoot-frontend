@@ -16,6 +16,8 @@ import Logout from '../components/views/Logout';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
+import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
+import Done from '../components/manageTravel/Done';
 const Routes = () => {
     return (
       <Switch>
@@ -59,6 +61,19 @@ const Routes = () => {
           exact
           layout={ManagerLayout}
           path="/managerTravel/approved"
+        />
+        <RouteWithLayout
+          component={RejectedAndCanceled}
+          exact
+          layout={ManagerLayout}
+          path="/managerTravel/canceled"
+        />
+
+        <RouteWithLayout
+          component={Done}
+          exact
+          layout={ManagerLayout}
+          path="/managerTravel/done"
         />
         
          <RouteWithLayout

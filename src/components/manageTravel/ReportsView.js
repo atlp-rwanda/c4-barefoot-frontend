@@ -95,6 +95,37 @@ const useStyles = makeStyles((theme) => ({
 
   }
 }));
+
+const filter= (travels, category)=>{
+    let filteredArray=[];
+    switch( category ){
+        case 'approved':
+            filteredArray= travels.filter( (trav)=>{
+                return trav.travelRequestInfo.status === category;
+            });
+            return filteredArray;
+
+        case 'canceled':
+        case 'rejected':
+            filteredArray= travels.filter( (trav)=>{
+                return trav.travelRequestInfo.status === 'canceled' || trav.travelRequestInfo.status === 'rejected' ;
+            });
+            return filteredArray;
+
+        case 'done':
+            filteredArray= travels.filter( (trav)=>{
+                if( trav.travelRequestInfo.Trip.length !== 0){
+                    return (trav.travelRequestInfo.Trip[ trav.travelRequestInfo.Trip.length -1 ].returnDate < Date.now()) &&( trav.travelRequestInfo.Trip[ trav.travelRequestInfo.Trip.length -1 ].returnDate);
+                }
+                // console.log(trav.travelRequestInfo.Trip);
+            });
+            return filteredArray;
+        default: 
+            return [];
+
+    }
+}
+
 function ReportsView(props) {
     const classes = useStyles()
      const theme = useTheme();
@@ -108,9 +139,8 @@ function ReportsView(props) {
      const category= props.category;
      const [modalUsage, setModalUsage]= useState('view')
 
-     const filtered= travel.filter( (trav)=>{
-         return trav.travelRequestInfo.status === category;
-     });
+     const filtered=  filter(travel, category)
+     console.log('New filtered : ', filtered);
 
     //  console.log('filtered', filtered);
      useEffect(() => {

@@ -64,6 +64,11 @@ const useStyles= makeStyles( (theme)=>({
         backgroundColor: '#219653',
         borderRadius: '4px 4px 0px 0px',
         color: 'white',
+    },
+    badge:{
+        padding: '3px 15px',
+        borderRadius: '4px 4px 0px 0px',
+        color: 'white',
     }
 }))
 const TravelRequestCard = (props) => {
@@ -103,6 +108,23 @@ const TravelRequestCard = (props) => {
                     </Box>
                     <Box>
                        {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}
+                       {category==='done' && (
+                            <Box 
+                                className={classes.badge} 
+                                style={{backgroundColor: 'blue'}} 
+                            >
+                                <Typography variant='subtitle1' component='h6'>Done</Typography>
+                            </Box>
+                        )}
+                        {category==='rejected' && (
+                            <Box 
+                                className={classes.badge} 
+                                style={{backgroundColor: travel.status === 'canceled'? 'black' : '#CE2020'}} 
+                            >
+                                <Typography variant='subtitle1' component='h6' style={{textTransform: 'capitalize'}}>{travel.status}</Typography>
+                            </Box>
+                        )}
+
                     </Box>
                 </Box>
             </Grid>
