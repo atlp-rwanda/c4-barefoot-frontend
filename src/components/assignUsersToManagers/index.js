@@ -19,7 +19,6 @@ const AssignUsersToManagers = (props) => {
 
   return (
     <Container style={{display: 'flex', flexDirection: 'row', justify: 'flex-start', padding: 'unset'}}>
-      <SideMenu />
       <UsersList loading={pending} />
     </Container>
   );

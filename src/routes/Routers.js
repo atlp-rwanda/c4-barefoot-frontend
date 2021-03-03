@@ -11,7 +11,7 @@ import PageNotFound from '../components/views/PageNotFound'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
-import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import { DefaultLayout, AuthorizedUserLayout, ManagerLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import AssignUsersToManagers from '../components/views/assignUsersToManagers';
 
@@ -90,7 +90,7 @@ const Routes = () => {
             path="/assign-users-to-managers/"
             exact
             component= { AssignUsersToManagers }
-           layout={AuthorizedUserLayout}
+           layout={ManagerLayout}
         />
         <Redirect to="/PageNotFound" />
       </Switch>
