@@ -221,7 +221,7 @@ const Routes = () => {
             path="/assign-users-to-managers/"
             exact
             component= { AssignUsersToManagers }
-           layout={AuthorizedUserLayout}
+           layout={ManagerLayout}
         />
         <Redirect to="/PageNotFound" />
       </Switch>
