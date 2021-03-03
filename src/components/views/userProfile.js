@@ -155,7 +155,8 @@ const UserProfile = (props) => {
                                         email: data.email,
                                         language: data.language,
                                         address: data.address,
-                                        occupation: data.occupation
+                                        occupation: data.occupation,
+                                        line_manager: data.line_manager
                                     })
                                     : ({})
                                 }
@@ -266,7 +267,19 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.occupation || null}
                                         />
-                                        
+                                        <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Line Manager </InputLabel>
+                                        <Field
+                                            as={TextField}
+                                            fullWidth
+                                            id="line_manager"
+                                            name="line_manager"
+                                            InputProps={{
+                                                classes: {
+                                                    disabled: classes.disabledTextField
+                                                },
+                                            }}
+                                            disabled
+                                        />
                                         <div className={classes.btnGrp} spacing={10}>
                                             <Button
                                                 type="submit"
