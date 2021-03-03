@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import AdminNavBar from '../../AdminNavbar'
+import AdminNavBar from '../../adminNavbar'
 import Footer from '../../Footer'
 
 
