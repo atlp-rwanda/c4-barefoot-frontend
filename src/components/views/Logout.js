@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) =>({
 function Logout(props){
     const classes = useStyles();
 
-    useEffect(()=>{
+    useEffect(() => {
+        console.log("logout")
         const authToken = localStorage.getItem('barefootUserToken');
         props.logoutAction(authToken);
         return localStorage.clear();

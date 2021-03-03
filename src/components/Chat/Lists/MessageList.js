@@ -7,10 +7,12 @@ export default function MessageList(props) {
     const vmessages = props.vmessages;
     const chats = props.chats;
     const classes = useStyles();
+
+
     return (
         <div style={{height: '500px', overflow: 'scroll'}}>
             <List className={classes.list}>
-                {chats != null ? chats.map(chat => (
+                {chats != null ? chats.sort((a,b) => b.createdAt < a.createdAt ? 1 : -1).map(chat => (
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>
@@ -23,7 +25,7 @@ export default function MessageList(props) {
                         </ListItem> }
                     </div>
                 )): <p>No chats!</p>}
-                {vmessages && vmessages.map(chat => (
+                {vmessages && vmessages.sort((a,b) => b.createdAt < a.createdAt ? 1 : -1).map(chat => (
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>

@@ -10,6 +10,7 @@ function VisitorsListing(props){
                 <div key={visitor} className={classes.visitor} onClick={()=> {
                     localStorage.setItem('userId', visitor)
                     localStorage.setItem('userName', visitor)
+                    localStorage.setItem('visit', true)
                 }}>
                    <a href='' style={{textDecoration: 'none', color: 'inherit'}}>{visitor}</a>
                 </div>

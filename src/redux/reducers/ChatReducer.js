@@ -1,4 +1,4 @@
-import {CHATTED_USERS, GETALL_CHATS, NEW_MESSAGE, VISITOR_MESSAGE, GET_VISITORS, GETV_MESSAGES, SUPPORT_RESPONDS} from '../actions/ChatAction';
+import {CHATTED_USERS, GETALL_CHATS, NEW_MESSAGE, VISITOR_MESSAGE, GET_VISITORS, GETV_MESSAGES, SUPPORT_RESPONDS, GETSUPPORT_RESPONSE} from '../actions/ChatAction';
 
 const initialState = {
     users: [],
@@ -7,7 +7,8 @@ const initialState = {
     message: {},
     visitors: [],
     vmessages: [],
-    response: {}
+    response: {},
+    supportresponse: []
 }
 
 export default function ChatReducer (state = initialState, action) {
@@ -46,6 +47,11 @@ export default function ChatReducer (state = initialState, action) {
             return {
                 ...state,
                 response: action.payload
+            }
+        case GETSUPPORT_RESPONSE:
+            return {
+                ...state,
+                supportresponse: action.payload
             }
         default:
             return state

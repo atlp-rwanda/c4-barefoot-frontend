@@ -12,6 +12,7 @@ class NewMessage extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.vhandleClick = this.vhandleClick.bind(this)
     }
 
     handleChange = (e) => {
@@ -34,17 +35,19 @@ class NewMessage extends React.Component {
         const receiverId = localStorage.getItem('userId')
         console.log(receiverId)
         const messageData = {
-            receiver: receiverId,
-            message: this.state.message,
+            visitor: receiverId,
+            message: this.state.vmessage,
             type: 'plain-text'
         }
+        console.log(messageData)
         this.props.supportResponds(messageData);
     }
 
     render() {
+        const visitor = localStorage.getItem('visit')
         return (
             <div>
-                <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
+                {!visitor ? <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
                     <Toolbar position='fixed' color="primary">
                         <Input border={0} 
                             variant="outlined" 
@@ -59,7 +62,7 @@ class NewMessage extends React.Component {
                             }
                         />
                     </Toolbar>
-                </Paper>
+                </Paper> :
                 <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
                     <Toolbar position='fixed' color="primary">
                         <Input border={0} 
@@ -75,7 +78,7 @@ class NewMessage extends React.Component {
                             }
                         />
                     </Toolbar>
-                </Paper>
+                </Paper>}
             </div>
         )
     }

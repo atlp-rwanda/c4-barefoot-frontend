@@ -5,18 +5,14 @@ import { connect } from 'react-redux';
 import MessageList from './Lists/MessageList';
 import NewMessage from './Lists/NewMessage';
 
-class ChatMessages extends React.Component {
+function ChatMessages(props){
 
-    UNSAFE_componentWillMount () {
-        this.props.getChats();
-        this.props.getVisitorsMessages();
-    }
+        props.getChats();
+        props.getVisitorsMessages();
 
-render () {
-
-    const chats = this.props.chats;
+    const chats = props.chats;
     const user = localStorage.getItem('userName')
-    const vMessages = this.props.vmessages;
+    const vMessages = props.vmessages;
 
     return (
         <React.Fragment>
@@ -37,7 +33,6 @@ render () {
             <NewMessage/>
         </React.Fragment>
     )
-}
 }
 
 const mapStateToProps= state => ({

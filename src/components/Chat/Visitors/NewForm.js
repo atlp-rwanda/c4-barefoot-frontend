@@ -4,13 +4,15 @@ import {useStyles} from '../ChatStyles';
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {connect} from 'react-redux';
-import {visitorsMessage} from '../../../redux/actions/ChatAction';
+import {visitorsMessage, getSupportResponse} from '../../../redux/actions/ChatAction';
+import ListMessages from './ListMessages';
 
 function NewForm(props){
     const classes = useStyles();
     const [message, setMessage] = React.useState('');
-    const [feedbackText, setFeedbackText] = React.useState(null)
-
+    const [feedbackText, setFeedbackText] = React.useState(null);
+    const messages = props.messages;
+    props.getSupportResponse();
     const handleSubmit = () => {
         if(message === ''){
             setFeedbackText('Please type something!')
@@ -22,8 +24,8 @@ function NewForm(props){
                 message: message,
                 
             }
-            props.visitorsMessage(messageData)
-            setFeedbackText('Message sent!')
+            props.visitorsMessage(messageData);
+            setFeedbackText('Message sent!');
         }
     }
     return (
@@ -32,7 +34,7 @@ function NewForm(props){
                 <Typography variant='h6' className={classes.supporttitle}>Barefoot Nomad Support</Typography>
                 <hr/>
                 <Container className={classes.vChatContainer}>
-                    <ListMessages/>
+                    <ListMessages messages={messages}/>
                 </Container>
                 <FormControl className={classes.form}>
                     <Input 
@@ -54,4 +56,8 @@ function NewForm(props){
     )
 }
 
-export default connect(null, { visitorsMessage })(NewForm);
+const mapStateToProps = (state) => ({
+    messages: state.chat.supportresponse
+})
+
+export default connect(mapStateToProps, { visitorsMessage, getSupportResponse })(NewForm);

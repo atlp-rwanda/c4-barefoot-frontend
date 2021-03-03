@@ -8,6 +8,7 @@ export const VISITOR_MESSAGE = 'VISITOR_MESSAGE';
 export const GET_VISITORS = 'GET_VISITORS';
 export const GETV_MESSAGES = 'GETV_MESSAGES';
 export const SUPPORT_RESPONDS = 'SUPPORT_RESPONDS';
+export const GETSUPPORT_RESPONSE = 'GETSUPPORT_RESPONSE';
 
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
@@ -126,10 +127,25 @@ export const getVisitorsMessages = () => dispatch => {
 
 //support responds to the visitor
 export const supportResponds = (message) => dispatch =>{
-    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/support`, message)
+    const authToken = localStorage.getItem('barefootUserToken');
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/support`, message, {
+        headers: {
+            authorization: `Bearer ${authToken}`
+        }
+    })
     .then(res => dispatch({
         type: SUPPORT_RESPONDS,
         payload: res.data
     }))
     .catch(err => console.log(err.message))
+}
+
+// Visitor gets support response
+export const getSupportResponse = () => dispatch => {
+    const visitor = localStorage.getItem('visitorEmail')
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitor?visitor=${visitor}`)
+    .then(res => dispatch({
+        type: GETSUPPORT_RESPONSE,
+        payload: res.data
+    }))
 }

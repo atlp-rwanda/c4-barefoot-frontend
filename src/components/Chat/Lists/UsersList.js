@@ -13,6 +13,7 @@ function UsersList({users}) {
                     <div key={user.id} onClick={()=> {
                         localStorage.setItem('userId', user.id),
                         localStorage.setItem('userName', user.first_name)
+                        localStorage.removeItem('visit')
                     }}>
                         <a href='' style={{textDecoration: 'none', color: 'inherit'}}>
                             <ListItem button>
