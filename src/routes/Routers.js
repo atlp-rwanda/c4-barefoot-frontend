@@ -1,6 +1,5 @@
 import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
 import NewPassword from '../components/resetPassword/NewPassword'
-
 import React from 'react';
 import Login from '../components/views/Login'
 import SignUp from '../components/signup';
@@ -18,6 +17,8 @@ import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashb
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
+import ProtectedRoute from './protected.route'
+
 const Routes = () => {
     return (
       <Switch>
@@ -38,7 +39,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={Profile}
           exact
           layout={AuthorizedUserLayout}
