@@ -86,12 +86,12 @@ const TravelRequestCard = (props) => {
 
     return ( 
         <Grid container className={ classes.container}>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4}>
                 <Box className={classes.imageContainer}>
                     <img src={cardImage} alt="request image" width="100%" onError= { (e)=> handleImageError(e)} />
                 </Box>
             </Grid>
-            <Grid item xs={8} className={classes.requestDetails} >
+            <Grid item xs={12} sm={8} className={classes.requestDetails} >
                 <Box>
                 <Box className={classes.requesterInfo}>
                     <AccountCircleIcon />

@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Divider, Grid, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {getSingleTravelRequest} from '../../redux/actions/singleTravelAction'
 import { Skeleton } from '@material-ui/lab';
@@ -62,7 +62,7 @@ const ViewTravelModal= (props)=> {
       imageContainer:{
           height: '400px',
           overflow:"hidden",
-          minWidth: '90%',
+          minWidth: '100%',
           margin: '0px auto'
       },
       detailsContainer:{
@@ -70,6 +70,10 @@ const ViewTravelModal= (props)=> {
           margin: '0px auto',
           width: '85%',
           textAlign: 'left'
+      },
+      tripItemBinder:{
+          display: 'flex',
+          flexDirection: 'column',
       },
       headersText:{
           fontWeight: 600,
@@ -144,8 +148,8 @@ const ViewTravelModal= (props)=> {
         onClose={onClose}
         aria-labelledby="responsive-dialog-title"
         maxWidth= 'md'
-        PaperProps={{ style:{padding: 40}}}
-        style={{padding: 50}}
+        PaperProps={{ style:{padding: 10}}}
+        style={{padding: 10}}
         
 
       >
@@ -181,44 +185,40 @@ const ViewTravelModal= (props)=> {
                     />
             </Box>
             <Box className={classes.detailsContainer}>
-                <Grid container spacing={2} >
-                    <Grid item xs={12} sm={6} md={4} >
-                        <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                        Location-destination
-                        </Typography>
-                                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} >
-                        <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
-                        Date of travel
-                        </Typography>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} >
-                        <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
-                        Date of return
-                        </Typography>
-                    </Grid>
-
-                </Grid>
-
+               
                 { travelRequestArray[0].travelRequestInfo.Trip.map( (trip)=>(
 
-                    <Grid container spacing={2} key={trip.tripId}>
-                        <Grid item xs={12} sm={6} md={4} >
-                            <Typography variant="caption" component="h2" gutterBottom={true} >
-                                {`${trip.originCity}-${trip.destination}`}
-                            </Typography>
+                    <Grid container spacing={2} key={trip.tripId} style={{ borderBottom: '1px solid gray'}}>
+                        <Grid item xs={12} sm={4} md={4} >
+                            <Box className={ classes.tripItemBinder}>
+                                <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
+                                    Location-destination
+                                </Typography>
+                                <Typography variant="caption" component="h2" gutterBottom={true} >
+                                    {`${trip.originCity}-${trip.destination}`}
+                                </Typography>
+                            </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} >
-                            <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                {trip.tripDate}
-                            </Typography>
+                        <Grid item xs={12} sm={4} md={4} >
+                            <Box className={ classes.tripItemBinder}>
+                                <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
+                                    Date of travel
+                                </Typography>
+                                <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                    {trip.tripDate}
+                                </Typography>
+                            </Box>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={4} >
-                            <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                {trip.returnDate}
-                            </Typography>
+                        <Grid item xs={12} sm={4} md={4} >
+                            <Box className={ classes.tripItemBinder}>
+                                <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
+                                    Date of return
+                                </Typography>
+                                <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                    {trip.returnDate}
+                                </Typography>
+                            </Box>
                         </Grid>
                     </Grid>
                 ))}
