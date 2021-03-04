@@ -1,5 +1,6 @@
 import React from 'react';
 import colors from '../colors';
+import CloseIcon from '@material-ui/icons/Close';
 import {
     Button,
     FormControlLabel,
@@ -39,18 +40,13 @@ const SearchLocations = (props) => {
         data.isReturning = event.target.checked
         return props.CheckReturningAction(data);
     }
-    const handleCurrentLocationChange = (event, newValue) => {
+    const handleSelectionOfLocation = (event, newValue) => {
         const data = {
             textField: event.target.id,
-            searchKeyword: newValue
+            selectedLocation: newValue
         }
         return props.searchCurrentLocationAction(data);
     }
-
-    const handleSelectDestination = (event, newValue) => {
-        return handleCurrentLocationChange(event, newValue);
-    }
-
     const handleAddMultiCity = () => {
         const locations = {
             current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
@@ -78,8 +74,8 @@ const SearchLocations = (props) => {
         return props.removeMultiCityAction(removed);
     }
 
-    const { searchLocations } = props.travelRequest;
-    const destinationLocationOptions = searchLocations.filter(n => n !== props.travelRequest.currentLocation);
+    const { availableLocations } = props.travelRequest;
+    const destinationLocationOptions = availableLocations.filter(n => n !== props.travelRequest.currentLocation);
     let { selectedLocations } = props.travelRequest
     selectedLocations = selectedLocations ? selectedLocations : [{ current: '', destination: '' }];
     const display = selectedLocations ? 'flex' : 'none';
@@ -93,7 +89,7 @@ const SearchLocations = (props) => {
         const index = event.target.id.split('-', 2);
 
         let newValue = props.travelRequest.selectedLocations[Number(index[1])].destination.split(', ', 2);
-        return handleCurrentLocationChange(ev, { country: newValue[1], LocationName: newValue[0] });
+        return handleSelectionOfLocation(ev, { country: newValue[1], LocationName: newValue[0] });
     }
     return (
         <>
@@ -115,7 +111,7 @@ const SearchLocations = (props) => {
 
                 <Grid container direction="row" className={classes.main} >
                     <Grid item direction="column">
-                        <Typography>Enter your location</Typography>
+                        <Typography>Departure Location</Typography>
                         <div className={classes.searchLocation}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
@@ -123,16 +119,15 @@ const SearchLocations = (props) => {
                             <Autocomplete
                                 id="currentLocationId"
                                 key={`${props.travelRequest.selectedLocations}`}
-                                options={props.travelRequest.searchLocations}
+                                options={props.travelRequest.availableLocations}
                                 className={classes.searchCurrentLocation}
                                 classes={{ input: classes.inputText }}
                                 getOptionLabel={(option) => (`${option.LocationName}, ${option.country}`)}
-                                onInputChange={handleCurrentLocationChange}
-                                onChange={handleCurrentLocationChange}
+                                onChange={handleSelectionOfLocation}
                                 autoComplete
                                 includeInputInList
                                 clearText="no value"
-                                closeIcon={<closeIcon fontSize='small' />}
+                                closeIcon={<CloseIcon fontSize='small' />}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
@@ -145,6 +140,7 @@ const SearchLocations = (props) => {
                             />
                         </div>
                     </Grid>
+
                     <Grid item direction="column">
                         <Typography>Enter your Destination</Typography>
                         <div className={classes.searchLocation}>
@@ -158,7 +154,7 @@ const SearchLocations = (props) => {
                                 className={classes.searchCurrentLocation}
                                 classes={{ input: classes.inputText }}
                                 getOptionLabel={(option) => (`${option.LocationName}, ${option.country}`)}
-                                onChange={handleSelectDestination}
+                                onChange={handleSelectionOfLocation}
                                 includeInputInList
                                 clearText="no value"
                                 closeIcon={<closeIcon fontSize='small' />}
@@ -180,7 +176,7 @@ const SearchLocations = (props) => {
                         </Tooltip>
                     </Grid>
                     <Grid item direction="column" >
-                        <Typography>Date of travel</Typography>
+                        <Typography>Date of Departure</Typography>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
                                 key={`${props.travelRequest.selectedLocations}`}

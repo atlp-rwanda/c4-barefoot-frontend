@@ -85,6 +85,7 @@ const Routes = () => {
             layout={DefaultLayout}
         />
         <RequesterRoute 
+            exact
             path="/requester/create-travel-request" 
             component={ CreateTravelRequest }
             layout={RequesterDefault}

@@ -12,17 +12,17 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    mode:  process.env.NODE_ENV || 'development',
+    mode: process.env.NODE_ENV || 'development',
     devServer: {
         contentBase: path.join(__dirname, 'src'),
         historyApiFallback: true,
         clientLogLevel: 'silent',
         inline: true,
         open: true,
-        port: 3000,
+        port: 5000,
         hot: true,
-      },
-    module : {
+    },
+    module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
@@ -36,16 +36,16 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ["html-loader"]
-                
+
             },
             {
                 test: /\.(png|j?g|svg|gif)?$/,
                 use: 'file-loader'
-         }
+            }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({template:path.resolve(__dirname,"public/index.html") , filename: 'index.html'}),        
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public/index.html"), filename: 'index.html' }),
         new webpack.DefinePlugin({
             'process.env': {
                 REACT_APP_BACKEND_LINK: JSON.stringify(process.env.REACT_APP_BACKEND_LINK),

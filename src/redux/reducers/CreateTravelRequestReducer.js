@@ -1,139 +1,152 @@
-import { RETURNING, TRAVEL_DATES,CURRENT_LOCATION, DESTINATION_LOCATION,
-    SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS,SELECT_ACCOMMODATION, HANDLE_ERRORS,
-    CLOSE_SNACKBAR, ADD_TRAVEL_REASON,SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING,
-    ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST, 
-    SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING,OPEN_MODAL, 
-    CANCEL_TRAVEL_REQUEST } from '../actions/CreateTravelRequestAction';
+import {
+    RETURNING, TRAVEL_DATES, CURRENT_LOCATION, DESTINATION_LOCATION,
+    SEARCH_LOCATIONS, SEARCH_ACCOMMODATIONS, SELECT_ACCOMMODATION, HANDLE_ERRORS,
+    CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING,
+    ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST,
+    SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING, OPEN_MODAL,
+    CANCEL_TRAVEL_REQUEST, DESELECT_ACCOMMODATION
+} from '../actions/CreateTravelRequestAction';
 
 const initialState = {
-    searchLocations: [],
+    availableLocations: [],
     searchLocationsLoading: false,
+    availableAccommodations: [],
+    searchAccommodationsLoading: false,
     currentLocation: '',
     destinationLocation: '',
-    isReturning: false,
     departureDate: '',
     returnDate: '',
-    searchAccommodations: [],
-    searchAccommodationsLoading:false,
-    selectedAccommodation:[],
-    selectedLocations:[],
-    displaySelection:false,
+    selectedAccommodation: [],
+    travelReason: '',
+    isReturning: false,
+    selectedLocations: [],
+    displaySelection: false,
     displaySelected: false,
-    snackBarMessage:{
+    snackBarMessage: {
         open: false,
         message: null,
         severity: ''
     },
     success: false,
-    sendLoading:false,
-    travelReason: '',
+    sendLoading: false,
+
     Modal: {
         open: false,
-        data:{}
+        data: {}
     }
 }
 
-export function CreateTravelRequestReducer (state = initialState, action) {
-    switch(action.type){
-        case SEARCH_LOCATIONS :
+export function CreateTravelRequestReducer(state = initialState, action) {
+    switch (action.type) {
+        case SEARCH_LOCATIONS:
             return {
                 ...state,
-                searchLocations: action.payload,
+                availableLocations: action.payload,
                 searchLocationsLoading: false
             }
-        case SEARCH_LOCATIONS_LOADING :
+        case SEARCH_LOCATIONS_LOADING:
             return {
                 ...state,
                 searchLocationsLoading: true
             }
-        case CURRENT_LOCATION :
+        case CURRENT_LOCATION:
             return {
                 ...state,
                 currentLocation: action.payload
             }
-        case TRAVEL_DATES :
+        case TRAVEL_DATES:
             return {
                 ...state,
                 departureDate: action.payload.departureDate,
                 returnDate: action.payload.returnDate
             }
-        case RETURNING :
+        case RETURNING:
             return {
                 ...state,
                 isReturning: action.payload
             }
-        case DESTINATION_LOCATION :
+        case DESTINATION_LOCATION:
             return {
                 ...state,
                 destinationLocation: action.payload
             }
-        case SEARCH_ACCOMMODATIONS :
+        case SEARCH_ACCOMMODATIONS:
             return {
                 ...state,
-                searchAccommodations: action.payload,
+                availableAccommodations: action.payload,
                 searchAccommodationsLoading: false,
                 displaySelection: true
             }
-        case SEARCH_ACCOMMODATIONS_LOADING :
+        case SEARCH_ACCOMMODATIONS_LOADING:
             return {
                 ...state,
                 searchAccommodationsLoading: true,
                 displaySelection: true
             }
-        case ADD_MULTI_CITY_TRAVEL_REQUEST :
+        case ADD_MULTI_CITY_TRAVEL_REQUEST:
             return {
                 ...state,
-                selectedLocations: [...state.selectedLocations,action.payload],
+                selectedLocations: [...state.selectedLocations, action.payload],
             }
-        case REMOVE_MULTI_CITY_TRAVEL_REQUEST :
+        case REMOVE_MULTI_CITY_TRAVEL_REQUEST:
             return {
                 ...state,
-                selectedLocations:action.payload,
+                selectedLocations: action.payload,
             }
-        case SELECT_ACCOMMODATION :
+        case SELECT_ACCOMMODATION:
             return {
                 ...state,
-                selectedAccommodation: [...state.selectedAccommodation,action.payload.accommodation],
+                selectedAccommodation: [...state.selectedAccommodation, action.payload.accommodation],
                 displaySelection: action.payload.displaySelection,
                 displaySelected: action.payload.displaySelected
             }
-        case HANDLE_ERRORS :
+        case DESELECT_ACCOMMODATION:
+            let newSelectedAccommodation = state.selectedAccommodation.filter(accommodation => {
+                return accommodation.id !== action.payload.accommodation.id
+            })
             return {
                 ...state,
-                snackBarMessage:{
+                selectedAccommodation: newSelectedAccommodation,
+                displaySelection: action.payload.displaySelection,
+                displaySelected: action.payload.displaySelected
+            }
+        case HANDLE_ERRORS:
+            return {
+                ...state,
+                snackBarMessage: {
                     open: true,
                     severity: 'error',
                     message: action.payload
                 },
             }
-        case CLOSE_SNACKBAR :
+        case CLOSE_SNACKBAR:
             return {
                 ...state,
-                snackBarMessage:{
+                snackBarMessage: {
                     open: false,
-                    severity:'',
+                    severity: '',
                     message: null
                 },
             }
-        case OPEN_MODAL :
+        case OPEN_MODAL:
             return {
                 ...state,
-                Modal:{
+                Modal: {
                     open: action.payload.open,
                     data: action.payload.data
                 },
             }
-        case ADD_TRAVEL_REASON :
+        case ADD_TRAVEL_REASON:
             return {
                 ...state,
                 travelReason: action.payload
             }
-        case SEND_TRAVEL_REQUEST_LOADING :
+        case SEND_TRAVEL_REQUEST_LOADING:
             return {
                 ...state,
                 sendLoading: true
             }
-        case SEND_TRAVEL_REQUEST :
+        case SEND_TRAVEL_REQUEST:
             return {
                 ...state,
                 success: action.payload,
@@ -144,17 +157,17 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 destinationLocation: [],
                 departureDate: '',
                 returnDate: '',
-                isReturning:false,
-                selectedAccommodation:[],
+                isReturning: false,
+                selectedAccommodation: [],
                 travelReason: '',
-                snackBarMessage:{
+                snackBarMessage: {
                     open: true,
                     message: 'The travel request is successfully sent!',
                     severity: 'success'
                 },
-                selectedLocations:[],
+                selectedLocations: [],
             }
-        case CANCEL_TRAVEL_REQUEST :
+        case CANCEL_TRAVEL_REQUEST:
             return {
                 ...state,
                 currentLocation: '',
@@ -162,10 +175,10 @@ export function CreateTravelRequestReducer (state = initialState, action) {
                 isReturning: false,
                 departureDate: '',
                 returnDate: '',
-                searchAccommodations: [],
-                selectedAccommodation:[],
-                selectedLocations:[],
-                displaySelection:false,
+                availableAccommodations: [],
+                selectedAccommodation: [],
+                selectedLocations: [],
+                displaySelection: false,
                 displaySelected: false,
                 travelReason: '',
             }

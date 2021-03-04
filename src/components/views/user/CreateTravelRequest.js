@@ -13,9 +13,11 @@ import {
 } from '../../../redux/actions/CreateTravelRequestAction';
 import AddAccommodation from '../../travelRequests/addAccommodation';
 import AddTravelReason from '../../travelRequests/addTravelReason';
+import ConfirmSendTravelRequest from '../../travelRequests/ConfirmSendTraveRequest'
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
 import AccommodationModal from '../../AccommodationModal';
+
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -47,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-evenly',
     },
+    infoDisplay: {
+        display: 'flex',
+        justifyContent: 'center',
+    }
 }))
 
 function getSteps() {
@@ -61,11 +67,6 @@ const CreateTravelRequest = (props) => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
-
-    const isStepOptional = (step) => {
-        return step === 1;
-    };
-
     const isStepSkipped = (step) => {
         return skipped.has(step);
     };
@@ -94,9 +95,15 @@ const CreateTravelRequest = (props) => {
                     </Grid>
                 );
             case 2:
-                return 'Reason of travelling';
+                return (
+                    <Grid container xs={12}>
+                        <Grid item container xs={12}>
+                            <ConfirmSendTravelRequest {...props} />
+                        </Grid>
+                    </Grid>
+                );
             default:
-                return 'Confirm travel Request';
+                return 'nothing';
         }
     }
 
@@ -119,10 +126,10 @@ const CreateTravelRequest = (props) => {
         setActiveStep(0);
     };
 
-
     useEffect(() => {
         props.getLocationsAction();
     }, [])
+
     const display = props.travelRequest.displaySelection ? 'block' : 'none';
     return (
         <Grid container direction="column" className={classes.main}>
@@ -175,7 +182,7 @@ const CreateTravelRequest = (props) => {
                                             onClick={handleNext}
                                             className={classes.button}
                                         >
-                                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                            {activeStep === steps.length - 1 ? 'Confirm' : 'Next'}
                                         </Button>
                                     </div>
                                 </div>
@@ -204,4 +211,3 @@ export default connect(
         cancelTravelRequestAction
     }
 )(CreateTravelRequest);
-
