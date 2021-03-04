@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {makeStyles, Slide,Snackbar,Grid, CssBaseline} from '@material-ui/core'
+import {makeStyles, Slide,Snackbar,Grid, CssBaseline,Typography,Divider} from '@material-ui/core'
 import { connect } from 'react-redux'
 import { getRoles, clearSnackBar } from '../../../redux/actions/fetchRolesAction'
 import RolesCard from '../../rolesCard'
@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
  },
  separate:{
   marginTop:theme.spacing(3)
+},
+center:{
+  marginLeft:theme.spacing(35)
 }
 }))
 
@@ -46,7 +49,7 @@ function ListOfRoles(props){
       >
         
         <CssBaseline/>
-
+        
         <Loader open={load}/>
 
         {/* This snackbar is for the roles column */}
@@ -62,11 +65,21 @@ function ListOfRoles(props){
             {props.savedRoles.snackBarMessage.message}
           </Alert>
         </Snackbar>
-            {props.savedRoles.pending ? skeletonData : props.savedRoles.roles.rows.map((role, index) => (
-               <Grid item sm={8} xs={10} key={role.id}>
-               <RolesCard roleId={role.id} roleTitle={role.name} idx={index} pop={props}/>
-             </Grid>
-            ))}
+        <Grid item sm={5} xs={10}>
+          <div>
+          <Typography variant='h5' align='center'>List of roles</Typography>
+          <Divider/>
+          </div>
+        </Grid>
+        <Grid item sm={8} xs={10} className={classes.center}>
+          {props.savedRoles.pending ? skeletonData : props.savedRoles.roles.rows.map((role, index) => (
+              <Grid item sm={8} xs={10} key={role.id}>
+              <RolesCard roleId={role.id} roleTitle={role.name} idx={index} pop={props}/>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* </div> */}
            
       </Grid>
     </>

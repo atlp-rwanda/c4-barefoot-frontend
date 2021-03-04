@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     backgroundColor: '#ABD5ED',
     borderRadius: 0,                                                            
-    
+  },
+  roleBox: {
+    marginTop: theme.spacing(3)
   }
 }))
 
@@ -27,7 +29,7 @@ function RolesCard(props) {
  
   const classes = useStyles()
   return (
-      <div className={classes.root}>
+      <div className={classes.root,classes.roleBox}>
 
         <Card className={classes.card}>
           <CardActionArea >

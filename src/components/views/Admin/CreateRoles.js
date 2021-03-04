@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, makeStyles, Divider, Box, Button, Grid} from '@material-ui/core'
-import { createRoleAction, clearSnackBar } from '../../../redux/actions/createRoleAction'
-import { cleanEditRoleAction,updateRoleAction} from '../../../redux/actions/fetchRolesAction'
+import { createRoleAction, clearSnackBar,updateRoleAction } from '../../../redux/actions/createRoleAction'
+import { cleanEditRoleAction} from '../../../redux/actions/fetchRolesAction'
 import { connect } from 'react-redux'
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
@@ -45,6 +45,9 @@ function CreateRoles (props) {
   const handleSubmition = (payload, {resetForm}) => {
     if(props.role){
       props.updateRoleAction(props.role.id,payload)
+      initialValues.role="";
+      initialValues.description="";
+      resetForm({payload:" "})
     }else{(props.createRoleAction(payload))}
     resetForm({payload: ''})
   }
@@ -69,6 +72,7 @@ function CreateRoles (props) {
     }
 )
 const message =props.role?('Role Successfully Updated!'):("Role Successfully Created!")
+const title =props.role?('Update Role'):("Create new Role")
 const handelCancel=()=>{
     
     props.cleanEditRoleAction();
@@ -102,7 +106,7 @@ const handelCancel=()=>{
         </Snackbar>
 
         <div className={classes.titleBox}>
-        <Typography variant='h5' align='center'>Create new Role</Typography>
+        <Typography variant='h5' align='center'>{title}</Typography>
         <Divider/>
         </div>
         <div className={classes.createForm}>
