@@ -6,6 +6,7 @@ import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
 import { logoutReducer } from './logoutReducer';
 import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
+import addAssignActionToQueue from './addAssignActionToQueue';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -16,7 +17,8 @@ const reducers = combineReducers({
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
   fetchVerifiedUsers: fetchVerifiedUsers,
-  fetchAllManagers: fetchAllManagers
+  fetchAllManagers: fetchAllManagers,
+  addAssignActionToQueue: addAssignActionToQueue
   });
 
 export default reducers;

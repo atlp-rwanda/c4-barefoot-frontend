@@ -2,6 +2,8 @@ import { Avatar, Card, CardContent, Typography, Button, CardActions,
     Select, MenuItem } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUsersToAssignQueue } from '../../redux/actions/managerSelectedActions';
 
 const UserCardSkeleton = () => {
   return (
@@ -16,10 +18,14 @@ const UserCardSkeleton = () => {
 
 const UserCard = (props) => {
     const { skeleton, managersElements, user: USER } = props;
-    let loading = true;
-    let photo = 'https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw';
     const cardStyle = {maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'};
-    photo = '';
+    const dispatch = useDispatch();
+    // const assignUsersToManagersQueue = useSelector(state => state.addAssignActionToQueue);
+    // console.log(assignUsersToManagersQueue);
+    const handleManagerSelected = ({target}) => {
+      const managerId = target.value;
+      dispatch(addUsersToAssignQueue(USER.id, managerId));
+    }
     return (
       skeleton
     ? <UserCardSkeleton />
@@ -34,15 +40,15 @@ const UserCard = (props) => {
         <Typography gutterBottom component="h2" style={{fontWeight: 600, color: '#43A0D6'}}>
             {`${USER.first_name} ${USER.last_name}`}
         </Typography>
-        <Select style={{width: '100%'}} defaultValue='none'>
+        <Select onChange={handleManagerSelected} style={{width: '100%'}} defaultValue={props.manager_id ? props.manager_id : 'none'}>
           <MenuItem value="none" disabled>
-            <em>assign line manager</em>
+            <Avatar />
+            <Typography><em>assign line manager</em></Typography>
           </MenuItem>
            {managersElements} 
         </Select>
         <CardActions>
-        
-        <Button size="small" color="primary" style={{marginLeft: 'auto', marginTop: 10}}>
+          <Button href={`/${props.username}`} size="small" color="primary" style={{marginLeft: 'auto', marginTop: 10}}>
             Profile
           </Button>
         </CardActions>

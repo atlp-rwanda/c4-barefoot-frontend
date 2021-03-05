@@ -1,10 +1,11 @@
-import { Button, Divider, Grid, MenuItem, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, Divider, Grid, MenuItem, Typography, Container } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import UserCard from './UserCard';
 import styles from './styles';
+import { assignUsersFromQueue, cancelAllQueue } from '../../redux/actions/managerSelectedActions';
 
 const UsersList = (props) => {
     const classes = styles();
@@ -12,10 +13,21 @@ const UsersList = (props) => {
     const managersList = useSelector(state => state.fetchAllManagers.getAllManagers);
     const usersList = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.rows);
     const count = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.count);
-    const stt = useSelector(state => state);
-    console.log({count, loading, usersList, managersList, stt});
-    const managersElements = managersList.map(manager => <MenuItem key={Math.random()}>{manager.first_name}</MenuItem>);
-    const usersElements = usersList.map(user => <UserCard key={user.id} user={user} managersElements={managersElements} />);
+    const dispatch = useDispatch();
+    const handleAssignPendingUsers = () => {
+        assignUsersFromQueue(dispatch);
+    }
+    const handleCancelAllAssignQueue = () => {
+        cancelAllQueue(dispatch);
+    }
+    const managersElements = managersList.map(manager => (
+            <MenuItem key={manager.id} value={manager.id}>
+                <Avatar src={manager.profile_picture} style={{marginRight: 5}}/>
+                <Typography>{manager.first_name + ' ' + manager.last_name}</Typography>
+            </MenuItem>
+            )
+        );
+    const usersElements = usersList.map(user => <UserCard key={user.id} user={user} managersElements={managersElements} username={user.username} manager_id={user.manager_id} />);
     let btnStyle = {backgroundColor: '#257AAA', color: '#FFF', margin:'0 20px auto auto'};
     let cancelBtn = {backgroundColor: '#828282', color: '#FFF', margin: '0 auto auto 20px'};
     return (
@@ -34,19 +46,19 @@ const UsersList = (props) => {
             <Container style={{display: 'flex', marginTop: 20}}>
             {
                 !loading
-                ?<Button style={btnStyle}>Save</Button>
+                ?<Button onClick={handleAssignPendingUsers} style={btnStyle}>Save</Button>
                 :<Skeleton style={{width: 100, height: 50, margin: 'auto'}} />
             }
             {
                 !loading
-                ?<Button style={cancelBtn}>Cancel</Button>
+                ?<Button onClick={handleCancelAllAssignQueue} style={cancelBtn}>Cancel</Button>
                 :<Skeleton style={{width: 100, height: 50, margin: 'auto'}} />
             }
             </Container>
             <Container style={{display: 'flex'}}>
             {
                 !loading
-                ?<Pagination style={{margin: '20px auto 0 auto'}} count={count/10 <= 1 ? 1 : count%10 + 1} variant="outlined" color="primary" hideNextButton hidePrevButton/>
+                ?<Pagination style={{margin: '20px auto 0 auto'}} count={count/10 <= 1 ? 1 : Math.floor(count/10 + 1)} variant="outlined" color="primary" hideNextButton hidePrevButton/>
                 :<Skeleton style={{margin: '20px auto 0 auto'}}>
                     <Pagination count={10} variant="outlined" color="primary" hideNextButton hidePrevButton/>
                 </Skeleton>
