@@ -15,13 +15,10 @@ import ListOfRoles from '../components/views/Admin/ListOfRoles'
 import ListUsers from '../components/views/Admin/ListUsers'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
 
-
-import adminHome from '../components/views/Admin/Home'
 
 const Routes = () => {
     return (
