@@ -22,6 +22,7 @@ import {managerReducer} from './managersReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
+import addAssignActionToQueue from './addAssignActionToQueue';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -49,6 +50,7 @@ const reducers = combineReducers({
   createLoc: createLocReducer,
   fetchVerifiedUsers: fetchVerifiedUsers,
   fetchAllManagers: fetchAllManagers,
+  addAssignActionToQueue: addAssignActionToQueue,
   managerReducer  
 });
 
