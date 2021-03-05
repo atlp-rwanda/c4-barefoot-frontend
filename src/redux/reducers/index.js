@@ -18,6 +18,7 @@ import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
 import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
+import addAssignActionToQueue from './addAssignActionToQueue';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -41,6 +42,7 @@ const reducers = combineReducers({
   createRoles,
   fetchVerifiedUsers: fetchVerifiedUsers,
   fetchAllManagers: fetchAllManagers,
+  addAssignActionToQueue: addAssignActionToQueue,
   managerReducer  
 });
 
