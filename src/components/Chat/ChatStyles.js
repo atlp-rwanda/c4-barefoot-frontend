@@ -121,5 +121,15 @@ export const useStyles = makeStyles((theme) => ({
       padding: 10,
       borderBottom: '1px solid grey',
       margin: 0.5
+    },
+    root: {
+      maxWidth: 345,
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+    },
+    media: {
+      height: 140
     }
   }));

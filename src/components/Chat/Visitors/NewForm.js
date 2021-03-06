@@ -30,7 +30,7 @@ function NewForm(props){
     }
     return (
         <div>
-            <div className={classes.secondform}>
+            <div className='secondform'>
                 <Typography variant='h6' className={classes.supporttitle}>Barefoot Nomad Support</Typography>
                 <hr/>
                 <Container className={classes.vChatContainer}>

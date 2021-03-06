@@ -1,27 +1,38 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, Button } from '@material-ui/core';
 import { useStyles } from '../ChatStyles';
+import { connect } from 'react-redux';
+import { Skeleton } from '@material-ui/lab'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
-export default function MessageList(props) {
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+function MessageList(props) {
     const receiver = localStorage.getItem('userId');
     const vmessages = props.vmessages;
     const chats = props.chats;
     const classes = useStyles();
+    
+    
+    
 
 
     return (
         <div style={{height: '500px', overflow: 'scroll'}}>
-            <List className={classes.list}>
+            
+            <List className={classes.list} style={{height: '500px', overflow: 'scroll'}}>
                 {chats != null ? chats.sort((a,b) => b.createdAt < a.createdAt ? 1 : -1).map(chat => (
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>
-                            {chat.image && <img src={chat.image} alt='Received Image' style={{width: 'auto', height: '150px', borderRadius: 10}}/>}{"\n"}
-                            {chat.message && <ListItemText primary={chat.message}/>}
+                            {chat.type === 'plain/text' ? <ListItemText primary={chat.message}/> : <img/>}
+                            
                         </ListItem> : 
                         <ListItem style={{backgroundColor: '#257AAA', textAlign: 'right', color: '#fff', opacity: 50}}>
-                            {chat.image && <img src={chat.image} alt="Sent Image" style={{right: 0, width: 'auto', height: '150px', right: 0, borderRadius: 10}}/>}{"\n"}
-                            {chat.message && <ListItemText primary={chat.message}/>}
+                            <ListItemText primary={chat.message}/>
                         </ListItem> }
                     </div>
                 )): <p>No chats!</p>}
@@ -29,12 +40,10 @@ export default function MessageList(props) {
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>
-                            {chat.image && <img src={chat.image} alt='Received Image' style={{width: 'auto', height: '150px', borderRadius: 10}}/>}{"\n"}
-                            {chat.message && <ListItemText primary={chat.message}/>}
+                            <ListItemText primary={chat.message}/>
                         </ListItem> : 
                         <ListItem style={{backgroundColor: '#257AAA', textAlign: 'right', color: '#fff', opacity: 50}}>
-                            {chat.image && <img src={chat.image} alt="Sent Image" style={{right: 0, width: 'auto', height: '150px', right: 0, borderRadius: 10}}/>}{"\n"}
-                            {chat.message && <ListItemText primary={chat.message}/>}
+                            <ListItemText primary={chat.message}/>
                         </ListItem> }
                     </div>
                 ))}
@@ -42,3 +51,9 @@ export default function MessageList(props) {
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    pending: state.chat.pending,
+})
+
+export default connect(mapStateToProps, null)(MessageList);

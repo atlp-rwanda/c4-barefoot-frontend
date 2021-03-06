@@ -17,11 +17,11 @@ function RecordEmail(){
     }
     return (
         <div>
-            <div className={classes.secondform}>
+            <div className='secondform'>
                     <Typography variant='h6' className={classes.supporttitle}>Barefoot Nomad Support</Typography>
                     <hr/>
                     <Typography style={{padding: 10, textAlign: 'center'}}>Hi there,<br></br>We need your Email to identify you.</Typography>
-                    <FormControl className={classes.form}>
+                    <FormControl className='form'>
                         <Input 
                             variant="filled" 
                             style={{width: '100%', borderRadius: 50}}

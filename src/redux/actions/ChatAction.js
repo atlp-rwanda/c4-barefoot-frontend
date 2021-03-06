@@ -9,6 +9,9 @@ export const GET_VISITORS = 'GET_VISITORS';
 export const GETV_MESSAGES = 'GETV_MESSAGES';
 export const SUPPORT_RESPONDS = 'SUPPORT_RESPONDS';
 export const GETSUPPORT_RESPONSE = 'GETSUPPORT_RESPONSE';
+export const CHAT_PENDING = 'CHAT_PENDING';
+export const CHAT_ERROR = 'CHAT_ERROR';
+export const ALL_USERS = 'ALL_USERS';
 
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
@@ -44,26 +47,46 @@ export const fetchUsersChat = () => dispatch => {
         })
     )
     .catch(err => {
-        console.log(err.message)
+        if(err.message === "Network Error"){
+            dispatch({
+                type: 'CHATTED_USERS',
+                error: 'Network Error'
+            })
+        }
+        if(err.response){
+            dispatch({
+                type: 'CHATTED_USERS',
+                error: err.response
+            })
+        }
     })
 }
 
-export const getLastMessage = (idData) => dispatch => {
+// Get list of all users
+export const fetchUsers = () => dispatch => {
     const authToken = localStorage.getItem('barefootUserToken');
-    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/last?id=${idData}`, {
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/users`, {
         headers: {
             authorization: `Bearer ${authToken}`
         }
     })
-    .then(res => dispatch({
-        type: LAST_MESSAGE,
-        payload: res.data
-    }))
-    .catch(err => console.log(err.message))
+    .then(res => {
+        console.log(res)
+        dispatch({
+            type: 'ALL_USERS',
+            payload: res.data
+        })
+    })
+    .catch(err => {
+        console.log(err.message)
+    })
 }
 
 //Get all chats between two users.
 export const getChats = () => dispatch => {
+    dispatch({
+        type: CHAT_PENDING
+    })
     const authToken = localStorage.getItem('barefootUserToken');
     const idData = localStorage.getItem('userId');
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat?id=${idData}`, {
