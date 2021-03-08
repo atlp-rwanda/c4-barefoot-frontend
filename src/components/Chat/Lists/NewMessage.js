@@ -2,7 +2,8 @@ import React from 'react';
 import { Paper, Toolbar, Input, InputAdornment, IconButton } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { newMessageAction, supportResponds } from '../../../redux/actions/ChatAction'
-
+import SendIcon from '@material-ui/icons/Send';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 class NewMessage extends React.Component {
     constructor(props) {
         super(props);
@@ -57,7 +58,7 @@ class NewMessage extends React.Component {
                             name='message'
                             endAdornment={
                                 <InputAdornment position="end">
-                                    <IconButton><p>Attach</p></IconButton><IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}>Send</a></IconButton>
+                                    <IconButton><AttachFileIcon/></IconButton><IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
                                 </InputAdornment>
                             }
                         />
@@ -73,7 +74,7 @@ class NewMessage extends React.Component {
                             name='vmessage'
                             endAdornment={
                                 <InputAdornment position="end">
-                                    <IconButton><p>Attach</p></IconButton><IconButton onClick={this.vhandleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}>Send</a></IconButton>
+                                    <IconButton><AttachFileIcon/></IconButton><IconButton onClick={this.vhandleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
                                 </InputAdornment>
                             }
                         />

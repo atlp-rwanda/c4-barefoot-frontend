@@ -14,17 +14,17 @@ describe('Teting chat actions', () => {
         const payload = chattedUsers
         const fetchUsersChatted = {
             type: CHATTED_USERS,
-            rows: payload
+            chattedUsers
         }
-        expect(actions.fetchUsersChat(payload)).toEqual(fetchUsersChatted.payload)
+        expect(actions.fetchUsersChat(payload)).toEqual(fetchUsersChatted)
     })
 
     it('should get list of chatted users', () => {
         const payload = allUsers
         const fetchAllUsers = {
             type: ALL_USERS,
-            rows: payload
+            allUsers
         }
-        expect(actions.fetchUsers(payload)).toEqual(fetchAllUsers.payload)
+        expect(actions.fetchUsers(payload)).toEqual(fetchAllUsers)
     })
 })
