@@ -265,4 +265,6 @@ const mapStateToProps = state => ({
     singleTravel: state.manageSingleTravel,
     updateSingleTravel: state.updateTravel
 })
+
+export { ReportsView }
 export default connect(mapStateToProps, {getTravelRequest, getSingleTravelRequest, updateSingleTravelRequest, clearSingleRequest, clearUpdateTravelRequest})(ReportsView)

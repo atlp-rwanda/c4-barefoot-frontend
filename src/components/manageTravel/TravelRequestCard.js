@@ -138,4 +138,5 @@ const TravelRequestCard = (props) => {
      );
 }
  
+export {TravelRequestCard};
 export default TravelRequestCard;

@@ -10,4 +10,5 @@ function manageTravelDashboard(props) {
     )
 }
 
+export {manageTravelDashboard};
 export default manageTravelDashboard

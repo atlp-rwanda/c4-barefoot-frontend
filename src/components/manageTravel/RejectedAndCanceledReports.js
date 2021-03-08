@@ -9,4 +9,5 @@ function RejectedAndCanceled() {
     )
 }
 
+export {RejectedAndCanceled}
 export default RejectedAndCanceled;
