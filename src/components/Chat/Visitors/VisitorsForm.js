@@ -33,12 +33,13 @@ function VisitorsForm (props){
 
     return (
         <div>
-            {btnstate === 'close' ? <IconButton className={classes.chatIcon} onClick={handleOpen}>
-                <QuestionAnswerIcon className='chatus' style={{color: 'white'}}/>
+            {btnstate === 'close' ? 
+            <IconButton className={classes.chatIcon} onClick={handleOpen}>
+                <QuestionAnswerIcon className='chatus' style={{color: 'white'}}>Chat With Us!</QuestionAnswerIcon>
             </IconButton> : <IconButton className={classes.chatIcon} onClick={handleClose}>
                 <CloseIcon className='chatus' style={{color: 'white'}}/>
             </IconButton>}
-            {showForm === true && <RecordEmail/>}
+            {showForm === true && <RecordEmail openActualForm={setActualForm}/>}
             {showActualForm === true && <NewForm/>}
         </div>
     )

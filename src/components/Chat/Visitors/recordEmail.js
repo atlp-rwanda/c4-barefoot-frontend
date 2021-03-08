@@ -3,16 +3,18 @@ import {useStyles} from '../ChatStyles';
 import { Typography, FormControl, Input, InputAdornment, IconButton, FormHelperText} from '@material-ui/core'
 import SendIcon from '@material-ui/icons/Send';
 
-function RecordEmail(){
+function RecordEmail(props){
     const classes = useStyles();
     const [email, setEmail] = React.useState('');
     const [feedbackText, setFeedbackText] = React.useState(null)
+    const setActualForm = props.openActualForm;
 
     const handleSubmit = () => {
         if(email === ''){
             setFeedbackText('Type your email please!')
         }else {
             localStorage.setItem('visitorEmail', email)
+            setActualForm(true)
         }
     }
     return (

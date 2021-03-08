@@ -53,3 +53,32 @@ export const accommodationsPayload = [
     error: null
   }
 
+  export const chattedUsers = [
+    {
+      id: 1,
+      first_name: 'first',
+      last_name: 'last',
+      profile_picture: 'image.png'
+    },
+    {
+      id: 2,
+      first_name: 'secont',
+      last_name: 'name',
+      profile_picture: 'image1.png'
+    }
+  ]
+
+  export const allUsers = [
+    {
+      id: 1,
+      first_name: 'first',
+      last_name: 'last',
+      profile_picture: 'image.png'
+    },
+    {
+      id: 2,
+      first_name: 'secont',
+      last_name: 'name',
+      profile_picture: 'image1.png'
+    }
+  ]
