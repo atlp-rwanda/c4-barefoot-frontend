@@ -2,13 +2,12 @@ import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEma
 import NewPassword from '../components/resetPassword/NewPassword'
 import React from 'react';
 import Login from '../components/views/Login'
-import SignUp from '../components/signup';
 import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
 import { Switch, Redirect } from 'react-router-dom';
-import RouteWithLayout  from '../components/RouteWithLayout';
+import RouteWithLayout from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout, ManagerLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
