@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import DrawerComponent from './sideBarDrawer/Drawer';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +53,8 @@ export default function ButtonAppBar() {
             Barefoot Nomad
   </Link>
           </Typography>
+         
+          <Button> <NotificationsActiveIcon href="/notification" color="inherit"/> </Button>
           <Button href="/logout" color="inherit">Log out</Button>
         </Toolbar>
       </AppBar>

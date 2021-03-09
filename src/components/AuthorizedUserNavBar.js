@@ -2,9 +2,11 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography} from '@material-ui/core'
 import LockIcon from '@material-ui/icons/Lock';
 import SideDrawer from './SideDrawer'
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 
 const navLinks = [
-    {title: 'Logout', path: '/logout'}
+    {title: 'Logout', path: '/logout'},
+    {title: 'notification', path: '/notification'}
 ]
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +33,8 @@ function Header (){
                 {barefootLogo}
                 <Hidden smDown>
                     <List component='nav'>
+                        
+                        <Button> <NotificationsActiveIcon href="/notification" color="inherit"/> </Button>
                         <Button href="/logout" color='inherit' startIcon = { <LockIcon/> }>Logout</Button>
                     </List>
                 </Hidden>
