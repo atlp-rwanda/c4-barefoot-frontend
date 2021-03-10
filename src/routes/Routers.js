@@ -12,6 +12,7 @@ import Profile from '../components/views/Profile';
 import { DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
+import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 
 const Routes = () => {
     return (
@@ -38,6 +39,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/profile"
+        />
+        <ProtectedRoute
+          component={CreateAccomodation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/createAccomodation"
         />
          <RouteWithLayout
           component={signup}
