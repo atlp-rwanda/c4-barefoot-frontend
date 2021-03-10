@@ -31,6 +31,11 @@ export const createRoles = (state = initialState, action) => {
       return{
         ...state,
         pending: false,
+        snackBarMessage:{
+          open:true,
+          severity:"error",
+          message:action.error
+        },
         error: action.error
       }
       case UPDATE_ROLE:
@@ -47,6 +52,11 @@ export const createRoles = (state = initialState, action) => {
         return {
         ...state,
         pending: false,
+        snackBarMessage:{
+          open:true,
+          severity:"error",
+          message:action.error
+        },
         error: action.error
       }
     case CLEAR_SNACKBAR:

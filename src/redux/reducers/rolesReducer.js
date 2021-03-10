@@ -33,6 +33,11 @@ export function RolesReducer(state = initialState, action){
       return {
       ...state,
       pending: false,
+      snackBarMessage:{
+        open:true,
+        severity:"error",
+        message:action.error
+      },
       error: action.error
     }
 
