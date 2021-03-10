@@ -52,7 +52,8 @@ export const useStyles= makeStyles( theme =>({
         // backgroundColor:'green',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        transition: 'display 3s linear'
     },
     groupTitle:{
         marginTop: '20px',
