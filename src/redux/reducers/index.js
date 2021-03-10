@@ -8,7 +8,6 @@ import { signupRequestReducer } from './signupReducer'
 import { logoutReducer } from './logoutReducer';
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
 import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
-import { fetchUsersReducer } from './usersReducer'
 import { UsersReducer } from './usersReducer'
 import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
@@ -26,7 +25,6 @@ const reducers = combineReducers({
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
   changeUserPassword: changeUserPasswordeReducer,
-  users: fetchUsersReducer,
   users: UsersReducer,
   roles: RolesReducer,
   permissions: permissionsReducer,

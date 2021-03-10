@@ -15,7 +15,13 @@ const useStyles = makeStyles((theme) => ({
   marginTop:theme.spacing(3)
 },
 center:{
-  marginLeft:theme.spacing(35)
+  [theme.breakpoints.up("xs")]:{
+    marginLeft:theme.spacing(3)
+  },
+  [theme.breakpoints.up("sm")]:{
+    marginLeft:theme.spacing(35)
+  }
+  
 }
 }))
 
@@ -71,9 +77,9 @@ function ListOfRoles(props){
           <Divider/>
           </div>
         </Grid>
-        <Grid item sm={8} xs={10} className={classes.center}>
+        <Grid item sm={8} xs={12} className={classes.center}>
           {props.savedRoles.pending ? skeletonData : props.savedRoles.roles.rows.map((role, index) => (
-              <Grid item sm={8} xs={10} key={role.id}>
+              <Grid item sm={8} xs={12} key={role.id}>
               <RolesCard roleId={role.id} roleTitle={role.name} idx={index} pop={props}/>
             </Grid>
           ))}

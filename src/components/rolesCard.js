@@ -44,7 +44,7 @@ function RolesCard(props) {
               <BorderColorIcon color='primary'/>
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <Delete color='secondary'/>
+              <Delete color="error"/>
             </IconButton>
           </CardActions>
         </Card>

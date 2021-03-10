@@ -77,15 +77,6 @@ export const accommodationsPayload = {
       }
   }
 
-  export const accommodationState = {
-    pending: false,
-    accommodations: accommodationsPayload,
-    error: null
-  }
-
-  
-
-
 export const accommodationState = {
   pending: false,
   accommodations: accommodationsPayload,
