@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const ErrorModal= (props)=> {
   const classes = useStyles();
   // const [open, setOpen] = React.useState(false);
-  const {isOpen, setIsOpen, error, clearUpdateTravelRequest}= props
+  const {isOpen, setIsOpen, error}= props
 
   useEffect( ()=>{
     if(error){
@@ -40,7 +40,7 @@ const ErrorModal= (props)=> {
     }
 
     setIsOpen(false);
-    clearUpdateTravelRequest()
+   // clearUpdateTravelRequest()
   };
 
   return (

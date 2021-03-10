@@ -97,6 +97,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const filter= (travels, category)=>{
+let travelss = travels[0];
+console.log(travelss);
     let filteredArray=[];
     switch( category ){
         case 'approved':

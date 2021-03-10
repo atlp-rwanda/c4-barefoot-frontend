@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import DrawerComponent from './sideBarDrawer/Drawer';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import NotificationMenu from '../components/NotificationMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const [sideBar, setSideBar] = useState(false)
+  const [sideBar, setSideBar] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const showSideBar = () => setSideBar(!sideBar)
   const handleClockMenuIcon = () => {
       console.log('hahahahahahahahahaha')
@@ -40,6 +42,12 @@ export default function ButtonAppBar() {
       </>
       )    
   } 
+  const handleClickNotif = (e)=>{
+    setAnchorEl(e.currentTarget);
+  }
+  const hancleCloseNot = ()=>{
+    setAnchorEl(null);
+  }
   
 
   return (
@@ -54,10 +62,11 @@ export default function ButtonAppBar() {
   </Link>
           </Typography>
          
-          <Button> <NotificationsActiveIcon href="/notification" color="inherit"/> </Button>
+          <Button aria-controls="noti-menu" aria-haspopup="true" onClick={handleClickNotif}> <NotificationsActiveIcon href="/notification" color="inherit"/> </Button>
           <Button href="/logout" color="inherit">Log out</Button>
         </Toolbar>
       </AppBar>
+      <NotificationMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} handleClose={hancleCloseNot}/>
     </div>
   );
 }
