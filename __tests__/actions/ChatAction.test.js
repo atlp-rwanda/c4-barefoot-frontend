@@ -137,8 +137,8 @@ describe('visitors get support message', () => {
                 }
             })
         })
-        return store.dispatch(actions.getChats()).then(() => {
-            const expectedActions = store.getSupportResponse();
+        return store.dispatch(actions.getSupportResponse()).then(() => {
+            const expectedActions = store.getActions();
             expect(expectedActions[0].type).toEqual('GETSUPPORT_RESPONSE')
         })
     })
