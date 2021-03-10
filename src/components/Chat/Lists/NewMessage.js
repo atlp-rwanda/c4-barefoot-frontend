@@ -10,10 +10,12 @@ class NewMessage extends React.Component {
         this.state = {
             message: '',
             vmessage: '',
+            image: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.vhandleClick = this.vhandleClick.bind(this)
+        this.handleUpload = this.handleUpload.bind(this)
     }
 
     handleChange = (e) => {
@@ -32,6 +34,17 @@ class NewMessage extends React.Component {
         }
         this.props.newMessageAction(messageData);
     }
+    handleUpload = () => {
+        const receiverId = localStorage.getItem('userId')
+        const messageData = {
+            receiver: receiverId,
+            message: this.state.image,
+            type: 'image-url'
+        }
+        
+        this.props.newMessageAction(messageData);
+    }
+
     vhandleClick = () => {
         const receiverId = localStorage.getItem('userId')
         console.log(receiverId)
@@ -58,7 +71,10 @@ class NewMessage extends React.Component {
                             name='message'
                             endAdornment={
                                 <InputAdornment position="end">
-                                    <IconButton><AttachFileIcon/></IconButton><IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
+                                    <IconButton onClick={this.handleUpload}>
+                                    <AttachFileIcon/>
+                                        
+                                    </IconButton><IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
                                 </InputAdornment>
                             }
                         />
