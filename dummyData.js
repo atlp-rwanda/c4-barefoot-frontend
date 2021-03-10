@@ -141,3 +141,33 @@ export const props2={
       data:{}
   }
 }
+
+export const vList = [
+  'visitor1@email.com',
+  'visitor2@email.com'
+]
+
+export const messageList = [
+  {
+    id: 1,
+    sender: 'fh839h973jjfbvdy8i339',
+    receiver: 'fh839h973jjfbvdy8ijd',
+    message: 'Hi',
+    type: 'plain-text'
+  },
+  {
+    id: 1,
+    sender: 'fh839h973jjfbvdy8i33op',
+    receiver: 'fh839h973jjfbvdy8itet',
+    message: '/images/image.png',
+    type: 'image/jpeg'
+  }
+]
+
+export const supportReply = {
+  id: 1,
+  sender: 'fh839h973jjfbvdy8i33op',
+  receiver: 'fh839h973jjfbvdy8itet',
+  message: '/images/image.png',
+  type: 'image/jpeg'
+}

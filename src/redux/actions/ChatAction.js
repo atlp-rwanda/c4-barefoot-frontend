@@ -84,9 +84,6 @@ export const fetchUsers = () => dispatch => {
 
 //Get all chats between two users.
 export const getChats = () => dispatch => {
-    dispatch({
-        type: CHAT_PENDING
-    })
     const authToken = localStorage.getItem('barefootUserToken');
     const idData = localStorage.getItem('userId');
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat?id=${idData}`, {
