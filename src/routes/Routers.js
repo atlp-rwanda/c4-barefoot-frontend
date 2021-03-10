@@ -27,6 +27,7 @@ import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 
 const Routes = () => {
   return (
@@ -92,6 +93,12 @@ const Routes = () => {
           path="/managerTravel/done"
         />
         
+        <ProtectedRoute
+          component={CreateAccomodation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/createAccomodation"
+        />
          <RouteWithLayout
           component={signup}
           exact
