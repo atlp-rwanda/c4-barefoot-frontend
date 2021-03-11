@@ -16,6 +16,18 @@ const AccCapacity = (props) => {
 
     const classes= useStyles();
 
+    const menuProps= {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        getContentAnchorEl: null
+      };
+
     return ( 
         <Box className={classes.formSection}>
             <Box 
@@ -49,6 +61,8 @@ const AccCapacity = (props) => {
                                 <InputLabel>Choose property type</InputLabel>
                                 <Select
                                     id="property type"
+                                    MenuProps={menuProps}
+
                                 >
                                     <MenuItem value={'Hotel'}>Hotel</MenuItem>
                                     <MenuItem value={'Motel'}>Motel</MenuItem>
@@ -75,6 +89,8 @@ const AccCapacity = (props) => {
                                 <InputLabel>Type of bed</InputLabel>
                                 <Select
                                     id="bed type"
+                                    MenuProps={menuProps}
+
                                 >
                                     <MenuItem value={'double'}>Double</MenuItem>
                                     <MenuItem value={'single'}>single</MenuItem>

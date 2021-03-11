@@ -38,7 +38,11 @@ export const useStyles= makeStyles( theme =>({
         display: 'flex',
         justifyContent: 'space-between',
         padding: '20px 10px',
-        backgroundColor: '#ABD5ED'
+        backgroundColor: '#ABD5ED',
+        transition: 'background-color .3s linear',
+        '&:hover':{
+            backgroundColor: '#43A0D6'
+        }
     },
     sectionHeaderTitle:{
         display: 'flex'
@@ -53,7 +57,6 @@ export const useStyles= makeStyles( theme =>({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        transition: 'display 3s linear'
     },
     groupTitle:{
         marginTop: '20px',
