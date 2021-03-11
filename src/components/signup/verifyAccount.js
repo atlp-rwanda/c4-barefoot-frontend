@@ -2,6 +2,7 @@ import { Box, Button, makeStyles } from '@material-ui/core'
 import Devider from '@material-ui/core/Divider'
 import { CheckCircle } from '@material-ui/icons'
 import Axios from 'axios'
+import {API} from '../../redux/actions/AxiosAPI';
 import React, { useState } from 'react'
 import queryString from 'query-string';
 import { Skeleton } from '@material-ui/lab'
@@ -40,7 +41,7 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 const verify = (token, verified, setVerified ,setError) => {
-    Axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/verification?token=` + token)
+    API.patch('user/verification?token=' + token)
     .then(res => {
       setVerified(true)
     })
