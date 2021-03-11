@@ -69,6 +69,7 @@ const CreateAccomodation = (props) => {
       };
     
       const handlePhoto = (url)=>{
+        //   console.log('state url', url);
           setData({
               ...data,
               photos: url

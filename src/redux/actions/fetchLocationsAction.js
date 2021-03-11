@@ -7,12 +7,18 @@ export const FETCH_LOCATIONS_PENDING = 'FETCH_LOCATIONS_PENDING'
 
 export const getLocations = () => dispatch => {
   const token= localStorage.getItem('barefootUserToken');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
  dispatch({
     type: FETCH_LOCATIONS_PENDING
   })
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations`)
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
     .then(res => {
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,

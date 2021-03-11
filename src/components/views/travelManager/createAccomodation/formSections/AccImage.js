@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography} from '@material-ui/core';
+import {Box, Button, Checkbox, CircularProgress, Container, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography} from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import { useStyles } from '../styles';
@@ -19,6 +19,7 @@ const AccImage = (props) => {
         handleToggle(section)
     }
 
+    // console.log('local url', url);
     const uploadImage= (e)=>{
         const accImage = e.target.files[0]
         const formData = new FormData()
@@ -31,11 +32,11 @@ const AccImage = (props) => {
 
             setLoading(false); 
             setUrl(res.data.secure_url);
-            console.log('image url',url);
-            handlePhoto(url)
+            // console.log('image url',res.data.secure_url);
+            handlePhoto(res.data.secure_url)
         })
         .catch(err => { 
-            console.log('Upload error',err);
+            console.log('Upload error',err.request);
             setLoading(false);
         })       
     }
@@ -80,11 +81,17 @@ const AccImage = (props) => {
                                             onChange={(e)=> uploadImage(e)}
                                         />
 
-                                        <Box className={classes.imageContainer} style={{minHeight: true ? '250px': 'initial'}}>
-                                            { true ? 
+                                        <Box className={classes.imageContainer} style={{minHeight: url === '' ? '250px': 'initial'}}>
+                                            { url === '' ? 
                                                 (
                                                     
                                                     <Box className={classes.imageIcon}>
+                                                        { loading ? (
+                                                            <CircularProgress />
+                                                        ) 
+                                                        :
+                                                        (
+                                                    
                                                             <label htmlFor="upload">
                                                                 <AddPhotoAlternateOutlinedIcon
                                                                     fontSize='large' 
@@ -97,13 +104,14 @@ const AccImage = (props) => {
                                                                     select 2 or more images
                                                                 </Typography>
                                                             </label>
-                                                        </Box>
+                                                        )}
+                                                    </Box>
                                                     
 
                                                 )
                                                 :
                                                 (
-                                                    <img src='image.jpg'  alt={'image not found'} />
+                                                    <img src={url}  alt={'image not found'} style={{width: '100%'}} />
                                                 )
                                             }
 
