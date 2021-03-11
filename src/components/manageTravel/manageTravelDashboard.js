@@ -6,8 +6,8 @@ import ReportsView from './ReportsView';
 function manageTravelDashboard(props) {
 
     return (
-        <ReportsView category={'pending'} />
+        <ReportsView category={''} />
     )
 }
 
-export default manageTravelDashboard
+export default manageTravelDashboard;

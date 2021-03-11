@@ -1,8 +1,10 @@
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getNotifications } from '../redux/actions/notificationAction';
+import { connect } from 'react-redux'
 
 const Notification = () => {
-    // console.log("profile")
+  
     return (
         
         <React.Fragment>

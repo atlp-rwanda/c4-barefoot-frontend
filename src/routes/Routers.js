@@ -50,7 +50,7 @@ const Routes = () => {
           component={Notification}
           exact
           layout={AuthorizedUserLayout}
-          path="/notification"
+          path="/notifications"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}

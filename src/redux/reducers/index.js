@@ -9,6 +9,7 @@ import { logoutReducer } from './logoutReducer';
 import { fetchTravelReducer } from './travelRequestReducer';
 import { fetchSingleTravelReducer } from './singleTravelReducer'
 import { updateSingleTravelReducer } from "./updateTravelReducer";
+import { notificationReducer } from './notificationReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -21,7 +22,8 @@ const reducers = combineReducers({
   // verifiedUser: fetchUserReducer,
   manageTravel:fetchTravelReducer,
   manageSingleTravel:fetchSingleTravelReducer,
-  updateTravel:updateSingleTravelReducer
+  updateTravel:updateSingleTravelReducer,
+  notifications: notificationReducer
   })
 
 export default reducers
