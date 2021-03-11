@@ -60,9 +60,10 @@ export const useStyles= makeStyles( theme =>({
     },
     groupTitle:{
         marginTop: '20px',
+        textAlign: 'center'
     },
     controlGroup: {
-        width: '80%',
+        width: '100%',
         // backgroundColor:"red",
         padding: '20px 0px',
         display: 'flex',

@@ -33,7 +33,30 @@ const CreateAccomodation = () => {
             },
         }
     );
-    // console.log('toggles', toggles);
+
+    const [data, setData] = useState({
+        country: '',
+        city: '',
+        state: '',
+        streetAddress: '',
+        locationID: '',
+        propertyType: '',
+        numberOfRooms: 1,
+        typeOfBed: '',
+        title: '',
+        description: '',
+        photos: ''
+    });
+
+    // console.log('Data',data);
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        setData({
+          ...data,
+          [name]: name === 'numberOfRooms' ? parseInt(event.target.value)  : event.target.value,
+        });
+      };
     
     const handleToggle= (section)=>{
         const newState= {
@@ -42,6 +65,10 @@ const CreateAccomodation = () => {
         };
         // console.log('new Toggles', newState);
         setToggles(newState);
+    }
+
+    const handleSubmit = (e)=>{
+        console.log('Data',data);
     }
 
 
@@ -55,22 +82,22 @@ const CreateAccomodation = () => {
 
 {/** -----------------------------------------Location of acc------------------------------------------------------ */}
 
-                            <AccLocation handleToggle={handleToggle} toggles={toggles} />
+                            <AccLocation handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
                            
 
 {/** -----------------------------------------Capacity and type------------------------------------------------------ */}
 
-                            <AccCapacity handleToggle={handleToggle} toggles={toggles} />
+                            <AccCapacity handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
                             
 
 {/** -----------------------------------------Title and description------------------------------------------------------ */}
 
-                            <AccDescription handleToggle={handleToggle} toggles={toggles} />
+                            <AccDescription handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
                             
 
 {/** -----------------------------------------Accomodation Image------------------------------------------------------ */}
                             
-                            <AccImage handleToggle={handleToggle} toggles={toggles} />
+                            <AccImage handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
 
 {/** -----------------------------------------Amenities------------------------------------------------------ */}
 
@@ -84,6 +111,7 @@ const CreateAccomodation = () => {
                                     variant='contained' 
                                     color='primary'
                                     className={classes.button}
+                                    onClick={ (e)=> handleSubmit(e)}
                                 >
                                     Post
                                 </Button>
