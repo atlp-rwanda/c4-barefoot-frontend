@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography} from '@material-ui/core';
 
 import { useStyles } from './createAccomodation/styles';
@@ -7,13 +7,23 @@ import AccCapacity from './createAccomodation/formSections/AccCapacity';
 import AccDescription from './createAccomodation/formSections/AccDescription';
 import AccImage from './createAccomodation/formSections/AccImage';
 import AccAmenities from './createAccomodation/formSections/AccAmenities';
+import { connect } from 'react-redux';
+import { getLocations } from '../../../redux/actions/fetchLocationsAction'
 
 
 
 
 
-const CreateAccomodation = () => {
+
+const CreateAccomodation = (props) => {
+
+    useEffect( ()=>{
+        console.log('fetch loacation');
+        props.getLocations();
+    },[])
+
     const classes= useStyles();
+    const { locationsData } = props;
     const [ toggles, setToggles] =useState(
         {
             location:{
@@ -58,6 +68,22 @@ const CreateAccomodation = () => {
         });
       };
     
+      const handlePhoto = (url)=>{
+          setData({
+              ...data,
+              photos: url
+          })
+      }
+      const handleLocation= (e)=>{
+          const locData= e.target.value.split(",");
+          console.log('key', e.target);
+          setData({
+              ...data,
+              country: locData[1],
+              locationID: locData[0]
+          })
+      }
+    
     const handleToggle= (section)=>{
         const newState= {
             ...toggles,
@@ -82,26 +108,49 @@ const CreateAccomodation = () => {
 
 {/** -----------------------------------------Location of acc------------------------------------------------------ */}
 
-                            <AccLocation handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
+                            <AccLocation 
+                                handleToggle={handleToggle} 
+                                toggles={toggles} 
+                                handleChange={handleChange} 
+                                data={data} 
+                                locationsData={locationsData}
+                                handleLocation={handleLocation} 
+                            />
                            
 
 {/** -----------------------------------------Capacity and type------------------------------------------------------ */}
 
-                            <AccCapacity handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
+                            <AccCapacity 
+                                handleToggle={handleToggle} 
+                                toggles={toggles} 
+                                handleChange={handleChange} 
+                                data={data} 
+                            />
                             
 
 {/** -----------------------------------------Title and description------------------------------------------------------ */}
 
-                            <AccDescription handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
+                            <AccDescription 
+                                handleToggle={handleToggle} 
+                                toggles={toggles} handleChange={handleChange} 
+                                data={data} 
+                            />
                             
 
 {/** -----------------------------------------Accomodation Image------------------------------------------------------ */}
                             
-                            <AccImage handleToggle={handleToggle} toggles={toggles} handleChange={handleChange} data={data} />
+                            <AccImage 
+                                handleToggle={handleToggle} 
+                                toggles={toggles} handleChange={handleChange} 
+                                data={data} handlePhoto={handlePhoto} 
+                            />
 
 {/** -----------------------------------------Amenities------------------------------------------------------ */}
 
-                            <AccAmenities handleToggle={handleToggle} toggles={toggles} />
+                            <AccAmenities 
+                                handleToggle={handleToggle} 
+                                toggles={toggles} 
+                            />
 
 {/**----------------------------------------------------Form actions------------------------------------------------------ */}
 
@@ -134,5 +183,11 @@ const CreateAccomodation = () => {
         </Box>
      );
 }
+
+
+const mapStateToProps = state => ({
+    locationsData: state.fetchLocations,
+})
+
+export default connect(mapStateToProps, {getLocations}) ( CreateAccomodation)
  
-export default CreateAccomodation;

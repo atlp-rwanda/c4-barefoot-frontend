@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography} from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
@@ -7,6 +7,8 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
+
+
 
 const AccLocation = (props) => {
     const classes= useStyles();
@@ -23,10 +25,12 @@ const AccLocation = (props) => {
         getContentAnchorEl: null
       };
 
-    const { handleToggle, toggles, handleChange, data }= props;
+    const { handleToggle, toggles, handleChange, data, locationsData, handleLocation }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
+    
+
     return ( 
         <Box className={classes.formSection}>
             <Box 
@@ -64,9 +68,36 @@ const AccLocation = (props) => {
                                     value={ data.country}
                                     onChange={ (e)=> handleChange(e)}
                                 >
-                                    <MenuItem value={'Rwamda'}>Rwamda</MenuItem>
-                                    <MenuItem value={'Uganda'}>Uganda</MenuItem>
-                                    <MenuItem value={'Kenya'}>Kenya</MenuItem>
+                                    {
+                                        locationsData.pending 
+                                        ? (
+                                            <MenuItem value={'01,Loading'}>Loading data ...</MenuItem>
+                                          )
+                                        :
+                                            !locationsData.error 
+                                            ?                                                 
+                                                locationsData.locations.length > 0 
+                                                ?
+                                                    locationsData.locations.map( location => (
+                                                        <MenuItem 
+                                                            key= {location.id}
+                                                            value={`${location.id},${location.LocationName}`}
+                                                        >
+                                                            {location.LocationName}
+
+                                                        </MenuItem>
+                                                    ))
+                                                :
+                                                (
+                                                    <MenuItem value={'00,No Data'}>No location found</MenuItem>
+
+                                                )
+                                            :
+                                            (
+                                                <MenuItem value={'99,Error occured'}>Error ocuured!</MenuItem>
+                                            )     
+                                    }
+
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -114,4 +145,6 @@ const AccLocation = (props) => {
      );
 }
  
+
+
 export default AccLocation;

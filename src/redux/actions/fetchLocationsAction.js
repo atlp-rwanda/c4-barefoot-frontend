@@ -6,7 +6,10 @@ export const FETCH_LOCATIONS_ERROR = 'FETCH_LOCATIONS_ERROR'
 
 
 export const getLocations = () => dispatch => {
-  dispatch({
+  const token= localStorage.getItem('barefootUserToken');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+ dispatch({
     type: FETCH_LOCATIONS_PENDING
   })
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations`)
@@ -18,6 +21,7 @@ export const getLocations = () => dispatch => {
       }
     )
     .catch(err => {
+      console.log('error', err.request);
       dispatch({
         type: FETCH_LOCATIONS_ERROR,
         error: err
