@@ -23,7 +23,7 @@ const AccLocation = (props) => {
         getContentAnchorEl: null
       };
 
-    const { handleToggle, toggles }= props;
+    const { handleToggle, toggles, handleChange, data }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
@@ -59,11 +59,14 @@ const AccLocation = (props) => {
                                 <InputLabel>Country/Region</InputLabel>
                                 <Select
                                     id="region"
+                                    name= 'country'
                                     MenuProps={menuProps}
+                                    value={ data.country}
+                                    onChange={ (e)=> handleChange(e)}
                                 >
-                                    <MenuItem value={'Kigali'}>Kigali</MenuItem>
-                                    <MenuItem value={'Huye'}>Huye</MenuItem>
-                                    <MenuItem value={'Rubavu'}>Rubavu</MenuItem>
+                                    <MenuItem value={'Rwamda'}>Rwamda</MenuItem>
+                                    <MenuItem value={'Uganda'}>Uganda</MenuItem>
+                                    <MenuItem value={'Kenya'}>Kenya</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -73,12 +76,22 @@ const AccLocation = (props) => {
                 <Grid container className={ classes.controlGroup} spacing={1}>
                         <Grid item xs={5} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <TextField  label="City" />
+                                <TextField
+                                  label="City" 
+                                  name='city'
+                                  value={ data.city}
+                                  onChange={ (e)=> handleChange(e)}
+                                />
                             </FormControl>
                         </Grid>
                         <Grid item xs={5} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <TextField  label="State" />
+                                <TextField  
+                                    label="State" 
+                                    name='state'
+                                    value={ data.state}
+                                    onChange={ (e)=> handleChange(e)}
+                                />
                             </FormControl>
                         </Grid>
                 </Grid>
@@ -86,7 +99,12 @@ const AccLocation = (props) => {
                 <Grid container className={ classes.controlGroup}>
                         <Grid item xs={10} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <TextField  label="Steet Address" />
+                                <TextField  
+                                    label="Steet Address"
+                                    name='streetAddress'
+                                    value={ data.streetAddress}
+                                    onChange={ (e)=> handleChange(e)} 
+                                />
                             </FormControl>
                         </Grid>
                         

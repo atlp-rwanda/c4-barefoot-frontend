@@ -10,7 +10,7 @@ import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
 
 const AccDescription = (props) => {
     const classes= useStyles();
-    const { handleToggle, toggles }= props;
+    const { handleToggle, toggles, handleChange, data }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
@@ -46,7 +46,12 @@ const AccDescription = (props) => {
                 <Grid container className={ classes.controlGroup}>
                         <Grid item xs={10} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <TextField  label="Number of bedrooms" />
+                                <TextField  
+                                    label="Add a title of this accomodation" 
+                                    name='title'
+                                    value={ data.title}
+                                    onChange={ (e)=> handleChange(e)}
+                                />
                             </FormControl>
                         </Grid>
                         
@@ -62,6 +67,9 @@ const AccDescription = (props) => {
                                 placeholder="Fill accomodation description here."
                                 variant="outlined"
                                 helperText={500}
+                                name='description'
+                                value={ data.description}
+                                onChange={ (e)=> handleChange(e)}
                             />
                             </FormControl>
                         </Grid>

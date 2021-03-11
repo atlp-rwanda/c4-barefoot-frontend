@@ -9,7 +9,7 @@ import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateO
 import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
 
 const AccCapacity = (props) => {
-    const { handleToggle, toggles }= props;
+    const { handleToggle, toggles, handleChange, data }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
@@ -62,6 +62,9 @@ const AccCapacity = (props) => {
                                 <Select
                                     id="property type"
                                     MenuProps={menuProps}
+                                    name='propertyType'
+                                    value={ data.propertyType}
+                                    onChange={ (e)=> handleChange(e)}
 
                                 >
                                     <MenuItem value={'Hotel'}>Hotel</MenuItem>
@@ -77,7 +80,17 @@ const AccCapacity = (props) => {
                 <Grid container className={ classes.controlGroup}>
                         <Grid item xs={10} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <TextField  label="Number of bedrooms" />
+                                <TextField  
+                                    type="number"
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                    margin="normal"
+                                    label="Number of bedrooms"
+                                    name='numberOfRooms'
+                                    value={ data.numberOfRooms }
+                                    onChange={ (e)=> handleChange(e)}
+                                />
                             </FormControl>
                         </Grid>
                         
@@ -90,6 +103,9 @@ const AccCapacity = (props) => {
                                 <Select
                                     id="bed type"
                                     MenuProps={menuProps}
+                                    name='typeOfBed'
+                                    value={ data.typeOfBed}
+                                    onChange={ (e)=> handleChange(e)}
 
                                 >
                                     <MenuItem value={'double'}>Double</MenuItem>
