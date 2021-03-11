@@ -46,27 +46,47 @@ const AccImage = (props) => {
 
                 <Grid container className={ classes.controlGroup}>
                         <Grid item xs={10} className={ classes.controlItem}>
-                            <FormControl className={classes.formControl}>
-                                <Box className={classes.imageContainer}>
-                                    { true ? 
-                                        (
-                                            <Box className={classes.imageIcon}>
-                                                <AddPhotoAlternateOutlinedIcon
-                                                    fontSize='large' 
-                                                    
-                                                />
-                                                <Typography variant='caption' component='h6'>select 2 or more images</Typography>
-                                            </Box>
-                                        )
-                                        :
-                                        (
-                                            <img src='image.jpg'  alt={'image not found'} />
-                                        )
-                                    }
+                            <Grid container className={classes.respImageContainer}>
+                                <Grid item xs={12} md={6}>
+                                    <FormControl className={classes.formControl}>
+                                        <input
+                                            id='upload' 
+                                            type='file'
+                                            hidden= {true}
+                                        />
 
-                                </Box>
-                                
-                            </FormControl>
+                                        <Box className={classes.imageContainer} style={{minHeight: true ? '250px': 'initial'}}>
+                                            { true ? 
+                                                (
+                                                    
+                                                    <Box className={classes.imageIcon}>
+                                                            <label htmlFor="upload">
+                                                                <AddPhotoAlternateOutlinedIcon
+                                                                    fontSize='large' 
+                                                                    
+                                                                />
+                                                                <Typography 
+                                                                    variant='caption' 
+                                                                    component='h6'
+                                                                >
+                                                                    select 2 or more images
+                                                                </Typography>
+                                                            </label>
+                                                        </Box>
+                                                    
+
+                                                )
+                                                :
+                                                (
+                                                    <img src='image.jpg'  alt={'image not found'} />
+                                                )
+                                            }
+
+                                        </Box>
+                                    </FormControl>
+                            </Grid>
+
+                            </Grid>
                         </Grid>
                         
                 </Grid>
