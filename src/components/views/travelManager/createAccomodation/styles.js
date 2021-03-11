@@ -86,12 +86,15 @@ export const useStyles= makeStyles( theme =>({
         justifyContent: 'center'
     },
     imageContainer:{
-
         backgroundColor: 'rgba(0,0,0,0.3)',
-        minHeight: '280px',
+        minHeight: '250px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    respImageContainer:{
+        display: 'flex',
+        justifyContent: 'center'
     },
     imageIcon:{
         margin: 'auto',
