@@ -9,6 +9,9 @@ import AccImage from './createAccomodation/formSections/AccImage';
 import AccAmenities from './createAccomodation/formSections/AccAmenities';
 import { connect } from 'react-redux';
 import { getLocations } from '../../../redux/actions/fetchLocationsAction'
+import { createAccomodation } from '../../../redux/actions/createAccAction'
+import ErrorSnackBar from './createAccomodation/formSections/ErrorSnackBar';
+import SuccessSnackBar from './createAccomodation/formSections/SuccessSnackBar'
 
 
 
@@ -17,15 +20,20 @@ import { getLocations } from '../../../redux/actions/fetchLocationsAction'
 
 const CreateAccomodation = (props) => {
 
-    useEffect( ()=>{
-        console.log('fetch loacation');
-        props.getLocations();
-    },[])
-
     const classes= useStyles();
-    const { locationsData } = props;
+    const { locationsData, createAcc } = props;
+    const { error, accomodation, pending } = createAcc;
 
     const [regionInfo, setRegionInfo]= useState('');
+    const [ openError, setErrorOpen]= useState(false);
+    const [ openSuccess, setSuccessOpen]= useState(false);
+
+    const handleErrorClose= ()=>{
+        setErrorOpen(false);
+    }
+    const handleSuccessClose= ()=>{
+        setSuccessOpen(false);
+    }
     const [ toggles, setToggles] =useState(
         {
             location:{
@@ -46,7 +54,7 @@ const CreateAccomodation = (props) => {
         }
     );
 
-    const [data, setData] = useState({
+    const initialState= {
         country: '',
         city: '',
         state: '',
@@ -58,7 +66,15 @@ const CreateAccomodation = (props) => {
         title: '',
         description: '',
         photos: ''
-    });
+    }
+
+    const [data, setData] = useState(initialState);
+
+
+    useEffect( ()=>{
+        console.log('fetch loacation');
+        props.getLocations();
+    },[])
 
 
     // console.log('Data',data);
@@ -87,6 +103,10 @@ const CreateAccomodation = (props) => {
               locationID: locData[0]
           })
       }
+
+      const reset =()=>{
+        setData(initialState);
+      }
     
     const handleToggle= (section)=>{
         const newState= {
@@ -99,6 +119,7 @@ const CreateAccomodation = (props) => {
 
     const handleSubmit = (e)=>{
         console.log('Data',data);
+        props.createAccomodation(data);
     }
 
 
@@ -185,6 +206,9 @@ const CreateAccomodation = (props) => {
                         </form>
                 </Grid>
             </Grid>
+            {error && <ErrorSnackBar handleClose={handleErrorClose} open={openError} error={error} setOpen={setErrorOpen} />}
+            {accomodation && <SuccessSnackBar handleClose={handleSuccessClose} open={openSuccess} accomodation={accomodation} setOpen={setSuccessOpen} reset={reset} />}
+
         </Box>
      );
 }
@@ -192,7 +216,8 @@ const CreateAccomodation = (props) => {
 
 const mapStateToProps = state => ({
     locationsData: state.fetchLocations,
+    createAcc: state.createAcc
 })
 
-export default connect(mapStateToProps, {getLocations}) ( CreateAccomodation)
+export default connect(mapStateToProps, {getLocations, createAccomodation}) ( CreateAccomodation)
  

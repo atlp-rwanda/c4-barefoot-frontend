@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const AccImage = (props) => {
     const classes= useStyles();
-    const { handleToggle, toggles, handlePhoto }= props;
+    const { handleToggle, toggles, handlePhoto, data }= props;
     const [url, setUrl]= useState('');
     const [loading, setLoading]= useState(false)
     const handleCollapse= (section)=>{
@@ -81,8 +81,8 @@ const AccImage = (props) => {
                                             onChange={(e)=> uploadImage(e)}
                                         />
 
-                                        <Box className={classes.imageContainer} style={{minHeight: url === '' ? '250px': 'initial'}}>
-                                            { url === '' ? 
+                                        <Box className={classes.imageContainer} style={{minHeight: data.photos === '' ? '250px': 'initial'}}>
+                                            { data.photos === '' ? 
                                                 (
                                                     
                                                     <Box className={classes.imageIcon}>
@@ -111,7 +111,7 @@ const AccImage = (props) => {
                                                 )
                                                 :
                                                 (
-                                                    <img src={url}  alt={'image not found'} style={{width: '100%'}} />
+                                                    <img src={data.photos}  alt={'image not found'} style={{width: '100%'}} />
                                                 )
                                             }
 
