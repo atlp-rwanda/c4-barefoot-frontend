@@ -9,6 +9,11 @@ import { logoutReducer } from './logoutReducer';
 import ChatReducer from './ChatReducer';
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
 import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
+import { UsersReducer } from './usersReducer'
+import { RolesReducer } from './rolesReducer'
+import { createRoles } from './createRoleReducer'
+import { permissionsReducer } from './permissionsReducer'
+import {managerReducer} from './managersReducer'
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -21,9 +26,14 @@ const reducers = combineReducers({
   chat: ChatReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
-  changeUserPassword: changeUserPasswordeReducer
+  changeUserPassword: changeUserPasswordeReducer,
+  users: UsersReducer,
+  roles: RolesReducer,
+  permissions: permissionsReducer,
+  createRoles,
+  managerReducer
+  
 })
-
+  
 export default reducers
-
 
