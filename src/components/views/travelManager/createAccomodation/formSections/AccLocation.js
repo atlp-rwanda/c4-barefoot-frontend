@@ -10,6 +10,19 @@ import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
 
 const AccLocation = (props) => {
     const classes= useStyles();
+
+    const menuProps= {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        getContentAnchorEl: null
+      };
+
     const { handleToggle, toggles }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
@@ -46,6 +59,7 @@ const AccLocation = (props) => {
                                 <InputLabel>Country/Region</InputLabel>
                                 <Select
                                     id="region"
+                                    MenuProps={menuProps}
                                 >
                                     <MenuItem value={'Kigali'}>Kigali</MenuItem>
                                     <MenuItem value={'Huye'}>Huye</MenuItem>
