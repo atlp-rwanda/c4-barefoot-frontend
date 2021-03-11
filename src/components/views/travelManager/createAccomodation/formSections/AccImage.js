@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography} from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
@@ -7,13 +7,37 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
+import axios from 'axios';
 
 
 const AccImage = (props) => {
     const classes= useStyles();
-    const { handleToggle, toggles }= props;
+    const { handleToggle, toggles, handlePhoto }= props;
+    const [url, setUrl]= useState('');
+    const [loading, setLoading]= useState(false)
     const handleCollapse= (section)=>{
         handleToggle(section)
+    }
+
+    const uploadImage= (e)=>{
+        const accImage = e.target.files[0]
+        const formData = new FormData()
+        formData.append('upload_preset', process.env.UPLOAD_PRESET)
+        formData.append('file', accImage)
+        setLoading(true);
+             
+        axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
+        .then(res => {
+
+            setLoading(false); 
+            setUrl(res.data.secure_url);
+            console.log('image url',url);
+            handlePhoto(url)
+        })
+        .catch(err => { 
+            console.log('Upload error',err);
+            setLoading(false);
+        })       
     }
 
     return ( 
@@ -53,6 +77,7 @@ const AccImage = (props) => {
                                             id='upload' 
                                             type='file'
                                             hidden= {true}
+                                            onChange={(e)=> uploadImage(e)}
                                         />
 
                                         <Box className={classes.imageContainer} style={{minHeight: true ? '250px': 'initial'}}>
