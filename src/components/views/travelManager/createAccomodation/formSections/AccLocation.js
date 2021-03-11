@@ -25,7 +25,7 @@ const AccLocation = (props) => {
         getContentAnchorEl: null
       };
 
-    const { handleToggle, toggles, handleChange, data, locationsData, handleLocation }= props;
+    const { handleToggle, toggles, handleChange, data, locationsData, handleLocation, regionInfo }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
@@ -65,8 +65,8 @@ const AccLocation = (props) => {
                                     id="region"
                                     name= 'country'
                                     MenuProps={menuProps}
-                                    value={ data.country}
-                                    onChange={ (e)=> handleChange(e)}
+                                    value={ regionInfo }
+                                    onChange={ (e)=> handleLocation(e)}
                                 >
                                     {
                                         locationsData.pending 

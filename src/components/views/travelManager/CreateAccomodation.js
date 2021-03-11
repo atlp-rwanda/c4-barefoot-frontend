@@ -24,6 +24,8 @@ const CreateAccomodation = (props) => {
 
     const classes= useStyles();
     const { locationsData } = props;
+
+    const [regionInfo, setRegionInfo]= useState('');
     const [ toggles, setToggles] =useState(
         {
             location:{
@@ -58,6 +60,7 @@ const CreateAccomodation = (props) => {
         photos: ''
     });
 
+
     // console.log('Data',data);
 
     const handleChange = (event) => {
@@ -76,8 +79,8 @@ const CreateAccomodation = (props) => {
           })
       }
       const handleLocation= (e)=>{
+          setRegionInfo(e.target.value);
           const locData= e.target.value.split(",");
-          console.log('key', e.target);
           setData({
               ...data,
               country: locData[1],
@@ -116,6 +119,7 @@ const CreateAccomodation = (props) => {
                                 data={data} 
                                 locationsData={locationsData}
                                 handleLocation={handleLocation} 
+                                regionInfo={regionInfo}
                             />
                            
 
