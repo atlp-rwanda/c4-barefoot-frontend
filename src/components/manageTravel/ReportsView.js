@@ -1,7 +1,6 @@
 import React, {useState, useEffect}from 'react'
 import { Typography, makeStyles, useTheme, Drawer, Grid, TextField, Card, GridList, GridListTile, CardActionArea, CardMedia, CardContent, IconButton, CardActions, Avatar, Button, Paper, Modal, Container, Box } from "@material-ui/core";
 import { connect } from 'react-redux'
- import dateFormat from 'dateformat';
 import Model from "./viewTravelModal";
 import { Skeleton } from "@material-ui/lab";
 import Pagination from '@material-ui/lab/Pagination';
@@ -154,9 +153,7 @@ function ReportsView(props) {
         props.updateSingleTravelRequest(id, action)
     }
     //formating dsate
-    const dateFormat = (date) =>{
-        return dataFormat(date, "mmmm dS, yyyy")
-    }
+   
      // openning modal
      const handleModalOpen = () => {
          setOpenModal(true)
