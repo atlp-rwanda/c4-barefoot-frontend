@@ -9,13 +9,14 @@ import PageNotFound from '../components/views/PageNotFound'
 import Unauthorized from '../components/views/Unauthorized'
 import Profile from '../components/views/Profile';
 import adminHome from '../components/views/Admin/Home';
+import requesterHome from '../components/views/Requester/Home';
 import CreateRoles from '../components/views/Admin/CreateRoles';
 import SetPermissions from '../components/views/Admin/SetPermissions'
 import ListOfRoles from '../components/views/Admin/ListOfRoles'
 import ListUsers from '../components/views/Admin/ListUsers'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout } from '../components/layouts';
+import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, RequesterLayout} from '../components/layouts';
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
 
@@ -75,6 +76,12 @@ const Routes = () => {
           exact
           layout={AdminLayout}
           path="/admin"
+        />
+        <RouteWithLayout
+          component={requesterHome}
+          exact
+          layout={RequesterLayout}
+          path="/requester"
         />
         <RouteWithLayout
           component = {CreateRoles}
