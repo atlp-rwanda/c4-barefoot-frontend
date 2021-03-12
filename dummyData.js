@@ -31,6 +31,7 @@ export const userProfile = {
 }
 
 export const signupState = {
+<<<<<<< HEAD
   requesting: false,
   errorOpen: false,
   erro: ""
@@ -64,6 +65,60 @@ export const accommodationState = {
   error: null
 }
 
+=======
+    requesting: false,
+    errorOpen: false,
+    error: ""
+  }
+export const locationsPayload = {
+  rows:[
+    {
+      id: "c6028e0d-ef88-4693-ab49-f37669891724",
+      LocationName: "Kigali",
+      country: "Rwanda",
+      description: "The land of a thousand hills",
+      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
+    }
+  ]}
+
+export const accommodationsPayload = {
+  rows:[
+    {
+      
+        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        country: "Rwanda",
+        city: "Kigali",
+        title: "Marriot Hotel",
+        description: "A serene environment for relaxation",
+        photos: "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
+    
+    }
+  ]}
+
+  export const rolePayload = {
+    rows:[
+      {
+        
+          id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          name: "Requester",
+          description: "requster"
+      
+      }
+    ]}
+  
+    export const permissionsPayload = {
+      permissions:{
+        "edit profile": 0,"assign requesters to manager": 0,"create travel requests": 0,"view travel requests": 0,"edit travel requests": 0,"cancel travel requests": 0,"approve direct reports travel requests": 0,"view direct reports travel requests": 0,"reject direct reports travel requests": 0,"view accommodations": 0,"create accommodations": 0,"update accommodations": 0,"delete accommodations": 0,"book accommodations": 0,"view locations": 0,"create locations": 0,"update locations": 0,"delete locations": 0,"view statistics": 0
+      }
+  }
+
+export const accommodationState = {
+  pending: false,
+  accommodations: accommodationsPayload,
+  error: null
+}
+
+>>>>>>> develop
 export const locationState = {
   pending: false,
   locations: locationsPayload,
