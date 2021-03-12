@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 import { getLocations } from '../../../redux/actions/fetchLocationsAction'
 import { createAccomodation } from '../../../redux/actions/createAccAction'
 import ErrorSnackBar from './createAccomodation/formSections/ErrorSnackBar';
-import SuccessSnackBar from './createAccomodation/formSections/SuccessSnackBar'
+import SuccessSnackBar from './createAccomodation/formSections/SuccessSnackBar';
+import Loader from '../../Loader'
 
 
 
@@ -208,7 +209,7 @@ const CreateAccomodation = (props) => {
             </Grid>
             {error && <ErrorSnackBar handleClose={handleErrorClose} open={openError} error={error} setOpen={setErrorOpen} />}
             {accomodation && <SuccessSnackBar handleClose={handleSuccessClose} open={openSuccess} accomodation={accomodation} setOpen={setSuccessOpen} reset={reset} />}
-
+            { pending && <Loader open={pending} />} 
         </Box>
      );
 }
