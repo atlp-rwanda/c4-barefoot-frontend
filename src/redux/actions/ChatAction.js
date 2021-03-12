@@ -16,18 +16,14 @@ export const ALL_USERS = 'ALL_USERS';
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
     const authToken = localStorage.getItem('barefootUserToken')
-    fetch(`${process.env.REACT_APP_BACKEND_LINK}/chat`, {
-        method: 'POST',
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat`, messageData,{
         headers: { 
-            'Content-Type': 'application/json',
             'authorization': `Bearer ${authToken}`
-        },
-        body: JSON.stringify(messageData)
+        }
     })
-    .then(res => res.json())
-    .then(data => dispatch({
+    .then(res => dispatch({
             type: 'NEW_MESSAGE',
-            payload: data
+            payload: res.data
         })
     )
     .catch(err => console.log(err.message))
@@ -71,7 +67,6 @@ export const fetchUsers = () => dispatch => {
         }
     })
     .then(res => {
-        console.log(res)
         dispatch({
             type: 'ALL_USERS',
             payload: res.data

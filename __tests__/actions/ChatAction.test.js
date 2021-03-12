@@ -143,3 +143,91 @@ describe('visitors get support message', () => {
         })
     })
 })
+
+describe('should return NEW_MESSAGE', () => {
+    let store;
+    beforeEach(() => {
+        moxios.install()
+        store = mockStore({newMessageAction: {}})
+    })
+    afterEach(() => moxios.uninstall())
+
+    it('should return NEW_MESSAGE', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            })
+        })
+        return store.dispatch(actions.newMessageAction()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('NEW_MESSAGE')
+        })
+    })
+})
+
+describe('should return VISITOR_MESSAGE', () => {
+    let store;
+    beforeEach(() => {
+        moxios.install()
+        store = mockStore({visitorsMessage: {}})
+    })
+    afterEach(() => moxios.uninstall())
+
+    it('should return VISITOR_MESSAGE', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            })
+        })
+        return store.dispatch(actions.visitorsMessage()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('VISITOR_MESSAGE')
+        })
+    })
+})
+
+describe('should return NEW_MESSAGE', () => {
+    let store;
+    beforeEach(() => {
+        moxios.install()
+        store = mockStore({newMessageAction: {}})
+    })
+    afterEach(() => moxios.uninstall())
+
+    it('should return NEW_MESSAGE', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            })
+        })
+        return store.dispatch(actions.newMessageAction()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('NEW_MESSAGE')
+        })
+    })
+})
+
+describe('should return SUPPORT_RESPONDS', () => {
+    let store;
+    beforeEach(() => {
+        moxios.install()
+        store = mockStore({supportResponds: {}})
+    })
+    afterEach(() => moxios.uninstall())
+
+    it('should return SUPPORT_RESPONDS', () => {
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            })
+        })
+        return store.dispatch(actions.supportResponds()).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions[0].type).toEqual('SUPPORT_RESPONDS')
+        })
+    })
+})

@@ -16,17 +16,11 @@ const initialState = {
 export default function ChatReducer (state = initialState, action) {
     switch (action.type) {
         case CHATTED_USERS:
-            if(action.error){
-                return {
-                    ...state,
-                    error: action.error
-                }
-            }
             return {
                 ...state,
                 users: action.payload
             }
-        case  ALL_USERS:
+        case ALL_USERS:
             return {
                 ...state,
                 allusers: action.payload
@@ -39,7 +33,6 @@ export default function ChatReducer (state = initialState, action) {
         case GETALL_CHATS:
             return {
                 ...state,
-                pending: false,
                 allchats: action.payload
             }
         case VISITOR_MESSAGE:
