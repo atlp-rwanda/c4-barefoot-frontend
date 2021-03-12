@@ -3,44 +3,43 @@ import * as types from '../../src/redux/actions/CommentActon';
 import {commentPayload} from '../../dummyData'
 
 describe('Fetch comment Reducer', ()=> {
-  
-  it('Should return initial state', () => {
-    expect(commentReducer(undefined, {})).toEqual(
-      {
+  const initialState={
     comments: [],
     currentComment: {},
-    error: {},
+    error: null,
     status: "",
-    loading:false
-      }
-    )
-  })
+   loading:false
+  }
+  it('Should get initial state', () => {
+    expect(commentReducer(undefined, {})).toEqual(initialState)
+    })
 
   it('Should handle RETRIEVE_COMMENTS_SUCCESS', () => {
-    expect(commentReducer(undefined, {
+    expect(commentReducer(initialState, {
       type: types.RETRIEVE_COMMENTS_SUCCESS,
       payload: commentPayload
     })
     ).toEqual({
-        loading:false, 
-        comments:action.payload,
+      ...initialState,
+      loading:false, 
+        comments:commentPayload,
       error: null
     })
   })
 
   it('Should handle RETRIEVE_COMMENTS_PENDING', () => {
-    expect(commentReducer(undefined, {
+    expect(commentReducer(initialState, {
       type: types.RETRIEVE_COMMENTS_PENDING
     })
     ).toEqual({
+      ...initialState,
     loading:true,
-      comments: [],
-      error: null
+     
     })
   })
 
   it('Should handle RETRIEVE_COMMENTS_FAIL', () => {
-    expect(commentReducer(undefined, {
+    expect(commentReducer(initialState, {
       type: types.RETRIEVE_COMMENTS_FAIL,
       error: 'comment not found'
     })
