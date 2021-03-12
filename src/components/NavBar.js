@@ -30,14 +30,15 @@ function Header() {
             <div>
                 <div className="navbar">
                     <div className="logo">
-                        <h2>Barefoot Nomad</h2>
+                        <h2>{barefootLogo}</h2>
                     </div>
                     <div className="navlinks">
-                        <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li> <Link to="/login">Login</Link></li>
-                            <li><Link to="/signup">Signup</Link></li>
-                        </ul>
+                        <Toolbar className={classes.navDisplay}>
+                            <nav>
+                                <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>Login</Button>
+                                <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>Signup</Button>
+                            </nav>
+                        </Toolbar>
                     </div>
                 </div>
             </div >
