@@ -15,7 +15,6 @@ import ListOfRoles from '../components/views/Admin/ListOfRoles'
 import ListUsers from '../components/views/Admin/ListUsers'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, ManagerLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
