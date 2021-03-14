@@ -67,9 +67,21 @@ const CreateAccomodation = (props) => {
         title: '',
         description: '',
         photos: ''
+    };
+    const initialAmenities= {
+        wifi: false,
+        airConditioner: false,
+        shampoo: false,
+        ironing: false,
+        tv: false,
+        smokeDetector: false,
+        fireExtinguisher: false,
+        lockOnDoor: false,
+
     }
 
     const [data, setData] = useState(initialState);
+    const [amenities, setAmenities]= useState(initialAmenities);
 
 
     useEffect( ()=>{
@@ -86,7 +98,15 @@ const CreateAccomodation = (props) => {
           ...data,
           [name]: name === 'numberOfRooms' ? parseInt(event.target.value)  : event.target.value,
         });
-      };
+    };
+
+    const handleAmenity = (event) => {
+        const name = event.target.name;
+        setAmenities({
+          ...amenities,
+          [name]:  !amenities[name],
+        });
+    };
     
       const handlePhoto = (url)=>{
         //   console.log('state url', url);
@@ -107,6 +127,7 @@ const CreateAccomodation = (props) => {
 
       const reset =()=>{
         setData(initialState);
+        setAmenities(initialAmenities);
       }
     
     const handleToggle= (section)=>{
@@ -120,9 +141,12 @@ const CreateAccomodation = (props) => {
 
     const handleSubmit = (e)=>{
         console.log('Data',data);
-        props.createAccomodation(data);
+        props.createAccomodation(data, amenities);
     }
 
+    const handleReset = (e)=>{
+        reset();
+    }
 
     return ( 
         <Box className={classes.container} >
@@ -177,6 +201,8 @@ const CreateAccomodation = (props) => {
                             <AccAmenities 
                                 handleToggle={handleToggle} 
                                 toggles={toggles} 
+                                handleAmenity= {handleAmenity}
+                                amenities= {amenities}
                             />
 
 {/**----------------------------------------------------Form actions------------------------------------------------------ */}
@@ -196,6 +222,7 @@ const CreateAccomodation = (props) => {
                                     variant='contained' 
                                     color='secondary'
                                     className= { `${classes.button} ${classes.resetBtn}`}
+                                    onClick= { (e)=> handleReset(e)}
                                 >
                                     Reset
                                 </Button>

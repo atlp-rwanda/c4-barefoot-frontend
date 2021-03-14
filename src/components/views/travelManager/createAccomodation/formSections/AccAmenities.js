@@ -10,7 +10,7 @@ import LiveTvOutlinedIcon from '@material-ui/icons/LiveTvOutlined';
 
 const AccAmenities = (props) => {
     const classes= useStyles();
-    const { handleToggle, toggles }= props;
+    const { handleToggle, toggles, amenities, handleAmenity }= props;
     const handleCollapse= (section)=>{
         handleToggle(section)
     }
@@ -68,9 +68,10 @@ const AccAmenities = (props) => {
                                 <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
+                                        checked={amenities.wifi}
                                         name="wifi"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
                                     />
                                     }
                                     label="Wi-fi"
@@ -82,9 +83,11 @@ const AccAmenities = (props) => {
                                 <FormControlLabel
                                         control={
                                         <Checkbox
-                                            checked={true}
+                                            checked={amenities.tv}
                                             name="tv"
                                             color="primary"
+                                            onChange= {(e)=> handleAmenity(e)}
+
                                         />
                                         }
                                         label="TV"
@@ -99,9 +102,11 @@ const AccAmenities = (props) => {
                                 <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
-                                        name="airConditioning"
+                                        checked={amenities.airConditioner}
+                                        name="airConditioner"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
+
                                     />
                                     }
                                     label="Air-conditioning"
@@ -113,12 +118,14 @@ const AccAmenities = (props) => {
                                 <FormControlLabel
                                         control={
                                         <Checkbox
-                                            checked={true}
-                                            name="heat"
+                                            checked={amenities.ironing}
+                                            name="ironing"
                                             color="primary"
+                                            onChange= {(e)=> handleAmenity(e)}
+
                                         />
                                         }
-                                        label="heat"
+                                        label="Ironing"
                                 />
                             </FormControl>
                         </Grid>
@@ -130,9 +137,11 @@ const AccAmenities = (props) => {
                                 <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
+                                        checked={amenities.shampoo}
                                         name="shampoo"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
+
                                     />
                                     }
                                     label="Shampoo"
@@ -141,16 +150,7 @@ const AccAmenities = (props) => {
                         </Grid>
                         <Grid item xs={10} sm={5} className={ classes.controlItem}>
                             <FormControl className={classes.formControl}>
-                                <FormControlLabel
-                                        control={
-                                        <Checkbox
-                                            checked={true}
-                                            name="hairDryer"
-                                            color="primary"
-                                        />
-                                        }
-                                        label="Hair-Dryer"
-                                />
+                                
                             </FormControl>
                         </Grid>
                 </Grid>
@@ -170,9 +170,11 @@ const AccAmenities = (props) => {
                             <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
+                                        checked={amenities.smokeDetector}
                                         name="smokeDetector"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
+
                                     />
                                     }
                                     label="Smoke-detector"
@@ -188,9 +190,11 @@ const AccAmenities = (props) => {
                             <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
+                                        checked={amenities.fireExtinguisher}
                                         name="fireExtinguisher"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
+
                                     />
                                     }
                                     label="Fire-extinguisher"
@@ -207,9 +211,11 @@ const AccAmenities = (props) => {
                             <FormControlLabel
                                     control={
                                     <Checkbox
-                                        checked={true}
-                                        name="bedroomLock"
+                                        checked={amenities.lockOnDoor}
+                                        name="lockOnDoor"
                                         color="primary"
+                                        onChange= {(e)=> handleAmenity(e)}
+
                                     />
                                     }
                                     label="Lock on bedroom door"
