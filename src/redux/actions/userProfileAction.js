@@ -28,7 +28,7 @@ export const updateUserProfile = (body) => async dispatch => {
         type: UPDATE_USER_PROFILE_LOADING
     })
     if (body.profile_picture) {
-        const response = await axios.post('https://api.cloudinary.com/v1_1/mjackson/image/upload', body.profile_picture).catch(err => err)
+        const response = await axios.post('https://api.cloudinary.com/v1_1/barefootnomadcohort4/image/upload', body.profile_picture).catch(err => err)
         if (!response.data.secure_url) {
             return dispatch({
                 type: UPDATE_USER_PROFILE_FAILED,
@@ -36,21 +36,22 @@ export const updateUserProfile = (body) => async dispatch => {
             });
         }
         body = { profile_picture: response.data.secure_url }
+    } else {
+        return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/update-profile`, body, { headers: authHeader() })
+            .then(async res => {
+                await dispatch({
+                    type: UPDATE_USER_PROFILE_SUCCESS,
+                    payload: res.data.data
+                });
+                dispatch(fetchUserProfile())
+            })
+            .catch(err => {
+                dispatch({
+                    type: UPDATE_USER_PROFILE_FAILED,
+                    payload: "failed to update your profile info"
+                });
+            })
     }
-    return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/update-profile`, body, { headers: authHeader() })
-        .then(async res => {
-            await dispatch({
-                type: UPDATE_USER_PROFILE_SUCCESS,
-                payload: res.data.data
-            });
-            dispatch(fetchUserProfile())
-        })
-        .catch(err => {
-            dispatch({
-                type: UPDATE_USER_PROFILE_FAILED,
-                payload: "failed to update your profile info"
-            });
-        })
 }
 
 export const changeUserPassword = (body) => async dispatch => {
