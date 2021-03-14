@@ -22,7 +22,7 @@ export const getLocations = () => dispatch => {
     .then(res => {
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,
-        payload: res.data.locations
+        payload: res.data.locations.rows
       })
       }
     )
