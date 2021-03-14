@@ -18,7 +18,7 @@ export const getAccommodations = () => dispatch => {
     .then(res => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_SUCCESS,
-        payload: res.data.accommodations
+        payload: res.data.accommodations.rows
       })
     }
     )

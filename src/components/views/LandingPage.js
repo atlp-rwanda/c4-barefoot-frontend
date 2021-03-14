@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Landing (props){
 
-  // useEffect(() => {
-  //   props.getLocations()
-  //   props.getAccommodations()
-  // }, [])
+  useEffect(() => {
+    props.getLocations()
+    props.getAccommodations()
+  }, [])
   
   const locationSkeleton = (<Grid item xs={12} sm={6} md={4}> <LocationCard/> </Grid>)
 
@@ -59,7 +59,7 @@ function Landing (props){
         </Typography>
 
         <Grid container spacing={3}>
-          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.rows.map((location) => (
+          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.map((location) => (
               <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {location.id}>
                 <LocationCard location={location}/>
               </Grid> 
@@ -75,7 +75,7 @@ function Landing (props){
         </Typography>
 
         <Grid container spacing={3}>
-          {props.accommodationsData.pending ? accommodationSkeleton : props.accommodationsData.accommodations.rows.map((accommodation)=> (
+          {props.accommodationsData.pending ? accommodationSkeleton : props.accommodationsData.accommodations.map((accommodation)=> (
             <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {accommodation.id}>
               <AccommodationCard accommodation={accommodation}/>
             </Grid>

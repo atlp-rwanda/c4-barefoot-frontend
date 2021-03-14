@@ -23,6 +23,18 @@ describe('Fetch accommodations reducer', () => {
     expect(fetchAccommodationsReducer(undefined, {})).toEqual(initialState)
     })
 
+  it('Should handle FETCH_ACCOMMODATIONS_PENDING', () => {
+    expect(fetchAccommodationsReducer(undefined, {
+      type: types.FETCH_ACCOMMODATIONS_PENDING
+    })
+    ).toEqual(
+      {
+        pending: true,
+        accommodations: [],
+        error: null
+      }
+    )
+  })
 
   it('Should handle FETCH_ACCOMMODATIONS_SUCCESS', () => {
     expect(fetchAccommodationsReducer(undefined, {

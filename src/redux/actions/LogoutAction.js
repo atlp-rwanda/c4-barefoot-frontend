@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API} from './AxiosAPI';
+
 export const LOGOUT_PENDING = "LOGOUT_PENDING";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
