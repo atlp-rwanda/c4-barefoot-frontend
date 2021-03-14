@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Moment from 'react-moment';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -205,7 +206,9 @@ const ViewTravelModal= (props)=> {
                                     Date of travel
                                 </Typography>
                                 <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                    {trip.tripDate}
+                                    <Moment format="YYYY/MM/DD">
+                                        {trip.tripDate}
+                                    </Moment>
                                 </Typography>
                             </Box>
                         </Grid>
@@ -216,7 +219,9 @@ const ViewTravelModal= (props)=> {
                                     Date of return
                                 </Typography>
                                 <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                    {trip.returnDate}
+                                    <Moment format="YYYY/MM/DD">
+                                        {trip.returnDate}
+                                    </Moment>
                                 </Typography>
                             </Box>
                         </Grid>
