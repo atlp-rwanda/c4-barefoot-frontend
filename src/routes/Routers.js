@@ -20,6 +20,7 @@ import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
+import CreateLocation from '../components/views/travelManager/CreateLocation';
 
 const Routes = () => {
   return (
@@ -117,7 +118,13 @@ const Routes = () => {
           path="/admin"
         />
         <ProtectedRoute
-          component={requesterHome}
+          component={CreateLocation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/createLocation"
+        />
+         <RouteWithLayout
+          component={signup}
           exact
           layout={RequesterLayout}
           path="/requester"
