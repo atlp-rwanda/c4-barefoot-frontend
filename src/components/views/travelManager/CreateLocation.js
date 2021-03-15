@@ -3,8 +3,27 @@ import { Box, Button, Grid, Typography } from '@material-ui/core';
 import {useStyles} from './createLocation/styles';
 import LocImage from './createLocation/formSections/LocImage';
 import LocData from './createLocation/formSections/LocData';
+import { connect } from 'react-redux';
+import { createLocation } from '../../../redux/actions/createLocAction';
+import ErrorSnackBar from './createLocation/formSections/ErrorSnackBar';
+import SuccessSnackBar from './createLocation/formSections/SuccessSnackBar';
+import Loader from '../../Loader';
 
-const CreateLocation = () => {
+const CreateLocation = (props) => {
+
+    const { createLoc } = props;
+    const { error, location, pending } = createLoc;
+
+    const [ openError, setErrorOpen]= useState(false);
+    const [ openSuccess, setSuccessOpen]= useState(false);
+
+    const handleErrorClose= ()=>{
+        setErrorOpen(false);
+    }
+    const handleSuccessClose= ()=>{
+        setSuccessOpen(false);
+    }
+
     const initialData= {
         LocationName: '',
         description: '',
@@ -22,7 +41,6 @@ const CreateLocation = () => {
     };
 
     const handlePhoto = (url)=>{
-        //   console.log('state url', url);
           setData({
               ...data,
               link: url
@@ -31,7 +49,6 @@ const CreateLocation = () => {
 
     const reset =()=>{
         setData(initialData);
-        // setAmenities(initialAmenities);
     }
 
     const handleReset = (e)=>{
@@ -40,7 +57,7 @@ const CreateLocation = () => {
 
     const handleSubmit = (e)=>{
         console.log('Data',data);
-        // props.createAccomodation(data, amenities);
+        props.createLocation(data);
     }
 
     const classes= useStyles();
@@ -89,8 +106,16 @@ const CreateLocation = () => {
                 </Grid>
             </Grid>
 
+            {error && <ErrorSnackBar handleClose={handleErrorClose} open={openError} error={error} setOpen={setErrorOpen} />}
+            {location && <SuccessSnackBar handleClose={handleSuccessClose} open={openSuccess} location={location} setOpen={setSuccessOpen} reset={reset} />}
+            { pending && <Loader open={pending} />} 
+
         </Box>
      );
 }
+
+const mapStateToProps = (state) =>({
+    createLoc: state.createLoc,
+});
  
-export default CreateLocation;
+export default connect(mapStateToProps,{createLocation})  (CreateLocation);

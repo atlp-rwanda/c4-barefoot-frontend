@@ -20,6 +20,7 @@ import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
 import createAccReducer from './createAccReducer';
+import createLocReducer from './createLocReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -43,7 +44,8 @@ const reducers = combineReducers({
   createRoles,
   managerReducer,
   createTravelRequest: CreateTravelRequestReducer,
-  createAcc: createAccReducer
+  createAcc: createAccReducer,
+  createLoc: createLocReducer,
 })
 
 export default reducers
