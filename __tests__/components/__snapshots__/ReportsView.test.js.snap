@@ -1093,7 +1093,31 @@ exports[` <ReportsView /> It should render the ReportsView compnent 1`] = `
                                                         }
                                                       }
                                                     >
-                                                      2021-01-11T20:08:41.421Z
+                                                      <n
+                                                        ago={false}
+                                                        calendar={false}
+                                                        decimal={false}
+                                                        element={null}
+                                                        filter={[Function]}
+                                                        format="YYYY/MM/DD"
+                                                        fromNow={false}
+                                                        interval={60000}
+                                                        local={false}
+                                                        onChange={[Function]}
+                                                        titleFormat=""
+                                                        toNow={false}
+                                                        trim={false}
+                                                        unit={null}
+                                                        unix={false}
+                                                        utc={false}
+                                                        withTitle={false}
+                                                      >
+                                                        <time
+                                                          dateTime={"2021-01-11T20:08:41.421Z"}
+                                                        >
+                                                          2021/01/11
+                                                        </time>
+                                                      </n>
                                                     </h6>
                                                   </ForwardRef(Typography)>
                                                 </WithStyles(ForwardRef(Typography))>
@@ -5181,7 +5205,31 @@ exports[` <ReportsView /> It should render the ReportsView component for rejecte
                                                         }
                                                       }
                                                     >
-                                                      2021-01-11T20:09:02.833Z
+                                                      <n
+                                                        ago={false}
+                                                        calendar={false}
+                                                        decimal={false}
+                                                        element={null}
+                                                        filter={[Function]}
+                                                        format="YYYY/MM/DD"
+                                                        fromNow={false}
+                                                        interval={60000}
+                                                        local={false}
+                                                        onChange={[Function]}
+                                                        titleFormat=""
+                                                        toNow={false}
+                                                        trim={false}
+                                                        unit={null}
+                                                        unix={false}
+                                                        utc={false}
+                                                        withTitle={false}
+                                                      >
+                                                        <time
+                                                          dateTime={"2021-01-11T20:09:02.833Z"}
+                                                        >
+                                                          2021/01/11
+                                                        </time>
+                                                      </n>
                                                     </h6>
                                                   </ForwardRef(Typography)>
                                                 </WithStyles(ForwardRef(Typography))>

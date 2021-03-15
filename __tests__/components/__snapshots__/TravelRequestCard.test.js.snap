@@ -720,7 +720,31 @@ exports[` <TravelRequestcard /> It should render the ReportsView compnent 1`] = 
                                 }
                               }
                             >
-                              2021-03-02T11:18:36.501Z
+                              <n
+                                ago={false}
+                                calendar={false}
+                                decimal={false}
+                                element={null}
+                                filter={[Function]}
+                                format="YYYY/MM/DD"
+                                fromNow={false}
+                                interval={60000}
+                                local={false}
+                                onChange={[Function]}
+                                titleFormat=""
+                                toNow={false}
+                                trim={false}
+                                unit={null}
+                                unix={false}
+                                utc={false}
+                                withTitle={false}
+                              >
+                                <time
+                                  dateTime={"2021-03-02T11:18:36.501Z"}
+                                >
+                                  2021/03/02
+                                </time>
+                              </n>
                             </h6>
                           </ForwardRef(Typography)>
                         </WithStyles(ForwardRef(Typography))>
