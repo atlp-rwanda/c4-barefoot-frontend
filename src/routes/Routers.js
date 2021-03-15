@@ -121,7 +121,7 @@ const Routes = () => {
           component={CreateLocation}
           exact
           layout={AuthorizedUserLayout}
-          path="/travelManager/createLocation"
+          path="/travelManager/locations/create"
         />
          <RouteWithLayout
           component={signup}
