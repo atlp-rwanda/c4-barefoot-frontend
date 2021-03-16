@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
 import { fetchLocationsReducer } from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
-import { fetchUserProfileReducer, updateUserProfileReducer, changeUserPasswordeReducer } from './userProfileReducer'
+import { fetchUserProfileReducer, updateUserProfileReducer,updateProfilePictureReducer, changeUserPasswordeReducer } from './userProfileReducer'
 import { loginReducer } from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import { logoutReducer } from './logoutReducer';
@@ -24,6 +24,7 @@ const reducers = combineReducers({
   fetchAccommodations: fetchAccommodationsReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
+  updateProfilePicture:updateProfilePictureReducer,
   changeUserPassword: changeUserPasswordeReducer,
   users: UsersReducer,
   roles: RolesReducer,

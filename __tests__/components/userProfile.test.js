@@ -33,6 +33,13 @@ describe('<UserProfile />', () => {
             snackbarOpen: false,
             success: false,
         },
+        updated1: {
+            loading: false,
+            successMsg: null,
+            error: null,
+            snackbarOpen: false,
+            success: false,
+        },
         formData: formData,
         setFormData: function () { },
         profile_picture: 'image.png'
@@ -50,6 +57,13 @@ describe('<UserProfile />', () => {
             success: false
         },
         updated: {
+            loading: true,
+            successMsg: null,
+            error: null,
+            snackbarOpen: false,
+            success: false,
+        },
+        updated1: {
             loading: true,
             successMsg: null,
             error: null,
@@ -78,6 +92,13 @@ describe('<UserProfile />', () => {
             snackbarOpen: false,
             success: false,
         },
+        updated1: {
+            loading: true,
+            successMsg: null,
+            error: null,
+            snackbarOpen: false,
+            success: false,
+        },
         formData: formData,
         setFormData: function () { },
         profile_picture: 'image.png'
@@ -100,6 +121,13 @@ describe('<UserProfile />', () => {
             success: false
         },
         updated: {
+            loading: true,
+            successMsg: null,
+            error: null,
+            snackbarOpen: false,
+            success: false,
+        },
+        updated1: {
             loading: true,
             successMsg: null,
             error: null,
