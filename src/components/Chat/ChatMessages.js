@@ -23,7 +23,7 @@ function ChatMessages(props){
                         <List>
                             <ListItem>
                                 <ListItemAvatar><Avatar alt="Profile Picture" src="" /></ListItemAvatar>
-                                <ListItemText primary={user} secondary="Online"/>
+                                <ListItemText primary={user} secondary="User"/>
                             </ListItem>
                         </List>
                     </Toolbar>

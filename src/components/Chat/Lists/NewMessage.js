@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Toolbar, Input, InputAdornment, IconButton } from '@material-ui/core';
+import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { newMessageAction, supportResponds } from '../../../redux/actions/ChatAction'
 import SendIcon from '@material-ui/icons/Send';
@@ -10,7 +10,8 @@ class NewMessage extends React.Component {
         this.state = {
             message: '',
             vmessage: '',
-            image: ''
+            image: '',
+            feedbackText: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
@@ -26,23 +27,21 @@ class NewMessage extends React.Component {
 
     handleClick = () => {
         const receiverId = localStorage.getItem('userId')
-        console.log(receiverId)
-        const messageData = {
-            receiver: receiverId,
-            message: this.state.message,
-            type: 'plain-text'
-        }
-        this.props.newMessageAction(messageData);
+        if(this.state.message === ''){
+            this.setState({
+                feedbackText: "Message can't be blank!"
+            })
+        }else{
+            const messageData = {
+                receiver: receiverId,
+                message: this.state.message,
+                type: 'plain-text'
+            }
+            this.props.newMessageAction(messageData);
+        } 
     }
     handleUpload = () => {
-        const receiverId = localStorage.getItem('userId')
-        const messageData = {
-            receiver: receiverId,
-            message: this.state.image,
-            type: 'image-url'
-        }
         
-        this.props.newMessageAction(messageData);
     }
 
     vhandleClick = () => {
@@ -72,16 +71,18 @@ class NewMessage extends React.Component {
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton onClick={this.handleUpload}>
-                                    <AttachFileIcon/>
+                                    
                                         
                                     </IconButton><IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
                                 </InputAdornment>
                             }
                         />
+                        <FormHelperText>{this.state.feedbackText}</FormHelperText>
                     </Toolbar>
                 </Paper> :
                 <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
                     <Toolbar position='fixed' color="primary">
+                        <FormControl>
                         <Input border={0} 
                             variant="outlined" 
                             style={{width: '100%', borderRadius: 50}}
@@ -94,6 +95,8 @@ class NewMessage extends React.Component {
                                 </InputAdornment>
                             }
                         />
+                        <FormHelperText>{this.state.feedbackText}</FormHelperText>
+                        </FormControl>
                     </Toolbar>
                 </Paper>}
             </div>

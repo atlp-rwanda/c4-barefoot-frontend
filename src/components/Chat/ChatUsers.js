@@ -5,21 +5,14 @@ import { connect } from 'react-redux';
 import { fetchUsersChat,fetchUsers, getVisitorsList } from '../../redux/actions/ChatAction';
 import UsersList from './Lists/UsersList';
 import VisitorsListing from './vList';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 function ChatUsers(props) {
     props.fetchUsersChat();
     props.getVisitorsList();
+    props.fetchUsers();
     const users = props.users;
     const visitors = props.visitors;
     const allusers = props.allusers;
-    const [openSnack, setOpenSnack] = React.useState(false);
-    const error = props.error;
 
     return (
         <div>
