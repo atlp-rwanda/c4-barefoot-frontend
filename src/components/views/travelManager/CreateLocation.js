@@ -29,6 +29,7 @@ const CreateLocation = (props) => {
         description: '',
         link: '',
         country: '',
+        currency:'',
     };
     const [data, setData] = useState(initialData);
 

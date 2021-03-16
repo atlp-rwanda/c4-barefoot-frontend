@@ -11,6 +11,8 @@ const createAccReducer = (state=initialState, action)=>{
             return {
                 ...state,
                 pending: true,
+                error: null,
+                accomodation: null,
             }
 
         case CREATE_ACC_SUCCESS:

@@ -11,6 +11,8 @@ const createAccReducer = (state=initialState, action)=>{
             return {
                 ...state,
                 pending: true,
+                error: null,
+                location: null,
             }
 
         case CREATE_LOC_SUCCESS:

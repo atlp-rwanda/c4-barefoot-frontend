@@ -66,7 +66,8 @@ const CreateAccomodation = (props) => {
         typeOfBed: '',
         title: '',
         description: '',
-        photos: ''
+        price: 0,
+        photos: '',
     };
     const initialAmenities= {
         wifi: false,
@@ -96,7 +97,7 @@ const CreateAccomodation = (props) => {
         const name = event.target.name;
         setData({
           ...data,
-          [name]: name === 'numberOfRooms' ? parseInt(event.target.value)  : event.target.value,
+          [name]: name === 'numberOfRooms' || name === 'price' ? parseInt(event.target.value)  : event.target.value,
         });
     };
 

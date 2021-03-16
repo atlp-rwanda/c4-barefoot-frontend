@@ -6,6 +6,18 @@ const LocData = (props) => {
     const classes= useStyles();
     const { handleToggle, toggles, handleChange, data }= props;
 
+    const menuProps= {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        getContentAnchorEl: null
+    };
+
     return ( 
         <Box 
             className={classes.controlsSection}
@@ -54,6 +66,29 @@ const LocData = (props) => {
                         </FormControl>
                     </Grid>
                     
+            </Grid>
+
+            <Grid container className={ classes.controlGroup}>
+                        <Grid item xs={10} className={ classes.controlItem}>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel>Currency</InputLabel>
+                                <Select
+                                    id="currency"
+                                    MenuProps={menuProps}
+                                    name='currency'
+                                    value={ data.currency}
+                                    onChange={ (e)=> handleChange(e)}
+
+                                >
+                                    <MenuItem value={'FRW'}>FRW</MenuItem>
+                                    <MenuItem value={'EUR'}>EUR</MenuItem>
+                                    <MenuItem value={'UGSH'}>UGSH</MenuItem>
+                                    <MenuItem value={'KSH'}>KSH</MenuItem>
+
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        
             </Grid>
 
 

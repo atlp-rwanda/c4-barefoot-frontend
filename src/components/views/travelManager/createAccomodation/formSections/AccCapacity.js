@@ -118,6 +118,26 @@ const AccCapacity = (props) => {
                 </Grid>
 
 
+                <Grid container className={ classes.controlGroup}>
+                        <Grid item xs={10} className={ classes.controlItem}>
+                            <FormControl className={classes.formControl}>
+                                <TextField  
+                                    type="number"
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                    margin="normal"
+                                    label="Price of a room per night"
+                                    name='price'
+                                    value={ data.price }
+                                    onChange={ (e)=> handleChange(e)}
+                                />
+                            </FormControl>
+                        </Grid>
+                        
+                </Grid>
+
+
             </Box>
         </Box>        
      );
