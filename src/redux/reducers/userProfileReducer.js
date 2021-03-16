@@ -10,19 +10,14 @@ const fetchUserInitialState = {
 }
 
 const updateUserProfileInitialState = {
+    profileLoading:false,
     loading: false,
     successMsg: null,
     error: null,
     snackbarOpen: false,
     success: false
 }
-const updateProfilePictureInitialState = {
-    loading: false,
-    successMsg: null,
-    error: null,
-    snackbarOpen: false,
-    success: false
-}
+
 
 const changeUserPasswordInitialState = {
     loading: false,
@@ -58,6 +53,29 @@ export function fetchUserProfileReducer(state = fetchUserInitialState, action) {
 
 export function updateUserProfileReducer(state = updateUserProfileInitialState, action) {
     switch (action.type) {
+        case UPDATE_PROFILE_PICTURE_LOADING:
+            return {
+                ...state,
+                profileLoading: true
+            }
+        case UPDATE_PROFILE_PICTURE_SUCCESS:
+            return {
+                loading: false,
+                profileLoading: false,
+                successMsg: "successfully update your profile",
+                error: null,
+                success: true,
+                snackbarOpen: true,
+            }
+        case UPDATE_PROFILE_PICTURE_FAILED:
+            return {
+                loading: false,
+                profileLoading: false,
+                successMsg: null,
+                error: action.payload,
+                success: false,
+                snackbarOpen: true,
+            }
         case UPDATE_USER_PROFILE_LOADING:
             return {
                 ...state,
@@ -66,6 +84,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
         case UPDATE_USER_PROFILE_SUCCESS:
             return {
                 loading: false,
+                profileLoading: false,
                 successMsg: "successfully update your profile",
                 error: null,
                 success: true,
@@ -74,6 +93,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
         case UPDATE_USER_PROFILE_FAILED:
             return {
                 loading: false,
+                profileLoading: false,
                 successMsg: null,
                 error: action.payload,
                 success: false,
@@ -88,38 +108,7 @@ export function updateUserProfileReducer(state = updateUserProfileInitialState, 
             return state
     }
 }
-export function updateProfilePictureReducer(state = updateProfilePictureInitialState, action) {
-    switch (action.type) {
-        case UPDATE_PROFILE_PICTURE_LOADING:
-            return {
-                ...state,
-                loading: true
-            }
-        case UPDATE_PROFILE_PICTURE_SUCCESS:
-            return {
-                loading: false,
-                successMsg: "successfully update your profile",
-                error: null,
-                success: true,
-                snackbarOpen: true,
-            }
-        case UPDATE_PROFILE_PICTURE_FAILED:
-            return {
-                loading: false,
-                successMsg: null,
-                error: action.payload,
-                success: false,
-                snackbarOpen: true,
-            }
-        case CLOSE_SNACKBAR:
-            return {
-                ...updateProfilePictureInitialState,
-                snackbarOpen: false,
-            }
-        default:
-            return state
-    }
-}
+
 export function changeUserPasswordeReducer(state = changeUserPasswordInitialState, action) {
     switch (action.type) {
         case CHANGE_USER_PASSWORD_LOADING:
@@ -145,7 +134,7 @@ export function changeUserPasswordeReducer(state = changeUserPasswordInitialStat
             }
         case CLOSE_SNACKBAR:
             return {
-                ...updateUserProfileInitialState,
+                ...changeUserPasswordInitialState,
                 snackbarOpen: false,
             }
         default:

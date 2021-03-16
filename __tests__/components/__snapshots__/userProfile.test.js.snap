@@ -26,15 +26,7 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
     Object {
       "error": null,
       "loading": false,
-      "snackbarOpen": false,
-      "success": false,
-      "successMsg": null,
-    }
-  }
-  updated1={
-    Object {
-      "error": null,
-      "loading": false,
+      "profileLoading": false,
       "snackbarOpen": false,
       "success": false,
       "successMsg": null,

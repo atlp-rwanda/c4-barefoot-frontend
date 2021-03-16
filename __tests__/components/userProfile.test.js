@@ -28,13 +28,7 @@ describe('<UserProfile />', () => {
         },
         updated: {
             loading: false,
-            successMsg: null,
-            error: null,
-            snackbarOpen: false,
-            success: false,
-        },
-        updated1: {
-            loading: false,
+            profileLoading: false,
             successMsg: null,
             error: null,
             snackbarOpen: false,
@@ -58,13 +52,7 @@ describe('<UserProfile />', () => {
         },
         updated: {
             loading: true,
-            successMsg: null,
-            error: null,
-            snackbarOpen: false,
-            success: false,
-        },
-        updated1: {
-            loading: true,
+            profileLoading: false,
             successMsg: null,
             error: null,
             snackbarOpen: false,
@@ -87,13 +75,7 @@ describe('<UserProfile />', () => {
         },
         updated: {
             loading: true,
-            successMsg: null,
-            error: null,
-            snackbarOpen: false,
-            success: false,
-        },
-        updated1: {
-            loading: true,
+            profileLoading: false,
             successMsg: null,
             error: null,
             snackbarOpen: false,
@@ -122,13 +104,7 @@ describe('<UserProfile />', () => {
         },
         updated: {
             loading: true,
-            successMsg: null,
-            error: null,
-            snackbarOpen: false,
-            success: false,
-        },
-        updated1: {
-            loading: true,
+            profileLoading: false,
             successMsg: null,
             error: null,
             snackbarOpen: false,
@@ -227,9 +203,9 @@ describe('<UserProfile />', () => {
         expect(wrapper.find(Avatar).length).toBe(1);
     })
 
-    it('should have 2 CircularProgress', () => {
+    it('should have 1 CircularProgress', () => {
         wrapper = mount(<UserProfile {...loadingprops} />);
-        expect(wrapper.find(CircularProgress).length).toBe(2);
+        expect(wrapper.find(CircularProgress).length).toBe(1);
     })
     it('should have 2 skleton', () => {
         wrapper = mount(<UserProfile {...noDataprops} />);

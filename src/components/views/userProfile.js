@@ -16,7 +16,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { fetchUserProfile, updateUserProfile, updateUserProfilePicture,closeSnackbar } from '../../redux/actions/userProfileAction';
+import { fetchUserProfile, updateUserProfile, closeSnackbar } from '../../redux/actions/userProfileAction';
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -129,7 +129,7 @@ const UserProfile = (props) => {
                         <label>
                             <input id="file" type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
                             {
-                                props.updated1.loading ? (
+                                props.updated.profileLoading ? (
                                     <CircularProgress color="secondary" />
                                 ) :
                                     <div id="profilePicture"> <PhotoCameraIcon /> Change Profile Picture </div>}
@@ -318,9 +318,8 @@ const UserProfile = (props) => {
 
 const mapStateToProps = state => ({
     userProfile: state.fetchUserProfile,
-    updated: state.updateUserProfile,
-    updated1: state.updateProfilePicture
+    updated: state.updateUserProfile
 })
 
 export { UserProfile, Alert };
-export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile, updateUserProfilePicture, closeSnackbar })(UserProfile);
+export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile,closeSnackbar })(UserProfile);

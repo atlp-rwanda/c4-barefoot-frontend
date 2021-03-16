@@ -28,7 +28,7 @@ export const fetchUserProfile = () => dispatch => {
 }
 
 export const updateUserProfile = (body) => async dispatch => {
-   
+ 
     
     if (body.profile_picture) {
         dispatch({
@@ -42,7 +42,9 @@ export const updateUserProfile = (body) => async dispatch => {
             });
         }
         body = { profile_picture: response.data.secure_url }
-    } else {
+       
+    }
+    
         dispatch({
             type: UPDATE_USER_PROFILE_LOADING
         })
@@ -60,7 +62,7 @@ export const updateUserProfile = (body) => async dispatch => {
                     payload: "failed to update your profile info"
                 });
             })
-    }
+
 }
 
 export const changeUserPassword = (body) => async dispatch => {
