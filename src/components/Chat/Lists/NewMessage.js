@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText, CircularProgress } from '@material-ui/core';
+import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText, CircularProgress, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { newMessageAction, supportResponds } from '../../../redux/actions/ChatAction'
 import SendIcon from '@material-ui/icons/Send';
