@@ -32,40 +32,45 @@ export const cancelAllQueue = (dispatch) => {
   });
 };
 
-export const handleAssignError = (action) => {
-  console.log(action);
-}
-
 export const assignUsersToManagers = async (state) => {
   const users = Object.keys(state);
+  const errors = [];
+  const success = [];
   const requests = users.map(async user => {
       const ASSIGN_REQUEST = axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/${user}`, '', {
         headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiNzI1NGE5ZTctMmUxYi00ZjgzLWFkNzMtNzhiOTBkZDNkZjc3IiwidXNlcm5hbWUiOiJtYW5hZ2VyT25lIiwiaWF0IjoxNjE0NzQyNjAxLCJleHAiOjE2MTUzNDc0MDF9.h1Eu6WjVthYy4LyVmfBJ7TXl-21Go-uHctVX4H3HuYQ'
+        'Authorization': 'Bearer ' + localStorage.getItem('barefootUserToken')
         },
         params: {
           manager_id: state[user].managerId
         }
     });
     ASSIGN_REQUEST.catch(err => {
-      return handleAssignError({
-        type: ASSIGNING_USERS_ERROR,
-        userId: user,
-        managerId: state[user].managerId,
-        error: err
-      });
+      errors.push({
+          type: ASSIGNING_USERS_ERROR,
+          userId: user,
+          managerId: state[user].managerId,
+          error: err
+        });
     });
 
     const res = await ASSIGN_REQUEST;
-    console.log({res});
-    if(ASSIGN_REQUEST) {
-      // return dispatch({
-      //   type: ASSIGNING_USERS_SUCCESS,
-      //   userId
-      // });
-    }
+    if(res) {
+      success.push({
+        type: ASSIGNING_USERS_SUCCESS,
+        userId: user,
+        managerId: state[user].managerId,
+      });
+    };
   });
-  // console.log(requests);
-  console.log(Promise.all(requests));
-  return state;
+  const ASSIGNING_MESSAGE = await Promise.all(requests)
+    .catch(err => {
+      console.log(err);
+      return { type: 'error', errors, success, err };
+    })
+    .then((res) => {
+      return { type: errors.length === 0 ? 'success' : 'errors', success, errors, res};
+    });
+    console.log({ASSIGNING_MESSAGE});
+  return ASSIGNING_MESSAGE;
 };

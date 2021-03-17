@@ -7,7 +7,6 @@ const initialState = {};
 export default (state = initialState, action) => {
   switch (action.type) {
     case MANAGER_SELECTED_TO_QUEUE:
-      console.log(state);
       return {
         ...state,
         [action.userId]: {
@@ -16,9 +15,11 @@ export default (state = initialState, action) => {
         }
       };
       case ASSIGNING_USERS_CANCELED:
-        return { };
+        // return { }; // refresh the select DOM elements
       case ASSIGNING_USERS_PENDING:
-        return assignUsersToManagers(state);
+        const newState = assignUsersToManagers(state);
+        console.log({newState: newState});
+        return newState;
     default:
       return state;
   }
