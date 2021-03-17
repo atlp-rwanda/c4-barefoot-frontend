@@ -99,253 +99,71 @@ function DrawerComponent() {
 
     setState({ [anchor]: open });
   };
-    // const drawSideBar = (anchor) =>(
-    //     <>
-    //     <div
-    //         className={classes.list}
-    //         role="presentation"
-    //         onClick={toggleDrawer(anchor, false)}
-    //         onKeyDown={toggleDrawer(anchor, false)}
-    //     >
-    //     </div>
-    //     <Box className={classes.accountInfo}>
-    //     <Avatar className={classes.paper}>
-    //       <AccountCircle fontSize='large' className={classes.listIcons}/>
-    //     </Avatar>
-    //     <Typography>Name</Typography>
-    //   </Box>
-    //   <Divider/>
-    //   <List>
-    //       {sideBarData.map(list => {
-    //          list.subs.length === 0 ? (
-    //           <Link to={list.link} key={list.title} className={classes.nested}>
-    //             <ListItem button onClick={toggleDrawer('left', false)}>
-    //                 <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
-    //                 <ListItemText>
-    //                     {list.title}
-    //                 </ListItemText>
-    //             </ListItem>
+  const drawSideBar = (anchor) => (
+    <>
+    <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(anchor, false)}
+        onKeyDown={toggleDrawer(anchor, false)}
+    >
+    </div>
+    <Box className={classes.accountInfo}>
+    <Avatar className={classes.paper}>
+      <AccountCircle fontSize='large' className={classes.listIcons}/>
+    </Avatar>
+    <Typography>Admin Name</Typography>
+  </Box>
+  <Divider/>
+  <List>
+      {sideBarData.map(list => (
+         list.subs.length === 0 ? (
+          <Link to={list.link} key={list.title} className={classes.nested}>
+            <ListItem button onClick={toggleDrawer('left', false)}>
+                <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
+                <ListItemText>
+                    {list.title}
+                </ListItemText>
+            </ListItem>
 
-    //           </Link>
-    //           )
-    //            :
-    //           (
-                
-    //             <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
-    //                 {console.log(list.title)}
-    //                 <ListItem button button onClick={toggleDrawer('left', false)} >
-    //                     <ListItemIcon className={classes.listIcons} >{list.icon}</ListItemIcon>
-    //                     <ListItemText>
-    //                         {list.title}
-    //                     </ListItemText>
-    //                     {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
-    //                 </ListItem>
-    //                 <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
-    //                   <List component="div" disablePadding>
-    //                     { list.subs.map((sub)=>{
-    //                         sub.subs.length === 0 ? (
-    //                             <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-    //                                 <ListItem button className={classes.subList}>
-    //                                 <ListItemIcon className={classes.listIcons}>
-    //                                     {sub.icon}
-    //                                 </ListItemIcon>
-    //                                 <ListItemText> {sub.title} </ListItemText>
-    //                                 </ListItem>
-    //                             </Link>
-    //                         ):(
-    //                             <Box key={sub.title} onClick={()=> handleCollapse(sub.title)}>
-    //                                 <ListItem button button onClick={toggleDrawer('left', false)} >
-    //                                     <ListItemIcon className={classes.listIcons} >{sub.icon}</ListItemIcon>
-    //                                     <ListItemText>
-    //                                         {sub.title}
-    //                                     </ListItemText>
-    //                                     {checkIsOpen(sub.title) ? <ExpandLess /> : <ExpandMore  /> }
-    //                                 </ListItem>
-    //                                     <Collapse in={checkIsOpen(sub.title)} timeout="auto" unmountOnExit>
-    //                                     <List component="div" disablePadding>
-    //                                         {sub.subs.map(sub=>{
-    //                                             <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-    //                                                 <ListItem button className={classes.subList}>
-    //                                                 <ListItemIcon className={classes.listIcons}>
-    //                                                     {sub.icon}
-    //                                                 </ListItemIcon>
-    //                                                 <ListItemText> {sub.title} </ListItemText>
-    //                                                 </ListItem>
-    //                                             </Link>
-    //                                         })}
-    //                                     </List>
-    //                                     </Collapse>
-    //                             </Box>               
-
-    //                          )
-    //                     })}
-    //                  </List>
-    //                 </Collapse>
-    //             </Box>
-    //           ) 
-    //       })}
-                
-    //   </List>
-    //   </>
-    //       )
-    const drawSideBar = (anchor) =>(
-        <>
-        <div
-            className={classes.list}
-            role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-        >
-        </div>
-        <Box className={classes.accountInfo}>
-        <Avatar className={classes.paper}>
-          <AccountCircle fontSize='large' className={classes.listIcons}/>
-        </Avatar>
-        <Typography>Name</Typography>
-      </Box>
-      <Divider/>
-      <List>
-          {sideBarData.map(list => {
-             if(list.subs.length === 0) {
-                 return(
-                    <Link to={list.link} key={list.title} className={classes.nested}>
-                        <ListItem button onClick={toggleDrawer('left', false)}>
-                            <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
-                            <ListItemText>
-                                {list.title}
-                            </ListItemText>
-                        </ListItem>
-
-                    </Link>
-                 )
-             }else{
-                { list.subs.map((sub)=>{
-                    if(sub.subs.length ===0 ){
-                        return(
-                            <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
-                                {console.log(list.title)}
-                                <ListItem button button onClick={toggleDrawer('left', false)} >
-                                    <ListItemIcon className={classes.listIcons} >{list.icon}</ListItemIcon>
-                                    <ListItemText>
-                                        {list.title}
-                                    </ListItemText>
-                                    {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
-                                </ListItem>
-                                <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
-                                        { list.subs.map((sub)=>{
-                                            <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-                                                <ListItem button className={classes.subList}>
-                                                <ListItemIcon className={classes.listIcons}>
-                                                    {sub.icon}
-                                                </ListItemIcon>
-                                                <ListItemText> {sub.title} </ListItemText>
-                                                </ListItem>
-                                            </Link>
-                                        })}
-                                    </List>
-                                </Collapse>
-                            </Box>
-                        ) 
-                    }
-                    else{
-                        return(
-                        <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
-                            {console.log(list.title)}
-                            <ListItem button button onClick={toggleDrawer('left', false)} >
-                                <ListItemIcon className={classes.listIcons} >{list.icon}</ListItemIcon>
-                                <ListItemText>
-                                    {list.title}
-                                </ListItemText>
-                                {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
-                            </ListItem>
-                            { list.subs.map((su)=>{
-                                <Box key={su.title} onClick={()=> handleCollapse(su.title)}>
-                                    {console.log(su.title)}
-                                    <ListItem button button onClick={toggleDrawer('left', false)} >
-                                        <ListItemIcon className={classes.listIcons} >{su.icon}</ListItemIcon>
-                                        <ListItemText>
-                                            {su.title}
-                                        </ListItemText>
-                                        {checkIsOpen(su.title) ? <ExpandLess /> : <ExpandMore  /> }
-                                    </ListItem>
-                                    <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
-                                        <List component="div" disablePadding>
-                                            { su.subs.map((sub)=>{
-                                                <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-                                                    <ListItem button className={classes.subList}>
-                                                    <ListItemIcon className={classes.listIcons}>
-                                                        {sub.icon}
-                                                    </ListItemIcon>
-                                                    <ListItemText> {sub.title} </ListItemText>
-                                                    </ListItem>
-                                                </Link>
-                                            })}
-                                        </List>
-                                    </Collapse>
-                                </Box> 
-                            })}
-                        </Box> 
-                        )
-                    }
-                })}
-                {/* <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
-                    {console.log(list.title)}
-                    <ListItem button button onClick={toggleDrawer('left', false)} >
-                        <ListItemIcon className={classes.listIcons} >{list.icon}</ListItemIcon>
-                        <ListItemText>
-                            {list.title}
-                        </ListItemText>
-                        {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
-                    </ListItem>
-                    <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        { list.subs.map((sub)=>{
-                            sub.subs.length === 0 ? (
-                                <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-                                    <ListItem button className={classes.subList}>
-                                    <ListItemIcon className={classes.listIcons}>
-                                        {sub.icon}
-                                    </ListItemIcon>
-                                    <ListItemText> {sub.title} </ListItemText>
-                                    </ListItem>
-                                </Link>
-                            ):(
-                                <Box key={sub.title} onClick={()=> handleCollapse(sub.title)}>
-                                    <ListItem button button onClick={toggleDrawer('left', false)} >
-                                        <ListItemIcon className={classes.listIcons} >{sub.icon}</ListItemIcon>
-                                        <ListItemText>
-                                            {sub.title}
-                                        </ListItemText>
-                                        {checkIsOpen(sub.title) ? <ExpandLess /> : <ExpandMore  /> }
-                                    </ListItem>
-                                        <Collapse in={checkIsOpen(sub.title)} timeout="auto" unmountOnExit>
-                                        <List component="div" disablePadding>
-                                            {sub.subs.map(sub=>{
-                                                <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
-                                                    <ListItem button className={classes.subList}>
-                                                    <ListItemIcon className={classes.listIcons}>
-                                                        {sub.icon}
-                                                    </ListItemIcon>
-                                                    <ListItemText> {sub.title} </ListItemText>
-                                                    </ListItem>
-                                                </Link>
-                                            })}
-                                        </List>
-                                        </Collapse>
-                                </Box>               
-
-                             )
-                        })}
-                     </List>
-                    </Collapse>
-                </Box> */}
-
-             }
-          })}       
-      </List>
-      </>
+          </Link>
           )
+           :
+          (
+
+            <Box key={list.title} onClick={()=> handleCollapse(list.title)}>
+            <ListItem button >
+                <ListItemIcon className={classes.listIcons}>{list.icon}</ListItemIcon>
+                <ListItemText>
+                    {list.title}
+                </ListItemText>
+                {checkIsOpen(list.title) ? <ExpandLess /> : <ExpandMore  /> }
+            </ListItem>
+
+                <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    { list.subs.map((sub)=>(
+                      <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} >
+                        <ListItem button className={classes.subList}>
+                          <ListItemIcon className={classes.listIcons}>
+                            {sub.icon}
+                          </ListItemIcon>
+                          <ListItemText> {sub.title} </ListItemText>
+                        </ListItem>
+                      </Link>
+                    ))}
+                  </List>
+                </Collapse>
+
+          </Box>               
+
+          )
+      ))}
+            
+  </List>
+  </>
+)
+    
     return (
         <React.Fragment>
          <IconButton edge='start' onClick={toggleDrawer('left', true)}>
