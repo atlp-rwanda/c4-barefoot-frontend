@@ -13,6 +13,7 @@ const UsersList = (props) => {
     const managersList = useSelector(state => state.fetchAllManagers.getAllManagers);
     const usersList = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.rows);
     const count = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.count);
+    const{ page, handlePageChange }= props;
     const dispatch = useDispatch();
     const handleAssignPendingUsers = () => {
         assignUsersFromQueue(dispatch);
@@ -58,7 +59,7 @@ const UsersList = (props) => {
             <Container style={{display: 'flex'}}>
             {
                 !loading
-                ?<Pagination style={{margin: '20px auto 0 auto'}} count={count/10 <= 1 ? 1 : Math.floor(count/10 + 1)} variant="outlined" color="primary" hideNextButton hidePrevButton/>
+                ?<Pagination onChange={handlePageChange} page={page} style={{margin: '20px auto 0 auto'}} count={count/10 <= 1 ? 1 : Math.floor(count/10 + 1)} variant="outlined" color="primary" hideNextButton hidePrevButton/>
                 :<Skeleton style={{margin: '20px auto 0 auto'}}>
                     <Pagination count={10} variant="outlined" color="primary" hideNextButton hidePrevButton/>
                 </Skeleton>
