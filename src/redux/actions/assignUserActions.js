@@ -8,7 +8,9 @@ export const FETCH_MANAGERS_PENDING = 'FETCH_MANAGERS_PENDING';
 export const  FETCH_MANAGERS_SUCCESS = 'FETCH_MANAGERS_SUCCESS';
 export const FETCH_MANAGERS_ERROR = 'FETCH_MANAGERS_ERROR';
 
-export const getVerifiedUsers = () => async (dispatch) => {
+export const FETCH_USERS_PAGE_CHANGE = 'FETCH_USERS_PAGE_CHANGE';
+
+export const getVerifiedUsers = (page, dispatch) => async () => {
   dispatch({
     type: FETCH_USERS_PENDING
   });
@@ -57,4 +59,11 @@ export const getManagersList = () => async (dispatch) => {
       getAllManagers
     });
   }
+};
+
+export const usersListPage = (page) => (dispatch) => {
+  return dispatch({
+    type: FETCH_USERS_PAGE_CHANGE,
+    page
+  });
 };
