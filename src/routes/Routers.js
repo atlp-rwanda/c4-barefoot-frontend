@@ -9,6 +9,7 @@ import PageNotFound from '../components/views/PageNotFound'
 import Unauthorized from '../components/views/Unauthorized'
 import Profile from '../components/views/Profile';
 import adminHome from '../components/views/Admin/Home';
+import BookForm from '../components/bookAccommodation/form';
 import requesterHome from '../components/views/Requester/Home';
 import CreateRoles from '../components/views/Admin/CreateRoles';
 import SetPermissions from '../components/views/Admin/SetPermissions'
@@ -115,17 +116,23 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/logout"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={adminHome}
           exact
           layout={AdminLayout}
           path="/admin"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={requesterHome}
           exact
           layout={RequesterLayout}
           path="/requester"
+        />
+        <ProtectedRoute
+          component={BookForm}
+          exact
+          layout={RequesterLayout}
+          path="/requester/bookAccommodation/:locationId"
         />
         <RouteWithLayout
           component = {CreateRoles}

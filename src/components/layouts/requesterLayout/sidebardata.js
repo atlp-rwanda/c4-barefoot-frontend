@@ -23,44 +23,37 @@ export const sideBarData = [
         subs: []
     },
     {
-        title:"My Travels",
-        icon:<DomainIcon />,
-        link:"/requester",
-        subs: [
+        title: 'Create Travel request',
+        icon:"",
+        link: "/requester",
+        subs:[] 
+    },
+    {
+        title: 'List of Travel request',
+        icon:"",
+        link: "/requester",
+        subs:[
             {
-                title: 'Create Travel request',
+                title:"Pending",
                 icon:"",
-                link: "/requester",
-                subs:[] 
+                link:"/requester"
             },
             {
-                title: 'List of Travel request',
+                title:"Approved",
                 icon:"",
-                link: "/requester",
-                subs:[
-                    {
-                        title:"Pending",
-                        icon:"",
-                        link:"/requester"
-                    },
-                    {
-                        title:"Approved",
-                        icon:"",
-                        link:"/requester"
-                    },
-                    {
-                        title:"Rejected & Canceled",
-                        icon:"",
-                        link:"/requester"
-                    },
-                    {
-                        title:"Done",
-                        icon:"",
-                        link:"/requester"
-                    }
-                ] 
+                link:"/requester"
+            },
+            {
+                title:"Rejected & Canceled",
+                icon:"",
+                link:"/requester"
+            },
+            {
+                title:"Done",
+                icon:"",
+                link:"/requester"
             }
-        ]
+        ] 
     }
 
 ]
