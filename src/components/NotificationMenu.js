@@ -5,11 +5,15 @@ import { getNotifications } from "../redux/actions/notificationAction";
 
 const NotificationMenu = (props) => {
     useEffect(()=>{
-        console.log('run');
         props.getNotifications();
-    },[])
+        var channel = pusher.subscribe('bare-foot-normad');
+        channel.bind('notification', (data)=>{
+            props.getNotifications();
+        })
+    },[]);
     const {anchorEl, handleClose} = props;
     const {error, notifications, pending} = props.notifications;
+    console.log(notifications);
     return ( 
         <Menu
             id="noti-menu"
@@ -19,13 +23,13 @@ const NotificationMenu = (props) => {
             onClose={handleClose}
         >
             
-            {notifications.rows && notifications.rows.map(notification=>(
+            {notifications.count>0 && notifications.rows.map(notification=>(
                 
                 <Box key={notification.id}>
-                    <MenuItem component='a' href='/notifications'>{notification.message}</MenuItem>
+                    <MenuItem component='a' href={`/notification/${notification.id}`}><b>{notification.message.slice(0,20)}...</b></MenuItem>
                 </Box>
             ))}
-            {!notifications.rows && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
+            {notifications.count<=0 && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
         </Menu>
      );
 }
