@@ -4,6 +4,7 @@ import {
 } from '../actions/assignUserActions';
 
 const initialUsersState = {
+    page: 1,
     pending: false,
     error: null,
     verifiedUsers: { count: 0, rows: [], loaded: false }
