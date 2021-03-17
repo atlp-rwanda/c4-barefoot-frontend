@@ -58,3 +58,10 @@ export const getManagersList = () => async (dispatch) => {
     });
   }
 };
+
+export const usersListPage = (page) => (dispatch) => {
+  return dispatch({
+    type: FETCH_USERS_PAGE_CHANGE,
+    page
+  });
+};

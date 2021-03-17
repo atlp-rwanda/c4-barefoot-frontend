@@ -3,6 +3,7 @@ import { Container } from '@material-ui/core';
 import { connect, useDispatch } from 'react-redux';
 import UsersList from './UsersList';
 import { getManagersList, getVerifiedUsers } from '../../redux/actions/assignUserActions';
+import { usersListPage } from '../../redux/actions/assignUserActions';
 import FailureDialog from './FailureDialog';
 import SuccessDialog from './SuccessDialog';
 
