@@ -26,6 +26,7 @@ function NewForm(props){
             }
             props.visitorsMessage(messageData);
             setFeedbackText('Message sent!');
+            setMessage('')
         }
     }
     return (
