@@ -13,6 +13,7 @@ import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
+import Book from "./index"
 
 const useStyles = makeStyles((theme) => ({
     // root: {
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 function Home(props){
     useEffect(() => {
     props.getAccommodationsByLocation(props.match.params.locationId);
-    console.log('here')
+    //console.log('here')
     props.getAccommodations();
   }, [])
   const classes = useStyles();
@@ -121,210 +122,211 @@ function Home(props){
         }
     }
     return(
-        <React.Fragment>
-            <Card>
-                <CardContent>
-                    <Formik initialValues={{
-                        from:null,
-                        retrunDate:null
-                    }}>
-                        <Form>
-                            <div >
-                                <Grid container item xs={12}  className={classes.title,classes.container}  direction="column">
-                                    <Typography variant="h6" style={{color: colors.primary100}} className={classes.separator}> 
-                                        Choose Accommodation:
-                                    </Typography>
-                                    <Divider style={{width:'50%'}} variant='middle' />
-                                    <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
-                                        <Place color="secondary"/> kenya
-                                    </Typography>            
+        // <React.Fragment>
+        //     <Card>
+        //         <CardContent>
+        //             <Formik initialValues={{
+        //                 from:null,
+        //                 retrunDate:null
+        //             }}>
+        //                 <Form>
+        //                     <div >
+        //                         <Grid container item xs={12}  className={classes.title,classes.container}  direction="column">
+        //                             <Typography variant="h6" style={{color: colors.primary100}} className={classes.separator}> 
+        //                                 Choose Accommodation:
+        //                             </Typography>
+        //                             <Divider style={{width:'50%'}} variant='middle' />
+        //                             <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
+        //                                 <Place color="secondary"/> kenya
+        //                             </Typography>            
 
-                                </Grid>
-                                <Grid container className={classes.container}>
+        //                         </Grid>
+        //                         <Grid container className={classes.container}>
                                     
-                                    {props.accommodations.map((accommodation) =>(
-                                        <Grid item xs={10} sm={4} md={3} className={classes.insideGrid,classes.separate}>
-                                            <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
-                                        </Grid>
-                                    ))}
+        //                             {props.accommodations.map((accommodation) =>(
+        //                                 <Grid item xs={10} sm={4} md={3} className={classes.insideGrid,classes.separate}>
+        //                                     <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
+        //                                 </Grid>
+        //                             ))}
                                     
-                                    <Grid container item style={{display: display}} className={classes.notFound}>
-                                        <Typography variant="h6" color="secondary" component="h6">No Accommodations found in kenya</Typography>
-                                    </Grid>
-                                    <Grid container item justify="center" style={{marginTop:'50px'}}>
-                                    <Pagination count={count()} variant="outlined" color="primary" />
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <div className={classes.divider} >
-                            <Card className={classes.root} >
-                                {(!props.accommodation ? 
-                                    <CardActionArea>
-                                    <Skeleton animation="wave" variant="rect" className={classes.media} />
-                                    <CardContent className={classes.cardContent} >
-                                        <Skeleton animation="wave" height={30} width="60%" />
-                                        <Skeleton animation="wave" height={10} width="80%" />
-                                    </CardContent>
-                                    <CardActions className={classes.cardActions}>
-                                        <Skeleton animation="wave" height={30} width="60%" />
-                                    </CardActions>
-                                    </CardActionArea>
-                                    :
-                                <>
-                                <CardActionArea>
+        //                             <Grid container item style={{display: display}} className={classes.notFound}>
+        //                                 <Typography variant="h6" color="secondary" component="h6">No Accommodations found in kenya</Typography>
+        //                             </Grid>
+        //                             <Grid container item justify="center" style={{marginTop:'50px'}}>
+        //                             <Pagination count={count()} variant="outlined" color="primary" />
+        //                             </Grid>
+        //                         </Grid>
+        //                     </div>
+        //                     <div className={classes.divider} >
+        //                     <Card className={classes.root} >
+        //                         {(!props.accommodation ? 
+        //                             <CardActionArea>
+        //                             <Skeleton animation="wave" variant="rect" className={classes.media} />
+        //                             <CardContent className={classes.cardContent} >
+        //                                 <Skeleton animation="wave" height={30} width="60%" />
+        //                                 <Skeleton animation="wave" height={10} width="80%" />
+        //                             </CardContent>
+        //                             <CardActions className={classes.cardActions}>
+        //                                 <Skeleton animation="wave" height={30} width="60%" />
+        //                             </CardActions>
+        //                             </CardActionArea>
+        //                             :
+        //                         <>
+        //                         <CardActionArea>
                                     
-                                    <CardMedia
-                                    // onClick={handleViewMore}
-                                    className={classes.media}
-                                    image={props.accommodation.photos}
-                                    title={props.accommodation.title}
-                                    />
-                                </CardActionArea>
-                                    <CardContent  className={classes.cardContent} >
-                                        <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
-                                        {props.accommodation.title}
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p" noWrap >
-                                            {props.accommodation.description}
-                                        </Typography>
-                                        <div className={classes.divider}>
-                                        <Grid container spacing={1}  direction='row' >
-                                            <Grid container item xs={3} spacing={3} >
+        //                             <CardMedia
+        //                             // onClick={handleViewMore}
+        //                             className={classes.media}
+        //                             image={props.accommodation.photos}
+        //                             title={props.accommodation.title}
+        //                             />
+        //                         </CardActionArea>
+        //                             <CardContent  className={classes.cardContent} >
+        //                                 <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
+        //                                 {props.accommodation.title}
+        //                                 </Typography>
+        //                                 <Typography variant="body2" color="textSecondary" component="p" noWrap >
+        //                                     {props.accommodation.description}
+        //                                 </Typography>
+        //                                 <div className={classes.divider}>
+        //                                 <Grid container spacing={1}  direction='row' >
+        //                                     <Grid container item xs={3} spacing={3} >
                                                     
-                                                <Grid container item xs={12} spacing={3} direction='column'>
-                                                    <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
-                                                    Location
-                                                    </Typography>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.country}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.city}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.state}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.streetAddress}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid container item xs={3} spacing={3}>
+        //                                         <Grid container item xs={12} spacing={3} direction='column'>
+        //                                             <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
+        //                                             Location
+        //                                             </Typography>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.country}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.city}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.state}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.streetAddress}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                         </Grid>
+        //                                     </Grid>
+        //                                     <Grid container item xs={3} spacing={3}>
                                                     
-                                                <Grid container item xs={12} spacing={3} direction='column'>
-                                                    <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
-                                                    Capacity
-                                                    </Typography>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.propertyType}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.numberOfRooms!=null?(`${props.accommodation.numberOfRooms} bedrooms`):(null)} 
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
-                                                        {props.accommodation.typeOfBed?(`Type of: ${props.accommodation.typeOfBed} bedrooms`):(null)}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid container item xs={3} spacing={3}>
-                                                    <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
-                                                Amenities
-                                                <Grid container item xs={12} spacing={0} direction='column'>
-                                                    {populateChecbox()}
-                                                </Grid>
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={3} spacing={12} direction='column'>
-                                                <Grid item xs={12} spacing={4} >
-                                                    <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
-                                                        Cost/night in currency
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={12} spacing={4} >
-                                                    <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
-                                                        Weather
-                                                    </Typography>
+        //                                         <Grid container item xs={12} spacing={3} direction='column'>
+        //                                             <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
+        //                                             Capacity
+        //                                             </Typography>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.propertyType}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.numberOfRooms!=null?(`${props.accommodation.numberOfRooms} bedrooms`):(null)} 
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                             <Grid item>
+        //                                                 <Typography gutterBottom variant="body" className={classes.titleText}>
+        //                                                 {props.accommodation.typeOfBed?(`Type of: ${props.accommodation.typeOfBed} bedrooms`):(null)}
+        //                                                 </Typography>
+        //                                             </Grid>
+        //                                         </Grid>
+        //                                     </Grid>
+        //                                     <Grid container item xs={3} spacing={3}>
+        //                                             <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
+        //                                         Amenities
+        //                                         <Grid container item xs={12} spacing={0} direction='column'>
+        //                                             {populateChecbox()}
+        //                                         </Grid>
+        //                                         </Typography>
+        //                                     </Grid>
+        //                                     <Grid item xs={3} spacing={12} direction='column'>
+        //                                         <Grid item xs={12} spacing={4} >
+        //                                             <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
+        //                                                 Cost/night in currency
+        //                                             </Typography>
+        //                                         </Grid>
+        //                                         <Grid item xs={12} spacing={4} >
+        //                                             <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
+        //                                                 Weather
+        //                                             </Typography>
                                                      
-                                                    {temp}
+        //                                             {temp}
                                                         
                                                    
-                                                </Grid> 
-                                            </Grid>
-                                        </Grid>
-                                    </div>
-                                    </CardContent>
-                                </>
-                                )}
-                                </Card>
-                            </div>
-                            <div className={classes.divider} >
-                            <Card className={classes.root} >
-                                {(!props.accommodation ? 
-                                    <CardActionArea>
-                                    <Skeleton animation="wave" variant="rect" className={classes.media} />
-                                    <CardContent className={classes.cardContent} >
-                                        <Skeleton animation="wave" height={30} width="60%" />
-                                        <Skeleton animation="wave" height={10} width="80%" />
-                                    </CardContent>
-                                    <CardActions className={classes.cardActions}>
-                                        <Skeleton animation="wave" height={30} width="60%" />
-                                    </CardActions>
-                                    </CardActionArea>
-                                    :
-                                <>
-                                <CardActionArea>
+        //                                         </Grid> 
+        //                                     </Grid>
+        //                                 </Grid>
+        //                             </div>
+        //                             </CardContent>
+        //                         </>
+        //                         )}
+        //                         </Card>
+        //                     </div>
+        //                     <div className={classes.divider} >
+        //                     <Card className={classes.root} >
+        //                         {(!props.accommodation ? 
+        //                             <CardActionArea>
+        //                             <Skeleton animation="wave" variant="rect" className={classes.media} />
+        //                             <CardContent className={classes.cardContent} >
+        //                                 <Skeleton animation="wave" height={30} width="60%" />
+        //                                 <Skeleton animation="wave" height={10} width="80%" />
+        //                             </CardContent>
+        //                             <CardActions className={classes.cardActions}>
+        //                                 <Skeleton animation="wave" height={30} width="60%" />
+        //                             </CardActions>
+        //                             </CardActionArea>
+        //                             :
+        //                         <>
+        //                         <CardActionArea>
                                     
-                                    <CardMedia
-                                    // onClick={handleViewMore}
-                                    className={classes.media}
-                                    image={props.accommodation.photos}
-                                    title={props.accommodation.title}
-                                    />
-                                </CardActionArea>
-                                    <CardContent  className={classes.cardContent} >
-                                        <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
-                                        {props.accommodation.title}
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p" noWrap >
-                                            {props.accommodation.description}
-                                        </Typography>
-                                        <div className={classes.divider}>
-                                            <Typography variant="h4" color="primary">
-                                                Booking
-                                            </Typography>
-                                            <Grid container spacing={3} >
-                                                <Grid container item xs={3} spacing={3} >
+        //                             <CardMedia
+        //                             // onClick={handleViewMore}
+        //                             className={classes.media}
+        //                             image={props.accommodation.photos}
+        //                             title={props.accommodation.title}
+        //                             />
+        //                         </CardActionArea>
+        //                             <CardContent  className={classes.cardContent} >
+        //                                 <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
+        //                                 {props.accommodation.title}
+        //                                 </Typography>
+        //                                 <Typography variant="body2" color="textSecondary" component="p" noWrap >
+        //                                     {props.accommodation.description}
+        //                                 </Typography>
+        //                                 <div className={classes.divider}>
+        //                                     <Typography variant="h4" color="primary">
+        //                                         Booking
+        //                                     </Typography>
+        //                                     <Grid container spacing={3} >
+        //                                         <Grid container item xs={3} spacing={3} >
                                                     
-                                                </Grid>
-                                                <Grid container item xs={3} spacing={3} >
+        //                                         </Grid>
+        //                                         <Grid container item xs={3} spacing={3} >
 
-                                                </Grid>
-                                            </Grid>
-                                        </div>
-                                    </CardContent>
-                                </>
-                                )}
-                                </Card>
-                            </div>
-                        </Form>
-                    </Formik>
-                </CardContent>
-            </Card>
-        </React.Fragment>
+        //                                         </Grid>
+        //                                     </Grid>
+        //                                 </div>
+        //                             </CardContent>
+        //                         </>
+        //                         )}
+        //                         </Card>
+        //                     </div>
+        //                 </Form>
+        //             </Formik>
+        //         </CardContent>
+        //     </Card>
+        // </React.Fragment>
+        <Book/>
     )
 }
 
