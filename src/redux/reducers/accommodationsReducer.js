@@ -10,7 +10,8 @@ const initialState = {
   selectedAccommodation:null,
   count:null,
   error: null,
-  temp:null
+  temp:null,
+  accId:null
 }
 
 export function fetchAccommodationsReducer(state = initialState, action){
@@ -35,7 +36,6 @@ export function fetchAccommodationsReducer(state = initialState, action){
         })
         return v
       }
-      console.log(accomo())
       return {
         ...state,
         pending: false,
@@ -59,7 +59,8 @@ export function fetchAccommodationsReducer(state = initialState, action){
         ...state,
         pending: false,
         accommodationsByLocation: action.payload.rows,
-        count:action.payload.count
+        count:action.payload.count,
+        accId:action.id,
       }
     case FETCH_ACCOMMODATIONS_ERROR:
       return {

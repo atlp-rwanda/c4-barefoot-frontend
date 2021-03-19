@@ -75,6 +75,7 @@ function Home(props){
     console.log(props)
   const classes = useStyles();
     let temp= null;
+    const [page, setPage] = useState(1);
     if(props.temp){
         temp=<Typography gutterBottom variant="h6"  className={classes.titleText} >
                 <CloudIcon color="primary"/> {props.temp-273.15}                                  
@@ -82,16 +83,13 @@ function Home(props){
     }
     const display = props.accommodations.length ? 'none' : 'flex';
     const count=()=>{
-        if((props.count % 6) === 0){
-            return (props.count / 6);
-        }else if((props.count % 6) < 1){
-            return 1;
-        }else if((props.count % 6) >= 1){
-            let pages= (props.count / 6)+1;
-            return pages;
-        }
+        return Math.round((props.count/6)+1)
     }
-
+    
+    const handleChange = (event, value) => {
+        props.getAccommodationsByLocation(props.accId,value)
+        setPage(value)
+      };
     const populateChecbox=()=>{
         let labels=[];
         let label;
@@ -139,7 +137,7 @@ function Home(props){
                                     </Typography>            
 
                                 </Grid>
-                                <Grid container className={classes.container}>
+                                <Grid container item xs={12} className={classes.container}>
                                     
                                     {props.accommodations.map((accommodation) =>(
                                         <Grid item xs={10} sm={4} md={3} className={classes.insideGrid,classes.separate}>
@@ -151,7 +149,7 @@ function Home(props){
                                         <Typography variant="h6" color="secondary" component="h6">No Accommodations found in Rwanda</Typography>
                                     </Grid>
                                     <Grid container item justify="center" style={{marginTop:'50px'}}>
-                                    <Pagination count={count()} variant="outlined" color="primary" />
+                                    <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} />
                                     </Grid>
                                 </Grid>
                                 <div className={classes.textCenter,classes.divider}>
@@ -164,7 +162,6 @@ function Home(props){
                                         Next
                                     </Button>):(null)}
                                 </div>
-                                
                             </div>
                         </Form>
                     </Formik>
@@ -190,6 +187,7 @@ const mapStateToProps=state=>({
     accommodation:state.fetchAccommodations.accommodation,
     selectedAccommodation:state.fetchAccommodations.selectedAccommodation,
     count:state.fetchAccommodations.count,
+    accId:state.fetchAccommodations.accId,
     status:state.fetchAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
