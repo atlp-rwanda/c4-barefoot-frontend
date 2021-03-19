@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     separator:{
         marginBottom:theme.spacing(3),
         marginTop:theme.spacing(3),
-        marginLeft:theme.spacing(2)
+        marginLeft:theme.spacing(2),
     },
     dates:{
         marginRight:theme.spacing(3),
@@ -67,6 +67,12 @@ const useStyles = makeStyles((theme) => ({
     container:{
         marginLeft:theme.spacing(9),
         // width:'80%'
+    },
+    btn:{
+        display:'flex',
+        alignContent:'flex-end',
+        flexDirection:'column',
+        alignItems:'flex-start',
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -91,11 +97,11 @@ function Home(props){
     const validationSchema = yup.object().shape({
         fromDate: yup
         .date()
-        .required('Booking Date is required')
+        .required('Booking Date is required',"Booking Date is required")
         .min(new Date(),"You can not book a Hotel in the past"),
         returnDate: yup
             .date()
-            .required('Checkout Date is required')
+            .required('Checkout Date is required',"Che")
             .min(yup.ref('fromDate'),"You can not checkout before you arrive  ")
     })
 
@@ -108,6 +114,9 @@ function Home(props){
                         returnDate:null
                     }}
                     validationSchema={validationSchema}
+                    // onSubmit={(values, {setSubmitting, resetForm}) => {
+                    //         resetForm()
+                    //     }}
                     >
                     {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
                         <Form onSubmit={handleSubmit}>
@@ -214,7 +223,7 @@ function Home(props){
                                 )}
                                 </Card>
                             </div>
-                            <div className={classes.textCenter,classes.divider}>
+                            <div className={classes.textCenter,classes.divider,classes.btn}>
                                 <Button
                                     color='primary'
                                     variant='contained'
