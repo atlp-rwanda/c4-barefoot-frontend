@@ -93,7 +93,7 @@ function Accommodations(props) {
       <CardActionArea>
         <Checkbox
         onChange={handleSelection}
-        checked={props.accommodationn.id===check?true:false}
+        checked={props.accommodationn.id===props.selectedAccommodation?true:false}
         id={props.accommodationn.id}
         name={props.accommodationn.city}
         className={classes.checkbox}/>
