@@ -76,6 +76,16 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'flex-start',
     },
+    btncontainer1:{
+        display:"flex",
+        justifyContent:"flex-start"
+        // width:'80%'
+    },
+    btncontainer2:{
+        display:"flex",
+        justifyContent:"flex-end"
+        // width:'80%'
+    },
     titleText:{
       [theme.breakpoints.down('sm')]:{
         fontSize:'18px',
@@ -234,7 +244,8 @@ function Home(props){
                                 )}
                                 </Card>
                             </div>
-                            <div className={classes.textCenter,classes.divider,classes.btn}>
+                            <div className={classes.textCenter,classes.divider}>
+                            <div className={classes.textCenter,classes.divider,classes.btncontainer1}>
                                 <Button
                                     color='primary'
                                     variant='contained'
@@ -244,7 +255,8 @@ function Home(props){
                                 >
                                     Back
                                 </Button>
-
+                            </div>
+                            <div className={classes.textCenter,classes.divider,classes.btncontainer2}>
                                 <Button
                                     type='submit'
                                     color='primary'
@@ -255,6 +267,7 @@ function Home(props){
                                 >
                                     Book
                                 </Button>
+                            </div>
                             </div>
                         </Form>
                         )}
