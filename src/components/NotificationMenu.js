@@ -4,13 +4,7 @@ import { connect } from 'react-redux';
 import { getNotifications } from "../redux/actions/notificationAction";
 
 const NotificationMenu = (props) => {
-    useEffect(()=>{
-        props.getNotifications();
-        var channel = pusher.subscribe('bare-foot-normad');
-        channel.bind('notification', (data)=>{
-            props.getNotifications();
-        })
-    },[]);
+   
     const {anchorEl, handleClose} = props;
     const {error, notifications, pending} = props.notifications;
     console.log(notifications);
@@ -30,14 +24,15 @@ const NotificationMenu = (props) => {
                 </Box>
             ))}
             {notifications.count<=0 && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
+            
         </Menu>
      );
 }
 
-const mapStateToProps = state=> {
-    return {
-        notifications: state.notifications
-    }
-}
+// const mapStateToProps = state=> {
+//     return {
+//         notifications: state.notifications
+//     }
+// }
  
-export default connect(mapStateToProps, { getNotifications })(NotificationMenu);
+export default NotificationMenu;

@@ -1,6 +1,6 @@
 import { Typography ,Card, CardContent} from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { readNotification } from '../redux/actions/notificationAction';
+import { readNotification, getNotifications } from '../redux/actions/notificationAction';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -34,6 +34,7 @@ const Notification = (props) => {
     const { id } = props.match.params;
     useEffect(()=>{
         props.readNotification(id);
+        props.getNotifications();
         
     }, []);
     const {notification} = props;
@@ -63,4 +64,4 @@ const mapStateToProps = state=>{
     }
 }
 
-export default connect(mapStateToProps, { readNotification })(Notification);
+export default connect(mapStateToProps, { readNotification, getNotifications })(Notification);
