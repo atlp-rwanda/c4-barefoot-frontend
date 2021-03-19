@@ -10,6 +10,7 @@ import { clearSingleRequest, getSingleTravelRequest } from "../../redux/actions/
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 import TravelRequestCard from './TravelRequestCard';
+import SuccessModal from './SuccessModal';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -138,11 +139,15 @@ function ReportsView(props) {
      const [openModal, setOpenModal] = useState(false)
      const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
      const {updateSingleTravel}= props
-     const updateError= updateSingleTravel.error;
+     const success= updateSingleTravel.travel;
+     const [isSuccessModalOpen, setIsSuccessModalOpen]= useState(false);
+
+     const { clearUpdateTravelRequest }= props;
+
      const category= props.category;
      const [modalUsage, setModalUsage]= useState('view');
      const [page, setPage] =useState(1);
-     const page_size= 6;
+     const page_size= 5;
 
 
      const filtered=  filter(travel, category);
@@ -154,7 +159,14 @@ function ReportsView(props) {
 
      useEffect(() => {
          props.getTravelRequest()
-     }, [])
+     }, []);
+
+     useEffect(() => {
+         if(success){
+            handleModalClose();
+         }
+         
+    }, [success]);
     
     //updatting travel request
     const handleUpdateTravel = (id, action) => {
@@ -180,7 +192,7 @@ function ReportsView(props) {
      const handleModalClose = () => {
          setOpenModal(false);
          props.clearSingleRequest();
-         props.clearUpdateTravelRequest();
+        //  props.clearUpdateTravelRequest();
          props.getTravelRequest()
 
      };
@@ -269,6 +281,16 @@ function ReportsView(props) {
         <div className={classes.paganete}>
             { filtered.length !== 0 && filtered.length/page_size > 1 &&  <Pagination count={Math.ceil(filtered.length/page_size)} color="primary" onChange={handlePage} />}
         </div>
+
+        {success && 
+            <SuccessModal 
+                isOpen={isSuccessModalOpen} 
+                setIsOpen={setIsSuccessModalOpen} 
+                success={success} 
+                clearUpdateTravelRequest={clearUpdateTravelRequest} 
+                handleModalClose={handleModalClose} 
+            />}
+
         </Box>
         </Container>
            } 

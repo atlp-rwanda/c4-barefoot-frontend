@@ -25,7 +25,7 @@ const ViewTravelModal= (props)=> {
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage } = props;
+  const { openModal, onClose, setOpenModal, singleTravel, handleUpdateTravel, updateSingleTravel, usage, clearUpdateTravelRequest } = props;
   const accomodationsInfo= singleTravel.travel && singleTravel.travel.length > 0?singleTravel.travel[0].accommodationInfo : [];
   const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen]= useState(false)
@@ -285,7 +285,6 @@ const ViewTravelModal= (props)=> {
             )
         }
         {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
-        {success && <SuccessModal isOpen={isSuccessModalOpen} setIsOpen={setIsSuccessModalOpen} success={success} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
 
       </Dialog>
   );
