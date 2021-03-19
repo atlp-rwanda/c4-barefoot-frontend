@@ -78,7 +78,7 @@ function Home(props){
     const [direction, setDirection] = useState('back');
     if(props.temp){
         temp=<Typography gutterBottom variant="h6"  className={classes.titleText} >
-                <CloudIcon color="primary"/> {props.temp-273.15}                                  
+                <CloudIcon color="primary"/> {Math.round(props.temp-273.15)}                             
             </Typography>
     }
     const display = props.accommodations.length ? 'none' : 'flex';
