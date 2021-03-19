@@ -140,9 +140,17 @@ function ReportsView(props) {
      const {updateSingleTravel}= props
      const updateError= updateSingleTravel.error;
      const category= props.category;
-     const [modalUsage, setModalUsage]= useState('view')
+     const [modalUsage, setModalUsage]= useState('view');
+     const [page, setPage] =useState(1);
+     const page_size= 6;
 
-     const filtered=  filter(travel, category)
+
+     const filtered=  filter(travel, category);
+
+     const handlePage = (e, value)=>{
+        setPage(value);
+     };
+
 
      useEffect(() => {
          props.getTravelRequest()
@@ -175,7 +183,17 @@ function ReportsView(props) {
          props.clearUpdateTravelRequest();
          props.getTravelRequest()
 
-     }
+     };
+
+
+
+     const paginate= (array, page_number) => {
+        // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+        return array.slice((page_number - 1) * page_size, page_number * page_size);
+    }
+    const paginated= paginate(filtered, page);
+
+
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
             <Typography variant='h6' component='h6'>Direct report travel Request</Typography>
@@ -208,7 +226,7 @@ function ReportsView(props) {
             : 
            <Container maxWidth="md" className={classes.cardContainer}>
                <Box>
-           {filtered.length !== 0 ? filtered.map((trav)=> (
+           {filtered.length !== 0 ? paginated.map((trav)=> (
 
             <Card className={classes.root} key={trav.travelId}>
 
@@ -249,7 +267,7 @@ function ReportsView(props) {
         <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
         <div className={classes.paganete}>
-            { filtered.length !== 0 &&  <Pagination count={10} color="primary" />}
+            { filtered.length !== 0 && filtered.length/page_size > 1 &&  <Pagination count={Math.ceil(filtered.length/page_size)} color="primary" onChange={handlePage} />}
         </div>
         </Box>
         </Container>
