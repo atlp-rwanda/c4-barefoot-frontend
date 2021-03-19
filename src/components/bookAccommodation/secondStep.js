@@ -38,6 +38,16 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'flex-start',
     },
+    btncontainer1:{
+        display:"flex",
+        justifyContent:"flex-start"
+        // width:'80%'
+    },
+    btncontainer2:{
+        display:"flex",
+        justifyContent:"flex-end"
+        // width:'80%'
+    },
     separate:{
         // marginBottom:theme.spacing(3),
         marginLeft:theme.spacing(3)
@@ -102,12 +112,15 @@ function Home(props){
             for(const property in perm){
               label=
               <Grid item>
-                <FormControlLabel
+                {/* <FormControlLabel
                         key={property}
                         control={<Checkbox checked={perm[property]} color={'primary'} name={property} id={count} disableRipple={true} />}
                         label={property}
                         color={colors.neutralBlack}
-                />
+                /> */}
+                 <Typography variant="subtitle1" color="textSecondary" component="p" noWrap >
+                    {property}
+                </Typography>
               </Grid>
               count++;
               labels.push(label);
@@ -245,19 +258,22 @@ function Home(props){
                                 )}
                                 </Card>
                             </div>
-                            <div className={classes.textCenter,classes.divider}>
-                                <Button
-                                    type='submit'
-                                    
-                                    variant='contained'
-                                    color='primary'
-                                    className={classes.button}
-                                    onClick={() => {
-                                    setDirection('back'); 
-                                    }}
-                                >
-                                    Back
-                                </Button>
+                            <div className={classes.divider}>
+                                <div className={classes.textCenter,classes.btncontainer1}>
+                                    <Button
+                                        type='submit'
+                                        
+                                        variant='contained'
+                                        color='primary'
+                                        className={classes.button}
+                                        onClick={() => {
+                                        setDirection('back'); 
+                                        }}
+                                    >
+                                        Back
+                                    </Button>
+                                </div>
+                            <div className={classes.textCenter,classes.btncontainer2}>
                                 <Button
                                     type='submit'
                                     id='backBtn'
@@ -269,6 +285,7 @@ function Home(props){
                                     Next
                                 </Button>
                             </div>
+                        </div>
                         </Form>
                     </Formik>
                 </CardContent>

@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
     separate:{
         // marginBottom:theme.spacing(3),
-        marginLeft:theme.spacing(3)
+        marginLeft:theme.spacing(3),
+        marginBottom:theme.spacing(3),
     },
     divider:{
         // marginBottom:theme.spacing(3),
@@ -60,6 +61,16 @@ const useStyles = makeStyles((theme) => ({
     },
     container:{
         marginLeft:theme.spacing(9),
+        // width:'80%'
+    },
+    btncontainer1:{
+        display:"flex",
+        justifyContent:"flex-start"
+        // width:'80%'
+    },
+    btncontainer2:{
+        display:"flex",
+        justifyContent:"flex-end"
         // width:'80%'
     },
     titleText:{
@@ -152,15 +163,17 @@ function Home(props){
                                     <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} />
                                     </Grid>
                                 </Grid>
-                                <div className={classes.textCenter,classes.divider}>
-                                    {props.selectedAccommodation?(<Button
-                                        type='submit'
-                                        variant='contained'
-                                        color='primary'
-                                        className={classes.button}
-                                    >
-                                        Next
-                                    </Button>):(null)}
+                                <div className={classes.btncontainer2}>
+                                    <div className={classes.textCenter,classes.divider}>
+                                        {props.selectedAccommodation?(<Button
+                                            type='submit'
+                                            variant='contained'
+                                            color='primary'
+                                            className={classes.button}
+                                        >
+                                            Next
+                                        </Button>):(null)}
+                                    </div>
                                 </div>
                             </div>
                         </Form>
@@ -171,17 +184,6 @@ function Home(props){
     )
 }
 
-// export function FormikStepper({children,...props}: FormikConfig<FormikValues>){
-//     const childrenArray= React.Children.toArray(children)
-//     const [step,setStep] =useState(0);
-//     const currentChild=childrenArray[step];
-
-//     return (
-//         <Formik {...props} >
-//             <Form autoComplete="off">{currentChild}</Form>
-//         </Formik>
-//     )
-// }
 const mapStateToProps=state=>({
     accommodations:state.fetchAccommodations.accommodationsByLocation,
     accommodation:state.fetchAccommodations.accommodation,
