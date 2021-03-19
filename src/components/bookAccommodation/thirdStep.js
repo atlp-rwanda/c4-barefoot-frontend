@@ -3,6 +3,7 @@ import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid
 import { Field, Form, Formik,  FormikConfig,FormikValues} from 'formik';
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
+import {bookAccommodations,clearBookSnackbar} from "../../redux/actions/bookAccommodationAction";
 import {getTemperature} from "../../redux/actions/getWeather";
 import { connect } from 'react-redux';
 import AccommodationCard from "../AccommodationCardWithReview";
@@ -14,6 +15,7 @@ import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import * as yup from 'yup';
 import CloudIcon from '@material-ui/icons/Cloud';
+import Loader from '../Loader'
 import {DatePicker} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
@@ -94,29 +96,38 @@ function Home(props){
                 <CloudIcon color="primary"/> {props.temp-273.15}                                  
             </Typography>
     }
+
+    const handleBook=(value)=>{
+        let formdata={From:"",To:""}
+        formdata.From=value.From
+        formdata.To=value.To
+        props.bookAccommodations(props.selectedAccommodation,formdata,props.nextStep)
+    }
     const validationSchema = yup.object().shape({
-        fromDate: yup
+        From: yup
         .date()
         .required('Booking Date is required',"Booking Date is required")
         .min(new Date(),"You can not book a Hotel in the past"),
-        returnDate: yup
+        To: yup
             .date()
             .required('Checkout Date is required',"Che")
-            .min(yup.ref('fromDate'),"You can not checkout before you arrive  ")
+            .min(yup.ref('From'),"You can not checkout before you arrive  ")
     })
 
     return(
         <React.Fragment>
+            <Loader open={props.status}/>
             <Card>
                 <CardContent>
                     <Formik initialValues={{
-                        fromDate:null,
-                        returnDate:null
+                        From:null,
+                        To:null
                     }}
                     validationSchema={validationSchema}
-                    // onSubmit={(values, {setSubmitting, resetForm}) => {
-                    //         resetForm()
-                    //     }}
+                    onSubmit={(values, {setSubmitting, resetForm}) => {
+                            handleBook(values)
+                            resetForm()
+                        }}
                     >
                     {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
                         <Form onSubmit={handleSubmit}>
@@ -174,18 +185,18 @@ function Home(props){
                                                         helperText={touched.fromDate && errors.fromDate}
                                                                                                                                                 /> */}
                                                                                                                                                 <TextField 
-                                                            id="fromDate"
+                                                            id="From"
                                                             label="Book From"
                                                             type="datetime-local"
-                                                            error={touched.fromDate && errors.fromDate}
-                                                            helperText={touched.fromDate && errors.fromDate}
+                                                            error={touched.From && errors.From}
+                                                            helperText={touched.From && errors.From}
                                                             InputLabelProps={{
                                                                 shrink: true
                                                             }}
                                                             format="yyy-dd-mm HH:MM:ss"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            value={values.fromDate}
+                                                            value={values.From}
                                                         />
                                                         {/* <Error touched={touched.fromDate} message={errors.fromDate}/> */}
                                                         {/* <Error touched={touched.fromDate} /> */}
@@ -201,18 +212,18 @@ function Home(props){
                                                         disablePast
                                                         /> */}
                                                         <TextField 
-                                                            id="returnDate"
+                                                            id="To"
                                                             label="Book upto"
                                                             type="datetime-local"
-                                                            error={touched.returnDate && errors.returnDate}
-                                                            helperText={touched.returnDate && errors.returnDate}
+                                                            error={touched.To && errors.To}
+                                                            helperText={touched.To && errors.To}
                                                             InputLabelProps={{
                                                                 shrink: true
                                                             }}
                                                             format="yyy-dd-mm HH:MM:ss"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            value={values.returnDate}
+                                                            value={values.To}
                                                         />
                                                         {/* <Error touched={touched.returnDate} message={errors.returnDate}/> */}
                                                 </Grid>
@@ -235,14 +246,14 @@ function Home(props){
                                 </Button>
 
                                 <Button
+                                    type='submit'
                                     color='primary'
                                     variant='contained'
                                     btn='submitBtn'
                                     disabled={isSubmitting}
                                     className={classes.button}
-                                    // onClick={() => signupRequest()}
                                 >
-                                    Submit
+                                    Book
                                 </Button>
                             </div>
                         </Form>
@@ -254,23 +265,14 @@ function Home(props){
     )
 }
 
-// export function FormikStepper({children,...props}: FormikConfig<FormikValues>){
-//     const childrenArray= React.Children.toArray(children)
-//     const [step,setStep] =useState(0);
-//     const currentChild=childrenArray[step];
 
-//     return (
-//         <Formik {...props} >
-//             <Form autoComplete="off">{currentChild}</Form>
-//         </Formik>
-//     )
-// }
 const mapStateToProps=state=>({
     accommodations:state.fetchAccommodations.accommodationsByLocation,
     accommodation:state.fetchAccommodations.accommodation,
+    selectedAccommodation:state.fetchAccommodations.selectedAccommodation,
     count:state.fetchAccommodations.count,
-    status:state.fetchAccommodations.pending,
+    status:state.bookAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
-export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (Home)
