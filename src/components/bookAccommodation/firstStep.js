@@ -83,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 function Home(props){
-    console.log(props)
   const classes = useStyles();
     let temp= null;
     const [page, setPage] = useState(1);
@@ -94,37 +93,12 @@ function Home(props){
     }
     const display = props.accommodations.length ? 'none' : 'flex';
     const count=()=>{
-        return Math.round((props.count/6)+1)
+        return Math.trunc((props.count/6)+1)
     }
-    
     const handleChange = (event, value) => {
         props.getAccommodationsByLocation(props.accId,value)
         setPage(value)
       };
-    const populateChecbox=()=>{
-        let labels=[];
-        let label;
-        let count=0;
-        if(props.amenities){
-            const perm=props.amenities;
-            for(const property in perm){
-              label=
-              <Grid item>
-                <FormControlLabel
-                        key={property}
-                        control={<Checkbox checked={perm[property]} color={'primary'} name={property} id={count} disableRipple={true} />}
-                        label={property}
-                        color={colors.neutralBlack}
-                />
-              </Grid>
-              count++;
-              labels.push(label);
-            }
-            return labels;
-          }else{
-            return null;
-        }
-    }
     return(
         <React.Fragment>
             <Card>
@@ -142,7 +116,7 @@ function Home(props){
                                     <Typography variant="h6" style={{color: colors.primary100}} className={classes.separator}> 
                                         Choose Accommodation:
                                     </Typography>
-                                    <Divider style={{width:'50%'}} variant='middle' />
+                                    <Divider style={{width:'80%'}} variant='middle' />
                                     <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
                                         <Place color="secondary"/> Rwanda
                                     </Typography>            
@@ -151,7 +125,7 @@ function Home(props){
                                 <Grid container item xs={12} className={classes.container}>
                                     
                                     {props.accommodations.map((accommodation) =>(
-                                        <Grid item xs={10} sm={4} md={3} className={classes.insideGrid,classes.separate}>
+                                        <Grid item xs={8} sm={4} md={3} className={classes.insideGrid,classes.separate}>
                                             <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
                                         </Grid>
                                     ))}

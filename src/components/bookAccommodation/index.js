@@ -1,7 +1,6 @@
 import FirstStep  from './firstStep';
 import SecondStep from './secondStep';
 import Confirm from './thirdStep';
-// import SideNav from './sideDiv'
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -99,7 +98,11 @@ const useStyles = makeStyles((theme) => ({
     height: '10px',
     width: '70%',
     marginTop: '5px'
-  }
+  },
+  container2:{
+    marginLeft:theme.spacing(15),
+    width:'80%'
+}
 }));
 
 function getSteps() {
@@ -222,13 +225,15 @@ const book = (props)=> {
                       >{props.snackBarMessage.message}
                   </MuiAlert>
                 </Snackbar>
-                <Typography className={classes.instructions}>You have Successfully Booked your Accommodation  <i class="fa fa-thumbs-up"></i></Typography>
-                <Button
-                    color='primary'
-                    variant='contained'
-                >
-                    Back To your Requestes
-                </Button>
+                <div className={classes.container2}>
+                  <Typography className={classes.instructions}>You have Successfully Booked your Accommodation  <i class="fa fa-thumbs-up"></i></Typography>
+                  <Button
+                      color='primary'
+                      variant='contained'
+                  >
+                      Back To your Requestes
+                  </Button>
+                </div>
               </div>
             ) : (
               <div>

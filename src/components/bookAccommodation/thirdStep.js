@@ -76,15 +76,9 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'flex-start',
     },
-    btncontainer1:{
+    btncontainer:{
         display:"flex",
-        justifyContent:"flex-start"
-        // width:'80%'
-    },
-    btncontainer2:{
-        display:"flex",
-        justifyContent:"flex-end"
-        // width:'80%'
+        justifyContent:"space-between"
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -159,7 +153,6 @@ function Home(props){
                                 <CardActionArea>
                                     
                                     <CardMedia
-                                    // onClick={handleViewMore}
                                     className={classes.media}
                                     image={props.accommodation.photos}
                                     title={props.accommodation.title}
@@ -178,22 +171,7 @@ function Home(props){
                                             </Typography>
                                             <Grid container spacing={3} className={classes.divider} >
                                                 <Grid container item xs={3} spacing={3} className={classes.dates}>
-                                                    {/* <Field 
-                                                         name='fromDate'
-                                                        label='Book From *'
-                                                        margin='normal'
-                                                        as={<DatePicker value={Fromdate} onChange={setFromDate}
-                                                            autoOk
-                                                            inputVariant="outlined"
-                                                            variant="inline"
-                                                            emptyLabel="Book From"
-                                                            openTo='year'
-                                                            format="MMMM dd yyyy"
-                                                            disablePast
-                                                            />}
-                                                        error={touched.fromDate && errors.fromDate}
-                                                        helperText={touched.fromDate && errors.fromDate}
-                                                                                                                                                /> */}
+                                                    
                                                                                                                                                 <TextField 
                                                             id="From"
                                                             label="Book From"
@@ -208,19 +186,9 @@ function Home(props){
                                                             onBlur={handleBlur}
                                                             value={values.From}
                                                         />
-                                                        {/* <Error touched={touched.fromDate} message={errors.fromDate}/> */}
-                                                        {/* <Error touched={touched.fromDate} /> */}
+                                                       
                                                 </Grid>
                                                 <Grid container item xs={3} spacing={3} className={classes.dates}>
-                                                    {/* <DatePicker value={Returndate} onChange={setRetrunDate}
-                                                        autoOk
-                                                        inputVariant="outlined"
-                                                        variant="inline"
-                                                        emptyLabel="Book To"
-                                                        openTo='year'
-                                                        format="MMMM dd yyyy"
-                                                        disablePast
-                                                        /> */}
                                                         <TextField 
                                                             id="To"
                                                             label="Book upto"
@@ -235,7 +203,6 @@ function Home(props){
                                                             onBlur={handleBlur}
                                                             value={values.To}
                                                         />
-                                                        {/* <Error touched={touched.returnDate} message={errors.returnDate}/> */}
                                                 </Grid>
                                             </Grid>
                                         </div>
@@ -245,7 +212,8 @@ function Home(props){
                                 </Card>
                             </div>
                             <div className={classes.textCenter,classes.divider}>
-                            <div className={classes.textCenter,classes.divider,classes.btncontainer1}>
+                            <div className={classes.btncontainer}>
+                            <div className={classes.textCenter}>
                                 <Button
                                     color='primary'
                                     variant='contained'
@@ -256,7 +224,7 @@ function Home(props){
                                     Back
                                 </Button>
                             </div>
-                            <div className={classes.textCenter,classes.divider,classes.btncontainer2}>
+                            <div className={classes.textCenter}>
                                 <Button
                                     type='submit'
                                     color='primary'
@@ -267,6 +235,7 @@ function Home(props){
                                 >
                                     Book
                                 </Button>
+                            </div>
                             </div>
                             </div>
                         </Form>
