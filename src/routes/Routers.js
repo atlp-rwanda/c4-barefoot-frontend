@@ -23,7 +23,8 @@ import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
-
+import ViewTripHistoryCard from '../components/userTripHistory/ViewTripHistoryCard'
+ 
 
 const Routes = () => {
     return (
@@ -50,6 +51,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/profile"
+        />
+        <ProtectedRoute
+          component={ViewTripHistoryCard}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travel-history"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}
