@@ -15,6 +15,7 @@ export const getTripHistory = () => dispatch => {
       }
     })
     .then(res => {
+        console.log(res.data.rows);
       dispatch({
         type: FETCH_TRIP_HISTORY_SUCCESS,
         payload: res.data.rows
