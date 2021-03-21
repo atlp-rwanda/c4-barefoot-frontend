@@ -1,10 +1,10 @@
 import React from 'react'
-import {Box, makeStyles, Typography, Container} from '@material-ui/core'
+import {Box, makeStyles, Typography} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.secondary.main,
-    height: '90vh',
+    height: '100vh',
     color: "#fff",
     display: 'flex',
     flexDirection: 'column',

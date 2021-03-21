@@ -1093,8 +1093,6 @@ exports[`<Login /> if it matches snapshot 1`] = `
                               },
                               "spec": Object {
                                 "abortEarly": true,
-                                "label": undefined,
-                                "meta": undefined,
                                 "nullable": false,
                                 "presence": "required",
                                 "recursive": true,
@@ -1131,8 +1129,6 @@ exports[`<Login /> if it matches snapshot 1`] = `
                               },
                               "spec": Object {
                                 "abortEarly": true,
-                                "label": undefined,
-                                "meta": undefined,
                                 "nullable": false,
                                 "presence": "required",
                                 "recursive": true,
@@ -1151,8 +1147,6 @@ exports[`<Login /> if it matches snapshot 1`] = `
                           },
                           "spec": Object {
                             "abortEarly": true,
-                            "label": undefined,
-                            "meta": undefined,
                             "nullable": false,
                             "presence": "optional",
                             "recursive": true,

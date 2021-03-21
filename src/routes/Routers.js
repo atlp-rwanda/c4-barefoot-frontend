@@ -1,18 +1,24 @@
 import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
 import NewPassword from '../components/resetPassword/NewPassword'
-
 import React from 'react';
 import Login from '../components/views/Login'
-import SignUp from '../components/signup';
 import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
-import { Switch, Redirect } from 'react-router-dom';
-import RouteWithLayout  from '../components/RouteWithLayout';
+import Unauthorized from '../components/views/Unauthorized'
 import Profile from '../components/views/Profile';
-import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import adminHome from '../components/views/Admin/Home';
+import CreateRoles from '../components/views/Admin/CreateRoles';
+import SetPermissions from '../components/views/Admin/SetPermissions'
+import ListOfRoles from '../components/views/Admin/ListOfRoles'
+import ListUsers from '../components/views/Admin/ListUsers'
+import { Switch, Redirect } from 'react-router-dom';
+import RouteWithLayout from '../components/RouteWithLayout';
+import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+import ProtectedRoute from './protected.route'
+
 
 const Routes = () => {
     return (
@@ -34,7 +40,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/login"
         />
-        <RouteWithLayout
+        <ProtectedRoute
           component={Profile}
           exact
           layout={AuthorizedUserLayout}
@@ -65,10 +71,52 @@ const Routes = () => {
           path="/logout"
         />
         <RouteWithLayout
+          component={adminHome}
+          exact
+          layout={AdminLayout}
+          path="/admin"
+        />
+        <RouteWithLayout
+          component = {CreateRoles}
+          exact
+          layout={AdminLayout}
+          path="/admin/roles"
+        />
+        <RouteWithLayout
+          component={SetPermissions}
+          exact
+          layout={AdminLayout}
+          path="/admin/permissions"
+        />
+        <RouteWithLayout
+          component={ListOfRoles}
+          exact
+          layout={AdminLayout}
+          path="/admin/roleslist"
+        />
+        <RouteWithLayout
+          component={ListUsers}
+          exact
+          layout={AdminLayout}
+          path="/admin/users"
+        />
+        <RouteWithLayout
+          component={Logout}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/logout"
+        />
+        <RouteWithLayout
           component={PageNotFound}
           exact
-          layout={DefaultLayout}
+          layout={ErrorLayout}
           path="/PageNotFound"
+        />
+        <RouteWithLayout
+          component={Unauthorized}
+          exact
+          layout={ErrorLayout}
+          path="/unauthorized"
         />
         <RouteWithLayout 
             path="/signup" 
