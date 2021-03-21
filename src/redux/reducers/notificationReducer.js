@@ -1,9 +1,10 @@
-import { GETNOTIFICATONS_ERROR, GETNOTIFICATONS_SUCCESS, GETNOTIFICATONS_PENDING, READNOTIFICATION } from '../actions/notificationAction';
+import { GETNOTIFICATONS_ERROR, GETNOTIFICATONS_SUCCESS,  LOADING, READNOTIFICATION, READ_TRAVELREQUEST_INFO } from '../actions/notificationAction';
 const initialState = {
     notifications: [],
     error: null,
     pending: false,
-    notification: {}
+    notification: {},
+    travelRequest: {}
 }
 
 export const notificationReducer = (state = initialState, action)=>{
@@ -14,7 +15,7 @@ export const notificationReducer = (state = initialState, action)=>{
                 error: action.payload
 
             }
-        case GETNOTIFICATONS_PENDING:
+        case LOADING:
             return {
                 ...state,
                 pending: true
@@ -30,6 +31,11 @@ export const notificationReducer = (state = initialState, action)=>{
             return {
                 ...state,
                 notification: action.payload
+            }
+        case READ_TRAVELREQUEST_INFO:
+            return {
+                ...state,
+                travelRequest: action.payload
             }
         default:
             return state

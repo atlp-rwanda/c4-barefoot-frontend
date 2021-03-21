@@ -20,7 +20,7 @@ const NotificationMenu = (props) => {
             {notifications.count>0 && notifications.rows.map(notification=>(
                 
                 <Box key={notification.id}>
-                    <MenuItem component='a' href={`/notification/${notification.id}`}><b>{notification.message.slice(0,20)}...</b></MenuItem>
+                    <MenuItem component='a' href={`/notification/${notification.travelId}`}><b>{notification.message}</b></MenuItem>
                 </Box>
             ))}
             {notifications.count<=0 && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
@@ -29,10 +29,4 @@ const NotificationMenu = (props) => {
      );
 }
 
-// const mapStateToProps = state=> {
-//     return {
-//         notifications: state.notifications
-//     }
-// }
- 
 export default NotificationMenu;

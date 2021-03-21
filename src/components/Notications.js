@@ -1,8 +1,9 @@
 import { Typography ,Card, CardContent} from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { readNotification, getNotifications } from '../redux/actions/notificationAction';
+import { readNotification, getNotifications, readTravelRequestInfo } from '../redux/actions/notificationAction';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
+import TravelRequestCard from '../components/manageTravel/TravelRequestCard';
 
 
 
@@ -33,35 +34,37 @@ const useStyles = makeStyles((theme) => ({
 const Notification = (props) => {
     const { id } = props.match.params;
     useEffect(()=>{
-        props.readNotification(id);
+        //props.readNotification(id);
         props.getNotifications();
+        props.readTravelRequestInfo(id)
         
     }, []);
     const {notification} = props;
 
     const classes = useStyles();
 
-    
+     console.log(props)
   
     return (
         
         <React.Fragment>
         
-        <Card className={classes.card}>
+        {/* <Card className={classes.card}>
         <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-                {notification.message}
+                
             </Typography>
         </CardContent>
-        </Card>
+        </Card> */}
+
        
         </React.Fragment>
     )
 }
 const mapStateToProps = state=>{
     return {
-        notification: state.notifications.notification
+        notification: state
     }
 }
 
-export default connect(mapStateToProps, { readNotification, getNotifications })(Notification);
+export default connect(mapStateToProps, { readNotification, getNotifications, readTravelRequestInfo })(Notification);
