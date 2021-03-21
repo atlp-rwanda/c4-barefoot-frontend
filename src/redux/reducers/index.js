@@ -17,6 +17,7 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
+import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
 
 const reducers = combineReducers({
@@ -33,6 +34,7 @@ const reducers = combineReducers({
   updateTravel:updateSingleTravelReducer,
 
   bookAccommodations: bookAccommodationsReducer,
+  convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
   changeUserPassword: changeUserPasswordeReducer,
