@@ -12,7 +12,9 @@ function NewForm(props){
     const [message, setMessage] = React.useState('');
     const [feedbackText, setFeedbackText] = React.useState(null);
     const messages = props.messages;
-    props.getSupportResponse();
+    React.useEffect(()=>{
+        props.getSupportResponse();
+    }, [])
     const handleSubmit = () => {
         if(message === ''){
             setFeedbackText('Please type something!')

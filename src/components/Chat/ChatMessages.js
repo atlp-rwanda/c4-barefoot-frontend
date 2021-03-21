@@ -6,9 +6,10 @@ import MessageList from './Lists/MessageList';
 import NewMessage from './Lists/NewMessage';
 
 function ChatMessages(props){
-
+    React.useEffect(()=>{
         props.getChats();
         props.getVisitorsMessages();
+    }, [])
 
     const chats = props.chats;
     const user = localStorage.getItem('userName')

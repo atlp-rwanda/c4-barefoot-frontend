@@ -7,9 +7,11 @@ import UsersList from './Lists/UsersList';
 import VisitorsListing from './vList';
 
 function ChatUsers(props) {
-    props.fetchUsersChat();
-    props.getVisitorsList();
-    props.fetchUsers();
+    React.useEffect(()=>{
+        props.fetchUsersChat();
+        props.getVisitorsList();
+        props.fetchUsers();
+    }, [])
     const users = props.users;
     const visitors = props.visitors;
     const allusers = props.allusers;

@@ -11,7 +11,7 @@ const ChatRoom = () => {
             <Grid item xs={12} sm={4} md={2}>
                 <ChatUsers/>
             </Grid>
-            <Grid item xs={12} sm={7} md={10}>
+            <Grid item xs={12} sm={8} md={10}>
                 <ChatMessages/>
             </Grid> 
         </Grid>

@@ -6,7 +6,6 @@ function ListMessages(props){
     const messages = props.messages
     const classes = useStyles();
     const receiver = localStorage.getItem('visitorEmail')
-    console.log(messages)
     return (
         <div style={{height: '100%', overflow: 'scroll'}}>
             <List className={classes.list}>

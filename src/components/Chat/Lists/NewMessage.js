@@ -5,174 +5,150 @@ import { connect } from 'react-redux';
 import { newMessageAction, supportResponds } from '../../../redux/actions/ChatAction'
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
+import {Link} from 'react-router-dom';
 
 
-class NewMessage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            message: '',
-            vmessage: '',
-            image: '',
-            feedbackText: '',
-            loading: false,
-            vimage: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.vhandleClick = this.vhandleClick.bind(this)
-    }
+function NewMessage(props) {
+    const [message, setMessage] = React.useState('');
+    const [vmessage, setvMessage] = React.useState('')
+    const [image, setImage] = React.useState('')
+    const [feedbackText, setFeedbackText] = React.useState('')
+    const [loading, setLoading] = React.useState(false)
+    const [vimage, setvImage] = React.useState('')
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-    handleClick = () => {
+    const handleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
-        if(this.state.message != ''){
+        if(message != ''){
             const messageData = {
                 receiver: receiverId,
-                message: this.state.message,
+                message: message,
                 type: 'plain-text'
             }
-            this.props.newMessageAction(messageData);
+            props.newMessageAction(messageData);
             
-        }else if(this.state.image != ''){
+        }else if(image != ''){
             const messageData = {
                 receiver: receiverId,
-                message: this.state.image,
+                message: image,
                 type: 'image'
             }
-            this.props.newMessageAction(messageData);
+            props.newMessageAction(messageData);
         }else{
-            this.setState({
-                feedbackText: "Message can't be blank!"
-            })
+            e.preventDefault();
+            setFeedbackText("Message can't be blank!")
         } 
     }
 
-    vhandleClick = () => {
+    const vhandleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
-        if(this.state.vmessage != ''){
+        if(vmessage != ''){
             const messageData = {
                 receiver: receiverId,
-                message: this.state.vmessage,
+                message: vmessage,
                 type: 'plain-text'
             }
-            this.props.newMessageAction(messageData);
+            props.supportResponds(messageData);
             
-        }else if(this.state.vimage != ''){
+        }else if(vimage != ''){
             const messageData = {
                 receiver: receiverId,
-                message: this.state.vimage,
+                message: vimage,
                 type: 'image'
             }
-            this.props.newMessageAction(messageData);
+            props.supportResponds(messageData);
         }else{
-            this.setState({
-                feedbackText: "Message can't be blank!"
-            })
+            e.preventDefault();
+            setFeedbackText("Message can't be blank!")
         } 
     }
-
-    render() {
-        const visitor = localStorage.getItem('visit')
-        return (
-            <div>
-                {!visitor ? <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
-                    <Toolbar position='fixed' color="primary">
+    const visitor = localStorage.getItem('visit')
+    return (
+        <div>
+            {!visitor ? <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
+                <Toolbar position='fixed' color="primary">
+                    <Input border={0} 
+                        variant="outlined" 
+                        style={{width: '100%', borderRadius: 50}}
+                        value={message}
+                        onChange={(e)=>setMessage(e.target.value)}
+                        name='message'
+                        endAdornment={
+                            <InputAdornment position="end">
+                                
+                                <input 
+                                    id="file" 
+                                    name="message_img" 
+                                    type="file"
+                                    hidden={true}
+                                    onChange={(e) => {
+                                        const profile_picture = e.target.files[0]
+                                        const formData = new FormData()
+                                        formData.append('upload_preset', process.env.UPLOAD_PRESET)
+                                        formData.append('file', profile_picture)
+                                        setLoading(true)            
+                                        axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
+                                        .then(res => {
+                                            setLoading(false) 
+                                            setImage(res.data.secure_url)
+                                        })
+                                        .catch(err => {
+                                            setLoading(false)
+                                            setFeedbackText(err.message)
+                                        })
+                                    }}
+                                />
+                                <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
+                                <IconButton onClick={handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
+                            </InputAdornment>
+                        }
+                    />
+                    <FormHelperText>{feedbackText}</FormHelperText>
+                </Toolbar>
+            </Paper> :
+            <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
+                <Toolbar position='fixed' color="primary">
+                    <FormControl>
                         <Input border={0} 
                             variant="outlined" 
                             style={{width: '100%', borderRadius: 50}}
-                            value={this.state.message}
-                            onChange={this.handleChange}
-                            name='message'
+                            value={vmessage}
+                            onChange={(e)=>setvMessage(e.target.value)}
+                            name='vmessage'
                             endAdornment={
                                 <InputAdornment position="end">
-                                    
                                     <input 
-                                        id="file" 
-                                        name="message_img" 
-                                        type="file"
-                                        hidden={true}
-                                        onChange={(e) => {
-                                            const profile_picture = e.target.files[0]
-                                            const formData = new FormData()
-                                            formData.append('upload_preset', process.env.UPLOAD_PRESET)
-                                            formData.append('file', profile_picture)
-                                            this.setState({loading: true})            
-                                            axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
-                                            .then(res => {
-                                                this.setState({loading: false}) 
-                                                this.setState({image: res.data.secure_url})
-                                            })
-                                            .catch(err => {
-                                                this.setState({
-                                                    loading: false,
-                                                    feedbackText: err.message
-                                                })
-                                            })
-                                        }}
-                                    />
-                                    <label htmlFor="file">{this.state.loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                    <IconButton onClick={this.handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
+                                    id="file" 
+                                    name="message_img" 
+                                    type="file"
+                                    hidden={true}
+                                    onChange={(e) => {
+                                        const profile_picture = e.target.files[0]
+                                        const formData = new FormData()
+                                        formData.append('upload_preset', process.env.UPLOAD_PRESET)
+                                        formData.append('file', profile_picture)
+                                        setLoading(true)            
+                                        axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
+                                        .then(res => {
+                                            setLoading(false) 
+                                            setvImage(res.data.secure_url)
+                                        })
+                                        .catch(err => {
+                                            setLoading(false)
+                                            setFeedbackText(err.message)
+                                        })
+                                    }}
+                                />
+                                <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
+                                    <IconButton onClick={vhandleClick}><a href="" style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
                                 </InputAdornment>
                             }
                         />
-                        <FormHelperText>{this.state.feedbackText}</FormHelperText>
-                    </Toolbar>
-                </Paper> :
-                <Paper position="fixed" style={{bottom:0, top: 'auto', left: 0, right: 0, borderRadius: 10, marginTop: '7px', padding: '10px', boxSizing: 'border-box'}}>
-                    <Toolbar position='fixed' color="primary">
-                        <FormControl>
-                            <Input border={0} 
-                                variant="outlined" 
-                                style={{width: '100%', borderRadius: 50}}
-                                value={this.state.vmessage}
-                                onChange={this.handleChange}
-                                name='vmessage'
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <input 
-                                        id="file" 
-                                        name="message_img" 
-                                        type="file"
-                                        hidden={true}
-                                        onChange={(e) => {
-                                            const profile_picture = e.target.files[0]
-                                            const formData = new FormData()
-                                            formData.append('upload_preset', process.env.UPLOAD_PRESET)
-                                            formData.append('file', profile_picture)
-                                            this.setState({loading: true})            
-                                            axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
-                                            .then(res => {
-                                                this.setState({
-                                                    loading: false,
-                                                    vimage: res.data.secure_url
-                                                })
-                                            })
-                                            .catch(err => {
-                                                this.setState({
-                                                    loading: false,
-                                                    feedbackText: err.message
-                                                })
-                                            })
-                                        }}
-                                    />
-                                    <label htmlFor="file">{this.state.loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                        <IconButton onClick={this.vhandleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
-                                    </InputAdornment>
-                                }
-                            />
-                            <FormHelperText>{this.state.feedbackText}</FormHelperText>
-                        </FormControl>
-                    </Toolbar>
-                </Paper>}
-            </div>
-        )
-    }
+                        <FormHelperText>{feedbackText}</FormHelperText>
+                    </FormControl>
+                </Toolbar>
+            </Paper>}
+        </div>
+    )
 }
 
 export default connect(null, { newMessageAction, supportResponds })(NewMessage);
