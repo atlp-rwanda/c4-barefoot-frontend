@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,FormControlLabel,Checkbox} from '@material-ui/core';
+import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,FormControlLabel,Checkbox,Select,MenuItem} from '@material-ui/core';
 import { Field, Form, Formik, FormikConfig,FormikValues} from 'formik';
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
@@ -13,6 +13,7 @@ import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
+import {convertorAction} from "../../redux/actions/convertorAction"
 
 const useStyles = makeStyles((theme) => ({
     // root: {
@@ -38,13 +39,18 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'flex-start',
     },
-    btncontainer1:{
+    btncontainer:{
         display:"flex",
+        justifyContent:"space-between"
+        // width:'80%'
+    },
+    btncontainer1:{
+        //display:"flex",
         justifyContent:"flex-start"
         // width:'80%'
     },
     btncontainer2:{
-        display:"flex",
+        //display:"flex",
         justifyContent:"flex-end"
         // width:'80%'
     },
@@ -85,24 +91,24 @@ function Home(props){
     
   const classes = useStyles();
     let temp= null;
+    let currency=null;
+    const base={Rwanda:"RWF",Uganda:"UGX",USA:"USD",Europe:"EUR",Canada:"CND",Kenya:"KSH",Burundi:"BIF",Tanzania:"TSH"}
     const [direction, setDirection] = useState('back');
+    const [value,setValue]=useState(base[props.accommodation.country]);
+    const from=base[props.accommodation.country]
+   
     if(props.temp){
-        temp=<Typography gutterBottom variant="h6"  className={classes.titleText} >
+        temp=<Typography gutterBottom variant="h6" color="textSecondary" className={classes.titleText} >
                 <CloudIcon color="primary"/> {Math.round(props.temp-273.15)}                             
             </Typography>
     }
-    const display = props.accommodations.length ? 'none' : 'flex';
-    const count=()=>{
-        if((props.count % 6) === 0){
-            return (props.count / 6);
-        }else if((props.count % 6) < 1){
-            return 1;
-        }else if((props.count % 6) >= 1){
-            let pages= (props.count / 6)+1;
-            return pages;
-        }
+    const hanldeSelectOnchange=(e)=>{
+        setValue(e.target.value)
+        currency=e.target.value
+        console.log(currency)
+        props.convertorAction(props.accommodation.price,from,e.target.value)
+     
     }
-
     const populateChecbox=()=>{
         let labels=[];
         let label;
@@ -112,12 +118,6 @@ function Home(props){
             for(const property in perm){
               label=
               <Grid item>
-                {/* <FormControlLabel
-                        key={property}
-                        control={<Checkbox checked={perm[property]} color={'primary'} name={property} id={count} disableRipple={true} />}
-                        label={property}
-                        color={colors.neutralBlack}
-                /> */}
                  <Typography variant="subtitle1" color="textSecondary" component="p" noWrap >
                     {property}
                 </Typography>
@@ -178,56 +178,56 @@ function Home(props){
                                         <Grid container spacing={1}  direction='row' >
                                             <Grid container item xs={3} spacing={3} >
                                                     
-                                                <Grid container item xs={12} spacing={3} direction='column'>
+                                                <Grid container item xs={12} sm={12} direction='column'>
+                                                    <Grid item>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                     Location
                                                     </Typography>
-                                                    <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography gutterBottom variant="body" component="p" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.country}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.city}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.state}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.streetAddress}
                                                         </Typography>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item xs={3} spacing={3}>
+                                            <Grid container item xs={3}>
                                                     
-                                                <Grid container item xs={12} spacing={3} direction='column'>
+                                                <Grid container item xs={12}  direction='column'>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                     Capacity
                                                     </Typography>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography variant="subtitle1" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.propertyType}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography gutterBottom variant="subtitle1" component="p" color="textSecondary" className={classes.titleText}>
                                                         {props.accommodation.numberOfRooms!=null?(`${props.accommodation.numberOfRooms} bedrooms`):(null)} 
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography gutterBottom variant="body" className={classes.titleText}>
+                                                        <Typography variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
                                                         {props.accommodation.typeOfBed?(`Type of: ${props.accommodation.typeOfBed} bedrooms`):(null)}
                                                         </Typography>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item xs={3} spacing={3}>
+                                            <Grid container item xs={3}>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                 Amenities
                                                 <Grid container item xs={12} spacing={0} direction='column'>
@@ -235,11 +235,34 @@ function Home(props){
                                                 </Grid>
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={3} spacing={12} direction='column'>
-                                                <Grid item xs={12} spacing={4} >
+                                            <Grid item xs={3} direction='column'>
+                                                <Grid item xs={12} >
                                                     <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
-                                                        Cost/night in currency
+                                                        Cost/night
                                                     </Typography>
+                                                    <Grid container item spacing={3} xs={12}>
+                                                        <Grid item>
+                                                            <Typography variant="body">{props.money?(props.money[Object.keys(props.money)[0]]):(props.accommodation.price)}</Typography>
+                                                        </Grid>
+                                                        <Grid item >  
+                                                            <Select 
+                                                                labelId='select-roles'
+                                                                id='roles'
+                                                                value={value}
+                                                                onChange={hanldeSelectOnchange}
+                                                                style={{"padding-right": '9px'}}
+                                                                >
+                                                                <MenuItem  key="USD" name="USD" value="USD">USD</MenuItem>
+                                                                <MenuItem  key="RWF" name="RWF" value="RWF">RWF</MenuItem>
+                                                                <MenuItem  key="EUR" name="EUR" value="EUR">EUR</MenuItem>
+                                                                <MenuItem  key="CND" name="CND" value="CND">CND</MenuItem>
+                                                                <MenuItem  key="KSH" name="KSH" value="KSH">KSH</MenuItem>
+                                                                <MenuItem  key="UGX" name="UGX" value="UGX">UGX</MenuItem>
+                                                                <MenuItem  key="BIF" name="BIF" value="BIF">BIF</MenuItem>
+                                                                <MenuItem  key="TSH" name="TSH" value="TSH">TSH</MenuItem>    
+                                                            </Select>
+                                                        </Grid>
+                                                    </Grid>
                                                 </Grid>
                                                 <Grid item xs={12} spacing={4} >
                                                     <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
@@ -259,7 +282,8 @@ function Home(props){
                                 </Card>
                             </div>
                             <div className={classes.divider}>
-                                <div className={classes.textCenter,classes.btncontainer1}>
+                            <div className={classes.btncontainer}>
+                                <div className={classes.textCenter}>
                                     <Button
                                         type='submit'
                                         
@@ -273,7 +297,7 @@ function Home(props){
                                         Back
                                     </Button>
                                 </div>
-                            <div className={classes.textCenter,classes.btncontainer2}>
+                            <div >
                                 <Button
                                     type='submit'
                                     id='backBtn'
@@ -286,6 +310,7 @@ function Home(props){
                                 </Button>
                             </div>
                         </div>
+                        </div>
                         </Form>
                     </Formik>
                 </CardContent>
@@ -294,23 +319,13 @@ function Home(props){
     )
 }
 
-// export function FormikStepper({children,...props}: FormikConfig<FormikValues>){
-//     const childrenArray= React.Children.toArray(children)
-//     const [step,setStep] =useState(0);
-//     const currentChild=childrenArray[step];
-
-//     return (
-//         <Formik {...props} >
-//             <Form autoComplete="off">{currentChild}</Form>
-//         </Formik>
-//     )
-// }
 const mapStateToProps=state=>({
     accommodations:state.fetchAccommodations.accommodationsByLocation,
     accommodation:state.fetchAccommodations.accommodation,
+    money:state.convertMoney.money,
     count:state.fetchAccommodations.count,
     status:state.fetchAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
-export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,convertorAction}) (Home)
