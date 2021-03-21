@@ -50,7 +50,7 @@ const SearchLocations = (props) => {
     const handleAddMultiCity = () => {
         const locations = {
             current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
-            destination: props.travelRequest.destinationLocation,
+            destination: `${props.travelRequest.destinationLocation.LocationName, props.travelRequest.destinationLocation.country}`,
             travelDate: props.travelRequest.departureDate,
             returnDate: props.travelRequest.returnDate,
         }

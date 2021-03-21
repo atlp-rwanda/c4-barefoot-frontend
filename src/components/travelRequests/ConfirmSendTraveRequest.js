@@ -23,6 +23,7 @@ function ConfirmSendTravelRequest(props) {
                 }
             ]
         }
+        
         props.sendTravelRequestAction(request);
         history.push("/requester/create-travel-request");
     }
