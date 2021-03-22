@@ -122,26 +122,10 @@ function Home(props){
         }
     }
     return(
-        //  <React.Fragment>
-            // <Grid container item xs={12} justify="center">
-            //     <Book/>
-            // </Grid>
-        //  </React.Fragment>
         <Book/>
     )
 }
 
-// export function FormikStepper({children,...props}: FormikConfig<FormikValues>){
-//     const childrenArray= React.Children.toArray(children)
-//     const [step,setStep] =useState(0);
-//     const currentChild=childrenArray[step];
-
-//     return (
-//         <Formik {...props} >
-//             <Form autoComplete="off">{currentChild}</Form>
-//         </Formik>
-//     )
-// }
 const mapStateToProps=state=>({
     accommodations:state.fetchAccommodations.accommodationsByLocation,
     accommodation:state.fetchAccommodations.accommodation,

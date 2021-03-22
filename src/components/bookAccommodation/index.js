@@ -166,15 +166,7 @@ const book = (props)=> {
   return (
     <div >
       <div >
-        <div className={classes.rightSide}>
-          {/* { loading ? (
-            <Box className={classes.box}>
-              <Skeleton variant="rect" className={classes.textBox}/>
-            </Box>
-          ) : (
-            <h3 className={classes.h3}>Signup with your credentials</h3>
-          )} */}
-          
+        <div className={classes.rightSide}>    
           { loading ? (
             <Box className={classes.stepperContainer}>
               <Box className={classes.stepperBox}>

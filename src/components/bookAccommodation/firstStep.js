@@ -93,7 +93,12 @@ function Home(props){
     }
     const display = props.accommodations.length ? 'none' : 'flex';
     const count=()=>{
-        return Math.trunc((props.count/6)+1)
+        if(props.count % 6 ===0){
+            return(props.count/6)
+        }else{
+            console.log("herre")
+            return Math.trunc((props.count/6)+1)
+        }
     }
     const handleChange = (event, value) => {
         props.getAccommodationsByLocation(props.accId,value)
