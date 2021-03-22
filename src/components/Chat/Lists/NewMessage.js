@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText, CircularProgress, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { newMessageAction, supportResponds } from '../../../redux/actions/ChatAction'
+import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from '../../../redux/actions/ChatAction'
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
@@ -24,7 +24,9 @@ function NewMessage(props) {
                 message: message,
                 type: 'plain-text'
             }
-            props.newMessageAction(messageData);
+            props.newMessageAction(messageData).then(() =>{
+                props.getChats()
+            });
             
         }else if(image != ''){
             const messageData = {
@@ -32,7 +34,9 @@ function NewMessage(props) {
                 message: image,
                 type: 'image'
             }
-            props.newMessageAction(messageData);
+            props.newMessageAction(messageData).then(() =>{
+                props.getChats()
+            });
         }else{
             e.preventDefault();
             setFeedbackText("Message can't be blank!")
@@ -43,19 +47,23 @@ function NewMessage(props) {
         const receiverId = localStorage.getItem('userId')
         if(vmessage != ''){
             const messageData = {
-                receiver: receiverId,
+                visitor: receiverId,
                 message: vmessage,
                 type: 'plain-text'
             }
-            props.supportResponds(messageData);
+            props.supportResponds(messageData).then(() =>{
+                props.getVisitorsMessages()
+            });
             
         }else if(vimage != ''){
             const messageData = {
-                receiver: receiverId,
+                visitor: receiverId,
                 message: vimage,
                 type: 'image'
             }
-            props.supportResponds(messageData);
+            props.supportResponds(messageData).then(() =>{
+                props.getVisitorsMessages()
+            });
         }else{
             e.preventDefault();
             setFeedbackText("Message can't be blank!")
@@ -81,10 +89,10 @@ function NewMessage(props) {
                                     type="file"
                                     hidden={true}
                                     onChange={(e) => {
-                                        const profile_picture = e.target.files[0]
+                                        const messageimg = e.target.files[0]
                                         const formData = new FormData()
                                         formData.append('upload_preset', process.env.UPLOAD_PRESET)
-                                        formData.append('file', profile_picture)
+                                        formData.append('file', messageimg)
                                         setLoading(true)            
                                         axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
                                         .then(res => {
@@ -98,7 +106,7 @@ function NewMessage(props) {
                                     }}
                                 />
                                 <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                <IconButton onClick={handleClick}><a href='' style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
+                                <IconButton onClick={handleClick}><Link style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></Link></IconButton>
                             </InputAdornment>
                         }
                     />
@@ -139,7 +147,7 @@ function NewMessage(props) {
                                     }}
                                 />
                                 <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                    <IconButton onClick={vhandleClick}><a href="" style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></a></IconButton>
+                                    <IconButton onClick={vhandleClick}><Link style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></Link></IconButton>
                                 </InputAdornment>
                             }
                         />
@@ -151,4 +159,4 @@ function NewMessage(props) {
     )
 }
 
-export default connect(null, { newMessageAction, supportResponds })(NewMessage);
+export default connect(null, { newMessageAction, supportResponds, getChats, getVisitorsMessages })(NewMessage);

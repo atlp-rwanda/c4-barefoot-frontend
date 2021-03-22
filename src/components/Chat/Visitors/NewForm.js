@@ -1,5 +1,6 @@
 import React from 'react';
-import {Typography, FormControl, Container, InputLabel, Input, FormHelperText, Button, InputAdornment, IconButton} from '@material-ui/core';
+import axios from 'axios';
+import {Typography, FormControl, Container, InputLabel, Input, FormHelperText, Button, InputAdornment, IconButton, CircularProgress} from '@material-ui/core';
 import {useStyles} from '../ChatStyles';
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
@@ -11,6 +12,8 @@ function NewForm(props){
     const classes = useStyles();
     const [message, setMessage] = React.useState('');
     const [feedbackText, setFeedbackText] = React.useState(null);
+    const [loading, setLoading] = React.useState(false)
+    const [image, setImage] = React.useState('')
     const messages = props.messages;
     React.useEffect(()=>{
         props.getSupportResponse();
@@ -26,7 +29,9 @@ function NewForm(props){
                 message: message,
                 
             }
-            props.visitorsMessage(messageData);
+            props.visitorsMessage(messageData).then(() => {
+                props.getSupportResponse();
+            });
             setFeedbackText('Message sent!');
             setMessage('')
         }
@@ -48,7 +53,30 @@ function NewForm(props){
                         onChange={(e)=>setMessage(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
-                                <IconButton><AttachFileIcon/></IconButton><IconButton onClick={handleSubmit}><SendIcon/></IconButton>
+                                <input 
+                                    id="file" 
+                                    name="message_img" 
+                                    type="file"
+                                    hidden={true}
+                                    onChange={(e) => {
+                                        const profile_picture = e.target.files[0]
+                                        const formData = new FormData()
+                                        formData.append('upload_preset', process.env.UPLOAD_PRESET)
+                                        formData.append('file', profile_picture)
+                                        setLoading(true)            
+                                        axios.post(process.env.IMAGE_UPLOAD_LINK, formData)
+                                        .then(res => {
+                                            setLoading(false) 
+                                            setImage(res.data.secure_url)
+                                        })
+                                        .catch(err => {
+                                            setLoading(false)
+                                            setFeedbackText(err.message)
+                                        })
+                                    }}
+                                />
+                                <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
+                                <IconButton onClick={handleSubmit}><SendIcon/></IconButton>
                             </InputAdornment>
                         }
                     />

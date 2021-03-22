@@ -35,7 +35,7 @@ function VisitorsForm (props){
         <div>
             {btnstate === 'close' ? 
             <IconButton className={classes.chatIcon} onClick={handleOpen}>
-                <QuestionAnswerIcon className='chatus' style={{color: 'white'}}>Chat With Us!</QuestionAnswerIcon>
+                <QuestionAnswerIcon className='chatus' style={{color: 'white'}}></QuestionAnswerIcon>
             </IconButton> : <IconButton className={classes.chatIcon} onClick={handleClose}>
                 <CloseIcon className='chatus' style={{color: 'white'}}/>
             </IconButton>}
