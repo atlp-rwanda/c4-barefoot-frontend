@@ -44,23 +44,23 @@ describe('Fetch accommodations actions', () => {
     // })
   },5000)
 
-  it('Dispatches FETCH_ACCOMMODATIONS_ERROR after task is unsuccessful', () => {
+  // it('Dispatches FETCH_ACCOMMODATIONS_ERROR after task is unsuccessful', () => {
 
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent()
-      request.respondWith({
-       status: 500,
-       response: {
-         Error: 'Internal Error'
-        }
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent()
+  //     request.respondWith({
+  //      status: 500,
+  //      response: {
+  //        Error: 'Internal Error'
+  //       }
        
-       })
-    })
+  //      })
+  //   })
 
-    return store.dispatch(getAccommodations()).then(() => {
-      const expectedActions = store.getActions();
-      expect(expectedActions[0].type).toEqual('FETCH_ACCOMMODATIONS_ERROR')
-    })
-  })
+  //   return store.dispatch(getAccommodations()).then(() => {
+  //     const expectedActions = store.getActions();
+  //     expect(expectedActions[0].type).toEqual('FETCH_ACCOMMODATIONS_ERROR')
+  //   })
+  // })
 
 })

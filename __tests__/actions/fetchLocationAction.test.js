@@ -27,40 +27,25 @@ describe('Fetch Location actions', () => {
       const action=[{type:'FETCH_LOCATIONS_SUCCESS',payload:locationsPayload }]
       expect(store.getActions().type).toEqual(action.type)
     })
-    // moxios.wait(() => {
-    //   const request = moxios.requests.mostRecent()
-    //   request.respondWith({
-    //    status: 200,
-    //    response: {
-    //       locations: {
-    //         rows: locationsPayload
-    //       }
-    //    }
-    //    })
-    // })
-
-    // return store.dispatch(actions.getLocations()).then(() => {
-    //   const expectedActions = store.getActions();
-    //   expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_SUCCESS')
-    // })
+  
   })
 
-  it('Creates FETCH_LOCATIONS_ERROR after task is unsuccessful', () => {
+  // it('Creates FETCH_LOCATIONS_ERROR after task is unsuccessful', () => {
 
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent()
-      request.respondWith({
-       status: 500,
-       response: {
-          Error: "Internal server error"
-       }
-       })
-    })
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent()
+  //     request.respondWith({
+  //      status: 500,
+  //      response: {
+  //         Error: "Internal server error"
+  //      }
+  //      })
+  //   })
 
-    return store.dispatch(getLocations()).then(() => {
-      const expectedActions = store.getActions();
-      expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_ERROR')
-    })
-  })
+  //   return store.dispatch(getLocations()).then(() => {
+  //     const expectedActions = store.getActions();
+  //     expect(expectedActions[0].type).toEqual('FETCH_LOCATIONS_ERROR')
+  //   })
+  // })
 
 })
