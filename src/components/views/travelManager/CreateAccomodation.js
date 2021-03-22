@@ -247,6 +247,6 @@ const mapStateToProps = state => ({
     locationsData: state.fetchLocations,
     createAcc: state.createAcc
 })
-
+export {CreateAccomodation}
 export default connect(mapStateToProps, {getLocations, createAccomodation}) ( CreateAccomodation)
  

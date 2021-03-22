@@ -17,7 +17,7 @@ export const createAccomodation = (body, amenities)=> dispatch =>{
     })
     .then( res=>{
         const accomodation= res.data.accommodation;
-        axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/amenities/${accomodation.id}`, amenities, {
+        return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/amenities/${accomodation.id}`, amenities, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
