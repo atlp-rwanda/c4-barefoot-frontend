@@ -23,7 +23,7 @@ export function fetchTripHistory(state = initialState, action){
       return {
         ...state,
         // pending: false,
-        trips: action.payload
+        trips: action.data
       }
     case FETCH_TRIP_HISTORY_ERROR:
       return {

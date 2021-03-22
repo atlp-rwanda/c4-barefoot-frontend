@@ -8,7 +8,7 @@ export const FETCH_TRIP_HISTORY_ERROR = 'FETCH_TRIP_HISTORY_ERROR'
 const token = window.localStorage.getItem('barefootUserToken')
 
 export const getTripHistory = () => dispatch => {
-    const location = 'Nairobi'
+    const location = 'Cairo'
   return API.get(`/trips/${location}`,{
     headers: {
         Authorization: `Bearer ${token}`
@@ -18,7 +18,6 @@ export const getTripHistory = () => dispatch => {
         console.log(res.data.rows);
       dispatch({
         type: FETCH_TRIP_HISTORY_SUCCESS,
-        payload: res.data.rows
       })
     }
     )

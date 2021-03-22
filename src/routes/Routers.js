@@ -24,6 +24,8 @@ import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledR
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import ViewTripHistoryCard from '../components/userTripHistory/ViewTripHistoryCard'
+import IndividualHistory from '../components/userTripHistory/IndividualHistory'
+
  
 
 const Routes = () => {
@@ -57,6 +59,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/travel-history"
+        />
+          <ProtectedRoute
+          component={IndividualHistory}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travel-history/:id"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}
