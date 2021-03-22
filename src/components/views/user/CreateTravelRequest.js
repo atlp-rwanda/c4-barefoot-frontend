@@ -52,7 +52,13 @@ const useStyles = makeStyles((theme) => ({
     infoDisplay: {
         display: 'flex',
         justifyContent: 'center',
-    }
+    },
+    card: {
+        maxWidth: 345
+    },
+    media: {
+        height: 140
+    },
 }))
 
 function getSteps() {
@@ -106,7 +112,25 @@ const CreateTravelRequest = (props) => {
                 return 'nothing';
         }
     }
+    const handleSendTravelRequest = () => {
+        const trips = [];
+        props.travelRequest.selectedLocations.map(location => {
+            const trip = {
+                originCity: `${location.current}`,
+                destination: `${location.destination}`,
+                tripDate: `${props.travelRequest.departureDate}`,
+                returnDate: `${props.travelRequest.returnDate}`,
+                accommodationId: `${location.accommodation.id}`,
+                reason: `${props.travelRequest.travelReason}`
+            }
+            trips.push(trip)
+        })
+        const request = {
+            trip: trips
+        }
 
+        props.sendTravelRequestAction(request);
+    }
     const handleNext = () => {
         let newSkipped = skipped;
         if (isStepSkipped(activeStep)) {
@@ -170,23 +194,24 @@ const CreateTravelRequest = (props) => {
                                 </Button>
                             </div>
                         ) : (
-                                <div>
-                                    <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                                    <div className={classes.buttonWrapper}>
-                                        <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button} color="primary" variant="contained">
-                                            Back
+                            <div>
+                                <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                                <div className={classes.buttonWrapper}>
+                                    <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button} color="primary" variant="contained">
+                                        Back
                                         </Button>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={handleNext}
-                                            className={classes.button}
-                                        >
-                                            {activeStep === steps.length - 1 ? 'Confirm' : 'Next'}
-                                        </Button>
-                                    </div>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        // onClick={handleNext}
+                                        onClick={activeStep === steps.length - 1 ? handleSendTravelRequest : handleNext}
+                                        className={classes.button}
+                                    >
+                                        {activeStep === steps.length - 1 ? 'Confirm' : 'Next'}
+                                    </Button>
                                 </div>
-                            )}
+                            </div>
+                        )}
                     </div>
                 </div>
             </Grid>

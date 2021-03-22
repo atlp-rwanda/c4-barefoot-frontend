@@ -35,6 +35,7 @@ export const checkTravelDatesAction = (data) => dispatch => {
         payload: data
     })
 }
+
 export const getLocationsAction = () => async (dispatch) => {
     try {
         dispatch({
@@ -189,9 +190,13 @@ export const addMultiCityAction = (data) => dispatch => {
         type: ADD_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
-    return dispatch({
-        type: TRAVEL_DATES,
-        payload: { departureDate: '', returnDate: '' }
+    dispatch({
+        type: DESELECT_ACCOMMODATION,
+        payload: {
+            accommodation: data.accommodation,
+            displaySelection: true,
+            displaySelected: true
+        }
     })
 }
 export const removeMultiCityAction = (data) => dispatch => {

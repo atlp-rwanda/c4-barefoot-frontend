@@ -48,11 +48,9 @@ const SearchLocations = (props) => {
         return props.searchCurrentLocationAction(data);
     }
     const handleAddMultiCity = () => {
-        const locations = {
-            current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
-            destination: `${props.travelRequest.destinationLocation.LocationName, props.travelRequest.destinationLocation.country}`,
-            travelDate: props.travelRequest.departureDate,
-            returnDate: props.travelRequest.returnDate,
+
+        if (props.travelRequest.selectedAccommodation.length === 0) {
+            return props.handleErrorsAction('Please add the accommodation');
         }
         if (!props.travelRequest.currentLocation) {
             return props.handleErrorsAction('Please add the current location');
@@ -63,7 +61,11 @@ const SearchLocations = (props) => {
         if (!props.travelRequest.departureDate) {
             return props.handleErrorsAction('Please add the departure date!');
         }
-
+        const locations = {
+            current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
+            destination: `${props.travelRequest.destinationLocation.LocationName, props.travelRequest.destinationLocation.country}`,
+            accommodation: props.travelRequest.selectedAccommodation[0],
+        }
         return props.addMultiCityAction(locations);
     }
     const handleClose = (event) => {
@@ -172,7 +174,7 @@ const SearchLocations = (props) => {
                     </Grid>
                     <Grid item direction="column">
                         <Tooltip title="Click here to search accommodations" placement="bottom-end" arrow>
-                            <Button variant="contained" onClick={handleAddMultiCity} className={classes.addButton}>Add</Button>
+                            <Button variant="contained" onClick={handleAddMultiCity} className={classes.addButton}>+</Button>
                         </Tooltip>
                     </Grid>
                     <Grid item direction="column" >
@@ -231,7 +233,7 @@ const SearchLocations = (props) => {
                                     id={`close-${index}`}
                                     onClick={handleClose}>
                                     &times;
-                            </div>
+                                </div>
                                 <di className={classes.citiesSelected} id={`div-${index}`} onClick={handleTagClick} >
                                     <Typography id={`text1-${index}`}>{location.current}-</Typography>
                                     <Typography id={`text2-${index}`}>{location.destination} </Typography>
