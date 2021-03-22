@@ -19,21 +19,34 @@ function NewForm(props){
         props.getSupportResponse();
     }, [])
     const handleSubmit = () => {
-        if(message === ''){
-            setFeedbackText('Please type something!')
-        }else{
+        if(message != ''){
             const senderEmail = localStorage.getItem('visitorEmail');
             const messageData = {
                 sender: senderEmail,
                 receiver: 'support-team',
                 message: message,
-                
+                type: 'plain-text'
             }
             props.visitorsMessage(messageData).then(() => {
                 props.getSupportResponse();
             });
             setFeedbackText('Message sent!');
             setMessage('')
+        }else if(image != ''){
+            const senderEmail = localStorage.getItem('visitorEmail');
+            const messageData = {
+                sender: senderEmail,
+                receiver: 'support-team',
+                message: image,
+                type: 'image'
+            }
+            props.visitorsMessage(messageData).then(() => {
+                props.getSupportResponse();
+            });
+            setFeedbackText('Image sent!');
+            setMessage('')
+        }else{
+            setFeedbackText('Please type something!')
         }
     }
     return (
