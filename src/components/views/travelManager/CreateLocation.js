@@ -119,4 +119,5 @@ const mapStateToProps = (state) =>({
     createLoc: state.createLoc,
 });
  
+export {createLocation};
 export default connect(mapStateToProps,{createLocation})  (CreateLocation);

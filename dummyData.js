@@ -810,3 +810,16 @@ export const comfirmProps = {
     data: {}
   }
 }
+
+export const location= {
+
+  id: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+  LocationName: "Dubai",
+  country: "United Arab Emirates",
+  description: "The world's biggest trade hub and tourist attractor",
+  currency: "EUR",
+  link: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179656/barefoot%20uploads/xk48tsqz9afl49dkzkhd.jpg",
+  createdAt: "2021-03-19T18:49:00.222Z",
+  updatedAt: "2021-03-19T18:49:00.222Z"
+
+}
