@@ -60,11 +60,11 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/travel-history"
         />
-          <ProtectedRoute
+        <ProtectedRoute
           component={IndividualHistory}
           exact
           layout={AuthorizedUserLayout}
-          path="/travel-history/:id"
+          path="/individual-history"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}
