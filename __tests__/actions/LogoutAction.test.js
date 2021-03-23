@@ -42,9 +42,7 @@ describe('logout actions', () => {
       const request = moxios.requests.mostRecent()
       request.reject({
         status: 400,
-        response:{
-          data:{message:"Network Error"}
-        }
+        message: 'Network Error'
       })
     })
 
