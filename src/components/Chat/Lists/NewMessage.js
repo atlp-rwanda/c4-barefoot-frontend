@@ -6,6 +6,7 @@ import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
+import {io} from '../io';
 
 
 function NewMessage(props) {
@@ -16,17 +17,21 @@ function NewMessage(props) {
     const [loading, setLoading] = React.useState(false)
     const [vimage, setvImage] = React.useState('')
 
+    React.useEffect(() =>{
+        io.on('connect', socket => console.log(socket.id))
+    }, [])
+
     const handleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
-        if(message != ''){
+        if(message != ''){ 
             const messageData = {
                 receiver: receiverId,
                 message: message,
                 type: 'plain-text'
             }
-            props.newMessageAction(messageData).then(() =>{
-                props.getChats()
-            });
+            // props.newMessageAction(messageData).then(() =>{
+            //     props.getChats()
+            // });
             
         }else if(image != ''){
             const messageData = {

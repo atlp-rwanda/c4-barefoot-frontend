@@ -5,7 +5,7 @@ import {useStyles} from '../ChatStyles';
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {connect} from 'react-redux';
-import {visitorsMessage, getSupportResponse} from '../../../redux/actions/ChatAction';
+import {visitorsMessage, getSupportResponse, getChats} from '../../../redux/actions/ChatAction';
 import ListMessages from './ListMessages';
 
 function NewForm(props){
@@ -28,7 +28,7 @@ function NewForm(props){
                 type: 'plain-text'
             }
             props.visitorsMessage(messageData).then(() => {
-                props.getSupportResponse();
+                props.getSupportResponse()
             });
             setFeedbackText('Message sent!');
             setMessage('')
@@ -104,4 +104,4 @@ const mapStateToProps = (state) => ({
     messages: state.chat.supportresponse
 })
 
-export default connect(mapStateToProps, { visitorsMessage, getSupportResponse })(NewForm);
+export default connect(mapStateToProps, { visitorsMessage, getSupportResponse, getChats })(NewForm);
