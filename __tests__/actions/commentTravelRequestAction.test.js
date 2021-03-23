@@ -95,10 +95,19 @@ describe('submit comment ', () => {
       expect(expectedActions[0].type).toEqual('SUBMIT_COMMENTS_PENDING')
 
       expect(expectedActions[1].type).toEqual('SUBMIT_COMMENTS_SUCCESS')
+<<<<<<< HEAD
     })
   })
 
   it(' SUBMIT_COMMENTS_FAIL after task is unsuccessful', () => {
+=======
+
+
+    })
+  })
+
+  it('Dispatches SUBMIT_COMMENTS_FAIL after task is unsuccessful', () => {
+>>>>>>> f05c6b25b5a1ddcf0729d810434f3c261b8fc6e9
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()

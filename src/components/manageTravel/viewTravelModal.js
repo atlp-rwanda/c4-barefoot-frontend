@@ -17,6 +17,7 @@ import ErrorModal from './ErrorModal';
 import ConfirmModal from './ConfirmModal';
 import {clearUpdateTravelRequest} from '../../redux/actions/updateTravelRequestAction'
 import SuccessModal from './SuccessModal';
+import {Comments} from '../../components/comment/Comment'
 
 const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 
@@ -280,10 +281,11 @@ const ViewTravelModal= (props)=> {
         }
         {error && <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
         {success && <SuccessModal isOpen={isSuccessModalOpen} setIsOpen={setIsSuccessModalOpen} success={success} clearUpdateTravelRequest={clearUpdateTravelRequest} />}
-
+          <Comments />
       </Dialog>
   );
 }
+
 
 const mapStateToProps = state => ({
     singleTravel:state.manageSingleTravel
