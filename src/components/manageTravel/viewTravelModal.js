@@ -17,7 +17,7 @@ import ErrorModal from './ErrorModal';
 import ConfirmModal from './ConfirmModal';
 import {clearUpdateTravelRequest} from '../../redux/actions/updateTravelRequestAction'
 import SuccessModal from './SuccessModal';
-import {Comments} from '../../components/comment/Comment'
+import Comments from '../../components/comment/Comment'
 
 const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 

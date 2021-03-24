@@ -110,7 +110,10 @@ const TravelRequestCard = (props) => {
                 </Box>
                 <Box className={ classes.actions}>
                     <Box>
-                        <Button color="primary" onClick={ ()=> handleSingleTravel(travel.travelId, 'view')}>View more</Button>
+                        <Button color="primary" onClick={ ()=> {
+                            handleSingleTravel(travel.travelId, 'view'),
+                            localStorage.setItem('travelId', travel.travelId)
+                        }}>View more</Button>
                     </Box>
                     <Box>
                        {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}

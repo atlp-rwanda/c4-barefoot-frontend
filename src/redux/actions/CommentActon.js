@@ -13,6 +13,7 @@ export const SUBMIT_COMMENT_FAIL = "SUBMIT_COMMENT_FAIL"
     dispatch({
       type: RETRIEVE_COMMENTS_PENDING
     })
+    const requestId = localStorage.getItem('travelId')
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/comment/${requestId}`, {
       headers:{
           Authorization: `Bearer ${token}`
@@ -33,27 +34,29 @@ export const SUBMIT_COMMENT_FAIL = "SUBMIT_COMMENT_FAIL"
       })
   };
   
-  export const submitComment = (requestId, data) => async (dispatch) => {
+  export const submitComment = (comment) => dispatch => {
+    console.log("sdsdsdasfasfsdfgsdfasd",comment)
     dispatch({
       type: SUBMIT_COMMENT_PENDING
     })
-    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/comment/${requestId}`, data, {
+    const travelId = localStorage.getItem('travelId')
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/comment/${travelId}`, {comment}, {
       headers:{
           Authorization: `Bearer ${token}`
       }
     })
-      .then(res => {
-        dispatch({
-          type: SUBMIT_COMMENT_SUCCESS,
-          payload: res.data
-        })
-        }
-      )
-      .catch(err => {
-        dispatch({
-          type: SUBMIT_COMMENT_FAIL,
-          error: err.data
-        })
+    .then(res => {
+      dispatch({
+        type: SUBMIT_COMMENT_SUCCESS,
+        payload: res.data
       })
+      }
+    )
+    .catch(err => {
+      dispatch({
+        type: SUBMIT_COMMENT_FAIL,
+        error: err.data
+      })
+    })
   };
   

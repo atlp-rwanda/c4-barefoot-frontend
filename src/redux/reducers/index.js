@@ -17,6 +17,7 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
+import commentReducer from './CommentReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -38,7 +39,8 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
-  managerReducer
+  managerReducer,
+  comments: commentReducer
   
 })
   
