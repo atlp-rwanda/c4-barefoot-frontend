@@ -3,6 +3,7 @@ import {Button, Grid, makeStyles,Paper, Typography} from '@material-ui/core'
 import {getTripHistory} from '../../redux/actions/userTravelHistoryAction';
 import {Link} from 'react-router-dom';
 import {connect } from 'react-redux';
+import {getAccommodation} from '../../redux/actions/userTravelHistoryAction'
 
 
 const useStyle = makeStyles(()=>({
@@ -29,15 +30,23 @@ function ViewTripHistoryCard(props) {
     const trips =props.trips
     console.log('trips',trips);
     const classes = useStyle()
+    React.useEffect(()=>{
+        props.getAccommodation()
+    },[])
+    const acc = props.acc
+    console.log(acc)
 
     
     return (
         <div>
+
         <Grid container  className={classes.container}>
   
     {trips.map(trip=>(
     <Grid item key={trip.tripId} md ={4} sm={6} xs={12}>
         <Paper className={classes.paper}>
+        
+       {acc && <img src={acc.photos} style={{width: 150}}></img>}
             <Typography>Destination: {trip.destination}</Typography>
             <Typography>Origin City: {trip.originCity}</Typography>
             <Typography>Reason: {trip.reason}</Typography>
@@ -55,7 +64,8 @@ function ViewTripHistoryCard(props) {
 }
 
 const mapStateToProps = state => ({
-    trips: state.tripHistory.trips
+    trips: state.tripHistory.trips,
+    acc: state.tripHistory.acc
 })
 
-export default connect(mapStateToProps, {getTripHistory}) (ViewTripHistoryCard)
+export default connect(mapStateToProps, {getTripHistory, getAccommodation}) (ViewTripHistoryCard)

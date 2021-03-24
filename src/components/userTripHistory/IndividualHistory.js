@@ -12,6 +12,7 @@ function IndividualHistory(props) {
     return (
  
         <div>
+        
             {acc && 
                 <div>
                     <Typography variant="h4">Accomodation used</Typography>
