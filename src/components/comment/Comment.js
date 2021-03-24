@@ -66,6 +66,7 @@ const useStyles= makeStyles( (theme)=>({
     props.submitComment(comment).then(()=>{
       props.retrieveComments()
     })
+    setNewComment('')
   }
 
   return(
