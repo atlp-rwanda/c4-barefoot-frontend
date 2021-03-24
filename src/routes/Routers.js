@@ -20,7 +20,7 @@ import RouteWithLayout from '../components/RouteWithLayout';
 import { DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, RequesterLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
-import HalfRating from '../components/rateAndReviewAccommodation/rateAccommodation'
+import Ratings from '../components/rateAndReviewAccommodation/rateAccommodation'
 
 
 const Routes = () => {
@@ -50,7 +50,7 @@ const Routes = () => {
         path="/profile"
       />
       <ProtectedRoute
-        component={HalfRating}
+        component={Ratings}
         exact
         layout={AuthorizedUserLayout}
         path="/review"
