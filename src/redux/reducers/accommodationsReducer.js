@@ -5,6 +5,7 @@ const initialState = {
   pending: true,
   accommodations: [],
   accommodation: {},
+  nation:null,
   amenities:{},
   accommodationsByLocation:[],
   selectedAccommodation:null,
@@ -60,6 +61,7 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodationsByLocation: action.payload.rows,
         count:action.payload.count,
+        nation:action.nation,
         accId:action.id,
       }
     case FETCH_ACCOMMODATIONS_ERROR:

@@ -15,14 +15,6 @@ import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   maxWidth: 345,
-    //   height: 360,
-    //   height: '100%',
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   justifyContent: 'space-between'
-    // },
     media: {
       height: 440
     },
@@ -39,12 +31,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'flex-start',
     },
     separate:{
-        // marginBottom:theme.spacing(3),
         marginLeft:theme.spacing(3),
         marginBottom:theme.spacing(3),
     },
     divider:{
-        // marginBottom:theme.spacing(3),
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -60,18 +50,21 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden'
     },
     container:{
-        marginLeft:theme.spacing(9),
-        // width:'80%'
+        [theme.breakpoints.up("xs")]:{
+            marginLeft:theme.spacing(3)
+          },
+          [theme.breakpoints.up("sm")]:{
+            marginLeft:theme.spacing(9)
+          }
+        
     },
     btncontainer1:{
         display:"flex",
         justifyContent:"flex-start"
-        // width:'80%'
     },
     btncontainer2:{
         display:"flex",
         justifyContent:"flex-end"
-        // width:'80%'
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -116,27 +109,45 @@ function Home(props){
                         props.nextStep();
                     }}>
                         <Form>
+                        {(props.status ? 
+                            <CardActionArea>
+                            <Skeleton animation="wave" variant="rect" className={classes.media} />
+                            <CardContent className={classes.cardContent} >
+                                <Skeleton animation="wave" height={30} width="60%" />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                            </CardContent>
+                            <CardActions className={classes.cardActions}>
+                                <Skeleton animation="wave" height={30} width="60%" />
+                            </CardActions>
+                            </CardActionArea>
+                            :
                             <div >
                                 <Grid container item xs={12}  className={classes.title,classes.container}  direction="column">
                                     <Typography variant="h6" style={{color: colors.primary100}} className={classes.separator}> 
                                         Choose Accommodation:
                                     </Typography>
                                     <Divider style={{width:'80%'}} variant='middle' />
-                                    <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
-                                        <Place color="secondary"/> Rwanda
-                                    </Typography>            
+                                                
 
                                 </Grid>
-                                <Grid container item xs={12} className={classes.container}>
+                                <Grid container item xs={12} className={classes.container} direction='row'>
+                                    {props.accommodations.length>0?(
+                                        <Grid item>
+                                        <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
+                                            <Place color="secondary"/>{props.nation}
+                                        </Typography>
+                                    </Grid>
+                                    ):(null)}
                                     
-                                    {props.accommodations.map((accommodation) =>(
-                                        <Grid item xs={8} sm={4} md={3} className={classes.insideGrid,classes.separate}>
-                                            <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
-                                        </Grid>
-                                    ))}
-                                    
+                                    <Grid  container item >
+                                        {props.accommodations.map((accommodation) =>(
+                                            <Grid item xs={8} sm={4} md={3} className={classes.insideGrid,classes.separate}>
+                                                <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
+                                            </Grid>
+                                        ))}
+                                    </Grid>
                                     <Grid container item style={{display: display}} className={classes.notFound}>
-                                        <Typography variant="h6" color="secondary" component="h6">No Accommodations found in Rwanda</Typography>
+                                        <Typography variant="h6" color="secondary" component="h6">No Accommodations found in this Locaton</Typography>
                                     </Grid>
                                     <Grid container item justify="center" style={{marginTop:'50px'}}>
                                     <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} />
@@ -155,6 +166,7 @@ function Home(props){
                                     </div>
                                 </div>
                             </div>
+                        )}
                         </Form>
                     </Formik>
                 </CardContent>
@@ -168,6 +180,7 @@ const mapStateToProps=state=>({
     accommodation:state.fetchAccommodations.accommodation,
     selectedAccommodation:state.fetchAccommodations.selectedAccommodation,
     count:state.fetchAccommodations.count,
+    nation:state.fetchAccommodations.nation,
     accId:state.fetchAccommodations.accId,
     status:state.fetchAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,

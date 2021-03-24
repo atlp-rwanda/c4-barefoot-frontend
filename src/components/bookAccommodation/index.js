@@ -92,7 +92,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    minWidth: '100px'
+    minWidth: '100px',
+    '@media(max-width: 360px)' : {
+      justifyContent: 'start'
+    }
   },
   stepperText: {
     height: '10px',
@@ -100,8 +103,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '5px'
   },
   container2:{
-    marginLeft:theme.spacing(15),
-    width:'80%'
+    width:'80%',
+    [theme.breakpoints.up("xs")]:{
+      marginLeft:theme.spacing(7)
+    },
+    [theme.breakpoints.up("sm")]:{
+      marginLeft:theme.spacing(15)
+    }
 }
 }));
 

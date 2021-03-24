@@ -25,7 +25,7 @@ export const bookAccommodations=(id,formData,nextStep) => dispatch => {
     )
     .catch(err => {
       dispatch({
-        type: BOOK_ACCOMMODATIONS_SUCCESS,
+        type: BOOK_ACCOMMODATIONS_ERROR,
         error: err
       })
     })

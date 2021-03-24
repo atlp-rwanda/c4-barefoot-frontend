@@ -32,8 +32,8 @@ export function bookAccommodationsReducer(state = initialState, action){
           pending: false,
           snackBarMessage: {
             open: true,
-            severity: 'err',
-            message: action.error
+            severity: 'error',
+            message: "Booking accommodation failed Please try again"
           }
         }
     case CLEAR_BOOK_SNACKBAR:

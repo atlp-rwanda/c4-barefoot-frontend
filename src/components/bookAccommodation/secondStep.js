@@ -16,14 +16,6 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import {convertorAction} from "../../redux/actions/convertorAction"
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   maxWidth: 345,
-    //   height: 360,
-    //   height: '100%',
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   justifyContent: 'space-between'
-    // },
     media: {
       height: 440
     },
@@ -42,24 +34,17 @@ const useStyles = makeStyles((theme) => ({
     btncontainer:{
         display:"flex",
         justifyContent:"space-between"
-        // width:'80%'
     },
     btncontainer1:{
-        //display:"flex",
         justifyContent:"flex-start"
-        // width:'80%'
     },
     btncontainer2:{
-        //display:"flex",
         justifyContent:"flex-end"
-        // width:'80%'
     },
     separate:{
-        // marginBottom:theme.spacing(3),
         marginLeft:theme.spacing(3)
     },
     divider:{
-        // marginBottom:theme.spacing(3),
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -75,8 +60,7 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden'
     },
     container:{
-        marginLeft:theme.spacing(9),
-        // width:'80%'
+        marginLeft:theme.spacing(9)
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -85,7 +69,9 @@ const useStyles = makeStyles((theme) => ({
     },
     item:{
         display:'block'
-    }
+    },
+    cost:{
+        marginTop:'9px'}
   }));
 function Home(props){
     
@@ -161,7 +147,6 @@ function Home(props){
                                 <CardActionArea>
                                     
                                     <CardMedia
-                                    // onClick={handleViewMore}
                                     className={classes.media}
                                     image={props.accommodation.photos}
                                     title={props.accommodation.title}
@@ -176,7 +161,7 @@ function Home(props){
                                         </Typography>
                                         <div className={classes.divider}>
                                         <Grid container spacing={1}  direction='row' >
-                                            <Grid container item xs={3} spacing={3} >
+                                            <Grid container item xs={12} sm={3} spacing={3} >
                                                     
                                                 <Grid container item xs={12} sm={12} direction='column'>
                                                     <Grid item>
@@ -204,7 +189,7 @@ function Home(props){
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item xs={3}>
+                                            <Grid container item xs={12} sm={3}>
                                                     
                                                 <Grid container item xs={12}  direction='column'>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
@@ -227,7 +212,7 @@ function Home(props){
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item xs={3}>
+                                            <Grid container item xs={12} sm={3}>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                 Amenities
                                                 <Grid container item xs={12} spacing={0} direction='column'>
@@ -235,14 +220,14 @@ function Home(props){
                                                 </Grid>
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={3} direction='column'>
+                                            <Grid item xs={12} sm={3} direction='column'>
                                                 <Grid item xs={12} >
                                                     <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
                                                         Cost/night
                                                     </Typography>
                                                     <Grid container item spacing={3} xs={12}>
-                                                        <Grid item>
-                                                            <Typography variant="body">{props.money?(props.money[Object.keys(props.money)[0]]):(props.accommodation.price)}</Typography>
+                                                        <Grid item className={classes.cost}>
+                                                            <Typography variant="h6">{props.money?(props.money[Object.keys(props.money)[0]]):(props.accommodation.price)}</Typography>
                                                         </Grid>
                                                         <Grid item >  
                                                             <Select 
@@ -252,14 +237,30 @@ function Home(props){
                                                                 onChange={hanldeSelectOnchange}
                                                                 style={{"padding-right": '9px'}}
                                                                 >
-                                                                <MenuItem  key="USD" name="USD" value="USD">USD</MenuItem>
-                                                                <MenuItem  key="RWF" name="RWF" value="RWF">RWF</MenuItem>
-                                                                <MenuItem  key="EUR" name="EUR" value="EUR">EUR</MenuItem>
-                                                                <MenuItem  key="CND" name="CND" value="CND">CND</MenuItem>
-                                                                <MenuItem  key="KSH" name="KSH" value="KSH">KSH</MenuItem>
-                                                                <MenuItem  key="UGX" name="UGX" value="UGX">UGX</MenuItem>
-                                                                <MenuItem  key="BIF" name="BIF" value="BIF">BIF</MenuItem>
-                                                                <MenuItem  key="TSH" name="TSH" value="TSH">TSH</MenuItem>    
+                                                                <MenuItem  key="USD" name="USD" value="USD">
+                                                                <Typography variant="h6">USD</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="RWF" name="RWF" value="RWF">
+                                                                <Typography variant="h6">RWF</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="EUR" name="EUR" value="EUR">
+                                                                <Typography variant="h6">EUR</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="CND" name="CND" value="CND">
+                                                                <Typography variant="h6">CND</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="KSH" name="KSH" value="KSH">
+                                                                <Typography variant="h6">KSH</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="UGX" name="UGX" value="UGX">
+                                                                <Typography variant="h6">UGX</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="BIF" name="BIF" value="BIF">
+                                                                <Typography variant="h6">BIF</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="TSH" name="TSH" value="TSH">
+                                                                <Typography variant="h6">TSH</Typography>
+                                                                </MenuItem>    
                                                             </Select>
                                                         </Grid>
                                                     </Grid>

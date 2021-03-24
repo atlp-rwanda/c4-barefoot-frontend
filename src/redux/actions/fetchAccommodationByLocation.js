@@ -19,6 +19,7 @@ export const getAccommodationsByLocation = (id,page=1) => dispatch => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_BY_LOCATION,
         payload: res.data.accommodations,
+        nation:res.data.nation,
         id:id
       })
     }

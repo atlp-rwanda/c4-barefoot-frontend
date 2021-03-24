@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,FormControlLabel,Checkbox,TextField} from '@material-ui/core';
+import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,Snackbar,TextField,Slide} from '@material-ui/core';
 import { Field, Form, Formik,  FormikConfig,FormikValues} from 'formik';
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
@@ -10,23 +10,13 @@ import AccommodationCard from "../AccommodationCardWithReview";
 import { makeStyles } from '@material-ui/core/styles';
 import { Label, Place } from '@material-ui/icons'
 import colors from '../colors';
-import { Pagination } from '@material-ui/lab';
-import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import * as yup from 'yup';
 import CloudIcon from '@material-ui/icons/Cloud';
 import Loader from '../Loader'
-import {DatePicker} from '@material-ui/pickers';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   maxWidth: 345,
-    //   height: 360,
-    //   height: '100%',
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   justifyContent: 'space-between'
-    // },
     media: {
       height: 440
     },
@@ -43,11 +33,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'flex-start',
     },
     separate:{
-        // marginBottom:theme.spacing(3),
         marginLeft:theme.spacing(3)
     },
     divider:{
-        // marginBottom:theme.spacing(3),
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -68,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     },
     container:{
         marginLeft:theme.spacing(9),
-        // width:'80%'
     },
     btn:{
         display:'flex',
@@ -92,15 +79,14 @@ const useStyles = makeStyles((theme) => ({
 function Home(props){
     
   const classes = useStyles();
-    let temp= null;
-    const [Fromdate,setFromDate] = useState(null)
-    const [Returndate,setRetrunDate] = useState(null)
-    if(props.temp){
-        temp=<Typography gutterBottom variant="h6"  className={classes.titleText} >
-                <CloudIcon color="primary"/> {props.temp-273.15}                                  
-            </Typography>
-    }
+    const closeBookSnackBarTimer = () => {
+        props.clearBookSnackbar()
+      }
 
+    const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+    }
+    
     const handleBook=(value)=>{
         let formdata={From:"",To:""}
         formdata.From=value.From
@@ -120,7 +106,21 @@ function Home(props){
 
     return(
         <React.Fragment>
+        <div>
             <Loader open={props.status}/>
+            <Snackbar
+                    open={props.snackBarMessage.open}
+                    onClose={closeBookSnackBarTimer}
+                    autoHideDuration={4000}
+                    TransitionComponent={TransitionUp}
+                >
+                <MuiAlert
+                    severity={props.snackBarMessage.severity}
+                    variant='filled'
+                    elevation={6}
+                    >{props.snackBarMessage.message}
+                </MuiAlert>
+            </Snackbar>
             <Card>
                 <CardContent>
                     <Formik initialValues={{
@@ -133,6 +133,7 @@ function Home(props){
                             resetForm()
                         }}
                     >
+                    
                     {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
                         <Form onSubmit={handleSubmit}>
                             <div className={classes.divider} >
@@ -170,7 +171,7 @@ function Home(props){
                                                 Booking
                                             </Typography>
                                             <Grid container spacing={3} className={classes.divider} >
-                                                <Grid container item xs={3} spacing={3} className={classes.dates}>
+                                                <Grid container item xs={12} sm={4} spacing={3} className={classes.dates}>
                                                     
                                                                                                                                                 <TextField 
                                                             id="From"
@@ -188,7 +189,7 @@ function Home(props){
                                                         />
                                                        
                                                 </Grid>
-                                                <Grid container item xs={3} spacing={3} className={classes.dates}>
+                                                <Grid container item xs={12} sm={4} spacing={3} className={classes.dates}>
                                                         <TextField 
                                                             id="To"
                                                             label="Book upto"
@@ -243,6 +244,7 @@ function Home(props){
                     </Formik>
                 </CardContent>
             </Card>
+            </div>
         </React.Fragment>
     )
 }
@@ -255,6 +257,7 @@ const mapStateToProps=state=>({
     count:state.fetchAccommodations.count,
     status:state.bookAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
-    temp:state.fetchAccommodations.temp
+    temp:state.fetchAccommodations.temp,
+    snackBarMessage:state.bookAccommodations.snackBarMessage
 })
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (Home)

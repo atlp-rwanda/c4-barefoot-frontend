@@ -3,15 +3,22 @@ import * as types from '../../src/redux/actions/fetchAccommodations';
 import { accommodationsPayload } from '../../dummyData';
 
 describe('Fetch accommodations reducer', () => {
+  const initialState={
+    pending: true,
+    accommodations: [],
+    accommodation: {},
+    nation:null,
+    amenities:{},
+    accommodationsByLocation:[],
+    selectedAccommodation:null,
+    count:null,
+    error: null,
+    temp:null,
+    accId:null
+  }
 
   it('Should get initial state', () => {
-    expect(fetchAccommodationsReducer(undefined, {})).toEqual(
-      {
-        pending: true,
-        accommodations: [],
-        error: null
-      }
-    )
+    expect(fetchAccommodationsReducer(undefined, {})).toEqual(initialState)
     })
 
 
@@ -22,6 +29,7 @@ describe('Fetch accommodations reducer', () => {
     })
     ).toEqual(
       {
+        ...initialState,
         pending: false,
         accommodations: accommodationsPayload,
         error: null
@@ -36,6 +44,7 @@ describe('Fetch accommodations reducer', () => {
     })
     ).toEqual(
       {
+        ...initialState,
         pending: false,
         accommodations: [],
         error: 'Error getting the accommodations'
