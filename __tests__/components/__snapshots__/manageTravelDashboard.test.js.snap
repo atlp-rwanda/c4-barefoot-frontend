@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` <manageTravelDashboard /> It should render the manageTravelDashboard component 1`] = `<manageTravelDashboard />`;
