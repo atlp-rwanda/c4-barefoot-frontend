@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`< LoggedInUser/> should be rendered without errors 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "success": Object {
+        "main": "#fff",
+      },
+      Symbol(mui.nested): false,
+    }
+  }
+>
+  <LoggedInUserLayout />
+</ContextProvider>
+`;
