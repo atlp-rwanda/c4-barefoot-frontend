@@ -53,7 +53,7 @@ const Routes = () => {
         component={Ratings}
         exact
         layout={AuthorizedUserLayout}
-        path="/review"
+        path="/review/:id"
       />
       <RouteWithLayout
         component={signup}

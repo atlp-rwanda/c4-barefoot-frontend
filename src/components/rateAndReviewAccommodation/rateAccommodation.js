@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import { useParams } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
-import {getTemperature} from "../../redux/actions/getWeather";
+import {addRatings} from '../../redux/actions/ratingsAction'
 import { connect } from 'react-redux';
 
 
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 function HalfRating(props) {
     let [state, setstate] = useState({
-        rates: null,
+        rate: null,
         review: ''
     }
        )
@@ -42,7 +43,7 @@ function HalfRating(props) {
     const handleChange = (e) => {
         setstate({
             ...state,
-            rates:e.target.value
+            rate:e.target.value
          })
         // console.log(">>>"+rates);
     }
@@ -52,9 +53,12 @@ function HalfRating(props) {
             review:e.target.value
          })
     }
+    const { id } = useParams();
     const handleSubmit = () => {
+     
         console.log(state)
-        console.log(props.match.params.id)
+        console.log({ id })
+        props.addRatings(id,state)
    }
 
     return (
@@ -84,6 +88,13 @@ function HalfRating(props) {
 
 const mapStateToProps=state=>({
     accommodation: state.fetchAccommodations.accommodation,
-    accId:state.fetchAccommodations.accId,
+    selectedAccommodation:state.fetchAccommodations.selectedAccommodation,
+    accId: state.fetchAccommodations.accId,
+    ratings:state.addRatings
 })
-export default connect(mapStateToProps)(HalfRating)
+const mapDispatchToProps = dispatch => {
+    return {
+    addRatings: (id,datas)=>dispatch(addRatings(id,datas))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(HalfRating)
