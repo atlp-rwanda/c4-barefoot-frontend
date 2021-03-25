@@ -19,6 +19,7 @@ import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledR
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import Notification from '../components/Notications'
+import NotificationDetails from '../components/notificationDetails'
 
 const Routes = () => {
     return (
@@ -46,12 +47,20 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/profile"
         />
+      
         <ProtectedRoute
           component={Notification}
           exact
           layout={AuthorizedUserLayout}
+          path="/notification/"
+        />
+         <ProtectedRoute
+          component={NotificationDetails}
+          exact
+          layout={AuthorizedUserLayout}
           path="/notification/:id"
         />
+
         {/* <RouteWithLayout
           component={ManagerDashboard}
           exact

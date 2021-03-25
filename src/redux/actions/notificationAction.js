@@ -56,25 +56,51 @@ export const readNotification = (id) => dispatch=>{
                     })
                 })
 }
-export const readTravelRequestInfo= id=> dispatch=>{
-    dispatch({
-        type: LOADING
-    })
-    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests/${id}`, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
-        }
-   }).then(res=>{
-       console.log(res.data);
-       dispatch({
-           type: READ_TRAVELREQUEST_INFO,
-           payload: res.data
-       })
-   }).catch(e=>{
-       console.log(e);
-       dispatch({
-        type: GETNOTIFICATONS_ERROR,
-        payload: 'network error'
-       })
-   })
+export const readTravelRequestInfo =()=> dispatch=>{
+
+const id = localStorage.getItem("travelId")
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests/${id}`,{
+      headers:{
+        Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
+      }
+  })
+  .then(res=>{
+      console.log(res.data);
+      dispatch({
+        type: READ_TRAVELREQUEST_INFO,
+         payload: res.data
+      })
+  })
+  .catch(err=>{
+      console.log(err.message)
+  })
 }
+
+
+// export const readTravelRequestInfo=()=> dispatch=>{
+//     dispatch({
+//         type: LOADING
+
+//     })
+
+//     const id = localStorage.getItem("travelId")
+//     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests/${id}`, {
+//         headers: {
+//             Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
+//         }
+//    }).then(res=>{
+//        console.log(res.data);
+//        dispatch({
+//            type: READ_TRAVELREQUEST_INFO,
+//            payload: res.data
+
+//        })
+
+//    }).catch(e=>{
+//        console.log(e);
+//        dispatch({
+//         type: GETNOTIFICATONS_ERROR,
+//         payload: 'network error'
+//        })
+//    })
+// }
