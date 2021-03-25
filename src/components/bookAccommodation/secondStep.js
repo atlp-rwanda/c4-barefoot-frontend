@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     cost:{
         marginTop:'9px'}
   }));
-function Home(props){
+function SecondStep(props){
     
   const classes = useStyles();
     let temp= null;
@@ -128,7 +128,7 @@ function Home(props){
                         direction === 'back' ? props.prevStep() : props.nextStep();
                         }}
                     >
-                        <Form>
+                        <Form form-data="form-2">
                             <div className={classes.divider} >
                             <Card className={classes.root} >
                                 {(!props.accommodation ? 
@@ -286,10 +286,9 @@ function Home(props){
                             <div className={classes.btncontainer}>
                                 <div className={classes.textCenter}>
                                     <Button
-                                        type='submit'
-                                        
                                         variant='contained'
                                         color='primary'
+                                        id='backBtn'
                                         className={classes.button}
                                         onClick={() => {
                                         setDirection('back'); 
@@ -301,7 +300,6 @@ function Home(props){
                             <div >
                                 <Button
                                     type='submit'
-                                    id='backBtn'
                                     variant='contained'
                                     color='primary'
                                     className={classes.button}
@@ -329,4 +327,6 @@ const mapStateToProps=state=>({
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
-export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,convertorAction}) (Home)
+
+export {SecondStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,convertorAction}) (SecondStep)

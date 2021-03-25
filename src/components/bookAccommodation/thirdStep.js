@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
         display:'block'
     }
   }));
-function Home(props){
+function ThirdStep(props){
     
   const classes = useStyles();
     const closeBookSnackBarTimer = () => {
@@ -135,7 +135,7 @@ function Home(props){
                     >
                     
                     {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
-                        <Form onSubmit={handleSubmit}>
+                        <Form form-data="form-3">
                             <div className={classes.divider} >
                             <Card className={classes.root} >
                                 {(!props.accommodation ? 
@@ -260,4 +260,6 @@ const mapStateToProps=state=>({
     temp:state.fetchAccommodations.temp,
     snackBarMessage:state.bookAccommodations.snackBarMessage
 })
-export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (Home)
+
+export {ThirdStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (ThirdStep)

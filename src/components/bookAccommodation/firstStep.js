@@ -75,21 +75,14 @@ const useStyles = makeStyles((theme) => ({
         display:'block'
     }
   }));
-function Home(props){
+function FirstStep(props){
   const classes = useStyles();
-    let temp= null;
     const [page, setPage] = useState(1);
-    if(props.temp){
-        temp=<Typography gutterBottom variant="h6"  className={classes.titleText} >
-                <CloudIcon color="primary"/> {props.temp-273.15}                                  
-            </Typography>
-    }
     const display = props.accommodations.length ? 'none' : 'flex';
     const count=()=>{
         if(props.count % 6 ===0){
             return(props.count/6)
         }else{
-            console.log("herre")
             return Math.trunc((props.count/6)+1)
         }
     }
@@ -102,13 +95,13 @@ function Home(props){
             <Card>
                 <CardContent>
                     <Formik initialValues={{
-                        from:null,
-                        retrunDate:null
+                        From:null,
+                        To:null
                     }}
                     onSubmit={values => {
                         props.nextStep();
                     }}>
-                        <Form>
+                        <Form form-data='form-1'>
                         {(props.status ? 
                             <CardActionArea>
                             <Skeleton animation="wave" variant="rect" className={classes.media} />
@@ -150,7 +143,7 @@ function Home(props){
                                         <Typography variant="h6" color="secondary" component="h6">No Accommodations found in this Locaton</Typography>
                                     </Grid>
                                     <Grid container item justify="center" style={{marginTop:'50px'}}>
-                                    <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} />
+                                    <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} id='pagination' />
                                     </Grid>
                                 </Grid>
                                 <div className={classes.btncontainer2}>
@@ -186,4 +179,6 @@ const mapStateToProps=state=>({
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
-export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)
+
+export {FirstStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (FirstStep)

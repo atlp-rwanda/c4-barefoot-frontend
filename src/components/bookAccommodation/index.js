@@ -146,7 +146,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
   }
 }
 
-const book = (props)=> {
+const Book = (props)=> {
   const [formData, setFormData] = React.useState({
     From: '',
     To: ''
@@ -250,5 +250,6 @@ const book = (props)=> {
 const mapStateToProps = state =>({
   snackBarMessage:state.bookAccommodations.snackBarMessage
 })
-export default connect(mapStateToProps,{clearBookSnackbar})(book)
+export{Book}
+export default connect(mapStateToProps,{clearBookSnackbar})(Book)
 

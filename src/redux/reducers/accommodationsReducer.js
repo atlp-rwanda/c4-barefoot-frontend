@@ -26,10 +26,7 @@ export function fetchAccommodationsReducer(state = initialState, action){
     case FETCH_ACCOMMODATION_SUCCESS:
       const accomo =()=>{
           let v=null;
-          console.log(state.accommodations
-            ) 
-          state.accommodations.rows.forEach(acc=>{
-            console.log(`${acc.id}  ${action.payload}`) 
+          state.accommodations.rows.forEach(acc=>{ 
           if(acc.id===action.payload){
             v= acc
             console.log(v)
