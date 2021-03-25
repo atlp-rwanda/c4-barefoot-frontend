@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --mode development",
     "start": "node server/index.js webpack --mode production",
     "test": "jest --coverage --detectOpenHandles --silent",
-    "test-file": "jest --coverage ./__tests__/actions/signupAction.test.js",
+    "test-file": "jest --coverage ./__tests__/actions/createAccomodation.test.js",
     "test:e2e": "jest -c e2e/jest.config.js",
     "coverage": "npm run test && jest --coverage && cat ./coverage/lcov.info | coveralls"
   },

@@ -52,15 +52,16 @@ describe('Create accomodation', () => {
                 status: 200,
                 response: {accommodation: accomodation }                   
             });
+            moxios.wait(() => {
+              const request = moxios.requests.at(1)
+              request.respondWith({
+                  status: 200,
+                  response: amenities                    
+              });
+          });
         });
 
-        moxios.wait(() => {
-            const request = moxios.requests.at(1)
-            request.respondWith({
-                status: 200,
-                response: amenities                    
-            });
-        });
+       
 
         
 
@@ -151,17 +152,19 @@ describe('Create accomodation', () => {
                     status: 200,
                     response: {accommodation: accomodation }                   
                 });
+
+                moxios.wait(() => {
+                  const request = moxios.requests.at(1)
+                  request.reject({
+                    status: 500,
+                    response: {
+                        data: 'Internal server error',
+                    }
+                  })
+                })
             });
 
-            moxios.wait(() => {
-                const request = moxios.requests.at(1)
-                request.reject({
-                status: 500,
-                response: {
-                    data: 'Internal server error',
-                }
-                })
-            })
+           
         
             return store.dispatch(actions.createAccomodation(accBody,amenities)).then(() => {
             const expectedActions = store.getActions();
@@ -177,14 +180,16 @@ describe('Create accomodation', () => {
                     status: 200,
                     response: {accommodation: accomodation }                   
                 });
+
+                moxios.wait(() => {
+                  const request = moxios.requests.at(1)
+                  request.reject({
+                    status: 400,
+                    message: 'network error',
+                  })
+                })
             });
-            moxios.wait(() => {
-              const request = moxios.requests.at(1)
-              request.reject({
-               status: 400,
-               message: 'network error',
-               })
-            })
+
         
             return store.dispatch(actions.createAccomodation(accBody,amenities)).then(() => {
               const expectedActions = store.getActions();
@@ -200,15 +205,18 @@ describe('Create accomodation', () => {
                     status: 200,
                     response: {accommodation: accomodation }                   
                 });
+
+                moxios.wait(() => {
+                  const request = moxios.requests.at(1)
+                  request.reject({
+                  status: 403,
+                  request: 'Unathorised',
+                  })
+                })
+
             });
 
-            moxios.wait(() => {
-                const request = moxios.requests.at(1)
-                request.reject({
-                status: 403,
-                request: 'Unathorised',
-                })
-            })
+
         
             return store.dispatch(actions.createAccomodation(accBody,amenities)).then(() => {
                 const expectedActions = store.getActions();
@@ -225,15 +233,18 @@ describe('Create accomodation', () => {
                     status: 200,
                     response: {accommodation: accomodation }                   
                 });
+
+                moxios.wait(() => {
+                  const request = moxios.requests.at(1)
+                  request.reject({
+                   status: 404,
+                   error: 'resource not found',
+                   })
+                })
+                
             });
 
-            moxios.wait(() => {
-              const request = moxios.requests.at(1)
-              request.reject({
-               status: 404,
-               error: 'resource not found',
-               })
-            })
+
         
             return store.dispatch(actions.createAccomodation(accBody,amenities)).then(() => {
               const expectedActions = store.getActions();
