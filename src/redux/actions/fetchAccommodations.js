@@ -10,11 +10,23 @@ export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
 
 
 export const getAccommodations = () => dispatch => {
+<<<<<<< HEAD
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`,{
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
+=======
+  const token= localStorage.getItem('barefootUserToken');
+  dispatch({
+    type: FETCH_ACCOMMODATIONS_PENDING,
+  })
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+>>>>>>> bdee544 (fixing fetch-location action and fetch-accomodation action)
     .then(res => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_SUCCESS,
