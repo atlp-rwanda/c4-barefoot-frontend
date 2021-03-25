@@ -13,6 +13,7 @@ export const logoutAction = (authToken) => dispatch => {
 
     return axios.post('http://localhost:5000/api/v1//user/logout').then(() => {
         localStorage.removeItem('barefootUserToken');
+        localStorage.removeItem('id')
         dispatch({
             type: LOGOUT_SUCCESS
         })

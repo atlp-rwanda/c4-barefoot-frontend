@@ -15,6 +15,7 @@ export const loginAction = (userCredentials) => dispatch => {
         .then((res) => {
             localStorage.setItem('barefootUserToken', res.data.data);
             localStorage.setItem('userProfile', JSON.stringify(res.data.profile));
+            localStorage.setItem('id', JSON.stringify(res.data.profile.id));
             dispatch({
                 type: USER_LOGIN
             })

@@ -6,8 +6,15 @@ import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
-import {io} from '../io';
+import socket from 'socket.io-client';
 
+const token = localStorage.getItem('barefootUserToken');
+const idData = localStorage.getItem('userId');
+
+const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
+    query: token,
+    loggedInUser:localStorage.getItem('id')
+})
 
 function NewMessage(props) {
     const [message, setMessage] = React.useState('');
@@ -17,22 +24,22 @@ function NewMessage(props) {
     const [loading, setLoading] = React.useState(false)
     const [vimage, setvImage] = React.useState('')
 
-    React.useEffect(() =>{
-        io.on('connect', socket => console.log(socket.id))
-    }, [])
-
+    const senderId = localStorage.getItem('id');
     const handleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
         if(message != ''){ 
             const messageData = {
+                sender: senderId,
                 receiver: receiverId,
                 message: message,
                 type: 'plain-text'
             }
-            // props.newMessageAction(messageData).then(() =>{
-            //     props.getChats()
-            // });
-            
+            props.newMessageAction(messageData).then(() =>{
+                setMessage('')
+                setFeedbackText("Message sent!")
+                props.getChats()
+            }); 
+            io.emit('send_message', messageData)
         }else if(image != ''){
             const messageData = {
                 receiver: receiverId,
@@ -40,8 +47,12 @@ function NewMessage(props) {
                 type: 'image'
             }
             props.newMessageAction(messageData).then(() =>{
+                setImage('')
+                setMessage('')
+                setFeedbackText("Image sent!")
                 props.getChats()
             });
+            io.emit('send_message', messageData)
         }else{
             e.preventDefault();
             setFeedbackText("Message can't be blank!")

@@ -28,11 +28,11 @@ function MessageList(props) {
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>
-                            {chat.type==='plain-text'?<ListItemText primary={chat.message}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px', wordWrap: 'break-word'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                             
                         </ListItem> : 
                         <ListItem style={{backgroundColor: '#257AAA', textAlign: 'right', color: '#fff', opacity: 50}}>
-                            {chat.type==='plain-text'?<ListItemText primary={chat.message}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                         </ListItem> }
                     </div>
                 )): <p>No chats!</p>}
@@ -40,10 +40,10 @@ function MessageList(props) {
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
                         <ListItem>
-                            {chat.type==='plain-text'?<ListItemText primary={chat.message}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                         </ListItem> : 
                         <ListItem style={{backgroundColor: '#257AAA', textAlign: 'right', color: '#fff', opacity: 50}}>
-                            {chat.type==='plain-text'?<ListItemText primary={chat.message}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                         </ListItem> }
                     </div>
                 ))}

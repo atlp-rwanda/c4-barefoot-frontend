@@ -30,7 +30,6 @@ function ChatUsers(props) {
                 ><Person/></TextField>
                 <UsersList users={users} allusers={allusers}/>
                 {visitors && <div>
-                    <Typography style={{backgroundColor: "#376C7C", color: "#fff", padding: "10px", textAlign: 'center', fontWeight: 'bolder'}}>VISITORS</Typography>
                     <VisitorsListing visitors={visitors}/>
                 </div>}
             </Paper>
