@@ -2,11 +2,12 @@ import React from 'react'
 import ReportsView from './ReportsView';
 
 
-function manageTravelDashboard() {
+function ApprovedReports() {
     
     return (
         <ReportsView category={"approved"} />
     )
 }
 
-export default manageTravelDashboard;
+export { ApprovedReports }
+export default ApprovedReports;

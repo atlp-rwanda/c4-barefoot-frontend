@@ -41,15 +41,11 @@ describe('Fetch accommodations actions', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
-      request.respondWith({
-       status: 200,
+      request.reject({
+       status: 500,
        response: {
-         data: {
-          accommodations: {
-            rows: accommodationsPayload
-          }
+         data: 'internal server error',
         }
-       }
        })
     })
 

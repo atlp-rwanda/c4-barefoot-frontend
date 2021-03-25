@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import Routers from './routes/Routers'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import history from "./history";
-import { getNotifications } from "./redux/actions/notificationAction";
 
-class App extends Component{
-    componentDidMount(){
-        
-    }
-     render() {
+class App extends Component {
+    render() {
         return (
-            <Router history={history}>  
-                    <Routers/>
+            <Router history={history}>
+                <Routers />
             </Router>
         )
     }

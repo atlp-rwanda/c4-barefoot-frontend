@@ -8,5 +8,5 @@ function Done() {
         <ReportsView category={"done"} />
     )
 }
-
+export {Done}
 export default Done;
