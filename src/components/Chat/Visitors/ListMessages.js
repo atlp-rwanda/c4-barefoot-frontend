@@ -12,11 +12,11 @@ function ListMessages(props){
                 {messages != null ? messages.sort((a,b) => b.createdAt < a.createdAt ? 1 : -1).map(chat => (
                     <div key={chat.id}>
                         {chat.receiver != receiver ?
-                        <ListItem style={{backgroundColor: '#257AAA', textAlign: 'right', color: '#fff', opacity: 50}}>
-                        {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                        <ListItem style={{backgroundColor: '#257AAA', color: '#fff', opacity: 50}}>
+                        {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{wordWrap:'break-word'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                     </ListItem> :
                         <ListItem>
-                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{height: '150px'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
+                            {chat.type==='plain-text'?<ListItemText primary={chat.message} style={{wordWrap:'break-word'}}/>: <img src={chat.message} style={{height: '150px'}}/>}
                         </ListItem> }
                     </div>
                 )): <p>Welcome, How can we help you?</p>}

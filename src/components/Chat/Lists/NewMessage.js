@@ -69,6 +69,7 @@ function NewMessage(props) {
             }
             props.supportResponds(messageData).then(() =>{
                 props.getVisitorsMessages()
+                setvMessage('')
             });
             
         }else if(vimage != ''){
@@ -79,6 +80,7 @@ function NewMessage(props) {
             }
             props.supportResponds(messageData).then(() =>{
                 props.getVisitorsMessages()
+                setvMessage('')
             });
         }else{
             e.preventDefault();
