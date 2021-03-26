@@ -7,6 +7,7 @@ export const FETCH_ACCOMMODATION_SUCCESS = 'FETCH_ACCOMMODATION_SUCCESS'
 export const FETCH_AMENITIES_SUCCESS = 'FETCH_AMENITIES_SUCCESS'
 export const FETCH_AMENITIES_ERROR = 'FETCH_AMENITIES_ERROR'
 export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
+export const FETCH_SINGLE_ACCOMMODATION_SUCCESS = 'FETCH_SINGLE_ACCOMMODATION_SUCCESS'
 
 
 export const getAccommodations = () => dispatch => {
@@ -36,7 +37,19 @@ export const getAccommodation = (id) => dispatch => {
         payload: id
       })
 }
-
+export const getSingleAccommodation = (id) => dispatch => {
+  return API.get(`/accommodations/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(res => {
+      dispatch({
+        type: FETCH_SINGLE_ACCOMMODATION_SUCCESS,
+        payload: res.data.singleAccommodation
+      })
+    })
+}
 export const getAccommodationAminity = (id) => dispatch => {
   return API.get(`/accommodations/${id}`,{
     headers: {

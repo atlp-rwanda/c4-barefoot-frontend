@@ -1,4 +1,4 @@
-import {FETCH_ACCOMMODATIONS_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
+import {FETCH_ACCOMMODATIONS_SUCCESS,FETCH_SINGLE_ACCOMMODATION_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
 import {FETCH_WEATHER_SUCCESS,FETCH_WEATHER_ERROR} from '../actions/getWeather'
 import {FETCH_ACCOMMODATIONS_BY_LOCATION, FETCH_ACCOMMODATIONS_BY_LOCATION_ERROR,SELECT_ACCOMMODATION} from '../actions/fetchAccommodationByLocation'
 const initialState = {
@@ -22,6 +22,12 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodations: action.payload
       }
+      case FETCH_SINGLE_ACCOMMODATION_SUCCESS:
+        return {
+          ...state,
+          pending: false,
+          accommodation: action.payload
+        }
     case FETCH_ACCOMMODATION_SUCCESS:
       const accomo =()=>{
           let v=null;
@@ -41,6 +47,7 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodation: accomo()
       }
+    
     case FETCH_AMENITIES_SUCCESS:
         return {
           ...state,

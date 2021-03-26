@@ -278,8 +278,12 @@ function Home(props){
                                     </div>
                                     </CardContent>
                                 </>
-                                )}
+                                    )}
+                                    
                                 </Card>
+                            </div>
+                            <div className={classes.divider}>
+                          
                             </div>
                             <div className={classes.divider}>
                             <div className={classes.btncontainer}>
@@ -314,7 +318,9 @@ function Home(props){
                         </Form>
                     </Formik>
                 </CardContent>
+                
             </Card>
+            
         </React.Fragment>
     )
 }

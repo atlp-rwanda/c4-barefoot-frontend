@@ -60,10 +60,10 @@ function Accommodations(props) {
       props.getAccommodationAminity(event.target.id);
 
   };
-  const handleStarClicked = (e) => {
-    props.selectAccommodation(e.target.id);
+  const handleReviews = (e) => {
+    props.getAccommodationAminity(event.target.id);
     console.log("hello star")
-    props.history.push("/review")
+    props.history.push("/reviews")
   }
     // props.travelRequest.selectedAccommodation.map( selected =>{
     //   selected.id === props.accommodation.id ? check=true : null
@@ -116,7 +116,12 @@ function Accommodations(props) {
               <Ratings highRating={3} id={props.accommodationn.id} />
             </Link>
         <Typography className={classes.reviews}>
-             Reviews
+        <Link  to={'/reviews/'+props.accommodationn.id}>
+              Reviews
+              </Link>
+              {/* <Link onClick={handleReviews}>
+                reviews
+              </Link> */}
         </Typography>
       </CardActions>
       </>

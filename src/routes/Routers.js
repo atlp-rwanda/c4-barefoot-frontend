@@ -21,6 +21,7 @@ import { DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, Requeste
 import Logout from '../components/views/Logout';
 import ProtectedRoute from './protected.route'
 import Ratings from '../components/rateAndReviewAccommodation/rateAccommodation'
+import Reviews from '../components/rateAndReviewAccommodation/reviews'
 
 
 const Routes = () => {
@@ -54,6 +55,12 @@ const Routes = () => {
         exact
         layout={AuthorizedUserLayout}
         path="/review/:id"
+      />
+      <ProtectedRoute
+        component={Reviews}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/reviews/:id"
       />
       <RouteWithLayout
         component={signup}
