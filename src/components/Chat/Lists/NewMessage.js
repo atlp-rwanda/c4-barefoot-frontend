@@ -124,7 +124,7 @@ function NewMessage(props) {
                                     }}
                                 />
                                 <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                <IconButton onClick={handleClick}><Link style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></Link></IconButton>
+                                <IconButton onClick={handleClick}><Link style={{textDecoration: 'none', color: 'inherit'}} to=''><SendIcon/></Link></IconButton>
                             </InputAdornment>
                         }
                     />

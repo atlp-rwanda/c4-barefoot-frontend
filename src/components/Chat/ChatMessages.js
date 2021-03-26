@@ -21,7 +21,7 @@ function ChatMessages(props){
         props.getChats();
         io.on('new_message', messages => {
             // setMessages([messages])
-            console.log(messages)
+            console.log('getting messages')
         });
         // io.on('request_support', messages=> {
         //     setvMessages([messages])
