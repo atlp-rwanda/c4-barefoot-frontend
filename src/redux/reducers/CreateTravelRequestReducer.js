@@ -16,9 +16,9 @@ const initialState = {
     destinationLocation: '',
     departureDate: '',
     returnDate: '',
-    selectedAccommodation: [],
+    selectedAccommodation: '',
     travelReason: '',
-    isReturning: false,
+    // isReturning: false,
     selectedLocations: [],
     displaySelection: false,
     displaySelected: false,
@@ -60,11 +60,6 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 departureDate: action.payload.departureDate,
                 returnDate: action.payload.returnDate
             }
-        case RETURNING:
-            return {
-                ...state,
-                isReturning: action.payload
-            }
         case DESTINATION_LOCATION:
             return {
                 ...state,
@@ -87,6 +82,12 @@ export function CreateTravelRequestReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedLocations: [...state.selectedLocations, action.payload],
+                availableAccommodations: [],
+                selectedAccommodation: '',
+                currentLocation: action.payload.destination,
+                destinationLocation: '',
+                departureDate: action.payload.returnDate,
+                returnDate: ''
             }
         case REMOVE_MULTI_CITY_TRAVEL_REQUEST:
             return {
@@ -96,19 +97,16 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case SELECT_ACCOMMODATION:
             return {
                 ...state,
-                selectedAccommodation: [...state.selectedAccommodation, action.payload.accommodation],
+                selectedAccommodation: action.payload.accommodation,
                 displaySelection: action.payload.displaySelection,
                 displaySelected: action.payload.displaySelected
             }
         case DESELECT_ACCOMMODATION:
-            let newSelectedAccommodation = state.selectedAccommodation.filter(accommodation => {
-                return accommodation.id !== action.payload.accommodation.id
-            })
             return {
                 ...state,
-                selectedAccommodation: newSelectedAccommodation,
-                displaySelection: action.payload.displaySelection,
-                displaySelected: action.payload.displaySelected
+                selectedAccommodation: '',
+                displaySelection: true,
+                displaySelected: true
             }
         case HANDLE_ERRORS:
             return {
@@ -117,7 +115,7 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                     open: true,
                     severity: 'error',
                     message: action.payload
-                },
+                }
             }
         case CLOSE_SNACKBAR:
             return {
@@ -157,7 +155,6 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 destinationLocation: [],
                 departureDate: '',
                 returnDate: '',
-                isReturning: false,
                 selectedAccommodation: [],
                 travelReason: '',
                 snackBarMessage: {

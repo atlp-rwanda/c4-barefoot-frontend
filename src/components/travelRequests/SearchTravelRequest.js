@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react'
 import colors from '../colors';
 import CloseIcon from '@material-ui/icons/Close';
 import {
@@ -21,6 +22,7 @@ import useStyles from '../styles/searchTraveRequest';
 import { Skeleton } from '@material-ui/lab';
 
 const SearchLocations = (props) => {
+    const [retunTime, setReturnTime] = useState(null);
     const classes = useStyles();
 
     let data = {
@@ -29,43 +31,62 @@ const SearchLocations = (props) => {
         returnDate: props.travelRequest.returnDate
     };
     const handleDepartureDateChange = (date) => {
-        data.departureDate = date.toISOString();
-        return props.checkTravelDatesAction(data);
+        const now = new Date(new Date().getTime() - 86400000).getTime();
+        const selectedDate = new Date(date.toISOString()).getTime()
+        if (selectedDate < now) {
+            return props.handleErrorsAction(`You can't depart in the past please select the future date`);
+        } else {
+            data.departureDate = date.toISOString();
+            return props.checkTravelDatesAction(data);
+        }
     }
     const handleReturnDateChange = (date) => {
-        data.returnDate = date.toISOString();
-        return props.checkTravelDatesAction(data);
-    }
-    const handleCheckboxChange = (event) => {
-        data.isReturning = event.target.checked
-        return props.CheckReturningAction(data);
+        const departdate = new Date(props.travelRequest.departureDate).getTime();
+        const returndate = new Date(date.toISOString()).getTime()
+        if (!props.travelRequest.departureDate) {
+            return props.handleErrorsAction(`please provide departure date first`);
+        }
+        else if (returndate < departdate) {
+            return props.handleErrorsAction(`You can't return before you depart`);
+        } else {
+            data.returnDate = date.toISOString();
+            setReturnTime(date)
+            return props.checkTravelDatesAction(data);
+        }
     }
     const handleSelectionOfLocation = (event, newValue) => {
         const data = {
             textField: event.target.id,
             selectedLocation: newValue
         }
+        const inputTextID = data.textField.split('-', 1)[0];
+        if (inputTextID == 'destinationLocationId' && !props.travelRequest.currentLocation.id) {
+            return props.handleErrorsAction('Please select the departure location');
+        }
         return props.searchCurrentLocationAction(data);
     }
     const handleAddMultiCity = () => {
 
-        if (props.travelRequest.selectedAccommodation.length === 0) {
+        if (!props.travelRequest.selectedAccommodation.id) {
             return props.handleErrorsAction('Please add the accommodation');
         }
-        if (!props.travelRequest.currentLocation) {
+        if (!props.travelRequest.currentLocation.id) {
             return props.handleErrorsAction('Please add the current location');
         }
-        if (!props.travelRequest.destinationLocation) {
+        if (!props.travelRequest.destinationLocation.id) {
             return props.handleErrorsAction('Please add the destination location');
         }
         if (!props.travelRequest.departureDate) {
             return props.handleErrorsAction('Please add the departure date!');
         }
         const locations = {
-            current: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
-            destination: `${props.travelRequest.destinationLocation.LocationName, props.travelRequest.destinationLocation.country}`,
-            accommodation: props.travelRequest.selectedAccommodation[0],
+            current: props.travelRequest.currentLocation,
+            destination: props.travelRequest.destinationLocation,
+            accommodation: props.travelRequest.selectedAccommodation,
+            departureDate: props.travelRequest.departureDate,
+            returnDate: props.travelRequest.returnDate,
         }
+        setReturnTime(null);
         return props.addMultiCityAction(locations);
     }
     const handleClose = (event) => {
@@ -93,6 +114,7 @@ const SearchLocations = (props) => {
         let newValue = props.travelRequest.selectedLocations[Number(index[1])].destination.split(', ', 2);
         return handleSelectionOfLocation(ev, { country: newValue[1], LocationName: newValue[0] });
     }
+
     return (
         <>
             {(props.travelRequest.searchLocationsLoading ?
@@ -130,11 +152,11 @@ const SearchLocations = (props) => {
                                 includeInputInList
                                 clearText="no value"
                                 closeIcon={<CloseIcon fontSize='small' />}
+                                defaultValue={!props.travelRequest.currentLocation.id ? { LocationName: 'City', country: 'Country' } : props.travelRequest.currentLocation}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
-                                        value={props.travelRequest.currentLocation}
-                                        placeholder="Search your Location ..."
+                                        placeholder="Select you depart location"
                                         id='currentLocationId'
                                     />
 
@@ -144,7 +166,7 @@ const SearchLocations = (props) => {
                     </Grid>
 
                     <Grid item direction="column">
-                        <Typography>Enter your Destination</Typography>
+                        <Typography>Destination Location</Typography>
                         <div className={classes.searchLocation}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
@@ -160,11 +182,11 @@ const SearchLocations = (props) => {
                                 includeInputInList
                                 clearText="no value"
                                 closeIcon={<closeIcon fontSize='small' />}
+                                defaultValue={!props.travelRequest.destinationLocation.id ? { LocationName: 'City', country: 'Country' } : props.travelRequest.destinationLocation}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
-                                        placeholder="Search your Destionation ..."
-                                        value={props.travelRequest.destinationLocation}
+                                        id="destinationLocationId"
                                     />
 
                                 )}
@@ -174,29 +196,30 @@ const SearchLocations = (props) => {
                     </Grid>
                     <Grid item direction="column">
                         <Tooltip title="Click here to search accommodations" placement="bottom-end" arrow>
-                            <Button variant="contained" onClick={handleAddMultiCity} className={classes.addButton}>+</Button>
+                            <Button variant="contained" onClick={handleAddMultiCity} className={classes.addButton}>Add trip</Button>
                         </Tooltip>
                     </Grid>
                     <Grid item direction="column" >
-                        <Typography>Date of Departure</Typography>
+
+                        <Typography>Trip depart date</Typography>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
-                                key={`${props.travelRequest.selectedLocations}`}
                                 disableToolbar
                                 variant="dialog"
                                 inputVariant="filled"
                                 format="MM/dd/yyyy"
-                                value={props.travelRequest.departureDate}
+                                invalidDateMessage=' '
+                                value={!props.travelRequest.departureDate ? null : props.travelRequest.departureDate}
                                 onChange={handleDepartureDateChange}
                                 InputProps={{ className: classes.datesPicker }}
                             />
                         </MuiPickersUtilsProvider>
-                        <div className={classes.dates}>
+
+                        {/* <div className={classes.dates}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={props.travelRequest.isReturning}
-                                        disabled={disabled}
                                         fontSize="small"
                                         style={{ color: colors.neutralWhite }}
                                         onChange={handleCheckboxChange}
@@ -205,19 +228,19 @@ const SearchLocations = (props) => {
 
                                 label="Returning Back?"
                             />
-                        </div>
+                        </div> */}
 
-
-                        <div style={{ display: props.travelRequest.isReturning ? 'block' : 'none' }}>
-                            <Typography>Date of return</Typography>
+                        <div>
+                            <Typography>Trip end date</Typography>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} >
                                 <KeyboardDatePicker
-                                    key={`${props.travelRequest.selectedLocations}`}
+
                                     disableToolbar
                                     variant="dialog"
                                     inputVariant="filled"
                                     format="MM/dd/yyyy"
-                                    value={data.returnDate}
+                                    invalidDateMessage=' '
+                                    value={!props.travelRequest.returnDate ? retunTime : props.travelRequest.returndate}
                                     onChange={handleReturnDateChange}
                                     InputProps={{ className: classes.datesPicker }}
                                 />
@@ -235,8 +258,8 @@ const SearchLocations = (props) => {
                                     &times;
                                 </div>
                                 <di className={classes.citiesSelected} id={`div-${index}`} onClick={handleTagClick} >
-                                    <Typography id={`text1-${index}`}>{location.current}-</Typography>
-                                    <Typography id={`text2-${index}`}>{location.destination} </Typography>
+                                    <Typography id={`text1-${index}`}>{`From ${location.current.LocationName}, ${location.current.country} To `}</Typography>
+                                    <Typography id={`text2-${index}`}>{`${location.destination.LocationName}, ${location.destination.country}`}</Typography>
                                 </di>
 
                             </Grid>

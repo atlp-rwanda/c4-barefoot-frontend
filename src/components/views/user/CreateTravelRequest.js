@@ -113,40 +113,45 @@ const CreateTravelRequest = (props) => {
         }
     }
     const handleSendTravelRequest = () => {
-        const trips = [];
-        props.travelRequest.selectedLocations.map(location => {
-            const trip = {
-                originCity: `${location.current}`,
-                destination: `${location.destination}`,
+        const trips = [
+            {
+                originCity: `${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country}`,
+                destination: `${props.travelRequest.destinationLocation.LocationName}, ${props.travelRequest.destinationLocation.country}`,
                 tripDate: `${props.travelRequest.departureDate}`,
                 returnDate: `${props.travelRequest.returnDate}`,
-                accommodationId: `${location.accommodation.id}`,
+                accommodationId: `${props.travelRequest.selectedAccommodation.id}`,
                 reason: `${props.travelRequest.travelReason}`
             }
-            trips.push(trip)
-        })
+        ];
+        if (props.travelRequest.selectedLocations.length > 0) {
+            props.travelRequest.selectedLocations.map(location => {
+                const trip = {
+                    originCity: `${location.current}`,
+                    destination: `${location.destination}`,
+                    tripDate: `${location.departureDate}`,
+                    returnDate: `${location.returnDate}`,
+                    accommodationId: `${location.accommodation.id}`,
+                    reason: `${props.travelRequest.travelReason}`
+                }
+                trips.push(trip)
+            })
+        }
         const request = {
             trip: trips
         }
-
+        console.log(request)
         props.sendTravelRequestAction(request);
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
     const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
-
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
+    const handleGoback = () => {
         setActiveStep(0);
     };
 
@@ -155,6 +160,8 @@ const CreateTravelRequest = (props) => {
     }, [])
 
     const display = props.travelRequest.displaySelection ? 'block' : 'none';
+    let firstCondition = activeStep === 1 && !props.travelRequest.travelReason;
+    let secondCondition = activeStep === 0 && !props.travelRequest.selectedAccommodation.id;
     return (
         <Grid container direction="column" className={classes.main}>
             <Loader open={props.travelRequest.sendLoading} />
@@ -185,12 +192,13 @@ const CreateTravelRequest = (props) => {
                     </Stepper>
                     <div>
                         {activeStep === steps.length ? (
-                            <div>
+                            <div style={{ paddingLeft: '100px', paddingRight: '100px' }}>
                                 <Typography className={classes.instructions}>
-                                    All steps completed - you&apos;re finished
+                                    All steps of sending travel request completed
                                 </Typography>
-                                <Button onClick={handleReset} className={classes.button}>
-                                    Reset
+                                <Button onClick={handleGoback} className={classes.button} variant="contained"
+                                    color="primary">
+                                    Go back
                                 </Button>
                             </div>
                         ) : (
@@ -199,8 +207,9 @@ const CreateTravelRequest = (props) => {
                                 <div className={classes.buttonWrapper}>
                                     <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button} color="primary" variant="contained">
                                         Back
-                                        </Button>
+                                    </Button>
                                     <Button
+                                        disabled={activeStep === 0 ? secondCondition : firstCondition}
                                         variant="contained"
                                         color="primary"
                                         // onClick={handleNext}

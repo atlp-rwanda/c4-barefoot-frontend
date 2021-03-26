@@ -10,25 +10,7 @@ import { useHistory } from "react-router-dom";
 function ConfirmSendTravelRequest(props) {
     const classes = useStyles();
     let history = useHistory();
-    const handleSendTravelRequest = () => {
-        const trips = [];
-        props.travelRequest.selectedLocations.map(location => {
-            const trip = {
-                originCity: `${location.current}`,
-                destination: `${location.destination}`,
-                tripDate: `${props.travelRequest.departureDate}`,
-                returnDate: `${props.travelRequest.returnDate}`,
-                accommodationId: `${location.accommodation.id}`,
-                reason: `${props.travelRequest.travelReason}`
-            }
-            trips.push(trip)
-        })
-        const request = {
-            trip: trips
-        }
 
-        props.sendTravelRequestAction(request);
-    }
     return (
         <React.Fragment>
             <Grid container xs={12} style={{ paddingLeft: '100px', paddingRight: '100px' }}>
@@ -40,27 +22,51 @@ function ConfirmSendTravelRequest(props) {
                         </Typography>
                             {props.travelRequest.selectedLocations.map(location => (
                                 <Typography variant="subtitle1" gutterBottom>
-                                    {`${location.current} To ${location.destination}`}
+                                    {`From ${location.current.LocationName},  ${location.current.country} To ${location.destination.LocationName}, ${location.destination.country}`}
                                 </Typography>
                             ))}
-                        </Grid>
-                        <Grid item xs={3} className={classes.infoDisplay}>
-                            <Typography variant="h6">
-                                Departure Date
-                        </Typography>
-                            {`${props.travelRequest.departureDate}`}
+                            <Typography variant="subtitle1" gutterBottom>
+                                {` From ${props.travelRequest.currentLocation.LocationName}, ${props.travelRequest.currentLocation.country} To ${props.travelRequest.destinationLocation.LocationName}, ${props.travelRequest.destinationLocation.country}`}
+                            </Typography>
                         </Grid>
                         <Grid item xs={2} className={classes.infoDisplay}>
                             <Typography variant="h6">
-                                Is returning
+                                Departure Date
                         </Typography>
-                            {`${props.travelRequest.isReturning}`}
+                            {props.travelRequest.selectedLocations.map(location => (
+                                <Typography variant="subtitle1" gutterBottom>
+                                    {`${new Date(location.departureDate).toLocaleDateString("en-US")}`}
+                                </Typography>
+                            ))}
+                            <Typography variant="subtitle1" gutterBottom>
+                                {`${new Date(props.travelRequest.departureDate).toLocaleDateString("en-US")}`}
+                            </Typography>
                         </Grid>
-                        <Grid item xs={3} className={classes.infoDisplay}>
+                        <Grid item xs={2} className={classes.infoDisplay}>
                             <Typography variant="h6">
                                 Return Date
-                        </Typography>
-                            {`${props.travelRequest.destinationLocation}`}
+                            </Typography>
+                            {props.travelRequest.selectedLocations.map(location => (
+                                <Typography variant="subtitle1" gutterBottom>
+                                    {`${new Date(location.returnDate).toLocaleDateString("en-US")}`}
+                                </Typography>
+                            ))}
+                            <Typography variant="subtitle1" gutterBottom>
+                                {`${new Date(props.travelRequest.returnDate).toLocaleDateString("en-US")}`}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} className={classes.infoDisplay}>
+                            <Typography variant="h6">
+                                Prefered Accommodation
+                            </Typography>
+                            <Typography variant="subtitle1" gutterBottom>
+                                {`${props.travelRequest.selectedAccommodation.title}`}
+                            </Typography>
+                            {props.travelRequest.selectedLocations.map(location => (
+                                <Typography variant="subtitle1" gutterBottom>
+                                    {`${location.accommodation.title}`}
+                                </Typography>
+                            ))}
                         </Grid>
                     </Grid>
                     <Divider style={{ width: '100%', marginTop: '40px' }} />
@@ -76,8 +82,9 @@ function ConfirmSendTravelRequest(props) {
                             {props.travelRequest.travelReason}
                         </Typography>
                     </Grid>
+                    <Divider style={{ width: '100%', marginTop: '20px' }} />
                 </Grid>
-                <Grid container item xs={12} style={{ marginTop: '30px' }}>
+                {/* <Grid container item xs={12} style={{ marginTop: '30px' }}>
                     <Grid item xs={3}>
                         <Card className={classes.card}>
                             <CardActionArea>
@@ -97,11 +104,8 @@ function ConfirmSendTravelRequest(props) {
                             {props.travelRequest.selectedLocations[0].accommodation.description}
                         </Typography>
                     </Grid>
-                    <Divider style={{ width: '100%', marginTop: '20px' }} />
-                </Grid>
-                <Grid item contained className={classes.buttons}>
-                    <Button variant="contained" onClick={handleSendTravelRequest} color="primary">Send Travel Request</Button>
-                </Grid>
+                    
+                </Grid> */}
             </Grid>
         </React.Fragment>
     )

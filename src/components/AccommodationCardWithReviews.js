@@ -57,9 +57,9 @@ function Accommodations(props) {
 
 
   let check = false;
-  props.travelRequest.selectedAccommodation.map(selected => {
-    selected.id === props.accommodation.id ? check = true : null
-  })
+  // props.travelRequest.selectedAccommodation.map(selected => {
+  //   selected.id === props.accommodation.id ? check = true : null
+  // })
   const handleViewMore = () => {
     return props.openModalAction({ open: true, data: props.accommodation });
   }

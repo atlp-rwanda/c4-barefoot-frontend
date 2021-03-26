@@ -131,11 +131,6 @@ export const selectAccommodationAction = (accommodation) => dispatch => {
     } else { // Else remove the accommodation from the selectedAccommodations state
         return dispatch({
             type: DESELECT_ACCOMMODATION,
-            payload: {
-                accommodation: accommodation.selected,
-                displaySelection: true,
-                displaySelected: true
-            }
         })
     }
 }
@@ -189,14 +184,6 @@ export const addMultiCityAction = (data) => dispatch => {
     dispatch({
         type: ADD_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
-    })
-    dispatch({
-        type: DESELECT_ACCOMMODATION,
-        payload: {
-            accommodation: data.accommodation,
-            displaySelection: true,
-            displaySelected: true
-        }
     })
 }
 export const removeMultiCityAction = (data) => dispatch => {

@@ -59,7 +59,7 @@ function AddAccommodation(props) {
             <Grid container className={classes.container}>
 
                 {accommodations.map((accommodation) => (
-                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid}>
+                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid} style={{ paddingTop: '40px', paddingBottom: '100px' }}>
                         <AccommodationCard pending={props.travelRequest.searchAccommodationsLoading} accommodation={accommodation} {...props} />
                     </Grid>
                 ))}
@@ -67,9 +67,7 @@ function AddAccommodation(props) {
                 <Grid container item style={{ display: display }} className={classes.notFound}>
                     <Typography variant="h6" color="secondary" component="h6">No Accommodations found in {`${props.travelRequest.destinationLocation.LocationName}, ${props.travelRequest.destinationLocation.country}`}</Typography>
                 </Grid>
-                <Grid container item justify="center" style={{ marginTop: '50px' }}>
-                    <Pagination count={10} variant="outlined" color="primary" onChange={getNextPage} />
-                </Grid>
+                <Divider style={{ width: '100%', marginTop: '20px' }} />
             </Grid>
         </React.Fragment>
     )
