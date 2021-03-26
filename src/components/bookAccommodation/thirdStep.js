@@ -192,7 +192,7 @@ function ThirdStep(props){
                                                 <Grid container item xs={12} sm={4} spacing={3} className={classes.dates}>
                                                         <TextField 
                                                             id="To"
-                                                            label="Book upto"
+                                                            label="Book up to"
                                                             type="datetime-local"
                                                             error={touched.To && errors.To}
                                                             helperText={touched.To && errors.To}

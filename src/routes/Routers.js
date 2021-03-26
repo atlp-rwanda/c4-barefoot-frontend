@@ -132,7 +132,7 @@ const Routes = () => {
           component={BookForm}
           exact
           layout={RequesterLayout}
-          path="/requester/bookAccommodation/:locationId"
+          path="/bookAccommodation/:locationId"
         />
         <RouteWithLayout
           component = {CreateRoles}
