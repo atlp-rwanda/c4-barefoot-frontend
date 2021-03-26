@@ -7,7 +7,6 @@ import UserCard from './UserCard';
 import styles from './styles';
 import { assignUsersFromQueue, cancelAllQueue } from '../../redux/actions/managerSelectedActions';
 import Loader from '../Loader';
-import Pagination from '@material-ui/lab/Pagination';
 
 const UsersList = (props) => {
     const classes = styles();
