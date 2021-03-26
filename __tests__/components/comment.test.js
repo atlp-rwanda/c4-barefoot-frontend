@@ -19,7 +19,7 @@ t( 'It should render the ReportsView compnent', ()=>{
     store = mockStore({
         manageTravel: allTravelRequestState,
         manageSingleTravel: singleTravelState,
-        updateTravel: updateTravelState,
+
       });
 
     props= {
