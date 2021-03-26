@@ -7,6 +7,7 @@ import CachedIcon from '@material-ui/icons/Cached';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CancelIcon from '@material-ui/icons/Cancel';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 
 export const sideBarData = [
     {
@@ -87,6 +88,18 @@ export const sideBarData = [
                 link: "/managerTravel/done"
             },
         ]
+    },
+    {
+        title:"Users",
+        icon:<GroupIcon />,
+        link:"/assign-users-to-managers/",
+        subs: []
+    },
+    {
+        title:"Trash",
+        icon:<DeleteSharpIcon />,
+        link:"/trash/",
+        subs: []
     }
 
 ]

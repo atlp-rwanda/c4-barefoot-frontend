@@ -31,7 +31,7 @@ const UserCard = (props) => {
     ? <UserCardSkeleton />
     : <Card style={cardStyle}>
         <Avatar 
-            style={{width: '100%', height: '50%', minHeight: 250, backgroundColor: '#ABD5ED'}}
+            style={{width: '100%', maxHeight: '50%', minHeight: 250, backgroundColor: '#ABD5ED'}}
             alt="user" 
             name='profile_picture' 
             margin='normal'

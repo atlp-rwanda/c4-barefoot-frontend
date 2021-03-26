@@ -54,7 +54,6 @@ const reducers = combineReducers({
   fetchAllManagers: fetchAllManagers,
   addAssignActionToQueue: addAssignActionToQueue,
   fetchVerifiedUsersPage: fetchVerifiedUsersPage,
-  assigningMessage: assigningMessage,
   managerReducer
 });
 
