@@ -3,6 +3,8 @@ import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
 import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import {sideBarData} from "./sideBarData";
 import { Link } from 'react-router-dom';
+import {getTripLocations} from '../../redux/actions/userTravelHistoryAction';
+import {connect} from 'react-redux'
  
 const useStyles = makeStyles( theme =>({
   root: {
@@ -43,7 +45,7 @@ const useStyles = makeStyles( theme =>({
     color: 'black'
   },
 }))
-function DrawerComponent() {
+function DrawerComponent(props) {
     const classes = useStyles()
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
@@ -54,6 +56,8 @@ function DrawerComponent() {
         }
     })
     );
+    const locations = props.locations
+    console.log(locations)
     const [collapse,setCollapse]= useState(false);
     // console.log(sideBarData)
     // console.log(drop);
@@ -165,7 +169,12 @@ function DrawerComponent() {
         </React.Fragment>
     )
 }
-export default DrawerComponent
+
+const mapStateToProps = state => ({
+  locations: state.tripHistory.locations
+})
+
+export default connect(mapStateToProps, {getTripLocations})(DrawerComponent)
 
 
 

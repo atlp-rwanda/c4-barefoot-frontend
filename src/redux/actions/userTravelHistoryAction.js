@@ -4,6 +4,7 @@ export const FETCH_TRIP_HISTORY_PENDING = 'FETCH_TRIP_HISTORY_PENDING'
 export const FETCH_TRIP_HISTORY_SUCCESS = 'FETCH_TRIP_HISTORY_SUCCESS'
 export const FETCH_TRIP_HISTORY_ERROR = 'FETCH_TRIP_HISTORY_ERROR'
 export const GET_SINGLE_ACC = 'GET_SINGLE_ACC'
+export const GET_LOCATIONS_TRAVELLED = 'GET_LOCATIONS_TRAVELLED'
 
 const token = window.localStorage.getItem('barefootUserToken')
 
@@ -44,3 +45,17 @@ export const getAccommodation = () => dispatch => {
   }))
   .catch(err => console.log(err.message))
 }
+
+export const getTripLocations = () => dispatch => {
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  .then(res => dispatch({
+      type: GET_LOCATIONS_TRAVELLED,
+      payload: res.data
+  }))
+  .catch(err => console.log(err.message))
+}
+

@@ -8,14 +8,20 @@ import {getAccommodation} from '../../redux/actions/userTravelHistoryAction'
 
 const useStyle = makeStyles(()=>({
     paper:{
-        padding:20,
+        padding:5,
         textAlign: 'center'
     },
     container:{
         margin:10
     },media: {
         height: 140,
-      },
+    },
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+    height: 140,
+    },
 }))
 
 function ViewTripHistoryCard(props) {
@@ -50,7 +56,12 @@ function ViewTripHistoryCard(props) {
             <Typography>Destination: {trip.destination}</Typography>
             <Typography>Origin City: {trip.originCity}</Typography>
             <Typography>Reason: {trip.reason}</Typography>
-            <Button color= 'primary' variant='contained' onClick={()=> localStorage.setItem('accId', trip.accommodationId)}><Link to='/individual-history'>Details</Link></Button>
+            <Button color= 'primary' variant='contained' onClick={()=> {
+                localStorage.setItem('accId', trip.accommodationId);
+                localStorage.setItem('destination', trip.destination);
+                localStorage.setItem('origin', trip.originCity);
+                localStorage.setItem('reason', trip.reason)
+            }}><Link to='/individual-history' style={{color: 'white', textDecoration: 'none'}}>Details</Link></Button>
         </Paper>
 
      </Grid>

@@ -94,24 +94,9 @@ export const sideBarData = [
         subs: [
             {
                 title: 'Nairobi',
-                icon: <CachedIcon />,
+                icon: '',
                 link: "/individual-history"
-            },
-            {
-                title: 'Paris',
-                icon: <ThumbUpIcon />,
-                link: "/travel-history"
-            },
-            {
-                title: 'Kampala',
-                icon: <CancelIcon />,
-                link: "/travel-history"
-            },
-            {
-                title: 'Cairo',
-                icon: <DoneAllIcon />,
-                link: "/travel-history"
-            },
+            }
         ]
     }
 ]
