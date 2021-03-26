@@ -59,7 +59,6 @@ export const accommodationsPayload = {
     
     }
   ]}
-<<<<<<< HEAD
 
   export const rolePayload = {
     rows:[
@@ -256,26 +255,8 @@ export const  accommodationInfo= [
       typeOfBed: "Double Decker",
       title: "Marina Hotel",
       description: "A serene environment for relaxation",
-      photos: "image2.png"
-=======
-
-  export const rolePayload = {
-    rows:[
-      {
-        
-          id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-          name: "Requester",
-          description: "requster"
-      
-      }
-    ]}
-  
-    export const permissionsPayload = {
-      permissions:{
-        "edit profile": 0,"assign requesters to manager": 0,"create travel requests": 0,"view travel requests": 0,"edit travel requests": 0,"cancel travel requests": 0,"approve direct reports travel requests": 0,"view direct reports travel requests": 0,"reject direct reports travel requests": 0,"view accommodations": 0,"create accommodations": 0,"update accommodations": 0,"delete accommodations": 0,"book accommodations": 0,"view locations": 0,"create locations": 0,"update locations": 0,"delete locations": 0,"view statistics": 0
-      }
->>>>>>> f05c6b25b5a1ddcf0729d810434f3c261b8fc6e9
-  }
+      photos: "image2.png",
+  }]
 
 export const  travelRequestInfo= {
   travelId: "59ba77ce-3649-4b8a-bed6-b127cc1c530f",
@@ -352,3 +333,5 @@ export const props2={
       data:{}
   }
 }
+
+export const commentPayload = [];

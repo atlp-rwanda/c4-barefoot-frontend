@@ -16,7 +16,7 @@ describe('Fetch comment actions', () => {
   })
   afterEach(() => moxios.uninstall())
 
-  it('Creates RETRIEVE_COMMENTS_SUCCESS after task is successful', () => {
+  it('Creates RETRIEVE_COMMENTS_SUCCESS ', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
@@ -24,7 +24,7 @@ describe('Fetch comment actions', () => {
        status: 200,
        response: {
           comment: {
-            rows: commentPayload
+            rows: comments
           }
        }
        })
@@ -33,23 +33,20 @@ describe('Fetch comment actions', () => {
     return store.dispatch(actions.retrieveComments()).then(() => {
       const expectedActions = store.getActions();
       expect(expectedActions[0].type).toEqual('RETRIEVE_COMMENTS_PENDING')
-
       expect(expectedActions[1].type).toEqual('RETRIEVE_COMMENTS_SUCCESS')
-
-
     })
   })
 
-  it('Dispatches RETRIEVE_COMMENTS_FAIL after task is unsuccessful', () => {
+  it('create RETRIEVE_COMMENTS_FAIL ', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.respondWith({
-       status: 200,
+       status: 500,
        response: {
          data: {
-          accommodations: {
-            rows: commentPayload
+          comment: {
+            data: 'internal server error'
           }
         }
        }
@@ -59,7 +56,7 @@ describe('Fetch comment actions', () => {
     return store.dispatch(actions.retrieveComments()).then(() => {
       const expectedActions = store.getActions();
       // expect(expectedActions[0].type).toEqual('RETRIEVE_COMMENTS_PENDING')
-      expect(expectedActions[0].type).toEqual('RETRIEVE_COMMENTS_FAIL')
+      expect(expectedActions[1].type).toEqual('RETRIEVE_COMMENTS_FAIL')
     })
   })
 
@@ -76,7 +73,7 @@ describe('submit comment ', () => {
   })
   afterEach(() => moxios.uninstall())
 
-  it('Creates SUBMIT_COMMENTS_SUCCESS after task is successful', () => {
+  it('Creates SUBMIT_COMMENTS_SUCCESS ', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
@@ -84,7 +81,7 @@ describe('submit comment ', () => {
        status: 200,
        response: {
           comment: {
-            rows: commentPayload
+            rows: comments
           }
        }
        })
@@ -92,22 +89,12 @@ describe('submit comment ', () => {
 
     return store.dispatch(actions.submitComment()).then(() => {
       const expectedActions = store.getActions();
-      expect(expectedActions[0].type).toEqual('SUBMIT_COMMENTS_PENDING')
-
+      // expect(expectedActions[0].type).toEqual('SUBMIT_COMMENTS_PENDING')
       expect(expectedActions[1].type).toEqual('SUBMIT_COMMENTS_SUCCESS')
-<<<<<<< HEAD
     })
   })
 
-  it(' SUBMIT_COMMENTS_FAIL after task is unsuccessful', () => {
-=======
-
-
-    })
-  })
-
-  it('Dispatches SUBMIT_COMMENTS_FAIL after task is unsuccessful', () => {
->>>>>>> f05c6b25b5a1ddcf0729d810434f3c261b8fc6e9
+  it(' SUBMIT_COMMENTS_FAIL ', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
@@ -116,7 +103,7 @@ describe('submit comment ', () => {
        response: {
          data: {
          comment: {
-            rows: commentPayload
+            data: 'no comment added'
           }
         }
        }
@@ -125,7 +112,7 @@ describe('submit comment ', () => {
 
     return store.dispatch(actions.submitComment()).then(() => {
       const expectedActions = store.getActions();
-      // expect(expectedActions[0].type).toEqual('RETRIEVE_COMMENTS_PENDING')
+      // expect(expectedActions[0].type).toEqual('SUBMIT_COMMENTS_PENDING')
       expect(expectedActions[0].type).toEqual('SUBMIT_COMMENTS_FAIL')
     })
   })

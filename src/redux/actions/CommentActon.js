@@ -22,20 +22,20 @@ export const SUBMIT_COMMENT_FAIL = "SUBMIT_COMMENT_FAIL"
       .then(res => {
         dispatch({
           type: RETRIEVE_COMMENTS_SUCCESS,
-          payload: res.data
+          payload: res.data.reverse()
         })
         }
       )
       .catch(err => {
         dispatch({
           type: RETRIEVE_COMMENTS_FAIL,
-          error: err.data
+          // error: err.data
+          payload: 'something went wrong'
         })
       })
   };
   
   export const submitComment = (comment) => dispatch => {
-    console.log("sdsdsdasfasfsdfgsdfasd",comment)
     dispatch({
       type: SUBMIT_COMMENT_PENDING
     })
@@ -55,7 +55,8 @@ export const SUBMIT_COMMENT_FAIL = "SUBMIT_COMMENT_FAIL"
     .catch(err => {
       dispatch({
         type: SUBMIT_COMMENT_FAIL,
-        error: err.data
+        // error: err.data
+        payload:"comment not added"
       })
     })
   };
