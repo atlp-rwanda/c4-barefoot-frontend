@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import React from 'react';
 
 export const MANAGER_SELECTED_TO_QUEUE = 'MANAGER_SELECTED_TO_QUEUE';
 export const MANAGER_SELECTED_ERROR = 'MANAGER_SELECTED_ERROR';
@@ -19,38 +17,28 @@ export const addUsersToAssignQueue = (userId, managerId) => {
   }
 };
 
-export const assignUsersFromQueue = (dispatch) => {
+export const assignUsersFromQueue = async (dispatch, state) => {
   dispatch({
     type: ASSIGNING_USERS_PENDING
   });
-};
-
-export const cancelAllQueue = (dispatch) => {
-  console.log({ASSIGNING_USERS_CANCELED});
-  dispatch({
-    type: ASSIGNING_USERS_CANCELED
-  });
-};
-
-export const assignUsersToManagers = async (state) => {
   const users = Object.keys(state);
   const errors = [];
   const success = [];
   const requests = users.map(async user => {
-      const ASSIGN_REQUEST = axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/${user}`, '', {
-        headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('barefootUserToken')
-        },
-        params: {
-          manager_id: state[user].managerId
-        }
+    const ASSIGN_REQUEST = axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/${user}`, '', {
+      headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('barefootUserToken')
+      },
+      params: {
+        manager_id: state[user].managerId
+      }
     });
     ASSIGN_REQUEST.catch(err => {
       errors.push({
           type: ASSIGNING_USERS_ERROR,
           userId: user,
           managerId: state[user].managerId,
-          error: err
+          error: err.toJSON()
         });
     });
 
@@ -60,17 +48,27 @@ export const assignUsersToManagers = async (state) => {
         type: ASSIGNING_USERS_SUCCESS,
         userId: user,
         managerId: state[user].managerId,
+        message: res.toJSON()
       });
-    };
+    }    
   });
-  const ASSIGNING_MESSAGE = await Promise.all(requests)
+  const ASSIGNING_ALL = await Promise.all([...requests])
     .catch(err => {
-      console.log(err);
-      return { type: 'error', errors, success, err };
+      return err;
     })
     .then((res) => {
-      return { type: errors.length === 0 ? 'success' : 'errors', success, errors, res};
+      return res;
     });
-    console.log({ASSIGNING_MESSAGE});
-  return ASSIGNING_MESSAGE;
+  if(ASSIGNING_ALL) {
+    errors.length === 0
+    ? dispatch({type: ASSIGNING_USERS_SUCCESS, errors, success})
+    : dispatch({type: ASSIGNING_USERS_ERROR, errors, success});
+  }
+};
+
+export const cancelAllQueue = (dispatch) => {
+  console.log({ASSIGNING_USERS_CANCELED});
+  dispatch({
+    type: ASSIGNING_USERS_CANCELED
+  });
 };
