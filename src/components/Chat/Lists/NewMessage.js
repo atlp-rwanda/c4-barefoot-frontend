@@ -28,18 +28,18 @@ function NewMessage(props) {
     const handleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
         if(message != ''){ 
-            const messageData = {
+            const data = {
                 sender: senderId,
                 receiver: receiverId,
                 message: message,
                 type: 'plain-text'
             }
-            props.newMessageAction(messageData).then(() =>{
+            props.newMessageAction(data).then(() =>{
                 setMessage('')
                 setFeedbackText("Message sent!")
                 props.getChats()
             }); 
-            io.emit('send_message', messageData)
+            io.emit('send_message', data)
         }else if(image != ''){
             const messageData = {
                 receiver: receiverId,
@@ -124,7 +124,7 @@ function NewMessage(props) {
                                     }}
                                 />
                                 <label htmlFor="file">{loading === false ? <AttachFileIcon/>: <CircularProgress color="primary" />}</label>
-                                <IconButton onClick={handleClick}><Link style={{textDecoration: 'none', color: 'inherit'}} to=''><SendIcon/></Link></IconButton>
+                                <IconButton onClick={handleClick}><Link style={{textDecoration: 'none', color: 'inherit'}}><SendIcon/></Link></IconButton>
                             </InputAdornment>
                         }
                     />

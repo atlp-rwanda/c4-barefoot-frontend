@@ -18,11 +18,12 @@ function ChatMessages(props){
     // const [chats, setMessages] = React.useState([])
     // const [vMessages, setvMessages] = React.useState([])
     React.useEffect(()=>{
-        props.getChats();
-        io.on('new_message', messages => {
+        
+        io.on('new_message', data => {
             // setMessages([messages])
-            console.log('getting messages')
+            console.log(data)
         });
+        props.getChats();
         // io.on('request_support', messages=> {
         //     setvMessages([messages])
         // })
