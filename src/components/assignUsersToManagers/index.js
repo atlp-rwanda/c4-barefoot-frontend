@@ -9,20 +9,22 @@ import SuccessDialog from './SuccessDialog';
 
 const AssignUsersToManagers = (props) => {
   const { addAssignActionToQueue, fetchVerifiedUsers, fetchAllManagers } = props;
-  let dialog = false;
-  if(addAssignActionToQueue instanceof Promise) {
-    const something = addAssignActionToQueue.then(res => res);
+  
+  const dialog = addAssignActionToQueue.loaded && !addAssignActionToQueue.loading;
     const succeededDialog = (
-      addAssignActionToQueue.hasOwnProperty('success')
-      && addAssignActionToQueue.success.length != 0 
+      dialog
+      && addAssignActionToQueue.success.length > 0 
       && addAssignActionToQueue.errors.length == 0
     );
-    console.log({something});
-  }
+  const failedDialog = dialog && !succeededDialog;
+  // const failedDialog = false;
   const pending = (fetchAllManagers.pending && fetchVerifiedUsers.pending)
                   && !fetchAllManagers.loaded;
-  console.log({fetchVerifiedUsers, fetchAllManagers, addAssignActionToQueue});
+  // console.log({fetchVerifiedUsers, fetchAllManagers, addAssignActionToQueue});
   const dispatch = useDispatch();
+  if(addAssignActionToQueue.refresh) {
+    dispatch({type: 'REFRESH_USERS_LIST_WITH_MANAGERS'});
+  }
   const [page, handlePage] = useState(1);
   useEffect(() => {
     props.getVerifiedUsers(page, dispatch);
@@ -32,15 +34,14 @@ const AssignUsersToManagers = (props) => {
   const handlePageChange = (evt, page) => {
     usersListPage(page)(dispatch);
   }
-  console.log({addAssignActionToQueue}, addAssignActionToQueue.hasOwnProperty('success'));
+  console.log({addAssignActionToQueue});
   return (
     <Container style={{display: 'flex', flexDirection: 'row', justify: 'flex-start', padding: 'unset'}}>
       <UsersList loading={pending} page={page} handlePageChange={handlePageChange} />
       {
         dialog
-        ? ( succeededDialog ? <SuccessDialog open={true} /> : <FailureDialog open={false} /> )
+        ? <><SuccessDialog open={succeededDialog} /><FailureDialog open={failedDialog} /></>
         : <></>
-        // addAssignActionToQueue.hasOwnProperty('success') ? <SuccessDialog />
       }
     </Container>
   );

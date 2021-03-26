@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import UserCard from './UserCard';
 import styles from './styles';
 import { assignUsersFromQueue, cancelAllQueue } from '../../redux/actions/managerSelectedActions';
+import Loader from '../Loader';
 
 const UsersList = (props) => {
     const classes = styles();
@@ -13,10 +14,12 @@ const UsersList = (props) => {
     const managersList = useSelector(state => state.fetchAllManagers.getAllManagers);
     const usersList = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.rows);
     const count = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.count);
+    const assignState = useSelector(state => state.addAssignActionToQueue);
     const{ page, handlePageChange }= props;
+
     const dispatch = useDispatch();
     const handleAssignPendingUsers = () => {
-        assignUsersFromQueue(dispatch);
+        assignUsersFromQueue(dispatch, assignState.pendingTasks);
     }
     const handleCancelAllAssignQueue = () => {
         cancelAllQueue(dispatch);
@@ -37,6 +40,7 @@ const UsersList = (props) => {
                 List of Users
             </Typography>
             <Divider />
+            <Loader open={assignState.loading} />
             <Grid container style={{width: '100%'}} alignItems='flex-start' justify='space-evenly'>
             {
                 !loading 

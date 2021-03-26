@@ -1,17 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import{ useDispatch, useSelector }from 'react-redux';
+import { assignUsersFromQueue, cancelAllQueue } from '../../redux/actions/managerSelectedActions';
 
 export default function FailureDialog(props) {
-  open = props.open;
-
+  const retryAssign = useSelector(state => state.addAssignActionToQueue);
+  const dispatch = useDispatch(); // for resetting the real [user to manager] state
+  const handleTryAgain = () => {
+    assignUsersFromQueue(dispatch, retryAssign.pendingTasks);
+  }
+  const handleCancel = () => {
+    cancelAllQueue(dispatch);
+  }
   return (
     <Dialog
-      open={open}
+      open={props.open}
       onClose={()=>{}}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
@@ -23,10 +31,10 @@ export default function FailureDialog(props) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={()=>{}} color="primary">
+        <Button onClick={handleTryAgain} color="primary">
           TRY AGAIN
         </Button>
-        <Button onClick={()=>{}} style={{color: '#333333'}}>
+        <Button onClick={handleCancel} style={{color: '#333333'}}>
           CANCEL
         </Button>
       </DialogActions>
