@@ -56,10 +56,9 @@ export const readNotification = (id) => dispatch=>{
                     })
                 })
 }
-export const readTravelRequestInfo =()=> dispatch=>{
+export const readTravelRequestInfo =(id)=> dispatch=>{
 
-const id = localStorage.getItem("travelId")
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests/${id}`,{
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports/${id}`,{
       headers:{
         Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
       }
@@ -68,7 +67,7 @@ const id = localStorage.getItem("travelId")
       console.log(res.data);
       dispatch({
         type: READ_TRAVELREQUEST_INFO,
-         payload: res.data
+        payload: res.data[0]
       })
   })
   .catch(err=>{

@@ -5,10 +5,10 @@ import { getNotifications } from "../redux/actions/notificationAction";
 import {Link} from "react-router-dom";
 
 const NotificationMenu = (props) => {
+    console.log('djjfdfjflfdlfl');
    
     const {anchorEl, handleClose} = props;
     const {error, notifications, pending} = props.notifications;
-    console.log(notifications);
     return ( 
         <Menu
             id="noti-menu"
@@ -21,7 +21,7 @@ const NotificationMenu = (props) => {
             {notifications.count>0 && notifications.rows.map(notification=>(
                 
                 <Box key={notification.id}>
-                    <MenuItem  onClick={()=>localStorage.setItem("travelId",notification.travelId)} component='a' href={`/notification/${notification.travelId}`}><b>{notification.message}</b></MenuItem>
+                    <MenuItem  onClick={()=>localStorage.setItem("travelId",notification.travelId)} component='a' href={`/notifications/${notification.travelId}`}><b>{notification.message}</b></MenuItem>
                 </Box>
             ))}
             {notifications.count<=0 && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
