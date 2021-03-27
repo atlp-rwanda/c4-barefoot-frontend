@@ -1,11 +1,12 @@
 import React from 'react';
-import { CssBaseline, Paper, AppBar, Toolbar, List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography } from '@material-ui/core';
+import { CssBaseline, Paper, AppBar, Toolbar, List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography, Snackbar } from '@material-ui/core';
 import { getChats, getVisitorsMessages } from '../../redux/actions/ChatAction';
 import { connect } from 'react-redux';
 import MessageList from './Lists/MessageList';
 import NewMessage from './Lists/NewMessage';
 import socket from 'socket.io-client';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const token = localStorage.getItem('barefootUserToken');
 const idData = localStorage.getItem('userId');
@@ -15,9 +16,16 @@ const idData = localStorage.getItem('userId');
 //     loggedInUser:localStorage.getItem('id')
 // })
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function ChatMessages(props){
     // const [chats, setMessages] = React.useState([])
     // const [vMessages, setvMessages] = React.useState([])
+    const [open, setOpen] = React.useState(false)
+    const [error, setError] = React.useState('')
+    const theerror = props.error;
     const io = props.io;
     React.useEffect(()=>{
         io.on('new_message', data => {
@@ -28,6 +36,10 @@ function ChatMessages(props){
         // io.on('request_support', messages=> {
         //     setvMessages([messages])
         // })
+        if(theerror){
+            setError(theerror)
+            setOpen(true)
+        }
         
     }, [])
 
@@ -35,12 +47,23 @@ function ChatMessages(props){
     const user = localStorage.getItem('userName')
     const vMessages = props.vmessages;
     const pending = props.pending;
-    const error = props.error;
+   
+
     
+    
+    const handleClose = () => {
+    
+        setOpen(false);
+    };
 
     return (
         <React.Fragment>
             <CssBaseline />
+            {error && <Snackbar open={open} autoHideDuration={7000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error">
+                {error}
+                </Alert>
+            </Snackbar>}
             {pending === true ? <LinearProgress/> : <Paper square container="true">
                 
                 <Paper>

@@ -10,7 +10,7 @@ const initialState = {
     response: {},
     supportresponse: [],
     allusers: [],
-    error: 'error',
+    error: '',
     pending: false
 }
 
