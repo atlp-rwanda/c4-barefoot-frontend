@@ -95,11 +95,11 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 ...state,
                 selectedLocations: [...state.selectedLocations, action.payload],
             }
-        case REMOVE_MULTI_CITY_TRAVEL_REQUEST:
-            return {
-                ...state,
-                selectedLocations: action.payload,
-            }
+        // case REMOVE_MULTI_CITY_TRAVEL_REQUEST:
+        //     return {
+        //         ...state,
+        //         selectedLocations: action.payload,
+        //     }
         case SELECT_ACCOMMODATION:
             return {
                 ...state,
