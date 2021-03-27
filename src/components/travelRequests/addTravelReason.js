@@ -83,10 +83,6 @@ function AddTravelReason(props) {
                     rows={10}
                     className={classes.textField}
                 />
-                {/* <Grid item contained className={classes.buttons}>
-                    <Button variant="contained" color="secondary" onClick={handleCancelTravelRequest} className={classes.cancelButton}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSendTravelRequest} color="primary">Send Travel Request</Button>
-                </Grid> */}
             </Grid>
 
         </React.Fragment>

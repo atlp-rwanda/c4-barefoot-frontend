@@ -5721,3 +5721,20 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
   </WithStyles(ForwardRef(Grid))>
 </WithStyles(ForwardRef(Grid))>
 `;
+
+exports[`<addTravelReason /> if it matches snapshot 1`] = `
+<addTravelReason
+  CheckReturningAction={[MockFunction]}
+  addMultiCityAction={[MockFunction]}
+  addTravelReasonAction={[MockFunction]}
+  checkTravelDatesAction={[MockFunction]}
+  closeSnackbar={[MockFunction]}
+  getLocationsAction={[MockFunction]}
+  handleErrorsAction={[MockFunction]}
+  openModalAction={[MockFunction]}
+  removeMultiCityAction={[MockFunction]}
+  searchCurrentLocationAction={[MockFunction]}
+  selectAccommodationAction={[MockFunction]}
+  sendTravelRequestAction={[MockFunction]}
+/>
+`;
