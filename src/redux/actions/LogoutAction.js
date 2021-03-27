@@ -11,7 +11,7 @@ export const logoutAction = (authToken) => dispatch => {
         type: LOGOUT_PENDING
     })
 
-    return axios.post('http://localhost:5000/api/v1//user/logout').then(() => {
+    return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/logout`).then(() => {
         localStorage.removeItem('barefootUserToken');
         localStorage.removeItem('id')
         dispatch({
