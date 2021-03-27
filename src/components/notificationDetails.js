@@ -130,31 +130,7 @@ const NotificationDetails=(props)=>{
 
             </Box>
             </Box>
-            {/* <Box className={ classes.actions}>
-                <Box>
-                    <Button color="primary" onClick={ ()=> handleSingleTravel(request.travelRequestInfo.travelId, 'view')}>View more</Button>
-                </Box>
-                <Box>
-                   {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}
-                   {category==='done' && (
-                        <Box 
-                            className={classes.badge} 
-                            style={{backgroundColor: 'blue'}} 
-                        >
-                            <Typography variant='subtitle1' component='h6'>Done</Typography>
-                        </Box>
-                    )}
-                    {category==='rejected' && (
-                        <Box 
-                            className={classes.badge} 
-                            style={{backgroundColor: travel.status === 'canceled'? 'black' : '#CE2020'}} 
-                        >
-                            <Typography variant='subtitle1' component='h6' style={{textTransform: 'capitalize'}}>{travel.status}</Typography>
-                        </Box>
-                    )}
-
-                </Box>
-            </Box> */}
+            
         </Grid>
     </Grid>
         }
