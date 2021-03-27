@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {readTravelRequestInfo} from "../redux/actions/notificationAction";
+import {readTravelRequestInfo, getNotifications} from "../redux/actions/notificationAction";
 import {Typography, Card, Paper,Button, Skeleton, Container, makeStyles, Grid, Box}  from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Moment from 'react-moment'
@@ -83,10 +83,12 @@ const NotificationDetails=(props)=>{
     
     const { id } = props.match.params;
     React.useEffect(()=>{
-        props.readTravelRequestInfo(id)
+        props.readTravelRequestInfo(id);
+        
        
         setTimeout(()=>{
             setLoading(false);
+            props.getNotifications();
         }, 5000)
     }, [])
     const request=props.request
@@ -162,4 +164,4 @@ const NotificationDetails=(props)=>{
 const mapStateToProps=(state)=>({
    request:state.notifications.travelRequest
 })
-export default connect(mapStateToProps,{readTravelRequestInfo})(NotificationDetails);
+export default connect(mapStateToProps,{readTravelRequestInfo, getNotifications})(NotificationDetails);

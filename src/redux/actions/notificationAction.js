@@ -64,11 +64,18 @@ export const readTravelRequestInfo =(id)=> dispatch=>{
       }
   })
   .then(res=>{
-      console.log(res.data);
+    
       dispatch({
         type: READ_TRAVELREQUEST_INFO,
         payload: res.data[0]
       })
+      fetch(`${process.env.REACT_APP_BACKEND_LINK}/notification/${localStorage.getItem('notificationId')}`,{
+        method: 'PUT',
+        headers:{
+            Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
+          }
+      })
+      
   })
   .catch(err=>{
       console.log(err.message)

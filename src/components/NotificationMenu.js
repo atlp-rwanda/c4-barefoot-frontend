@@ -21,7 +21,7 @@ const NotificationMenu = (props) => {
             {notifications.count>0 && notifications.rows.map(notification=>(
                 
                 <Box key={notification.id}>
-                    <MenuItem  onClick={()=>localStorage.setItem("travelId",notification.travelId)} component='a' href={`/notifications/${notification.travelId}`}><b>{notification.message}</b></MenuItem>
+                    <MenuItem  onClick={()=>localStorage.setItem("notificationId",notification.id)} component='a' href={`/notifications/${notification.travelId}`}><b>{notification.message}</b></MenuItem>
                 </Box>
             ))}
             {notifications.count<=0 && <MenuItem onClick={handleClose}>No notifications</MenuItem>}
