@@ -2,6 +2,7 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography, Link } from '@material-ui/core'
 import { PersonAddOutlined, PersonOutlined } from '@material-ui/icons'
 import SideDrawer from './SideDrawer'
+import MultipleLanguages from './MultiLang/MultiLang'
 
 const navLinks = [
     { title: 'Login', path: '/login' },
@@ -34,7 +35,7 @@ function Header() {
                     </div>
                     <div className="navlinks">
                         <ul>
-                            <li><Link to="/">Home</Link></li>
+                            <li> <Link to="/login"><MultipleLanguages/></Link></li>
                             <li> <Link to="/login">Login</Link></li>
                             <li><Link to="/signup">Signup</Link></li>
                         </ul>
