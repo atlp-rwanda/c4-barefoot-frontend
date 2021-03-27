@@ -1,18 +1,13 @@
-import {FETCH_LOCATIONS_PENDING, FETCH_LOCATIONS_SUCCESS, FETCH_LOCATIONS_ERROR} from '../actions/fetchLocationsAction'
+import {FETCH_LOCATIONS_SUCCESS, FETCH_LOCATIONS_ERROR} from '../actions/fetchLocationsAction'
 
 const initialState = {
-  pending: false,
+  pending: true,
   locations: [],
   error: null
 }
 
 export function fetchLocationsReducer(state = initialState, action){
   switch(action.type){
-    case FETCH_LOCATIONS_PENDING:
-      return {
-        ...state,
-        pending: true
-      }
     case FETCH_LOCATIONS_SUCCESS:
       return {
         ...state,

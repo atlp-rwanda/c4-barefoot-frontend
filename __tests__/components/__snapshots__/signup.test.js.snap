@@ -223,8 +223,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -260,8 +258,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -297,8 +293,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -334,8 +328,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -371,8 +363,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -408,8 +398,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
             },
             "spec": Object {
               "abortEarly": true,
-              "label": undefined,
-              "meta": undefined,
               "nullable": false,
               "presence": "required",
               "recursive": true,
@@ -428,8 +416,6 @@ exports[`Signup Signup Rendering renders correctly first step 1`] = `
         },
         "spec": Object {
           "abortEarly": true,
-          "label": undefined,
-          "meta": undefined,
           "nullable": false,
           "presence": "optional",
           "recursive": true,

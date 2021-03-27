@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` <ApprovedReports /> It should render the ApprovedReports component 1`] = `
+<Connect(ReportsView)
+  category="approved"
+/>
+`;
