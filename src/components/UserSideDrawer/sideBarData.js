@@ -7,6 +7,7 @@ import CachedIcon from '@material-ui/icons/Cached';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CancelIcon from '@material-ui/icons/Cancel';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import {subs} from './Drawer';
 export const sideBarData = [
     {
         title:"Dashboard",
@@ -90,13 +91,7 @@ export const sideBarData = [
     {
         title:"Trip History",
         icon:<CommuteIcon />,
-        link:"/trip-history",
-        subs: [
-            {
-                title: 'Nairobi',
-                icon: '',
-                link: "/individual-history"
-            }
-        ]
+        link:"",
+        subs
     }
 ]

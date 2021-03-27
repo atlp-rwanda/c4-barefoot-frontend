@@ -4,11 +4,11 @@ const initialState = {
   pending: true,
   trips: [],
   error: null,
-  acc: {}
+  acc: {},
+  locations: {},
 }
 
 export function fetchTripHistory(state = initialState, action){
-  console.log("ASASASASA",action.type)
   switch(action.type){
     case FETCH_TRIP_HISTORY_PENDING:
       return {

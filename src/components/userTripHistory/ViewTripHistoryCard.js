@@ -4,6 +4,8 @@ import {getTripHistory} from '../../redux/actions/userTravelHistoryAction';
 import {Link} from 'react-router-dom';
 import {connect } from 'react-redux';
 import {getAccommodation} from '../../redux/actions/userTravelHistoryAction'
+import {useParams} from 'react-router-dom';
+import moment from 'moment'
 
 
 const useStyle = makeStyles(()=>({
@@ -25,24 +27,17 @@ const useStyle = makeStyles(()=>({
 }))
 
 function ViewTripHistoryCard(props) {
-    
-    // const dispatch =useDispatch()
-    // const trips = useSelector(state=>state.tripHistory)
+    const {location} = useParams()
     
    useEffect(()=>{
-       props.getTripHistory() 
+        props.getTripHistory(location) 
+        props.getAccommodation()
     },[])
 
     const trips =props.trips
-    console.log('trips',trips);
     const classes = useStyle()
-    React.useEffect(()=>{
-        props.getAccommodation()
-    },[])
     const acc = props.acc
-    console.log(acc)
 
-    
     return (
         <div>
 
@@ -56,11 +51,15 @@ function ViewTripHistoryCard(props) {
             <Typography>Destination: {trip.destination}</Typography>
             <Typography>Origin City: {trip.originCity}</Typography>
             <Typography>Reason: {trip.reason}</Typography>
+            <Typography>From: {moment(trip.tripDate).format('DD/MMM/YYYY')}</Typography> 
+            <Typography>To: {moment(trip.returnDate).format('DD/MMM/YYYY')}</Typography>
             <Button color= 'primary' variant='contained' onClick={()=> {
                 localStorage.setItem('accId', trip.accommodationId);
                 localStorage.setItem('destination', trip.destination);
                 localStorage.setItem('origin', trip.originCity);
                 localStorage.setItem('reason', trip.reason)
+                localStorage.setItem('departure', trip.tripDate)
+                localStorage.setItem('returning', trip.returnDate)
             }}><Link to='/individual-history' style={{color: 'white', textDecoration: 'none'}}>Details</Link></Button>
         </Paper>
 

@@ -2,38 +2,22 @@ import { Typography, Card, CardMedia, CardActionArea, CardContent, Divider } fro
 import React from 'react'
 import {connect} from 'react-redux'
 import {getAccommodation} from '../../redux/actions/userTravelHistoryAction'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import moment from 'moment'
+import './style.css';
 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        padding: 15,
-        width: '50%'
-      },
-      details: {
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      content: {
-        flex: '1 0 auto',
-      },
-      cover: {
-        width: 250,
-      },
-      cover1: {
-        width: 250,
-      },
-  });
+
 
 function IndividualHistory(props) {
     React.useEffect(()=>{
         props.getAccommodation()
     },[])
     const acc = props.acc
-    const classes = useStyles();
     const dest = localStorage.getItem('destination')
     const origin = localStorage.getItem('origin')
     const reason = localStorage.getItem('reason')
+    const departure= localStorage.getItem('departure')
+    const returning =localStorage.getItem('returning')
     return (
  
         <div>
@@ -42,33 +26,36 @@ function IndividualHistory(props) {
                 <div>
                 <Typography variant='h5' style={{textAlign: 'center', weight: 'bolder'}}>Trip History</Typography>
                 <Divider></Divider>
-                <center><Card className={classes.root}>
+                <center><Card className='root' md={6} sm={9} xs={11}>
                 <CardMedia
-                        className={classes.cover1}
+                        className='cover1'
                         image={acc.photos}
                         title="Trip image"
                     />
-                <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <div className='details'>
+                    <CardContent className='content'>
                     <Typography component="h5" variant="h5">
-                        Trip History
+                        Trip Request
+                        <Divider/>
+    
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                         Destination: {dest}
                     </Typography>
                     <Typography>Origin City: {origin}</Typography>
                     <Typography>Reason: {reason}</Typography>
+                    <Typography>From: {moment(departure).format('DD/MMM/YYYY')}</Typography>
+                    <Typography>To: {moment(returning).format('DD/MMM/YYYY')}</Typography>
                     </CardContent>
-                    <div className={classes.controls}>
-                    </div>
                 </div>
                 </Card>
-                <Card className={classes.root}>
+                <Card className='root'>
                 
-                <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <div className='details'>
+                    <CardContent className='content'>
                     <Typography component="h5" variant="h5">
-                        Accomodation used
+                        Accomodation Booked
+                        <Divider />
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                         Country: {acc.country}
@@ -76,11 +63,9 @@ function IndividualHistory(props) {
                     <Typography>Street: {acc.streetAddress}</Typography>
                     <Typography>Type: {acc.title}</Typography>
                     </CardContent>
-                    <div className={classes.controls}>
-                    </div>
                 </div>
                     <CardMedia
-                        className={classes.cover}
+                        className='cover'
                         image={acc.photos}
                         title="Accommodation image"
                     />

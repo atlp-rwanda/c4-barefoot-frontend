@@ -61,6 +61,12 @@ const Routes = () => {
           path="/travel-history"
         />
         <ProtectedRoute
+          component={ViewTripHistoryCard}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travel-history/:location"
+        />
+        <ProtectedRoute
           component={IndividualHistory}
           exact
           layout={AuthorizedUserLayout}

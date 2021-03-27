@@ -9,8 +9,7 @@ export const GET_LOCATIONS_TRAVELLED = 'GET_LOCATIONS_TRAVELLED'
 const token = window.localStorage.getItem('barefootUserToken')
 
 
-const location = 'Nairobi'
-export const getTripHistory = () => (dispatch) => {
+export const getTripHistory = (location) => (dispatch) => {
     dispatch({type:FETCH_TRIP_HISTORY_PENDING})
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips/${location}`,{
     headers: {
@@ -46,16 +45,34 @@ export const getAccommodation = () => dispatch => {
   .catch(err => console.log(err.message))
 }
 
+// export const getTripLocations = () => dispatch => {
+//   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
+//     headers: {
+//       Authorization: `Bearer ${token}`
+//     }
+//   })
+//   .then(res => {
+//     console.log('bcbcbcbbcbbbbcbbcbbc', res.data)
+//     dispatch({
+//       type: GET_LOCATIONS_TRAVELLED,
+//       payload: res.data
+//   })
+//   })
+//   .catch(err => console.log(err.message))
+// }
 export const getTripLocations = () => dispatch => {
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
     headers: {
-      Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`
     }
   })
-  .then(res => dispatch({
+  .then(res=> {
+    console.log(res.data.countedTrips)
+    dispatch({
       type: GET_LOCATIONS_TRAVELLED,
-      payload: res.data
-  }))
+      payload: res.data.countedTrips
+    })
+  })
   .catch(err => console.log(err.message))
 }
 

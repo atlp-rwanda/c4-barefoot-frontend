@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
 import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
-import {sideBarData} from "./sideBarData";
-import { Link } from 'react-router-dom';
+// import {sideBarData} from "./sideBarData";
+import { Link, useHistory } from 'react-router-dom';
 import {getTripLocations} from '../../redux/actions/userTravelHistoryAction';
 import {connect} from 'react-redux'
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
+import GroupIcon from '@material-ui/icons/Group';
+import CommuteIcon from '@material-ui/icons/Commute';
+import CachedIcon from '@material-ui/icons/Cached';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import CancelIcon from '@material-ui/icons/Cancel';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+
+
  
 const useStyles = makeStyles( theme =>({
   root: {
@@ -46,9 +56,112 @@ const useStyles = makeStyles( theme =>({
   },
 }))
 function DrawerComponent(props) {
-    const classes = useStyles()
+    const classes = useStyles();
+    const history = useHistory();
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
+    const locations = props.locations
+
+    React.useEffect(()=> {
+      props.getTripLocations()
+    }, [])
+  
+ const subs= Object.keys(locations).map(key=>( 
+  {
+  title: `${key}: ${locations[key]}`,
+  icon: '',
+  link: `/travel-history/${key.split(',')[0]}`
+}))
+    
+
+     const sideBarData = [
+      {
+          title:"Dashboard",
+          icon:<DashboardIcon />,
+          link:"/home",
+          subs: []
+      },
+        {
+           title:"Accomodation",
+          icon:<AddLocationIcon />,
+          link:"/accomodation",
+          subs: []
+      },
+      {
+          title:"Travel requests",
+          icon:<CommuteIcon />,
+          link:"/travelRequests",
+          subs: [
+              {
+                  title: 'Create Travel',
+                  icon: <CachedIcon />,
+                  link: "/travelReqests"
+              },
+              {
+                  title: 'List of Travel Requests',
+                  icon: <ThumbUpIcon />,
+                  link: "/travelRequests",
+                  subs: [
+                      {
+                          title: 'Pending',
+                          icon: <CachedIcon />,
+                          link: "/travelRequests"
+                      },
+                      {
+                          title: 'Approved',
+                          icon: <ThumbUpIcon />,
+                          link: "/travelRequests/approved"
+                      },
+                      {
+                          title: 'Canceled & Rejected',
+                          icon: <CancelIcon />,
+                          link: "/travelRequests/canceled"
+                      },
+                      {
+                          title: 'Done',
+                          icon: <DoneAllIcon />,
+                          link: "/travelRequests/done"
+                      },
+                  ]
+              },
+          ]
+      },
+      {
+          title:"Requester Reports",
+          icon:<CommuteIcon />,
+          link:"/managerTravel",
+          subs: [
+              {
+                  title: 'Pending',
+                  icon: <CachedIcon />,
+                  link: "/managerTravel"
+              },
+              {
+                  title: 'Approved',
+                  icon: <ThumbUpIcon />,
+                  link: "/managerTravel/approved"
+              },
+              {
+                  title: 'Canceled & Rejected',
+                  icon: <CancelIcon />,
+                  link: "/managerTravel/canceled"
+              },
+              {
+                  title: 'Done',
+                  icon: <DoneAllIcon />,
+                  link: "/managerTravel/done"
+              },
+          ]
+      },
+  
+      {
+          title:"Trip History",
+          icon:<CommuteIcon />,
+          link:"/travel-history",
+          subs
+      }
+  ]
+  
     const [drop, setDrop] = React.useState( sideBarData.map( link=>{
         return {
           item: link.title,
@@ -56,11 +169,10 @@ function DrawerComponent(props) {
         }
     })
     );
-    const locations = props.locations
-    console.log(locations)
+
+    const goTo = link => {history.push(link); console.log('Function called!');}
+
     const [collapse,setCollapse]= useState(false);
-    // console.log(sideBarData)
-    // console.log(drop);
     const checkIsOpen= ( title =>{
       let isOpen= false;
       drop.forEach( link => {
@@ -68,7 +180,6 @@ function DrawerComponent(props) {
           isOpen= link.open
         }
       })
-      // console.log(title + ':' + isOpen);
       return isOpen;
     });
     // checkIsOpen('Travel requests');
@@ -109,7 +220,7 @@ function DrawerComponent(props) {
         <Avatar className={classes.paper}>
           <AccountCircle fontSize='large' className={classes.listIcons}/>
         </Avatar>
-        <Typography>User Name</Typography>
+        <Typography>{localStorage.getItem('userProfile').username}</Typography>
       </Box>
       <Divider/>
       <List>
@@ -137,14 +248,14 @@ function DrawerComponent(props) {
                     <Collapse in={checkIsOpen(list.title)} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
                         { list.subs.map((sub)=>(
-                          <Link to={sub.link} key={sub.title} style={{textDecoration: 'none'}} onClick={toggleDrawer('left', false)} >
+                          <a href={sub.link} key={sub.title} style={{textDecoration: 'none'}} onClick={toggleDrawer('left', false)} >
                             <ListItem button className={classes.subList}>
                               <ListItemIcon className={classes.listIcons}>
                                 {sub.icon}
                               </ListItemIcon>
                               <ListItemText> {sub.title} </ListItemText>
                             </ListItem>
-                          </Link>
+                          </a>
                         ))}
                       </List>
                     </Collapse>
