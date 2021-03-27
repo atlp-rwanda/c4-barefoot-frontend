@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import MessageList from './Lists/MessageList';
 import NewMessage from './Lists/NewMessage';
 import socket from 'socket.io-client';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const token = localStorage.getItem('barefootUserToken');
 const idData = localStorage.getItem('userId');
@@ -33,12 +34,14 @@ function ChatMessages(props){
     const chats = props.chats;
     const user = localStorage.getItem('userName')
     const vMessages = props.vmessages;
+    const pending = props.pending;
+    const error = props.error;
     
 
     return (
         <React.Fragment>
             <CssBaseline />
-            <Paper square container="true">
+            {pending === true ? <LinearProgress/> : <Paper square container="true">
                 
                 <Paper>
                     <Toolbar>
@@ -51,15 +54,17 @@ function ChatMessages(props){
                     </Toolbar>
                 </Paper>
                 <MessageList chats={chats} vmessages={vMessages}/>
-             </Paper>
-            <NewMessage io={io}/>
+             </Paper>}
+            {pending === true ? <LinearProgress style={{boxSizing: 'border-box', padding: 50, width: '100%'}}/>  :<NewMessage io={io}/>}
         </React.Fragment>
     )
 }
 
 const mapStateToProps= state => ({
     chats: state.chat.allchats,
-    vmessages: state.chat.vmessages
+    vmessages: state.chat.vmessages,
+    pending: state.chat.pending,
+    error: state.chat.error
 })
 
 export default connect(mapStateToProps, { getChats, getVisitorsMessages })(ChatMessages);

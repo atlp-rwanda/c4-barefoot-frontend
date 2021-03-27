@@ -10,55 +10,86 @@ const initialState = {
     response: {},
     supportresponse: [],
     allusers: [],
-    error: ''
+    error: 'error',
+    pending: false
 }
 
 export default function ChatReducer (state = initialState, action) {
     switch (action.type) {
+        case CHAT_PENDING:
+            return {
+                ...state,
+                pending: true,
+                error: ''
+            }
+        case CHAT_ERROR:
+            return {
+                ...state,
+                pending: false,
+                error: action.payload
+            }
         case CHATTED_USERS:
             return {
                 ...state,
-                users: action.payload
+                pending: false,
+                users: action.payload,
+                error: ''
             }
         case ALL_USERS:
             return {
                 ...state,
-                allusers: action.payload
+                pending: false,
+                allusers: action.payload,
+                error: ''
             }
         case NEW_MESSAGE:
             return {
                 ...state,
-                chat: action.payload
+                pending: false,
+                chat: action.payload,
+                error: ''
             }
         case GETALL_CHATS:
             return {
                 ...state,
-                allchats: action.payload
+                pending: false,
+                allchats: action.payload,
+                error: ''
             }
         case VISITOR_MESSAGE:
             return {
                 ...state,
-                message: action.payload
+                pending: false,
+                message: action.payload,
+                error: ''
             }
         case GET_VISITORS:
             return {
                 ...state,
-                visitors: action.payload
+                pending: false,
+                visitors: action.payload,
+                error: ''
             }
         case GETV_MESSAGES:
             return {
                 ...state,
-                vmessages: action.payload
+                pending: false,
+                vmessages: action.payload,
+                error: ''
             }
         case SUPPORT_RESPONDS:
             return {
                 ...state,
-                response: action.payload
+                pending: false,
+                response: action.payload,
+                error: ''
             }
         case GETSUPPORT_RESPONSE:
             return {
                 ...state,
-                supportresponse: action.payload
+                pending: false,
+                supportresponse: action.payload,
+                error: ''
             }
         default:
             return state

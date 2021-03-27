@@ -19,7 +19,8 @@ const ChatRoom = () => {
     }, [])
     const classes = useStyles();
     return (
-        <Grid container spacing={1}>
+        <div>
+            <Grid container spacing={1}>
             <Grid item xs={12} sm={4} md={2}>
                 <ChatUsers/>
             </Grid>
@@ -27,6 +28,7 @@ const ChatRoom = () => {
                 <ChatMessages io={io}/>
             </Grid> 
         </Grid>
+        </div>
     )
 }
 

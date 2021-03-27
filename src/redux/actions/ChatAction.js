@@ -15,6 +15,7 @@ export const ALL_USERS = 'ALL_USERS';
 
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken')
     return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat`, messageData,{
         headers: { 
@@ -26,11 +27,17 @@ export const newMessageAction = (messageData) => dispatch => {
             payload: res.data
         })
     )
-    .catch(err => console.log(err.message))
+    .catch(err => {
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
+    })
 }
 
 // Get list of people you've chatted with
 export const fetchUsersChat = () => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken');
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/chatlist`, {
         headers: {
@@ -43,23 +50,16 @@ export const fetchUsersChat = () => dispatch => {
         })
     )
     .catch(err => {
-        if(err.message === "Network Error"){
-            dispatch({
-                type: 'CHATTED_USERS',
-                error: 'Network Error'
-            })
-        }
-        if(err.response){
-            dispatch({
-                type: 'CHATTED_USERS',
-                error: err.response
-            })
-        }
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
     })
 }
 
 // Get list of all users
 export const fetchUsers = () => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken');
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/users`, {
         headers: {
@@ -73,12 +73,16 @@ export const fetchUsers = () => dispatch => {
         })
     })
     .catch(err => {
-        console.log(err.message)
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
     })
 }
 
 //Get all chats between two users.
 export const getChats = () => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken');
     const idData = localStorage.getItem('userId');
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat?id=${idData}`, {
@@ -92,11 +96,17 @@ export const getChats = () => dispatch => {
             payload: res.data.chats
         })
     })
-    .catch(err => console.log(err.message))
+    .catch(err => {
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
+    })
 }
 
 // post a new visitor's message
 export const visitorsMessage = (message) => dispatch =>{
+    dispatch({type: CHAT_PENDING})
     return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitor`, message)
     .then(res => dispatch({
         type: VISITOR_MESSAGE,
@@ -119,11 +129,17 @@ export const getVisitorsList = () => dispatch => {
             payload: res.data
         })
     })
-    .catch(err => console.log(err.message))
+    .catch(err => {
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
+    })
 }
 
 //Get visitor's messages 
 export const getVisitorsMessages = () => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken');
     const visitor = localStorage.getItem('userId')
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/support?visitor=${visitor}`, {
@@ -137,11 +153,15 @@ export const getVisitorsMessages = () => dispatch => {
             payload: res.data
         })
     })
-    .catch(err => console.log(err.message))
+    .catch(err => dispatch({
+        type: 'CHAT_ERROR',
+        payload: err.message
+    }))
 }
 
 //support responds to the visitor
 export const supportResponds = (message) => dispatch =>{
+    dispatch({type: CHAT_PENDING})
     const authToken = localStorage.getItem('barefootUserToken');
     return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/chat/support`, message, {
         headers: {
@@ -152,15 +172,25 @@ export const supportResponds = (message) => dispatch =>{
         type: SUPPORT_RESPONDS,
         payload: res.data
     }))
-    .catch(err => console.log(err.message))
+    .catch(err => {
+        dispatch({
+            type: 'CHAT_ERROR',
+            payload: err.message
+        })
+    })
 }
 
 // Visitor gets support response
 export const getSupportResponse = () => dispatch => {
+    dispatch({type: CHAT_PENDING})
     const visitor = localStorage.getItem('visitorEmail')
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/visitor?visitor=${visitor}`)
     .then(res => dispatch({
         type: GETSUPPORT_RESPONSE,
         payload: res.data
+    }))
+    .catch(err => dispatch({
+        type: 'CHAT_ERROR',
+        payload: err.message
     }))
 }
