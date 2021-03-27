@@ -9,18 +9,18 @@ import socket from 'socket.io-client';
 const token = localStorage.getItem('barefootUserToken');
 const idData = localStorage.getItem('userId');
 
-const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
-    query: token,
-    loggedInUser:localStorage.getItem('id')
-})
+// const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
+//     query: token,
+//     loggedInUser:localStorage.getItem('id')
+// })
 
 function ChatMessages(props){
     // const [chats, setMessages] = React.useState([])
     // const [vMessages, setvMessages] = React.useState([])
+    const io = props.io;
     React.useEffect(()=>{
-        
         io.on('new_message', data => {
-            // setMessages([messages])
+            setMessages([messages])
             console.log(data)
         });
         props.getChats();
@@ -33,6 +33,7 @@ function ChatMessages(props){
     const chats = props.chats;
     const user = localStorage.getItem('userName')
     const vMessages = props.vmessages;
+    
 
     return (
         <React.Fragment>
@@ -51,7 +52,7 @@ function ChatMessages(props){
                 </Paper>
                 <MessageList chats={chats} vmessages={vMessages}/>
              </Paper>
-            <NewMessage/>
+            <NewMessage io={io}/>
         </React.Fragment>
     )
 }

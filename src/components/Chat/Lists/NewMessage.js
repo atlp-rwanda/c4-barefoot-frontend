@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText, CircularProgress, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -11,10 +11,11 @@ import socket from 'socket.io-client';
 const token = localStorage.getItem('barefootUserToken');
 const idData = localStorage.getItem('userId');
 
-const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
-    query: token,
-    loggedInUser:localStorage.getItem('id')
-})
+// const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
+//     query: token,
+//     loggedInUser:localStorage.getItem('id')
+// })
+
 
 function NewMessage(props) {
     const [message, setMessage] = React.useState('');
@@ -22,11 +23,17 @@ function NewMessage(props) {
     const [image, setImage] = React.useState('')
     const [feedbackText, setFeedbackText] = React.useState('')
     const [loading, setLoading] = React.useState(false)
-    const [vimage, setvImage] = React.useState('')
+    const [vimage, setvImage] = React.useState('');
+    const [sentMessage, setSentMessage] = React.useState('')
+    const io = props.io
+    useEffect(()=>{
+            io.emit('send_message', sentMessage)
+    }, [])
 
     const senderId = localStorage.getItem('id');
     const handleClick = (e) => {
         const receiverId = localStorage.getItem('userId')
+       
         if(message != ''){ 
             const data = {
                 sender: senderId,
@@ -35,11 +42,13 @@ function NewMessage(props) {
                 type: 'plain-text'
             }
             props.newMessageAction(data).then(() =>{
+                setSentMessage(data)
                 setMessage('')
                 setFeedbackText("Message sent!")
                 props.getChats()
             }); 
-            io.emit('send_message', data)
+           
+            
         }else if(image != ''){
             const messageData = {
                 receiver: receiverId,

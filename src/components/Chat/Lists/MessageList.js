@@ -6,9 +6,6 @@ import { Skeleton } from '@material-ui/lab'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 function MessageList(props) {
     const receiver = localStorage.getItem('userId');
