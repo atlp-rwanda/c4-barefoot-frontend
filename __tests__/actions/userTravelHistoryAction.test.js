@@ -44,7 +44,7 @@ describe('Fetch trip history actions', () => {
 
     return store.dispatch(getTripHistory()).then(() => {
       const expectedActions = store.getActions();
-      expect(expectedActions[0].type).toEqual('FETCH_TRIP_HISTORY_PENDING ')
+      expect(expectedActions[0].type).toEqual('FETCH_TRIP_HISTORY_PENDING')
     })
   })
   it('Creates GET_LOCATIONS_TRAVELLED after task is successful', () => {

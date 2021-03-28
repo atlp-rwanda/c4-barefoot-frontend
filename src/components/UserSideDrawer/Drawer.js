@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
-import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List,LinearProgress, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 // import {sideBarData} from "./sideBarData";
 import { Link, useHistory } from 'react-router-dom';
 import {getTripLocations} from '../../redux/actions/userTravelHistoryAction';
@@ -61,6 +61,7 @@ function DrawerComponent(props) {
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
     const locations = props.locations
+    const pending = props.pending
 
     React.useEffect(()=> {
       props.getTripLocations()
@@ -267,6 +268,7 @@ function DrawerComponent(props) {
     )
     return (
         <React.Fragment>
+        {pending === true && <LinearProgress />}
          <IconButton edge='start' onClick={toggleDrawer('left', true)}>
             <Menu fontSize='large' className = {classes.menuIcon} />
           </IconButton>
@@ -282,7 +284,8 @@ function DrawerComponent(props) {
 }
 
 const mapStateToProps = state => ({
-  locations: state.tripHistory.locations
+  locations: state.tripHistory.locations,
+  pending: state.tripHistory.pending
 })
 
 export default connect(mapStateToProps, {getTripLocations})(DrawerComponent)

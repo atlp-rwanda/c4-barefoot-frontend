@@ -1,7 +1,7 @@
 import {FETCH_TRIP_HISTORY_SUCCESS, FETCH_TRIP_HISTORY_ERROR,FETCH_TRIP_HISTORY_PENDING, GET_SINGLE_ACC, GET_LOCATIONS_TRAVELLED} from '../actions/userTravelHistoryAction'
 
 const initialState = {
-  pending: true,
+  pending: false,
   trips: [],
   error: null,
   acc: {},
@@ -25,11 +25,13 @@ export function fetchTripHistory(state = initialState, action){
     case GET_SINGLE_ACC:
       return {
         ...state,
+        pending:false,
         acc: action.payload
       }
     case GET_LOCATIONS_TRAVELLED:
       return {
         ...state,
+        pending:false,
         locations: action.payload
       }
     default:

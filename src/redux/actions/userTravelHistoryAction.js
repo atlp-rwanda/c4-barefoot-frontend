@@ -32,6 +32,7 @@ export const getTripHistory = (location) => (dispatch) => {
 }
 
 export const getAccommodation = () => dispatch => {
+  dispatch({type:FETCH_TRIP_HISTORY_PENDING})
   const id = localStorage.getItem('accId')
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations/${id}`, {
     headers: {
@@ -39,6 +40,7 @@ export const getAccommodation = () => dispatch => {
     }
   })
   .then(res => dispatch({
+
       type: GET_SINGLE_ACC,
       payload: res.data.singleAccommodation
   }))
@@ -61,6 +63,7 @@ export const getAccommodation = () => dispatch => {
 //   .catch(err => console.log(err.message))
 // }
 export const getTripLocations = () => dispatch => {
+  dispatch({type:FETCH_TRIP_HISTORY_PENDING})
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
     headers: {
         Authorization: `Bearer ${token}`
