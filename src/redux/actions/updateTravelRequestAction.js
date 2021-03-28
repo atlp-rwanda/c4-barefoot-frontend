@@ -8,13 +8,14 @@ export const UPDATE_TRAVEL_REQUEST_CLEAR= 'UPDATE_TRAVEL_REQUEST_CLEAR'
 
 
 const token = localStorage.getItem('barefootUserToken')
+const lang = localStorage.getItem('lang')
 
 export const updateSingleTravelRequest = (id, action) => dispatch => {
     console.log(token)
     dispatch({
         type:UPDATE_TRAVEL_REQUEST_LOADING
     })
-    return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, 
+    return axios.put(`${process.env.REACT_APP_BACKEND_LINK}/directReports?lang=${lang}`, 
         {
             travelRequestId:id,
             action

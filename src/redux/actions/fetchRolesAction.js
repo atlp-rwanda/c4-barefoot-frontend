@@ -13,8 +13,10 @@ export const UPDATE_ROLE="UPDATE_ROLE"
 export const UPDATE_ROLE_FAILED="UPDATE_ROLE_FAILED"
 export const CREATE_ROLE_PENDING = 'CREATE_ROLE_PENDING'
 
+const lang = localStorage.getItem('lang')
+
 export const getRoles = () => dispatch => {
-  return API.get(`/admin/roles`, {
+  return API.get(`/admin/roles?lang=${lang}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -38,7 +40,7 @@ export const updateRoleAction =(id,data)=>dispatch=>{
   dispatch({
     type: CREATE_ROLE_PENDING
   })
-  return API.put(`/admin/roles/${id}`,data,{
+  return API.put(`/admin/roles/${id}?lang=${lang}`,data,{
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -60,7 +62,7 @@ export const deleteRoleAction = (payload, title) => dispatch => {
   dispatch({
     type: DELETE_ROLE_PENDING
   })
-  return API.delete('/admin/roles',
+  return API.delete(`/admin/roles?lang=${lang}`,
   {
     headers: {
       Authorization: `Bearer ${token}`,

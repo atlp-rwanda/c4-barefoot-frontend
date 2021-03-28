@@ -5,11 +5,13 @@ export const LoGIN_LOADING = 'LOADING';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const DISPLAY_SKELETONS = 'DISPLAY_SKELETONS';
 
+const lang = localStorage.getItem('lang')
+
 export const loginAction = (userCredentials) => dispatch => {
     dispatch({
         type: LoGIN_LOADING
     });
-    return API.post('/user/login',
+    return API.post(`/user/login?lang=${lang}`,
         userCredentials
     )
         .then((res) => {

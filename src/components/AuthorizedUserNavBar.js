@@ -6,7 +6,6 @@ import MultipleLanguages from './MultiLang/MultiLang'
 
 const navLinks = [
     { title: 'Logout', path: '/logout' },
-    {title: <MultipleLanguages/>}
 ]
 
 const useStyles = makeStyles(theme => ({

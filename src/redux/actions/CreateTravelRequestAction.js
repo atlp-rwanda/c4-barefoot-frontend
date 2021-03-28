@@ -19,6 +19,8 @@ export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
 import axios from 'axios';
 
+const lang = localStorage.getItem('lang')
+
 export const CheckReturningAction = (data) => dispatch =>{
     return dispatch({
         type: RETURNING,
@@ -37,7 +39,7 @@ export const getLocationsAction = () => async (dispatch) =>{
         dispatch({
             type: SEARCH_LOCATIONS_LOADING
         })
-        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
+        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all?lang=${lang}`);
         return dispatch({
             type: SEARCH_LOCATIONS,
             payload: getData.data.locations.rows
@@ -138,7 +140,7 @@ export const sendTravelRequestAction = (data) => async (dispatch) =>{
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
-        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
+        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request?lang=${lang}`, data.travelRequest);
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: true

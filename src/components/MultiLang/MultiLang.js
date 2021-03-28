@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
 export default function MultipleLanguages() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [age, setAge] = React.useState('');
+  const [lang, setLang] = React.useState('English');
 
   const handleChange = (event) => {
-    setAge(Number(event.target.value) || '');
+    setLang(event.target.value || '');
   };
 
   const handleClickOpen = () => {
@@ -38,6 +38,8 @@ export default function MultipleLanguages() {
   const handleClose = () => {
     setOpen(false);
   };
+  const lan = ['kin', 'en', 'fr']
+  console.log(lang)
 
   return (
     <div>
@@ -50,16 +52,13 @@ export default function MultipleLanguages() {
               <Select
                 labelId="demo-dialog-select-label"
                 id="demo-dialog-select"
-                value={age}
+                value={lang}
                 onChange={handleChange}
                 input={<Input />}
               >
-                <MenuItem value="">
-                  <em>Default</em>
-                </MenuItem>
-                <MenuItem value={10}>Kinyarwanda</MenuItem>
-                <MenuItem value={20}>English</MenuItem>
-                <MenuItem value={30}>French</MenuItem>
+                <MenuItem value='kin'>Kinyarwanda</MenuItem>
+                <MenuItem value='en'>English</MenuItem>
+                <MenuItem value='fr'>French</MenuItem>
               </Select>
             </FormControl>
           </form>
