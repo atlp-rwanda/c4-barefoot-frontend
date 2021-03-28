@@ -15,6 +15,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.get('*', (req, res) => {
   res.sendFile(htmlIndex);
 });
-app.listen(port,"0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`Barefoot normand is  running on port: ${port}`);
 });
