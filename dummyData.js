@@ -28,24 +28,8 @@ export const locationsPayload = [
     }
   ]
 
-export const accommodationsPayload = [
-    {
-      
-        id: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-        country: "Rwanda",
-        city: "Kigali",
-        title: "Marriot Hotel",
-        description: "A serene environment for relaxation",
-        photos: "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
-    
-    }
-  ]
 
-  export const accommodationState = {
-    pending: false,
-    accommodations: accommodationsPayload,
-    error: null
-  }
+ 
 
   export const locationState = {
     pending: false,
@@ -53,20 +37,7 @@ export const accommodationsPayload = [
     error: null
   }
 
-export const user = [
-  {
-    "first_name": "M",
-    "last_name": "JAckson",
-    "email": "jackson.novelty@gmail.com",
-    "occupation": "Programming",
-    "username": "jacks",
-    "bio": "Software Developer",
-    "address": "kk 509 st",
-    "language": "Kinyarwanda",
-    "password": "12345678",
-    "profile_picture": "https://res.cloudinary.com/mjackson/image/upload/v1609304524/Screen_Shot_2020-12-29_at_08.21.43_qe7pem.png"
-  }
-]
+
 
 export const userProfile = {
   address: "Kigali",
@@ -85,21 +56,7 @@ export const userProfile = {
   verified: true
 }
 
-export const signupState = {
-    requesting: false,
-    errorOpen: false,
-    error: ""
-  }
-export const locationsPayload = {
-  rows:[
-    {
-      id: "c6028e0d-ef88-4693-ab49-f37669891724",
-      LocationName: "Kigali",
-      country: "Rwanda",
-      description: "The land of a thousand hills",
-      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
-    }
-  ]}
+
 
 export const accommodationsPayload = {
   rows:[
@@ -263,20 +220,49 @@ export const accommodationsPayload = {
 
   export const singleTravelPayload = [{
     travelRequestInfo: {
-        travelId: "6a631198-cb98-4925-82fc-b00be0d34e32",
-        managerId: "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
-        userId: "d74fcc5e-5755-4366-83ef-cf306b013c46",
-        status: "rejected",
-        createdAt: "2021-01-11T20:09:02.833Z",
-        updatedAt: "2021-03-01T08:54:54.237Z",
-        Trip: []
-    },
+      "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0",
+      "managerId": "fb94de4d-47ff-4079-89e8-b0186c0a3be8",
+      "userId": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+      "status": "pending",
+      "createdAt": "2021-03-28T07:02:57.389Z",
+      "updatedAt": "2021-03-28T07:02:57.436Z",
+      "Trip": [
+          {
+              "tripId": "d81145c6-5778-43b0-aac9-5cf8360f3722",
+              "originCity": "kuryanyuma",
+              "destination": "biryogo",
+              "reason": "travelling",
+              "tripDate": "2020-12-11T06:48:48.376Z",
+              "returnDate": null,
+              "accommodationId": "520f2b37-7bac-4490-aa7a-96f15915bcd7",
+              "createdAt": "2021-03-28T07:02:57.590Z",
+              "updatedAt": "2021-03-28T07:02:57.590Z",
+              "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0"
+          }
+      ]
+  },
     userInfo: {
-        username: "pushrequester",
-        firstName: "pushRequester",
-        lastName: "One",
-        profilePpicture: "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+      "username": "managerOne",
+      "firstName": "Manager",
+      "lastName": "One",
+      "profilePpicture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+  },
+  accomodationInfo: [
+    {
+        "id": "520f2b37-7bac-4490-aa7a-96f15915bcd7",
+        "country": "Rwanda",
+        "city": "Kigali",
+        "state": "Nyarugenge",
+        "streetAddress": "KN 22 ST",
+        "locationID": "c6028e0d-ef88-4693-ab49-f37669891724",
+        "propertyType": "Hostel",
+        "numberOfRooms": 0,
+        "typeOfBed": "Double Decker",
+        "title": "Kigali Hostels",
+        "description": "A serene environment for relaxation",
+        "photos": "image.png"
     }
+]
 }]
 export const singleTravelState= {
   loading: false,
@@ -341,11 +327,7 @@ export const accommodationState = {
   error: null
 }
 
-export const locationState = {
-  pending: false,
-  locations: locationsPayload,
-  error: null
-}
+
 
 let a = 'https://barefoot-nomad-app-v1.herokuapp.com'
 export const props = {
@@ -387,5 +369,33 @@ export const props2={
   Modal: {
       open: false,
       data:{}
+  }
+}
+export const notificationPayload = {
+  "message": "user's Notifications",
+  "notifications": {
+      "count": 2,
+      "rows": [
+          {
+              "id": "e9880544-6493-4511-b6f1-bd91eecf8b43",
+              "title": "your user has made a Travel Request",
+              "message": "The user you are assigned to has made a travel request  ",
+              "travelId": "9b1e1ca6-2fc2-42bb-86c0-86a329703393",
+              "status": "not readed",
+              "createdAt": "2021-03-28T07:03:44.567Z",
+              "updatedAt": "2021-03-28T07:03:44.567Z",
+              "user_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          },
+          {
+              "id": "af772f27-e052-4445-8ed9-80ff8c71f802",
+              "title": "your user has made a Travel Request",
+              "message": "The user you are assigned to has made a travel request  ",
+              "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0",
+              "status": "not readed",
+              "createdAt": "2021-03-28T07:02:57.589Z",
+              "updatedAt": "2021-03-28T07:02:57.589Z",
+              "user_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          }
+      ]
   }
 }

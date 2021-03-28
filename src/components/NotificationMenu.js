@@ -5,8 +5,6 @@ import { getNotifications } from "../redux/actions/notificationAction";
 import {Link} from "react-router-dom";
 
 const NotificationMenu = (props) => {
-    console.log('djjfdfjflfdlfl');
-   
     const {anchorEl, handleClose} = props;
     const {error, notifications, pending} = props.notifications;
     return ( 

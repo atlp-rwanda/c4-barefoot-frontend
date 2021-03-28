@@ -89,11 +89,10 @@ const NotificationDetails=(props)=>{
         setTimeout(()=>{
             setLoading(false);
             props.getNotifications();
-        }, 5000)
+        }, 1000)
     }, [])
-    const request=props.request
-    //const cardImage= request[0].accomodationInfo ? accomodationsInfo[0].photos : default_image
-    console.log(request);
+    const request=props.request;
+    
     return(
         <>
         { loading ? <Typography>Loading</Typography> :
@@ -140,4 +139,5 @@ const NotificationDetails=(props)=>{
 const mapStateToProps=(state)=>({
    request:state.notifications.travelRequest
 })
+export {NotificationDetails}
 export default connect(mapStateToProps,{readTravelRequestInfo, getNotifications})(NotificationDetails);

@@ -16,7 +16,7 @@ export const getNotifications = () => dispatch=>{
                     }
                })
                 .then(res=>{
-                    console.log(res.data)
+                    console.log(res.data.notifications)
                     dispatch({
                         type: GETNOTIFICATONS_SUCCESS,
                         payload: res.data.notifications
@@ -29,33 +29,7 @@ export const getNotifications = () => dispatch=>{
                     })
                 })
 }
-export const readNotification = (id) => dispatch=>{
-    dispatch({
-        type: LOADING
-    })
 
-    return fetch(`${process.env.REACT_APP_BACKEND_LINK}/notification/${id}`, {
-                    method: 'put',
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
-                    }
-               })
-                .then(res=> res.json())
-                .then(data=>{
-                    console.log(data.notification)
-                    dispatch({
-                        type: READNOTIFICATION,
-                        payload: data.notification
-                    })
-                })
-                .catch(e=>{
-                    console.log(e)
-                    dispatch({
-                        type: GETNOTIFICATONS_ERROR,
-                        payload: 'network error'
-                    })
-                })
-}
 export const readTravelRequestInfo =(id)=> dispatch=>{
 
     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports/${id}`,{
@@ -82,31 +56,3 @@ export const readTravelRequestInfo =(id)=> dispatch=>{
   })
 }
 
-
-// export const readTravelRequestInfo=()=> dispatch=>{
-//     dispatch({
-//         type: LOADING
-
-//     })
-
-//     const id = localStorage.getItem("travelId")
-//     return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests/${id}`, {
-//         headers: {
-//             Authorization: `Bearer ${localStorage.getItem('barefootUserToken')}`
-//         }
-//    }).then(res=>{
-//        console.log(res.data);
-//        dispatch({
-//            type: READ_TRAVELREQUEST_INFO,
-//            payload: res.data
-
-//        })
-
-//    }).catch(e=>{
-//        console.log(e);
-//        dispatch({
-//         type: GETNOTIFICATONS_ERROR,
-//         payload: 'network error'
-//        })
-//    })
-// }
