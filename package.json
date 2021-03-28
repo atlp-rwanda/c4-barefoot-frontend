@@ -7,7 +7,7 @@
     "heroku-prebuild": "npm install --dev",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --mode development",
-    "start": "webpack --mode production",
+    "start": "webpack --port $PORT --host 0.0.0.0 --mode production",
     "test": "jest --coverage --detectOpenHandles --silent",
     "test-file": "jest --coverage ./__tests__/actions/signupAction.test.js",
     "test:e2e": "jest -c e2e/jest.config.js",
