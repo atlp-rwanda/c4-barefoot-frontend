@@ -17,10 +17,8 @@ const AssignUsersToManagers = (props) => {
       && addAssignActionToQueue.errors.length == 0
     );
   const failedDialog = dialog && !succeededDialog;
-  // const failedDialog = false;
   const pending = (fetchAllManagers.pending && fetchVerifiedUsers.pending)
                   && !fetchAllManagers.loaded;
-  // console.log({fetchVerifiedUsers, fetchAllManagers, addAssignActionToQueue});
   const dispatch = useDispatch();
   if(addAssignActionToQueue.refresh) {
     dispatch({type: 'REFRESH_USERS_LIST_WITH_MANAGERS'});

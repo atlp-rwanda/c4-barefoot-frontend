@@ -10,7 +10,7 @@ export const FETCH_MANAGERS_ERROR = 'FETCH_MANAGERS_ERROR';
 
 export const FETCH_USERS_PAGE_CHANGE = 'FETCH_USERS_PAGE_CHANGE';
 
-export const getVerifiedUsers = (page, dispatch) => async () => {
+export const getVerifiedUsers = (page) => async (dispatch) => {
   dispatch({
     type: FETCH_USERS_PENDING
   });
