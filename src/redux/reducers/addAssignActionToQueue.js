@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case ASSIGNING_USERS_CANCELED:
       return {
         ...state,
-        pendingTasks: {},
+        pendingTasks: undefined,
         errors: [],
         success: [],
         loaded: false
@@ -31,9 +31,17 @@ export default (state = initialState, action) => {
         loading: true
       };
     case ASSIGNING_USERS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        errors: action.errors,
+        success: action.success
+      };
     case ASSIGNING_USERS_SUCCESS:
       return {
         ...state,
+        pendingTasks: undefined,
         loading: false,
         loaded: true,
         errors: action.errors,

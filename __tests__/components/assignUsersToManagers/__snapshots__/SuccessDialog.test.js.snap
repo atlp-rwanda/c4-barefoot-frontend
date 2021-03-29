@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SuccessDialog /> It should render the SuccessDialog component 1`] = `
+<WithStyles(ForwardRef(Dialog))
+  aria-describedby="alert-dialog-description"
+  aria-labelledby="alert-dialog-title"
+  onClose={[Function]}
+  open={true}
+>
+  <WithStyles(ForwardRef(DialogTitle))
+    id="alert-dialog-title"
+    style={
+      Object {
+        "color": "green",
+      }
+    }
+  >
+    Success!
+  </WithStyles(ForwardRef(DialogTitle))>
+  <WithStyles(ForwardRef(DialogContent))>
+    <WithStyles(ForwardRef(DialogContentText))
+      id="alert-dialog-description"
+      style={
+        Object {
+          "color": "#219653",
+        }
+      }
+    >
+      The users have been assigned to respective managers successfully!
+    </WithStyles(ForwardRef(DialogContentText))>
+  </WithStyles(ForwardRef(DialogContent))>
+  <WithStyles(ForwardRef(DialogActions))>
+    <WithStyles(ForwardRef(Button))
+      color="primary"
+      onClick={[Function]}
+    >
+      OK
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(DialogActions))>
+</WithStyles(ForwardRef(Dialog))>
+`;

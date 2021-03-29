@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsersToAssignQueue } from '../../redux/actions/managerSelectedActions';
 
-const UserCardSkeleton = () => {
+export const UserCardSkeleton = () => {
   return (
     <Card style={{margin: 15}}>
       <Skeleton width={200} height={200} variant='circle' />
