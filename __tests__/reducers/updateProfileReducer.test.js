@@ -6,6 +6,7 @@ describe('Update userprofile reducer', () => {
         expect(updateUserProfileReducer(undefined, {})).toEqual(
             {
                 loading: false,
+                profileLoading: false,
                 successMsg: null,
                 error: null,
                 snackbarOpen: false,
@@ -21,6 +22,7 @@ describe('Update userprofile reducer', () => {
         ).toEqual(
             {
                 loading: true,
+                profileLoading: false,
                 successMsg: null,
                 error: null,
                 snackbarOpen: false,
@@ -37,6 +39,7 @@ describe('Update userprofile reducer', () => {
         ).toEqual(
             {
                 loading: false,
+                profileLoading: false,
                 successMsg: "successfully update your profile",
                 error: null,
                 success: true,
@@ -53,6 +56,7 @@ describe('Update userprofile reducer', () => {
         ).toEqual(
             {
                 loading: false,
+                profileLoading: false,
                 successMsg: null,
                 error: 'Error occured while updating your profile info',
                 success: false,
@@ -68,6 +72,7 @@ describe('Update userprofile reducer', () => {
         ).toEqual(
             {
                 loading: false,
+                profileLoading: false,
                 successMsg: null,
                 error: null,
                 snackbarOpen: false,

@@ -199,9 +199,9 @@ describe('<UserProfile />', () => {
         expect(wrapper.find(Avatar).length).toBe(1);
     })
 
-    it('should have 2 CircularProgress', () => {
+    it('should have 1 CircularProgress', () => {
         wrapper = mount(<UserProfile {...loadingprops} />);
-        expect(wrapper.find(CircularProgress).length).toBe(2);
+        expect(wrapper.find(CircularProgress).length).toBe(1);
     })
     it('should have 2 skleton', () => {
         wrapper = mount(<UserProfile {...noDataprops} />);
