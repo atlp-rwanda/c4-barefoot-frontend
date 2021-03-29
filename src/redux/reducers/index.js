@@ -30,7 +30,6 @@ const reducers = combineReducers({
   manageTravel: fetchTravelReducer,
   manageSingleTravel: fetchSingleTravelReducer,
   updateTravel: updateSingleTravelReducer,
-
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
   changeUserPassword: changeUserPasswordeReducer,
@@ -40,8 +39,6 @@ const reducers = combineReducers({
   createRoles,
   managerReducer,
   createTravelRequest: CreateTravelRequestReducer
-
 })
-
 export default reducers
 

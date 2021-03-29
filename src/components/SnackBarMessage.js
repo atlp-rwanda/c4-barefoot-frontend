@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Snackbar, Slide } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -29,5 +28,4 @@ const SnackBarMessage = (props) => {
         </div>
     );
 }
-
 export default SnackBarMessage;

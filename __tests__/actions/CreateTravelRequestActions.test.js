@@ -140,5 +140,4 @@ describe('CREATE TRAVEL REQUEST ACTIONS', () => {
             expect(store.getActions().type).toEqual(action.type)
         })
     })
-
 })

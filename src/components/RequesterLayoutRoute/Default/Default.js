@@ -47,5 +47,4 @@ RequesterDefault.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
 };
-
 export default RequesterDefault;

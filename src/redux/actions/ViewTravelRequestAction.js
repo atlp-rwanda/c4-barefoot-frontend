@@ -1,9 +1,7 @@
 export const FETCH_TRAVEL_REQUEST_LOADING = 'FETCH_TRAVEL_REQUEST_LOADIN';
 export const FETCH_TRAVEL_REQUEST_SUCCESS = 'FETCH_TRAVEL_REQUEST_SUCCESS';
 export const FETCH_TRAVEL_REQUEST_FAIL = 'FETCH_TRAVEL_REQUEST_FAIL';
-
 import axios from 'axios';
-
 export const GetTravelRequestsAction = (data) => async (dispatch) => {
     const page = data.page - 1 || 0;
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.userToken}`;
@@ -24,5 +22,4 @@ export const GetTravelRequestsAction = (data) => async (dispatch) => {
             payload: 'something went wrong, try again!'
         })
     }
-
 }

@@ -70,3 +70,4 @@ const mapStateToProps = state => ({
 });
 export { ViewTravelRequest };
 export default connect(mapStateToProps, { GetTravelRequestsAction })(ViewTravelRequest);
+

@@ -40,7 +40,7 @@ const SideDrawer = ({ navLinks }) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-       
+
       <List component="nav">
         {navLinks.map(({ title, path }) => (
           <Link to={path} key={title} className={classes.linkText}>

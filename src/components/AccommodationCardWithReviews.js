@@ -111,5 +111,4 @@ function Accommodations(props) {
     </Card>
   );
 }
-
 export default Accommodations;
