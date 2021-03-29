@@ -6,16 +6,7 @@ import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
-import socket from 'socket.io-client';
-
-const token = localStorage.getItem('barefootUserToken');
-const idData = localStorage.getItem('userId');
-
-// const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
-//     query: token,
-//     loggedInUser:localStorage.getItem('id')
-// })
-
+// import { io } from '../io';
 
 function NewMessage(props) {
     const [message, setMessage] = React.useState('');
@@ -24,11 +15,15 @@ function NewMessage(props) {
     const [feedbackText, setFeedbackText] = React.useState('')
     const [loading, setLoading] = React.useState(false)
     const [vimage, setvImage] = React.useState('');
-    const [sentMessage, setSentMessage] = React.useState('')
-    const io = props.io
-    useEffect(()=>{
-            io.emit('send_message', sentMessage)
-    }, [])
+    // const [sentMessage, setSentMessage] = React.useState('')
+    // useEffect(()=>{
+    //     io.emit('user_connected', {userId:localStorage.getItem('id')});
+    //     io.on('user_connected', userId=>{
+    //         console.log(userId);
+    //         console.log(sentMessage)
+    //         io.emit('send_message', sentMessage)
+    //     })
+    // }, [sentMessage])
 
     const senderId = localStorage.getItem('id');
     const handleClick = (e) => {
@@ -42,7 +37,7 @@ function NewMessage(props) {
                 type: 'plain-text'
             }
             props.newMessageAction(data).then(() =>{
-                setSentMessage(data)
+                // setSentMessage(data)
                 setMessage('')
                 setFeedbackText("Message sent!")
                 props.getChats()

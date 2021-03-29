@@ -7,31 +7,28 @@ import NewMessage from './Lists/NewMessage';
 import socket from 'socket.io-client';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import MuiAlert from '@material-ui/lab/Alert';
-
-const token = localStorage.getItem('barefootUserToken');
-const idData = localStorage.getItem('userId');
-
-// const io = socket.connect(`${process.env.REACT_APP_BACKEND_LINK}/chat/${idData}`, {
-//     query: token,
-//     loggedInUser:localStorage.getItem('id')
-// })
+// import { io } from './io';
+ 
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 function ChatMessages(props){
-    // const [chats, setMessages] = React.useState([])
+    const [livechat, setMessages] = React.useState([])
     // const [vMessages, setvMessages] = React.useState([])
     const [open, setOpen] = React.useState(false)
     const [error, setError] = React.useState('')
     const theerror = props.error;
-    const io = props.io;
     React.useEffect(()=>{
-        io.on('new_message', data => {
-            setMessages([messages])
-            console.log(data)
-        });
+        // io.emit('user_connected', {userId:localStorage.getItem('id')});
+        // io.on('user_connected', userId=>{
+        //     console.log(userId);
+        //     io.on('new_message', data => {
+        //         setMessages([messages])
+        //     });
+        // })
+        
         props.getChats();
         // io.on('request_support', messages=> {
         //     setvMessages([messages])
@@ -42,6 +39,8 @@ function ChatMessages(props){
         }
         
     }, [])
+
+    console.log('receiver livechat', livechat)
 
     const chats = props.chats;
     const user = localStorage.getItem('userName')

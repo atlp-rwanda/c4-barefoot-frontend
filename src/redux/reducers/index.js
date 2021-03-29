@@ -10,8 +10,6 @@ import { updateSingleTravelReducer } from "./updateTravelReducer";
 import { fetchUserProfileReducer, updateUserProfileReducer, changeUserPasswordeReducer } from './userProfileReducer'
 import { loginReducer } from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
-import { logoutReducer } from './logoutReducer';
-import ChatReducer from './ChatReducer';
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
 import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
 import { UsersReducer } from './usersReducer'
@@ -19,6 +17,7 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
+import ChatReducer from './ChatReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
