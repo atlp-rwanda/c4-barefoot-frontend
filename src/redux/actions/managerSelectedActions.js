@@ -25,32 +25,29 @@ export const assignUsersFromQueue = async (dispatch, state) => {
   const errors = [];
   const success = [];
   const requests = users.map(async user => {
-    const ASSIGN_REQUEST = axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/${user}`, '', {
+    const ASSIGN_REQUEST = await axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users/${user}`, '', {
       headers: {
       'Authorization': 'Bearer ' + localStorage.getItem('barefootUserToken')
       },
       params: {
         manager_id: state[user].managerId
       }
+    }).then((res) => {
+      success.push({
+        type: ASSIGNING_USERS_SUCCESS,
+        userId: user,
+        managerId: state[user].managerId,
+        message: res
+      });
     });
     ASSIGN_REQUEST.catch(err => {
       errors.push({
           type: ASSIGNING_USERS_ERROR,
           userId: user,
           managerId: state[user].managerId,
-          error: err.toJSON()
-        });
-    });
-
-    const res = await ASSIGN_REQUEST;
-    if(res) {
-      success.push({
-        type: ASSIGNING_USERS_SUCCESS,
-        userId: user,
-        managerId: state[user].managerId,
-        message: res.toJSON()
+          error: err
       });
-    }    
+    });
   });
   const ASSIGNING_ALL = await Promise.all([...requests])
     .catch(err => {
