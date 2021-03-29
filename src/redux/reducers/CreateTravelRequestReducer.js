@@ -4,20 +4,21 @@ import {
     CLOSE_SNACKBAR, ADD_TRAVEL_REASON, SEND_TRAVEL_REQUEST, SEND_TRAVEL_REQUEST_LOADING,
     ADD_MULTI_CITY_TRAVEL_REQUEST, REMOVE_MULTI_CITY_TRAVEL_REQUEST,
     SEARCH_ACCOMMODATIONS_LOADING, SEARCH_LOCATIONS_LOADING, OPEN_MODAL,
-    CANCEL_TRAVEL_REQUEST
+    CANCEL_TRAVEL_REQUEST, DESELECT_ACCOMMODATION
 } from '../actions/CreateTravelRequestAction';
 
 const initialState = {
-    searchLocations: [],
+    availableLocations: [],
     searchLocationsLoading: false,
+    availableAccommodations: [],
+    searchAccommodationsLoading: false,
     currentLocation: '',
     destinationLocation: '',
-    isReturning: false,
     departureDate: '',
     returnDate: '',
-    searchAccommodations: [],
-    searchAccommodationsLoading: false,
-    selectedAccommodation: [],
+    selectedAccommodation: '',
+    travelReason: '',
+    // isReturning: false,
     selectedLocations: [],
     displaySelection: false,
     displaySelected: false,
@@ -28,19 +29,11 @@ const initialState = {
     },
     success: false,
     sendLoading: false,
-    travelReason: '',
+
     Modal: {
         open: false,
         data: {}
-    },
-    searchLocations: [],
-    currentLocation: '',
-    destinationLocation: '',
-    isReturning: false,
-    departureDate: '',
-    returnDate: '',
-    searchAccommodations: [],
-    selectedAccommodation: '',
+    }
 }
 
 export function CreateTravelRequestReducer(state = initialState, action) {
@@ -48,7 +41,7 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case SEARCH_LOCATIONS:
             return {
                 ...state,
-                searchLocations: action.payload,
+                availableLocations: action.payload,
                 searchLocationsLoading: false
             }
         case SEARCH_LOCATIONS_LOADING:
@@ -67,11 +60,6 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 departureDate: action.payload.departureDate,
                 returnDate: action.payload.returnDate
             }
-        case RETURNING:
-            return {
-                ...state,
-                isReturning: action.payload
-            }
         case DESTINATION_LOCATION:
             return {
                 ...state,
@@ -80,7 +68,7 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case SEARCH_ACCOMMODATIONS:
             return {
                 ...state,
-                searchAccommodations: action.payload,
+                availableAccommodations: action.payload,
                 searchAccommodationsLoading: false,
                 displaySelection: true
             }
@@ -94,6 +82,12 @@ export function CreateTravelRequestReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedLocations: [...state.selectedLocations, action.payload],
+                availableAccommodations: [],
+                selectedAccommodation: '',
+                currentLocation: action.payload.destination,
+                destinationLocation: '',
+                departureDate: action.payload.returnDate,
+                returnDate: ''
             }
         // case REMOVE_MULTI_CITY_TRAVEL_REQUEST:
         //     return {
@@ -103,9 +97,16 @@ export function CreateTravelRequestReducer(state = initialState, action) {
         case SELECT_ACCOMMODATION:
             return {
                 ...state,
-                selectedAccommodation: [...state.selectedAccommodation, action.payload.accommodation],
+                selectedAccommodation: action.payload.accommodation,
                 displaySelection: action.payload.displaySelection,
                 displaySelected: action.payload.displaySelected
+            }
+        case DESELECT_ACCOMMODATION:
+            return {
+                ...state,
+                selectedAccommodation: '',
+                displaySelection: true,
+                displaySelected: true
             }
         case HANDLE_ERRORS:
             return {
@@ -114,7 +115,7 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                     open: true,
                     severity: 'error',
                     message: action.payload
-                },
+                }
             }
         case CLOSE_SNACKBAR:
             return {
@@ -154,7 +155,6 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 destinationLocation: [],
                 departureDate: '',
                 returnDate: '',
-                isReturning: false,
                 selectedAccommodation: [],
                 travelReason: '',
                 snackBarMessage: {
@@ -172,80 +172,12 @@ export function CreateTravelRequestReducer(state = initialState, action) {
                 isReturning: false,
                 departureDate: '',
                 returnDate: '',
-                searchAccommodations: [],
+                availableAccommodations: [],
                 selectedAccommodation: [],
                 selectedLocations: [],
                 displaySelection: false,
                 displaySelected: false,
                 travelReason: '',
-            }
-        case CURRENT_LOCATION:
-        case DESTINATION_LOCATION:
-            return {
-                ...state,
-                destinationLocation: action.payload
-            }
-        case DESTINATION_LOCATION:
-        case SEARCH_ACCOMMODATIONS:
-            return {
-                ...state,
-                searchAccommodations: action.payload,
-                displaySelection: true
-            }
-        case SEARCH_LOCATIONS:
-        case SELECT_ACCOMMODATION:
-            return {
-                ...state,
-                selectedAccommodation: action.payload.accommodation,
-                displaySelection: action.payload.displaySelection,
-                displaySelected: action.payload.displaySelected
-            }
-        case SEARCH_ACCOMMODATIONS:
-        case HANDLE_ERRORS:
-            return {
-                ...state,
-                snackBarMessage: {
-                    open: true,
-                    severity: 'error',
-                    message: action.payload
-                },
-            }
-        case SELECT_ACCOMMODATION:
-        case CLOSE_SNACKBAR:
-            return {
-                ...state,
-                snackBarMessage: {
-                    open: false,
-                    severity: '',
-                    message: null
-                },
-            }
-        case ADD_TRAVEL_REASON:
-            return {
-                ...state,
-                travelReason: action.payload
-            }
-        case SEND_TRAVEL_REQUEST_LOADING:
-            return {
-                ...state,
-                sendLoading: true
-            }
-        case SEND_TRAVEL_REQUEST:
-            return {
-                ...state,
-                success: action.payload,
-                errors: 'The travel request is successfully sent!',
-                snackbarOpen: true,
-                sendLoading: false,
-                displaySelection: false,
-                displaySelected: false,
-                currentLocation: '',
-                destinationLocation: '',
-                departureDate: '',
-                returnDate: '',
-                isReturning: false,
-                selectedAccommodation: [],
-                travelReason: ''
             }
         default:
             return state

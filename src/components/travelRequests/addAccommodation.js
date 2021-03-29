@@ -1,16 +1,12 @@
 import React from 'react';
-import { Grid, Container, makeStyles, Typography, Divider } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Divider } from '@material-ui/core';
 import AccommodationCard from '../AccommodationCardWithReviews';
 import colors from '../colors';
 import { Place } from '@material-ui/icons';
 import { Pagination } from '@material-ui/lab';
-import { accommodationsPayload } from '../../../dummyData';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        width: '80%',
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -32,12 +28,11 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         opacity: '0.5',
     }
-
-}));
+}))
 
 function AddAccommodation(props) {
     const classes = useStyles();
-    const accommodations = !props.travelRequest.searchAccommodationsLoading ? props.travelRequest.searchAccommodations : [{}, {}, {}];
+    const accommodations = !props.travelRequest.searchAccommodationsLoading ? props.travelRequest.availableAccommodations : [{}, {}, {}];
     const display = accommodations.length ? 'none' : 'flex';
     const getNextPage = (event, value) => {
         const search = props.travelRequest.destinationLocation.split(', ', 2);
@@ -55,26 +50,24 @@ function AddAccommodation(props) {
                 <Typography variant="h6" style={{ color: colors.primary100 }}>
                     Choose Accommodation:
                 </Typography>
-                <Divider style={{ width: '50%' }} variant='middle' />
+                <Divider style={{ width: '100%' }} variant='middle' />
                 <Typography variant="subtitle1" style={{ color: colors.primary100 }}>
-                    <Place color="secondary" /> {props.travelRequest.destinationLocation}
+                    <Place color="secondary" /> {`${props.travelRequest.destinationLocation.LocationName}, ${props.travelRequest.destinationLocation.country}`}
                 </Typography>
 
             </Grid>
             <Grid container className={classes.container}>
 
                 {accommodations.map((accommodation) => (
-                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid}>
+                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid} style={{ paddingTop: '40px', paddingBottom: '100px' }}>
                         <AccommodationCard pending={props.travelRequest.searchAccommodationsLoading} accommodation={accommodation} {...props} />
                     </Grid>
                 ))}
 
                 <Grid container item style={{ display: display }} className={classes.notFound}>
-                    <Typography variant="h6" color="secondary" component="h6">No Accommodations found in {props.travelRequest.destinationLocation}</Typography>
+                    <Typography variant="h6" color="secondary" component="h6">No Accommodations found in {`${props.travelRequest.destinationLocation.LocationName}, ${props.travelRequest.destinationLocation.country}`}</Typography>
                 </Grid>
-                <Grid container item justify="center" style={{ marginTop: '50px' }}>
-                    <Pagination count={10} variant="outlined" color="primary" onChange={getNextPage} />
-                </Grid>
+                <Divider style={{ width: '100%', marginTop: '20px' }} />
             </Grid>
         </React.Fragment>
     )

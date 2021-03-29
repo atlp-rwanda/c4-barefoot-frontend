@@ -20,6 +20,8 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
         "data": Object {},
         "open": false,
       },
+      "availableAccommodations": Array [],
+      "availableLocations": Array [],
       "currentLocation": "",
       "departureDate": "",
       "destinationLocation": "",
@@ -27,11 +29,9 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
       "displaySelection": false,
       "isReturning": false,
       "returnDate": "",
-      "searchAccommodations": Array [],
       "searchAccommodationsLoading": false,
-      "searchLocations": Array [],
       "searchLocationsLoading": false,
-      "selectedAccommodation": Array [],
+      "selectedAccommodation": "",
       "selectedLocations": Array [],
       "sendLoading": false,
       "snackBarMessage": Object {
@@ -45,13 +45,13 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
   }
 >
   <WithStyles(ForwardRef(Grid))
-    className="makeStyles-title-19"
+    className="makeStyles-title-15"
     container={true}
     item={true}
     xs={12}
   >
     <ForwardRef(Grid)
-      className="makeStyles-title-19"
+      className="makeStyles-title-15"
       classes={
         Object {
           "align-content-xs-center": "MuiGrid-align-content-xs-center",
@@ -164,7 +164,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
       xs={12}
     >
       <div
-        className="MuiGrid-root makeStyles-title-19 MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12"
+        className="MuiGrid-root makeStyles-title-15 MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12"
       >
         <WithStyles(ForwardRef(Typography))
           style={
@@ -231,7 +231,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
         <WithStyles(ForwardRef(Divider))
           style={
             Object {
-              "width": "50%",
+              "width": "100%",
             }
           }
           variant="middle"
@@ -250,7 +250,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
             }
             style={
               Object {
-                "width": "50%",
+                "width": "100%",
               }
             }
             variant="middle"
@@ -259,7 +259,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
               className="MuiDivider-root MuiDivider-middle"
               style={
                 Object {
-                  "width": "50%",
+                  "width": "100%",
                 }
               }
             />
@@ -359,6 +359,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
                 </WithStyles(ForwardRef(SvgIcon))>
               </ForwardRef(PlaceIcon)>
                
+              undefined, undefined
             </h6>
           </ForwardRef(Typography)>
         </WithStyles(ForwardRef(Typography))>
@@ -366,11 +367,11 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
     </ForwardRef(Grid)>
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(ForwardRef(Grid))
-    className="makeStyles-container-17"
+    className="makeStyles-container-13"
     container={true}
   >
     <ForwardRef(Grid)
-      className="makeStyles-container-17"
+      className="makeStyles-container-13"
       classes={
         Object {
           "align-content-xs-center": "MuiGrid-align-content-xs-center",
@@ -481,10 +482,10 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
       container={true}
     >
       <div
-        className="MuiGrid-root makeStyles-container-17 MuiGrid-container"
+        className="MuiGrid-root makeStyles-container-13 MuiGrid-container"
       >
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-notFound-20"
+          className="makeStyles-notFound-16"
           container={true}
           item={true}
           style={
@@ -494,7 +495,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
           }
         >
           <ForwardRef(Grid)
-            className="makeStyles-notFound-20"
+            className="makeStyles-notFound-16"
             classes={
               Object {
                 "align-content-xs-center": "MuiGrid-align-content-xs-center",
@@ -611,7 +612,7 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
             }
           >
             <div
-              className="MuiGrid-root makeStyles-notFound-20 MuiGrid-container MuiGrid-item"
+              className="MuiGrid-root makeStyles-notFound-16 MuiGrid-container MuiGrid-item"
               style={
                 Object {
                   "display": "flex",
@@ -666,1246 +667,51 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
                     className="MuiTypography-root MuiTypography-h6 MuiTypography-colorSecondary"
                   >
                     No Accommodations found in 
+                    undefined, undefined
                   </h6>
                 </ForwardRef(Typography)>
               </WithStyles(ForwardRef(Typography))>
             </div>
           </ForwardRef(Grid)>
         </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          container={true}
-          item={true}
-          justify="center"
+        <WithStyles(ForwardRef(Divider))
           style={
             Object {
-              "marginTop": "50px",
+              "marginTop": "20px",
+              "width": "100%",
             }
           }
         >
-          <ForwardRef(Grid)
+          <ForwardRef(Divider)
             classes={
               Object {
-                "align-content-xs-center": "MuiGrid-align-content-xs-center",
-                "align-content-xs-flex-end": "MuiGrid-align-content-xs-flex-end",
-                "align-content-xs-flex-start": "MuiGrid-align-content-xs-flex-start",
-                "align-content-xs-space-around": "MuiGrid-align-content-xs-space-around",
-                "align-content-xs-space-between": "MuiGrid-align-content-xs-space-between",
-                "align-items-xs-baseline": "MuiGrid-align-items-xs-baseline",
-                "align-items-xs-center": "MuiGrid-align-items-xs-center",
-                "align-items-xs-flex-end": "MuiGrid-align-items-xs-flex-end",
-                "align-items-xs-flex-start": "MuiGrid-align-items-xs-flex-start",
-                "container": "MuiGrid-container",
-                "direction-xs-column": "MuiGrid-direction-xs-column",
-                "direction-xs-column-reverse": "MuiGrid-direction-xs-column-reverse",
-                "direction-xs-row-reverse": "MuiGrid-direction-xs-row-reverse",
-                "grid-lg-1": "MuiGrid-grid-lg-1",
-                "grid-lg-10": "MuiGrid-grid-lg-10",
-                "grid-lg-11": "MuiGrid-grid-lg-11",
-                "grid-lg-12": "MuiGrid-grid-lg-12",
-                "grid-lg-2": "MuiGrid-grid-lg-2",
-                "grid-lg-3": "MuiGrid-grid-lg-3",
-                "grid-lg-4": "MuiGrid-grid-lg-4",
-                "grid-lg-5": "MuiGrid-grid-lg-5",
-                "grid-lg-6": "MuiGrid-grid-lg-6",
-                "grid-lg-7": "MuiGrid-grid-lg-7",
-                "grid-lg-8": "MuiGrid-grid-lg-8",
-                "grid-lg-9": "MuiGrid-grid-lg-9",
-                "grid-lg-auto": "MuiGrid-grid-lg-auto",
-                "grid-lg-true": "MuiGrid-grid-lg-true",
-                "grid-md-1": "MuiGrid-grid-md-1",
-                "grid-md-10": "MuiGrid-grid-md-10",
-                "grid-md-11": "MuiGrid-grid-md-11",
-                "grid-md-12": "MuiGrid-grid-md-12",
-                "grid-md-2": "MuiGrid-grid-md-2",
-                "grid-md-3": "MuiGrid-grid-md-3",
-                "grid-md-4": "MuiGrid-grid-md-4",
-                "grid-md-5": "MuiGrid-grid-md-5",
-                "grid-md-6": "MuiGrid-grid-md-6",
-                "grid-md-7": "MuiGrid-grid-md-7",
-                "grid-md-8": "MuiGrid-grid-md-8",
-                "grid-md-9": "MuiGrid-grid-md-9",
-                "grid-md-auto": "MuiGrid-grid-md-auto",
-                "grid-md-true": "MuiGrid-grid-md-true",
-                "grid-sm-1": "MuiGrid-grid-sm-1",
-                "grid-sm-10": "MuiGrid-grid-sm-10",
-                "grid-sm-11": "MuiGrid-grid-sm-11",
-                "grid-sm-12": "MuiGrid-grid-sm-12",
-                "grid-sm-2": "MuiGrid-grid-sm-2",
-                "grid-sm-3": "MuiGrid-grid-sm-3",
-                "grid-sm-4": "MuiGrid-grid-sm-4",
-                "grid-sm-5": "MuiGrid-grid-sm-5",
-                "grid-sm-6": "MuiGrid-grid-sm-6",
-                "grid-sm-7": "MuiGrid-grid-sm-7",
-                "grid-sm-8": "MuiGrid-grid-sm-8",
-                "grid-sm-9": "MuiGrid-grid-sm-9",
-                "grid-sm-auto": "MuiGrid-grid-sm-auto",
-                "grid-sm-true": "MuiGrid-grid-sm-true",
-                "grid-xl-1": "MuiGrid-grid-xl-1",
-                "grid-xl-10": "MuiGrid-grid-xl-10",
-                "grid-xl-11": "MuiGrid-grid-xl-11",
-                "grid-xl-12": "MuiGrid-grid-xl-12",
-                "grid-xl-2": "MuiGrid-grid-xl-2",
-                "grid-xl-3": "MuiGrid-grid-xl-3",
-                "grid-xl-4": "MuiGrid-grid-xl-4",
-                "grid-xl-5": "MuiGrid-grid-xl-5",
-                "grid-xl-6": "MuiGrid-grid-xl-6",
-                "grid-xl-7": "MuiGrid-grid-xl-7",
-                "grid-xl-8": "MuiGrid-grid-xl-8",
-                "grid-xl-9": "MuiGrid-grid-xl-9",
-                "grid-xl-auto": "MuiGrid-grid-xl-auto",
-                "grid-xl-true": "MuiGrid-grid-xl-true",
-                "grid-xs-1": "MuiGrid-grid-xs-1",
-                "grid-xs-10": "MuiGrid-grid-xs-10",
-                "grid-xs-11": "MuiGrid-grid-xs-11",
-                "grid-xs-12": "MuiGrid-grid-xs-12",
-                "grid-xs-2": "MuiGrid-grid-xs-2",
-                "grid-xs-3": "MuiGrid-grid-xs-3",
-                "grid-xs-4": "MuiGrid-grid-xs-4",
-                "grid-xs-5": "MuiGrid-grid-xs-5",
-                "grid-xs-6": "MuiGrid-grid-xs-6",
-                "grid-xs-7": "MuiGrid-grid-xs-7",
-                "grid-xs-8": "MuiGrid-grid-xs-8",
-                "grid-xs-9": "MuiGrid-grid-xs-9",
-                "grid-xs-auto": "MuiGrid-grid-xs-auto",
-                "grid-xs-true": "MuiGrid-grid-xs-true",
-                "item": "MuiGrid-item",
-                "justify-xs-center": "MuiGrid-justify-xs-center",
-                "justify-xs-flex-end": "MuiGrid-justify-xs-flex-end",
-                "justify-xs-space-around": "MuiGrid-justify-xs-space-around",
-                "justify-xs-space-between": "MuiGrid-justify-xs-space-between",
-                "justify-xs-space-evenly": "MuiGrid-justify-xs-space-evenly",
-                "root": "MuiGrid-root",
-                "spacing-xs-1": "MuiGrid-spacing-xs-1",
-                "spacing-xs-10": "MuiGrid-spacing-xs-10",
-                "spacing-xs-2": "MuiGrid-spacing-xs-2",
-                "spacing-xs-3": "MuiGrid-spacing-xs-3",
-                "spacing-xs-4": "MuiGrid-spacing-xs-4",
-                "spacing-xs-5": "MuiGrid-spacing-xs-5",
-                "spacing-xs-6": "MuiGrid-spacing-xs-6",
-                "spacing-xs-7": "MuiGrid-spacing-xs-7",
-                "spacing-xs-8": "MuiGrid-spacing-xs-8",
-                "spacing-xs-9": "MuiGrid-spacing-xs-9",
-                "wrap-xs-nowrap": "MuiGrid-wrap-xs-nowrap",
-                "wrap-xs-wrap-reverse": "MuiGrid-wrap-xs-wrap-reverse",
-                "zeroMinWidth": "MuiGrid-zeroMinWidth",
+                "absolute": "MuiDivider-absolute",
+                "flexItem": "MuiDivider-flexItem",
+                "inset": "MuiDivider-inset",
+                "light": "MuiDivider-light",
+                "middle": "MuiDivider-middle",
+                "root": "MuiDivider-root",
+                "vertical": "MuiDivider-vertical",
               }
             }
-            container={true}
-            item={true}
-            justify="center"
             style={
               Object {
-                "marginTop": "50px",
+                "marginTop": "20px",
+                "width": "100%",
               }
             }
           >
-            <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-center"
+            <hr
+              className="MuiDivider-root"
               style={
                 Object {
-                  "marginTop": "50px",
+                  "marginTop": "20px",
+                  "width": "100%",
                 }
               }
-            >
-              <WithStyles(ForwardRef(Pagination))
-                color="primary"
-                count={10}
-                onChange={[Function]}
-                variant="outlined"
-              >
-                <ForwardRef(Pagination)
-                  classes={
-                    Object {
-                      "root": "MuiPagination-root",
-                      "ul": "MuiPagination-ul",
-                    }
-                  }
-                  color="primary"
-                  count={10}
-                  onChange={[Function]}
-                  variant="outlined"
-                >
-                  <nav
-                    aria-label="pagination navigation"
-                    className="MuiPagination-root"
-                  >
-                    <ul
-                      className="MuiPagination-ul"
-                    >
-                      <li
-                        key="0"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to previous page"
-                          color="primary"
-                          disabled={true}
-                          onClick={[Function]}
-                          page={0}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="previous"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to previous page"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={true}
-                            onClick={[Function]}
-                            page={0}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="previous"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to previous page"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-disabled"
-                              disabled={true}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to previous page"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-disabled"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={true}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to previous page"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-disabled Mui-disabled"
-                                  disabled={true}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  <ForwardRef(NavigateBeforeIcon)
-                                    className="MuiPaginationItem-icon"
-                                  >
-                                    <WithStyles(ForwardRef(SvgIcon))
-                                      className="MuiPaginationItem-icon"
-                                    >
-                                      <ForwardRef(SvgIcon)
-                                        className="MuiPaginationItem-icon"
-                                        classes={
-                                          Object {
-                                            "colorAction": "MuiSvgIcon-colorAction",
-                                            "colorDisabled": "MuiSvgIcon-colorDisabled",
-                                            "colorError": "MuiSvgIcon-colorError",
-                                            "colorPrimary": "MuiSvgIcon-colorPrimary",
-                                            "colorSecondary": "MuiSvgIcon-colorSecondary",
-                                            "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-                                            "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
-                                            "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-                                            "root": "MuiSvgIcon-root",
-                                          }
-                                        }
-                                      >
-                                        <svg
-                                          aria-hidden={true}
-                                          className="MuiSvgIcon-root MuiPaginationItem-icon"
-                                          focusable="false"
-                                          viewBox="0 0 24 24"
-                                        >
-                                          <path
-                                            d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-                                          />
-                                        </svg>
-                                      </ForwardRef(SvgIcon)>
-                                    </WithStyles(ForwardRef(SvgIcon))>
-                                  </ForwardRef(NavigateBeforeIcon)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="1"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-current="true"
-                          aria-label="page 1"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={1}
-                          selected={true}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-current="true"
-                            aria-label="page 1"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={1}
-                            selected={true}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-current="true"
-                              aria-label="page 1"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-selected"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-current="true"
-                                aria-label="page 1"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-selected"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-current="true"
-                                  aria-label="page 1"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-selected"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  1
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="2"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to page 2"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={2}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to page 2"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={2}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to page 2"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to page 2"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to page 2"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  2
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="3"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to page 3"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={3}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to page 3"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={3}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to page 3"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to page 3"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to page 3"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  3
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="4"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to page 4"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={4}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to page 4"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={4}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to page 4"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to page 4"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to page 4"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  4
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="5"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to page 5"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={5}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to page 5"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={5}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to page 5"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to page 5"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to page 5"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  5
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="6"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to end-ellipsis page"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={null}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="end-ellipsis"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to end-ellipsis page"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={null}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="end-ellipsis"
-                            variant="outlined"
-                          >
-                            <div
-                              className="MuiPaginationItem-root MuiPaginationItem-ellipsis"
-                            >
-                              …
-                            </div>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="7"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to page 10"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={10}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="page"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to page 10"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={10}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="page"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to page 10"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to page 10"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to page 10"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  10
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                      <li
-                        key="8"
-                      >
-                        <WithStyles(ForwardRef(PaginationItem))
-                          aria-label="Go to next page"
-                          color="primary"
-                          disabled={false}
-                          onClick={[Function]}
-                          page={2}
-                          selected={false}
-                          shape="round"
-                          size="medium"
-                          type="next"
-                          variant="outlined"
-                        >
-                          <ForwardRef(PaginationItem)
-                            aria-label="Go to next page"
-                            classes={
-                              Object {
-                                "disabled": "Mui-disabled",
-                                "ellipsis": "MuiPaginationItem-ellipsis",
-                                "focusVisible": "Mui-focusVisible",
-                                "icon": "MuiPaginationItem-icon",
-                                "outlined": "MuiPaginationItem-outlined",
-                                "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-                                "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-                                "page": "MuiPaginationItem-page",
-                                "root": "MuiPaginationItem-root",
-                                "rounded": "MuiPaginationItem-rounded",
-                                "selected": "Mui-selected",
-                                "sizeLarge": "MuiPaginationItem-sizeLarge",
-                                "sizeSmall": "MuiPaginationItem-sizeSmall",
-                                "textPrimary": "MuiPaginationItem-textPrimary",
-                                "textSecondary": "MuiPaginationItem-textSecondary",
-                              }
-                            }
-                            color="primary"
-                            disabled={false}
-                            onClick={[Function]}
-                            page={2}
-                            selected={false}
-                            shape="round"
-                            size="medium"
-                            type="next"
-                            variant="outlined"
-                          >
-                            <WithStyles(ForwardRef(ButtonBase))
-                              aria-label="Go to next page"
-                              className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                              disabled={false}
-                              focusVisibleClassName="Mui-focusVisible"
-                              onClick={[Function]}
-                            >
-                              <ForwardRef(ButtonBase)
-                                aria-label="Go to next page"
-                                className="MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                classes={
-                                  Object {
-                                    "disabled": "Mui-disabled",
-                                    "focusVisible": "Mui-focusVisible",
-                                    "root": "MuiButtonBase-root",
-                                  }
-                                }
-                                disabled={false}
-                                focusVisibleClassName="Mui-focusVisible"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  aria-label="Go to next page"
-                                  className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
-                                  disabled={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onDragLeave={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseDown={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onMouseUp={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  tabIndex={0}
-                                  type="button"
-                                >
-                                  <ForwardRef(NavigateNextIcon)
-                                    className="MuiPaginationItem-icon"
-                                  >
-                                    <WithStyles(ForwardRef(SvgIcon))
-                                      className="MuiPaginationItem-icon"
-                                    >
-                                      <ForwardRef(SvgIcon)
-                                        className="MuiPaginationItem-icon"
-                                        classes={
-                                          Object {
-                                            "colorAction": "MuiSvgIcon-colorAction",
-                                            "colorDisabled": "MuiSvgIcon-colorDisabled",
-                                            "colorError": "MuiSvgIcon-colorError",
-                                            "colorPrimary": "MuiSvgIcon-colorPrimary",
-                                            "colorSecondary": "MuiSvgIcon-colorSecondary",
-                                            "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-                                            "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
-                                            "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-                                            "root": "MuiSvgIcon-root",
-                                          }
-                                        }
-                                      >
-                                        <svg
-                                          aria-hidden={true}
-                                          className="MuiSvgIcon-root MuiPaginationItem-icon"
-                                          focusable="false"
-                                          viewBox="0 0 24 24"
-                                        >
-                                          <path
-                                            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                                          />
-                                        </svg>
-                                      </ForwardRef(SvgIcon)>
-                                    </WithStyles(ForwardRef(SvgIcon))>
-                                  </ForwardRef(NavigateNextIcon)>
-                                  <WithStyles(memo)
-                                    center={false}
-                                  >
-                                    <ForwardRef(TouchRipple)
-                                      center={false}
-                                      classes={
-                                        Object {
-                                          "child": "MuiTouchRipple-child",
-                                          "childLeaving": "MuiTouchRipple-childLeaving",
-                                          "childPulsate": "MuiTouchRipple-childPulsate",
-                                          "ripple": "MuiTouchRipple-ripple",
-                                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                          "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                          "root": "MuiTouchRipple-root",
-                                        }
-                                      }
-                                    >
-                                      <span
-                                        className="MuiTouchRipple-root"
-                                      >
-                                        <TransitionGroup
-                                          childFactory={[Function]}
-                                          component={null}
-                                          exit={true}
-                                        />
-                                      </span>
-                                    </ForwardRef(TouchRipple)>
-                                  </WithStyles(memo)>
-                                </button>
-                              </ForwardRef(ButtonBase)>
-                            </WithStyles(ForwardRef(ButtonBase))>
-                          </ForwardRef(PaginationItem)>
-                        </WithStyles(ForwardRef(PaginationItem))>
-                      </li>
-                    </ul>
-                  </nav>
-                </ForwardRef(Pagination)>
-              </WithStyles(ForwardRef(Pagination))>
-            </div>
-          </ForwardRef(Grid)>
-        </WithStyles(ForwardRef(Grid))>
+            />
+          </ForwardRef(Divider)>
+        </WithStyles(ForwardRef(Divider))>
       </div>
     </ForwardRef(Grid)>
   </WithStyles(ForwardRef(Grid))>
@@ -1932,6 +738,8 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
         "data": Object {},
         "open": false,
       },
+      "availableAccommodations": Array [],
+      "availableLocations": Array [],
       "currentLocation": "",
       "departureDate": "",
       "destinationLocation": "",
@@ -1939,11 +747,9 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
       "displaySelection": false,
       "isReturning": false,
       "returnDate": "",
-      "searchAccommodations": Array [],
       "searchAccommodationsLoading": false,
-      "searchLocations": Array [],
       "searchLocationsLoading": false,
-      "selectedAccommodation": Array [],
+      "selectedAccommodation": "",
       "selectedLocations": Array [],
       "sendLoading": false,
       "snackBarMessage": Object {
@@ -2234,7 +1040,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   <p
                     className="MuiTypography-root MuiTypography-body1"
                   >
-                    Enter your location
+                    Departure Location
                   </p>
                 </ForwardRef(Typography)>
               </WithStyles(ForwardRef(Typography))>
@@ -2285,16 +1091,21 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   }
                   clearText="no value"
                   closeIcon={
-                    <closeIcon
+                    <Memo
                       fontSize="small"
                     />
+                  }
+                  defaultValue={
+                    Object {
+                      "LocationName": "City",
+                      "country": "Country",
+                    }
                   }
                   getOptionLabel={[Function]}
                   id="currentLocationId"
                   includeInputInList={true}
                   key=""
                   onChange={[Function]}
-                  onInputChange={[Function]}
                   options={Array []}
                   renderInput={[Function]}
                 >
@@ -2331,15 +1142,20 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                     }
                     clearText="no value"
                     closeIcon={
-                      <closeIcon
+                      <Memo
                         fontSize="small"
                       />
+                    }
+                    defaultValue={
+                      Object {
+                        "LocationName": "City",
+                        "country": "Country",
+                      }
                     }
                     getOptionLabel={[Function]}
                     id="currentLocationId"
                     includeInputInList={true}
                     onChange={[Function]}
-                    onInputChange={[Function]}
                     options={Array []}
                     renderInput={[Function]}
                   >
@@ -2367,12 +1183,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                             >
                               <WithStyles(ForwardRef(IconButton))
                                 aria-label="no value"
-                                className="MuiAutocomplete-clearIndicator"
+                                className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                 onClick={[Function]}
                                 tabIndex={-1}
                                 title="no value"
                               >
-                                <closeIcon
+                                <Memo
                                   fontSize="small"
                                 />
                               </WithStyles(ForwardRef(IconButton))>
@@ -2416,18 +1232,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                 autocomplete="off"
                                 class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                 id="currentLocationId"
-                                placeholder="Search your Location ..."
+                                placeholder="Select you depart location"
                                 spellcheck="false"
                                 type="text"
-                                value=""
+                                value="City, Country"
                               />,
                             },
                             "spellCheck": "false",
-                            "value": "",
+                            "value": "City, Country",
                           }
                         }
-                        placeholder="Search your Location ..."
-                        value=""
+                        placeholder="Select you depart location"
                       >
                         <ForwardRef(TextField)
                           InputLabelProps={
@@ -2444,12 +1259,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                               >
                                 <WithStyles(ForwardRef(IconButton))
                                   aria-label="no value"
-                                  className="MuiAutocomplete-clearIndicator"
+                                  className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                   onClick={[Function]}
                                   tabIndex={-1}
                                   title="no value"
                                 >
-                                  <closeIcon
+                                  <Memo
                                     fontSize="small"
                                   />
                                 </WithStyles(ForwardRef(IconButton))>
@@ -2498,18 +1313,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                   autocomplete="off"
                                   class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                   id="currentLocationId"
-                                  placeholder="Search your Location ..."
+                                  placeholder="Select you depart location"
                                   spellcheck="false"
                                   type="text"
-                                  value=""
+                                  value="City, Country"
                                 />,
                               },
                               "spellCheck": "false",
-                              "value": "",
+                              "value": "City, Country",
                             }
                           }
-                          placeholder="Search your Location ..."
-                          value=""
+                          placeholder="Select you depart location"
                         >
                           <WithStyles(ForwardRef(FormControl))
                             className="MuiTextField-root"
@@ -2549,12 +1363,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                     >
                                       <WithStyles(ForwardRef(IconButton))
                                         aria-label="no value"
-                                        className="MuiAutocomplete-clearIndicator"
+                                        className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                         onClick={[Function]}
                                         tabIndex={-1}
                                         title="no value"
                                       >
-                                        <closeIcon
+                                        <Memo
                                           fontSize="small"
                                         />
                                       </WithStyles(ForwardRef(IconButton))>
@@ -2594,19 +1408,18 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           autocomplete="off"
                                           class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                           id="currentLocationId"
-                                          placeholder="Search your Location ..."
+                                          placeholder="Select you depart location"
                                           spellcheck="false"
                                           type="text"
-                                          value=""
+                                          value="City, Country"
                                         />,
                                       },
                                       "spellCheck": "false",
-                                      "value": "",
+                                      "value": "City, Country",
                                     }
                                   }
                                   multiline={false}
-                                  placeholder="Search your Location ..."
-                                  value=""
+                                  placeholder="Select you depart location"
                                 >
                                   <ForwardRef(Input)
                                     autoFocus={false}
@@ -2635,12 +1448,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                       >
                                         <WithStyles(ForwardRef(IconButton))
                                           aria-label="no value"
-                                          className="MuiAutocomplete-clearIndicator"
+                                          className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                           onClick={[Function]}
                                           tabIndex={-1}
                                           title="no value"
                                         >
-                                          <closeIcon
+                                          <Memo
                                             fontSize="small"
                                           />
                                         </WithStyles(ForwardRef(IconButton))>
@@ -2680,19 +1493,18 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             autocomplete="off"
                                             class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                             id="currentLocationId"
-                                            placeholder="Search your Location ..."
+                                            placeholder="Select you depart location"
                                             spellcheck="false"
                                             type="text"
-                                            value=""
+                                            value="City, Country"
                                           />,
                                         },
                                         "spellCheck": "false",
-                                        "value": "",
+                                        "value": "City, Country",
                                       }
                                     }
                                     multiline={false}
-                                    placeholder="Search your Location ..."
-                                    value=""
+                                    placeholder="Select you depart location"
                                   >
                                     <WithStyles(ForwardRef(InputBase))
                                       autoFocus={false}
@@ -2721,12 +1533,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                         >
                                           <WithStyles(ForwardRef(IconButton))
                                             aria-label="no value"
-                                            className="MuiAutocomplete-clearIndicator"
+                                            className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                             onClick={[Function]}
                                             tabIndex={-1}
                                             title="no value"
                                           >
-                                            <closeIcon
+                                            <Memo
                                               fontSize="small"
                                             />
                                           </WithStyles(ForwardRef(IconButton))>
@@ -2767,20 +1579,19 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                               autocomplete="off"
                                               class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                               id="currentLocationId"
-                                              placeholder="Search your Location ..."
+                                              placeholder="Select you depart location"
                                               spellcheck="false"
                                               type="text"
-                                              value=""
+                                              value="City, Country"
                                             />,
                                           },
                                           "spellCheck": "false",
-                                          "value": "",
+                                          "value": "City, Country",
                                         }
                                       }
                                       multiline={false}
-                                      placeholder="Search your Location ..."
+                                      placeholder="Select you depart location"
                                       type="text"
-                                      value=""
                                     >
                                       <ForwardRef(InputBase)
                                         autoFocus={false}
@@ -2813,12 +1624,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           >
                                             <WithStyles(ForwardRef(IconButton))
                                               aria-label="no value"
-                                              className="MuiAutocomplete-clearIndicator"
+                                              className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                               onClick={[Function]}
                                               tabIndex={-1}
                                               title="no value"
                                             >
-                                              <closeIcon
+                                              <Memo
                                                 fontSize="small"
                                               />
                                             </WithStyles(ForwardRef(IconButton))>
@@ -2859,20 +1670,19 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                 autocomplete="off"
                                                 class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                                 id="currentLocationId"
-                                                placeholder="Search your Location ..."
+                                                placeholder="Select you depart location"
                                                 spellcheck="false"
                                                 type="text"
-                                                value=""
+                                                value="City, Country"
                                               />,
                                             },
                                             "spellCheck": "false",
-                                            "value": "",
+                                            "value": "City, Country",
                                           }
                                         }
                                         multiline={false}
-                                        placeholder="Search your Location ..."
+                                        placeholder="Select you depart location"
                                         type="text"
-                                        value=""
                                       >
                                         <div
                                           className="MuiInputBase-root MuiInput-root MuiInput-underline MuiAutocomplete-inputRoot MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
@@ -2894,25 +1704,25 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             onChange={[Function]}
                                             onFocus={[Function]}
                                             onMouseDown={[Function]}
-                                            placeholder="Search your Location ..."
+                                            placeholder="Select you depart location"
                                             required={false}
                                             spellCheck="false"
                                             type="text"
-                                            value=""
+                                            value="City, Country"
                                           />
                                           <div
                                             className="MuiAutocomplete-endAdornment"
                                           >
                                             <WithStyles(ForwardRef(IconButton))
                                               aria-label="no value"
-                                              className="MuiAutocomplete-clearIndicator"
+                                              className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                               onClick={[Function]}
                                               tabIndex={-1}
                                               title="no value"
                                             >
                                               <ForwardRef(IconButton)
                                                 aria-label="no value"
-                                                className="MuiAutocomplete-clearIndicator"
+                                                className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                 classes={
                                                   Object {
                                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -2933,7 +1743,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                 <WithStyles(ForwardRef(ButtonBase))
                                                   aria-label="no value"
                                                   centerRipple={true}
-                                                  className="MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                  className="MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                   disabled={false}
                                                   focusRipple={true}
                                                   onClick={[Function]}
@@ -2943,7 +1753,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                   <ForwardRef(ButtonBase)
                                                     aria-label="no value"
                                                     centerRipple={true}
-                                                    className="MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                    className="MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                     classes={
                                                       Object {
                                                         "disabled": "Mui-disabled",
@@ -2959,7 +1769,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                   >
                                                     <button
                                                       aria-label="no value"
-                                                      className="MuiButtonBase-root MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                      className="MuiButtonBase-root MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                       disabled={false}
                                                       onBlur={[Function]}
                                                       onClick={[Function]}
@@ -2980,9 +1790,41 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                       <span
                                                         className="MuiIconButton-label"
                                                       >
-                                                        <closeIcon
+                                                        <ForwardRef(CloseIcon)
                                                           fontSize="small"
-                                                        />
+                                                        >
+                                                          <WithStyles(ForwardRef(SvgIcon))
+                                                            fontSize="small"
+                                                          >
+                                                            <ForwardRef(SvgIcon)
+                                                              classes={
+                                                                Object {
+                                                                  "colorAction": "MuiSvgIcon-colorAction",
+                                                                  "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                                  "colorError": "MuiSvgIcon-colorError",
+                                                                  "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                                  "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                                  "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                                  "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                                  "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                                  "root": "MuiSvgIcon-root",
+                                                                }
+                                                              }
+                                                              fontSize="small"
+                                                            >
+                                                              <svg
+                                                                aria-hidden={true}
+                                                                className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                                                focusable="false"
+                                                                viewBox="0 0 24 24"
+                                                              >
+                                                                <path
+                                                                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                                                />
+                                                              </svg>
+                                                            </ForwardRef(SvgIcon)>
+                                                          </WithStyles(ForwardRef(SvgIcon))>
+                                                        </ForwardRef(CloseIcon)>
                                                       </span>
                                                       <WithStyles(memo)
                                                         center={true}
@@ -3336,7 +2178,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   <p
                     className="MuiTypography-root MuiTypography-body1"
                   >
-                    Enter your Destination
+                    Destination Location
                   </p>
                 </ForwardRef(Typography)>
               </WithStyles(ForwardRef(Typography))>
@@ -3390,6 +2232,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                       fontSize="small"
                     />
                   }
+                  defaultValue={
+                    Object {
+                      "LocationName": "City",
+                      "country": "Country",
+                    }
+                  }
                   getOptionLabel={[Function]}
                   id="destinationLocationId"
                   includeInputInList={true}
@@ -3434,6 +2282,12 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                         fontSize="small"
                       />
                     }
+                    defaultValue={
+                      Object {
+                        "LocationName": "City",
+                        "country": "Country",
+                      }
+                    }
                     getOptionLabel={[Function]}
                     id="destinationLocationId"
                     includeInputInList={true}
@@ -3465,7 +2319,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                             >
                               <WithStyles(ForwardRef(IconButton))
                                 aria-label="no value"
-                                className="MuiAutocomplete-clearIndicator"
+                                className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                 onClick={[Function]}
                                 tabIndex={-1}
                                 title="no value"
@@ -3514,18 +2368,15 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                 autocomplete="off"
                                 class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                 id="destinationLocationId"
-                                placeholder="Search your Destionation ..."
                                 spellcheck="false"
                                 type="text"
-                                value=""
+                                value="City, Country"
                               />,
                             },
                             "spellCheck": "false",
-                            "value": "",
+                            "value": "City, Country",
                           }
                         }
-                        placeholder="Search your Destionation ..."
-                        value=""
                       >
                         <ForwardRef(TextField)
                           InputLabelProps={
@@ -3542,7 +2393,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                               >
                                 <WithStyles(ForwardRef(IconButton))
                                   aria-label="no value"
-                                  className="MuiAutocomplete-clearIndicator"
+                                  className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                   onClick={[Function]}
                                   tabIndex={-1}
                                   title="no value"
@@ -3596,18 +2447,15 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                   autocomplete="off"
                                   class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                   id="destinationLocationId"
-                                  placeholder="Search your Destionation ..."
                                   spellcheck="false"
                                   type="text"
-                                  value=""
+                                  value="City, Country"
                                 />,
                               },
                               "spellCheck": "false",
-                              "value": "",
+                              "value": "City, Country",
                             }
                           }
-                          placeholder="Search your Destionation ..."
-                          value=""
                         >
                           <WithStyles(ForwardRef(FormControl))
                             className="MuiTextField-root"
@@ -3647,7 +2495,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                     >
                                       <WithStyles(ForwardRef(IconButton))
                                         aria-label="no value"
-                                        className="MuiAutocomplete-clearIndicator"
+                                        className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                         onClick={[Function]}
                                         tabIndex={-1}
                                         title="no value"
@@ -3692,19 +2540,16 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           autocomplete="off"
                                           class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                           id="destinationLocationId"
-                                          placeholder="Search your Destionation ..."
                                           spellcheck="false"
                                           type="text"
-                                          value=""
+                                          value="City, Country"
                                         />,
                                       },
                                       "spellCheck": "false",
-                                      "value": "",
+                                      "value": "City, Country",
                                     }
                                   }
                                   multiline={false}
-                                  placeholder="Search your Destionation ..."
-                                  value=""
                                 >
                                   <ForwardRef(Input)
                                     autoFocus={false}
@@ -3733,7 +2578,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                       >
                                         <WithStyles(ForwardRef(IconButton))
                                           aria-label="no value"
-                                          className="MuiAutocomplete-clearIndicator"
+                                          className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                           onClick={[Function]}
                                           tabIndex={-1}
                                           title="no value"
@@ -3778,19 +2623,16 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             autocomplete="off"
                                             class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                             id="destinationLocationId"
-                                            placeholder="Search your Destionation ..."
                                             spellcheck="false"
                                             type="text"
-                                            value=""
+                                            value="City, Country"
                                           />,
                                         },
                                         "spellCheck": "false",
-                                        "value": "",
+                                        "value": "City, Country",
                                       }
                                     }
                                     multiline={false}
-                                    placeholder="Search your Destionation ..."
-                                    value=""
                                   >
                                     <WithStyles(ForwardRef(InputBase))
                                       autoFocus={false}
@@ -3819,7 +2661,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                         >
                                           <WithStyles(ForwardRef(IconButton))
                                             aria-label="no value"
-                                            className="MuiAutocomplete-clearIndicator"
+                                            className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                             onClick={[Function]}
                                             tabIndex={-1}
                                             title="no value"
@@ -3865,20 +2707,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                               autocomplete="off"
                                               class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                               id="destinationLocationId"
-                                              placeholder="Search your Destionation ..."
                                               spellcheck="false"
                                               type="text"
-                                              value=""
+                                              value="City, Country"
                                             />,
                                           },
                                           "spellCheck": "false",
-                                          "value": "",
+                                          "value": "City, Country",
                                         }
                                       }
                                       multiline={false}
-                                      placeholder="Search your Destionation ..."
                                       type="text"
-                                      value=""
                                     >
                                       <ForwardRef(InputBase)
                                         autoFocus={false}
@@ -3911,7 +2750,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           >
                                             <WithStyles(ForwardRef(IconButton))
                                               aria-label="no value"
-                                              className="MuiAutocomplete-clearIndicator"
+                                              className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                               onClick={[Function]}
                                               tabIndex={-1}
                                               title="no value"
@@ -3957,20 +2796,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                 autocomplete="off"
                                                 class="MuiInputBase-input MuiInput-input MuiAutocomplete-input makeStyles-inputText-9 MuiAutocomplete-inputFocused MuiInputBase-inputAdornedEnd"
                                                 id="destinationLocationId"
-                                                placeholder="Search your Destionation ..."
                                                 spellcheck="false"
                                                 type="text"
-                                                value=""
+                                                value="City, Country"
                                               />,
                                             },
                                             "spellCheck": "false",
-                                            "value": "",
+                                            "value": "City, Country",
                                           }
                                         }
                                         multiline={false}
-                                        placeholder="Search your Destionation ..."
                                         type="text"
-                                        value=""
                                       >
                                         <div
                                           className="MuiInputBase-root MuiInput-root MuiInput-underline MuiAutocomplete-inputRoot MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
@@ -3992,25 +2828,24 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             onChange={[Function]}
                                             onFocus={[Function]}
                                             onMouseDown={[Function]}
-                                            placeholder="Search your Destionation ..."
                                             required={false}
                                             spellCheck="false"
                                             type="text"
-                                            value=""
+                                            value="City, Country"
                                           />
                                           <div
                                             className="MuiAutocomplete-endAdornment"
                                           >
                                             <WithStyles(ForwardRef(IconButton))
                                               aria-label="no value"
-                                              className="MuiAutocomplete-clearIndicator"
+                                              className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                               onClick={[Function]}
                                               tabIndex={-1}
                                               title="no value"
                                             >
                                               <ForwardRef(IconButton)
                                                 aria-label="no value"
-                                                className="MuiAutocomplete-clearIndicator"
+                                                className="MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                 classes={
                                                   Object {
                                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -4031,7 +2866,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                 <WithStyles(ForwardRef(ButtonBase))
                                                   aria-label="no value"
                                                   centerRipple={true}
-                                                  className="MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                  className="MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                   disabled={false}
                                                   focusRipple={true}
                                                   onClick={[Function]}
@@ -4041,7 +2876,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                   <ForwardRef(ButtonBase)
                                                     aria-label="no value"
                                                     centerRipple={true}
-                                                    className="MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                    className="MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                     classes={
                                                       Object {
                                                         "disabled": "Mui-disabled",
@@ -4057,7 +2892,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                   >
                                                     <button
                                                       aria-label="no value"
-                                                      className="MuiButtonBase-root MuiIconButton-root MuiAutocomplete-clearIndicator"
+                                                      className="MuiButtonBase-root MuiIconButton-root MuiAutocomplete-clearIndicator MuiAutocomplete-clearIndicatorDirty"
                                                       disabled={false}
                                                       onBlur={[Function]}
                                                       onClick={[Function]}
@@ -4543,7 +3378,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                             <span
                               className="MuiButton-label"
                             >
-                              Add
+                              Add trip
                             </span>
                             <WithStyles(memo)
                               center={false}
@@ -4589,7 +3424,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                         <span
                           class="MuiButton-label"
                         >
-                          Add
+                          Add trip
                         </span>
                         <span
                           class="MuiTouchRipple-root"
@@ -4775,7 +3610,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   <p
                     className="MuiTypography-root MuiTypography-body1"
                   >
-                    Date of travel
+                    Trip depart date
                   </p>
                 </ForwardRef(Typography)>
               </WithStyles(ForwardRef(Typography))>
@@ -4792,15 +3627,14 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   disableToolbar={true}
                   format="MM/dd/yyyy"
                   inputVariant="filled"
-                  invalidDateMessage="Invalid Date Format"
-                  key=""
+                  invalidDateMessage=" "
                   maxDate={2100-01-01T00:00:00.000Z}
                   maxDateMessage="Date should not be after maximal date"
                   minDate={1900-01-01T00:00:00.000Z}
                   minDateMessage="Date should not be before minimal date"
                   onChange={[Function]}
                   openTo="date"
-                  value=""
+                  value={null}
                   variant="dialog"
                   views={
                     Array [
@@ -4813,10 +3647,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                     DateInputProps={
                       Object {
                         "format": "MM/dd/yyyy",
-                        "inputValue": undefined,
+                        "inputValue": "",
                         "onChange": [Function],
                         "openPicker": [Function],
-                        "validationError": "Invalid Date Format",
+                        "validationError": "",
                       }
                     }
                     InputComponent={[Function]}
@@ -4838,10 +3672,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                       DateInputProps={
                         Object {
                           "format": "MM/dd/yyyy",
-                          "inputValue": undefined,
+                          "inputValue": "",
                           "onChange": [Function],
                           "openPicker": [Function],
-                          "validationError": "Invalid Date Format",
+                          "validationError": "",
                         }
                       }
                       InputComponent={[Function]}
@@ -4871,17 +3705,19 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                           }
                         }
                         format="MM/dd/yyyy"
+                        inputValue=""
                         inputVariant="filled"
                         keyboardIcon={<KeyboardIcon />}
                         onChange={[Function]}
                         openPicker={[Function]}
-                        validationError="Invalid Date Format"
+                        validationError=""
                       >
                         <Rifm
                           format={[Function]}
                           key="__/__/____"
                           onChange={[Function]}
                           refuse={/\\[\\^\\\\d\\]\\+/gi}
+                          value=""
                         >
                           <WithStyles(ForwardRef(TextField))
                             InputProps={
@@ -4898,9 +3734,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                 </WithStyles(ForwardRef(InputAdornment))>,
                               }
                             }
-                            error={true}
-                            helperText="Invalid Date Format"
+                            error={false}
+                            helperText=""
                             onChange={[Function]}
+                            value=""
                             variant="filled"
                           >
                             <ForwardRef(TextField)
@@ -4923,16 +3760,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                   "root": "MuiTextField-root",
                                 }
                               }
-                              error={true}
-                              helperText="Invalid Date Format"
+                              error={false}
+                              helperText=""
                               onChange={[Function]}
+                              value=""
                               variant="filled"
                             >
                               <WithStyles(ForwardRef(FormControl))
                                 className="MuiTextField-root"
                                 color="primary"
                                 disabled={false}
-                                error={true}
+                                error={false}
                                 fullWidth={false}
                                 required={false}
                                 variant="filled"
@@ -4949,7 +3787,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                   }
                                   color="primary"
                                   disabled={false}
-                                  error={true}
+                                  error={false}
                                   fullWidth={false}
                                   required={false}
                                   variant="filled"
@@ -4974,6 +3812,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                       fullWidth={false}
                                       multiline={false}
                                       onChange={[Function]}
+                                      value=""
                                     >
                                       <ForwardRef(FilledInput)
                                         autoFocus={false}
@@ -5012,6 +3851,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                         fullWidth={false}
                                         multiline={false}
                                         onChange={[Function]}
+                                        value=""
                                       >
                                         <WithStyles(ForwardRef(InputBase))
                                           autoFocus={false}
@@ -5052,6 +3892,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           multiline={false}
                                           onChange={[Function]}
                                           type="text"
+                                          value=""
                                         >
                                           <ForwardRef(InputBase)
                                             autoFocus={false}
@@ -5094,13 +3935,14 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             multiline={false}
                                             onChange={[Function]}
                                             type="text"
+                                            value=""
                                           >
                                             <div
-                                              className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline makeStyles-datesPicker-6 Mui-error Mui-error MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
+                                              className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline makeStyles-datesPicker-6 MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
                                               onClick={[Function]}
                                             >
                                               <input
-                                                aria-invalid={true}
+                                                aria-invalid={false}
                                                 autoFocus={false}
                                                 className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedEnd MuiFilledInput-inputAdornedEnd"
                                                 disabled={false}
@@ -5110,6 +3952,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                 onFocus={[Function]}
                                                 required={false}
                                                 type="text"
+                                                value=""
                                               />
                                               <WithStyles(ForwardRef(InputAdornment))
                                                 position="end"
@@ -5268,28 +4111,6 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                         </WithStyles(ForwardRef(InputBase))>
                                       </ForwardRef(FilledInput)>
                                     </WithStyles(ForwardRef(FilledInput))>
-                                    <WithStyles(ForwardRef(FormHelperText))>
-                                      <ForwardRef(FormHelperText)
-                                        classes={
-                                          Object {
-                                            "contained": "MuiFormHelperText-contained",
-                                            "disabled": "Mui-disabled",
-                                            "error": "Mui-error",
-                                            "filled": "MuiFormHelperText-filled",
-                                            "focused": "Mui-focused",
-                                            "marginDense": "MuiFormHelperText-marginDense",
-                                            "required": "Mui-required",
-                                            "root": "MuiFormHelperText-root",
-                                          }
-                                        }
-                                      >
-                                        <p
-                                          className="MuiFormHelperText-root MuiFormHelperText-contained Mui-error"
-                                        >
-                                          Invalid Date Format
-                                        </p>
-                                      </ForwardRef(FormHelperText)>
-                                    </WithStyles(ForwardRef(FormHelperText))>
                                   </div>
                                 </ForwardRef(FormControl)>
                               </WithStyles(ForwardRef(FormControl))>
@@ -5705,384 +4526,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                   </Wrapper>
                 </PickerWithState>
               </MuiPickersUtilsProvider>
-              <div
-                className="makeStyles-dates-5"
-              >
-                <WithStyles(ForwardRef(FormControlLabel))
-                  control={
-                    <WithStyles(ForwardRef(Checkbox))
-                      checked={false}
-                      disabled={false}
-                      fontSize="small"
-                      onChange={[Function]}
-                      style={
-                        Object {
-                          "color": "#FFFFFF",
-                        }
-                      }
-                    />
-                  }
-                  label="Returning Back?"
-                >
-                  <ForwardRef(FormControlLabel)
-                    classes={
-                      Object {
-                        "disabled": "Mui-disabled",
-                        "label": "MuiFormControlLabel-label",
-                        "labelPlacementBottom": "MuiFormControlLabel-labelPlacementBottom",
-                        "labelPlacementStart": "MuiFormControlLabel-labelPlacementStart",
-                        "labelPlacementTop": "MuiFormControlLabel-labelPlacementTop",
-                        "root": "MuiFormControlLabel-root",
-                      }
-                    }
-                    control={
-                      <WithStyles(ForwardRef(Checkbox))
-                        checked={false}
-                        disabled={false}
-                        fontSize="small"
-                        onChange={[Function]}
-                        style={
-                          Object {
-                            "color": "#FFFFFF",
-                          }
-                        }
-                      />
-                    }
-                    label="Returning Back?"
-                  >
-                    <label
-                      className="MuiFormControlLabel-root"
-                    >
-                      <WithStyles(ForwardRef(Checkbox))
-                        checked={false}
-                        disabled={false}
-                        fontSize="small"
-                        onChange={[Function]}
-                        style={
-                          Object {
-                            "color": "#FFFFFF",
-                          }
-                        }
-                      >
-                        <ForwardRef(Checkbox)
-                          checked={false}
-                          classes={
-                            Object {
-                              "checked": "Mui-checked",
-                              "colorPrimary": "MuiCheckbox-colorPrimary",
-                              "colorSecondary": "MuiCheckbox-colorSecondary",
-                              "disabled": "Mui-disabled",
-                              "indeterminate": "MuiCheckbox-indeterminate",
-                              "root": "MuiCheckbox-root",
-                            }
-                          }
-                          disabled={false}
-                          fontSize="small"
-                          onChange={[Function]}
-                          style={
-                            Object {
-                              "color": "#FFFFFF",
-                            }
-                          }
-                        >
-                          <WithStyles(ForwardRef(SwitchBase))
-                            checked={false}
-                            checkedIcon={<Memo />}
-                            classes={
-                              Object {
-                                "checked": "Mui-checked",
-                                "disabled": "Mui-disabled",
-                                "root": "MuiCheckbox-root MuiCheckbox-colorSecondary",
-                              }
-                            }
-                            color="secondary"
-                            disabled={false}
-                            fontSize="small"
-                            icon={<Memo />}
-                            inputProps={
-                              Object {
-                                "data-indeterminate": false,
-                              }
-                            }
-                            onChange={[Function]}
-                            style={
-                              Object {
-                                "color": "#FFFFFF",
-                              }
-                            }
-                            type="checkbox"
-                          >
-                            <ForwardRef(SwitchBase)
-                              checked={false}
-                              checkedIcon={<Memo />}
-                              classes={
-                                Object {
-                                  "checked": "PrivateSwitchBase-checked-14 Mui-checked",
-                                  "disabled": "PrivateSwitchBase-disabled-15 Mui-disabled",
-                                  "input": "PrivateSwitchBase-input-16",
-                                  "root": "PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary",
-                                }
-                              }
-                              color="secondary"
-                              disabled={false}
-                              fontSize="small"
-                              icon={<Memo />}
-                              inputProps={
-                                Object {
-                                  "data-indeterminate": false,
-                                }
-                              }
-                              onChange={[Function]}
-                              style={
-                                Object {
-                                  "color": "#FFFFFF",
-                                }
-                              }
-                              type="checkbox"
-                            >
-                              <WithStyles(ForwardRef(IconButton))
-                                className="PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary"
-                                color="secondary"
-                                component="span"
-                                disabled={false}
-                                fontSize="small"
-                                onBlur={[Function]}
-                                onFocus={[Function]}
-                                style={
-                                  Object {
-                                    "color": "#FFFFFF",
-                                  }
-                                }
-                                tabIndex={null}
-                              >
-                                <ForwardRef(IconButton)
-                                  className="PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary"
-                                  classes={
-                                    Object {
-                                      "colorInherit": "MuiIconButton-colorInherit",
-                                      "colorPrimary": "MuiIconButton-colorPrimary",
-                                      "colorSecondary": "MuiIconButton-colorSecondary",
-                                      "disabled": "Mui-disabled",
-                                      "edgeEnd": "MuiIconButton-edgeEnd",
-                                      "edgeStart": "MuiIconButton-edgeStart",
-                                      "label": "MuiIconButton-label",
-                                      "root": "MuiIconButton-root",
-                                      "sizeSmall": "MuiIconButton-sizeSmall",
-                                    }
-                                  }
-                                  color="secondary"
-                                  component="span"
-                                  disabled={false}
-                                  fontSize="small"
-                                  onBlur={[Function]}
-                                  onFocus={[Function]}
-                                  style={
-                                    Object {
-                                      "color": "#FFFFFF",
-                                    }
-                                  }
-                                  tabIndex={null}
-                                >
-                                  <WithStyles(ForwardRef(ButtonBase))
-                                    centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
-                                    component="span"
-                                    disabled={false}
-                                    focusRipple={true}
-                                    fontSize="small"
-                                    onBlur={[Function]}
-                                    onFocus={[Function]}
-                                    style={
-                                      Object {
-                                        "color": "#FFFFFF",
-                                      }
-                                    }
-                                    tabIndex={null}
-                                  >
-                                    <ForwardRef(ButtonBase)
-                                      centerRipple={true}
-                                      className="MuiIconButton-root PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
-                                      classes={
-                                        Object {
-                                          "disabled": "Mui-disabled",
-                                          "focusVisible": "Mui-focusVisible",
-                                          "root": "MuiButtonBase-root",
-                                        }
-                                      }
-                                      component="span"
-                                      disabled={false}
-                                      focusRipple={true}
-                                      fontSize="small"
-                                      onBlur={[Function]}
-                                      onFocus={[Function]}
-                                      style={
-                                        Object {
-                                          "color": "#FFFFFF",
-                                        }
-                                      }
-                                      tabIndex={null}
-                                    >
-                                      <span
-                                        aria-disabled={false}
-                                        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-13 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
-                                        fontSize="small"
-                                        onBlur={[Function]}
-                                        onDragLeave={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
-                                        onKeyUp={[Function]}
-                                        onMouseDown={[Function]}
-                                        onMouseLeave={[Function]}
-                                        onMouseUp={[Function]}
-                                        onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
-                                        onTouchStart={[Function]}
-                                        style={
-                                          Object {
-                                            "color": "#FFFFFF",
-                                          }
-                                        }
-                                        tabIndex={null}
-                                      >
-                                        <span
-                                          className="MuiIconButton-label"
-                                        >
-                                          <input
-                                            checked={false}
-                                            className="PrivateSwitchBase-input-16"
-                                            data-indeterminate={false}
-                                            disabled={false}
-                                            onChange={[Function]}
-                                            type="checkbox"
-                                          />
-                                          <ForwardRef(CheckBoxOutlineBlankIcon)>
-                                            <WithStyles(ForwardRef(SvgIcon))>
-                                              <ForwardRef(SvgIcon)
-                                                classes={
-                                                  Object {
-                                                    "colorAction": "MuiSvgIcon-colorAction",
-                                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
-                                                    "colorError": "MuiSvgIcon-colorError",
-                                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
-                                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
-                                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-                                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
-                                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-                                                    "root": "MuiSvgIcon-root",
-                                                  }
-                                                }
-                                              >
-                                                <svg
-                                                  aria-hidden={true}
-                                                  className="MuiSvgIcon-root"
-                                                  focusable="false"
-                                                  viewBox="0 0 24 24"
-                                                >
-                                                  <path
-                                                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                                  />
-                                                </svg>
-                                              </ForwardRef(SvgIcon)>
-                                            </WithStyles(ForwardRef(SvgIcon))>
-                                          </ForwardRef(CheckBoxOutlineBlankIcon)>
-                                        </span>
-                                        <WithStyles(memo)
-                                          center={true}
-                                        >
-                                          <ForwardRef(TouchRipple)
-                                            center={true}
-                                            classes={
-                                              Object {
-                                                "child": "MuiTouchRipple-child",
-                                                "childLeaving": "MuiTouchRipple-childLeaving",
-                                                "childPulsate": "MuiTouchRipple-childPulsate",
-                                                "ripple": "MuiTouchRipple-ripple",
-                                                "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                "root": "MuiTouchRipple-root",
-                                              }
-                                            }
-                                          >
-                                            <span
-                                              className="MuiTouchRipple-root"
-                                            >
-                                              <TransitionGroup
-                                                childFactory={[Function]}
-                                                component={null}
-                                                exit={true}
-                                              />
-                                            </span>
-                                          </ForwardRef(TouchRipple)>
-                                        </WithStyles(memo)>
-                                      </span>
-                                    </ForwardRef(ButtonBase)>
-                                  </WithStyles(ForwardRef(ButtonBase))>
-                                </ForwardRef(IconButton)>
-                              </WithStyles(ForwardRef(IconButton))>
-                            </ForwardRef(SwitchBase)>
-                          </WithStyles(ForwardRef(SwitchBase))>
-                        </ForwardRef(Checkbox)>
-                      </WithStyles(ForwardRef(Checkbox))>
-                      <WithStyles(ForwardRef(Typography))
-                        className="MuiFormControlLabel-label"
-                        component="span"
-                      >
-                        <ForwardRef(Typography)
-                          className="MuiFormControlLabel-label"
-                          classes={
-                            Object {
-                              "alignCenter": "MuiTypography-alignCenter",
-                              "alignJustify": "MuiTypography-alignJustify",
-                              "alignLeft": "MuiTypography-alignLeft",
-                              "alignRight": "MuiTypography-alignRight",
-                              "body1": "MuiTypography-body1",
-                              "body2": "MuiTypography-body2",
-                              "button": "MuiTypography-button",
-                              "caption": "MuiTypography-caption",
-                              "colorError": "MuiTypography-colorError",
-                              "colorInherit": "MuiTypography-colorInherit",
-                              "colorPrimary": "MuiTypography-colorPrimary",
-                              "colorSecondary": "MuiTypography-colorSecondary",
-                              "colorTextPrimary": "MuiTypography-colorTextPrimary",
-                              "colorTextSecondary": "MuiTypography-colorTextSecondary",
-                              "displayBlock": "MuiTypography-displayBlock",
-                              "displayInline": "MuiTypography-displayInline",
-                              "gutterBottom": "MuiTypography-gutterBottom",
-                              "h1": "MuiTypography-h1",
-                              "h2": "MuiTypography-h2",
-                              "h3": "MuiTypography-h3",
-                              "h4": "MuiTypography-h4",
-                              "h5": "MuiTypography-h5",
-                              "h6": "MuiTypography-h6",
-                              "noWrap": "MuiTypography-noWrap",
-                              "overline": "MuiTypography-overline",
-                              "paragraph": "MuiTypography-paragraph",
-                              "root": "MuiTypography-root",
-                              "srOnly": "MuiTypography-srOnly",
-                              "subtitle1": "MuiTypography-subtitle1",
-                              "subtitle2": "MuiTypography-subtitle2",
-                            }
-                          }
-                          component="span"
-                        >
-                          <span
-                            className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
-                          >
-                            Returning Back?
-                          </span>
-                        </ForwardRef(Typography)>
-                      </WithStyles(ForwardRef(Typography))>
-                    </label>
-                  </ForwardRef(FormControlLabel)>
-                </WithStyles(ForwardRef(FormControlLabel))>
-              </div>
-              <div
-                style={
-                  Object {
-                    "display": "none",
-                  }
-                }
-              >
+              <div>
                 <WithStyles(ForwardRef(Typography))>
                   <ForwardRef(Typography)
                     classes={
@@ -6123,7 +4567,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                     <p
                       className="MuiTypography-root MuiTypography-body1"
                     >
-                      Date of return
+                      Trip end date
                     </p>
                   </ForwardRef(Typography)>
                 </WithStyles(ForwardRef(Typography))>
@@ -6140,15 +4584,14 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                     disableToolbar={true}
                     format="MM/dd/yyyy"
                     inputVariant="filled"
-                    invalidDateMessage="Invalid Date Format"
-                    key=""
+                    invalidDateMessage=" "
                     maxDate={2100-01-01T00:00:00.000Z}
                     maxDateMessage="Date should not be after maximal date"
                     minDate={1900-01-01T00:00:00.000Z}
                     minDateMessage="Date should not be before minimal date"
                     onChange={[Function]}
                     openTo="date"
-                    value=""
+                    value={null}
                     variant="dialog"
                     views={
                       Array [
@@ -6161,10 +4604,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                       DateInputProps={
                         Object {
                           "format": "MM/dd/yyyy",
-                          "inputValue": undefined,
+                          "inputValue": "",
                           "onChange": [Function],
                           "openPicker": [Function],
-                          "validationError": "Invalid Date Format",
+                          "validationError": "",
                         }
                       }
                       InputComponent={[Function]}
@@ -6186,10 +4629,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                         DateInputProps={
                           Object {
                             "format": "MM/dd/yyyy",
-                            "inputValue": undefined,
+                            "inputValue": "",
                             "onChange": [Function],
                             "openPicker": [Function],
-                            "validationError": "Invalid Date Format",
+                            "validationError": "",
                           }
                         }
                         InputComponent={[Function]}
@@ -6219,17 +4662,19 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                             }
                           }
                           format="MM/dd/yyyy"
+                          inputValue=""
                           inputVariant="filled"
                           keyboardIcon={<KeyboardIcon />}
                           onChange={[Function]}
                           openPicker={[Function]}
-                          validationError="Invalid Date Format"
+                          validationError=""
                         >
                           <Rifm
                             format={[Function]}
                             key="__/__/____"
                             onChange={[Function]}
                             refuse={/\\[\\^\\\\d\\]\\+/gi}
+                            value=""
                           >
                             <WithStyles(ForwardRef(TextField))
                               InputProps={
@@ -6246,9 +4691,10 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                   </WithStyles(ForwardRef(InputAdornment))>,
                                 }
                               }
-                              error={true}
-                              helperText="Invalid Date Format"
+                              error={false}
+                              helperText=""
                               onChange={[Function]}
+                              value=""
                               variant="filled"
                             >
                               <ForwardRef(TextField)
@@ -6271,16 +4717,17 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                     "root": "MuiTextField-root",
                                   }
                                 }
-                                error={true}
-                                helperText="Invalid Date Format"
+                                error={false}
+                                helperText=""
                                 onChange={[Function]}
+                                value=""
                                 variant="filled"
                               >
                                 <WithStyles(ForwardRef(FormControl))
                                   className="MuiTextField-root"
                                   color="primary"
                                   disabled={false}
-                                  error={true}
+                                  error={false}
                                   fullWidth={false}
                                   required={false}
                                   variant="filled"
@@ -6297,7 +4744,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                     }
                                     color="primary"
                                     disabled={false}
-                                    error={true}
+                                    error={false}
                                     fullWidth={false}
                                     required={false}
                                     variant="filled"
@@ -6322,6 +4769,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                         fullWidth={false}
                                         multiline={false}
                                         onChange={[Function]}
+                                        value=""
                                       >
                                         <ForwardRef(FilledInput)
                                           autoFocus={false}
@@ -6360,6 +4808,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           fullWidth={false}
                                           multiline={false}
                                           onChange={[Function]}
+                                          value=""
                                         >
                                           <WithStyles(ForwardRef(InputBase))
                                             autoFocus={false}
@@ -6400,6 +4849,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                             multiline={false}
                                             onChange={[Function]}
                                             type="text"
+                                            value=""
                                           >
                                             <ForwardRef(InputBase)
                                               autoFocus={false}
@@ -6442,13 +4892,14 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                               multiline={false}
                                               onChange={[Function]}
                                               type="text"
+                                              value=""
                                             >
                                               <div
-                                                className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline makeStyles-datesPicker-6 Mui-error Mui-error MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
+                                                className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline makeStyles-datesPicker-6 MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
                                                 onClick={[Function]}
                                               >
                                                 <input
-                                                  aria-invalid={true}
+                                                  aria-invalid={false}
                                                   autoFocus={false}
                                                   className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedEnd MuiFilledInput-inputAdornedEnd"
                                                   disabled={false}
@@ -6458,6 +4909,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                                   onFocus={[Function]}
                                                   required={false}
                                                   type="text"
+                                                  value=""
                                                 />
                                                 <WithStyles(ForwardRef(InputAdornment))
                                                   position="end"
@@ -6616,28 +5068,6 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
                                           </WithStyles(ForwardRef(InputBase))>
                                         </ForwardRef(FilledInput)>
                                       </WithStyles(ForwardRef(FilledInput))>
-                                      <WithStyles(ForwardRef(FormHelperText))>
-                                        <ForwardRef(FormHelperText)
-                                          classes={
-                                            Object {
-                                              "contained": "MuiFormHelperText-contained",
-                                              "disabled": "Mui-disabled",
-                                              "error": "Mui-error",
-                                              "filled": "MuiFormHelperText-filled",
-                                              "focused": "Mui-focused",
-                                              "marginDense": "MuiFormHelperText-marginDense",
-                                              "required": "Mui-required",
-                                              "root": "MuiFormHelperText-root",
-                                            }
-                                          }
-                                        >
-                                          <p
-                                            className="MuiFormHelperText-root MuiFormHelperText-contained Mui-error"
-                                          >
-                                            Invalid Date Format
-                                          </p>
-                                        </ForwardRef(FormHelperText)>
-                                      </WithStyles(ForwardRef(FormHelperText))>
                                     </div>
                                   </ForwardRef(FormControl)>
                                 </WithStyles(ForwardRef(FormControl))>
@@ -7200,7 +5630,7 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
 
 exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
 <WithStyles(ForwardRef(Grid))
-  className="makeStyles-main-21"
+  className="makeStyles-main-17"
   container={true}
   direction="column"
 >
@@ -7208,7 +5638,7 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
     open={false}
   />
   <WithStyles(ForwardRef(Grid))
-    className="makeStyles-title-22"
+    className="makeStyles-title-18"
     item={true}
     xs={12}
   >
@@ -7224,7 +5654,7 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(ForwardRef(Grid))
-    className="makeStyles-content-23"
+    className="makeStyles-content-19"
     item={true}
     xs={12}
   >
@@ -7242,6 +5672,8 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
             "data": Object {},
             "open": false,
           },
+          "availableAccommodations": Array [],
+          "availableLocations": Array [],
           "currentLocation": "",
           "departureDate": "",
           "destinationLocation": "",
@@ -7249,11 +5681,9 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
           "displaySelection": false,
           "isReturning": false,
           "returnDate": "",
-          "searchAccommodations": Array [],
           "searchAccommodationsLoading": false,
-          "searchLocations": Array [],
           "searchLocationsLoading": false,
-          "selectedAccommodation": Array [],
+          "selectedAccommodation": "",
           "selectedLocations": Array [],
           "sendLoading": false,
           "snackBarMessage": Object {

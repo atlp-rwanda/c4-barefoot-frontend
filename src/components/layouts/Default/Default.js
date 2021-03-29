@@ -8,7 +8,7 @@ import Footer from '../../Footer'
 
 
 const useStyles = makeStyles(() => ({
-  
+
   content: {
     height: '100%'
   }
@@ -21,7 +21,7 @@ const DefaultM = props => {
     <div >
       <NavBar />
       <main className={classes.content}>{children}
-      
+
       </main>
       <Footer />
     </div>

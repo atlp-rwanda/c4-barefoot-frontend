@@ -37,22 +37,7 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
       "loading": false,
       "success": false,
       "user": Object {
-        "data": Object {
-          "address": "Kigali",
-          "bio": null,
-          "email": "manager_id@gmail.com",
-          "first_name": "Mugabo",
-          "id": "38eb202c - 3f67 - 4eed - b7ac - 9c31bc226e0c",
-          "language": "French",
-          "last_name": "Manager",
-          "manager_id": null,
-          "occupation": "Software Developer",
-          "profile_picture": "https://res.cloudinary.com/mjackson/image/upload/v1611135351/Albert-einstein-profile-picture-512x512.png.cf_ouqza2.png",
-          "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiNzI1NGE5ZTctMmUxYi00ZjgzLWFkNzMtNzhiOTBkZDNkZjc3IiwidXNlcm5hbWUiOiJtYW5hZ2VyX2lkIiwiaWF0IjoxNjExMTMzNDIwLCJleHAiOjE2MTE3MzgyMjB9.2X_RFNNdIGr-hc1_h63yBuLMGNsOopt2cRAW4jXT4fc",
-          "user_role_id": "7254a9e7-2e1b-4f83-ad73-78b90dd3df77",
-          "username": "manager_id",
-          "verified": true,
-        },
+        "data": undefined,
       },
     }
   }
@@ -62,7 +47,7 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
   >
     <WithStyles(ForwardRef(Avatar))
       className="makeStyles-large-1"
-      src="https://res.cloudinary.com/mjackson/image/upload/v1611135351/Albert-einstein-profile-picture-512x512.png.cf_ouqza2.png"
+      src=""
     >
       <ForwardRef(Avatar)
         className="makeStyles-large-1"
@@ -78,15 +63,46 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
             "square": "MuiAvatar-square",
           }
         }
-        src="https://res.cloudinary.com/mjackson/image/upload/v1611135351/Albert-einstein-profile-picture-512x512.png.cf_ouqza2.png"
+        src=""
       >
         <div
-          className="MuiAvatar-root MuiAvatar-circle makeStyles-large-1"
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-large-1 MuiAvatar-colorDefault"
         >
-          <img
-            className="MuiAvatar-img"
-            src="https://res.cloudinary.com/mjackson/image/upload/v1611135351/Albert-einstein-profile-picture-512x512.png.cf_ouqza2.png"
-          />
+          <ForwardRef(PersonIcon)
+            className="MuiAvatar-fallback"
+          >
+            <WithStyles(ForwardRef(SvgIcon))
+              className="MuiAvatar-fallback"
+            >
+              <ForwardRef(SvgIcon)
+                className="MuiAvatar-fallback"
+                classes={
+                  Object {
+                    "colorAction": "MuiSvgIcon-colorAction",
+                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                    "colorError": "MuiSvgIcon-colorError",
+                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                    "root": "MuiSvgIcon-root",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden={true}
+                  className="MuiSvgIcon-root MuiAvatar-fallback"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  />
+                </svg>
+              </ForwardRef(SvgIcon)>
+            </WithStyles(ForwardRef(SvgIcon))>
+          </ForwardRef(PersonIcon)>
         </div>
       </ForwardRef(Avatar)>
     </WithStyles(ForwardRef(Avatar))>
@@ -299,17 +315,7 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
       </WithStyles(ForwardRef(Snackbar))>
       <Formik
         enableReinitialize={true}
-        initialValues={
-          Object {
-            "address": "Kigali",
-            "email": "manager_id@gmail.com",
-            "first_name": "Mugabo",
-            "language": "French",
-            "last_name": "Manager",
-            "line_manager": undefined,
-            "occupation": "Software Developer",
-          }
-        }
+        initialValues={Object {}}
         onSubmit={[Function]}
         validationSchema={
           ObjectSchema {
@@ -1011,7 +1017,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 onChange={[Function]}
                 onMouseEnter={[Function]}
                 onMouseLeave={[Function]}
-                value="Mugabo"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -1036,7 +1041,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   onChange={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
-                  value="Mugabo"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -1086,7 +1090,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="first_name"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="Mugabo"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -1114,7 +1117,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="first_name"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="Mugabo"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -1144,7 +1146,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="Mugabo"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -1178,7 +1179,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="Mugabo"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -1197,7 +1197,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="Mugabo"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>
@@ -1688,7 +1687,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 onChange={[Function]}
                 onMouseEnter={[Function]}
                 onMouseLeave={[Function]}
-                value="Manager"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -1713,7 +1711,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   onChange={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
-                  value="Manager"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -1763,7 +1760,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="last_name"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="Manager"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -1791,7 +1787,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="last_name"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="Manager"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -1821,7 +1816,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="Manager"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -1855,7 +1849,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="Manager"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -1874,7 +1867,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="Manager"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>
@@ -2356,7 +2348,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 name="email"
                 onBlur={[Function]}
                 onChange={[Function]}
-                value="manager_id@gmail.com"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -2377,7 +2368,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   name="email"
                   onBlur={[Function]}
                   onChange={[Function]}
-                  value="manager_id@gmail.com"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -2421,7 +2411,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="email"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="manager_id@gmail.com"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -2449,7 +2438,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="email"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="manager_id@gmail.com"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -2479,7 +2467,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="manager_id@gmail.com"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -2513,7 +2500,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="manager_id@gmail.com"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -2532,7 +2518,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="manager_id@gmail.com"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>
@@ -3022,7 +3007,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 onChange={[Function]}
                 onMouseEnter={[Function]}
                 onMouseLeave={[Function]}
-                value="French"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -3047,7 +3031,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   onChange={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
-                  value="French"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -3097,7 +3080,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="language"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="French"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -3125,7 +3107,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="language"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="French"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -3155,7 +3136,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="French"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -3189,7 +3169,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="French"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -3208,7 +3187,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="French"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>
@@ -3698,7 +3676,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 onChange={[Function]}
                 onMouseEnter={[Function]}
                 onMouseLeave={[Function]}
-                value="Kigali"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -3723,7 +3700,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   onChange={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
-                  value="Kigali"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -3773,7 +3749,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="address"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="Kigali"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -3801,7 +3776,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="address"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="Kigali"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -3831,7 +3805,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="Kigali"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -3865,7 +3838,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="Kigali"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -3884,7 +3856,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="Kigali"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>
@@ -4374,7 +4345,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                 onChange={[Function]}
                 onMouseEnter={[Function]}
                 onMouseLeave={[Function]}
-                value="Software Developer"
               >
                 <ForwardRef(TextField)
                   InputProps={
@@ -4399,7 +4369,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                   onChange={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
-                  value="Software Developer"
                 >
                   <WithStyles(ForwardRef(FormControl))
                     className="MuiTextField-root"
@@ -4449,7 +4418,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           name="occupation"
                           onBlur={[Function]}
                           onChange={[Function]}
-                          value="Software Developer"
                         >
                           <ForwardRef(Input)
                             autoFocus={false}
@@ -4477,7 +4445,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                             name="occupation"
                             onBlur={[Function]}
                             onChange={[Function]}
-                            value="Software Developer"
                           >
                             <WithStyles(ForwardRef(InputBase))
                               autoFocus={false}
@@ -4507,7 +4474,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                               onBlur={[Function]}
                               onChange={[Function]}
                               type="text"
-                              value="Software Developer"
                             >
                               <ForwardRef(InputBase)
                                 autoFocus={false}
@@ -4541,7 +4507,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="Software Developer"
                               >
                                 <div
                                   className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled makeStyles-disabledTextField-4 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -4560,7 +4525,6 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                                     onFocus={[Function]}
                                     required={false}
                                     type="text"
-                                    value="Software Developer"
                                   />
                                 </div>
                               </ForwardRef(InputBase)>

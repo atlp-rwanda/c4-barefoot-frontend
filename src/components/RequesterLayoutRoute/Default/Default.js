@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import NavBar from '../NavBar'
+import NavBar from '../../NavBar'
 import Footer from '../../AuthorizeUserFooter'
 import { SideBar } from '../sideNav';
 import SideDrawer from '../SideDrawer';
@@ -11,11 +11,7 @@ const useStyles = makeStyles(() => ({
 
   content: {
     height: '100%',
-    paddingLeft: '220px',
-    marginBottom: '70px',
-    '@media(max-width:840px)': {
-      paddingLeft: 'inherit'
-    }
+    marginBottom: '70px'
   }
 }));
 
@@ -31,7 +27,6 @@ const RequesterDefault = props => {
       const decoded = jwt(userToken);
       if (decoded.role === '45429837-ed2c-435d-bc22-ad9c5dbe3782' || decoded.role === '7254a9e7-2e1b-4f83-ad73-78b90dd3df77') {
         return true;
-
       }
     }
     return props.children.props.history.push('/login');

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox } from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
-import { connect } from 'react-redux'
 import colors from './colors';
 import Ratings from './RatingStars';
 
@@ -19,6 +18,18 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 140
   },
+  checkbox: {
+    display: 'block',
+    position: 'absolute',
+    color: 'secondary',
+    right: 0,
+    fontSize: '25px'
+  },
+  cardActions: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
   reviews: {
     fontSize: '14px',
     color: colors.primary100,
@@ -29,27 +40,10 @@ const useStyles = makeStyles((theme) => ({
   titleText: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
-    },
-    checkbox: {
-      display: 'block',
-      position: 'absolute',
-      color: 'secondary',
-      right: 0,
-      fontSize: '25px'
-    },
-    cardActions: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      border: '1px solid cyan'
-    },
-
-    reviews: {
-      fontSize: '14px',
-      color: colors.primary100,
     }
   }
 }));
+
 function Accommodations(props) {
   const classes = useStyles();
   const open = false;
@@ -58,17 +52,19 @@ function Accommodations(props) {
       selected: props.accommodation,
       checked: event.target.checked,
     };
-
     return props.selectAccommodationAction(accommodation);
-
   }
+
+
   let check = false;
-  props.travelRequest.selectedAccommodation.map(selected => {
-    selected.id === props.accommodation.id ? check = true : null
-  })
+  // props.travelRequest.selectedAccommodation.map(selected => {
+  //   selected.id === props.accommodation.id ? check = true : null
+  // })
   const handleViewMore = () => {
     return props.openModalAction({ open: true, data: props.accommodation });
   }
+
+
   return (
     <Card className={classes.root} >
       {(props.pending ?
@@ -87,7 +83,6 @@ function Accommodations(props) {
           <CardActionArea>
             <Checkbox
               onChange={handleSelection}
-              checked={check}
               className={classes.checkbox} />
             <CardMedia
               onClick={handleViewMore}
@@ -118,8 +113,3 @@ function Accommodations(props) {
 }
 
 export default Accommodations;
-const mapStateToProps = state => ({
-  pending: state.fetchAccommodations.pending,
-})
-
-export default connect(mapStateToProps, null)(Accommodations);

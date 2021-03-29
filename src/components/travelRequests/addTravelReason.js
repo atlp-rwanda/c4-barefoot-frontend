@@ -13,7 +13,7 @@ function AddTravelReason(props) {
             return props.handleErrorsAction('Please add a reason of travel!');
         }
         if (!props.travelRequest.selectedAccommodation.length) {
-            return props.handleErrorsAction('Please add the accommodation of your chose!');
+            return props.handleErrorsAction('Please add the accommodation of your choice!');
         }
         const userToken = localStorage.getItem('barefootUserToken');
         if (!props.travelRequest.selectedLocations.length) {
@@ -56,6 +56,7 @@ function AddTravelReason(props) {
             return props.sendTravelRequestAction(data);
         }
     }
+
     const handleTravelReasonChange = (event) => {
         return props.addTravelReasonAction(event.target.value);
     }
@@ -63,22 +64,8 @@ function AddTravelReason(props) {
     const handleCancelTravelRequest = () => {
         return props.cancelTravelRequestAction();
     }
-    const selectedAccommodation = props.travelRequest.selectedAccommodation ? props.travelRequest.selectedAccommodation : [{ id: '', country: '', city: '', title: '', description: '', photos: '' }];
     return (
         <React.Fragment>
-            <Grid container item xs={12} className={classes.title}>
-                <Typography variant="h6" style={{ color: colors.primary100 }}>
-                    Selected accommodation:
-                </Typography>
-                <Divider style={{ width: '50%' }} />
-            </Grid>
-            <Grid container className={classes.container}>
-                {selectedAccommodation.map((accommodation) => (
-                    <Grid item xs={10} sm={4} md={3} className={classes.insideGrid}>
-                        <AccommodationCard pending={false} accommodation={accommodation} {...props} />
-                    </Grid>
-                ))}
-            </Grid>
             <Grid container className={classes.textFieldGrid}>
                 <Grid container item xs={12} className={classes.title}>
                     <Typography variant="h6" style={{ color: colors.primary100 }}>
@@ -96,10 +83,6 @@ function AddTravelReason(props) {
                     rows={10}
                     className={classes.textField}
                 />
-                <Grid item contained className={classes.buttons}>
-                    <Button variant="contained" color="secondary" onClick={handleCancelTravelRequest} className={classes.cancelButton}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSendTravelRequest} color="primary">Send Travel Request</Button>
-                </Grid>
             </Grid>
 
         </React.Fragment>

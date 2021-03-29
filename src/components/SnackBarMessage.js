@@ -8,7 +8,6 @@ const SnackBarMessage = (props) => {
         return <Slide {...props} direction="right" />;
     }
 
-<<<<<<< HEAD
     const closeTimer = () => {
         return props.closeSnackbar();
     }
@@ -25,23 +24,6 @@ const SnackBarMessage = (props) => {
                     severity={props.travelRequest.snackBarMessage.severity}
                     variant="filled"
                     elevation={6}
-=======
-    const closeTimer= () =>{
-        return props.closeSnackbar();
-    }
-    return ( 
-        <div>
-            <Snackbar
-            open={props.travelRequest.snackBarMessage.open}
-            onClose={closeTimer}
-            autoHideDuration={5000}
-            TransitionComponent={transitionSnackbar}
-            >
-                <MuiAlert 
-                severity={props.travelRequest.snackBarMessage.severity} 
-                variant="filled"
-                elevation={6}
->>>>>>> adds the page responsiveness
                 >{props.travelRequest.snackBarMessage.message}</MuiAlert>
             </Snackbar>
         </div>
