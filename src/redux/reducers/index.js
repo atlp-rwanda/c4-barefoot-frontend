@@ -24,7 +24,6 @@ import createLocReducer from './createLocReducer';
 import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
 import addAssignActionToQueue from './addAssignActionToQueue';
 import fetchVerifiedUsersPage from './fetchVerifiedUsersPage';
-import assigningMessage from './assigningMessage';
 
 const reducers = combineReducers({
   logout: logoutReducer,
