@@ -17,7 +17,7 @@ export const addUsersToAssignQueue = (userId, managerId) => {
   }
 };
 
-export const assignUsersFromQueue = async (dispatch, state) => {
+export const assignUsersFromQueue = (state) => async (dispatch) => {
   dispatch({
     type: ASSIGNING_USERS_PENDING
   });

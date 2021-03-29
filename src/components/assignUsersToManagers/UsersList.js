@@ -19,7 +19,7 @@ const UsersList = (props) => {
 
     const dispatch = useDispatch();
     const handleAssignPendingUsers = () => {
-        assignState.pendingTasks ? assignUsersFromQueue(dispatch, assignState.pendingTasks) : '';
+        assignState.pendingTasks ? assignUsersFromQueue(assignState.pendingTasks)(dispatch) : '';
     }
     const handleCancelAllAssignQueue = () => {
         cancelAllQueue(dispatch);
