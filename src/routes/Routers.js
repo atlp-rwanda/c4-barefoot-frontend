@@ -167,13 +167,9 @@ const Routes = () => {
             component={signup}
             layout={DefaultLayout}
         />
+       
         <RouteWithLayout 
-            path="/user/verification/:token" 
-            component={ verifyAccount }
-            layout={DefaultLayout}
-        />
-        <RouteWithLayout 
-            path="/user/verification/" 
+            path="/user/verification" 
             component={ verifyAccount }
             layout={DefaultLayout}
         />
