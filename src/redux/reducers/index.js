@@ -20,6 +20,7 @@ import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import { managerReducer } from './managersReducer'
 import {fetchAccommodationReducer} from './fetchAccommodationReducer'
+import {fetchReviewsReducer} from './ratingsReducer'
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -30,6 +31,7 @@ const reducers = combineReducers({
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
   fetchAccommodation:fetchAccommodationReducer,
+  fetchReviews:fetchReviewsReducer,
   bookAccommodations: bookAccommodationsReducer,
   convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,

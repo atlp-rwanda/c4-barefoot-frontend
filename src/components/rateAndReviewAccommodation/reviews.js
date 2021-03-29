@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Grid, Divider, Button, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
 import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { getAccommodationsByLocation, selectAccommodation } from "../../redux/actions/fetchAccommodationByLocation";
-import { getAccommodation, getAccommodations,getSingleAccommodation, getAccommodationAminity } from "../../redux/actions/fetchAccommodations";
+import { getAccommodation, getAccommodations,getSingleAccommodation, getAccommodationAminity } from "../../redux/actions/fetchAccommodation";
 import { getTemperature } from "../../redux/actions/getWeather";
 import { connect } from 'react-redux';
 import AccommodationCard from "../AccommodationCardWithReview";
@@ -15,6 +15,7 @@ import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
 import { convertorAction } from "../../redux/actions/convertorAction"
+import {getRatings} from "../../redux/actions/ratingsAction"
 
 const useStyles = makeStyles((theme) => ({
     // root: {
@@ -88,14 +89,18 @@ const useStyles = makeStyles((theme) => ({
         display: 'block'
     }
 }));
-function Home({datas,accommodation}) {
+function Home({datas,reviews,accommodation,getReviews}) {
 
     const classes = useStyles();
     
     const { id } = useParams();
-    
+    // console.log(id)
     useEffect(() => {
-      accommodation(id)
+        getReviews(id)
+        accommodation(id)
+        
+        console.log(reviews)
+        console.log(datas)
     }, [])
   
     return (
@@ -138,10 +143,10 @@ function Home({datas,accommodation}) {
                                             </CardActionArea>
                                             <CardContent className={classes.cardContent} >
                                                 <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
-                                                    {props.accommodation.title}
+                                                    {datas.accommodation.title}
                                                 </Typography>
                                                 <Typography variant="body2" color="textSecondary" component="p" noWrap >
-                                                    {props.accommodation.description}
+                                                    {datas.accommodation.description}
                                                 </Typography>
                                                 <div className={classes.divider}>
                                                     <Grid container spacing={1} direction='row' >
@@ -153,22 +158,22 @@ function Home({datas,accommodation}) {
                                                                         Location
                                                     </Typography>
                                                                     <Typography gutterBottom variant="body" component="p" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.country}
+                                                                        {datas.accommodation.country}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item>
                                                                     <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.city}
+                                                                        {datas.accommodation.city}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item>
                                                                     <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.state}
+                                                                        {datas.accommodation.state}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item>
                                                                     <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.streetAddress}
+                                                                        {datas.accommodation.streetAddress}
                                                                     </Typography>
                                                                 </Grid>
                                                             </Grid>
@@ -181,30 +186,30 @@ function Home({datas,accommodation}) {
                                                     </Typography>
                                                                 <Grid item>
                                                                     <Typography variant="subtitle1" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.propertyType}
+                                                                        {datas.accommodation.propertyType}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item>
                                                                     <Typography gutterBottom variant="subtitle1" component="p" color="textSecondary" className={classes.titleText}>
-                                                                        {props.accommodation.numberOfRooms != null ? (`${props.accommodation.numberOfRooms} bedrooms`) : (null)}
+                                                                        {datas.accommodation.numberOfRooms != null ? (`${datas.accommodation.numberOfRooms} bedrooms`) : (null)}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item>
                                                                     <Typography variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
-                                                                        {props.accommodation.typeOfBed ? (`Type of: ${props.accommodation.typeOfBed} bedrooms`) : (null)}
+                                                                        {datas.accommodation.typeOfBed ? (`Type of: ${datas.accommodation.typeOfBed} bedrooms`) : (null)}
                                                                     </Typography>
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container item xs={3}>
+                                                        {/* <Grid container item xs={3}>
                                                             <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                                 Amenities
                                                 <Grid container item xs={12} spacing={0} direction='column'>
                                                                     {populateChecbox()}
                                                                 </Grid>
                                                             </Typography>
-                                                        </Grid>
-                                                        <Grid item xs={3} direction='column'>
+                                                        </Grid> */}
+                                                        {/* <Grid item xs={3} direction='column'>
                                                             <Grid item xs={12} >
                                                                 <Typography gutterBottom variant="h5" className={classes.titleText} color="primary">
                                                                     Cost/night
@@ -242,7 +247,7 @@ function Home({datas,accommodation}) {
 
 
                                                             </Grid>
-                                                        </Grid>
+                                                        </Grid> */}
                                                     </Grid>
                                                 </div>
                                             </CardContent>
@@ -262,9 +267,9 @@ function Home({datas,accommodation}) {
                                             variant='contained'
                                             color='primary'
                                             className={classes.button}
-                                            onClick={() => {
-                                                setDirection('back');
-                                            }}
+                                            // onClick={() => {
+                                            //     setDirection('back');
+                                            // }}
                                         >
                                             Back
                                     </Button>
@@ -293,11 +298,13 @@ function Home({datas,accommodation}) {
 }
 
 const mapStateToProps = state => ({
-    datas: state.fetchAccommodation.accommodation,
+    datas: state.fetchAccommodation,
+    reviews: state.fetchReviews
 })
 const mapDispatchToProps = dispatch => {
     return {
-        accommodation: (id)=>dispatch(getAccommodation(id))
+        accommodation: (id)=>dispatch(getSingleAccommodation(id)),
+        getReviews: (id)=>dispatch(getRatings(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

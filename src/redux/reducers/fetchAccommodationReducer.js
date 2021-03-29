@@ -5,11 +5,11 @@ import {
 
 const initState = {
     pending: false,
-    accommodation: [],
+    accommodation: {},
     error:''
 }
 
-export const fetchAccommodation = (state=initState, action) => {
+export const fetchAccommodationReducer = (state=initState, action) => {
     switch (action.type) {
         case FETCH_SINGLE_ACCOMMODATION_PENDING:
             return {
@@ -19,7 +19,7 @@ export const fetchAccommodation = (state=initState, action) => {
         case FETCH_SINGLE_ACCOMMODATION_SUCCESS:
             return {
                 pending: false,
-                accommodation: action.payload,
+                accommodation: action.payload.singleAccommodation,
                 error: ''
             }
         case FETCH_SINGLE_ACCOMMODATION_FAILURE:
