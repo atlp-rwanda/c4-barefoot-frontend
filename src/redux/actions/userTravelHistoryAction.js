@@ -1,51 +1,48 @@
-import axios from 'axios'
+import axios from "axios";
 
-export const FETCH_TRIP_HISTORY_PENDING = 'FETCH_TRIP_HISTORY_PENDING'
-export const FETCH_TRIP_HISTORY_SUCCESS = 'FETCH_TRIP_HISTORY_SUCCESS'
-export const FETCH_TRIP_HISTORY_ERROR = 'FETCH_TRIP_HISTORY_ERROR'
-export const GET_SINGLE_ACC = 'GET_SINGLE_ACC'
-export const GET_LOCATIONS_TRAVELLED = 'GET_LOCATIONS_TRAVELLED'
+export const FETCH_TRIP_HISTORY_PENDING = "FETCH_TRIP_HISTORY_PENDING";
+export const FETCH_TRIP_HISTORY_SUCCESS = "FETCH_TRIP_HISTORY_SUCCESS";
+export const FETCH_TRIP_HISTORY_ERROR = "FETCH_TRIP_HISTORY_ERROR";
+export const GET_LOCATIONS_TRAVELLED = "GET_LOCATIONS_TRAVELLED";
+export const GET_SINGLE_ACC = "GET_SINGLE_ACC";
 
-const token = window.localStorage.getItem('barefootUserToken')
+const token = window.localStorage.getItem("barefootUserToken");
 
-
-export const getTripHistory = (location) => (dispatch) => {
-    dispatch({type:FETCH_TRIP_HISTORY_PENDING})
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips/${location}`,{
-    headers: {
-        Authorization: `Bearer ${token}`
+export const getTripHistory = (location) => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_TRIP_HISTORY_PENDING });
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_LINK}/trips/${location}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
       }
-    })
-    .then(res =>  dispatch({
-        type: FETCH_TRIP_HISTORY_SUCCESS,
-        payload:res.data.rows
-      })
-    
-    )
-    .catch(err => {
-      console.log(err)
-      dispatch({
-        type: FETCH_TRIP_HISTORY_ERROR,
-        payload: err
-      })
-    })
-}
+    );
+    return dispatch({
+      type: FETCH_TRIP_HISTORY_SUCCESS,
+      payload: res.data.rows,
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_TRIP_HISTORY_ERROR,
+      payload: err,
+    });
+  }
+};
 
-export const getAccommodation = () => dispatch => {
-  dispatch({type:FETCH_TRIP_HISTORY_PENDING})
-  const id = localStorage.getItem('accId')
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
+export const getAccommodation = () => async (dispatch) => {
+  dispatch({ type: FETCH_TRIP_HISTORY_PENDING });
+  const id = localStorage.getItem("accId");
+  const res = await axios.get(
+    `${process.env.REACT_APP_BACKEND_LINK}/accommodations/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
     }
-  })
-  .then(res => dispatch({
-
-      type: GET_SINGLE_ACC,
-      payload: res.data.singleAccommodation
-  }))
-  .catch(err => console.log(err.message))
-}
+  );
+  return dispatch({
+    type: GET_SINGLE_ACC,
+    payload: res.data.singleAccommodation,
+  });
+};
 
 // export const getTripLocations = () => dispatch => {
 //   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
@@ -62,20 +59,17 @@ export const getAccommodation = () => dispatch => {
 //   })
 //   .catch(err => console.log(err.message))
 // }
-export const getTripLocations = () => dispatch => {
-  dispatch({type:FETCH_TRIP_HISTORY_PENDING})
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-  })
-  .then(res=> {
-    console.log(res.data.countedTrips)
-    dispatch({
+export const getTripLocations = () => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_TRIP_HISTORY_PENDING });
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/trips`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return dispatch({
       type: GET_LOCATIONS_TRAVELLED,
-      payload: res.data.countedTrips
-    })
-  })
-  .catch(err => console.log(err.message))
-}
-
+      payload: res.data.countedTrips,
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
