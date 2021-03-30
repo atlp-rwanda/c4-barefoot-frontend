@@ -5,7 +5,6 @@ import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import colors from './colors';
 import Ratings from './RatingStars';
-// import Link from '@material-ui/core/Link';
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,11 +59,7 @@ function Accommodations(props) {
       props.getAccommodationAminity(event.target.id);
 
   };
-  const handleReviews = (e) => {
-    props.getAccommodationAminity(event.target.id);
-    console.log("hello star")
-    props.history.push("/reviews")
-  }
+  
     // props.travelRequest.selectedAccommodation.map( selected =>{
     //   selected.id === props.accommodation.id ? check=true : null
     // })
@@ -116,12 +111,10 @@ function Accommodations(props) {
               <Ratings highRating={3} id={props.accommodationn.id} />
             </Link>
         <Typography className={classes.reviews}>
-        <Link  to={'/reviews/'+props.accommodationn.id}>
+        <Link  to={'/reviews/'+props.accommodationn.id} className={classes.links}  style={{ textDecoration: 'none' }}>
               Reviews
               </Link>
-              {/* <Link onClick={handleReviews}>
-                reviews
-              </Link> */}
+             
         </Typography>
       </CardActions>
       </>

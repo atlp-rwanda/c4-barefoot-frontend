@@ -3,31 +3,33 @@ import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, 
 import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { getAccommodationsByLocation, selectAccommodation } from "../../redux/actions/fetchAccommodationByLocation";
 import { getAccommodation, getAccommodations,getSingleAccommodation, getAccommodationAminity } from "../../redux/actions/fetchAccommodation";
-import { getTemperature } from "../../redux/actions/getWeather";
+
 import { connect } from 'react-redux';
-import AccommodationCard from "../AccommodationCardWithReview";
 import { makeStyles } from '@material-ui/core/styles';
-import { Label, Place } from '@material-ui/icons'
 import colors from '../colors';
 import { useParams } from "react-router-dom";
-import { Pagination } from '@material-ui/lab';
-import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
-import CloudIcon from '@material-ui/icons/Cloud';
-import { convertorAction } from "../../redux/actions/convertorAction"
 import {getRatings} from "../../redux/actions/ratingsAction"
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   maxWidth: 345,
-    //   height: 360,
-    //   height: '100%',
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   justifyContent: 'space-between'
-    // },
+    root: {
+        marginLeft:'110px',
+      maxWidth: '80%',
+      height: 360,
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+    },
     media: {
         height: 440
+    },
+    username: {
+        background: 'lightBlue',
+        color: 'white',
+        fontSize: '14px',
+        padding: '5px',
+        fontWeight:'30px'
     },
     checkbox: {
         display: 'block',
@@ -46,16 +48,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between"
         // width:'80%'
     },
-    btncontainer1: {
-        //display:"flex",
-        justifyContent: "flex-start"
-        // width:'80%'
-    },
-    btncontainer2: {
-        //display:"flex",
-        justifyContent: "flex-end"
-        // width:'80%'
-    },
+    
     separate: {
         // marginBottom:theme.spacing(3),
         marginLeft: theme.spacing(3)
@@ -72,6 +65,22 @@ const useStyles = makeStyles((theme) => ({
     reviews: {
         fontSize: '14px',
         color: colors.primary100,
+    },
+    review:{
+       marginTop: '3px',
+       marginLeft:'110px',
+      maxWidth: '80%',
+      height: 360,
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between' 
+    },
+    reviewContent:{
+      marginLeft:'40px',
+      marginRight: '20px',
+        width: '70%',
+      padding:'6px'
     },
     cardContent: {
         overflow: 'hidden'
@@ -92,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 function Home({datas,reviews,accommodation,getReviews}) {
 
     const classes = useStyles();
-    
+    const [direction, setDirection] = useState('back');
     const { id } = useParams();
     // console.log(id)
     useEffect(() => {
@@ -105,16 +114,9 @@ function Home({datas,reviews,accommodation,getReviews}) {
   
     return (
         <React.Fragment>
-            <Card>
-                <CardContent>
+            <Card >
+                <CardContent className={classes.root}>
                     <Formik
-                    //     initialValues={{
-                    //     from: null,
-                    //     retrunDate: null
-                    // }}
-                    //     onSubmit={values => {
-                    //         direction === 'back' ? props.prevStep() : props.nextStep();
-                    //     }}
                     >
                         <Form>
                             <div className={classes.divider} >
@@ -201,53 +203,7 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
-                                                        {/* <Grid container item xs={3}>
-                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
-                                                                Amenities
-                                                <Grid container item xs={12} spacing={0} direction='column'>
-                                                                    {populateChecbox()}
-                                                                </Grid>
-                                                            </Typography>
-                                                        </Grid> */}
-                                                        {/* <Grid item xs={3} direction='column'>
-                                                            <Grid item xs={12} >
-                                                                <Typography gutterBottom variant="h5" className={classes.titleText} color="primary">
-                                                                    Cost/night
-                                                    </Typography>
-                                                                <Grid container item spacing={3} xs={12}>
-                                                                    <Grid item>
-                                                                        <Typography variant="body">{props.money ? (props.money[Object.keys(props.money)[0]]) : (props.accommodation.price)}</Typography>
-                                                                    </Grid>
-                                                                    <Grid item >
-                                                                        <Select
-                                                                            labelId='select-roles'
-                                                                            id='roles'
-                                                                            value={value}
-                                                                            onChange={hanldeSelectOnchange}
-                                                                            style={{ "padding-right": '9px' }}
-                                                                        >
-                                                                            <MenuItem key="USD" name="USD" value="USD">USD</MenuItem>
-                                                                            <MenuItem key="RWF" name="RWF" value="RWF">RWF</MenuItem>
-                                                                            <MenuItem key="EUR" name="EUR" value="EUR">EUR</MenuItem>
-                                                                            <MenuItem key="CND" name="CND" value="CND">CND</MenuItem>
-                                                                            <MenuItem key="KSH" name="KSH" value="KSH">KSH</MenuItem>
-                                                                            <MenuItem key="UGX" name="UGX" value="UGX">UGX</MenuItem>
-                                                                            <MenuItem key="BIF" name="BIF" value="BIF">BIF</MenuItem>
-                                                                            <MenuItem key="TSH" name="TSH" value="TSH">TSH</MenuItem>
-                                                                        </Select>
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid item xs={12} spacing={4} >
-                                                                <Typography gutterBottom variant="h5" className={classes.titleText} color="primary">
-                                                                    Weather
-                                                    </Typography>
-
-                                                                {temp}
-
-
-                                                            </Grid>
-                                                        </Grid> */}
+                                                       
                                                     </Grid>
                                                 </div>
                                             </CardContent>
@@ -255,37 +211,51 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                     )}
                                 </Card>
                             </div>
-                            <Card className={classes.root}>
-                                hi
+                            <div>
+                            <Card item className={classes.root}>
+                                <Typography variant="h7">
+                                    {`Reviews (${reviews.count})`}
+                                </Typography>
+                            </Card>
+                            
+                            </div>
+                            
+                              <div> 
+                         {reviews.reviewAndRates.map(element => (
+                                     <Card className={ classes.review} key={element._id}>
+                                     <Grid item >
+                                     <Typography className={classes.username} variant="body1" component="p" noWrap>
+                                         {element.user.first_name+" "+element.user.last_name}
+                                     </Typography>
+                                     </Grid>
+                                     <Grid item className={classes.reviewContent}>
+                                     <Typography variant="body2" color="textSecondary" component="p">
+                                {element.review}
+                                </Typography>
+                                     </Grid>
                            </Card>
+                           
+                         ))
+                        }
+                            </div> 
+                            
                             <div className={classes.divider}>
                                 <div className={classes.btncontainer}>
-                                    <div className={classes.textCenter}>
+                                    <div className={classes.root}>
                                         <Button
                                             type='submit'
 
                                             variant='contained'
                                             color='primary'
                                             className={classes.button}
-                                            // onClick={() => {
-                                            //     setDirection('back');
-                                            // }}
+                                            onClick={() => {
+                                                setDirection('back');
+                                            }}
                                         >
                                             Back
                                     </Button>
                                     </div>
-                                    {/* <div >
-                                <Button
-                                    type='submit'
-                                    id='backBtn'
-                                    variant='contained'
-                                    color='primary'
-                                    className={classes.button}
-                                    onClick={() => setDirection('forward')}
-                                >
-                                    Next
-                                </Button>
-                            </div> */}
+                                 
                                 </div>
                             </div>
                         </Form>
