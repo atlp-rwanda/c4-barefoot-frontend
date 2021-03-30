@@ -1,9 +1,7 @@
 import ResetPasswordEmailForm from '../components/resetPassword/ResetPasswordEmailForm';
 import NewPassword from '../components/resetPassword/NewPassword'
-
 import React from 'react';
 import Login from '../components/views/Login'
-import SignUp from '../components/signup';
 import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
@@ -13,6 +11,14 @@ import RouteWithLayout  from '../components/RouteWithLayout';
 import Profile from '../components/views/Profile';
 import {  DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+// import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
+import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
+import ApprovedReports from '../components/manageTravel/ApprovedReports';
+import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
+import Done from '../components/manageTravel/Done';
+import ProtectedRoute from './protected.route'
+import userProfile from '../components/views/userProfile';
+
 
 const Routes = () => {
     return (
@@ -67,8 +73,14 @@ const Routes = () => {
         <RouteWithLayout
           component={PageNotFound}
           exact
-          layout={DefaultLayout}
+          layout={ErrorLayout}
           path="/PageNotFound"
+        />
+        <RouteWithLayout
+          component={Unauthorized}
+          exact
+          layout={ErrorLayout}
+          path="/unauthorized"
         />
         <RouteWithLayout 
             path="/signup" 

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` <RejectedAndCanceled /> It should render the RejectedAndCanceled component 1`] = `
+<Connect(ReportsView)
+  category="rejected"
+/>
+`;

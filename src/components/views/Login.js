@@ -6,16 +6,16 @@ import PropTypes from 'prop-types';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { FormGroup, TextField, Link, Slide, Button} from '@material-ui/core';
-import {CssBaseline, Grid, Paper, Snackbar, Avatar, Typography} from '@material-ui/core';
+import { FormGroup, TextField, Link, Slide, Button } from '@material-ui/core';
+import { CssBaseline, Grid, Paper, Snackbar, Avatar, Typography } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Skeleton } from '@material-ui/lab';
 import loginStyles from '../styles/Login';
 
 
 //initials of the login form
-const initialValues ={
-    email : '',
+const initialValues = {
+    email: '',
     password: ''
 };
 
@@ -27,30 +27,30 @@ const loginForm = Yup.object().shape({
 
 function Login(props) {
     const classes = loginStyles();
-    
-    useEffect(() =>{
+
+    useEffect(() => {
+
         props.loadSkeletons(true);
-        const userToken = localStorage.getItem("barefootUserToken");
-        if(userToken){
-            props.history.push('/profile');
-        }
-        const timer = setTimeout(() =>{
+        const timer = setTimeout(() => {
             props.loadSkeletons(false);
         }, 2000);
         return () => clearTimeout(timer);
-        
-    }, []);
 
+     }, []);
+    const userToken = localStorage.getItem("barefootUserToken");
 
-    const handleSubmition = (values) => { 
+    if (userToken) {
+        props.history.push('/profile');
+    }
+    const handleSubmition = (values) => {
         props.loginAction(values);
     }
 
-    const transitionSnackbar = (props)=>{
-        return <Slide {...props} direction ="right"/>;
+    const transitionSnackbar = (props) => {
+        return <Slide {...props} direction="right" />;
     }
-    
-    const closeSnackbarTimer = ()=>{
+
+    const closeSnackbarTimer = () => {
         props.closeSnackbar();
     };
 
@@ -59,7 +59,7 @@ function Login(props) {
         props.history.push('/profile');
     }
 
-    return(
+    return (
         <>
         <Grid container component="main" className={classes.Login}>
             <CssBaseline/> 
@@ -175,10 +175,10 @@ function Login(props) {
                     </React.Fragment>)}
                 </div>
 
-                {(!props.login.showSkeletons ?
-                <Grid container direction="column" className={classes.social_media_grid} >
-                        <Typography variant="h6" component="h6">
-                            Or Login with
+                    {(!props.login.showSkeletons ?
+                        <Grid container direction="column" className={classes.social_media_grid} >
+                            <Typography variant="h6" component="h6">
+                                Or Login with
                         </Typography>
                         <Grid item container justify='space-between' >
                             <Button
@@ -198,26 +198,26 @@ function Login(props) {
                             >
                                 Google
                             </Button>
-                        </Grid>
-                        
-                </Grid> : null )}
-            </Grid>
-            <Grid item container sm={4} xs={12} style={{background:"#257AAA"}}>
-                <div className={classes.paper2} text='primary'>
-                
-                    {(!props.login.showSkeletons ? 
-                    <>
-                    <Typography component="h1" variant="h5">
-                        Hello, Friend!
+                            </Grid>
+
+                        </Grid> : null)}
+                </Grid>
+                <Grid item container sm={4} xs={12} style={{ background: "#257AAA" }}>
+                    <div className={classes.paper2} text='primary'>
+
+                        {(!props.login.showSkeletons ?
+                            <>
+                                <Typography component="h1" variant="h5">
+                                    Hello, Friend!
                     </Typography>
-                    <Grid item container className={classes.secondpart}>
-                        <Typography variant="subtitle1">
-                            Enter your personal details and start your journey with us.
+                                <Grid item container className={classes.secondpart}>
+                                    <Typography variant="subtitle1">
+                                        Enter your personal details and start your journey with us.
                         </Typography>
-                        
-                    </Grid>
-                    <Typography variant="subtitle1">
-                        Don't have an account?
+
+                                </Grid>
+                                <Typography variant="subtitle1">
+                                    Don't have an account?
                     </Typography>
                     <Button
                         href="/signup" 
@@ -240,24 +240,24 @@ function Login(props) {
                         <Skeleton variant='rect' height={35} width={150} style={{margin:'auto'}}/>
                     </>)}
 
-                </div>
+                    </div>
 
+                </Grid>
             </Grid>
-        </Grid>
         </>
     )
 }
 
-Login.protoTypes={
+Login.protoTypes = {
     loginAction: PropTypes.func.isRequired,
     closeSnackbar: PropTypes.func.isRequired,
     loadSkeletons: PropTypes.func.isRequired,
     login: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     login: state.login
 });
 
-export {Login};
-export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons})(Login);
+export { Login };
+export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons })(Login);
