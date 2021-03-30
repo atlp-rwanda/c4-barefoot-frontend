@@ -65,7 +65,7 @@ function Login(props) {
     if (props.login.success) {
         console.log("login");
         props.login.success = false
-        props.history.push('/profile');
+        props.history.push('/home');
     }
 
     return (
@@ -269,4 +269,4 @@ const mapStateToProps = state => ({
 });
 
 export { Login };
-export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons })(Login);
+export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons})(Login);

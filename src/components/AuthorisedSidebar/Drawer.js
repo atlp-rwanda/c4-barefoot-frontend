@@ -21,9 +21,8 @@ const useStyles = makeStyles( theme =>({
   },
   accountInfo: {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    marginLeft:"10px",
     height: 80
   },
   paper: {
@@ -51,15 +50,18 @@ function DrawerComponent() {
     // console.log('side menu items', menuItems);
     const classes = useStyles();
     const username = localStorage.getItem('userName');
+    const role = localStorage.getItem('userRole');
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
-    const [drop, setDrop] = React.useState( menuItems.map( link=>{
+    const [drop, setDrop] = React.useState( menuItems[role].map( link=>{
         return {
           item: link.title,
           open: false
         }
     })
     );
+    
+    const menuItem=menuItems[role]
     const [collapse,setCollapse]= useState(false);
     // console.log(menuItems)
     // console.log(drop);
@@ -112,14 +114,16 @@ function DrawerComponent() {
         >
         </div>
         <Box className={classes.accountInfo}>
-        <Avatar className={classes.paper}>
-          <AccountCircle fontSize='large' className={classes.listIcons}/>
-        </Avatar>
+        <Link to='userprofile'>
+          <Avatar className={classes.paper}>
+            <AccountCircle fontSize='large' className={classes.listIcons}/>
+          </Avatar>
+        </Link>
         <Typography>{ username }</Typography>
       </Box>
       <Divider/>
       <List>
-          {menuItems.map(list => (
+          {menuItem.map(list => (
              list.subs.length === 0 ? (
               <Link to={list.link} key={list.title} className={classes.nested}>
                 <ListItem button onClick={toggleDrawer('left', false)}>

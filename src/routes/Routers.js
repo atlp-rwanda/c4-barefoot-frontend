@@ -31,38 +31,38 @@ import CreateAccomodation from '../components/views/travelManager/CreateAccomoda
 import CreateLocation from '../components/views/travelManager/CreateLocation';
 
 const Routes = () => {
-  return (
-    <Switch>
-      <Redirect
-        exact
-        from="/"
-        to="/welcome"
-      />
-      <RouteWithLayout
-        component={Landing}
-        exact
-        layout={DefaultLayout}
-        path="/welcome"
-      />
-      <RouteWithLayout
-        component={Login}
-        exact
-        layout={DefaultLayout}
-        path="/login"
-      />
-      <ProtectedRoute
-        component={Profile}
-        exact
-        layout={AuthorizedUserLayout}
-        path="/profile"
-      />
-      <ProtectedRoute
-        component={userProfile}
-        exact
-        layout={AuthorizedUserLayout}
-        path="/userprofile"
-      />
-      {/* <RouteWithLayout
+    return (
+      <Switch>
+        <Redirect
+          exact
+          from="/"
+          to="/welcome"
+        />
+        <RouteWithLayout
+          component={Landing}
+          exact
+          layout={DefaultLayout}
+          path="/welcome"
+        />
+        <RouteWithLayout
+          component={Login}
+          exact
+          layout={DefaultLayout}
+          path="/login"
+        />
+        <ProtectedRoute
+          component={Profile}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/home"
+        />
+         <ProtectedRoute
+          component={userProfile}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/userprofile"
+        />
+        {/* <RouteWithLayout
           component={ManagerDashboard}
           exact
           layout={ManagerLayout}
@@ -121,7 +121,7 @@ const Routes = () => {
         <ProtectedRoute
           component={adminHome}
           exact
-          layout={AdminLayout}
+          layout={AuthorizedUserLayout}
           path="/admin"
         />
         <ProtectedRoute
@@ -139,25 +139,25 @@ const Routes = () => {
         <RouteWithLayout
           component = {CreateRoles}
           exact
-          layout={AdminLayout}
+          layout={AuthorizedUserLayout}
           path="/admin/roles"
         />
         <RouteWithLayout
           component={SetPermissions}
           exact
-          layout={AdminLayout}
+          layout={AuthorizedUserLayout}
           path="/admin/permissions"
         />
         <RouteWithLayout
           component={ListOfRoles}
           exact
-          layout={AdminLayout}
+          layout={AuthorizedUserLayout}
           path="/admin/roleslist"
         />
         <RouteWithLayout
           component={ListUsers}
           exact
-          layout={AdminLayout}
+          layout={AuthorizedUserLayout}
           path="/admin/users"
         />
         <RouteWithLayout

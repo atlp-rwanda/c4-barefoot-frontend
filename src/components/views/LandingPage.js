@@ -23,9 +23,19 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     display: "flex",
     justifyContent: "center",
+    flexDirection:"column",
     alignItems: "center",
     color: "#fff",
     fontSize: "4rem",
+  },
+  content:{
+    textAlign:'center',
+    border:'2px solid white',
+    width:'80%',
+    padding:"5px",
+    display:'flex',
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardContainer: {
     paddingTop: theme.spacing(3)
@@ -39,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
 function Landing (props){
   const { t, i18n } = useTranslation();
 
-  // useEffect(() => {
-  //   props.getLocations()
-  //   props.getAccommodations()
-  // }, [])
+  useEffect(() => {
+    props.getLocations()
+    props.getAccommodations()
+  }, [])
   
   const locationSkeleton = (<Grid item xs={12} sm={6} md={4}> <LocationCard/> </Grid>)
 
@@ -52,7 +62,12 @@ function Landing (props){
   return(
     <React.Fragment>
       {props.locationsData.pending ? <Skeleton variant='rect' height='500px'/> :(<Box className={classes.image}>
-        <Box> <Typography variant='h4'>{t("Let's travel together")}</Typography> </Box>
+        <Box> 
+          <Typography variant='h4'>{t("Let's travel together")}</Typography>
+        </Box>
+        <Box className={classes.content}>
+        <Typography variant='h6' >{t("Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.")}</Typography>
+        </Box>
       </Box>)}
       <Container maxWidth='lg' className={classes.cardContainer}>
 
@@ -61,7 +76,7 @@ function Landing (props){
         </Typography>
 
         <Grid container spacing={3}>
-          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.rows.map((location) => (
+          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.rows.slice(0,3).map((location) => (
               <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {location.id}>
                 <LocationCard location={location}/>
               </Grid> 

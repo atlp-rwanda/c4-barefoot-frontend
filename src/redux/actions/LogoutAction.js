@@ -17,6 +17,7 @@ export const logoutAction = (authToken) => dispatch => {
         localStorage.removeItem('barefootUserToken');
         localStorage.removeItem('userRole');
         localStorage.removeItem('userProfile');
+        localStorage.removeItem('userName');
 
         dispatch({
             type: LOGOUT_SUCCESS
