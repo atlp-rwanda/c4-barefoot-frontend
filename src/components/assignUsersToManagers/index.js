@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import { connect, useDispatch } from 'react-redux';
 import UsersList from './UsersList';
 import { getManagersList, getVerifiedUsers } from '../../redux/actions/assignUserActions';
-import { usersListPage } from '../../redux/actions/assignUserActions';
 import FailureDialog from './FailureDialog';
 import SuccessDialog from './SuccessDialog';
 
@@ -23,19 +22,14 @@ const AssignUsersToManagers = (props) => {
   if(addAssignActionToQueue.refresh) {
     dispatch({type: 'REFRESH_USERS_LIST_WITH_MANAGERS'});
   }
-  const [page, handlePage] = useState(1);
   useEffect(() => {
-    props.getVerifiedUsers(page, dispatch);
+    props.getVerifiedUsers( 1, dispatch);
     props.getManagersList(dispatch);
   }, []);
   
-  const handlePageChange = (evt, page) => {
-    usersListPage(page)(dispatch);
-  }
-  console.log({addAssignActionToQueue});
   return (
     <Container style={{display: 'flex', flexDirection: 'row', justify: 'flex-start', padding: 'unset'}}>
-      <UsersList loading={pending} page={page} handlePageChange={handlePageChange} />
+      <UsersList loading={pending} />
       {
         dialog
         ? <><SuccessDialog open={succeededDialog} /><FailureDialog open={failedDialog} /></>

@@ -19,10 +19,12 @@ describe('FETCH VERIFIED USERS reducer', () => {
         pending: true
       }, {
       type: actions.FETCH_USERS_ERROR,
+      page: 7,
       error: 'Fatal'
     })).toEqual({
       ...initialState,
       pending: false,
+      page: 7,
       error: 'Fatal'
     });
   });
@@ -37,11 +39,12 @@ describe('FETCH VERIFIED USERS reducer', () => {
 
   it('Should handle FETCH_USERS_SUCCESS', () => {
     expect(fetchVerifiedUsers({...initialState, pending: true}, 
-      { type: actions.FETCH_USERS_SUCCESS, verifiedUsers: { count: 1, rows: ['one', 'two']} }
+      { type: actions.FETCH_USERS_SUCCESS, verifiedUsers: { count: 1, rows: ['one', 'two']}, page: 8 }
       ))
       .toEqual({
         ...initialState,
         pending: false,
+        page: 8,
         verifiedUsers: {
           count: 1,
           rows: ['one', 'two'],

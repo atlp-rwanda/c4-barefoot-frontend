@@ -5,6 +5,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
 import UserCard from './UserCard';
 import styles from './styles';
+import { getVerifiedUsers } from '../../redux/actions/assignUserActions';
 import { assignUsersFromQueue, cancelAllQueue } from '../../redux/actions/managerSelectedActions';
 import Loader from '../Loader';
 
@@ -12,17 +13,20 @@ const UsersList = (props) => {
     const classes = styles();
     const { loading } = props;
     const managersList = useSelector(state => state.fetchAllManagers.getAllManagers);
-    const usersList = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.rows);
+    const fetchVerifiedUsers = useSelector(state => state.fetchVerifiedUsers);
+    const usersList = fetchVerifiedUsers.verifiedUsers.rows;
     const count = useSelector(state => state.fetchVerifiedUsers.verifiedUsers.count);
     const assignState = useSelector(state => state.addAssignActionToQueue);
-    const{ page, handlePageChange }= props;
-
+    const page = fetchVerifiedUsers.page;
     const dispatch = useDispatch();
     const handleAssignPendingUsers = () => {
         assignState.pendingTasks ? assignUsersFromQueue(assignState.pendingTasks)(dispatch) : '';
     }
     const handleCancelAllAssignQueue = () => {
         cancelAllQueue(dispatch);
+    }
+    const handlePageChange = (evt, value = 1) => {
+        getVerifiedUsers(value)(dispatch);
     }
     const managersElements = managersList.map(manager => (
             <MenuItem key={manager.id} value={manager.id}>

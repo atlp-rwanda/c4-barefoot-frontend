@@ -23,7 +23,6 @@ import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 import { fetchAllManagers, fetchVerifiedUsers } from './assignUserReducers';
 import addAssignActionToQueue from './addAssignActionToQueue';
-import fetchVerifiedUsersPage from './fetchVerifiedUsersPage';
 
 const reducers = combineReducers({
   logout: logoutReducer,

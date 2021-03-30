@@ -22,17 +22,19 @@ export function fetchVerifiedUsers(state = initialUsersState, action){
             return {
                 ...state,
                 pending: false,
+                page: action.page,
                 error: action.error
             }
         case FETCH_USERS_PENDING:
             return {
-                ...state,
+                ...initialUsersState,
                 pending: true
             };
         case FETCH_USERS_SUCCESS:
         return {
             ...state,
             pending: false,
+            page: action.page,
             verifiedUsers: {
                 count: action.verifiedUsers.count,
                 loaded: true,
