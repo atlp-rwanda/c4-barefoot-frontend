@@ -12,7 +12,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { Skeleton } from '@material-ui/lab';
 import loginStyles from '../styles/Login';
 
-import Loader from '../Loader';
 
 //initials of the login form
 const initialValues ={
@@ -55,13 +54,7 @@ function Login(props) {
         props.closeSnackbar();
     };
 
-    let load = false;
-    if(props.login.loading){
-        load = true;
-    } else{
-        load = false;
-    } 
-
+   
     if(props.login.success){
         props.history.push('/profile');
     }
@@ -72,7 +65,7 @@ function Login(props) {
             <CssBaseline/> 
             
             <Grid item container sm={8} xs={12} component={Paper} elevation={6} square>
-                <Loader open={load} />
+               
                 <div>
                     <Snackbar
                     open={props.login.snackBarMessage}
@@ -89,7 +82,7 @@ function Login(props) {
                 </div>
                 <div className={classes.paper}>
                     
-                    {/*logic for skeletons*/}
+                 
                     {(!props.login.showSkeletons ? 
                     <>
                     <Typography component="h1" variant="h5">
@@ -111,7 +104,7 @@ function Login(props) {
                                 id="email"
                                 label="Email"
                                 name="email"
-                                disabled={load}
+                            
                                 autoFocus
                                 />
                                 {errors.email && touched.email ? (<div style={{textAlign: 'left', color:'red'}}>{errors.email}</div>) : null}
@@ -126,7 +119,7 @@ function Login(props) {
                                 label="Password"
                                 type="password"
                                 id="password"
-                                disabled={load}
+                              
                                 />
                                 {errors.password && touched.password ? (<div style={{textAlign: 'left', color:'red'}}>{errors.password}</div>) : null}
                             </FormGroup>
@@ -139,7 +132,7 @@ function Login(props) {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            disabled={load}
+                            
                             className={classes.login}
                             >Login</Button>
                         </Form>
@@ -148,7 +141,7 @@ function Login(props) {
                     </> : 
                     
                     <React.Fragment>
-                        {/*the skeleton itself*/}
+                        
                         <Typography component="h1" variant="h5">
                             <Skeleton width={300} />
                         </Typography>
@@ -190,7 +183,7 @@ function Login(props) {
                         <Grid item container justify='space-between' >
                             <Button
                             variant="contained"
-                            disabled={load}
+                            
                             className={classes.social_media}
                             startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg'}/>}
                             >
@@ -199,7 +192,7 @@ function Login(props) {
                         
                             <Button
                             variant="contained"
-                            disabled={load}
+                           
                             className={classes.social_media}
                             startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg'}/>}
                             >
@@ -231,7 +224,7 @@ function Login(props) {
                         type="submit"
                         variant="contained"
                         className={classes.submit}
-                        disabled={load}
+                       
                     >Signup</Button>
                     </> : 
                     <>

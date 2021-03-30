@@ -1,7 +1,7 @@
 import { LOADING, SEND_RESET_EMAIL_FAIL, CLOSE_SNACKBAR, SEND_RESET_EMAIL_SUCCESS, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAIL } from "../resetPasswordType"
 
 const initialState = {
-    isLoading:false,
+    loading:false,
     success:false,
     open:false,
     error: '',
@@ -12,14 +12,14 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
         case LOADING:
             return {
                 ...state,
-                isLoading: true,
+                loading: true,
                 success:false,
                 open: false
             };
         case SEND_RESET_EMAIL_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                loading: false,
                 open:true,
                 success:true,
                 message: action.message
@@ -27,7 +27,7 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
         case SEND_RESET_EMAIL_FAIL:
                 return {
                     ...state,
-                    isLoading: false,
+                    loading: false,
                     error: action.error,
                     success:false,
                     open:true,
@@ -37,7 +37,7 @@ export const ResetPasswordEmailReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 open: false,
-                isLoading: false,
+                loading: false,
                 message:'',
                 error:''
             }
@@ -51,23 +51,23 @@ export const NewPasswordReducer = (state = initialState, action) => {
         case LOADING:
             return {
                 ...state,
-                isLoading: true,
+                loading: true,
                 success:false,
                 open:false
             }
         case RESET_PASSWORD_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                loading: false,
                 success:true,
-                open:true,
+                open:false,
                 error:'',
                 message: action.message
             };
         case RESET_PASSWORD_FAIL:
                 return {
                     ...state,
-                    isLoading:false,
+                    loading:false,
                    error: action.error,
                    success:false,
                    open:true,
