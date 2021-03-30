@@ -198,6 +198,7 @@ function Login(props) {
                             </Button>
 
                                 <Button
+                                    href="http://localhost:4000/api/v1/google"
                                     variant="contained"
                                     disabled={load}
                                     className={classes.social_media}

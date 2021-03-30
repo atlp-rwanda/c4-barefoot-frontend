@@ -24,6 +24,7 @@ import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledR
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route';
 import NotificationDetails from '../components/notificationDetails';
+import GoogleRedirect from '../components/googleRedirect';
 
 
 const Routes = () => {
@@ -40,6 +41,13 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/welcome"
         />
+        <RouteWithLayout
+          component={GoogleRedirect}
+          exact
+          layout={DefaultLayout}
+          path="/google/token"
+        />
+
         <RouteWithLayout
           component={Login}
           exact
