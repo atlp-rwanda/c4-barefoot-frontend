@@ -1,8 +1,8 @@
-import { Avatar, Card, CardContent, Typography, Button, CardActions,
+import { Avatar, Card, Typography, Button, CardActions,
     Select, MenuItem } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addUsersToAssignQueue } from '../../redux/actions/managerSelectedActions';
 
 export const UserCardSkeleton = () => {
@@ -18,10 +18,8 @@ export const UserCardSkeleton = () => {
 
 const UserCard = (props) => {
     const { skeleton, managersElements, user: USER } = props;
-    const cardStyle = {maxWidth: 250, margin: 2, padding: 3, backgroundColor: '#EAF4FB'};
+    const cardStyle = {maxWidth: 250, margin: 8, padding: 3, backgroundColor: '#EAF4FB'};
     const dispatch = useDispatch();
-    // const assignUsersToManagersQueue = useSelector(state => state.addAssignActionToQueue);
-    // console.log(assignUsersToManagersQueue);
     const handleManagerSelected = ({target}) => {
       const managerId = target.value;
       dispatch(addUsersToAssignQueue(USER.id, managerId));

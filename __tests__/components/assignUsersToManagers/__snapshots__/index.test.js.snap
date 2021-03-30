@@ -41,7 +41,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -173,7 +173,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -305,7 +305,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -437,7 +437,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -569,7 +569,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -701,7 +701,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -833,7 +833,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -965,7 +965,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -1097,7 +1097,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }
@@ -1229,7 +1229,7 @@ exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
         style={
           Object {
             "backgroundColor": "#EAF4FB",
-            "margin": 2,
+            "margin": 8,
             "maxWidth": 250,
             "padding": 3,
           }

@@ -10,29 +10,29 @@ export const FETCH_MANAGERS_ERROR = 'FETCH_MANAGERS_ERROR';
 
 export const FETCH_USERS_PAGE_CHANGE = 'FETCH_USERS_PAGE_CHANGE';
 
-export const getVerifiedUsers = (page) => async (dispatch) => {
+export const getVerifiedUsers = (page = 1) => async (dispatch) => {
   dispatch({
     type: FETCH_USERS_PENDING
   });
-  const GET_USERS = axios.get(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users`, {
+  const GET_USERS = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/assignUserstoManager/verified-users`, {
       headers: {
       'Authorization': 'Bearer ' + localStorage.getItem('barefootUserToken')
       },
       params: {
         page
       }
-  });
-  GET_USERS.catch(err => {
+  }).catch(err => {
     return dispatch({
       type: FETCH_USERS_ERROR,
+      page: page,
       error: err
     });
   });
-  const { verifiedUsers } = (await GET_USERS).data;
-  if(GET_USERS) {
+  if(GET_USERS.data) {
     return dispatch({
       type: FETCH_USERS_SUCCESS,
-      verifiedUsers
+      page: parseInt(GET_USERS.data.page),
+      verifiedUsers: GET_USERS.data.verifiedUsers
     });
   }
 };
