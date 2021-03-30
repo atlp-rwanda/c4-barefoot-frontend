@@ -10,6 +10,7 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MultipleLanguages() {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [lang, setLang] = React.useState('English');
+  const [lang, setLang] = React.useState('');
 
   const handleChange = (event) => {
     setLang(event.target.value || '');
@@ -38,14 +40,20 @@ export default function MultipleLanguages() {
   const handleClose = () => {
     setOpen(false);
   };
-  const lan = ['kin', 'en', 'fr']
-  console.log(lang)
+  const handleSubmit = () => {
+    localStorage.setItem('lang', lang);
+    setOpen(false);
+    window.location.reload()
+  }
+
+    
+
 
   return (
     <div>
-      <Button onClick={handleClickOpen} style={{color: 'white'}}>Change language</Button>
+      <Button onClick={handleClickOpen} style={{color: 'white'}}>{t("Change language")}</Button>
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
-        <DialogTitle>Choose the language</DialogTitle>
+        <DialogTitle>{t("Choose the language")}</DialogTitle>
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
@@ -56,19 +64,19 @@ export default function MultipleLanguages() {
                 onChange={handleChange}
                 input={<Input />}
               >
-                <MenuItem value='kin'>Kinyarwanda</MenuItem>
-                <MenuItem value='en'>English</MenuItem>
-                <MenuItem value='fr'>French</MenuItem>
+                <MenuItem value='kin'>{t("Kinyarwanda")}</MenuItem>
+                <MenuItem value='en'>{t("English")}</MenuItem>
+                <MenuItem value='fr'>{t("French")}</MenuItem>
               </Select>
             </FormControl>
           </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            {t("Cancel")}
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Ok
+          <Button onClick={handleSubmit} color="primary">
+            {t("Continue")}
           </Button>
         </DialogActions>
       </Dialog>
