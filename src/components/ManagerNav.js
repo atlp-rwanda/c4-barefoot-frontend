@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import DrawerComponent from './sideBarDrawer/Drawer';
 import MultipleLanguages from './MultiLang/MultiLang'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [sideBar, setSideBar] = useState(false)
   const showSideBar = () => setSideBar(!sideBar)
   const handleClockMenuIcon = () => {
-      console.log('hahahahahahahahahaha')
      return (
      <>
         <DrawerComponent />
@@ -54,7 +55,7 @@ export default function ButtonAppBar() {
   </Link>
           </Typography>
           <Button><MultipleLanguages/></Button>
-          <Button href="/logout" color="inherit">Log out</Button>
+          <Button href="/logout" color="inherit">{t("Logout")}</Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -14,6 +14,7 @@ import AddTravelReason from '../../travelRequests/addTravelReason';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
 import AccommodationModal from '../../AccommodationModal';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) =>({
 }))
 
 const CreateTravelRequest = (props) => {
+    const { t, i18n } = useTranslation();
     const classes = useStyles();
     useEffect(()=>{
         props.getLocationsAction();
@@ -53,7 +55,7 @@ const CreateTravelRequest = (props) => {
             <SnackBarMessage {...props} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
-                    Create Travel Request
+                    {t("Create Travel Request")}
                 </Typography>
             </Grid>
             

@@ -20,7 +20,7 @@ function Footer (){
     return (
         <Toolbar>
             <Typography href='/' variant='body1'component='p'>
-               &#169; 2020, BareFoot Nomad, {t("All rights reserved")}.
+               &#169; {t("2020, BareFoot Nomad, All rights reserved")}.
             </Typography>
         </Toolbar>
         )

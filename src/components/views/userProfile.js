@@ -17,6 +17,7 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { fetchUserProfile, updateUserProfile, closeSnackbar } from '../../redux/actions/userProfileAction';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -86,6 +87,7 @@ function Alert(props) {
 };
 
 const UserProfile = (props) => {
+    const { t, i18n } = useTranslation();
     const [edit, setEdit] = useState(true);
     useEffect(() => {
         props.fetchUserProfile();
@@ -130,7 +132,7 @@ const UserProfile = (props) => {
                                 <input id="file" type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
                                 {props.updated.loading || props.userProfile.loading ? (
                                     <CircularProgress color="secondary" />
-                                ) : <div id="profilePicture"> <PhotoCameraIcon /> Change Profile Picture </div>}
+                                ) : <div id="profilePicture"> <PhotoCameraIcon /> {t("Change Profile Picture")} </div>}
                             </label>
                         </Button>
                         < div >
@@ -167,7 +169,7 @@ const UserProfile = (props) => {
                             >
                                 {({ errors, touched }) => (
                                     < Form className={classes.form}>
-                                        <InputLabel htmlFor="first_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> First Name </InputLabel>
+                                        <InputLabel htmlFor="first_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("First Name")} </InputLabel>
                                         <Field
                                             error={errors.first_name && touched.first_name ? true : false}
                                             as={TextField}
@@ -185,7 +187,7 @@ const UserProfile = (props) => {
                                             helperText={errors.first_name || null}
                                             
                                         />
-                                        <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> Last Name </InputLabel>
+                                        <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("Last Name")} </InputLabel>
                                         <Field
                                             error={errors.last_name && touched.last_name ? true : false}
                                             as={TextField}
@@ -202,7 +204,7 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.last_name || null}
                                         />
-                                        <InputLabel htmlFor="email" className={classes.inputLabel}><EmailIcon color="primary" /> Email </InputLabel>
+                                        <InputLabel htmlFor="email" className={classes.inputLabel}><EmailIcon color="primary" /> {t("Email")} </InputLabel>
                                         <Field
                                             as={TextField}
                                             fullWidth
@@ -215,7 +217,7 @@ const UserProfile = (props) => {
                                             }}
                                             disabled
                                         />
-                                        <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />Preferred Language</InputLabel>
+                                        <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />{t("Preferred Language")}</InputLabel>
                                         <Field
                                             error={errors.language && touched.language ? true : false}
                                             as={TextField}
@@ -232,7 +234,7 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.language || null}
                                         />
-                                        <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> Office Location </InputLabel>
+                                        <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> {t("Office Location")} </InputLabel>
                                         <Field
                                             error={errors.address && touched.address ? true : false}
                                             as={TextField}
@@ -249,7 +251,7 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.address || null}
                                         />
-                                        <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Occupation </InputLabel>
+                                        <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Occupation")} </InputLabel>
                                         <Field
                                             error={errors.occupation && touched.occupation ? true : false}
                                             as={TextField}
@@ -267,7 +269,7 @@ const UserProfile = (props) => {
                                             disabled={edit}
                                             helperText={errors.occupation || null}
                                         />
-                                        <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Line Manager </InputLabel>
+                                        <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Line Manager")} </InputLabel>
                                         <Field
                                             as={TextField}
                                             fullWidth

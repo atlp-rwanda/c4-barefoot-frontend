@@ -204,7 +204,7 @@ const ViewTravelModal= (props)=> {
                         <Grid item xs={12} sm={4} md={4} >
                             <Box className={ classes.tripItemBinder}>
                                 <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
-                                    Date of travel
+                                    {t("Date of travel")}
                                 </Typography>
                                 <Typography variant="caption" component="h2" gutterBottom={true}  >
                                     <Moment format="YYYY/MM/DD">
@@ -217,7 +217,7 @@ const ViewTravelModal= (props)=> {
                         <Grid item xs={12} sm={4} md={4} >
                             <Box className={ classes.tripItemBinder}>
                                 <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
-                                    Date of return
+                                    {t("Date of return")}
                                 </Typography>
                                 <Typography variant="caption" component="h2" gutterBottom={true}  >
                                     <Moment format="YYYY/MM/DD">
@@ -232,7 +232,7 @@ const ViewTravelModal= (props)=> {
 
                 <Box className={classes.hotelAndReasonBoxes}>
                     <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                        Reason
+                        {t("Reason")}
                     </Typography>
                     <Typography variant="caption" component="h2" gutterBottom={true}  >
                            { travelRequestArray[0].travelRequestInfo.Trip.length>0 ? travelRequestArray[0].travelRequestInfo.Trip[0].reason : 'No reason available'}

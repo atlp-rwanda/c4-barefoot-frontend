@@ -46,6 +46,9 @@ export default function MultipleLanguages() {
     window.location.reload()
   }
 
+  const userProfile = localStorage.getItem('userProfile');
+
+  console.log('language', userProfile.language)
     
 
 

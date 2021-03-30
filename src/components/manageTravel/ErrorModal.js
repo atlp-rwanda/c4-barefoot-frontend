@@ -4,6 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ErrorModal= (props)=> {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   // const [open, setOpen] = React.useState(false);
   const {isOpen, setIsOpen, error, clearUpdateTravelRequest}= props
@@ -48,7 +50,7 @@ const ErrorModal= (props)=> {
       <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
             <Typography variant='subtitle1' component='h6' id="simple-modal-description">
-               Status: { error && error.status? error.status: "Error occured"} Error: {error && error.message? error.message: (error && error.error ? error.error : "Unable to load data from server")}
+               Status: { error && error.status? error.status: "Error occured"} Error: {error && error.message? error.message: (error && error.error ? error.error : t("Unable to load data from server"))}
             </Typography>
         </Alert>
       </Snackbar>
