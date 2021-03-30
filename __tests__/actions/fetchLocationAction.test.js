@@ -49,11 +49,11 @@ describe('Fetch Location actions', () => {
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
-      request.respondWith({
+      request.reject({
        status: 500,
        response: {
-          Error: "Internal server error"
-       }
+         data: 'internal server error',
+        }
        })
     })
 

@@ -53,7 +53,7 @@ function ViewTripHistoryCard(props) {
   const paginate = (array, page_size, page_number) =>
     array.slice((page_number - 1) * page_size, page_number * page_size);
 
-  const paginatedTrips = paginate(trips, 12, 1);
+  const paginatedTrips = paginate(trips, 10, 1);
 
   return (
     <div>

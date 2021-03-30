@@ -1,6 +1,7 @@
 import { Box, Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import React from 'react'
+import React from 'react';
+import Moment from 'react-moment'
 
 
 const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
@@ -104,7 +105,15 @@ const TravelRequestCard = (props) => {
                     </Typography>
                 </Box>
                 <Box>
-                    <Typography variant='caption' component='h6' style={{position:'absolute', color:'#54AD7D', right:'10px', top:'10px'}}>{travel.createdAt}</Typography>
+                    <Typography 
+                        variant='caption' 
+                        component='h6' 
+                        style={{position:'absolute', color:'#54AD7D', right:'10px', top:'10px'}}
+                    >
+                        <Moment format="YYYY/MM/DD">
+                            {travel.createdAt}
+                        </Moment>
+                    </Typography>
 
                 </Box>
                 </Box>

@@ -10,6 +10,7 @@ import { clearSingleRequest, getSingleTravelRequest } from "../../redux/actions/
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 import TravelRequestCard from './TravelRequestCard';
+import SuccessModal from './SuccessModal';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -138,15 +139,34 @@ function ReportsView(props) {
      const [openModal, setOpenModal] = useState(false)
      const [isErrorModalOpen, setIsErrorModalOpen]= useState(false);
      const {updateSingleTravel}= props
-     const updateError= updateSingleTravel.error;
-     const category= props.category;
-     const [modalUsage, setModalUsage]= useState('view')
+     const success= updateSingleTravel.travel;
+     const [isSuccessModalOpen, setIsSuccessModalOpen]= useState(false);
 
-     const filtered=  filter(travel, category)
+     const { clearUpdateTravelRequest }= props;
+
+     const category= props.category;
+     const [modalUsage, setModalUsage]= useState('view');
+     const [page, setPage] =useState(1);
+     const page_size= 5;
+
+
+     const filtered=  filter(travel, category);
+
+     const handlePage = (e, value)=>{
+        setPage(value);
+     };
+
 
      useEffect(() => {
          props.getTravelRequest()
-     }, [])
+     }, []);
+
+     useEffect(() => {
+         if(success){
+            handleModalClose();
+         }
+         
+    }, [success]);
     
     //updatting travel request
     const handleUpdateTravel = (id, action) => {
@@ -172,10 +192,20 @@ function ReportsView(props) {
      const handleModalClose = () => {
          setOpenModal(false);
          props.clearSingleRequest();
-         props.clearUpdateTravelRequest();
+        //  props.clearUpdateTravelRequest();
          props.getTravelRequest()
 
-     }
+     };
+
+
+
+     const paginate= (array, page_number) => {
+        // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+        return array.slice((page_number - 1) * page_size, page_number * page_size);
+    }
+    const paginated= paginate(filtered, page);
+
+
     return (
         <div className={classes.container} style={{boxShadow:'none'}}>
             <Typography variant='h6' component='h6'>Direct report travel Request</Typography>
@@ -208,7 +238,7 @@ function ReportsView(props) {
             : 
            <Container maxWidth="md" className={classes.cardContainer}>
                <Box>
-           {filtered.length !== 0 ? filtered.map((trav)=> (
+           {filtered.length !== 0 ? paginated.map((trav)=> (
 
             <Card className={classes.root} key={trav.travelId}>
 
@@ -249,8 +279,18 @@ function ReportsView(props) {
         <Box>
         <ErrorModal isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen} error={error} />
         <div className={classes.paganete}>
-            { filtered.length !== 0 &&  <Pagination count={10} color="primary" />}
+            { filtered.length !== 0 && filtered.length/page_size > 1 &&  <Pagination count={Math.ceil(filtered.length/page_size)} color="primary" onChange={handlePage} />}
         </div>
+
+        {success && 
+            <SuccessModal 
+                isOpen={isSuccessModalOpen} 
+                setIsOpen={setIsSuccessModalOpen} 
+                success={success} 
+                clearUpdateTravelRequest={clearUpdateTravelRequest} 
+                handleModalClose={handleModalClose} 
+            />}
+
         </Box>
         </Container>
            } 

@@ -15,7 +15,7 @@ import ListOfRoles from '../components/views/Admin/ListOfRoles'
 import ListUsers from '../components/views/Admin/ListUsers'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout,ManagerLayout } from '../components/layouts';
+import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, ManagerLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
@@ -27,6 +27,8 @@ import ViewTripHistoryCard from '../components/userTripHistory/ViewTripHistoryCa
 import IndividualHistory from '../components/userTripHistory/IndividualHistory'
 
  
+import userProfile from '../components/views/userProfile';
+
 
 const Routes = () => {
     return (
@@ -71,13 +73,13 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/individual-history"
-        />
-        {/* <RouteWithLayout
-          component={ManagerDashboard}
+          />
+         <ProtectedRoute
+          component={userProfile}
           exact
-          layout={ManagerLayout}
-          path="/managerDashboard"
-        /> */}
+          layout={AuthorizedUserLayout}
+          path="/userprofile"
+        />
         <RouteWithLayout
           component={ManagerTravelDashboard}
           exact

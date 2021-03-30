@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { getAccommodation } from "../../redux/actions/userTravelHistoryAction";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import moment from "moment";
-// import './style.css';
+import "./style.css";
 
 function IndividualHistory(props) {
   React.useEffect(() => {

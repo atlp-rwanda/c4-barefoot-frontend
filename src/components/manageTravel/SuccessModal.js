@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const SuccessModal= (props)=> {
   const classes = useStyles();
   // const [open, setOpen] = React.useState(false);
-  const {isOpen, setIsOpen, success, clearUpdateTravelRequest}= props
+  const {isOpen, setIsOpen, success, clearUpdateTravelRequest, handleModalClose}= props
 
   useEffect( ()=>{
     if(success){
