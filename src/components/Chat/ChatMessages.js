@@ -77,7 +77,7 @@ function ChatMessages(props){
                 </Paper>
                 <MessageList chats={chats} vmessages={vMessages}/>
              </Paper>}
-            {pending === true ? <LinearProgress style={{boxSizing: 'border-box', padding: 50, width: '100%'}}/>  :<NewMessage io={io}/>}
+            {pending === true ? <LinearProgress style={{boxSizing: 'border-box', padding: 50, width: '100%'}}/>  :<NewMessage/>}
         </React.Fragment>
     )
 }
