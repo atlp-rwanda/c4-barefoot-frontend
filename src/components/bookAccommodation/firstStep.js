@@ -133,8 +133,8 @@ function FirstStep(props){
                                     ):(null)}
                                     
                                     <Grid  container item >
-                                        {props.accommodations.map((accommodation) =>(
-                                            <Grid item xs={8} sm={4} md={3} className={classes.insideGrid,classes.separate}>
+                                        {props.accommodations.map((accommodation,index) =>(
+                                            <Grid item xs={8} sm={4} md={3} key={index} className={classes.insideGrid,classes.separate}>
                                                 <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
                                             </Grid>
                                         ))}
