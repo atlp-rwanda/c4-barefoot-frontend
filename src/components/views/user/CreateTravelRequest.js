@@ -120,18 +120,20 @@ const CreateTravelRequest = (props) => {
                 tripDate: `${props.travelRequest.departureDate}`,
                 returnDate: `${props.travelRequest.returnDate}`,
                 accommodationId: `${props.travelRequest.selectedAccommodation.id}`,
-                reason: `${props.travelRequest.travelReason}`
+                reason: `${props.travelRequest.travelReason}`,
+                destinationId: `${props.travelRequest.destinationLocation.id}`
             }
         ];
         if (props.travelRequest.selectedLocations.length > 0) {
             props.travelRequest.selectedLocations.map(location => {
                 const trip = {
-                    originCity: `${location.current}`,
-                    destination: `${location.destination}`,
+                    originCity: `${location.current.LocationName}, ${location.current.country}`,
+                    destination: `${location.destination.LocationName}, ${location.destination.country}`,
                     tripDate: `${location.departureDate}`,
                     returnDate: `${location.returnDate}`,
                     accommodationId: `${location.accommodation.id}`,
-                    reason: `${props.travelRequest.travelReason}`
+                    reason: `${props.travelRequest.travelReason}`,
+                    destinationId: `${location.destination.id}`
                 }
                 trips.push(trip)
             })
@@ -139,9 +141,12 @@ const CreateTravelRequest = (props) => {
         const request = {
             trip: trips
         }
-        console.log(request)
         props.sendTravelRequestAction(request);
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (!props.travelRequest.currentLocation) {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        } else {
+            setActiveStep(2);
+        }
     }
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

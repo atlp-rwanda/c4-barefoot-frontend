@@ -157,24 +157,25 @@ export const addTravelReasonAction = (data) => dispatch => {
 
 export const sendTravelRequestAction = (data) => async (dispatch) => {
     try {
-        dispatch({
-            type: SEND_TRAVEL_REQUEST_LOADING,
-        })
         const token = localStorage.getItem('barefootUserToken');// Getting the token from local storage to be used as authorization header
         await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
+        dispatch({
+            type: SEND_TRAVEL_REQUEST_LOADING,
+        })
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: true
         })
     }
     catch (error) {
+        console.log(error)
         return dispatch({
-            type: SEND_TRAVEL_REQUEST,
-            payload: false
+            type: HANDLE_ERRORS,
+            payload: error.message
         })
     }
 }
