@@ -46,10 +46,21 @@ export default function MultipleLanguages() {
     window.location.reload()
   }
 
-  const userProfile = localStorage.getItem('userProfile');
+  const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
   console.log('language', userProfile.language)
     
+  React.useEffect(()=>{
+    if(userProfile.language === "English"){
+      localStorage.setItem('lang', "en")
+    }else if(userProfile.language === "French"){
+      localStorage.setItem('lang', "fr")
+    }else if(userProfile.language === "Kinyarwanda"){
+      localStorage.setItem('lang', "kin")
+    }else {
+      localStorage.removeItem('lang')
+    }
+  }, [])
 
 
   return (

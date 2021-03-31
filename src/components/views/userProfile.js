@@ -125,191 +125,193 @@ const UserProfile = (props) => {
                     <Skeleton animation="wave" className={classes.form} height={80} />
                 </div>
             ) : (
-                    <div className={classes.root}>
-                        <Avatar src={data ? data.profile_picture : ""} className={classes.large} />
-                        <Button variant="contained" color="primary" >
-                            <label>
-                                <input id="file" type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
-                                {props.updated.loading || props.userProfile.loading ? (
+                <div className={classes.root}>
+                    <Avatar src={data ? data.profile_picture : ""} className={classes.large} />
+                    <Button variant="contained" color="primary" >
+                        <label>
+                            <input id="file" type="file" style={{ display: "none" }} accept="image/png, image/jpeg" onChange={onChange} />
+                            {
+                                props.updated.profileLoading ? (
                                     <CircularProgress color="secondary" />
-                                ) : <div id="profilePicture"> <PhotoCameraIcon /> {t("Change Profile Picture")} </div>}
-                            </label>
-                        </Button>
-                        < div >
-                            <Snackbar
-                                open={props.updated.snackbarOpen}
-                                autoHideDuration={5000}
+                                ) :
+                                    <div id="profilePicture"> <PhotoCameraIcon /> {t("Change Profile Picture")} </div>}
+                        </label>
+                    </Button>
+                    < div >
+                        <Snackbar
+                            open={props.updated.snackbarOpen}
+                            autoHideDuration={5000}
+                            onClose={handleClose}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                        >
+                            <Alert
+                                severity={props.updated.error ? "error" : "success"}
                                 onClose={handleClose}
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                            >
-                                <Alert
-                                    severity={props.updated.error ? "error" : "success"}
-                                    onClose={handleClose}
-                                >{props.updated.error || props.updated.successMsg}</Alert>
-                            </Snackbar>
-                            <Formik
-                                enableReinitialize
-                                validationSchema={validationSchema}
-                                initialValues={data ?
-                                    ({
-                                        first_name: data.first_name,
-                                        last_name: data.last_name,
-                                        email: data.email,
-                                        language: data.language,
-                                        address: data.address,
-                                        occupation: data.occupation,
-                                        line_manager: data.line_manager
-                                    })
-                                    : ({})
-                                }
-                                onSubmit={values => {
-                                    const { email, line_manager, ...rest } = values
-                                    props.updateUserProfile(rest)
-                                }}
-                            >
-                                {({ errors, touched }) => (
-                                    < Form className={classes.form}>
-                                        <InputLabel htmlFor="first_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("First Name")} </InputLabel>
-                                        <Field
-                                            error={errors.first_name && touched.first_name ? true : false}
-                                            as={TextField}
-                                            fullWidth
-                                            id="first_name"
-                                            name="first_name"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.first_name || null}
-                                            
-                                        />
-                                        <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("Last Name")} </InputLabel>
-                                        <Field
-                                            error={errors.last_name && touched.last_name ? true : false}
-                                            as={TextField}
-                                            fullWidth
-                                            id="last_name"
-                                            name="last_name"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.last_name || null}
-                                        />
-                                        <InputLabel htmlFor="email" className={classes.inputLabel}><EmailIcon color="primary" /> {t("Email")} </InputLabel>
-                                        <Field
-                                            as={TextField}
-                                            fullWidth
-                                            id="email"
-                                            name="email"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            disabled
-                                        />
-                                        <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />{t("Preferred Language")}</InputLabel>
-                                        <Field
-                                            error={errors.language && touched.language ? true : false}
-                                            as={TextField}
-                                            fullWidth
-                                            id="language"
-                                            name="language"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.language || null}
-                                        />
-                                        <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> {t("Office Location")} </InputLabel>
-                                        <Field
-                                            error={errors.address && touched.address ? true : false}
-                                            as={TextField}
-                                            fullWidth
-                                            id="address"
-                                            name="address"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.address || null}
-                                        />
-                                        <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Occupation")} </InputLabel>
-                                        <Field
-                                            error={errors.occupation && touched.occupation ? true : false}
-                                            as={TextField}
-                                            as={TextField}
-                                            fullWidth
-                                            id="occupation"
-                                            name="occupation"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            onMouseEnter={() => { setEdit(false); }}
-                                            onMouseLeave={() => { setEdit(true); }}
-                                            disabled={edit}
-                                            helperText={errors.occupation || null}
-                                        />
-                                        <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Line Manager")} </InputLabel>
-                                        <Field
-                                            as={TextField}
-                                            fullWidth
-                                            id="line_manager"
-                                            name="line_manager"
-                                            InputProps={{
-                                                classes: {
-                                                    disabled: classes.disabledTextField
-                                                },
-                                            }}
-                                            disabled
-                                        />
-                                        <div className={classes.btnGrp} spacing={10}>
-                                            <Button
-                                                type="submit"
-                                                color="primary"
-                                                variant="contained"
-                                                className={classes.btn}
-                                            >
-                                                {props.updated.loading ? (
-                                                    <div>
-                                                        <CircularProgress color="secondary" />
-                                                    </div>
-                                                ) : "Save"}
+                            >{props.updated.error || props.updated.successMsg}</Alert>
+                        </Snackbar>
+                        <Formik
+                            enableReinitialize
+                            validationSchema={validationSchema}
+                            initialValues={data ?
+                                ({
+                                    first_name: data.first_name,
+                                    last_name: data.last_name,
+                                    email: data.email,
+                                    language: data.language,
+                                    address: data.address,
+                                    occupation: data.occupation,
+                                    line_manager: data.line_manager
+                                })
+                                : ({})
+                            }
+                            onSubmit={values => {
+                                const { email, line_manager, ...rest } = values
+                                props.updateUserProfile(rest)
+                            }}
+                        >
+                            {({ errors, touched }) => (
+                                < Form className={classes.form}>
+                                    <InputLabel htmlFor="first_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("First Name")} </InputLabel>
+                                    <Field
+                                        error={errors.first_name && touched.first_name ? true : false}
+                                        as={TextField}
+                                        fullWidth
+                                        id="first_name"
+                                        name="first_name"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        onMouseEnter={() => { setEdit(false); }}
+                                        onMouseLeave={() => { setEdit(true); }}
+                                        disabled={edit}
+                                        helperText={errors.first_name || null}
+
+                                    />
+                                    <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("Last Name")} </InputLabel>
+                                    <Field
+                                        error={errors.last_name && touched.last_name ? true : false}
+                                        as={TextField}
+                                        fullWidth
+                                        id="last_name"
+                                        name="last_name"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        onMouseEnter={() => { setEdit(false); }}
+                                        onMouseLeave={() => { setEdit(true); }}
+                                        disabled={edit}
+                                        helperText={errors.last_name || null}
+                                    />
+                                    <InputLabel htmlFor="email" className={classes.inputLabel}><EmailIcon color="primary" /> Email </InputLabel>
+                                    <Field
+                                        as={TextField}
+                                        fullWidth
+                                        id="email"
+                                        name="email"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        disabled
+                                    />
+                                    <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />{t("Preferred Language")}</InputLabel>
+                                    <Field
+                                        error={errors.language && touched.language ? true : false}
+                                        as={TextField}
+                                        fullWidth
+                                        id="language"
+                                        name="language"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        onMouseEnter={() => { setEdit(false); }}
+                                        onMouseLeave={() => { setEdit(true); }}
+                                        disabled={edit}
+                                        helperText={errors.language || null}
+                                    />
+                                    <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> {t("Office Location")} </InputLabel>
+                                    <Field
+                                        error={errors.address && touched.address ? true : false}
+                                        as={TextField}
+                                        fullWidth
+                                        id="address"
+                                        name="address"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        onMouseEnter={() => { setEdit(false); }}
+                                        onMouseLeave={() => { setEdit(true); }}
+                                        disabled={edit}
+                                        helperText={errors.address || null}
+                                    />
+                                    <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Occupation")} </InputLabel>
+                                    <Field
+                                        error={errors.occupation && touched.occupation ? true : false}
+                                        as={TextField}
+                                        as={TextField}
+                                        fullWidth
+                                        id="occupation"
+                                        name="occupation"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        onMouseEnter={() => { setEdit(false); }}
+                                        onMouseLeave={() => { setEdit(true); }}
+                                        disabled={edit}
+                                        helperText={errors.occupation || null}
+                                    />
+                                    <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Line Manager")} </InputLabel>
+                                    <Field
+                                        as={TextField}
+                                        fullWidth
+                                        id="line_manager"
+                                        name="line_manager"
+                                        InputProps={{
+                                            classes: {
+                                                disabled: classes.disabledTextField
+                                            },
+                                        }}
+                                        disabled
+                                    />
+                                    <div className={classes.btnGrp} spacing={10}>
+                                        <Button
+                                            type="submit"
+                                            color="primary"
+                                            variant="contained"
+                                            className={classes.btn}
+                                        >
+                                            {props.updated.loading ? (
+                                                <div>
+                                                    <CircularProgress color="secondary" />
+                                                </div>
+                                            ) : "Save"}
+                                        </Button>
+                                        <Button
+                                            type="reset"
+                                            color="secondary"
+                                            variant="contained"
+                                            className={classes.btn}
+                                        >
+                                            {t("Cancel")}
                                             </Button>
-                                            <Button
-                                                type="reset"
-                                                color="secondary"
-                                                variant="contained"
-                                                className={classes.btn}
-                                            >
-                                                Cancel
-                                            </Button>
-                                        </div>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </div>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
                     </div>
-                )
+                </div>
+            )
             }
 
         </React.Fragment >
@@ -322,4 +324,4 @@ const mapStateToProps = state => ({
 })
 
 export { UserProfile, Alert };
-export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile, closeSnackbar })(UserProfile);
+export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile,closeSnackbar })(UserProfile);

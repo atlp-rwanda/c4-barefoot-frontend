@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
     },
     logo: {
         textDecorationLine: 'none',
-        color: 'inherit'
+        color: 'inherit',
+        float: 'right',
+        marginRight: '1000px'
     }
 }))
 
@@ -33,18 +35,20 @@ function Header() {
         return (
             <div>
                 <div className="navbar">
-                    <div className="logo">
-                        <h2>Barefoot Nomad</h2>
-                    </div>
+
                     <div className="navlinks">
-                        <ul>
-                            <li> <Link to="/login"><MultipleLanguages/></Link></li>
-                            <li><Link to="/login">{t("Login")}</Link></li>
-                            <li><Link to="/signup">{t("Signup")}</Link></li>
-                        </ul>
+                        <Toolbar className={classes.navDisplay}>
+                            <h2>{barefootLogo}</h2>
+                            <nav>
+                                <Button><MultipleLanguages/></Button>
+                                <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>{t("Login")}</Button>
+                                <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>{t("Signup")}</Button>
+                            </nav>
+                        </Toolbar>
                     </div>
                 </div>
             </div >
+
         )
     }
 
