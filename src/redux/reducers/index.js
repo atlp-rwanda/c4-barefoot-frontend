@@ -4,14 +4,11 @@ import {loginReducer} from './loginReducer'
 import { signupRequestReducer } from './signupReducer'
 import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
-// import { fetchUserReducer } from "./usersReducer";
 import { logoutReducer } from './logoutReducer';
 import { fetchTravelReducer } from './travelRequestReducer';
 import { fetchSingleTravelReducer } from './singleTravelReducer'
 import { updateSingleTravelReducer } from "./updateTravelReducer";
 import { fetchUserProfileReducer, updateUserProfileReducer, changeUserPasswordeReducer } from './userProfileReducer'
-import { loginReducer } from './loginReducer'
-import { signupRequestReducer } from './signupReducer'
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
 import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
 import { UsersReducer } from './usersReducer'
