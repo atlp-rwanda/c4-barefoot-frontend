@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 import { getAccommodation } from "../../redux/actions/userTravelHistoryAction";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import moment from "moment";
-import "./style.css";
 
 function IndividualHistory(props) {
   React.useEffect(() => {
@@ -23,6 +22,7 @@ function IndividualHistory(props) {
   const reason = localStorage.getItem("reason");
   const departure = localStorage.getItem("departure");
   const returning = localStorage.getItem("returning");
+  console.log(acc);
   return (
     <div>
       {acc && (

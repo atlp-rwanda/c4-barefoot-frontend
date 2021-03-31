@@ -27,13 +27,13 @@ const useStyle = makeStyles(() => ({
 }));
 
 function ViewTripHistoryCard(props) {
-  const { location } = useParams();
+  const { location } = props.match.params;
 
   useEffect(() => {
     props.getTripHistory(location);
     props.getAccommodation();
   }, []);
-
+  console.log(location);
   const trips = location
     ? props.trips
     : Object.keys(props.locations).map((destination, i) => ({
