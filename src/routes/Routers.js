@@ -25,6 +25,8 @@ import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route';
 import NotificationDetails from '../components/notificationDetails';
 import GoogleRedirect from '../components/googleRedirect';
+import userProfile from '../components/views/userProfile';
+
 
 
 const Routes = () => {
@@ -65,6 +67,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/notifications/:id"
+          />
+         <ProtectedRoute
+          component={userProfile}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/userprofile"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}
