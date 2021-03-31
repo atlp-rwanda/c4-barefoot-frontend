@@ -41,7 +41,7 @@ const UserCard = (props) => {
         <Select onChange={handleManagerSelected} style={{width: '100%'}} defaultValue={props.manager_id ? props.manager_id : 'none'}>
           <MenuItem value="none" disabled>
             <Avatar />
-            <Typography><em>assign line manager</em></Typography>
+            <Typography style={{color: '#bbc'}}><em>assign line manager</em></Typography>
           </MenuItem>
            {managersElements} 
         </Select>
