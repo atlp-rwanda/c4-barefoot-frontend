@@ -7,6 +7,9 @@ import { connect } from 'react-redux'
 import { getLocations } from '../../redux/actions/fetchLocationsAction'
 import { getAccommodations } from '../../redux/actions/fetchAccommodations'
 import { useTranslation } from 'react-i18next';
+import { getUsers } from '../../redux/actions/UsersAction'
+import { adminGetUsers} from '../../redux/actions/fetchUsersAction'
+import { getRoles } from '../../redux/actions/fetchRolesAction'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -52,6 +55,10 @@ function Landing (props){
   useEffect(() => {
     props.getLocations()
     props.getAccommodations()
+    if(localStorage.getItem('userRole')==="administrator"){
+      props.getRoles()
+      props.adminGetUsers()
+    }
   }, [])
   
   const locationSkeleton = (<Grid item xs={12} sm={6} md={4}> <LocationCard/> </Grid>)
@@ -112,4 +119,5 @@ const mapStateToProps = state => ({
 })
 
 export {Landing}
-export default connect(mapStateToProps, { getLocations, getAccommodations })(Landing)
+export default connect(mapStateToProps, { getLocations, getAccommodations, getUsers,getRoles,adminGetUsers})(Landing)
+

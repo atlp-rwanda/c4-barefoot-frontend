@@ -43,7 +43,7 @@ function Login(props) {
     const userToken = localStorage.getItem("barefootUserToken");
 
     if (userToken) {
-        props.history.push('/profile');
+        props.history.push('/home');
     }
     const handleSubmition = (values) => {
         props.loginAction(values);
