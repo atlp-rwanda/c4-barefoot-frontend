@@ -142,11 +142,9 @@ const CreateTravelRequest = (props) => {
             trip: trips
         }
         props.sendTravelRequestAction(request);
-        if (!props.travelRequest.currentLocation) {
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        } else {
-            setActiveStep(2);
-        }
+
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+
     }
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
