@@ -11,9 +11,13 @@ const useStyle = makeStyles(() => ({
   paper: {
     padding: 5,
     textAlign: "center",
+    margin: '1em'
   },
   container: {
-    margin: 10,
+    margin: '2% 5% 2% 5%',
+    
+    width: '90%'
+    
   },
   centered: {
     margin: '50px',
