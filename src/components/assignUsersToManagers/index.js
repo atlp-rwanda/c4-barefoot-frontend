@@ -19,9 +19,6 @@ const AssignUsersToManagers = (props) => {
   const pending = (fetchAllManagers.pending && fetchVerifiedUsers.pending)
                   && !fetchAllManagers.loaded;
   const dispatch = useDispatch();
-  if(addAssignActionToQueue.refresh) {
-    dispatch({type: 'REFRESH_USERS_LIST_WITH_MANAGERS'});
-  }
   useEffect(() => {
     props.getVerifiedUsers( 1, dispatch);
     props.getManagersList(dispatch);
