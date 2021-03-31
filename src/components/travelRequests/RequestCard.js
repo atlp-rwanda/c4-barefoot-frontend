@@ -52,9 +52,17 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#035F0A',
         }
     },
-    rejectBtn: {
+    cancelBtn: {
         margin: "0px 0px 0px 20px",
         backgroundColor: '#EB5757',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#71042B',
+        }
+    },
+    editBtn: {
+        margin: "0px 0px 0px 20px",
+        backgroundColor: '#1769aa',
         color: 'white',
         '&:hover': {
             backgroundColor: '#71042B',
@@ -74,19 +82,19 @@ const useStyles = makeStyles((theme) => ({
 }))
 const RequestCard = (props) => {
     const classes = useStyles();
-    const { travel } = props;
+    const { travel, userInfo, accommodationInfo } = props;
     return (
         <Grid container className={classes.container}>
             <Grid item xs={12} sm={4}>
                 <Box className={classes.imageContainer}>
-                    <img src={default_image} alt="request image" width="100%" />
+                    <img src={accommodationInfo[0].photos ? accommodationInfo[0].photos : default_image} alt="request image" width="100%" />
                 </Box>
             </Grid>
             <Grid item xs={12} sm={8} className={classes.requestDetails} >
                 <Box>
                     <Box className={classes.requesterInfo}>
                         <AccountCircleIcon />
-                        <Typography variant="h6" component="h6" className={classes.username} > CYIMANA FAISAL </Typography>
+                        <Typography variant="h6" component="h6" className={classes.username} > {userInfo.username} </Typography>
                     </Box>
                     <Box className={classes.reasonArea}>
                         <Typography variant="subtitle2" component="h6" > {"Reason of travel"} </Typography>
@@ -97,7 +105,13 @@ const RequestCard = (props) => {
                     <Box className={classes.reasonArea}>
                         <Typography variant="subtitle2" component="h6" > {"Current Location"} </Typography>
                         <Typography variant="caption" component="h6" >
-                            {travel.Trip.length !== 0 ? travel.Trip[0].reason : "No available Trip reason"}
+                            {travel.Trip.length !== 0 ? travel.Trip[0].originCity : "No available Trip reason"}
+                        </Typography>
+                    </Box>
+                    <Box className={classes.reasonArea}>
+                        <Typography variant="subtitle2" component="h6" > {"Destination Location of your last trip"} </Typography>
+                        <Typography variant="caption" component="h6" >
+                            {travel.Trip.length !== 0 ? travel.Trip[travel.Trip.length - 1].destination : "No available Trip reason"}
                         </Typography>
                     </Box>
                     <Box>
@@ -118,23 +132,8 @@ const RequestCard = (props) => {
                         <Button color="primary">View more</Button>
                     </Box>
                     <Box>
-                        {/* {category === 'approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}
-                        {category === 'done' && (
-                            <Box
-                                className={classes.badge}
-                                style={{ backgroundColor: 'blue' }}
-                            >
-                                <Typography variant='subtitle1' component='h6'>Done</Typography>
-                            </Box>
-                        )}
-                        {category === 'rejected' && (
-                            <Box
-                                className={classes.badge}
-                                style={{ backgroundColor: travel.status === 'canceled' ? 'black' : '#CE2020' }}
-                            >
-                                <Typography variant='subtitle1' component='h6' style={{ textTransform: 'capitalize' }}>{travel.status}</Typography>
-                            </Box>
-                        )} */}
+                        <Button color="primary" className={classes.editBtn}>Edit</Button>
+                        <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
                     </Box>
                 </Box>
             </Grid>

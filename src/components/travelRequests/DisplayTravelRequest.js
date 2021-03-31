@@ -174,10 +174,12 @@ const DisplayTravelRequest = (props) => {
                     <Box>
                         {props.listTravelRequest.travelRequests.length !== 0 ? props.listTravelRequest.travelRequests.map((travel) => (
 
-                            <Card className={classes.root} key={travel.travelId}>
+                            <Card className={classes.root} key={travel.travelRequestInfo.travelId}>
 
                                 <RequestCard
-                                    travel={travel}
+                                    travel={travel.travelRequestInfo}
+                                    userInfo={travel.userInfo}
+                                    accommodationInfo={travel.accommodationInfo}
                                 />
                             </Card>
                         ))
