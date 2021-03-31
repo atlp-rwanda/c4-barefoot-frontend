@@ -67,6 +67,7 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/notifications/:id"
+          />
          <ProtectedRoute
           component={userProfile}
           exact
