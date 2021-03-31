@@ -239,7 +239,7 @@ const SearchLocations = (props) => {
                                     inputVariant="filled"
                                     format="MM/dd/yyyy"
                                     invalidDateMessage=' '
-                                    value={!props.travelRequest.returnDate ? retunTime : props.travelRequest.returndate}
+                                    value={retunTime}
                                     onChange={handleReturnDateChange}
                                     InputProps={{ className: classes.datesPicker }}
                                 />
