@@ -68,29 +68,29 @@ const Routes = () => {
           layout={ManagerLayout}
           path="/managerDashboard"
         /> */}
-      <RouteWithLayout
-        component={ManagerTravelDashboard}
-        exact
-        layout={ManagerLayout}
-        path="/managerTravel"
-      />
-      <RouteWithLayout
-        component={ApprovedReports}
-        exact
-        layout={ManagerLayout}
-        path="/managerTravel/approved"
-      />
-      <RouteWithLayout
-        component={RejectedAndCanceled}
-        exact
-        layout={ManagerLayout}
-        path="/managerTravel/canceled"
-      />
+        <RouteWithLayout
+          component={ManagerTravelDashboard}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/managerTravel"
+        />
+        <RouteWithLayout
+          component={ApprovedReports}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/managerTravel/approved"
+        />
+        <RouteWithLayout
+          component={RejectedAndCanceled}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/managerTravel/canceled"
+        />
 
         <RouteWithLayout
           component={Done}
           exact
-          layout={ManagerLayout}
+          layout={AuthorizedUserLayout}
           path="/managerTravel/done"
         />
         

@@ -19,237 +19,12 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import RecentActorsIcon from '@material-ui/icons/RecentActors';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
+import PeopleIcon from '@material-ui/icons/People';
+import ChatIcon from '@material-ui/icons/Chat';
+import HistoryIcon from '@material-ui/icons/History';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const role = localStorage.getItem('userRole');
-
-
-// let menuItems= [
-//     {
-//         title:"Dashboard",
-//         icon:<DashboardIcon />,
-//         link:"/home",
-//         subs: []
-//     },
-//     //   {
-//     //      title:"Accomodation",
-//     //     icon:<AddLocationIcon />,
-//     //     link:"/accomodation",
-//     //     subs: []
-//     // },
-// ];
-
-// switch( role ){
-//     case 'manager':
-//         menuItems= [
-//             ...menuItems,
-//             {
-//                 title:"Travel requests",
-//                 icon:<CommuteIcon />,
-//                 link:"/travelRequests",
-//                 subs: [
-//                     {
-//                         title: 'Create Travel',
-//                         icon: <CachedIcon />,
-//                         link: "/travelReqests"
-//                     },
-//                     {
-//                         title: 'List of Travel Requests',
-//                         icon: <ThumbUpIcon />,
-//                         link: "/travelRequests",
-//                         subs: [
-//                             {
-//                                 title: 'Pending',
-//                                 icon: <CachedIcon />,
-//                                 link: "/travelRequests"
-//                             },
-//                             {
-//                                 title: 'Approved',
-//                                 icon: <ThumbUpIcon />,
-//                                 link: "/travelRequests/approved"
-//                             },
-//                             {
-//                                 title: 'Canceled & Rejected',
-//                                 icon: <CancelIcon />,
-//                                 link: "/travelRequests/canceled"
-//                             },
-//                             {
-//                                 title: 'Done',
-//                                 icon: <DoneAllIcon />,
-//                                 link: "/travelRequests/done"
-//                             },
-//                         ]
-//                     },
-        
-//                 ]
-//             },
-//             {
-//                 title:"Requester Reports",
-//                 icon:<CommuteIcon />,
-//                 link:"/managerTravel",
-//                 subs: [
-//                     {
-//                         title: 'Pending',
-//                         icon: <CachedIcon />,
-//                         link: "/managerTravel"
-//                     },
-//                     {
-//                         title: 'Approved',
-//                         icon: <ThumbUpIcon />,
-//                         link: "/managerTravel/approved"
-//                     },
-//                     {
-//                         title: 'Canceled & Rejected',
-//                         icon: <CancelIcon />,
-//                         link: "/managerTravel/canceled"
-//                     },
-//                     {
-//                         title: 'Done',
-//                         icon: <DoneAllIcon />,
-//                         link: "/managerTravel/done"
-//                     },
-//                 ]
-//             }
-        
-
-            
-//         ];
-//         break;
-
-//     case 'travel-admin':
-//         menuItems=[
-//             ...menuItems,
-//             {
-//                 title:"Travel requests",
-//                 icon:<CommuteIcon />,
-//                 link:"/travelRequests",
-//                 subs: [
-//                     {
-//                         title: 'Create Travel',
-//                         icon: <CachedIcon />,
-//                         link: "/travelReqests"
-//                     },
-//                     {
-//                         title: 'List of Travel Requests',
-//                         icon: <ThumbUpIcon />,
-//                         link: "/travelRequests",
-//                         subs: [
-//                             {
-//                                 title: 'Pending',
-//                                 icon: <CachedIcon />,
-//                                 link: "/travelRequests"
-//                             },
-//                             {
-//                                 title: 'Approved',
-//                                 icon: <ThumbUpIcon />,
-//                                 link: "/travelRequests/approved"
-//                             },
-//                             {
-//                                 title: 'Canceled & Rejected',
-//                                 icon: <CancelIcon />,
-//                                 link: "/travelRequests/canceled"
-//                             },
-//                             {
-//                                 title: 'Done',
-//                                 icon: <DoneAllIcon />,
-//                                 link: "/travelRequests/done"
-//                             },
-//                         ]
-//                     },
-        
-//                 ]
-//             },
-//             {
-//                 title:"Accomodations",
-//                 icon:<BusinessIcon />,
-//                 link:"/travelmanager/accomodations",
-//                 subs: [
-//                     {
-//                         title: 'Create accomodation',
-//                         icon: <EmojiTransportationIcon />,
-//                         link: "/travelManager/accomodations/create"
-//                     },
-//                     {
-//                         title: 'List of accomodations',
-//                         icon: <ApartmentIcon />,
-//                         link: "/accomodations"
-//                     },
-                   
-//                 ]
-//             },
-//             {
-//                 title:"Locations",
-//                 icon:<LocationOnIcon />,
-//                 link:"/travelmanager/locations",
-//                 subs: [
-//                     {
-//                         title: 'Create location',
-//                         icon: <AddLocationIcon />,
-//                         link: "/travelManager/locations/create"
-//                     },
-//                     {
-//                         title: 'List of locations',
-//                         icon: <ExploreIcon />,
-//                         link: "/locations"
-//                     },
-                   
-//                 ]
-//             }
-
-//         ];
-//         break;
-
-//     case 'requester':
-//         menuItems= [
-//             ...menuItems,
-//             {
-//                 title:"Travel requests",
-//                 icon:<CommuteIcon />,
-//                 link:"/travelRequests",
-//                 subs: [
-//                     {
-//                         title: 'Create Travel',
-//                         icon: <CachedIcon />,
-//                         link: "/travelReqests"
-//                     },
-//                     {
-//                         title: 'List of Travel Requests',
-//                         icon: <ThumbUpIcon />,
-//                         link: "/travelRequests",
-//                         subs: [
-//                             {
-//                                 title: 'Pending',
-//                                 icon: <CachedIcon />,
-//                                 link: "/travelRequests"
-//                             },
-//                             {
-//                                 title: 'Approved',
-//                                 icon: <ThumbUpIcon />,
-//                                 link: "/travelRequests/approved"
-//                             },
-//                             {
-//                                 title: 'Canceled & Rejected',
-//                                 icon: <CancelIcon />,
-//                                 link: "/travelRequests/canceled"
-//                             },
-//                             {
-//                                 title: 'Done',
-//                                 icon: <DoneAllIcon />,
-//                                 link: "/travelRequests/done"
-//                             },
-//                         ]
-//                     },
-        
-//                 ]
-//             },
-//         ];
-//         break;
-
-//     default: 
-//         menuItems= [
-//             ...menuItems,
-//         ];
-        
-// }
 
 let menuItems={
     manager:[
@@ -266,39 +41,32 @@ let menuItems={
             subs: [
                 {
                     title: 'Create Travel',
-                    icon: <CachedIcon />,
+                    icon: <AddCircleIcon />,
                     link: "/travelReqests"
                 },
                 {
-                    title: 'List of Travel Requests',
+                    title: 'Pending',
+                    icon: <CachedIcon />,
+                    link: "/travelRequests"
+                },
+                {
+                    title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests",
-                    subs: [
-                        {
-                            title: 'Pending',
-                            icon: <CachedIcon />,
-                            link: "/travelRequests"
-                        },
-                        {
-                            title: 'Approved',
-                            icon: <ThumbUpIcon />,
-                            link: "/travelRequests/approved"
-                        },
-                        {
-                            title: 'Canceled & Rejected',
-                            icon: <CancelIcon />,
-                            link: "/travelRequests/canceled"
-                        },
-                        {
-                            title: 'Done',
-                            icon: <DoneAllIcon />,
-                            link: "/travelRequests/done"
-                        },
-                    ]
+                    link: "/travelRequests/approved"
+                },
+                {
+                    title: 'Canceled & Rejected',
+                    icon: <CancelIcon />,
+                    link: "/travelRequests/canceled"
+                },
+                {
+                    title: 'Done',
+                    icon: <DoneAllIcon />,
+                    link: "/travelRequests/done"
                 },
     
             ]
-        },
+        },        
         {
             title:"Requester Reports",
             icon:<CommuteIcon />,
@@ -325,8 +93,46 @@ let menuItems={
                     link: "/managerTravel/done"
                 },
             ]
-        }
-    
+        },
+        {
+            title:"Explore",
+            icon:<ExploreIcon/>,
+            link:"/locations",
+            subs: [
+                {
+                    title:"Accomodations",
+                    icon:<BusinessIcon/>,
+                    link:"/accommodations",
+                    subs: []
+                },
+                {
+                    title:"Locations",
+                    icon:<ExploreIcon/>,
+                    link:"/locations",
+                    subs: []
+                },
+            ]
+        },
+
+        {
+            title:"Trip history",
+            icon:<HistoryIcon/>,
+            link:"/tripHistory",
+            subs: []
+        },
+        
+        {
+            title:"Chat",
+            icon:<ChatIcon/>,
+            link:"/chat",
+            subs: []
+        },
+        {
+            title:"Users",
+            icon:<PeopleIcon/>,
+            link:"/assign-users-to-managers",
+            subs: []
+        },   
 
         
     ],
@@ -344,35 +150,28 @@ let menuItems={
             subs: [
                 {
                     title: 'Create Travel',
-                    icon: <CachedIcon />,
+                    icon: <AddCircleIcon />,
                     link: "/travelReqests"
                 },
                 {
-                    title: 'List of Travel Requests',
+                    title: 'Pending',
+                    icon: <CachedIcon />,
+                    link: "/travelRequests"
+                },
+                {
+                    title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests",
-                    subs: [
-                        {
-                            title: 'Pending',
-                            icon: <CachedIcon />,
-                            link: "/travelRequests"
-                        },
-                        {
-                            title: 'Approved',
-                            icon: <ThumbUpIcon />,
-                            link: "/travelRequests/approved"
-                        },
-                        {
-                            title: 'Canceled & Rejected',
-                            icon: <CancelIcon />,
-                            link: "/travelRequests/canceled"
-                        },
-                        {
-                            title: 'Done',
-                            icon: <DoneAllIcon />,
-                            link: "/travelRequests/done"
-                        },
-                    ]
+                    link: "/travelRequests/approved"
+                },
+                {
+                    title: 'Canceled & Rejected',
+                    icon: <CancelIcon />,
+                    link: "/travelRequests/canceled"
+                },
+                {
+                    title: 'Done',
+                    icon: <DoneAllIcon />,
+                    link: "/travelRequests/done"
                 },
     
             ]
@@ -412,9 +211,28 @@ let menuItems={
                 },
                
             ]
-        }
+        },
+        {
+            title:"Trip history",
+            icon:<HistoryIcon/>,
+            link:"/tripHistory",
+            subs: []
+        },        
+        {
+            title:"Chat",
+            icon:<ChatIcon/>,
+            link:"/chat",
+            subs: []
+        },
+        {
+            title:"Users",
+            icon:<PeopleIcon/>,
+            link:"/assign-users-to-managers",
+            subs: []
+        }, 
 
     ],
+
     requester:[
         {
             title:"Home",
@@ -429,68 +247,72 @@ let menuItems={
             subs: [
                 {
                     title: 'Create Travel',
-                    icon: <CachedIcon />,
+                    icon: <AddCircleIcon />,
                     link: "/travelReqests"
                 },
                 {
-                    title: 'List of Travel Requests',
+                    title: 'Pending',
+                    icon: <CachedIcon />,
+                    link: "/travelRequests"
+                },
+                {
+                    title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests",
-                    subs: [
-                        {
-                            title: 'Pending',
-                            icon: <CachedIcon />,
-                            link: "/travelRequests"
-                        },
-                        {
-                            title: 'Approved',
-                            icon: <ThumbUpIcon />,
-                            link: "/travelRequests/approved"
-                        },
-                        {
-                            title: 'Canceled & Rejected',
-                            icon: <CancelIcon />,
-                            link: "/travelRequests/canceled"
-                        },
-                        {
-                            title: 'Done',
-                            icon: <DoneAllIcon />,
-                            link: "/travelRequests/done"
-                        },
-                    ]
+                    link: "/travelRequests/approved"
+                },
+                {
+                    title: 'Canceled & Rejected',
+                    icon: <CancelIcon />,
+                    link: "/travelRequests/canceled"
+                },
+                {
+                    title: 'Done',
+                    icon: <DoneAllIcon />,
+                    link: "/travelRequests/done"
                 },
     
             ]
         },
+        {
+            title:"Explore",
+            icon:<ExploreIcon/>,
+            link:"/locations",
+            subs: [
+                {
+                    title:"Accomodations",
+                    icon:<BusinessIcon/>,
+                    link:"/accommodations",
+                    subs: []
+                },
+                {
+                    title:"Locations",
+                    icon:<ExploreIcon/>,
+                    link:"/locations",
+                    subs: []
+                },
+            ]
+        },
+        {
+            title:"Trip history",
+            icon:<HistoryIcon/>,
+            link:"/tripHistory",
+            subs: []
+        },        
+        {
+            title:"Chat",
+            icon:<ChatIcon/>,
+            link:"/chat",
+            subs: []
+        },
+
     ],
+
     administrator:[
         {
             title:"Home",
             icon:<HomeIcon/>,
             link:"/home",
             subs: []
-        },
-          {
-             title:"My Travels",
-            icon:<DomainIcon />,
-            link:"/accomodation",
-            subs: []
-        },
-        {
-            title:"Accomodation",
-            icon:<DomainIcon />,
-            link:"/travelRequests",
-            subs: [
-    
-            ]
-        },
-        {
-            title:"Location",
-            icon:<PinDropIcon/>,
-            link:"/admin",
-            subs: [
-                
-            ]
         },
         {
             title:"Statistics",
@@ -500,6 +322,43 @@ let menuItems={
                 
             ]
         },
+        {
+            title:"Accomodations",
+            icon:<BusinessIcon />,
+            link:"/travelmanager/accomodations",
+            subs: [
+                {
+                    title: 'Create accomodation',
+                    icon: <EmojiTransportationIcon />,
+                    link: "/travelManager/accomodations/create"
+                },
+                {
+                    title: 'List of accomodations',
+                    icon: <ApartmentIcon />,
+                    link: "/accomodations"
+                },
+               
+            ]
+        },
+        {
+            title:"Locations",
+            icon:<LocationOnIcon />,
+            link:"/travelmanager/locations",
+            subs: [
+                {
+                    title: 'Create location',
+                    icon: <AddLocationIcon />,
+                    link: "/travelManager/locations/create"
+                },
+                {
+                    title: 'List of locations',
+                    icon: <ExploreIcon />,
+                    link: "/locations"
+                },
+               
+            ]
+        },
+        
         {
             title:"Roles",
             icon:<RecentActorsIcon/>,
@@ -523,7 +382,20 @@ let menuItems={
             link:"/admin/permissions",
             subs: [
             ]
-        }
+        },
+        
+        {
+            title:"Chat",
+            icon:<ChatIcon/>,
+            link:"/chat",
+            subs: []
+        },
+        {
+            title:"Users",
+            icon:<PeopleIcon/>,
+            link:"/assign-users-to-managers",
+            subs: []
+        }, 
     
     ]
 }
