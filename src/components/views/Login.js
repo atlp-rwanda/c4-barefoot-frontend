@@ -43,7 +43,7 @@ function Login(props) {
     const userToken = localStorage.getItem("barefootUserToken");
 
     if (userToken) {
-        props.history.push('/home');
+        props.history.push('/profile');
     }
     const handleSubmition = (values) => {
         props.loginAction(values);
@@ -65,7 +65,7 @@ function Login(props) {
     if (props.login.success) {
         console.log("login");
         props.login.success = false
-        props.history.push('/home');
+        props.history.push('/profile');
     }
 
     return (
@@ -269,4 +269,4 @@ const mapStateToProps = state => ({
 });
 
 export { Login };
-export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons})(Login);
+export default connect(mapStateToProps, { loginAction, closeSnackbar, loadSkeletons })(Login);
