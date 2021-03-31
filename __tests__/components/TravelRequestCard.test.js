@@ -12,34 +12,31 @@ import { accommodationInfo, allTravelRequestState, singleTravelState, travelRequ
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
 let store;
-describe(' <TravelRequestcard />', ()=>{
+describe(' <TravelRequestcard />', () => {
     let props;
     let wrapper;
-   
 
 
-    it( 'It should render the ReportsView compnent', ()=>{
+
+    it('It should render the ReportsView compnent', () => {
         store = mockStore({
             manageTravel: allTravelRequestState,
             manageSingleTravel: singleTravelState,
             updateTravel: updateTravelState,
-          });
-    
-        props= {
+        });
+
+        props = {
             userInfo: UserInfo,
             accomodationsInfo: accommodationInfo,
             travel: travelRequestInfo,
             category: 'approved',
             handleSingleTravel: jest.fn(),
-               
+
         }
-        wrapper= mount(<Provider store= {store} ><TravelRequestCard { ...props } /></Provider>)
-        const component= toJson(wrapper);
+        wrapper = mount(<Provider store={store} ><TravelRequestCard {...props} /></Provider>)
+        const component = toJson(wrapper);
         expect(component).toMatchSnapshot();
         // console.log('component', component);
     })
 
-   
-    
 })
-
