@@ -30,10 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const ViewTravelRequest = (props) => {
     const classes = useStyles();
     useEffect(() => {
-        const userToken = localStorage.getItem('barefootUserToken');
-        if (userToken) {
-            return props.GetTravelRequestsAction({ userToken });
-        }
+        props.GetTravelRequestsAction();
     }, [])
 
     const getNextPage = (event, value) => {
@@ -56,9 +53,9 @@ const ViewTravelRequest = (props) => {
             <Grid item xs={12} className={classes.content}>
                 <DisplayTravelRequest {...props} />
             </Grid>
-            <Grid container item justify="center" style={{ marginTop: '50px' }}>
+            {/* <Grid container item justify="center" style={{ marginTop: '50px' }}>
                 <Pagination count={10} variant="outlined" color="primary" onChange={getNextPage} />
-            </Grid>
+            </Grid> */}
 
         </Grid>
     );
@@ -70,4 +67,3 @@ const mapStateToProps = state => ({
 });
 export { ViewTravelRequest };
 export default connect(mapStateToProps, { GetTravelRequestsAction })(ViewTravelRequest);
-
