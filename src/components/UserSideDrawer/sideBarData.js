@@ -86,12 +86,5 @@ export const sideBarData = [
                 link: "/managerTravel/done"
             },
         ]
-    },
-
-    {
-        title:"Trip History",
-        icon:<CommuteIcon />,
-        link:"",
-        subs
     }
 ]

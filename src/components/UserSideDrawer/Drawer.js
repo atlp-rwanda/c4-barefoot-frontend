@@ -84,14 +84,7 @@ function DrawerComponent(props) {
     props.getTripLocations();
   }, []);
 
-  const subs =
-    locations.length <= 0
-      ? []
-      : Object.keys(locations).map((key) => ({
-          title: `${key}: ${locations[key]}`,
-          icon: "",
-          link: `/travel-history/${key.split(",")[0]}`,
-        }));
+ 
 
   const sideBarData = [
     {
@@ -171,14 +164,7 @@ function DrawerComponent(props) {
           link: "/managerTravel/done",
         },
       ],
-    },
-
-    {
-      title: "Trip History",
-      icon: <CommuteIcon />,
-      link: "/travel-history",
-      subs,
-    },
+    }
   ];
 
   const [drop, setDrop] = React.useState(
@@ -249,7 +235,7 @@ function DrawerComponent(props) {
       <Divider />
       <List>
         {sideBarData.map((list) =>
-          list.subs.length === 0 ? (
+          list.subs ? (
             <Link to={list.link} key={list.title} className={classes.nested}>
               <ListItem button onClick={toggleDrawer("left", false)}>
                 <ListItemIcon className={classes.listIcons}>

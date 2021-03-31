@@ -8,25 +8,29 @@ export const GET_SINGLE_ACC = "GET_SINGLE_ACC";
 
 const token = window.localStorage.getItem("barefootUserToken");
 
-export const getTripHistory = (location) => async (dispatch) => {
-  try {
+export const getTripHistory = () => async (dispatch) => {
+  
     dispatch({ type: FETCH_TRIP_HISTORY_PENDING });
-    const res = await axios.get(
-      `${process.env.REACT_APP_BACKEND_LINK}/trips/${location}`,
+    return axios.get(
+      `${process.env.REACT_APP_BACKEND_LINK}/requests`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
-    );
-    return dispatch({
-      type: FETCH_TRIP_HISTORY_SUCCESS,
-      payload: res.data.rows,
-    });
-  } catch (err) {
-    dispatch({
-      type: FETCH_TRIP_HISTORY_ERROR,
-      payload: err,
-    });
-  }
+    ).then(res=>{
+      
+      dispatch({
+        type: FETCH_TRIP_HISTORY_SUCCESS,
+        payload: res.data,
+      });
+    }).catch(err=>{
+      console.log(err.message)
+      dispatch({
+        type: FETCH_TRIP_HISTORY_ERROR,
+        payload: err,
+      });
+    })
+    
+  
 };
 
 export const getAccommodation = () => async (dispatch) => {

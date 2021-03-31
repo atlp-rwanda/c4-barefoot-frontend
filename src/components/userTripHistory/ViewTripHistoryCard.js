@@ -15,6 +15,11 @@ const useStyle = makeStyles(() => ({
   container: {
     margin: 10,
   },
+  centered: {
+    margin: '50px',
+    fontSize: '2em',
+    color: 'blue'
+  },
   media: {
     height: 140,
   },
@@ -28,37 +33,51 @@ const useStyle = makeStyles(() => ({
 
 function ViewTripHistoryCard(props) {
   const { location } = props.match.params;
+  let tripp=[];
+  let trippp=[]
 
   useEffect(() => {
-    props.getTripHistory(location);
+    props.getTripHistory();
     props.getAccommodation();
   }, []);
-  console.log(location);
-  const trips = location
-    ? props.trips
-    : Object.keys(props.locations).map((destination, i) => ({
-        tripId: i + 1,
-        destination: destination.split(",")[0],
-        originCity: "Kigali",
-        reason: "Trainings for work",
-        tripDate: "03/03/2021",
-        returnDate: "31/04/2021",
-        accommodationId: (i + 3) / 3 + 3,
-      }));
-  const classes = useStyle();
+
+  const { trips, pending } = props.trips;
+  trips.forEach(trip=>{
+    tripp.push(trip.travelRequestInfo.Trip);
+
+  })
+  tripp.forEach(item=>{
+  item.map(trip=>trippp.push(trip))
+});
+console.log(trippp.length);
+  console.log(tripp);
+  // console.log(props.trips);
+  // const trips = location
+  //   ? props.trips
+  //   : Object.keys(props.locations).map((destination, i) => ({
+  //       tripId: i + 1,
+  //       destination: destination.split(",")[0],
+  //       originCity: "Kigali",
+  //       reason: "Trainings for work",
+  //       tripDate: "03/03/2021",
+  //       returnDate: "31/04/2021",
+  //       accommodationId: (i + 3) / 3 + 3,
+  //     }));
+   const classes = useStyle();
   const acc = props.acc;
 
-  console.log(location, props.trips, props.locations);
 
-  const paginate = (array, page_size, page_number) =>
-    array.slice((page_number - 1) * page_size, page_number * page_size);
+  
 
-  const paginatedTrips = paginate(trips, 10, 1);
+  // const paginate = (array, page_size, page_number) =>
+  //   array.slice((page_number - 1) * page_size, page_number * page_size);
+
+  // const paginatedTrips = paginate(trips, 10, 1);
 
   return (
     <div>
       <Grid container spacing={1} className={classes.container}>
-        {paginatedTrips.map((trip) => (
+        {!pending && trippp.map((trip) => (
           <Grid item key={trip.tripId} md={4} sm={6} xs={12}>
             <Paper className={classes.paper}>
               {acc && <img src={acc.photos} style={{ width: 150 }}></img>}
@@ -93,14 +112,16 @@ function ViewTripHistoryCard(props) {
             </Paper>
           </Grid>
         ))}
+        {pending && <Typography className={classes.centered}>Loading</Typography>}
+        {!pending && trippp.length==0 && <Typography className={classes.centered}>No trips available</Typography> }
       </Grid>
-      <Pagination count={10} color="primary" />
+      {/* <Pagination count={10} color="primary" /> */}
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.tripHistory.trips,
+  trips: state.tripHistory,
   locations: state.tripHistory.locations,
   acc: state.tripHistory.acc,
 });
