@@ -72,7 +72,7 @@ function Login(props) {
                 <CssBaseline />
 
                 <Grid item container sm={8} xs={12} component={Paper} elevation={6} square>
-                    <Loader open={load} />
+                    
                     <div>
                         <Snackbar
                             open={props.login.snackBarMessage}
