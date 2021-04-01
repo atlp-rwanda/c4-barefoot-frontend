@@ -131,7 +131,6 @@ function Home({  datas, reviews, accommodation, getReviews }) {
     useEffect(() => {
         getReviews(id)
         accommodation(id)
-
         console.log(reviews)
         console.log(datas)
     }, [])
@@ -229,7 +228,6 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
-
                                                     </Grid>
                                                 </div>
                                             </CardContent>

@@ -1,4 +1,5 @@
 import {GET_RATINGS_FAILED,GET_RATINGS_PENDING,GET_RATINGS_SUCCESS,ADD_RATINGS_FAILED,
+<<<<<<< HEAD
 ADD_RATINGS_SUCCESS,ADD_RATINGS_PENDING,CLOSE_SNACKBAR} from '../actions/ratingsAction'
 
 const initState = {
@@ -44,6 +45,14 @@ export const addRatesAndReview = (state= initialState, action) => {
         default:
             return {state};
      }
+=======
+ADD_RATINGS_SUCCESS} from '../actions/ratingsAction'
+
+const initState = {
+    loading:false,
+    reviews:{},
+    error:''
+>>>>>>> 838b477... getting ratings from database
 }
 
 export const fetchReviewsReducer = (state=initState, action)=>{
@@ -56,9 +65,13 @@ switch(action.type){
         case GET_RATINGS_SUCCESS:
         return {
             ...state,
+<<<<<<< HEAD
             count:action.payload.reviews.count,
             reviewAndRates: action.payload.reviews.rows,
             rates:action.payload.rates.actualRate
+=======
+            reviews: action.payload
+>>>>>>> 838b477... getting ratings from database
         }
         case GET_RATINGS_FAILED:
         return{

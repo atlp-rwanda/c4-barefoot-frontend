@@ -21,7 +21,11 @@ import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import { managerReducer } from './managersReducer'
 import {fetchAccommodationReducer} from './fetchAccommodationReducer'
+<<<<<<< HEAD
 import {fetchReviewsReducer,addRatesAndReview} from './ratingsReducer'
+=======
+import {fetchReviewsReducer} from './ratingsReducer'
+>>>>>>> 838b477... getting ratings from database
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -32,8 +36,12 @@ const reducers = combineReducers({
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
   fetchAccommodation:fetchAccommodationReducer,
+<<<<<<< HEAD
   fetchReviews: fetchReviewsReducer,
   addReviews:addRatesAndReview,
+=======
+  fetchReviews:fetchReviewsReducer,
+>>>>>>> 838b477... getting ratings from database
   bookAccommodations: bookAccommodationsReducer,
   bookedAccommodations:getBookingsReducer,
   convertMoney: convertorReducer,
