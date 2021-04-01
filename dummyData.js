@@ -437,11 +437,7 @@ export const fetchAccommodationByLocationPayload={
   },
   "nation": "Rwanda"
 }
-export const locationState = {
-  pending: false,
-  locations: locationsPayload,
-  error: null
-}
+
 
 export const bookAccommodationState={
   pending: false,
