@@ -101,6 +101,7 @@ function Accommodations(props) {
           onClick={handleViewMore}
           className={classes.media}
           image={props.accommodationn.photos}
+              // image={image}
           title={props.accommodationn.title}
         />
         <CardContent onClick={handleViewMore} className={classes.cardContent} >
