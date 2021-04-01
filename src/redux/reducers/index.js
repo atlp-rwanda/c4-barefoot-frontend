@@ -16,7 +16,7 @@ import { UsersReducer } from './usersReducer'
 import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
-import {managerReducer} from './managersReducer'
+import { managerReducer } from './managersReducer'
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -27,9 +27,9 @@ const reducers = combineReducers({
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
   // verifiedUser: fetchUserReducer,
-  manageTravel:fetchTravelReducer,
-  manageSingleTravel:fetchSingleTravelReducer,
-  updateTravel:updateSingleTravelReducer,
+  manageTravel: fetchTravelReducer,
+  manageSingleTravel: fetchSingleTravelReducer,
+  updateTravel: updateSingleTravelReducer,
 
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
@@ -38,9 +38,10 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
-  managerReducer
-  
+  managerReducer,
+  createTravelRequest: CreateTravelRequestReducer
+
 })
-  
+
 export default reducers
 
