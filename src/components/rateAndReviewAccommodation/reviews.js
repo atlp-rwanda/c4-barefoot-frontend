@@ -305,6 +305,7 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                     </Formik>
                 </CardContent>
             </Card>
+
         </React.Fragment>
     )
 }
