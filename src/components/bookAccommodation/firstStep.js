@@ -13,6 +13,7 @@ import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
+import {getRatings} from "../../redux/actions/ratingsAction"
 
 const useStyles = makeStyles((theme) => ({
     // root: {
@@ -98,7 +99,11 @@ function Home(props){
     const handleChange = (event, value) => {
         props.getAccommodationsByLocation(props.accId,value)
         setPage(value)
-      };
+    };
+    // const handleRates = (id) => {
+    //     const rev=getReviews(id);
+    //     console.log("rates", rev)
+    // }
     return(
         <React.Fragment>
             <Card>
@@ -126,7 +131,7 @@ function Home(props){
                                     
                                     {props.accommodations.map((accommodation) =>(
                                         <Grid item xs={8} sm={4} md={3} className={classes.insideGrid,classes.separate}>
-                                            <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
+                                            <AccommodationCard pending={props.status}  accommodationn={accommodation} city={accommodation.city} {...props}  />
                                         </Grid>
                                     ))}
                                     
@@ -166,6 +171,12 @@ const mapStateToProps=state=>({
     accId:state.fetchAccommodations.accId,
     status:state.fetchAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
-    temp:state.fetchAccommodations.temp
+    temp: state.fetchAccommodations.temp,
+    // reviews: state.fetchReviews
 })
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         getReviews: (id)=>dispatch(getRatings(id))
+//     }
+// }
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)

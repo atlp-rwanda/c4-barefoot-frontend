@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import {Typography,Divider} from '@material-ui/core'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,23 +21,25 @@ const useStyles = makeStyles((theme) => ({
         },
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '10em',
+        marginTop: '4em',
         marginRight: 100
     },
     button: {
         marginTop: '2em',
-        marginRight: 150
+        marginLeft: 88
     },
     textarea: {
         width:'300px'
+    },
+    stars: {
+        marginLeft:88
     }
 }));
 
 
 function HalfRating(props) {
     let [state, setstate] = useState({
-        rate: null,
-        review: ''
+        rate: 2,
     }
        )
     const classes = useStyles();
@@ -49,10 +52,17 @@ function HalfRating(props) {
         // console.log(">>>"+rates);
     }
     const handleReview = (e) => {
-        setstate ( {
-            ...state,
-            review:e.target.value
-         })
+        if (e.target.value!=null) {
+            setstate ( {
+                ...state,
+                review: e.target.value
+            })
+            console.log("==========")
+        } else {
+            setstate ( {
+                rate
+             })
+        }
     }
     const { id } = useParams();
     const handleSubmit = () => {
@@ -67,11 +77,19 @@ function HalfRating(props) {
 }
     return (
         <React.Fragment >
+            
             <div className={classes.root}>
+                <div>
+                    <Typography>Rate and Review This Accommodation</Typography>
+                </div>
+               
                 <form >
+                    <div className={classes.stars}>
                     <Rating  defaultValue={2} 
                         onChange={handleChange}
                     />
+                    </div>
+                   
                     <div><TextareaAutosize
                         onChange={handleReview}
                         className={classes.textarea} aria-label="empty textarea" rowsMin={5} placeholder="your review" /></div>
