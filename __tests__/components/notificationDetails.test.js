@@ -19,7 +19,7 @@ describe('NOTIFICATION DETAILS COMPONENT', ()=>{
         
     }
     beforeEach(()=>{
-        wrapper = shallow(<NotificationDetails {...props}/>);
+        wrapper = mount(<NotificationDetails {...props}/>);
     })
     it('Should capture the snapshot', ()=>{
         
