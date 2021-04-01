@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +12,12 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import {Typography,Divider} from '@material-ui/core'
 
+=======
+import React from 'react';
+import Rating from '@material-ui/lab/Rating';
+import { makeStyles } from '@material-ui/core/styles';
+import {TextField,Button,TextareaAutosize} from '@material-ui/core';
+>>>>>>> 9c36432... added ratings components
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,11 +28,16 @@ const useStyles = makeStyles((theme) => ({
         },
         alignItems: 'center',
         justifyContent: 'center',
+<<<<<<< HEAD
         marginTop: '4em',
+=======
+        marginTop: '10em',
+>>>>>>> 9c36432... added ratings components
         marginRight: 100
     },
     button: {
         marginTop: '2em',
+<<<<<<< HEAD
         marginLeft: 88
     },
     textarea: {
@@ -117,11 +129,35 @@ function HalfRating(props) {
             
                 
                 
+=======
+        marginRight: 150
+    },
+    textarea: {
+        width:'300px'
+    }
+}));
+
+export default function HalfRating() {
+    const classes = useStyles();
+
+    return (
+        <React.Fragment >
+            <div className={classes.root}>
+            <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+            <form>
+                    <div><TextareaAutosize className={ classes.textarea} aria-label="empty textarea" rowsMin={5}  placeholder="your review" /></div>
+                <div>
+                <Button variant="contained" color="primary" href="#contained-buttons" className={classes.button}>
+                    submit</Button>
+                </div>
+            </form>
+>>>>>>> 9c36432... added ratings components
         </div>
         </React.Fragment>
         
     );
 }
+<<<<<<< HEAD
 
 
 const mapStateToProps=state=>({
@@ -137,3 +173,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(HalfRating)
+=======
+>>>>>>> 9c36432... added ratings components
