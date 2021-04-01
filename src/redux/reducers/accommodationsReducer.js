@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {FETCH_ACCOMMODATIONS_SUCCESS,FETCH_SINGLE_ACCOMMODATION_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
+=======
+import {FETCH_ACCOMMODATIONS_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
 import {FETCH_WEATHER_SUCCESS,FETCH_WEATHER_ERROR} from '../actions/getWeather'
 import {FETCH_ACCOMMODATIONS_BY_LOCATION, FETCH_ACCOMMODATIONS_BY_LOCATION_ERROR,SELECT_ACCOMMODATION} from '../actions/fetchAccommodationByLocation'
 const initialState = {
@@ -10,8 +14,12 @@ const initialState = {
   selectedAccommodation:null,
   count:null,
   error: null,
+<<<<<<< HEAD
   temp:null,
   accId:null
+=======
+  temp:null
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
 }
 
 export function fetchAccommodationsReducer(state = initialState, action){
@@ -22,12 +30,15 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodations: action.payload
       }
+<<<<<<< HEAD
       case FETCH_SINGLE_ACCOMMODATION_SUCCESS:
         return {
           ...state,
           pending: false,
           accommodation: action.payload
         }
+=======
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
     case FETCH_ACCOMMODATION_SUCCESS:
       const accomo =()=>{
           let v=null;
@@ -42,12 +53,19 @@ export function fetchAccommodationsReducer(state = initialState, action){
         })
         return v
       }
+<<<<<<< HEAD
+=======
+      console.log(accomo())
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
       return {
         ...state,
         pending: false,
         accommodation: accomo()
       }
+<<<<<<< HEAD
     
+=======
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
     case FETCH_AMENITIES_SUCCESS:
         return {
           ...state,
@@ -66,8 +84,12 @@ export function fetchAccommodationsReducer(state = initialState, action){
         ...state,
         pending: false,
         accommodationsByLocation: action.payload.rows,
+<<<<<<< HEAD
         count:action.payload.count,
         accId:action.id,
+=======
+        count:action.payload.count
+>>>>>>> baeb32f... creating the book accommodation form and accommodation card
       }
     case FETCH_ACCOMMODATIONS_ERROR:
       return {

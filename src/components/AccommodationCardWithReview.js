@@ -93,7 +93,7 @@ function Accommodations(props) {
       <CardActionArea>
         <Checkbox
         onChange={handleSelection}
-        checked={props.accommodationn.id===props.selectedAccommodation?true:false}
+        checked={props.accommodationn.id===check?true:false}
         id={props.accommodationn.id}
         name={props.accommodationn.city}
         className={classes.checkbox}/>
@@ -101,7 +101,6 @@ function Accommodations(props) {
           onClick={handleViewMore}
           className={classes.media}
           image={props.accommodationn.photos}
-              // image={image}
           title={props.accommodationn.title}
         />
         <CardContent onClick={handleViewMore} className={classes.cardContent} >
