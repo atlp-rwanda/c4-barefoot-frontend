@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[` <Done /> It should render the Done component 1`] = `
-<Connect(ReportsView)
-  category="done"
-/>
-`;
