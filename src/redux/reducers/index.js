@@ -17,6 +17,9 @@ import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import {managerReducer} from './managersReducer'
+import fetchAllUsers from './getAllUsersReducer';
+import fetchStatistics from './fetchStatistics';
+import fetchVisitors from './fetchVisitors';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -38,6 +41,9 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
+  fetchAllUsers,
+  fetchStatistics,
+  fetchVisitors,
   managerReducer
   
 })
