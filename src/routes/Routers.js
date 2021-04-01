@@ -24,7 +24,7 @@ import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledR
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route';
 import NotificationDetails from '../components/notificationDetails';
-import GoogleRedirect from '../components/googleRedirect';
+import GoogleRedirect from '../components/GoogleRedirect';
 import userProfile from '../components/views/userProfile';
 
 
