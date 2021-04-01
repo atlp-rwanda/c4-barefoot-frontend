@@ -5,12 +5,18 @@ export const GET_RATINGS_FAILED = 'GET_RATINGS_FAILED';
 export const ADD_RATINGS_SUCCESS = 'ADD_RATINGS_SUCCESS';
 export const ADD_RATINGS_FAILED = 'ADD_RATINGS_FAILED';
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const ADD_RATINGS_PENDING = 'ADD_RATINGS_PENDING';
 export const GET_RATINGS_PENDING = 'GET_RATINGS_PENDING';
 export const CLOSE_SNACKBAR ='CLOSE_SNACKBAR'
 =======
 export const GET_RATINGS_PENDING = 'GET_RATINGS_PENDING'
 >>>>>>> 838b477... getting ratings from database
+=======
+export const ADD_RATINGS_PENDING = 'ADD_RATINGS_PENDING';
+export const GET_RATINGS_PENDING = 'GET_RATINGS_PENDING';
+export const CLOSE_SNACKBAR ='CLOSE_SNACKBAR'
+>>>>>>> 8460ad4... displaying the reviews
 
 export const addRatings = (id,datas) =>dispatch=> {
     const token = window.localStorage.getItem('barefootUserToken')
@@ -48,8 +54,12 @@ export const getRatings = (id) => {
     }).then(res => {
         dispatch({ 
             type: GET_RATINGS_SUCCESS,
+<<<<<<< HEAD
             payload:res
 >>>>>>> 838b477... getting ratings from database
+=======
+            payload:res.data
+>>>>>>> 8460ad4... displaying the reviews
          })
     }).catch(err => {
         dispatch({ 
@@ -67,5 +77,14 @@ export const closeSnackbar = () => async dispatch => {
     });
 =======
     
+<<<<<<< HEAD
 >>>>>>> 838b477... getting ratings from database
+=======
+}
+
+export const closeSnackbar = () => async dispatch => {
+    dispatch({
+        type: CLOSE_SNACKBAR
+    });
+>>>>>>> 8460ad4... displaying the reviews
 }

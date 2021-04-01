@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Grid, Button } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { getSingleAccommodation } from "../../redux/actions/fetchAccommodation";
@@ -20,16 +21,47 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
+=======
+import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Grid, Divider, Button, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
+import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
+import { getAccommodationsByLocation, selectAccommodation } from "../../redux/actions/fetchAccommodationByLocation";
+import { getAccommodation, getAccommodations,getSingleAccommodation, getAccommodationAminity } from "../../redux/actions/fetchAccommodation";
+
+import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import colors from '../colors';
+import { useParams } from "react-router-dom";
+import { Skeleton } from '@material-ui/lab';
+import {getRatings} from "../../redux/actions/ratingsAction"
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        marginLeft:'110px',
+      maxWidth: '80%',
+      height: 360,
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+>>>>>>> 8460ad4... displaying the reviews
     },
     media: {
         height: 440
     },
     username: {
+<<<<<<< HEAD
         background: '#257AAA',
         color: 'white',
         fontSize: '14px',
         padding: '5px',
         fontWeight: '30px'
+=======
+        background: 'lightBlue',
+        color: 'white',
+        fontSize: '14px',
+        padding: '5px',
+        fontWeight:'30px'
+>>>>>>> 8460ad4... displaying the reviews
     },
     checkbox: {
         display: 'block',
@@ -47,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between"
     },
+<<<<<<< HEAD
     reviewHeader: {
         display: "flex",
         justifyContent: "space-between",
@@ -62,6 +95,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '2px',
         padding: '4px',
     },
+=======
+    
+>>>>>>> 8460ad4... displaying the reviews
     separate: {
         // marginBottom:theme.spacing(3),
         marginLeft: theme.spacing(3)
@@ -79,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px',
         color: colors.primary100,
     },
+<<<<<<< HEAD
     review: {
         marginTop: '3px',
         marginBottom: '13px',
@@ -96,6 +133,23 @@ const useStyles = makeStyles((theme) => ({
         width: '80%',
         padding: '6px',
         color: 'black'
+=======
+    review:{
+       marginTop: '3px',
+       marginLeft:'110px',
+      maxWidth: '80%',
+      height: 360,
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between' 
+    },
+    reviewContent:{
+      marginLeft:'40px',
+      marginRight: '20px',
+        width: '70%',
+      padding:'6px'
+>>>>>>> 8460ad4... displaying the reviews
     },
     cardContent: {
         overflow: 'hidden'
@@ -228,6 +282,10 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
+<<<<<<< HEAD
+=======
+                                                       
+>>>>>>> 8460ad4... displaying the reviews
                                                     </Grid>
                                                 </div>
                                             </CardContent>
@@ -236,6 +294,7 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                                 </Card>
                             </div>
                             <div>
+<<<<<<< HEAD
                                 <Card item className={classes.root}>
                                     <div className={classes.reviewHeader}>
                                         <div>
@@ -286,17 +345,60 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                                 <div className={classes.btncontainer}>
                                     <div className={classes.root}>
                                         {/* <Button
+=======
+                            <Card item className={classes.root}>
+                                <Typography variant="h7">
+                                    {`Reviews (${reviews.count})`}
+                                </Typography>
+                            </Card>
+                            
+                            </div>
+                            
+                              <div> 
+                         {reviews.reviewAndRates.map(element => (
+                                     <Card className={ classes.review} key={element._id}>
+                                     <Grid item >
+                                     <Typography className={classes.username} variant="body1" component="p" noWrap>
+                                         {element.user.first_name+" "+element.user.last_name}
+                                     </Typography>
+                                     </Grid>
+                                     <Grid item className={classes.reviewContent}>
+                                     <Typography variant="body2" color="textSecondary" component="p">
+                                {element.review}
+                                </Typography>
+                                     </Grid>
+                           </Card>
+                           
+                         ))
+                        }
+                            </div> 
+                            
+                            <div className={classes.divider}>
+                                <div className={classes.btncontainer}>
+                                    <div className={classes.root}>
+                                        <Button
+>>>>>>> 8460ad4... displaying the reviews
                                             type='submit'
                                             variant='contained'
                                             color='primary'
                                             className={classes.button}
+<<<<<<< HEAD
                                             
+=======
+                                            onClick={() => {
+                                                setDirection('back');
+                                            }}
+>>>>>>> 8460ad4... displaying the reviews
                                         >
                                                     Add Review
                                     </Button> */}
 
                                     </div>
+<<<<<<< HEAD
 
+=======
+                                 
+>>>>>>> 8460ad4... displaying the reviews
                                 </div>
                             </div>
                         </Form>
