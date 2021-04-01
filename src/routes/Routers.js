@@ -22,8 +22,11 @@ import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashb
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
-import ProtectedRoute from './protected.route'
+import ProtectedRoute from './protected.route';
+import NotificationDetails from '../components/notificationDetails';
+import GoogleRedirect from '../components/GoogleRedirect';
 import userProfile from '../components/views/userProfile';
+
 
 
 const Routes = () => {
@@ -41,6 +44,13 @@ const Routes = () => {
           path="/welcome"
         />
         <RouteWithLayout
+          component={GoogleRedirect}
+          exact
+          layout={DefaultLayout}
+          path="/google/token"
+        />
+
+        <RouteWithLayout
           component={Login}
           exact
           layout={DefaultLayout}
@@ -53,7 +63,12 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/profile"
         />
-
+        <ProtectedRoute
+          component={NotificationDetails}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/notifications/:id"
+          />
          <ProtectedRoute
           component={userProfile}
           exact
