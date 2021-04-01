@@ -22,8 +22,6 @@ import { convertorReducer } from './convertorReducer'
 import { managerReducer } from './managersReducer'
 import {fetchAccommodationReducer} from './fetchAccommodationReducer'
 import {fetchReviewsReducer,addRatesAndReview} from './ratingsReducer'
-import {fetchReviewsReducer} from './ratingsReducer'
-import {fetchReviewsReducer,addRatesAndReview} from './ratingsReducer'
 
 const reducers = combineReducers({
   logout: logoutReducer,

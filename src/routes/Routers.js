@@ -109,10 +109,6 @@ const Routes = () => {
         exact
         layout={RequesterLayout}
         path="/bookedAccommodations"
-        component={BookForm}
-        exact
-        layout={RequesterLayout}
-        path="/bookedAccommodations"
       />
       <RouteWithLayout
         component={CreateRoles}

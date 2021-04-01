@@ -39,6 +39,29 @@ export const bookAccommodations=(id,formData,nextStep) => dispatch => {
       })
     })
 }
+export const getBookings = () => {
+  // const token = window.localStorage.getItem('barefootUserToken')
+  
+  return(dispatch)=>{
+      dispatch({type:GET_BOOKING_PENDING})
+       API.get('/bookings', {
+      headers: {
+          Authorization: `Bearer ${token}`
+        }
+       }).then(res => {
+        //  console.log(res.data.booking)
+         dispatch({
+           type: GET_BOOKING_SUCCESS,
+           payload:res.data.booking
+      })
+  }).catch(err => {
+      dispatch({ 
+          type: GET_BOOKING_ERROR,
+          payload:err.message
+           })
+  })
+  }
+}
 export const clearBookSnackbar = () => dispatch => {
     dispatch({
       type: CLEAR_BOOK_SNACKBAR
