@@ -19,6 +19,11 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
 import { DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, RequesterLayout } from '../components/layouts';
 import Logout from '../components/views/Logout';
+// import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
+import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
+import ApprovedReports from '../components/manageTravel/ApprovedReports';
+import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
+import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import Ratings from '../components/rateAndReviewAccommodation/rateAccommodation'
 import Reviews from '../components/rateAndReviewAccommodation/reviews'

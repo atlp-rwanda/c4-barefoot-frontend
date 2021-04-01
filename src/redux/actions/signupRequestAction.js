@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {API} from './AxiosAPI';
 export const REQUEST_SIGNUP = 'REQUEST_SIGNUP'
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'
@@ -9,7 +10,7 @@ export const requestSignup = (user, nextStep) => async dispatch => {
   dispatch({
     type: REQUEST_SIGNUP
   })
-  return API.post( 'user/signup', user)
+  return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/signup`, user)
     .then(res => {
       dispatch({
         type: REQUEST_SUCCESS,
