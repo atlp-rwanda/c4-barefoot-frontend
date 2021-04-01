@@ -50,7 +50,7 @@ function DrawerComponent() {
     // console.log('side menu items', menuItems);
     const classes = useStyles();
     const username = localStorage.getItem('userName');
-    const role = localStorage.getItem('userRole');
+    const role = localStorage.getItem('userRole') ? localStorage.getItem('userRole'): 'requester' ;
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
     const [drop, setDrop] = React.useState( menuItems[role].map( link=>{
