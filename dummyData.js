@@ -60,6 +60,33 @@ export const accommodationsPayload = {
     }
   ]}
 
+  export const accommodationAminitiesPayload ={
+    "singleAccommodation": {
+        "id": "7a7ce9e2-ce8a-4d76-9626-cfabf2009e42",
+        "country": "Rwanda",
+        "city": "Musanze",
+        "state": "Rusizi",
+        "streetAddress": "KN 22 ST",
+        "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+        "propertyType": "Hotel",
+        "numberOfRooms": 500,
+        "price": 3000000,
+        "typeOfBed": "Decker",
+        "title": "bisate lodge",
+        "description": "Bisate is located in the natural amphitheatre of an eroded volcanic cone, with dramatic views of the peaks of the Bisoke and Karisimbi volcanoes rearing up through Afro-alpine forests.",
+        "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616576198/bisate-lodge-9_qjbmmf.jpg"
+    },
+    "amenities": {
+        "wifi": false,
+        "airConditioner": true,
+        "shampoo": false,
+        "ironing": true,
+        "tv": false,
+        "smokeDetector": true,
+        "fireExtinguisher": false,
+        "lockOnDoor": true
+    }
+}
   export const rolePayload = {
     rows:[
       {
@@ -281,15 +308,144 @@ export const  travelRequestInfo= {
       }
   ]}
 export const accommodationState = {
-  pending: false,
+  pending: true,
   accommodations: accommodationsPayload,
-  error: null
+  accommodation: {},
+  nation:null,
+  amenities:{},
+  accommodationsByLocation:[],
+  selectedAccommodation:null,
+  count:null,
+  error: null,
+  temp:null,
+  accId:null
 }
 
+export const fetchAccommodationByLocationPayload={
+  "status": 200,
+  "page": 1,
+  "accommodations": {
+      "count": 15,
+      "rows": [
+          {
+              "id": "122a0d86-8b78-4bb8-b28f-8e5f7811c456",
+              "country": "Rwanda",
+              "city": "Kigali",
+              "state": "Kagarama",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 25000,
+              "typeOfBed": "Decker",
+              "title": "Garama hotel",
+              "description": "Best bedrooms",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616493369/93989612_kocs6i.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          },
+          {
+              "id": "28debeec-6adc-4dbe-a3c0-d3480c49ee76",
+              "country": "Rwanda",
+              "city": "Nyungwe",
+              "state": "Rusizi",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 500000,
+              "typeOfBed": "Decker",
+              "title": "Nyungwe hotel",
+              "description": "Best bedrooms",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616493171/Facts-about-Virunga-National-Park-750x450_cr4alx.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          },
+          {
+              "id": "2d647115-3af7-4df0-99aa-6656c764829f",
+              "country": "Rwanda",
+              "city": "Kigali",
+              "state": "Kagarama",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 5000000,
+              "typeOfBed": "Double and single",
+              "title": "One and Only",
+              "description": "The best luxury hotel in the middle of the virunga national park in Rwanda",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616572403/One-and-Only-Nyungwe-Huose-750x450_vgs415.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          },
+          {
+              "id": "4d5b1b29-51e4-4db5-8b99-57fd76bd5544",
+              "country": "Rwanda",
+              "city": "Kigali",
+              "state": "Kagarama",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 30000,
+              "typeOfBed": "Decker",
+              "title": "Hill Top hotel hotel",
+              "description": "Best views",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616493292/hotel-hilltop-country_fwr16e.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          },
+          {
+              "id": "2830496d-65e3-4289-b6e9-819933637ca6",
+              "country": "Rwanda",
+              "city": "Kigali",
+              "state": "Kiyovu",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 500000,
+              "typeOfBed": "Decker",
+              "title": "Marriot Hotel",
+              "description": "Located in the beautiful and silent part of kigali Kiyovu",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616493334/93100479_ovlmlf.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          },
+          {
+              "id": "5efb6fd8-d43a-41b5-b021-d6fe1536b88b",
+              "country": "Rwanda",
+              "city": "Rubavu",
+              "state": "Rubavu",
+              "streetAddress": "KN 22 ST",
+              "locationID": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "propertyType": "Hotel",
+              "numberOfRooms": 500,
+              "price": 50000,
+              "typeOfBed": "Decker",
+              "title": "The Manor Hotel",
+              "description": "The hotel at the beautiful Kivu beach, best place to spend your summer vaccation ",
+              "photos": "https://res.cloudinary.com/barefootnomadcohort4/image/upload/v1616493273/themanorhotelsmall1_maevju.jpg",
+              "createdAt": "2021-03-24T10:33:51.926Z",
+              "updatedAt": "2021-03-24T10:33:51.926Z"
+          }
+      ]
+  },
+  "nation": "Rwanda"
+}
 export const locationState = {
   pending: false,
   locations: locationsPayload,
   error: null
+}
+
+export const bookAccommodationState={
+  pending: false,
+  snackBarMessage: {
+    open: false,
+    severity: '',
+    message: null
+  }
 }
 
 let a = 'https://barefoot-nomad-app-v1.herokuapp.com'
