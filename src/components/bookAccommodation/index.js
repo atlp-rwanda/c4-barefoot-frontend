@@ -6,11 +6,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
+import {Snackbar,Slide,Button} from '@material-ui/core';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
-// import SocialButtons from '../signup/socialButton'
+import { connect } from 'react-redux'
+import {clearBookSnackbar} from '../../redux/actions/bookAccommodationAction'
 import { Avatar, Box } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,16 +135,22 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
   }
 }
 
-export default function SignUp() {
+const book = (props)=> {
   const [formData, setFormData] = React.useState({
-    from: '',
-    to: ''
+    From: '',
+    To: ''
   });
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true)
   const steps = getSteps();
 
+  const closeBookSnackBarTimer = () => {
+    props.clearBookSnackbar()
+  }
+  const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+  }
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -200,8 +209,26 @@ export default function SignUp() {
           <div>
             {activeStep === steps.length ? (
               <div>
-                <Typography className={classes.instructions}>Well Done <i class="fa fa-thumbs-up"></i></Typography>
-                <Typography className={classes.instructions}>Now, Check your inbox <p>to verify your account</p></Typography>
+                  <Snackbar
+                      open={props.snackBarMessage.open}
+                      onClose={closeBookSnackBarTimer}
+                      autoHideDuration={4000}
+                      TransitionComponent={TransitionUp}
+                  >
+                  <MuiAlert
+                      severity={props.snackBarMessage.severity}
+                      variant='filled'
+                      elevation={6}
+                      >{props.snackBarMessage.message}
+                  </MuiAlert>
+                </Snackbar>
+                <Typography className={classes.instructions}>You have Successfully Booked your Accommodation  <i class="fa fa-thumbs-up"></i></Typography>
+                <Button
+                    color='primary'
+                    variant='contained'
+                >
+                    Back To your Requestes
+                </Button>
               </div>
             ) : (
               <div>
@@ -214,4 +241,9 @@ export default function SignUp() {
     </div>
   );
 }
+
+const mapStateToProps = state =>({
+  snackBarMessage:state.bookAccommodations.snackBarMessage
+})
+export default connect(mapStateToProps,{clearBookSnackbar})(book)
 
