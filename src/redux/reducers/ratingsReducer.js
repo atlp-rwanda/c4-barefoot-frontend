@@ -5,7 +5,8 @@ const initState = {
     loading:false,
     reviewAndRates:[],
     count:null,
-    error:''
+    error: '',
+    rates:''
 }
 const initialState = {
     pending: false,
@@ -56,7 +57,8 @@ switch(action.type){
         return {
             ...state,
             count:action.payload.reviews.count,
-            reviewAndRates: action.payload.reviews.rows
+            reviewAndRates: action.payload.reviews.rows,
+            rates:action.payload.rates.actualRate
         }
         case GET_RATINGS_FAILED:
         return{

@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Grid, Divider, Button, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
-import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
-import { getAccommodationsByLocation, selectAccommodation } from "../../redux/actions/fetchAccommodationByLocation";
-import { getAccommodation, getAccommodations,getSingleAccommodation, getAccommodationAminity } from "../../redux/actions/fetchAccommodation";
-
+import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Grid, Button } from '@material-ui/core';
+import { Form, Formik } from 'formik';
+import { getSingleAccommodation } from "../../redux/actions/fetchAccommodation";
+import image from '../../../image.png';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import colors from '../colors';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Skeleton } from '@material-ui/lab';
-import {getRatings} from "../../redux/actions/ratingsAction"
+import { getRatings } from "../../redux/actions/ratingsAction"
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginLeft:'110px',
-      maxWidth: '80%',
-      height: 360,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between'
+        marginLeft: '110px',
+        maxWidth: '80%',
+        height: 360,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     media: {
         height: 440
     },
     username: {
-        background: 'lightBlue',
+        background: '#257AAA',
         color: 'white',
         fontSize: '14px',
         padding: '5px',
-        fontWeight:'30px'
+        fontWeight: '30px'
     },
     checkbox: {
         display: 'block',
@@ -46,9 +46,22 @@ const useStyles = makeStyles((theme) => ({
     btncontainer: {
         display: "flex",
         justifyContent: "space-between"
-        // width:'80%'
+    },
+    reviewHeader: {
+        display: "flex",
+        justifyContent: "space-between",
+        marginLeft: '5px',
+        marginRight: '5px',
+        padding:'5px'
     },
     
+    addreview: {
+        textDecoration: 'none',
+        background: '#257AAA',
+        color: 'white',
+        borderRadius: '2px',
+        padding: '4px',
+    },
     separate: {
         // marginBottom:theme.spacing(3),
         marginLeft: theme.spacing(3)
@@ -66,21 +79,23 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px',
         color: colors.primary100,
     },
-    review:{
-       marginTop: '3px',
-       marginLeft:'110px',
-      maxWidth: '80%',
-      height: 360,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between' 
+    review: {
+        marginTop: '3px',
+        marginBottom: '13px',
+        marginLeft: '110px',
+        maxWidth: '80%',
+        height: 360,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
-    reviewContent:{
-      marginLeft:'40px',
-      marginRight: '20px',
-        width: '70%',
-      padding:'6px'
+    reviewContent: {
+        marginLeft: '40px',
+        marginRight: '20px',
+        width: '80%',
+        padding: '6px',
+        color: 'black'
     },
     cardContent: {
         overflow: 'hidden'
@@ -90,15 +105,24 @@ const useStyles = makeStyles((theme) => ({
         // width:'80%'
     },
     titleText: {
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '18px',
-        }
+        // [theme.breakpoints.down('sm')]: {
+        //     fontSize: '10px',
+        // }
+    },
+    btnReview: {
+       marginTop:'5px'  
     },
     item: {
         display: 'block'
+    },
+    user: {
+        display: "flex",
+    },
+    theName: {
+        margin:'6px'
     }
 }));
-function Home({datas,reviews,accommodation,getReviews}) {
+function Home({  datas, reviews, accommodation, getReviews }) {
 
     const classes = useStyles();
     const [direction, setDirection] = useState('back');
@@ -107,11 +131,14 @@ function Home({datas,reviews,accommodation,getReviews}) {
     useEffect(() => {
         getReviews(id)
         accommodation(id)
-        
+
         console.log(reviews)
         console.log(datas)
     }, [])
-  
+
+    // const handleClicked = (id) => {
+    //     //   props.history.push(`/review/${id}`)
+    //   }
     return (
         <React.Fragment>
             <Card >
@@ -137,7 +164,6 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                             <CardActionArea>
 
                                                 <CardMedia
-                                                    // onClick={handleViewMore}
                                                     className={classes.media}
                                                     image={datas.accommodation.photos}
                                                     title={datas.accommodation.title}
@@ -159,7 +185,7 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                                         Location
                                                     </Typography>
-                                                                    <Typography gutterBottom variant="body" component="p" className={classes.titleText} color="textSecondary">
+                                                                    <Typography gutterBottom variant="subtitle1" component="p" className={classes.titleText} color="textSecondary">
                                                                         {datas.accommodation.country}
                                                                     </Typography>
                                                                 </Grid>
@@ -203,7 +229,7 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
-                                                       
+
                                                     </Grid>
                                                 </div>
                                             </CardContent>
@@ -212,50 +238,67 @@ function Home({datas,reviews,accommodation,getReviews}) {
                                 </Card>
                             </div>
                             <div>
-                            <Card item className={classes.root}>
-                                <Typography variant="h7">
-                                    {`Reviews (${reviews.count})`}
-                                </Typography>
-                            </Card>
-                            
+                                <Card item className={classes.root}>
+                                    <div className={classes.reviewHeader}>
+                                        <div>
+                                            <Typography variant="h5">
+                                                Reviews
+                                    </Typography>
+                                        </div>
+                                        <div className={classes.btnReview}>
+                                            <Link to={'/review/' + datas.accommodation.id} style={{ textDecoration: 'none' }} className={classes.addreview}>
+                                                Add your review
+                                        </Link>
+                                        </div>
+                                    </div>
+
+                                </Card>
+
                             </div>
-                            
-                              <div> 
-                         {reviews.reviewAndRates.map(element => (
-                                     <Card className={ classes.review} key={element._id}>
-                                     <Grid item >
-                                     <Typography className={classes.username} variant="body1" component="p" noWrap>
-                                         {element.user.first_name+" "+element.user.last_name}
-                                     </Typography>
-                                     </Grid>
-                                     <Grid item className={classes.reviewContent}>
-                                     <Typography variant="body2" color="textSecondary" component="p">
-                                {element.review}
-                                </Typography>
-                                     </Grid>
-                           </Card>
-                           
-                         ))
-                        }
-                            </div> 
-                            
+
+                            <div>
+                                {reviews.reviewAndRates.map(element => {
+                                    if (element.review != null) {
+                                        return (
+                                            <Card className={classes.review} key={element._id}>
+                                                  
+                                                <Grid item >
+                                                
+                                                    <Typography className={classes.username} variant="body1" component="p" noWrap>
+                                                        <div className={classes.user}>
+                                                            <div><Avatar src={element ? element.user.profile_picture : ""}  /></div>
+                                                            <div className={classes.theName}>{element.user.first_name + " " + element.user.last_name}</div>
+                                                    </div>
+                                                        
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid item className={classes.reviewContent}>
+                                                    <Typography variant="body2" component="p">
+                                                        {element.review}
+                                                    </Typography>
+                                                </Grid>
+                                            </Card>
+                                        )
+                                    }
+                                })
+                                }
+                            </div>
+
                             <div className={classes.divider}>
                                 <div className={classes.btncontainer}>
                                     <div className={classes.root}>
-                                        <Button
+                                        {/* <Button
                                             type='submit'
-
                                             variant='contained'
                                             color='primary'
                                             className={classes.button}
-                                            onClick={() => {
-                                                setDirection('back');
-                                            }}
+                                            
                                         >
-                                            Back
-                                    </Button>
+                                                    Add Review
+                                    </Button> */}
+
                                     </div>
-                                 
+
                                 </div>
                             </div>
                         </Form>
@@ -273,8 +316,8 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => {
     return {
-        accommodation: (id)=>dispatch(getSingleAccommodation(id)),
-        getReviews: (id)=>dispatch(getRatings(id))
+        accommodation: (id) => dispatch(getSingleAccommodation(id)),
+        getReviews: (id) => dispatch(getRatings(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

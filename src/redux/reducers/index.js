@@ -16,6 +16,7 @@ import { UsersReducer } from './usersReducer'
 import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
+import {getBookingsReducer} from './getBookingReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import { managerReducer } from './managersReducer'
@@ -34,6 +35,7 @@ const reducers = combineReducers({
   fetchReviews: fetchReviewsReducer,
   addReviews:addRatesAndReview,
   bookAccommodations: bookAccommodationsReducer,
+  bookedAccommodations:getBookingsReducer,
   convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,

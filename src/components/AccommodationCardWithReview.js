@@ -5,7 +5,9 @@ import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import colors from './colors';
 import Ratings from './RatingStars';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import {getBookings} from "../redux/actions/bookAccommodationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]:{
       fontSize:'18px',
     }
+  },
+  rateAndReviewLinks: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding:'5px'
   }
 }));
 
@@ -59,10 +66,10 @@ function Accommodations(props) {
       props.getAccommodationAminity(event.target.id);
 
   };
-  
-    // props.travelRequest.selectedAccommodation.map( selected =>{
-    //   selected.id === props.accommodation.id ? check=true : null
-    // })
+  useEffect(() => {
+    props.getBookings()
+    // console.log(props.reviews)
+  },[])
     const handleViewMore =() =>{
       return props.openModalAction({open: true, data: props.accommodation});
     }
@@ -94,6 +101,7 @@ function Accommodations(props) {
           onClick={handleViewMore}
           className={classes.media}
           image={props.accommodationn.photos}
+              // image={image}
           title={props.accommodationn.title}
         />
         <CardContent onClick={handleViewMore} className={classes.cardContent} >
@@ -104,23 +112,47 @@ function Accommodations(props) {
             {props.accommodationn.description}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
-            <Link  to={'/review/'+props.accommodationn.id}>
-              <Ratings highRating={3} id={props.accommodationn.id} />
-            </Link>
-        <Typography className={classes.reviews}>
-        <Link  to={'/reviews/'+props.accommodationn.id} className={classes.links}  style={{ textDecoration: 'none' }}>
-              Reviews
-              </Link>
-             
-        </Typography>
-      </CardActions>
+          </CardActionArea>
+          {props.accommodation.bookedAccommodation != undefined ? (
+            <CardActions className={classes.cardActions}>
+               <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
+              <div className={classes.rateAndReviewLinks}>
+                <div>
+                <Link  to={'/review/'+props.accommodationn.id}>
+                   <Ratings highratings={3} id={props.accommodationn.id} />
+                 </Link>
+                </div>
+                <div>
+                <Typography className={classes.reviews}>
+             <Link  to={'/reviews/'+props.accommodationn.id} className={classes.links}  style={{ textDecoration: 'none' }}>
+                   Reviews
+                   </Link>
+             </Typography>
+                </div>
+              </div>
+            
+                 
+            
+           </CardActions>
+          ):( <CardActions className={classes.cardActions}>
+            <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
+                
+                  <Ratings highratings={3} id={props.accommodationn.id} />
+                
+            <Typography className={classes.reviews}>
+                  Reviews
+            </Typography>
+          </CardActions>)}
+     
       </>
       )}
     </Card>
   );
 }
 
-export default Accommodations;
+const mapStateToProps = state => ({
+  accommodation:state.bookedAccommodations
+})
+
+export default connect(mapStateToProps, {getBookings}) (Accommodations);
+

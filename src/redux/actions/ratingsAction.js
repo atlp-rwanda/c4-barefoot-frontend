@@ -34,7 +34,8 @@ export const getRatings = (id) => {
         headers: {
             Authorization: `Bearer ${token}`
           }
-    }).then(res => {
+         }).then(res => {
+        console.log(res.data)
         dispatch({ 
             type: GET_RATINGS_SUCCESS,
             payload:res.data
@@ -46,7 +47,6 @@ export const getRatings = (id) => {
              })
     })
     }
-    
 }
 
 export const closeSnackbar = () => async dispatch => {
