@@ -43,7 +43,7 @@ const useStyle = makeStyles(() => ({
 
 function ViewTripHistoryCard(props) {
   const [page, setPage] = useState(1);
-  const page_size = 5;
+  const page_size = 6;
   // const filtered = filter(travel, category);
 
   const handlePage = (e, value) => {
@@ -77,15 +77,11 @@ function ViewTripHistoryCard(props) {
   };
   const paginated = paginate(trippp, page);
 
-  // const pageChange = (e, value) => {
-  //   setPage(value);
-  // };
-
   return (
     <div>
       <Grid container spacing={1} className={classes.container}>
         {!pending &&
-          trippp.map((trip) => (
+          paginated.map((trip) => (
             <Grid item key={trip.tripId} md={4} sm={6} xs={12}>
               <Paper className={classes.paper}>
                 {acc && <img src={acc.photos} style={{ width: 150 }}></img>}
