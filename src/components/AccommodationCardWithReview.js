@@ -5,6 +5,7 @@ import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import colors from './colors';
 import Ratings from './RatingStars';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,9 +106,11 @@ function Accommodations(props) {
       </CardActionArea>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
-        <Ratings highRating={3} />
+            <Link href="/review">
+            <Ratings highRating={3} />
+            </Link>
         <Typography className={classes.reviews}>
-            25 Reviews
+             Reviews
         </Typography>
       </CardActions>
       </>

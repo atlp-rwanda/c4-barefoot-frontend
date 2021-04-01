@@ -109,6 +109,10 @@ const Routes = () => {
         exact
         layout={RequesterLayout}
         path="/bookedAccommodations"
+        component={BookForm}
+        exact
+        layout={RequesterLayout}
+        path="/requester/bookAccommodation/:locationId"
       />
       <RouteWithLayout
         component={CreateRoles}
@@ -174,4 +178,3 @@ const Routes = () => {
 };
 
 export default Routes;
- 
