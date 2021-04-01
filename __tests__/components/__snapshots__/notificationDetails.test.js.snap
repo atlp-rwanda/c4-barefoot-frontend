@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NOTIFICATION DETAILS COMPONENT Should capture the snapshot 1`] = `
+<NotificationDetails
+  getNotifications={[MockFunction]}
+  match={
+    Object {
+      "params": Object {
+        "id": "9b1e1ca6-2fc2-42bb-86c0-86a329703393",
+      },
+    }
+  }
+  readTravelRequestInfo={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "9b1e1ca6-2fc2-42bb-86c0-86a329703393",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  request={
+    Array [
+      Object {
+        "accomodationInfo": Array [
+          Object {
+            "city": "Kigali",
+            "country": "Rwanda",
+            "description": "A serene environment for relaxation",
+            "id": "520f2b37-7bac-4490-aa7a-96f15915bcd7",
+            "locationID": "c6028e0d-ef88-4693-ab49-f37669891724",
+            "numberOfRooms": 0,
+            "photos": "image.png",
+            "propertyType": "Hostel",
+            "state": "Nyarugenge",
+            "streetAddress": "KN 22 ST",
+            "title": "Kigali Hostels",
+            "typeOfBed": "Double Decker",
+          },
+        ],
+        "travelRequestInfo": Object {
+          "Trip": Array [
+            Object {
+              "accommodationId": "520f2b37-7bac-4490-aa7a-96f15915bcd7",
+              "createdAt": "2021-03-28T07:02:57.590Z",
+              "destination": "biryogo",
+              "originCity": "kuryanyuma",
+              "reason": "travelling",
+              "returnDate": null,
+              "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0",
+              "tripDate": "2020-12-11T06:48:48.376Z",
+              "tripId": "d81145c6-5778-43b0-aac9-5cf8360f3722",
+              "updatedAt": "2021-03-28T07:02:57.590Z",
+            },
+          ],
+          "createdAt": "2021-03-28T07:02:57.389Z",
+          "managerId": "fb94de4d-47ff-4079-89e8-b0186c0a3be8",
+          "status": "pending",
+          "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0",
+          "updatedAt": "2021-03-28T07:02:57.436Z",
+          "userId": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+        },
+        "userInfo": Object {
+          "firstName": "Manager",
+          "lastName": "One",
+          "profilePpicture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "username": "managerOne",
+        },
+      },
+    ]
+  }
+>
+  <WithStyles(ForwardRef(Typography))>
+    <ForwardRef(Typography)
+      classes={
+        Object {
+          "alignCenter": "MuiTypography-alignCenter",
+          "alignJustify": "MuiTypography-alignJustify",
+          "alignLeft": "MuiTypography-alignLeft",
+          "alignRight": "MuiTypography-alignRight",
+          "body1": "MuiTypography-body1",
+          "body2": "MuiTypography-body2",
+          "button": "MuiTypography-button",
+          "caption": "MuiTypography-caption",
+          "colorError": "MuiTypography-colorError",
+          "colorInherit": "MuiTypography-colorInherit",
+          "colorPrimary": "MuiTypography-colorPrimary",
+          "colorSecondary": "MuiTypography-colorSecondary",
+          "colorTextPrimary": "MuiTypography-colorTextPrimary",
+          "colorTextSecondary": "MuiTypography-colorTextSecondary",
+          "displayBlock": "MuiTypography-displayBlock",
+          "displayInline": "MuiTypography-displayInline",
+          "gutterBottom": "MuiTypography-gutterBottom",
+          "h1": "MuiTypography-h1",
+          "h2": "MuiTypography-h2",
+          "h3": "MuiTypography-h3",
+          "h4": "MuiTypography-h4",
+          "h5": "MuiTypography-h5",
+          "h6": "MuiTypography-h6",
+          "noWrap": "MuiTypography-noWrap",
+          "overline": "MuiTypography-overline",
+          "paragraph": "MuiTypography-paragraph",
+          "root": "MuiTypography-root",
+          "srOnly": "MuiTypography-srOnly",
+          "subtitle1": "MuiTypography-subtitle1",
+          "subtitle2": "MuiTypography-subtitle2",
+        }
+      }
+    >
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+      >
+        Loading
+      </p>
+    </ForwardRef(Typography)>
+  </WithStyles(ForwardRef(Typography))>
+</NotificationDetails>
+`;
