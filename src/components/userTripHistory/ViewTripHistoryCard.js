@@ -21,7 +21,6 @@ const useStyle = makeStyles(() => ({
   centered: {
     margin: "50px",
     fontSize: "2em",
-    color: "blue",
   },
   media: {
     height: 140,
@@ -120,7 +119,7 @@ function ViewTripHistoryCard(props) {
           <Typography className={classes.centered}>Loading</Typography>
         )}
         {!pending && trippp.length == 0 && (
-          <Typography className={classes.centered}>
+          <Typography className={classes.centered} color="primary">
             No trips available
           </Typography>
         )}
