@@ -290,9 +290,7 @@ function SecondStep(props){
                                         color='primary'
                                         id='backBtn'
                                         className={classes.button}
-                                        onClick={() => {
-                                        setDirection('back'); 
-                                        }}
+                                        onClick={() => props.prevStep()}
                                     >
                                         Back
                                     </Button>
