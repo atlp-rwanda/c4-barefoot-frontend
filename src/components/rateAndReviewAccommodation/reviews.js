@@ -88,70 +88,33 @@ const useStyles = makeStyles((theme) => ({
         display: 'block'
     }
 }));
-function Home(props) {
+function Home({datas,accommodation}) {
 
     const classes = useStyles();
-    let temp = null;
-    let currency = null;
-    const base = { Rwanda: "RWF", Uganda: "UGX", USA: "USD", Europe: "EUR", Canada: "CND", Kenya: "KSH", Burundi: "BIF", Tanzania: "TSH" }
-    const [direction, setDirection] = useState('back');
-    const [value, setValue] = useState(base[props.accommodation.country]);
-    const from = base[props.accommodation.country]
+    
     const { id } = useParams();
-    let accommodation;
+    
     useEffect(() => {
-      props.accommodation(id)
-        console.log(props.accommodation)
+      accommodation(id)
     }, [])
-    if (props.temp) {
-        temp = <Typography gutterBottom variant="h6" color="textSecondary" className={classes.titleText} >
-            <CloudIcon color="primary" /> {Math.round(props.temp - 273.15)}
-        </Typography>
-    }
-    const hanldeSelectOnchange = (e) => {
-        setValue(e.target.value)
-        currency = e.target.value
-        console.log(currency)
-        props.convertorAction(props.accommodation.price, from, e.target.value)
-
-    }
-    const populateChecbox = () => {
-        let labels = [];
-        let label;
-        let count = 0;
-        if (props.amenities) {
-            const perm = props.amenities;
-            for (const property in perm) {
-                label =
-                    <Grid item>
-                        <Typography variant="subtitle1" color="textSecondary" component="p" noWrap >
-                            {property}
-                        </Typography>
-                    </Grid>
-                count++;
-                labels.push(label);
-            }
-            return labels;
-        } else {
-            return null;
-        }
-    }
+  
     return (
         <React.Fragment>
             <Card>
                 <CardContent>
-                    <Formik initialValues={{
-                        from: null,
-                        retrunDate: null
-                    }}
-                        onSubmit={values => {
-                            direction === 'back' ? props.prevStep() : props.nextStep();
-                        }}
+                    <Formik
+                    //     initialValues={{
+                    //     from: null,
+                    //     retrunDate: null
+                    // }}
+                    //     onSubmit={values => {
+                    //         direction === 'back' ? props.prevStep() : props.nextStep();
+                    //     }}
                     >
                         <Form>
                             <div className={classes.divider} >
                                 <Card className={classes.root} >
-                                    {(!props.accommodation ?
+                                    {(!datas.accommodation ?
                                         <CardActionArea>
                                             <Skeleton animation="wave" variant="rect" className={classes.media} />
                                             <CardContent className={classes.cardContent} >
@@ -169,8 +132,8 @@ function Home(props) {
                                                 <CardMedia
                                                     // onClick={handleViewMore}
                                                     className={classes.media}
-                                                    image={props.accommodation.photos}
-                                                    title={props.accommodation.title}
+                                                    image={datas.accommodation.photos}
+                                                    title={datas.accommodation.title}
                                                 />
                                             </CardActionArea>
                                             <CardContent className={classes.cardContent} >
@@ -330,13 +293,7 @@ function Home(props) {
 }
 
 const mapStateToProps = state => ({
-    accommodations: state.fetchAccommodations.accommodationsByLocation,
-    // accommodation: state.fetchAccommodations.accommodation,
-    money: state.convertMoney.money,
-    count: state.fetchAccommodations.count,
-    status: state.fetchAccommodations.pending,
-    amenities: state.fetchAccommodations.amenities,
-    temp: state.fetchAccommodations.temp
+    datas: state.fetchAccommodation.accommodation,
 })
 const mapDispatchToProps = dispatch => {
     return {

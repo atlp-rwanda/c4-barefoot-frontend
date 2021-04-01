@@ -18,7 +18,8 @@ import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
-import {managerReducer} from './managersReducer'
+import { managerReducer } from './managersReducer'
+import {fetchAccommodationReducer} from './fetchAccommodationReducer'
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -28,11 +29,7 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
-  // verifiedUser: fetchUserReducer,
-  manageTravel:fetchTravelReducer,
-  manageSingleTravel:fetchSingleTravelReducer,
-  updateTravel:updateSingleTravelReducer,
-
+  fetchAccommodation:fetchAccommodationReducer,
   bookAccommodations: bookAccommodationsReducer,
   convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,
