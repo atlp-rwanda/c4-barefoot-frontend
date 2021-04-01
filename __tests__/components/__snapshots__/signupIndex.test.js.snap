@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Signup index renders correctly first step 1`] = `<signup />`;
