@@ -40,9 +40,10 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
-  managerReducer
-  
+  managerReducer,
+  createTravelRequest: CreateTravelRequestReducer
+
 })
-  
+
 export default reducers
 
