@@ -4,6 +4,7 @@ import { shallow, mount } from 'enzyme';
 import { Provider } from "react-redux";
 import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk";
+import {t, i18n} from 'react-i18next';
 
 import toJson from 'enzyme-to-json';
 import { ReportsView } from '../../src/components/manageTravel/ReportsView';

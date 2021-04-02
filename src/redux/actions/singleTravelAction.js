@@ -7,13 +7,14 @@ export const CLEAR_SINGLE_TRAVEL_REQUEST= 'CLEAR_SINGLE_TRAVEL_REQUEST';
 
 
 const token = localStorage.getItem('barefootUserToken')
+const lang = localStorage.getItem('lang')
 
 export const getSingleTravelRequest = (id) => dispatch => {
     // console.log(token)
     dispatch({
         type:FETCH_SINGLE_TRAVEL_REQUEST_LOADING
     })
-    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports/${id}`, {
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports/${id}?lang=${lang}`, {
         headers:{
             Authorization: `Bearer ${token}`
         }
