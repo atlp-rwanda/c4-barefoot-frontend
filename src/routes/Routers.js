@@ -26,64 +26,64 @@ import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledR
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
-
+import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 
 const Routes = () => {
-    return (
-      <Switch>
-        <Redirect
-          exact
-          from="/"
-          to="/welcome"
-        />
-        <RouteWithLayout
-          component={Landing}
-          exact
-          layout={DefaultLayout}
-          path="/welcome"
-        />
-        <RouteWithLayout
-          component={Login}
-          exact
-          layout={DefaultLayout}
-          path="/login"
-        />
-        <ProtectedRoute
-          component={Profile}
-          exact
-          layout={AuthorizedUserLayout}
-          path="/profile"
-        />
-         <ProtectedRoute
-          component={userProfile}
-          exact
-          layout={AuthorizedUserLayout}
-          path="/userprofile"
-        />
-        {/* <RouteWithLayout
+  return (
+    <Switch>
+      <Redirect
+        exact
+        from="/"
+        to="/welcome"
+      />
+      <RouteWithLayout
+        component={Landing}
+        exact
+        layout={DefaultLayout}
+        path="/welcome"
+      />
+      <RouteWithLayout
+        component={Login}
+        exact
+        layout={DefaultLayout}
+        path="/login"
+      />
+      <ProtectedRoute
+        component={Profile}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/profile"
+      />
+      <ProtectedRoute
+        component={userProfile}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/userprofile"
+      />
+      {/* <RouteWithLayout
           component={ManagerDashboard}
           exact
           layout={ManagerLayout}
           path="/managerDashboard"
         /> */}
-        <RouteWithLayout
-          component={ManagerTravelDashboard}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel"
-        />
-        <RouteWithLayout
-          component={ApprovedReports}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel/approved"
-        />
-        <RouteWithLayout
-          component={RejectedAndCanceled}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel/canceled"
-        />
+      <RouteWithLayout
+        component={ManagerTravelDashboard}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel"
+      />
+      <RouteWithLayout
+        component={ApprovedReports}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel/approved"
+      />
+      <RouteWithLayout
+        component={RejectedAndCanceled}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel/canceled"
+      />
 
         <RouteWithLayout
           component={Done}
@@ -190,11 +190,17 @@ const Routes = () => {
             path="/user/verification/" 
             component={ verifyAccount }
             layout={DefaultLayout}
+        />     
+        <ProtectedRoute
+          exact
+          path="/requester/create-travel-request"
+          component={CreateTravelRequest}
+          layout={AuthorizedUserLayout}
         />
-        
+
         <Redirect to="/PageNotFound" />
       </Switch>
-    );
-  };
-  
-  export default Routes;
+  );
+};
+
+export default Routes;

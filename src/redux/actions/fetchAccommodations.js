@@ -10,7 +10,7 @@ export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
 
 
 export const getAccommodations = () => dispatch => {
-  return API.get(`/accommodations`,{
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`,{
       headers: {
         Authorization: `Bearer ${token}`
       }
