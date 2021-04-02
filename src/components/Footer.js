@@ -1,12 +1,15 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, makeStyles} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button, makeStyles} from '@material-ui/core'
+import {PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
 import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
-    
+    navDisplay: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
     stickToBottom: {
-        // marginTop:theme.spacing(8),
         position: "fixed",
         bottom: 0,
 
@@ -16,6 +19,9 @@ const useStyles = makeStyles(theme => ({
 function Footer (){
     const { t, i18n } = useTranslation();
     const classes = useStyles()
+    const barefootLogo = <Typography href='/' variant='body1'component='p'>
+               &#169; 2020, BareFoot Nomad, All rights reserved.
+            </Typography>
 
     const displayDesktop = () => {
     return (

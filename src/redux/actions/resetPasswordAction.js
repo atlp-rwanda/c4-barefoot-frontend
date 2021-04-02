@@ -1,4 +1,6 @@
+import axios from 'axios';
 import {API} from './AxiosAPI';
+
 import { SEND_RESET_EMAIL_SUCCESS, SEND_RESET_EMAIL_FAIL, RESET_PASSWORD_SUCCESS, LOADING, LOADING_ERROR, CLOSE_SNACKBAR, RESET_PASSWORD_FAIL } from '../resetPasswordType';
 
 const lang = localStorage.getItem('lang')

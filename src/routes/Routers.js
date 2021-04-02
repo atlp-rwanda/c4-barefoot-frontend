@@ -27,6 +27,8 @@ import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
+import CreateLocation from '../components/views/travelManager/CreateLocation';
 
 const Routes = () => {
   return (
@@ -198,9 +200,28 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
         />
 
+        <ProtectedRoute
+          component={CreateAccomodation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/accommodations/create"
+        />
+       
+        
+        <ProtectedRoute
+          component={CreateLocation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/locations/create"
+        />
+
         <Redirect to="/PageNotFound" />
       </Switch>
   );
 };
 
 export default Routes;
+
+        
+        
+        

@@ -98,4 +98,3 @@ const mapStateToProps = state => ({
 
 export {Landing}
 export default connect(mapStateToProps, { getLocations, getAccommodations })(Landing)
-

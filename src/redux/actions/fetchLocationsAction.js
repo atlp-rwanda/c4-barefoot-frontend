@@ -7,18 +7,22 @@ export const FETCH_LOCATIONS_PENDING = 'FETCH_LOCATIONS_PENDING'
 const lang = localStorage.getItem('lang')
 
 export const getLocations = () => dispatch => {
-  dispatch({
-    type: FETCH_LOCATIONS_PENDING,
+  const token= localStorage.getItem('barefootUserToken');
+  // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+ dispatch({
+    type: FETCH_LOCATIONS_PENDING
   })
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations?lang=${lang}`)
     .then(res => {
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,
-        payload: res.data.locations
+        payload: res.data.locations.rows
       })
       }
     )
     .catch(err => {
+      console.log('error', err.request);
       dispatch({
         type: FETCH_LOCATIONS_ERROR,
         error: err

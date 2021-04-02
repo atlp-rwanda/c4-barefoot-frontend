@@ -1,14 +1,14 @@
 import {fetchLocationsReducer} from '../../src/redux/reducers/locationsReducer';
 import * as types from '../../src/redux/actions/fetchLocationsAction';
-import {locationsPayload, locationState} from '../../dummyData'
+import {locationsPayload} from '../../dummyData'
 
 describe('Fetch Locations Reducer', ()=> {
   
   it('Should return initial state', () => {
     expect(fetchLocationsReducer(undefined, {})).toEqual(
       {
-        pending: true,
-        locations: [],
+        pending: false,
+        locations: {rows: []},
         error: null
       }
     )
@@ -26,6 +26,17 @@ describe('Fetch Locations Reducer', ()=> {
     })
   })
 
+  it('Should handle FETCH_LOCATIONS_PENDING', () => {
+    expect(fetchLocationsReducer(undefined, {
+      type: types.FETCH_LOCATIONS_PENDING
+    })
+    ).toEqual({
+      pending: true,
+      locations: {rows: []},
+      error: null
+    })
+  })
+
   it('Should handle FETCH_LOCATIONS_ERROR', () => {
     expect(fetchLocationsReducer(undefined, {
       type: types.FETCH_LOCATIONS_ERROR,
@@ -33,7 +44,7 @@ describe('Fetch Locations Reducer', ()=> {
     })
     ).toEqual({
       pending: false,
-      locations: [],
+      locations: {rows: []},
       error: 'Locations not found'
     })
   })
