@@ -25,6 +25,9 @@ import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
 import ProtectedRoute from './protected.route'
+import AdminRoute from './adminProtected.route'
+import ManagerRoute from './managerProtested.route'
+import UnauthorizedRoute from './unauthorized.route'
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
@@ -38,7 +41,7 @@ const Routes = () => {
           from="/"
           to="/welcome"
         />
-        <RouteWithLayout
+        <UnauthorizedRoute
           component={Landing}
           exact
           layout={DefaultLayout}
@@ -68,48 +71,48 @@ const Routes = () => {
           layout={ManagerLayout}
           path="/managerDashboard"
         /> */}
-        <RouteWithLayout
+        <ManagerRoute
           component={ManagerTravelDashboard}
           exact
           layout={AuthorizedUserLayout}
           path="/managerTravel"
         />
-        <RouteWithLayout
+        <ManagerRoute
           component={ApprovedReports}
           exact
           layout={AuthorizedUserLayout}
           path="/managerTravel/approved"
         />
-        <RouteWithLayout
+        <ManagerRoute
           component={RejectedAndCanceled}
           exact
           layout={AuthorizedUserLayout}
           path="/managerTravel/canceled"
         />
 
-        <RouteWithLayout
+        <ManagerRoute
           component={Done}
           exact
           layout={AuthorizedUserLayout}
           path="/managerTravel/done"
         />
         
-         <RouteWithLayout
+         <UnauthorizedRoute
           component={signup}
           exact
           layout={DefaultLayout}
           path="/signup"
         />
-        <RouteWithLayout
+        <UnauthorizedRoute
           component={ResetPasswordEmailForm}
           exact
-          layout={AuthorizedUserLayout}
+          layout={DefaultLayout}
           path="/forgetpassword"
         />
         <RouteWithLayout
           component={NewPassword}
           exact
-          layout={AuthorizedUserLayout}
+          layout={DefaultLayout}
           path="/user/reset-password"
         />
         <RouteWithLayout
@@ -118,43 +121,31 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/logout"
         />
-        <ProtectedRoute
+        <AdminRoute
           component={adminHome}
           exact
           layout={AuthorizedUserLayout}
           path="/admin"
         />
-        <ProtectedRoute
-          component={requesterHome}
-          exact
-          layout={RequesterLayout}
-          path="/requester"
-        />
-        <ProtectedRoute
-          component={BookForm}
-          exact
-          layout={RequesterLayout}
-          path="/bookAccommodation/:locationId"
-        />
-        <RouteWithLayout
+        <AdminRoute
           component = {CreateRoles}
           exact
           layout={AuthorizedUserLayout}
           path="/admin/roles"
         />
-        <RouteWithLayout
+        <AdminRoute
           component={SetPermissions}
           exact
           layout={AuthorizedUserLayout}
           path="/admin/permissions"
         />
-        <RouteWithLayout
+        <AdminRoute
           component={ListOfRoles}
           exact
           layout={AuthorizedUserLayout}
           path="/admin/roleslist"
         />
-        <RouteWithLayout
+        <AdminRoute
           component={ListUsers}
           exact
           layout={AuthorizedUserLayout}
