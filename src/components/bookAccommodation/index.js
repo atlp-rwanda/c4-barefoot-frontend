@@ -92,14 +92,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-<<<<<<< HEAD
-    minWidth: '100px'
-=======
     minWidth: '100px',
     '@media(max-width: 360px)' : {
       justifyContent: 'start'
     }
->>>>>>> develop
   },
   stepperText: {
     height: '10px',
@@ -107,10 +103,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '5px'
   },
   container2:{
-<<<<<<< HEAD
-    marginLeft:theme.spacing(15),
-    width:'80%'
-=======
     width:'80%',
     [theme.breakpoints.up("xs")]:{
       marginLeft:theme.spacing(7)
@@ -118,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]:{
       marginLeft:theme.spacing(15)
     }
->>>>>>> develop
 }
 }));
 
@@ -155,11 +146,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
   }
 }
 
-<<<<<<< HEAD
-const book = (props)=> {
-=======
 const Book = (props)=> {
->>>>>>> develop
   const [formData, setFormData] = React.useState({
     From: '',
     To: ''
@@ -187,19 +174,7 @@ const Book = (props)=> {
   return (
     <div >
       <div >
-<<<<<<< HEAD
-        <div className={classes.rightSide}>
-          {/* { loading ? (
-            <Box className={classes.box}>
-              <Skeleton variant="rect" className={classes.textBox}/>
-            </Box>
-          ) : (
-            <h3 className={classes.h3}>Signup with your credentials</h3>
-          )} */}
-          
-=======
         <div className={classes.rightSide}>    
->>>>>>> develop
           { loading ? (
             <Box className={classes.stepperContainer}>
               <Box className={classes.stepperBox}>
@@ -275,10 +250,6 @@ const Book = (props)=> {
 const mapStateToProps = state =>({
   snackBarMessage:state.bookAccommodations.snackBarMessage
 })
-<<<<<<< HEAD
-export default connect(mapStateToProps,{clearBookSnackbar})(book)
-=======
 export{Book}
 export default connect(mapStateToProps,{clearBookSnackbar})(Book)
->>>>>>> develop
 

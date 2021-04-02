@@ -112,8 +112,28 @@ function Accommodations(props) {
           </Typography>
         </CardContent>
           </CardActionArea>
+          {props.accommodation.bookedAccommodation != undefined ? (
+            <CardActions className={classes.cardActions}>
+               <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
+              <div className={classes.rateAndReviewLinks}>
+                <div>
+                <Link  to={'/review/'+props.accommodationn.id}>
+                   <Ratings highratings={3} id={props.accommodationn.id} />
+                 </Link>
+                </div>
+                <div>
+                <Typography className={classes.reviews}>
+             <Link  to={'/reviews/'+props.accommodationn.id} className={classes.links}  style={{ textDecoration: 'none' }}>
+                   Reviews
+                   </Link>
+             </Typography>
+                </div>
+              </div>
             
-         <CardActions className={classes.cardActions}>
+                 
+            
+           </CardActions>
+          ):( <CardActions className={classes.cardActions}>
             <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
                 
                   <Ratings highratings={3} id={props.accommodationn.id} />
@@ -121,7 +141,7 @@ function Accommodations(props) {
             <Typography className={classes.reviews}>
                   Reviews
             </Typography>
-          </CardActions>
+          </CardActions>)}
      
       </>
       )}
@@ -129,5 +149,9 @@ function Accommodations(props) {
   );
 }
 
-export default Accommodations;
+const mapStateToProps = state => ({
+  accommodation:state.bookedAccommodations
+})
+
+export default connect(mapStateToProps, {getBookings}) (Accommodations);
 
