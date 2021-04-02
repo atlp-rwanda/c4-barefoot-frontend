@@ -10,12 +10,14 @@ export const UPDATE_PERMISSIONS_SUCCESS = 'UPDATE_PERMISSIONS_SUCCESS'
 export const UPDATE_PERMISSIONS_ERROR = 'UPDATE_PERMISSIONS_ERROR'
 export const CLEAR_PERMISSIONS_SNACKBAR = ' CLEAR_PERMISSIONS_SNACKBAR'
 
+const lang = localStorage.getItem('lang')
+
 export const getPermissions = (id,role) => dispatch => {
   dispatch({
     type: FETCH_PERMISSIONS_PENDING
   })
 
-  return API.get(`/admin/permission/${id}`, {
+  return API.get(`/admin/permission/${id}?lang=${lang}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -48,7 +50,7 @@ export const updatePermission = (payload, role) => dispatch => {
     type: UPDATE_PERMISSIONS_PENDING
   })
   
-  return API.put(`/admin/role/update`, {
+  return API.put(`/admin/role/update?lang=${lang}`, {
     role: role,
     permissions: payload
   }, {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, Button, makeStyles} from '@material-ui/core'
 import {PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -16,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   }))
 
 function Footer (){
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
     const barefootLogo = <Typography href='/' variant='body1'component='p'>
                &#169; 2020, BareFoot Nomad, All rights reserved.
@@ -23,12 +25,10 @@ function Footer (){
 
     const displayDesktop = () => {
     return (
-        <Toolbar className={classes.navDisplay}>
-            {barefootLogo}
-            <nav>
-                <Button href="/login" color='inherit' startIcon={ <PersonOutlined/> }>Login</Button>
-                <Button href="/signup" color='inherit' startIcon = { <PersonAddOutlined/> }>Signup</Button>
-            </nav>
+        <Toolbar>
+            <Typography href='/' variant='body1'component='p'>
+               &#169; {t("2020, BareFoot Nomad, All rights reserved")}.
+            </Typography>
         </Toolbar>
         )
     }

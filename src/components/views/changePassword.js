@@ -15,6 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,6 +78,7 @@ function Alert(props) {
 };
 
 const ChangePassword = (props) => {
+    const { t, i18n } = useTranslation();
     const classes = useStyles();
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -84,7 +86,7 @@ const ChangePassword = (props) => {
     return (
         <React.Fragment >
             <div className={classes.root}>
-                <h2> Change your password</h2>
+                <h2> {t("Change your password")}</h2>
                 <Snackbar
                     open={props.passwordChanged.snackbarOpen}
                     autoHideDuration={5000}
@@ -110,7 +112,7 @@ const ChangePassword = (props) => {
                     >
                         {({ errors, touched }) => (
                             <Form className={classes.form}>
-                                <InputLabel htmlFor="current_password" className={classes.inputLabel}> <LockIcon color="primary" /> Current Password </InputLabel>
+                                <InputLabel htmlFor="current_password" className={classes.inputLabel}> <LockIcon color="primary" /> {t("Current Password")} </InputLabel>
                                 <Field
                                     as={TextField}
                                     error={errors.current_password && touched.current_password ? true : false}
@@ -133,7 +135,7 @@ const ChangePassword = (props) => {
                                         )
                                     }}
                                 />
-                                <InputLabel htmlFor="new_password" className={classes.inputLabel}> <LockIcon color="primary" /> New Password </InputLabel>
+                                <InputLabel htmlFor="new_password" className={classes.inputLabel}> <LockIcon color="primary" /> {t("New Password")} </InputLabel>
                                 <Field
                                     as={TextField}
                                     error={errors.new_password && touched.new_password ? true : false}
@@ -177,7 +179,7 @@ const ChangePassword = (props) => {
                                         variant="contained"
                                         className={classes.btn}
                                     >
-                                        Cancel
+                                        {t("Cancel")}
                         </Button>
                                 </div>
                             </Form>

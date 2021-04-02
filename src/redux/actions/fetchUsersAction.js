@@ -5,12 +5,13 @@ export const  FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
 export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
 
 const token = localStorage.getItem('barefootUserToken')
+const lang = localStorage.getItem('lang')
 
 export const getUsers = () => dispatch => {
     // dispatch({
     //     type:FETCH_USERS_LOADING
     // })
-    return axios.get('https://barefoot-nomad-app-v1.herokuapp.com/api/v1/assignUserstoManager/verified-users', {
+    return axios.get(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/assignUserstoManager/verified-users?lang=${lang}`, {
         headers:{
             Authorization: `Bearer ${token}`
         }

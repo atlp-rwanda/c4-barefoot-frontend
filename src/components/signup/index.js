@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import SocialButtons from '../signup/socialButton'
 import { Avatar, Box } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -133,6 +134,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
 }
 
 export default function SignUp() {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = React.useState({
     first_name: '',
     last_name: '',
@@ -169,7 +171,7 @@ export default function SignUp() {
               <Skeleton variant="rect" className={classes.textBox}/>
             </Box>
           ) : (
-            <h3 className={classes.h3}>Signup with your credentials</h3>
+            <h3 className={classes.h3}>{t("Signup with your credentials")}</h3>
           )}
           
           { loading ? (

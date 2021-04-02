@@ -4,6 +4,7 @@ export const FETCH_LOCATIONS_SUCCESS = 'FETCH_LOCATIONS_SUCCESS'
 export const FETCH_LOCATIONS_ERROR = 'FETCH_LOCATIONS_ERROR'
 export const FETCH_LOCATIONS_PENDING = 'FETCH_LOCATIONS_PENDING'
 
+const lang = localStorage.getItem('lang')
 
 export const getLocations = () => dispatch => {
   const token= localStorage.getItem('barefootUserToken');
@@ -12,13 +13,7 @@ export const getLocations = () => dispatch => {
  dispatch({
     type: FETCH_LOCATIONS_PENDING
   })
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-  )
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations?lang=${lang}`)
     .then(res => {
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,

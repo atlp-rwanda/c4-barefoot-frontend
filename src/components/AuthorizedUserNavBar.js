@@ -2,9 +2,11 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography } from '@material-ui/core'
 import LockIcon from '@material-ui/icons/Lock';
 import SideDrawer from './SideDrawer'
+import MultipleLanguages from './MultiLang/MultiLang'
+import { useTranslation } from 'react-i18next';
 
 const navLinks = [
-    { title: 'Logout', path: '/logout' }
+    { title: 'Logout', path: '/logout' },
 ]
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function Header() {
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
 
     const barefootLogo = <Typography href='/welcome' variant='h6' component='a' className={classes.logo}> Barefoot Nomad </Typography>
@@ -31,7 +34,8 @@ function Header() {
                     {barefootLogo}
                     <Hidden smDown>
                         <List component='nav'>
-                            <Button href="/logout" color='inherit' startIcon={<LockIcon />}>Logout</Button>
+                            <Button><MultipleLanguages/></Button>
+                            <Button href="/logout" color='inherit' startIcon={<LockIcon />}>{t("Logout")}</Button>
                         </List>
                     </Hidden>
                     <Hidden mdUp>
