@@ -225,7 +225,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                         </ForwardRef(SvgIcon)>
                       </WithStyles(ForwardRef(SvgIcon))>
                     </ForwardRef(PhotoCameraIcon)>
-                     Change Profile Picture 
+                     
+                    Change Profile Picture
+                     
                   </div>
                 </label>
               </span>
@@ -626,7 +628,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           </ForwardRef(SvgIcon)>
                         </WithStyles(ForwardRef(SvgIcon))>
                       </ForwardRef(AccountCircleRoundedIcon)>
-                       First Name 
+                       
+                      First Name
+                       
                     </label>
                   </ForwardRef(FormLabel)>
                 </WithStyles(ForwardRef(FormLabel))>
@@ -1303,7 +1307,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           </ForwardRef(SvgIcon)>
                         </WithStyles(ForwardRef(SvgIcon))>
                       </ForwardRef(AccountCircleRoundedIcon)>
-                       Last Name 
+                       
+                      Last Name
+                       
                     </label>
                   </ForwardRef(FormLabel)>
                 </WithStyles(ForwardRef(FormLabel))>
@@ -3313,7 +3319,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           </ForwardRef(SvgIcon)>
                         </WithStyles(ForwardRef(SvgIcon))>
                       </ForwardRef(LocationOnIcon)>
-                       Office Location 
+                       
+                      Office Location
+                       
                     </label>
                   </ForwardRef(FormLabel)>
                 </WithStyles(ForwardRef(FormLabel))>
@@ -3989,7 +3997,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           </ForwardRef(SvgIcon)>
                         </WithStyles(ForwardRef(SvgIcon))>
                       </ForwardRef(AccountCircleRoundedIcon)>
-                       Occupation 
+                       
+                      Occupation
+                       
                     </label>
                   </ForwardRef(FormLabel)>
                 </WithStyles(ForwardRef(FormLabel))>
@@ -4665,7 +4675,9 @@ exports[`<UserProfile /> if <UserProfile/> matches snapshot 1`] = `
                           </ForwardRef(SvgIcon)>
                         </WithStyles(ForwardRef(SvgIcon))>
                       </ForwardRef(AccountCircleRoundedIcon)>
-                       Line Manager 
+                       
+                      Line Manager
+                       
                     </label>
                   </ForwardRef(FormLabel)>
                 </WithStyles(ForwardRef(FormLabel))>

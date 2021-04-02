@@ -4,6 +4,7 @@ import { makeStyles, Dialog, DialogActions, DialogContent, DialogTitle, Slide, G
 import CloseIcon from '@material-ui/icons/Close';
 import { getSingleTravelRequest } from "../../redux/actions/singleTravelAction";
 import { Skeleton } from '@material-ui/lab';
+import { useTranslation } from 'react-i18next';
 
 const useStyle = makeStyles(theme => ({
     dialog:{
@@ -99,6 +100,7 @@ const useStyle = makeStyles(theme => ({
 }))
 
 function Modal(props) {
+    const { t, i18n } = useTranslation();
     const classes = useStyle()
     const {title, children, openModal, onClose, setOpenModal, singleTravel} = props;
 
@@ -127,7 +129,7 @@ function Modal(props) {
            :
            <React.Fragment>
             <DialogTitle style={{textAlign:'center'}}>
-                Travel request details
+                {t("Travel request details")}
                 <CloseIcon className={classes.closeIcon} />
             </DialogTitle>
             <DialogContent>
@@ -142,7 +144,7 @@ function Modal(props) {
                     </Grid>
                     <Grid className={classes.travelData}>
                         <Paper className={classes.travelDetails}>
-                            <Typography variant='h6' component='h6' >Travel information</Typography>
+                            <Typography variant='h6' component='h6' >{t("Travel information")}</Typography>
                             <div className={classes.profile}> 
                                 <Avatar alt="Remy Sharp" src={"requester.profile_picture"} /> 
                                 <Typography style={{marginLeft:'20px'}}>{"requester.first_name"} {"requester.last_name"}</Typography>
@@ -154,7 +156,7 @@ function Modal(props) {
                         </Paper>
                     </Grid>
                     <Divider />
-                    <Typography varient='h6' component="h6" className={classes.trips} style={{textAlign:'center', marginTop:'20px'}}>{travelrequest.Trip.length} Trips</Typography>
+                    <Typography varient='h6' component="h6" className={classes.trips} style={{textAlign:'center', marginTop:'20px'}}>{travelrequest.Trip.length} {t("Trips")}</Typography>
                     {travelrequest.Trip.map( data => (
                     <Grid className={classes.travelAddress} key={data.tripId}>
                     <Paper className={classes.addressPaper}>
@@ -165,15 +167,15 @@ function Modal(props) {
                         <Typography>{travelrequest.status} </Typography> */}
                     </Paper>
                      <Paper className={classes.addressPaper}>
-                        <Typography variant='h6' component='h6'> Travel Date</Typography>
+                        <Typography variant='h6' component='h6'> {t("Travel Date")}</Typography>
                         <Typography>08/10/2020</Typography>
                     </Paper>
                      <Paper className={classes.addressPaper}>
-                        <Typography variant='h6' component='h6'>Reason</Typography>
+                        <Typography variant='h6' component='h6'>{t("Reason")}</Typography>
                         <Typography>{data.reason}</Typography>
                     </Paper>
                      <Paper className={classes.addressPaper}>
-                        <Typography variant='h6' component='h6'>Date of Returning</Typography>
+                        <Typography variant='h6' component='h6'>{t("Date of Returning")}</Typography>
                         <Typography>01/05/2021</Typography>
                     </Paper>
                     </Grid>

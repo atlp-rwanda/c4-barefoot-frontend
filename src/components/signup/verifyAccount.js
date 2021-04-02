@@ -6,6 +6,7 @@ import {API} from '../../redux/actions/AxiosAPI';
 import React, { useState } from 'react'
 import queryString from 'query-string';
 import { Skeleton } from '@material-ui/lab'
+import { useTranslation } from 'react-i18next';
 
 const useStyle = makeStyles(theme => ({
     container: {
@@ -56,6 +57,7 @@ const verify = (token, verified, setVerified ,setError) => {
     })
 }
 const verifyAccount = () => {
+    const { t, i18n } = useTranslation();
     const classes = useStyle()
     const [verified, setVerified] = useState(false);
     const [error, setError] = useState('');
@@ -75,11 +77,11 @@ const verifyAccount = () => {
                 {token && verified ? (
                 <>
                     <Box className={classes.box}>
-                        <CheckCircle style={{color: '#1b5e20'}}/>Your e-mail has been verified
+                        <CheckCircle style={{color: '#1b5e20'}}/>{t("Your e-mail has been verified")}
                     </Box>
                     <Devider flexItem className={classes.hr}/>
                     <Box className={classes.box}>
-                        Thank you for verifying your account. You can now continue to use BarefootNomad
+                        {t("Thank you for verifying your account. You can now continue to use BarefootNomad")}
                     </Box>
                     
                 </>) : (

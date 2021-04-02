@@ -13,6 +13,7 @@ import clsx from 'clsx';
 import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
 import { Box, Avatar, Collapse, ListItemIcon } from '@material-ui/core';
 import Footer from '../../AuthorizeUserFooter';
+import { useTranslation } from 'react-i18next';
 
 
 const drawerWidth = 240;
@@ -92,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PhoneView = (props) => {
+  const { t, i18n } = useTranslation();
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const handleDrawer = () => { setOpen(!open) }
@@ -162,12 +164,12 @@ const PhoneView = (props) => {
                     </Typography>
                     <Typography className={classes.subTitle}>
                         <Link className={classes.navLinks} to="/">
-                            Home
+                            {t("Home")}
                         </Link>
                     </Typography>
                     <Typography className={classes.subTitle}>
                         <Link className={classes.navLinks} to="/logout">
-                            Logout
+                            {t("Logout")}
                         </Link>
                     </Typography>
                 </Toolbar>
