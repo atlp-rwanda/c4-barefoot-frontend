@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Box } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     sideNav: {
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 function SideDiv({loading}){
+    const { t, i18n } = useTranslation();
     const classes = useStyles();
     return(
         <div className={classes.sideNav}>
@@ -65,8 +67,8 @@ function SideDiv({loading}){
                 </Box>
             ) : (
                 <div className={classes.sideText}>
-                    <p>Please create account to get </p>
-                    <p>started with Barefoot Nomard.</p>
+                    <p>{t("Please create account to get")} </p>
+                    <p>{t("started with Barefoot Nomard.")}</p>
                 </div>
             )
             }

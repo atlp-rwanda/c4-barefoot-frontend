@@ -39,6 +39,10 @@ const reducers = combineReducers({
   addReviews:addRatesAndReview,
   bookAccommodations: bookAccommodationsReducer,
   bookedAccommodations:getBookingsReducer,
+  manageTravel:fetchTravelReducer,
+  manageSingleTravel:fetchSingleTravelReducer,
+  updateTravel:updateSingleTravelReducer,
+  bookAccommodations: bookAccommodationsReducer,
   convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
@@ -47,9 +51,10 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
-  managerReducer
-  
+  managerReducer,
+  createTravelRequest: CreateTravelRequestReducer
+
 })
-  
+
 export default reducers
 

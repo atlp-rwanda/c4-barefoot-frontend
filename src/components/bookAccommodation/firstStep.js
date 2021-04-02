@@ -13,6 +13,7 @@ import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
+<<<<<<< HEAD
 import {getRatings} from "../../redux/actions/ratingsAction"
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
     //   flexDirection: 'column',
     //   justifyContent: 'space-between'
     // },
+=======
+import {useTranslation} from 'react-i18next'
+
+const useStyles = makeStyles((theme) => ({
+>>>>>>> develop
     media: {
       height: 440
     },
@@ -40,12 +46,18 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'flex-start',
     },
     separate:{
+<<<<<<< HEAD
         // marginBottom:theme.spacing(3),
+=======
+>>>>>>> develop
         marginLeft:theme.spacing(3),
         marginBottom:theme.spacing(3),
     },
     divider:{
+<<<<<<< HEAD
         // marginBottom:theme.spacing(3),
+=======
+>>>>>>> develop
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -61,18 +73,34 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden'
     },
     container:{
+<<<<<<< HEAD
         marginLeft:theme.spacing(9),
         // width:'80%'
+=======
+        [theme.breakpoints.up("xs")]:{
+            marginLeft:theme.spacing(3)
+          },
+          [theme.breakpoints.up("sm")]:{
+            marginLeft:theme.spacing(9)
+          }
+        
+>>>>>>> develop
     },
     btncontainer1:{
         display:"flex",
         justifyContent:"flex-start"
+<<<<<<< HEAD
         // width:'80%'
+=======
+>>>>>>> develop
     },
     btncontainer2:{
         display:"flex",
         justifyContent:"flex-end"
+<<<<<<< HEAD
         // width:'80%'
+=======
+>>>>>>> develop
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -83,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
         display:'block'
     }
   }));
+<<<<<<< HEAD
 function Home(props){
   const classes = useStyles();
     let temp= null;
@@ -95,33 +124,72 @@ function Home(props){
     const display = props.accommodations.length ? 'none' : 'flex';
     const count=()=>{
         return Math.trunc((props.count/6)+1)
+=======
+function FirstStep(props){
+    const {t, i18n} = useTranslation();
+  const classes = useStyles();
+    const [page, setPage] = useState(1);
+    const display = props.accommodations.length ? 'none' : 'flex';
+    const count=()=>{
+        if(props.count % 6 ===0){
+            return(props.count/6)
+        }else{
+            return Math.trunc((props.count/6)+1)
+        }
+>>>>>>> develop
     }
     const handleChange = (event, value) => {
         props.getAccommodationsByLocation(props.accId,value)
         setPage(value)
+<<<<<<< HEAD
     };
     // const handleRates = (id) => {
     //     const rev=getReviews(id);
     //     console.log("rates", rev)
     // }
+=======
+      };
+>>>>>>> develop
     return(
         <React.Fragment>
             <Card>
                 <CardContent>
                     <Formik initialValues={{
+<<<<<<< HEAD
                         from:null,
                         retrunDate:null
+=======
+                        From:null,
+                        To:null
+>>>>>>> develop
                     }}
                     onSubmit={values => {
                         props.nextStep();
                     }}>
+<<<<<<< HEAD
                         <Form>
+=======
+                        <Form form-data='form-1'>
+                        {(props.status ? 
+                            <CardActionArea>
+                            <Skeleton animation="wave" variant="rect" className={classes.media} />
+                            <CardContent className={classes.cardContent} >
+                                <Skeleton animation="wave" height={30} width="60%" />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                            </CardContent>
+                            <CardActions className={classes.cardActions}>
+                                <Skeleton animation="wave" height={30} width="60%" />
+                            </CardActions>
+                            </CardActionArea>
+                            :
+>>>>>>> develop
                             <div >
                                 <Grid container item xs={12}  className={classes.title,classes.container}  direction="column">
                                     <Typography variant="h6" style={{color: colors.primary100}} className={classes.separator}> 
                                         Choose Accommodation:
                                     </Typography>
                                     <Divider style={{width:'80%'}} variant='middle' />
+<<<<<<< HEAD
                                     <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
                                         <Place color="secondary"/> Rwanda
                                     </Typography>            
@@ -140,6 +208,32 @@ function Home(props){
                                     </Grid>
                                     <Grid container item justify="center" style={{marginTop:'50px'}}>
                                     <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} />
+=======
+                                                
+
+                                </Grid>
+                                <Grid container item xs={12} className={classes.container} direction='row'>
+                                    {props.accommodations.length>0?(
+                                        <Grid item>
+                                        <Typography variant="subtitle1" style={{color: colors.primary100}} className={classes.separator}> 
+                                            <Place color="secondary"/>{props.nation}
+                                        </Typography>
+                                    </Grid>
+                                    ):(null)}
+                                    
+                                    <Grid  container item >
+                                        {props.accommodations.map((accommodation,index) =>(
+                                            <Grid item xs={8} sm={4} md={3} key={index} className={classes.insideGrid,classes.separate}>
+                                                <AccommodationCard pending={props.status} accommodationn={accommodation} city={accommodation.city} {...props}  />
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                    <Grid container item style={{display: display}} className={classes.notFound}>
+                                        <Typography variant="h6" color="secondary" component="h6">No Accommodations found in this Locaton</Typography>
+                                    </Grid>
+                                    <Grid container item justify="center" style={{marginTop:'50px'}}>
+                                    <Pagination count={count()} page={page} variant="outlined" color="primary" onChange={handleChange} id='pagination' />
+>>>>>>> develop
                                     </Grid>
                                 </Grid>
                                 <div className={classes.btncontainer2}>
@@ -150,11 +244,19 @@ function Home(props){
                                             color='primary'
                                             className={classes.button}
                                         >
+<<<<<<< HEAD
                                             Next
+=======
+                                            {t("Next")}
+>>>>>>> develop
                                         </Button>):(null)}
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
+=======
+                        )}
+>>>>>>> develop
                         </Form>
                     </Formik>
                 </CardContent>
@@ -168,6 +270,7 @@ const mapStateToProps=state=>({
     accommodation:state.fetchAccommodations.accommodation,
     selectedAccommodation:state.fetchAccommodations.selectedAccommodation,
     count:state.fetchAccommodations.count,
+<<<<<<< HEAD
     accId:state.fetchAccommodations.accId,
     status:state.fetchAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
@@ -180,3 +283,14 @@ const mapStateToProps=state=>({
 //     }
 // }
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)
+=======
+    nation:state.fetchAccommodations.nation,
+    accId:state.fetchAccommodations.accId,
+    status:state.fetchAccommodations.pending,
+    amenities:state.fetchAccommodations.amenities,
+    temp:state.fetchAccommodations.temp
+})
+
+export {FirstStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (FirstStep)
+>>>>>>> develop

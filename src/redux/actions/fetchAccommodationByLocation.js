@@ -7,9 +7,6 @@ export const SELECT_ACCOMMODATION = 'SELECT_ACCOMMODATION'
 
 
 export const getAccommodationsByLocation = (id,page=1) => dispatch => {
-    // dispatch({
-    //     type: FETCH_ACCOMMODATIONS_PENDING
-    //   })
   return API.get(`/accommodations/location/${id}?page=${page}`, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -19,6 +16,7 @@ export const getAccommodationsByLocation = (id,page=1) => dispatch => {
       dispatch({
         type: FETCH_ACCOMMODATIONS_BY_LOCATION,
         payload: res.data.accommodations,
+        nation:res.data.nation,
         id:id
       })
     }

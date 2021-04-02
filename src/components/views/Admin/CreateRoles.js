@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import { FormGroup, TextField, Slide, CssBaseline, Snackbar} from '@material-ui/core';
 import Loader from '../../Loader';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useTranslation } from 'react-i18next';
 
 
 //form validation with yup
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function CreateRoles (props) {
+  const { t, i18n } = useTranslation();
   let initialValues;
   const classes = useStyles()
 
@@ -139,8 +141,8 @@ const handelCancel=()=>{
                    {errors.description && touched.description ? (<div style={{textAlign: 'left', color:'red'}}>{errors.description}</div>) : null}
                 </FormGroup>
             <Box className={classes.formButtons} >
-              <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>Save</Button>
-              <Button variant='contained' size='medium' color='secondary' onClick={handelCancel}>Cancel</Button>
+              <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>{t("Save")}</Button>
+              <Button variant='contained' size='medium' color='secondary' onClick={handelCancel}>{t("Cancel")}</Button>
             </Box>
           </Form>
               

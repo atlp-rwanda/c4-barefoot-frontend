@@ -1,40 +1,49 @@
 import React from 'react';
 import SearchLocations from '../../src/components/travelRequests/SearchTravelRequest';
-import {  mount, shallow } from 'enzyme';
+import addTravelReason from '../../src/components/travelRequests/addTravelReason';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { props, props2 } from '../../dummyData';
+import { props, props2, comfirmProps } from '../../dummyData';
 import AddAccommodation from '../../src/components/travelRequests/addAccommodation';
-import {ViewTravelRequest} from '../../src/components/views/user/ViewTravelRequest';
+import { ViewTravelRequest } from '../../src/components/views/user/ViewTravelRequest';
 
-describe('<SearchLocations />', () =>{
+describe('<SearchLocations />', () => {
     let wrapper;
-    
+
     it('if it matches snapshot', () => {
 
-        wrapper = mount(<SearchLocations travelRequest={props2} {...props} /> );
-        
+        wrapper = mount(<SearchLocations travelRequest={props2} {...props} />);
+
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
 
-describe('<AddAccommodation />', () =>{
+describe('<AddAccommodation />', () => {
     let wrapper;
-    
+
     it('if it matches snapshot', () => {
 
-        wrapper = mount(<AddAccommodation travelRequest={props2} {...props} /> );
-        
+        wrapper = mount(<AddAccommodation travelRequest={props2} {...props} />);
+
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
 
-describe('<ViewTravelRequest />', () =>{
+describe('<ViewTravelRequest />', () => {
     let wrapper;
-    
+
     it('if it matches snapshot', () => {
 
-        wrapper = shallow(<ViewTravelRequest listTravelRequest={props2} {...props} /> );
-        
+        wrapper = shallow(<ViewTravelRequest listTravelRequest={props2} {...props} />);
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+});
+
+describe('<addTravelReason />', () => {
+    let wrapper;
+    it('if it matches snapshot', () => {
+        wrapper = shallow(<addTravelReason {...props} />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });

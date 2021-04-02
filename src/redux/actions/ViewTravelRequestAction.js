@@ -3,6 +3,7 @@ export const FETCH_TRAVEL_REQUEST_SUCCESS = 'FETCH_TRAVEL_REQUEST_SUCCESS';
 export const FETCH_TRAVEL_REQUEST_FAIL = 'FETCH_TRAVEL_REQUEST_FAIL';
 
 import axios from 'axios';
+const lang = localStorage.getItem('lang')
 
 export const GetTravelRequestsAction = (data) =>  async (dispatch) => {
     const page = data.page-1 || 0;
@@ -12,7 +13,7 @@ export const GetTravelRequestsAction = (data) =>  async (dispatch) => {
     });
     
     try{
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests?from=${page}&to=3`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests?from=${page}&to=3&lang=${lang}`);
         return dispatch({
             type: FETCH_TRAVEL_REQUEST_SUCCESS,
             payload: res.data

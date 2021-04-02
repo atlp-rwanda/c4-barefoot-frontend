@@ -2252,9 +2252,9 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
-                            done
-                             travel request found
+                            No
+                             + category + 
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>
@@ -2649,9 +2649,9 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
-                            invalid
-                             travel request found
+                            No
+                             + category + 
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>
@@ -3046,9 +3046,9 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
-                            pending
-                             travel request found
+                            No
+                             + category + 
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>

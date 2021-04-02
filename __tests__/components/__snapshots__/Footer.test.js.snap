@@ -137,7 +137,9 @@ exports[`<Footer /> should be rendered without errors 1`] = `
                         className="MuiTypography-root MuiTypography-body1"
                         href="/"
                       >
-                        © 2020, BareFoot Nomad, All rights reserved.
+                        © 
+                        2020, BareFoot Nomad, All rights reserved
+                        .
                       </p>
                     </ForwardRef(Typography)>
                   </WithStyles(ForwardRef(Typography))>

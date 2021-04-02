@@ -1,5 +1,6 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, makeStyles} from '@material-ui/core'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -13,13 +14,14 @@ const useStyles = makeStyles(theme => ({
   }))
 
 function Footer (){
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
 
     const displayDesktop = () => {
     return (
         <Toolbar>
             <Typography href='/' variant='body1'component='p'>
-               &#169; 2020, BareFoot Nomad, All rights reserved.
+               &#169; {t("2020, BareFoot Nomad, All rights reserved")}.
             </Typography>
         </Toolbar>
         )

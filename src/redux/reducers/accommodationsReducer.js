@@ -1,17 +1,16 @@
-import {FETCH_ACCOMMODATIONS_SUCCESS,FETCH_SINGLE_ACCOMMODATION_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
+import {FETCH_ACCOMMODATIONS_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODATION_SUCCESS,FETCH_AMENITIES_SUCCESS} from '../actions/fetchAccommodations'
 import {FETCH_WEATHER_SUCCESS,FETCH_WEATHER_ERROR} from '../actions/getWeather'
 import {FETCH_ACCOMMODATIONS_BY_LOCATION, FETCH_ACCOMMODATIONS_BY_LOCATION_ERROR,SELECT_ACCOMMODATION} from '../actions/fetchAccommodationByLocation'
 const initialState = {
   pending: true,
   accommodations: [],
   accommodation: {},
+  nation:null,
   amenities:{},
   accommodationsByLocation:[],
   selectedAccommodation:null,
   count:null,
   error: null,
-  temp:null,
-  accId:null,
   temp:null,
   accId:null
 }
@@ -24,19 +23,10 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodations: action.payload
       }
-      case FETCH_SINGLE_ACCOMMODATION_SUCCESS:
-        return {
-          ...state,
-          pending: false,
-          accommodation: action.payload
-        }
     case FETCH_ACCOMMODATION_SUCCESS:
       const accomo =()=>{
           let v=null;
-          console.log(state.accommodations
-            ) 
-          state.accommodations.rows.forEach(acc=>{
-            console.log(`${acc.id}  ${action.payload}`) 
+          state.accommodations.rows.forEach(acc=>{ 
           if(acc.id===action.payload){
             v= acc
             console.log(v)
@@ -44,13 +34,11 @@ export function fetchAccommodationsReducer(state = initialState, action){
         })
         return v
       }
-      console.log(accomo())
       return {
         ...state,
         pending: false,
         accommodation: accomo()
       }
-    
     case FETCH_AMENITIES_SUCCESS:
         return {
           ...state,
@@ -70,9 +58,7 @@ export function fetchAccommodationsReducer(state = initialState, action){
         pending: false,
         accommodationsByLocation: action.payload.rows,
         count:action.payload.count,
-        accId:action.id,
-        count:action.payload.count,
-        count:action.payload.count,
+        nation:action.nation,
         accId:action.id,
       }
     case FETCH_ACCOMMODATIONS_ERROR:

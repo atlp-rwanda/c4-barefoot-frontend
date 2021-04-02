@@ -7,6 +7,7 @@ export const CURRENT_LOCATION = 'CURRENT_LOCATION';
 export const SEARCH_ACCOMMODATIONS = 'SEARCH_ACCOMMODATIONS';
 export const SEARCH_ACCOMMODATIONS_LOADING = 'SEARCH_ACCOMMODATIONS_LOADING';
 export const SELECT_ACCOMMODATION = 'SELECT_ACCOMMODATION';
+export const DESELECT_ACCOMMODATION = 'DESELECT_ACCOMMODATION';
 export const HANDLE_ERRORS = 'HANDLE_ERRORS';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const ADD_TRAVEL_REASON = 'ADD_TRAVEL_REASON';
@@ -17,7 +18,11 @@ export const REMOVE_MULTI_CITY_TRAVEL_REQUEST = 'REMOVE_MULTI_CITY_TRAVEL_REQUES
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 
+
 import axios from 'axios';
+import qs from 'qs';
+
+const lang = localStorage.getItem('lang')
 
 export const CheckReturningAction = (data) => dispatch =>{
     return dispatch({
@@ -26,70 +31,86 @@ export const CheckReturningAction = (data) => dispatch =>{
     })
 }
 
-export const checkTravelDatesAction = (data) => dispatch =>{
+export const checkTravelDatesAction = (data) => dispatch => {
     return dispatch({
         type: TRAVEL_DATES,
         payload: data
     })
 }
-export const getLocationsAction = () => async (dispatch) =>{
-    try{
+
+export const getLocationsAction = () => async (dispatch) => {
+    try {
         dispatch({
             type: SEARCH_LOCATIONS_LOADING
         })
-        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/locations/all`);
+        const token = localStorage.getItem('barefootUserToken');
+        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations?lang=${lang}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return dispatch({
             type: SEARCH_LOCATIONS,
             payload: getData.data.locations.rows
         })
-    }catch(error){
+    } catch (error) {
     }
-    
+
 }
 
-export const searchCurrentLocationAction = (data) => async (dispatch) =>{
-    //get the text field id
-    const selectedOption = data.textField.split("-",1)
-
-    if((data.textField === "currentLocationId") || (selectedOption[0] === "currentLocationId")){
-        if(!data.searchKeyword){
+export const searchCurrentLocationAction = (data) => async (dispatch) => {
+    const inputTextID = data.textField.split('-', 1)[0];
+    data.textField = inputTextID;
+    // Checking if the textField is for current location
+    if (data.textField === "currentLocationId") {
+        //Checking if there is a selected location
+        if (!data.selectedLocation) {
             return dispatch({
                 type: CURRENT_LOCATION,
                 payload: ''
-            })            
+            })
         }
+        // Set the CurrentLocation state to selected location
         dispatch({
             type: CURRENT_LOCATION,
-            payload:data.searchKeyword
+            payload: data.selectedLocation
         });
     }
-    if(data.textField === "destinationLocationId" || (selectedOption[0] === "destinationLocationId")){
-        if(!data.searchKeyword){
+    // Checking if the textField is for destination location
+    if (data.textField === "destinationLocationId") {
+        //Checking if there is a selected location
+        if (!data.selectedLocation) {
             return dispatch({
                 type: DESTINATION_LOCATION,
                 payload: ''
-            })            
+            })
         }
-        const country = data.searchKeyword.country;
-        const city = data.searchKeyword.LocationName;
-        const page = data.page || 1;
+        // Set the destinationLocation state to selected location
         dispatch({
             type: DESTINATION_LOCATION,
-            payload: `${city}, ${country}`
+            payload: data.selectedLocation
         });
         dispatch({
             type: SEARCH_ACCOMMODATIONS_LOADING
         })
-        try{
-            const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/search/accommodations?fromLocation=${country}&city=${city}&page=${page}&limit=6`);
+
+        try {
+            const locationId = data.selectedLocation.id; // Getting the location ID of destination location
+            const token = localStorage.getItem('barefootUserToken');// Getting the token from local storage to be used as authorization header
+            // Retrieve accommodation found in selected destination location
+            const getAccommodations = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations/in/${locationId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             return dispatch({
                 type: SEARCH_ACCOMMODATIONS,
-                payload: getAccommodations.data.rows
+                payload: getAccommodations.data.accommodations
             })
-        }catch(error){
-            if(error.response.status === 404){
+        } catch (error) {
+            if (error.response.status === 404) {
                 return dispatch({
-                    type:SEARCH_ACCOMMODATIONS,
+                    type: SEARCH_ACCOMMODATIONS,
                     payload: []
                 })
             }
@@ -99,86 +120,90 @@ export const searchCurrentLocationAction = (data) => async (dispatch) =>{
 
 
 export const selectAccommodationAction = (accommodation) => dispatch => {
-    if(accommodation.checked){
+    // If checked is true add the selected accommodation to the selectedAccommodations state
+    if (accommodation.checked) {
         return dispatch({
             type: SELECT_ACCOMMODATION,
             payload: {
                 accommodation: accommodation.selected,
-                displaySelection: !accommodation.checked,
-                displaySelected: accommodation.checked
+                displaySelection: accommodation.checked,
+                displaySelected: !accommodation.checked
             }
         })
+    } else { // Else remove the accommodation from the selectedAccommodations state
+        return dispatch({
+            type: DESELECT_ACCOMMODATION,
+        })
     }
-    
 }
 
-export const handleErrorsAction = (errorMessage) => dispatch =>{
+export const handleErrorsAction = (errorMessage) => dispatch => {
     return dispatch({
         type: HANDLE_ERRORS,
         payload: errorMessage
     })
 }
 
-export const closeSnackbar = () => dispatch =>{
+export const closeSnackbar = () => dispatch => {
     dispatch({
         type: CLOSE_SNACKBAR
     });
 }
 
-export const addTravelReasonAction = (data) => dispatch =>{
+export const addTravelReasonAction = (data) => dispatch => {
     return dispatch({
         type: ADD_TRAVEL_REASON,
         payload: data
     })
 }
 
-export const sendTravelRequestAction = (data) => async (dispatch) =>{
-    try{
+export const sendTravelRequestAction = (data) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('barefootUserToken');// Getting the token from local storage to be used as authorization header
+        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request?lang=${lang}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         dispatch({
             type: SEND_TRAVEL_REQUEST_LOADING,
         })
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
-        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data.travelRequest);
         return dispatch({
             type: SEND_TRAVEL_REQUEST,
             payload: true
         })
-        
     }
-    catch(error){
+    catch (error) {
+        console.log(error)
         return dispatch({
-            type: SEND_TRAVEL_REQUEST,
-            payload: false
+            type: HANDLE_ERRORS,
+            payload: error.message
         })
     }
 }
 
-export const addMultiCityAction = (data) => dispatch =>{
-    
+export const addMultiCityAction = (data) => dispatch => {
+
     dispatch({
         type: ADD_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
-    return dispatch({
-        type: TRAVEL_DATES,
-        payload:{departureDate: '', returnDate:''}
-    })
 }
-export const removeMultiCityAction = (data) => dispatch =>{
+export const removeMultiCityAction = (data) => dispatch => {
     dispatch({
         type: REMOVE_MULTI_CITY_TRAVEL_REQUEST,
         payload: data
     })
-    
+
 }
 
-export const openModalAction = (data) => dispatch =>{
+export const openModalAction = (data) => dispatch => {
     return dispatch({
         type: OPEN_MODAL,
-        payload:data
+        payload: data
     });
 }
-export const cancelTravelRequestAction = () => dispatch  =>{
+export const cancelTravelRequestAction = () => dispatch => {
     return dispatch({
         type: CANCEL_TRAVEL_REQUEST
     })

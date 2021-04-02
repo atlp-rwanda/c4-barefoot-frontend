@@ -16,6 +16,7 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import {convertorAction} from "../../redux/actions/convertorAction"
 
 const useStyles = makeStyles((theme) => ({
+<<<<<<< HEAD
     // root: {
     //   maxWidth: 345,
     //   height: 360,
@@ -24,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
     //   flexDirection: 'column',
     //   justifyContent: 'space-between'
     // },
+=======
+>>>>>>> develop
     media: {
       height: 440
     },
@@ -42,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     btncontainer:{
         display:"flex",
         justifyContent:"space-between"
+<<<<<<< HEAD
         // width:'80%'
     },
     btncontainer1:{
@@ -60,6 +64,19 @@ const useStyles = makeStyles((theme) => ({
     },
     divider:{
         // marginBottom:theme.spacing(3),
+=======
+    },
+    btncontainer1:{
+        justifyContent:"flex-start"
+    },
+    btncontainer2:{
+        justifyContent:"flex-end"
+    },
+    separate:{
+        marginLeft:theme.spacing(3)
+    },
+    divider:{
+>>>>>>> develop
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -75,8 +92,12 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden'
     },
     container:{
+<<<<<<< HEAD
         marginLeft:theme.spacing(9),
         // width:'80%'
+=======
+        marginLeft:theme.spacing(9)
+>>>>>>> develop
     },
     titleText:{
       [theme.breakpoints.down('sm')]:{
@@ -85,9 +106,17 @@ const useStyles = makeStyles((theme) => ({
     },
     item:{
         display:'block'
+<<<<<<< HEAD
     }
   }));
 function Home(props){
+=======
+    },
+    cost:{
+        marginTop:'9px'}
+  }));
+function SecondStep(props){
+>>>>>>> develop
     
   const classes = useStyles();
     let temp= null;
@@ -142,7 +171,11 @@ function Home(props){
                         direction === 'back' ? props.prevStep() : props.nextStep();
                         }}
                     >
+<<<<<<< HEAD
                         <Form>
+=======
+                        <Form form-data="form-2">
+>>>>>>> develop
                             <div className={classes.divider} >
                             <Card className={classes.root} >
                                 {(!props.accommodation ? 
@@ -161,7 +194,10 @@ function Home(props){
                                 <CardActionArea>
                                     
                                     <CardMedia
+<<<<<<< HEAD
                                     // onClick={handleViewMore}
+=======
+>>>>>>> develop
                                     className={classes.media}
                                     image={props.accommodation.photos}
                                     title={props.accommodation.title}
@@ -176,7 +212,11 @@ function Home(props){
                                         </Typography>
                                         <div className={classes.divider}>
                                         <Grid container spacing={1}  direction='row' >
+<<<<<<< HEAD
                                             <Grid container item xs={3} spacing={3} >
+=======
+                                            <Grid container item xs={12} sm={3} spacing={3} >
+>>>>>>> develop
                                                     
                                                 <Grid container item xs={12} sm={12} direction='column'>
                                                     <Grid item>
@@ -204,7 +244,11 @@ function Home(props){
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
+<<<<<<< HEAD
                                             <Grid container item xs={3}>
+=======
+                                            <Grid container item xs={12} sm={3}>
+>>>>>>> develop
                                                     
                                                 <Grid container item xs={12}  direction='column'>
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
@@ -227,7 +271,11 @@ function Home(props){
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
+<<<<<<< HEAD
                                             <Grid container item xs={3}>
+=======
+                                            <Grid container item xs={12} sm={3}>
+>>>>>>> develop
                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.titleText} color="primary">
                                                 Amenities
                                                 <Grid container item xs={12} spacing={0} direction='column'>
@@ -235,14 +283,23 @@ function Home(props){
                                                 </Grid>
                                                 </Typography>
                                             </Grid>
+<<<<<<< HEAD
                                             <Grid item xs={3} direction='column'>
+=======
+                                            <Grid item xs={12} sm={3} direction='column'>
+>>>>>>> develop
                                                 <Grid item xs={12} >
                                                     <Typography gutterBottom variant="h5"  className={classes.titleText} color="primary">
                                                         Cost/night
                                                     </Typography>
                                                     <Grid container item spacing={3} xs={12}>
+<<<<<<< HEAD
                                                         <Grid item>
                                                             <Typography variant="body">{props.money?(props.money[Object.keys(props.money)[0]]):(props.accommodation.price)}</Typography>
+=======
+                                                        <Grid item className={classes.cost}>
+                                                            <Typography variant="h6">{props.money?(props.money[Object.keys(props.money)[0]]):(props.accommodation.price)}</Typography>
+>>>>>>> develop
                                                         </Grid>
                                                         <Grid item >  
                                                             <Select 
@@ -252,6 +309,7 @@ function Home(props){
                                                                 onChange={hanldeSelectOnchange}
                                                                 style={{"padding-right": '9px'}}
                                                                 >
+<<<<<<< HEAD
                                                                 <MenuItem  key="USD" name="USD" value="USD">USD</MenuItem>
                                                                 <MenuItem  key="RWF" name="RWF" value="RWF">RWF</MenuItem>
                                                                 <MenuItem  key="EUR" name="EUR" value="EUR">EUR</MenuItem>
@@ -260,6 +318,32 @@ function Home(props){
                                                                 <MenuItem  key="UGX" name="UGX" value="UGX">UGX</MenuItem>
                                                                 <MenuItem  key="BIF" name="BIF" value="BIF">BIF</MenuItem>
                                                                 <MenuItem  key="TSH" name="TSH" value="TSH">TSH</MenuItem>    
+=======
+                                                                <MenuItem  key="USD" name="USD" value="USD">
+                                                                <Typography variant="h6">USD</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="RWF" name="RWF" value="RWF">
+                                                                <Typography variant="h6">RWF</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="EUR" name="EUR" value="EUR">
+                                                                <Typography variant="h6">EUR</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="CND" name="CND" value="CND">
+                                                                <Typography variant="h6">CND</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="KSH" name="KSH" value="KSH">
+                                                                <Typography variant="h6">KSH</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="UGX" name="UGX" value="UGX">
+                                                                <Typography variant="h6">UGX</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="BIF" name="BIF" value="BIF">
+                                                                <Typography variant="h6">BIF</Typography>
+                                                                </MenuItem>
+                                                                <MenuItem  key="TSH" name="TSH" value="TSH">
+                                                                <Typography variant="h6">TSH</Typography>
+                                                                </MenuItem>    
+>>>>>>> develop
                                                             </Select>
                                                         </Grid>
                                                     </Grid>
@@ -278,6 +362,7 @@ function Home(props){
                                     </div>
                                     </CardContent>
                                 </>
+<<<<<<< HEAD
                                     )}
                                     
                                 </Card>
@@ -297,6 +382,20 @@ function Home(props){
                                         onClick={() => {
                                         setDirection('back'); 
                                         }}
+=======
+                                )}
+                                </Card>
+                            </div>
+                            <div className={classes.divider}>
+                            <div className={classes.btncontainer}>
+                                <div className={classes.textCenter}>
+                                    <Button
+                                        variant='contained'
+                                        color='primary'
+                                        id='backBtn'
+                                        className={classes.button}
+                                        onClick={() => props.prevStep()}
+>>>>>>> develop
                                     >
                                         Back
                                     </Button>
@@ -304,7 +403,10 @@ function Home(props){
                             <div >
                                 <Button
                                     type='submit'
+<<<<<<< HEAD
                                     id='backBtn'
+=======
+>>>>>>> develop
                                     variant='contained'
                                     color='primary'
                                     className={classes.button}
@@ -318,9 +420,13 @@ function Home(props){
                         </Form>
                     </Formik>
                 </CardContent>
+<<<<<<< HEAD
                 
             </Card>
             
+=======
+            </Card>
+>>>>>>> develop
         </React.Fragment>
     )
 }
@@ -334,4 +440,10 @@ const mapStateToProps=state=>({
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
+<<<<<<< HEAD
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,convertorAction}) (Home)
+=======
+
+export {SecondStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,convertorAction}) (SecondStep)
+>>>>>>> develop

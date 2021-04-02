@@ -72,3 +72,31 @@
       })
   }
 
+export const getAccommodation = (id) => dispatch => {
+      dispatch({
+        type: FETCH_ACCOMMODATION_SUCCESS,
+        payload: id
+      })
+}
+
+export const getAccommodationAminity = (id) => dispatch => {
+  return API.get(`/accommodations/${id}`,{
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(res => {
+      dispatch({
+        type: FETCH_AMENITIES_SUCCESS,
+        payload: res.data
+      })
+    }
+    )
+    .catch(err => {
+      dispatch({
+        type: FETCH_AMENITIES_ERROR,
+        error: err
+      })
+    })
+}
+

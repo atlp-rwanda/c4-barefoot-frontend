@@ -1,5 +1,9 @@
 import React,{useEffect,useState} from "react";
+<<<<<<< HEAD
 import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,FormControlLabel,Checkbox,TextField} from '@material-ui/core';
+=======
+import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,Snackbar,TextField,Slide} from '@material-ui/core';
+>>>>>>> develop
 import { Field, Form, Formik,  FormikConfig,FormikValues} from 'formik';
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
@@ -10,12 +14,16 @@ import AccommodationCard from "../AccommodationCardWithReview";
 import { makeStyles } from '@material-ui/core/styles';
 import { Label, Place } from '@material-ui/icons'
 import colors from '../colors';
+<<<<<<< HEAD
 import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
+=======
+>>>>>>> develop
 import { Skeleton } from '@material-ui/lab';
 import * as yup from 'yup';
 import CloudIcon from '@material-ui/icons/Cloud';
 import Loader from '../Loader'
+<<<<<<< HEAD
 import {DatePicker} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
     //   flexDirection: 'column',
     //   justifyContent: 'space-between'
     // },
+=======
+import MuiAlert from '@material-ui/lab/Alert';
+
+const useStyles = makeStyles((theme) => ({
+>>>>>>> develop
     media: {
       height: 440
     },
@@ -43,11 +56,17 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'flex-start',
     },
     separate:{
+<<<<<<< HEAD
         // marginBottom:theme.spacing(3),
         marginLeft:theme.spacing(3)
     },
     divider:{
         // marginBottom:theme.spacing(3),
+=======
+        marginLeft:theme.spacing(3)
+    },
+    divider:{
+>>>>>>> develop
         marginTop:theme.spacing(4)
     },
     separator:{
@@ -68,7 +87,10 @@ const useStyles = makeStyles((theme) => ({
     },
     container:{
         marginLeft:theme.spacing(9),
+<<<<<<< HEAD
         // width:'80%'
+=======
+>>>>>>> develop
     },
     btn:{
         display:'flex',
@@ -89,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
         display:'block'
     }
   }));
+<<<<<<< HEAD
 function Home(props){
     
   const classes = useStyles();
@@ -101,6 +124,19 @@ function Home(props){
             </Typography>
     }
 
+=======
+function ThirdStep(props){
+    
+  const classes = useStyles();
+    const closeBookSnackBarTimer = () => {
+        props.clearBookSnackbar()
+      }
+
+    const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+    }
+    
+>>>>>>> develop
     const handleBook=(value)=>{
         let formdata={From:"",To:""}
         formdata.From=value.From
@@ -120,7 +156,25 @@ function Home(props){
 
     return(
         <React.Fragment>
+<<<<<<< HEAD
             <Loader open={props.status}/>
+=======
+        <div>
+            <Loader open={props.status}/>
+            <Snackbar
+                    open={props.snackBarMessage.open}
+                    onClose={closeBookSnackBarTimer}
+                    autoHideDuration={4000}
+                    TransitionComponent={TransitionUp}
+                >
+                <MuiAlert
+                    severity={props.snackBarMessage.severity}
+                    variant='filled'
+                    elevation={6}
+                    >{props.snackBarMessage.message}
+                </MuiAlert>
+            </Snackbar>
+>>>>>>> develop
             <Card>
                 <CardContent>
                     <Formik initialValues={{
@@ -133,8 +187,14 @@ function Home(props){
                             resetForm()
                         }}
                     >
+<<<<<<< HEAD
                     {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
                         <Form onSubmit={handleSubmit}>
+=======
+                    
+                    {({ values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting}) => (
+                        <Form form-data="form-3">
+>>>>>>> develop
                             <div className={classes.divider} >
                             <Card className={classes.root} >
                                 {(!props.accommodation ? 
@@ -170,7 +230,11 @@ function Home(props){
                                                 Booking
                                             </Typography>
                                             <Grid container spacing={3} className={classes.divider} >
+<<<<<<< HEAD
                                                 <Grid container item xs={3} spacing={3} className={classes.dates}>
+=======
+                                                <Grid container item xs={12} sm={4} spacing={3} className={classes.dates}>
+>>>>>>> develop
                                                     
                                                                                                                                                 <TextField 
                                                             id="From"
@@ -188,10 +252,17 @@ function Home(props){
                                                         />
                                                        
                                                 </Grid>
+<<<<<<< HEAD
                                                 <Grid container item xs={3} spacing={3} className={classes.dates}>
                                                         <TextField 
                                                             id="To"
                                                             label="Book upto"
+=======
+                                                <Grid container item xs={12} sm={4} spacing={3} className={classes.dates}>
+                                                        <TextField 
+                                                            id="To"
+                                                            label="Book up to"
+>>>>>>> develop
                                                             type="datetime-local"
                                                             error={touched.To && errors.To}
                                                             helperText={touched.To && errors.To}
@@ -243,6 +314,10 @@ function Home(props){
                     </Formik>
                 </CardContent>
             </Card>
+<<<<<<< HEAD
+=======
+            </div>
+>>>>>>> develop
         </React.Fragment>
     )
 }
@@ -255,6 +330,15 @@ const mapStateToProps=state=>({
     count:state.fetchAccommodations.count,
     status:state.bookAccommodations.pending,
     amenities:state.fetchAccommodations.amenities,
+<<<<<<< HEAD
     temp:state.fetchAccommodations.temp
 })
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (Home)
+=======
+    temp:state.fetchAccommodations.temp,
+    snackBarMessage:state.bookAccommodations.snackBarMessage
+})
+
+export {ThirdStep}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature,bookAccommodations,clearBookSnackbar}) (ThirdStep)
+>>>>>>> develop

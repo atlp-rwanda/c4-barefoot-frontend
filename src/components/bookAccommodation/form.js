@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import React,{useEffect,useState} from "react";
 import {Card,CardContent, CardActionArea, CardActions, CardMedia,Typography,Grid,Divider,Button,FormControlLabel,Checkbox} from '@material-ui/core';
 import { Field, Form, Formik, FormikConfig,FormikValues} from 'formik';
+=======
+import React,{useEffect} from "react";
+>>>>>>> develop
 import {getAccommodationsByLocation,selectAccommodation} from "../../redux/actions/fetchAccommodationByLocation";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
 import {getTemperature} from "../../redux/actions/getWeather";
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import AccommodationCard from "../AccommodationCardWithReview";
 import { makeStyles } from '@material-ui/core/styles';
 import { Label, Place } from '@material-ui/icons'
@@ -127,10 +132,22 @@ function Home(props){
             //     <Book/>
             // </Grid>
         //  </React.Fragment>
+=======
+import Book from "./index"
+
+function Form(props){
+    useEffect(() => {
+    props.getAccommodationsByLocation(props.match.params.locationId);
+    props.getAccommodations();
+  }, [])
+
+    return(
+>>>>>>> develop
         <Book/>
     )
 }
 
+<<<<<<< HEAD
 // export function FormikStepper({children,...props}: FormikConfig<FormikValues>){
 //     const childrenArray= React.Children.toArray(children)
 //     const [step,setStep] =useState(0);
@@ -142,6 +159,8 @@ function Home(props){
 //         </Formik>
 //     )
 // }
+=======
+>>>>>>> develop
 const mapStateToProps=state=>({
     accommodations:state.fetchAccommodations.accommodationsByLocation,
     accommodation:state.fetchAccommodations.accommodation,
@@ -150,4 +169,9 @@ const mapStateToProps=state=>({
     amenities:state.fetchAccommodations.amenities,
     temp:state.fetchAccommodations.temp
 })
+<<<<<<< HEAD
 export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Home)
+=======
+export{Form}
+export default connect(mapStateToProps,{getAccommodationsByLocation,selectAccommodation,getAccommodation,getAccommodations,getAccommodationAminity,getTemperature}) (Form)
+>>>>>>> develop
