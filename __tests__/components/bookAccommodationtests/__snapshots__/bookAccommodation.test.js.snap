@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Book Accommodation Signup Rendering renders correctly Third step 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <ThirdStep
+    accommodation={
+      Object {
+        "city": "Kigali",
+        "country": "Rwanda",
+        "description": "A serene environment for relaxation",
+        "id": "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        "photos": "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
+        "title": "Marriot Hotel",
+      }
+    }
+    accommodations={
+      Array [
+        Object {
+          "city": "Kigali",
+          "country": "Rwanda",
+          "description": "A serene environment for relaxation",
+          "id": "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          "photos": "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
+          "title": "Marriot Hotel",
+        },
+      ]
+    }
+    clearBookSnackbar={[MockFunction]}
+    count={6}
+    formData={FormData {}}
+    nextStep={[Function]}
+    prevStep={[Function]}
+    profile_picture="image.jpg"
+    selectedAccommodation="1243534gfdggs-ggfdrdrd-t66fytftf"
+    setFormData={[Function]}
+    snackBarMessage={
+      Object {
+        "message": null,
+        "open": false,
+        "severity": "",
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`Book Accommodation Signup Rendering renders correctly first step 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <FirstStep
+    accommodation={
+      Object {
+        "city": "Kigali",
+        "country": "Rwanda",
+        "description": "A serene environment for relaxation",
+        "id": "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+        "photos": "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
+        "title": "Marriot Hotel",
+      }
+    }
+    accommodations={
+      Array [
+        Object {
+          "city": "Kigali",
+          "country": "Rwanda",
+          "description": "A serene environment for relaxation",
+          "id": "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          "photos": "https://cache.marriott.com/marriottassets/marriott/KGLMC/kglmc-exterior-0030-hor-feat.jpg",
+          "title": "Marriot Hotel",
+        },
+      ]
+    }
+    clearBookSnackbar={[MockFunction]}
+    count={6}
+    formData={FormData {}}
+    nextStep={[Function]}
+    prevStep={[Function]}
+    profile_picture="image.jpg"
+    selectedAccommodation="1243534gfdggs-ggfdrdrd-t66fytftf"
+    setFormData={[Function]}
+    snackBarMessage={
+      Object {
+        "message": null,
+        "open": false,
+        "severity": "",
+      }
+    }
+  />
+</ContextProvider>
+`;
