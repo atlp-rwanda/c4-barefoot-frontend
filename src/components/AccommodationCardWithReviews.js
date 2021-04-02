@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox} from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox } from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import colors from './colors';
@@ -18,58 +18,56 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 140
   },
-  checkbox:{
-      display: 'block',
-      position:'absolute',
-      color: 'secondary',
-      right: 0,
-      fontSize:'25px'
+  checkbox: {
+    display: 'block',
+    position: 'absolute',
+    color: 'secondary',
+    right: 0,
+    fontSize: '25px'
   },
-  cardActions:{
-      display: 'flex',
-      flexDirection:'column',
-      alignItems:'flex-start',
+  cardActions: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
-  reviews:{
-      fontSize: '14px',
-      color: colors.primary100,
+  reviews: {
+    fontSize: '14px',
+    color: colors.primary100,
   },
-  cardContent:{
+  cardContent: {
     overflow: 'hidden'
   },
-  titleText:{
-    [theme.breakpoints.down('sm')]:{
-      fontSize:'18px',
+  titleText: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '18px',
     }
   }
 }));
 
 function Accommodations(props) {
-    const classes = useStyles();
-    const open = false; 
-    const handleSelection = (event) =>{
-      const accommodation={
-        selected:props.accommodation,
-        checked: event.target.checked,
-      };
-    
-      return props.selectAccommodationAction(accommodation);
+  const classes = useStyles();
+  const open = false;
+  const handleSelection = (event) => {
+    const accommodation = {
+      selected: props.accommodation,
+      checked: event.target.checked,
+    };
+    return props.selectAccommodationAction(accommodation);
+  }
 
-    }    
-    
-    
-    let check=false;
-    props.travelRequest.selectedAccommodation.map( selected =>{
-      selected.id === props.accommodation.id ? check=true : null
-    })
-    const handleViewMore =() =>{
-      return props.openModalAction({open: true, data: props.accommodation});
-    }
+
+  let check = false;
+  // props.travelRequest.selectedAccommodation.map(selected => {
+  //   selected.id === props.accommodation.id ? check = true : null
+  // })
+  const handleViewMore = () => {
+    return props.openModalAction({ open: true, data: props.accommodation });
+  }
 
 
   return (
     <Card className={classes.root} >
-      {(props.pending ? 
+      {(props.pending ?
         <CardActionArea>
           <Skeleton animation="wave" variant="rect" className={classes.media} />
           <CardContent className={classes.cardContent} >
@@ -81,38 +79,36 @@ function Accommodations(props) {
           </CardActions>
         </CardActionArea>
         :
-      <>
-      <CardActionArea>
-        <Checkbox
-        onChange={handleSelection}
-        checked={check}
-        className={classes.checkbox}/>
-        <CardMedia
-          onClick={handleViewMore}
-          className={classes.media}
-          image={props.accommodation.photos}
-          title={props.accommodation.title}
-        />
-        <CardContent onClick={handleViewMore} className={classes.cardContent} >
-          <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
-           {props.accommodation.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" noWrap >
-            {props.accommodation.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodation.state}, {props.accommodation.city} </Button>
-        <Ratings highRating={3} />
-        <Typography className={classes.reviews}>
-            25 Reviews
+        <>
+          <CardActionArea>
+            <Checkbox
+              onChange={handleSelection}
+              className={classes.checkbox} />
+            <CardMedia
+              onClick={handleViewMore}
+              className={classes.media}
+              image={props.accommodation.photos}
+              title={props.accommodation.title}
+            />
+            <CardContent onClick={handleViewMore} className={classes.cardContent} >
+              <Typography gutterBottom variant="h5" component="h2" className={classes.titleText}>
+                {props.accommodation.title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p" noWrap >
+                {props.accommodation.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions className={classes.cardActions}>
+            <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodation.state}, {props.accommodation.city} </Button>
+            <Ratings highRating={3} />
+            <Typography className={classes.reviews}>
+              25 Reviews
         </Typography>
-      </CardActions>
-      </>
+          </CardActions>
+        </>
       )}
     </Card>
   );
 }
-
 export default Accommodations;
