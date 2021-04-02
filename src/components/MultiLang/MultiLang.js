@@ -28,7 +28,7 @@ export default function MultipleLanguages() {
   const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [lang, setLang] = React.useState('');
+  const [lang, setLang] = React.useState();
 
   const handleChange = (event) => {
     setLang(event.target.value || '');
@@ -47,7 +47,26 @@ export default function MultipleLanguages() {
     window.location.reload()
   }
 
-  const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+
+  
+
+
+//  React.useEffect(() => {
+//   function changeLang(lan) {
+//     localStorage.setItem('lang',lan)
+//     window.location.reload()
+//   }
+//   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+//   if(userProfile.language === "English"){
+//     changeLang("en") || changeLang(lang)
+//   }else if(userProfile.language === "French"){
+//     changeLang("fr") || changeLang(lang)
+//   }else if(userProfile.language === "Kinyarwanda"){
+//     changeLang("kin") || changeLang(lang)
+//   }else{
+//     changelang(lang)
+//   }
+// }, [lang])
 
 
   return (
