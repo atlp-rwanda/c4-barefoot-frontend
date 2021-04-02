@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Box, Typography} from '@material-ui/core'
 import RequesterDrawer from './requesterDrawer'
+import MultipleLanguages from './MultiLang/MultiLang'
 
 const useStyles = makeStyles(theme => ({
     navDisplay: {
@@ -34,6 +35,7 @@ function Header (){
                 </Box>
               
                     <List component='nav'>
+                        <Button><MultipleLanguages/></Button>
                         <Button href="/login" color='inherit'>Logout</Button>
                     </List>
             </Box>

@@ -2189,7 +2189,7 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
           >
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-49"
+                className="MuiBox-root MuiBox-root-59"
               >
                 <center>
                   <Styled(MuiBox)
@@ -2200,7 +2200,7 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
                     }
                   >
                     <div
-                      className="MuiBox-root MuiBox-root-50"
+                      className="MuiBox-root MuiBox-root-60"
                       style={
                         Object {
                           "paddingTop": "50px",
@@ -2252,9 +2252,11 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
+                            No
+                             
                             done
-                             travel request found
+                             
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>
@@ -2265,7 +2267,7 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
             </Styled(MuiBox)>
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-51"
+                className="MuiBox-root MuiBox-root-61"
               >
                 <ErrorModal
                   error={null}
@@ -2273,7 +2275,7 @@ exports[` <ReportsView /> It should render the ReportsView component for Done re
                   setIsOpen={[Function]}
                 >
                   <div
-                    className="makeStyles-root-45"
+                    className="makeStyles-root-55"
                   >
                     <WithStyles(ForwardRef(Snackbar))
                       autoHideDuration={6000}
@@ -2586,7 +2588,7 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
           >
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-73"
+                className="MuiBox-root MuiBox-root-93"
               >
                 <center>
                   <Styled(MuiBox)
@@ -2597,7 +2599,7 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
                     }
                   >
                     <div
-                      className="MuiBox-root MuiBox-root-74"
+                      className="MuiBox-root MuiBox-root-94"
                       style={
                         Object {
                           "paddingTop": "50px",
@@ -2649,9 +2651,11 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
+                            No
+                             
                             invalid
-                             travel request found
+                             
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>
@@ -2662,7 +2666,7 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
             </Styled(MuiBox)>
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-75"
+                className="MuiBox-root MuiBox-root-95"
               >
                 <ErrorModal
                   error={null}
@@ -2670,7 +2674,7 @@ exports[` <ReportsView /> It should render the ReportsView component for invalid
                   setIsOpen={[Function]}
                 >
                   <div
-                    className="makeStyles-root-45"
+                    className="makeStyles-root-55"
                   >
                     <WithStyles(ForwardRef(Snackbar))
                       autoHideDuration={6000}
@@ -2983,7 +2987,7 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
           >
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-46"
+                className="MuiBox-root MuiBox-root-56"
               >
                 <center>
                   <Styled(MuiBox)
@@ -2994,7 +2998,7 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
                     }
                   >
                     <div
-                      className="MuiBox-root MuiBox-root-47"
+                      className="MuiBox-root MuiBox-root-57"
                       style={
                         Object {
                           "paddingTop": "50px",
@@ -3046,9 +3050,11 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
                           <h6
                             className="MuiTypography-root MuiTypography-subtitle1"
                           >
-                            No 
+                            No
+                             
                             pending
-                             travel request found
+                             
+                            travel request found
                           </h6>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>
@@ -3059,7 +3065,7 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
             </Styled(MuiBox)>
             <Styled(MuiBox)>
               <div
-                className="MuiBox-root MuiBox-root-48"
+                className="MuiBox-root MuiBox-root-58"
               >
                 <ErrorModal
                   error={null}
@@ -3067,7 +3073,7 @@ exports[` <ReportsView /> It should render the ReportsView component for pending
                   setIsOpen={[Function]}
                 >
                   <div
-                    className="makeStyles-root-45"
+                    className="makeStyles-root-55"
                   >
                     <WithStyles(ForwardRef(Snackbar))
                       autoHideDuration={6000}

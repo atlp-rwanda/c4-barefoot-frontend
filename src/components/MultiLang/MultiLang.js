@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useTranslation } from 'react-i18next';
+import LanguageIcon from '@material-ui/icons/Language';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -48,24 +49,10 @@ export default function MultipleLanguages() {
 
   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
-  console.log('language', userProfile.language)
-    
-  React.useEffect(()=>{
-    if(userProfile.language === "English"){
-      localStorage.setItem('lang', "en")
-    }else if(userProfile.language === "French"){
-      localStorage.setItem('lang', "fr")
-    }else if(userProfile.language === "Kinyarwanda"){
-      localStorage.setItem('lang', "kin")
-    }else {
-      localStorage.removeItem('lang')
-    }
-  }, [])
-
 
   return (
     <div>
-      <Button onClick={handleClickOpen} style={{color: 'white'}}>{t("Change language")}</Button>
+      <Button onClick={handleClickOpen} style={{color: 'white'}}><LanguageIcon/>{t(localStorage.getItem('lang'))}</Button>
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>{t("Choose the language")}</DialogTitle>
         <DialogContent>

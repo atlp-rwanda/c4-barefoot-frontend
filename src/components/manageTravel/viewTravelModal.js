@@ -18,10 +18,12 @@ import ErrorModal from './ErrorModal';
 import ConfirmModal from './ConfirmModal';
 import {clearUpdateTravelRequest} from '../../redux/actions/updateTravelRequestAction'
 import SuccessModal from './SuccessModal';
+import {useTranslation} from 'react-i18next';
 
 const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 
 const ViewTravelModal= (props)=> {
+    const { t, i18n} = useTranslation();
 //   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));

@@ -272,7 +272,7 @@ function ReportsView(props) {
            :
            <center>
             <Box style={{ paddingTop: '50px'}}>
-               <Typography variant="subtitle1" component="h6">{t("No")} {category} {t("travel request found")}</Typography>
+               <Typography variant="subtitle1" component="h6">{t("No")} + category + {t("travel request found")}</Typography>
            </Box>
            </center>
         
