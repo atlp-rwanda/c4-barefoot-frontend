@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import colors from '../colors';
 import { Button, Grid, makeStyles, Typography, Box, Card, useTheme, Container, Paper, CardContent } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab'
+import { Skeleton } from '@material-ui/lab';
 import RequestCard from './RequestCard';
-import RequestModal from './RequestModal';
+
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -100,25 +100,20 @@ const useStyles = makeStyles((theme) => ({
 const DisplayTravelRequest = (props) => {
     const classes = useStyles()
     const theme = useTheme();
-    const pendingTravelRequests = [];
-    props.listTravelRequest.travelRequests.map(travel => {
-        if (travel.status === 'pending') {
-            pendingTravelRequests.push(travel)
+    let filteredTravels = [];
+
+    console.log(props.listTravelRequest.status);
+
+    props.listTravelRequest.travelRequests.map((request) => {
+        if (request.travelRequestInfo.status == props.listTravelRequest.status) {
+            filteredTravels.push(request)
         }
     });
-    const [openModal, setOpenModal] = useState(false)
+
+    console.log(filteredTravels)
     const category = props.category;
     //formating dsate
 
-    // openning modal
-    const handleModalOpen = () => {
-        setOpenModal(true)
-    }
-
-    // closing modal
-    const handleModalClose = () => {
-        setOpenModal(false);
-    };
 
     return (
         <Grid container className={classes.main} >
@@ -151,19 +146,14 @@ const DisplayTravelRequest = (props) => {
                 :
                 <Container maxWidth="md" className={classes.cardContainer}>
                     <Box>
-                        {props.listTravelRequest.travelRequests.length !== 0 ? props.listTravelRequest.travelRequests.map((travel) => (
+                        {filteredTravels.length !== 0 ? filteredTravels.map((travel) => (
 
-                            <Card className={classes.root} key={travel.travelRequestInfo.travelId} onClick={() => { handleModalOpen() }}>
+                            <Card className={classes.root} key={travel.travelRequestInfo.travelId}>
 
                                 <RequestCard
                                     travel={travel.travelRequestInfo}
                                     userInfo={travel.userInfo}
                                     accommodationInfo={travel.accommodationInfo}
-                                    onClick={() => { handleModalOpen() }}
-                                />
-                                <RequestModal
-                                    travel={travel}
-                                    openProp={openModal}
                                 />
                             </Card>
                         ))

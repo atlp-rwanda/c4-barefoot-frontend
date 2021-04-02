@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Grid, makeStyles, Typography, Container, GridListTileBar, Button } from '@material-ui/core';
 import colors from '../../colors'
 import { connect } from 'react-redux';
-import { GetTravelRequestsAction } from '../../../redux/actions/ViewTravelRequestAction';
+import { GetTravelRequestsAction, changeStatusFilter } from '../../../redux/actions/ViewTravelRequestAction';
 import DisplayTravelRequest from '../../travelRequests/DisplayTravelRequest';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
@@ -25,8 +25,15 @@ const useStyles = makeStyles((theme) => ({
     content: {
         width: '100%',
         height: 'auto'
+    },
+    filter: {
+        width: '150px',
+        fontSize: '20px',
+        height: '40px',
+        textAlign: 'center'
     }
 }))
+
 
 const ViewTravelRequest = (props) => {
     const { t, i18n } = useTranslation();
@@ -34,6 +41,10 @@ const ViewTravelRequest = (props) => {
     useEffect(() => {
         props.GetTravelRequestsAction();
     }, [])
+
+    const handleFilterChange = (e) => {
+        props.changeStatusFilter(e.target.value);
+    }
 
     const getNextPage = (event, value) => {
         const userToken = localStorage.getItem('barefootUserToken');
@@ -51,7 +62,17 @@ const ViewTravelRequest = (props) => {
                     {t("View Travel Requests")}
                 </Typography>
             </Grid>
-
+            <Grid item xs={12} className={classes.title}>
+                <Typography variant="h6" style={{ color: colors.primary100, fontSize: '25px' }}>
+                    Filter
+                </Typography>
+                <select onChange={handleFilterChange} className={classes.filter}>
+                    <option value="pending">pending</option>
+                    <option value="approved">approved</option>
+                    <option value="rejected">rejected</option>
+                    <option value="canceled">canceled</option>
+                </select>
+            </Grid>
             <Grid item xs={12} className={classes.content}>
                 <DisplayTravelRequest {...props} />
             </Grid>
@@ -63,9 +84,9 @@ const ViewTravelRequest = (props) => {
     );
 }
 
-
 const mapStateToProps = state => ({
     listTravelRequest: state.viewTravelRequest
 });
+
 export { ViewTravelRequest };
-export default connect(mapStateToProps, { GetTravelRequestsAction })(ViewTravelRequest);
+export default connect(mapStateToProps, { GetTravelRequestsAction, changeStatusFilter })(ViewTravelRequest);

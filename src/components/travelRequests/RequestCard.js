@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 const RequestCard = (props) => {
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
 
     // openning modal
     const handleModalOpen = () => {
@@ -89,12 +89,17 @@ const RequestCard = (props) => {
     }
 
     // closing modal
-    const handleModalClose = () => {
-        setOpenModal(false);
-    };
+    // const handleModalClose = () => {
+    //     setOpenModal(false);
+    // };
 
     const classes = useStyles();
     const { travel, userInfo, accommodationInfo } = props;
+    const modalData = {
+        travelRequestInfo: travel,
+        userInfo,
+        accommodationInfo
+    }
     return (
         <Grid container className={classes.container}>
             <Grid item xs={12} sm={4}>
@@ -141,18 +146,32 @@ const RequestCard = (props) => {
                 </Box>
                 <Box className={classes.actions}>
                     <Box>
-                        <Button color="primary" onClick={handleModalOpen()}>View more</Button>
+                        <Button color="primary" onClick={() => { handleModalOpen() }}>View more</Button>
                     </Box>
                     <Box>
-                        <Button color="primary" className={classes.editBtn}>Edit</Button>
-                        <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
+                        {
+                            modalData.travelRequestInfo.status == 'pending' &&
+                            <Button color="primary" className={classes.editBtn}>Edit</Button>
+                        }
+                        {
+                            modalData.travelRequestInfo.status == 'pending' &&
+                            <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
+                        }
+                        {
+                            modalData.travelRequestInfo.status == 'approved' &&
+                            <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
+                        }
                     </Box>
                 </Box>
             </Grid>
-            <RequestModal
-                travel={travel}
-                openProp={openModal}
-            />
+            {
+                openModal == true &&
+                <RequestModal
+                    travel={modalData}
+                    openProp={openModal}
+                    setOpenModal={setOpenModal}
+                />
+            }
         </Grid>
 
     );

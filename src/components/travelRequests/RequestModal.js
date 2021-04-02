@@ -13,7 +13,7 @@ import { Box, Divider, Grid, Typography } from '@material-ui/core';
 const default_image = 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 
 const RequestModal = (props) => {
-    let { openProp, travel } = props
+    let { openProp, travel, setOpenModal } = props
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     let title = 'View Travel Request';
@@ -75,8 +75,10 @@ const RequestModal = (props) => {
 
     const handleClose = () => {
         setOpen(false);
+        setOpenModal(false);
     };
     const classes = useStyles();
+    console.log(travel)
     return (
         <Dialog
             fullScreen={fullScreen}
@@ -93,7 +95,7 @@ const RequestModal = (props) => {
                 <DialogContent>
                     <Box className={classes.imageContainer} >
                         <img alt="dialog image"
-                            src={travel.accommodationInfo[0].photos ? travel.accommodationInfo.photos : default_image}
+                            src={travel.accommodationInfo ? travel.accommodationInfo[0].photos : default_image}
                             style={{ width: "100%" }}
                         />
                     </Box>
@@ -152,17 +154,16 @@ const RequestModal = (props) => {
                                 <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
                                     <img
                                         alt="hotel image"
-                                        src={travel.accommodationInfo ? travel.accommodationInfo[0].photos : default_image}
+                                        src={travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].photos : default_image}
                                         style={{ width: '100%' }}
-                                        onError={(e) => handleImageError(e)}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                                        {travel.accommodationInfo ? travel.accommodationInfo[0].title : 'No name available'}
+                                        {travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].title : 'No name available'}
                                     </Typography>
                                     <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                        {travel.accommodationInfo ? travel.accommodationInfo[0].description : 'No accomodation decription available for this Trip'}
+                                        {travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].description : 'No accomodation decription available for this Trip'}
                                     </Typography>
                                 </Grid>
                             </Grid>

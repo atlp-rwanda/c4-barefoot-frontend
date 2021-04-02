@@ -1,9 +1,10 @@
 import { CLOSE_SNACKBAR } from '../actions/CreateTravelRequestAction';
-import { FETCH_TRAVEL_REQUEST_LOADING, FETCH_TRAVEL_REQUEST_FAIL, FETCH_TRAVEL_REQUEST_SUCCESS } from '../actions/ViewTravelRequestAction';
+import { FETCH_TRAVEL_REQUEST_LOADING, FETCH_TRAVEL_REQUEST_FAIL, FETCH_TRAVEL_REQUEST_SUCCESS, STATUS_FILTERING } from '../actions/ViewTravelRequestAction';
 
 const initialState = {
     travelRequests: [],
     fetchLoading: false,
+    status: 'pending',
     snackBarMessage: {
         open: false,
         message: null,
@@ -41,6 +42,11 @@ export const ViewTravelRequestReducer = (state = initialState, action) => {
                     message: null,
                     severity: ''
                 }
+            }
+        case STATUS_FILTERING:
+            return {
+                ...state,
+                status: action.payload,
             }
         default:
             return state
