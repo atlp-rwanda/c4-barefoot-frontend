@@ -89,7 +89,6 @@ function Alert(props) {
 
 const UserProfile = (props) => {
     const { t, i18n } = useTranslation();
-    const [edit, setEdit] = useState(true);
     useEffect(() => {
         props.fetchUserProfile();
     }, []);

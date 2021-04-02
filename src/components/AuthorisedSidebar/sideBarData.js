@@ -42,7 +42,7 @@ let menuItems={
                 {
                     title: 'Create Travel',
                     icon: <AddCircleIcon />,
-                    link: "/travelReqests"
+                    link: "/requester/create-travel-request"
                 },
                 {
                     title: 'Pending',
@@ -151,7 +151,7 @@ let menuItems={
                 {
                     title: 'Create Travel',
                     icon: <AddCircleIcon />,
-                    link: "/travelReqests"
+                    link: "/requester/create-travel-request"
                 },
                 {
                     title: 'Pending',
@@ -248,7 +248,7 @@ let menuItems={
                 {
                     title: 'Create Travel',
                     icon: <AddCircleIcon />,
-                    link: "/travelReqests"
+                    link: "/requester/create-travel-request"
                 },
                 {
                     title: 'Pending',

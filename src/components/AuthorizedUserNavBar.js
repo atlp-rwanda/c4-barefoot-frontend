@@ -35,7 +35,6 @@ export default function ButtonAppBar() {
   const [sideBar, setSideBar] = useState(false)
   const showSideBar = () => setSideBar(!sideBar)
   const handleClockMenuIcon = () => {
-      console.log('hahahahahahahahahaha')
      return (
      <>
         <DrawerComponent />
@@ -55,6 +54,7 @@ export default function ButtonAppBar() {
             Barefoot Nomad
   </Link>
           </Typography>
+          <Button><MultipleLanguages/></Button>
           <Button href="/logout" color="inherit">{t("Logout")}</Button>
         </Toolbar>
       </AppBar>

@@ -146,6 +146,7 @@ export  const SecondStep = ({
                   ),
                 }}
               />
+            </FormControl>
             <FormControl>
               <InputLabel>{t("Language")}</InputLabel>
               <Field 
