@@ -22,6 +22,12 @@ export const sideBarData = [
         subs: []
     },
     {
+        title:"Chat",
+        icon:<DashboardIcon />,
+        link:"/chat",
+        subs: []
+    },,
+    {
         title:"Travel requests",
         icon:<CommuteIcon />,
         link:"/travelRequests",

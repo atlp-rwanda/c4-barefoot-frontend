@@ -87,6 +87,13 @@ export const managerSideBarData = [
                 link: "/managerTravel/done"
             },
         ]
+    },
+    {
+        title:"Chat",
+        icon:<CommuteIcon />,
+        link:"/chat",
+        subs: [
+        ]
     }
 
 ]

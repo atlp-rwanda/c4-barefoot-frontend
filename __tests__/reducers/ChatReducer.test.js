@@ -15,7 +15,8 @@ describe('testing chat reducers', () => {
                 response: {},
                 supportresponse: [],
                 allusers: [],
-                error: ''
+                error: '',
+                pending: false,
             }
         )
     })
@@ -36,7 +37,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -55,7 +57,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: { data: { profile: {} }, status: 200 },
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -74,7 +77,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -93,7 +97,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -112,7 +117,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -131,7 +137,8 @@ describe('testing chat reducers', () => {
             response: { data: { profile: {} }, status: 200 },
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -150,7 +157,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: { data: { profile: {} }, status: 200 },
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -169,7 +177,8 @@ describe('testing chat reducers', () => {
             response: {},
             supportresponse: [],
             allusers: [],
-            error: ''
+            error: '',
+            pending: false,
         })
     })
 
@@ -187,6 +196,7 @@ describe('testing chat reducers', () => {
             vmessages: [],
             response: {},
             supportresponse: [],
+            pending: false,
             allusers: [],
             error: ''
         })

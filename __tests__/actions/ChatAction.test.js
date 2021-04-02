@@ -30,7 +30,7 @@ describe('testing fetchUsersChat', () => {
         })
         return store.dispatch(actions.fetchUsersChat()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('CHATTED_USERS')
+            expect(expectedActions[1].type).toEqual('CHATTED_USERS')
         })
     })
 
@@ -86,7 +86,7 @@ describe('test getting all users', () => {
         })
         return store.dispatch(actions.fetchUsers()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('ALL_USERS')
+            expect(expectedActions[1].type).toEqual('ALL_USERS')
         })
     })
 
@@ -114,7 +114,7 @@ describe('test getting all messages between two users', () => {
         })
         return store.dispatch(actions.getChats()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('GETALL_CHATS')
+            expect(expectedActions[1].type).toEqual('GETALL_CHATS')
         })
     })
 })
@@ -139,7 +139,7 @@ describe('visitors get support message', () => {
         })
         return store.dispatch(actions.getSupportResponse()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('GETSUPPORT_RESPONSE')
+            expect(expectedActions[1].type).toEqual('GETSUPPORT_RESPONSE')
         })
     })
 })
@@ -161,7 +161,7 @@ describe('should return NEW_MESSAGE', () => {
         })
         return store.dispatch(actions.newMessageAction()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('NEW_MESSAGE')
+            expect(expectedActions[1].type).toEqual('NEW_MESSAGE')
         })
     })
 })
@@ -183,7 +183,7 @@ describe('should return VISITOR_MESSAGE', () => {
         })
         return store.dispatch(actions.visitorsMessage()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('VISITOR_MESSAGE')
+            expect(expectedActions[1].type).toEqual('VISITOR_MESSAGE')
         })
     })
 })
@@ -205,7 +205,7 @@ describe('should return NEW_MESSAGE', () => {
         })
         return store.dispatch(actions.newMessageAction()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('NEW_MESSAGE')
+            expect(expectedActions[1].type).toEqual('NEW_MESSAGE')
         })
     })
 })
@@ -227,7 +227,7 @@ describe('should return SUPPORT_RESPONDS', () => {
         })
         return store.dispatch(actions.supportResponds()).then(() => {
             const expectedActions = store.getActions();
-            expect(expectedActions[0].type).toEqual('SUPPORT_RESPONDS')
+            expect(expectedActions[1].type).toEqual('SUPPORT_RESPONDS')
         })
     })
 })

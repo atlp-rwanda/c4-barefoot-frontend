@@ -15,24 +15,14 @@ function Alert(props) {
 }
 
 function ChatMessages(props){
-    const [livechat, setMessages] = React.useState([])
-    // const [vMessages, setvMessages] = React.useState([])
     const [open, setOpen] = React.useState(false)
     const [error, setError] = React.useState('')
     const theerror = props.error;
     React.useEffect(()=>{
-        // io.emit('user_connected', {userId:localStorage.getItem('id')});
-        // io.on('user_connected', userId=>{
-        //     console.log(userId);
-        //     io.on('new_message', data => {
-        //         setMessages([messages])
-        //     });
-        // })
         
         props.getChats();
-        // io.on('request_support', messages=> {
-        //     setvMessages([messages])
-        // })
+        props.getVisitorsMessages()
+        
         if(theerror){
             setError(theerror)
             setOpen(true)
@@ -40,7 +30,6 @@ function ChatMessages(props){
         
     }, [])
 
-    console.log('receiver livechat', livechat)
 
     const chats = props.chats;
     const user = localStorage.getItem('userName')

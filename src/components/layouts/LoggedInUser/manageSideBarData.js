@@ -15,6 +15,13 @@ export const managerSideBarData = [
         link:"/home",
         subs: []
     },
+    {
+        title:"Chat",
+        icon:<CommuteIcon />,
+        link:"/chat",
+        subs: [
+        ]
+    },
       {
          title:"Accomodation",
         icon:<AddLocationIcon />,
@@ -88,6 +95,7 @@ export const managerSideBarData = [
             },
         ]
     }
+    
 
 ]
 
