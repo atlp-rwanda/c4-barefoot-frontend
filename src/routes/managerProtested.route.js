@@ -9,7 +9,7 @@ const managerRoute = props => {
     const { layout: Layout, component: Component, ...rest } = props;
     const token = localStorage.getItem('barefootUserToken');
     const role = localStorage.getItem('userRole');
-    if (token && role==='manager') {
+    if (token && (role==='manager'|| role==='administrator')) {
         return (
             <Route
                 {...rest}

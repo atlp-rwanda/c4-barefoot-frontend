@@ -83,7 +83,7 @@ function Landing (props){
         </Typography>
 
         <Grid container spacing={3}>
-          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.rows.slice(0,3).map((location) => (
+          {props.locationsData.pending ? locationSkeleton :props.locationsData.locations.slice(0,3).map((location) => (
               <Grid item xs={12} sm={6} md={4} className={classes.paper} key = {location.id}>
                 <LocationCard location={location}/>
               </Grid> 

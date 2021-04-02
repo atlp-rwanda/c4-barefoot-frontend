@@ -121,6 +121,18 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
           path="/logout"
         />
+        <ProtectedRoute
+          component={requesterHome}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/requester"
+        />
+        <ProtectedRoute
+          component={BookForm}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/bookAccommodation/:locationId"
+        />
         <AdminRoute
           component={adminHome}
           exact

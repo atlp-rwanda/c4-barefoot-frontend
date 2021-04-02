@@ -108,7 +108,7 @@ export  const SecondStep = ({
             </Box>
             <Field 
             name='bio' 
-            label='Biography' 
+            label={t("Biography")}
             as={TextField} 
             margin='normal'
               inputprops={{
@@ -121,7 +121,7 @@ export  const SecondStep = ({
             />
             <Field 
             name='occupation' 
-            label='Occupation' 
+            label={t("Occupation")}
             as={TextField} 
             margin='normal'
               inputprops={{
@@ -133,10 +133,9 @@ export  const SecondStep = ({
               }}
             />
             <FormControl>
-              <InputLabel>{t("Address")}</InputLabel>
               <Field 
               name="address" 
-              label='Address'
+              label={t("Address")}
               as={TextField} 
                 inputprops={{
                   startAdornment: (

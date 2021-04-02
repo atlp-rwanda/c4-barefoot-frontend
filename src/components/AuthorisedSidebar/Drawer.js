@@ -114,7 +114,7 @@ function DrawerComponent() {
         >
         </div>
         <Box className={classes.accountInfo}>
-        <Link to='userprofile'>
+        <Link to='/userprofile'>
           <Avatar className={classes.paper}>
             <AccountCircle fontSize='large' className={classes.listIcons}/>
           </Avatar>

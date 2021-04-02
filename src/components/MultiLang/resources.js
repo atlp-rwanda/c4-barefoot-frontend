@@ -95,7 +95,9 @@ export const resources = {
         "Done": "Done",
         "Date of travel": "Date of travel",
         "Date of return": "Date of return",
-        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip."
+        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.",
+        "Occupation":"Occupation",
+        "Biography":"Biography"
       }
     },
     fr: {
@@ -195,7 +197,9 @@ export const resources = {
         "Done": "Terminé",
         "Date of travel": "Date du voyage",
         "Date of return": "Date de retour",
-        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Envisagez-vous de traverser les frontières de votre pays ainsi que du continent, seul ou avec vos collaborateurs? Ne vous inquiétez pas, vous êtes au bon endroit. Ici, nous allons vous aider à trouver la meilleure destination et l'hébergement et réserver votre voyage"
+        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Envisagez-vous de traverser les frontières de votre pays ainsi que du continent, seul ou avec vos collaborateurs? Ne vous inquiétez pas, vous êtes au bon endroit. Ici, nous allons vous aider à trouver la meilleure destination et l'hébergement et réserver votre voyage",
+        "Occupation":"Occupation",
+        "Biography":"Biographie"
       }
     },
     kin: {
@@ -295,7 +299,9 @@ export const resources = {
         "Done": "Byarangiye",
         "Date of travel": "Itariki y'urugendo",
         "Date of return": "Itariki yo kugarukiraho",
-        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Urateganya kurenga imipaka yigihugu cyawe kimwe nu mugabane, wenyine cyangwa hamwe nabakozi mukorana? Ntugire ikibazo, uri ahantu heza. Hano tugiye kugufasha kubona aho ujya & uburaro bwiza no kwandika urugendo rwawe"
+        "Are you planning to cross the borders of your country as well as the continent, alone or with your co-workers ? Don't worry, you're in the right place. Here we're going to help you find best destination & accommodations and book your trip.":"Urateganya kurenga imipaka yigihugu cyawe kimwe nu mugabane, wenyine cyangwa hamwe nabakozi mukorana? Ntugire ikibazo, uri ahantu heza. Hano tugiye kugufasha kubona aho ujya & uburaro bwiza no kwandika urugendo rwawe",
+        "Occupation":"Umwuga",
+        "Biography":"Ubuzima"
       }
     }
   };

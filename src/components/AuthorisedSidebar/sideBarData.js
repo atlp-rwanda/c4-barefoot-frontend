@@ -184,7 +184,7 @@ let menuItems={
                 {
                     title: 'Create accomodation',
                     icon: <EmojiTransportationIcon />,
-                    link: "/travelManager/accomodations/create"
+                    link: "/travelManager/accommodations/create"
                 },
                 {
                     title: 'List of accomodations',
@@ -330,7 +330,7 @@ let menuItems={
                 {
                     title: 'Create accomodation',
                     icon: <EmojiTransportationIcon />,
-                    link: "/travelManager/accomodations/create"
+                    link: "/travelManager/accommodations/create"
                 },
                 {
                     title: 'List of accomodations',
