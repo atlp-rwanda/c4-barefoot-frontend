@@ -66,10 +66,6 @@ function Accommodations(props) {
       props.getAccommodationAminity(event.target.id);
 
   };
-  useEffect(() => {
-    props.getBookings()
-    // console.log(props.reviews)
-  },[])
     const handleViewMore =() =>{
       return props.openModalAction({open: true, data: props.accommodation});
     }

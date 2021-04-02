@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox} from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
-import colors from './colors';
-import Ratings from './RatingStars';
+import colors from '../colors';
+import Ratings from './stars';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import {getBookings} from "../redux/actions/bookAccommodationAction";
+import {getBookings} from "../../redux/actions/bookAccommodationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {

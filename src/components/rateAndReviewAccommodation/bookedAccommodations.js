@@ -5,7 +5,7 @@ import {getBookings} from "../../redux/actions/bookAccommodationAction";
 import {getAccommodation,getAccommodations,getAccommodationAminity} from "../../redux/actions/fetchAccommodations";
 import {getTemperature} from "../../redux/actions/getWeather";
 import { connect } from 'react-redux';
-import AccommodationCard from "../BookedAccommodationCard";
+import AccommodationCard from "./BookedAccommodationCard";
 import { makeStyles } from '@material-ui/core/styles';
 import colors from '../colors';
 
