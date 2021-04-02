@@ -1,11 +1,15 @@
-import axios from 'axios'
+import axios from 'axios';
+import {API} from './AxiosAPI';
+
 import { SEND_RESET_EMAIL_SUCCESS, SEND_RESET_EMAIL_FAIL, RESET_PASSWORD_SUCCESS, LOADING, LOADING_ERROR, CLOSE_SNACKBAR, RESET_PASSWORD_FAIL } from '../resetPasswordType';
+
+const lang = localStorage.getItem('lang')
 
 export const sendEmail = (userEmail) => dispatch =>{
         dispatch({
         type: LOADING
     });
-   return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/request-reset-password`, {email:userEmail.email})
+   return API.post(`/user/request-reset-password?lang=${lang}`, {email:userEmail.email})
     .then((res)=> {
         dispatch({
             type:SEND_RESET_EMAIL_SUCCESS,
@@ -26,7 +30,7 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
     dispatch({
         type: LOADING
     });
-    return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/user/reset-password${query}`, {
+    return API.patch(`/user/reset-password${query}?lang=${lang}`, {
         password:newPassword.password,
         confirmPassword: newPassword.confirmPassword
     })

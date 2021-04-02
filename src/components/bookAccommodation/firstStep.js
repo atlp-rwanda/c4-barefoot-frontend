@@ -13,6 +13,7 @@ import { Pagination } from '@material-ui/lab';
 import Ratings from '../RatingStars';
 import { Skeleton } from '@material-ui/lab';
 import CloudIcon from '@material-ui/icons/Cloud';
+import {useTranslation} from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 function FirstStep(props){
+    const {t, i18n} = useTranslation();
   const classes = useStyles();
     const [page, setPage] = useState(1);
     const display = props.accommodations.length ? 'none' : 'flex';
@@ -154,7 +156,7 @@ function FirstStep(props){
                                             color='primary'
                                             className={classes.button}
                                         >
-                                            Next
+                                            {t("Next")}
                                         </Button>):(null)}
                                     </div>
                                 </div>

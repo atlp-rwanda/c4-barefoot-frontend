@@ -7,12 +7,14 @@ import {
 import { authHeader, getUserProfile } from '../../helper/sessionData';
 import axios from 'axios'
 
+const lang = localStorage.getItem('lang')
+
 export const fetchUserProfile = () => dispatch => {
     dispatch({
         type: FETCH_USER_PROFILE_LOADING
     });
     const { username } = getUserProfile();
-    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/profile/${username}`, { headers: authHeader() })
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/profile/${username}?lang=${lang}`, { headers: authHeader() })
         .then(res => {
             dispatch({
                 type: FETCH_USER_PROFILE_SUCCESS,
@@ -48,7 +50,7 @@ export const updateUserProfile = (body) => async dispatch => {
         dispatch({
             type: UPDATE_USER_PROFILE_LOADING
         })
-        return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/update-profile`, body, { headers: authHeader() })
+        return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/update-profile?lang=${lang}`, body, { headers: authHeader() })
             .then(async res => {
                 await dispatch({
                     type: UPDATE_USER_PROFILE_SUCCESS,
@@ -69,7 +71,7 @@ export const changeUserPassword = (body) => async dispatch => {
     dispatch({
         type: CHANGE_USER_PASSWORD_LOADING
     })
-    return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/change-password`, body, { headers: authHeader() })
+    return axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/profile/change-password?lang=${lang}`, body, { headers: authHeader() })
         .then(async res => {
             await dispatch({
                 type: CHANGE_USER_PASSWORD_SUCCESS,

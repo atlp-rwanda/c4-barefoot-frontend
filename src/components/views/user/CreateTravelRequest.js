@@ -17,6 +17,7 @@ import ConfirmSendTravelRequest from '../../travelRequests/ConfirmSendTraveReque
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
 import AccommodationModal from '../../AccommodationModal';
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,6 +69,7 @@ function getSteps() {
 
 
 const CreateTravelRequest = (props) => {
+    const { t, i18n } = useTranslation();
     const classes = useStyles();
 
     const [activeStep, setActiveStep] = React.useState(0);
@@ -175,8 +177,8 @@ const CreateTravelRequest = (props) => {
             />
             <SnackBarMessage {...props} />
             <Grid item xs={12} className={classes.title}>
-                <Typography variant="h6" style={{ color: colors.primary100 }}>
-                    Create Travel Request
+                <Typography variant="h6" style={{color: colors.primary100}}> 
+                    {t("Create Travel Request")}
                 </Typography>
             </Grid>
 

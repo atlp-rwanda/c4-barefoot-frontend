@@ -13,7 +13,7 @@ import Loader from '../Loader'
 import { requestSignup } from '../../redux/actions/signupRequestAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeSnackbar } from '../../redux/actions/signupRequestAction';
-
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const { first_name, last_name, email, username, occupation, bio, address, language, profile_picture} = formData;
 
@@ -69,7 +70,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <AccountCircle />
             </ListItemIcon>
             <ListItemText
-              primary='Names'
+              primary={t('Names')}
               secondary={first_name + ' ' + last_name}
             />
           </ListItem>
@@ -78,7 +79,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <AccountCircle />
             </ListItemIcon>
             <ListItemText
-              primary='Username'
+              primary={t('Username')}
               secondary={username}
             />
           </ListItem>
@@ -87,7 +88,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <Email/>
             </ListItemIcon>
             <ListItemText
-              primary='Email'
+              primary={t('Email')}
               secondary={email}
               
             />
@@ -97,7 +98,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <AccountCircle />
             </ListItemIcon>
             <ListItemText
-              primary='Occupation'
+              primary={t('Occupation')}
               secondary={occupation}
               
             />
@@ -107,7 +108,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <BusinessCenter />
             </ListItemIcon>
             <ListItemText
-              primary='Address'
+              primary={t('Address')}
               secondary={address}
               
             />
@@ -117,7 +118,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <Language />
             </ListItemIcon>
             <ListItemText
-              primary='Language'
+              primary={t('Language')}
               secondary={language}
               
             />
@@ -127,7 +128,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <Subject />
             </ListItemIcon>
             <ListItemText
-              primary='Biography'
+              primary={t('Biography')}
               secondary={bio}
             />
           </ListItem>
@@ -136,7 +137,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               <EventBusy />
             </ListItemIcon>
             <ListItemText
-              primary='Occupation'
+              primary={t('Occupation')}
               secondary={occupation}
             />
           </ListItem>
@@ -149,7 +150,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
             className={classes.button}
             onClick={() => prevStep()}
           >
-            Back
+            {t("Back")}
           </Button>
 
           <Button
@@ -159,7 +160,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
             className={classes.button}
             onClick={() => signupRequest()}
           >
-            Submit
+            {t("Submit")}
           </Button>
         </div>
       </div>

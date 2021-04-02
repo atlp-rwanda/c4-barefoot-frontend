@@ -22,7 +22,9 @@ export const CANCEL_TRAVEL_REQUEST = 'CANCEL_TRAVEL_REQUEST';
 import axios from 'axios';
 import qs from 'qs';
 
-export const CheckReturningAction = (data) => dispatch => {
+const lang = localStorage.getItem('lang')
+
+export const CheckReturningAction = (data) => dispatch =>{
     return dispatch({
         type: RETURNING,
         payload: data.isReturning
@@ -42,7 +44,7 @@ export const getLocationsAction = () => async (dispatch) => {
             type: SEARCH_LOCATIONS_LOADING
         })
         const token = localStorage.getItem('barefootUserToken');
-        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations/`, {
+        const getData = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations?lang=${lang}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -158,7 +160,7 @@ export const addTravelReasonAction = (data) => dispatch => {
 export const sendTravelRequestAction = (data) => async (dispatch) => {
     try {
         const token = localStorage.getItem('barefootUserToken');// Getting the token from local storage to be used as authorization header
-        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request`, data, {
+        await axios.post(`${process.env.REACT_APP_BACKEND_LINK}/requests/request?lang=${lang}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
