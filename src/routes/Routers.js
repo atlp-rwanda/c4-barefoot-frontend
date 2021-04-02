@@ -30,6 +30,7 @@ import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
+import ViewTravelRequest from '../components/views/user/ViewTravelRequest';
 
 const Routes = () => {
   return (
@@ -215,7 +216,12 @@ const Routes = () => {
         layout={AuthorizedUserLayout}
         path="/travelManager/locations/create"
       />
-
+      <ProtectedRoute
+        exact
+        path="/requester/view-travel-requests"
+        component={ViewTravelRequest}
+        layout={AuthorizedUserLayout}
+      />
       <Redirect to="/PageNotFound" />
     </Switch>
   );

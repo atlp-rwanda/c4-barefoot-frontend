@@ -5,21 +5,23 @@ export const FETCH_TRAVEL_REQUEST_FAIL = 'FETCH_TRAVEL_REQUEST_FAIL';
 import axios from 'axios';
 const lang = localStorage.getItem('lang')
 
-export const GetTravelRequestsAction = (data) =>  async (dispatch) => {
-    const page = data.page-1 || 0;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${data.userToken}`;
+export const GetTravelRequestsAction = () => async (dispatch) => {
     dispatch({
         type: FETCH_TRAVEL_REQUEST_LOADING
     });
-    
-    try{
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests?from=${page}&to=3&lang=${lang}`);
+    try {
+        const token = localStorage.getItem('barefootUserToken');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_LINK}/requests`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return dispatch({
             type: FETCH_TRAVEL_REQUEST_SUCCESS,
             payload: res.data
         });
     }
-    catch(error){
+    catch (error) {
         return dispatch({
             type: FETCH_TRAVEL_REQUEST_FAIL,
             payload: 'something went wrong, try again!'
