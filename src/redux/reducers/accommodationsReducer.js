@@ -2,7 +2,7 @@ import {FETCH_ACCOMMODATIONS_SUCCESS, FETCH_ACCOMMODATIONS_ERROR,FETCH_ACCOMMODA
 import {FETCH_WEATHER_SUCCESS,FETCH_WEATHER_ERROR} from '../actions/getWeather'
 import {FETCH_ACCOMMODATIONS_BY_LOCATION, FETCH_ACCOMMODATIONS_BY_LOCATION_ERROR,SELECT_ACCOMMODATION} from '../actions/fetchAccommodationByLocation'
 const initialState = {
-  pending: false,
+  pending: true,
   accommodations: [],
   accommodation: {},
   nation:null,
@@ -17,11 +17,6 @@ const initialState = {
 
 export function fetchAccommodationsReducer(state = initialState, action){
   switch(action.type){
-    case FETCH_ACCOMMODATIONS_PENDING:
-      return {
-        ...state,
-        pending: true
-      }
     case FETCH_ACCOMMODATIONS_SUCCESS:
       return {
         ...state,

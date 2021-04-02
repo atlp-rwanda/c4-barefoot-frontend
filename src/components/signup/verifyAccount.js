@@ -40,7 +40,7 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 const verify = (token, verified, setVerified ,setError) => {
-    Axios.patch(`https://barefoot-nomad-app-v1.herokuapp.com/api/v1/user/verification?token=` + token)
+    Axios.patch(`${process.env.REACT_APP_BACKEND_LINK}/user/verification?token=` + token)
     .then(res => {
       setVerified(true)
     })

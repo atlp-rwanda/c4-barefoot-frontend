@@ -2,7 +2,9 @@ import {FETCH_LOCATIONS_PENDING, FETCH_LOCATIONS_SUCCESS, FETCH_LOCATIONS_ERROR}
 
 const initialState = {
   pending: false,
-  locations: [],
+  locations: {
+    rows: [],
+  },
   error: null
 }
 

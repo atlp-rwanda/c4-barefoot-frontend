@@ -6,10 +6,18 @@ import signup from '../components/views/Signup'
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
+import Unauthorized from '../components/views/Unauthorized'
+import Profile from '../components/views/Profile';
+import adminHome from '../components/views/Admin/Home';
+import BookForm from '../components/bookAccommodation/form';
+import requesterHome from '../components/views/Requester/Home';
+import CreateRoles from '../components/views/Admin/CreateRoles';
+import SetPermissions from '../components/views/Admin/SetPermissions'
+import ListOfRoles from '../components/views/Admin/ListOfRoles'
+import ListUsers from '../components/views/Admin/ListUsers'
 import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
-import Profile from '../components/views/Profile';
-import { DefaultLayout, AuthorizedUserLayout } from '../components/layouts';
+import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, RequesterLayout,ManagerLayout} from '../components/layouts';
 import Logout from '../components/views/Logout';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
@@ -86,13 +94,12 @@ const Routes = () => {
           path="/managerTravel/done"
         />
         
-        <ProtectedRoute
-          component={CreateAccomodation}
+         <RouteWithLayout
+          component={signup}
           exact
-          layout={AuthorizedUserLayout}
-          path="/travelManager/createAccomodation"
+          layout={DefaultLayout}
+          path="/signup"
         />
-       
         <RouteWithLayout
           component={ResetPasswordEmailForm}
           exact
@@ -118,13 +125,7 @@ const Routes = () => {
           path="/admin"
         />
         <ProtectedRoute
-          component={CreateLocation}
-          exact
-          layout={AuthorizedUserLayout}
-          path="/travelManager/locations/create"
-        />
-         <RouteWithLayout
-          component={signup}
+          component={requesterHome}
           exact
           layout={RequesterLayout}
           path="/requester"
@@ -168,8 +169,14 @@ const Routes = () => {
         <RouteWithLayout
           component={PageNotFound}
           exact
-          layout={DefaultLayout}
+          layout={ErrorLayout}
           path="/PageNotFound"
+        />
+        <RouteWithLayout
+          component={Unauthorized}
+          exact
+          layout={ErrorLayout}
+          path="/unauthorized"
         />
         <RouteWithLayout 
             path="/signup" 
@@ -193,9 +200,28 @@ const Routes = () => {
           layout={AuthorizedUserLayout}
         />
 
+        <ProtectedRoute
+          component={CreateAccomodation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/accommodations/create"
+        />
+       
+        
+        <ProtectedRoute
+          component={CreateLocation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/locations/create"
+        />
+
         <Redirect to="/PageNotFound" />
       </Switch>
   );
 };
 
 export default Routes;
+
+        
+        
+        

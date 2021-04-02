@@ -8,7 +8,7 @@ describe('Fetch Locations Reducer', ()=> {
     expect(fetchLocationsReducer(undefined, {})).toEqual(
       {
         pending: false,
-        locations: [],
+        locations: {rows: []},
         error: null
       }
     )
@@ -32,7 +32,7 @@ describe('Fetch Locations Reducer', ()=> {
     })
     ).toEqual({
       pending: true,
-      locations: [],
+      locations: {rows: []},
       error: null
     })
   })
@@ -44,7 +44,7 @@ describe('Fetch Locations Reducer', ()=> {
     })
     ).toEqual({
       pending: false,
-      locations: [],
+      locations: {rows: []},
       error: 'Locations not found'
     })
   })
