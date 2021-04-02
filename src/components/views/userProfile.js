@@ -18,7 +18,7 @@ import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { fetchUserProfile, updateUserProfile, closeSnackbar } from '../../redux/actions/userProfileAction';
 import { useTranslation } from 'react-i18next';
-import { reset } from 'fetch-mock';
+// import { reset } from 'fetch-mock';
 
 const useStyles = makeStyles((theme) => ({
     large: {
