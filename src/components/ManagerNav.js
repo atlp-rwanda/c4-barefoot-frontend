@@ -13,7 +13,6 @@ import NotificationMenu from '../components/NotificationMenu';
 import Badge from '@material-ui/core/Badge';
 import { connect } from "react-redux";
 import { getNotifications } from "../redux/actions/notificationAction";
-import DrawerComponent from './sideBarDrawer/Drawer';
 import MultipleLanguages from './MultiLang/MultiLang'
 import { useTranslation } from 'react-i18next';
 
@@ -37,21 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ButtonAppBar= (props)=> {
-  const classes = useStyles();
   const [sideBar, setSideBar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const showSideBar = () => setSideBar(!sideBar)
   const { t, i18n } = useTranslation();
   const classes = useStyles();
-  const [sideBar, setSideBar] = useState(false)
-  const handleClockMenuIcon = () => {
-      console.log('hahahahahahahahahaha')
-     return (
-     <>
-        <DrawerComponent />
-      </>
-      )    
-  } 
   const handleClockMenuIcon = () => {
     return (
     <>
