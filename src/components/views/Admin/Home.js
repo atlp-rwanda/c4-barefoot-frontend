@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getLocations } from '../../../redux/actions/fetchLocationsAction'
 import { getAccommodations } from '../../../redux/actions/fetchAccommodations'
 import { getUsers } from '../../../redux/actions/UsersAction'
+import { adminGetUsers} from '../../../redux/actions/fetchUsersAction'
 import { getRoles } from '../../../redux/actions/fetchRolesAction'
 import { Skeleton } from '@material-ui/lab'
 import { useTranslation } from 'react-i18next';
@@ -32,6 +33,7 @@ function Home (props) {
   useEffect(() => {
     props.getRoles()
     props.getUsers()
+    props.adminGetUsers()
     props.getLocations()
     props.getAccommodations()
   }, [])
@@ -60,7 +62,7 @@ function Home (props) {
         <Divider orientation='vertical' flexItem variant='middle'/>
         <Grid item xs={4} sm={4} md={2}>
           <Typography>
-          {props.usersData.pending ? skeletonData : `${props.usersData.users.count} Users`}
+          {props.usersData.pending ? skeletonData : `${props.usersData.count} Users`}
           </Typography>
         </Grid>
         <Divider orientation='vertical' flexItem variant='middle'/>
@@ -89,4 +91,4 @@ const mapStateToProps = state => ({
   rolesData: state.roles
 })
 
-export default connect(mapStateToProps,{getLocations, getAccommodations, getUsers, getRoles})(Home)
+export default connect(mapStateToProps,{getLocations, getAccommodations, getUsers, getRoles,adminGetUsers})(Home)

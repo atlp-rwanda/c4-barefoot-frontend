@@ -15,6 +15,7 @@ export const getLocations = () => dispatch => {
   })
   return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/locations?lang=${lang}`)
     .then(res => {
+      console.log(res)
       dispatch({
         type: FETCH_LOCATIONS_SUCCESS,
         payload: res.data.locations.rows
