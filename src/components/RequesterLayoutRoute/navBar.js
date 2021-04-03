@@ -2,6 +2,7 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography, Box} from '@material-ui/core'
 import {Lock, PersonAddOutlined, PersonOutlined} from '@material-ui/icons'
 import SideDrawer from './SideDrawer'
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,9 +24,10 @@ const useStyles = makeStyles(theme => ({
   }))
 
 function Header (){
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
 
-    const barefootLogo = <Typography href='/welcome' variant='h6'component='a' className={classes.logo}> Barefoot Nomads </Typography>
+    const barefootLogo = <Typography href='/welcome' variant='h6'component='a' className={classes.logo}> Barefoot Nomad </Typography>
 
     const displayDesktop = () => {
     return (
@@ -37,8 +39,8 @@ function Header (){
                 </Box>
                 <Hidden smDown>
                     <List component='nav'>
-                        <Button href="/profile" color='inherit' startIcon={ <PersonOutlined/> }>Profile</Button>
-                        <Button href="/logout" color='inherit' startIcon = { <Lock/> }>Logout</Button>
+                        <Button href="/profile" color='inherit' startIcon={ <PersonOutlined/> }>{t("Profile")}</Button>
+                        <Button href="/logout" color='inherit' startIcon = { <Lock/> }>{t("Logout")}</Button>
                     </List>
                 </Hidden>
                 

@@ -15,8 +15,12 @@ import { UsersReducer } from './usersReducer'
 import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
+import { bookAccommodationsReducer } from './bookAccommodationReducer'
+import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
 import {notificationReducer }from './notificationReducer'
+import createAccReducer from './createAccReducer';
+import createLocReducer from './createLocReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -26,11 +30,11 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
-  // verifiedUser: fetchUserReducer,
   manageTravel:fetchTravelReducer,
   manageSingleTravel:fetchSingleTravelReducer,
   updateTravel:updateSingleTravelReducer,
-
+  bookAccommodations: bookAccommodationsReducer,
+  convertMoney: convertorReducer,
   fetchUserProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
   changeUserPassword: changeUserPasswordeReducer,
@@ -40,9 +44,11 @@ const reducers = combineReducers({
   notifications:notificationReducer,
   createRoles,
   managerReducer,
-  
+  createTravelRequest: CreateTravelRequestReducer,
+  createAcc: createAccReducer,
+  createLoc: createLocReducer,
 })
-  
+
 export default reducers
 
 

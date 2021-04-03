@@ -11,6 +11,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ErrorModal from './ErrorModal';
 import TravelRequestCard from './TravelRequestCard';
 import SuccessModal from './SuccessModal';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -131,6 +132,7 @@ const filter= (travels, category)=>{
 }
 
 function ReportsView(props) {
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
      const theme = useTheme();
      const loading = props.travelRequest.loading;
@@ -261,7 +263,7 @@ function ReportsView(props) {
 
                 >
 
-                    <div>this is details of travel request</div>
+                    <div>{t("this is details of travel request")}</div>
 
                 </Model>
                 
@@ -270,7 +272,7 @@ function ReportsView(props) {
            :
            <center>
             <Box style={{ paddingTop: '50px'}}>
-               <Typography variant="subtitle1" component="h6">No {category} travel request found</Typography>
+               <Typography variant="subtitle1" component="h6">{t("No")} + category + {t("travel request found")}</Typography>
            </Box>
            </center>
         
