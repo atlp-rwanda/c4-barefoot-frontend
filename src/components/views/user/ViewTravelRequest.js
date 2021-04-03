@@ -68,7 +68,7 @@ const ViewTravelRequest = (props) => {
                 </Typography>
                 <select onChange={handleFilterChange} className={classes.filter}>
                     <option value="pending">pending</option>
-                    <option value="approved">approved</option>
+                    <option value="approved" selected="selected">approved</option>
                     <option value="rejected">rejected</option>
                     <option value="canceled">canceled</option>
                 </select>

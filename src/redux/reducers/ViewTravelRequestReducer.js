@@ -4,7 +4,7 @@ import { FETCH_TRAVEL_REQUEST_LOADING, FETCH_TRAVEL_REQUEST_FAIL, FETCH_TRAVEL_R
 const initialState = {
     travelRequests: [],
     fetchLoading: false,
-    status: 'pending',
+    status: 'approved',
     snackBarMessage: {
         open: false,
         message: null,

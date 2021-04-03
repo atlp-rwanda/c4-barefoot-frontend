@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#1769aa',
         color: 'white',
         '&:hover': {
-            backgroundColor: '#71042B',
+            backgroundColor: 'green',
         }
     },
     approvedBadge: {
@@ -157,10 +157,6 @@ const RequestCard = (props) => {
                             modalData.travelRequestInfo.status == 'pending' &&
                             <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
                         }
-                        {
-                            modalData.travelRequestInfo.status == 'approved' &&
-                            <Button color="secondary" className={classes.cancelBtn}>Cancel</Button>
-                        }
                     </Box>
                 </Box>
             </Grid>
@@ -170,6 +166,7 @@ const RequestCard = (props) => {
                     travel={modalData}
                     openProp={openModal}
                     setOpenModal={setOpenModal}
+                    status={modalData.travelRequestInfo.status}
                 />
             }
         </Grid>

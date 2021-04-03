@@ -13,7 +13,7 @@ import { Box, Divider, Grid, Typography } from '@material-ui/core';
 const default_image = 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
 
 const RequestModal = (props) => {
-    let { openProp, travel, setOpenModal } = props
+    let { openProp, travel, setOpenModal, status } = props
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     let title = 'View Travel Request';
@@ -79,6 +79,7 @@ const RequestModal = (props) => {
     };
     const classes = useStyles();
     console.log(travel)
+    let num = status == 'approved' ? 3 : 4;
     return (
         <Dialog
             fullScreen={fullScreen}
@@ -102,9 +103,8 @@ const RequestModal = (props) => {
                     <Box className={classes.detailsContainer}>
 
                         {travel.travelRequestInfo.Trip.map((trip) => (
-
                             <Grid container spacing={2} key={trip.tripId} style={{ borderBottom: '1px solid gray' }}>
-                                <Grid item xs={12} sm={4} md={4} >
+                                <Grid item xs={12} sm={num}>
                                     <Box className={classes.tripItemBinder}>
                                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
                                             Location-destination
@@ -114,7 +114,7 @@ const RequestModal = (props) => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4} >
+                                <Grid item xs={12} sm={num}>
                                     <Box className={classes.tripItemBinder}>
                                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
                                             Date of travel
@@ -127,7 +127,7 @@ const RequestModal = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={4} md={4} >
+                                <Grid item xs={12} sm={num} >
                                     <Box className={classes.tripItemBinder}>
                                         <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText} >
                                             Date of return
@@ -139,6 +139,13 @@ const RequestModal = (props) => {
                                         </Typography>
                                     </Box>
                                 </Grid>
+                                {status == 'approved' &&
+                                    <Grid item xs={12} sm={num} >
+                                        <Box className={classes.tripItemBinder}>
+                                            <Button color="primary" variant="contained" style={{ marginTop: '5px' }} href={`/bookaccommodation/${trip.destinationId}`}>Book</Button>
+                                        </Box>
+                                    </Grid>
+                                }
                             </Grid>
                         ))}
                         <Box className={classes.hotelAndReasonBoxes}>
@@ -149,25 +156,29 @@ const RequestModal = (props) => {
                                 {travel.travelRequestInfo.Trip.length > 0 ? travel.travelRequestInfo.Trip[0].reason : 'No reason available'}
                             </Typography>
                         </Box>
-                        <Box className={classes.hotelAndReasonBoxes}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
-                                    <img
-                                        alt="hotel image"
-                                        src={travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].photos : default_image}
-                                        style={{ width: '100%' }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                                        {travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].title : 'No name available'}
-                                    </Typography>
-                                    <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                        {travel.accommodationInfo.length > 1 ? travel.accommodationInfo[1].description : 'No accomodation decription available for this Trip'}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Box>
+                        {travel.accommodationInfo.map((accommodation) => {
+                            return (
+                                <Box className={classes.hotelAndReasonBoxes}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
+                                            <img
+                                                alt="hotel image"
+                                                src={accommodation.photos ? accommodation.photos : default_image}
+                                                style={{ width: '100%' }}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
+                                                {accommodation.title ? accommodation.title : 'No name available'}
+                                            </Typography>
+                                            <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                                {accommodation.description ? accommodation.description : 'No accomodation decription available for this Trip'}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            )
+                        })}
                     </Box>
                 </DialogContent>
 
