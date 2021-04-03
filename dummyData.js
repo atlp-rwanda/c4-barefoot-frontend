@@ -474,6 +474,11 @@ export const props = {
   addMultiCityAction: jest.fn(),
   removeMultiCityAction: jest.fn(),
   openModalAction: jest.fn(),
+  match: {
+    params: {
+      status: 'pending'
+    }
+  }
 }
 
 export const selectedAccommodationsPayload = {
