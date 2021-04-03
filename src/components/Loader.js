@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal, Fade, Typography, CircularProgress} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) =>({
     modal:{
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) =>({
 }));
 
 function Loader (props) {
+    const { t, i18n } = useTranslation();
 
     const classes = useStyles();
     return (
@@ -31,7 +33,7 @@ function Loader (props) {
                 <Fade in={props.open}>
                     <div className={classes.loader}>
                         <CircularProgress/>
-                        <Typography>Processing ...</Typography>
+                        <Typography>{t("Processing ...")}</Typography>
                     </div>
                 </Fade>
             </Modal>

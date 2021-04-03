@@ -1,15 +1,12 @@
 import { Typography } from '@material-ui/core';
+import LandingPage from './LandingPage'
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
-    console.log("profile")
     return (
         
-        <React.Fragment>
-            <Typography>
-                Welcome, this is your profile
-            </Typography>
-        </React.Fragment>
+        <LandingPage/>
     )
 }
 

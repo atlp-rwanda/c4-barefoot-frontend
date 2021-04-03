@@ -1,9 +1,12 @@
 import {FETCH_USERS_SUCCESS, FETCH_USERS_ERROR, FETCH_USERS_PENDING} from '../actions/UsersAction'
 import { DELETE_USERS_PENDING, DELETE_USERS_SUCCESS, DELETE_USERS_ERROR, CLEAR_SNACKBAR} from '../actions/UsersAction'
+import { FETCH_USERS_ADMIN_SUCCESS, FETCH_USERS_ADMIN_ERROR} from '../actions/fetchUsersAction'
 
 const initialState = {
   pending: true,
   users: {},
+  adminUsers:[],
+  count:null,
   error: null,
   load: false,
   snackBarMessage: {
@@ -26,6 +29,15 @@ export function UsersReducer(state = initialState, action){
         ...state,
         pending: false,
         users: action.payload
+      }
+
+    case FETCH_USERS_ADMIN_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        adminUsers: action.payload.rows,
+        users: action.payload,
+        count:action.count
       }
     case FETCH_USERS_ERROR:
       return {

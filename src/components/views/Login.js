@@ -11,8 +11,10 @@ import { CssBaseline, Grid, Paper, Snackbar, Avatar, Typography } from '@materia
 import MuiAlert from '@material-ui/lab/Alert';
 import { Skeleton } from '@material-ui/lab';
 import loginStyles from '../styles/Login';
+import { useTranslation } from 'react-i18next';
 
 import Loader from '../Loader';
+import { Redirect } from 'react-router';
 
 //initials of the login form
 const initialValues = {
@@ -27,6 +29,7 @@ const loginForm = Yup.object().shape({
 });
 
 function Login(props) {
+    const { t, i18n } = useTranslation();
     const classes = loginStyles();
 
     useEffect(() => {
@@ -40,9 +43,9 @@ function Login(props) {
      }, []);
     const userToken = localStorage.getItem("barefootUserToken");
 
-    if (userToken) {
-        props.history.push('/profile');
-    }
+    // if (userToken) {
+    //     props.history.push('/home');
+    // }
     const handleSubmition = (values) => {
         props.loginAction(values);
     }
@@ -63,196 +66,203 @@ function Login(props) {
     if (props.login.success) {
         console.log("login");
         props.login.success = false
-        props.history.push('/profile');
+        props.history.go('/home');
     }
 
-    return (
-        <>
-            <Grid container component="main" className={classes.Login}>
-                <CssBaseline />
 
-                <Grid item container sm={8} xs={12} component={Paper} elevation={6} square>
-                    <Loader open={load} />
-                    <div>
-                        <Snackbar
-                            open={props.login.snackBarMessage}
-                            onClose={closeSnackbarTimer}
-                            autoHideDuration={5000}
-                            TransitionComponent={transitionSnackbar}
-                        >
-                            <MuiAlert
-                                severity="error"
-                                variant="filled"
-                                elevation={6}
-                            >{props.login.error}</MuiAlert>
-                        </Snackbar>
-                    </div>
-                    <div className={classes.paper}>
+    if( userToken ){
+        return <Redirect to="/home" />
+    }  
+    else {  
 
-                        {/*logic for skeletons*/}
-                        {(!props.login.showSkeletons ?
-                            <>
-                                <Typography component="h1" variant="h5">
-                                    Sign in to Barefoot Nomad
-                    </Typography>
-                                <Formik
-                                    initialValues={initialValues}
-                                    validationSchema={loginForm}
-                                    onSubmit={handleSubmition}
-                                >
-                                    {({ errors, touched }) => (
-                                        <Form className={classes.form} noValidate>
-                                            <FormGroup>
-                                                <Field as={TextField}
-                                                    variant="standard"
-                                                    margin="normal"
-                                                    required
-                                                    fullWidth
-                                                    id="email"
-                                                    label="Email"
-                                                    name="email"
-                                                    disabled={load}
-                                                    autoFocus
-                                                />
-                                                {errors.email && touched.email ? (<div style={{ textAlign: 'left', color: 'red' }}>{errors.email}</div>) : null}
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Field as={TextField}
-                                                    variant="standard"
-                                                    margin="normal"
-                                                    required
-                                                    fullWidth
-                                                    name="password"
-                                                    label="Password"
-                                                    type="password"
-                                                    id="password"
-                                                    disabled={load}
-                                                />
-                                                {errors.password && touched.password ? (<div style={{ textAlign: 'left', color: 'red' }}>{errors.password}</div>) : null}
-                                            </FormGroup>
-                                            <Grid container item >
-                                                <Grid item xs className={classes.forgotPassword} >
-                                                    <Link href="/forgetpassword" variant="body2">Forgot password?</Link>
+        return (
+            <>
+                <Grid container component="main" className={classes.Login}>
+                    <CssBaseline />
+    
+                    <Grid item container sm={8} xs={12} component={Paper} elevation={6} square>
+                        <Loader open={load} />
+                        <div>
+                            <Snackbar
+                                open={props.login.snackBarMessage}
+                                onClose={closeSnackbarTimer}
+                                autoHideDuration={5000}
+                                TransitionComponent={transitionSnackbar}
+                            >
+                                <MuiAlert
+                                    severity="error"
+                                    variant="filled"
+                                    elevation={6}
+                                >{props.login.error}</MuiAlert>
+                            </Snackbar>
+                        </div>
+                        <div className={classes.paper}>
+    
+                            {/*logic for skeletons*/}
+                            {(!props.login.showSkeletons ?
+                                <>
+                                    <Typography component="h1" variant="h5">
+                                        {t("Sign in to Barefoot Nomad")}
+                        </Typography>
+                                    <Formik
+                                        initialValues={initialValues}
+                                        validationSchema={loginForm}
+                                        onSubmit={handleSubmition}
+                                    >
+                                        {({ errors, touched }) => (
+                                            <Form className={classes.form} noValidate>
+                                                <FormGroup>
+                                                    <Field as={TextField}
+                                                        variant="standard"
+                                                        margin="normal"
+                                                        required
+                                                        fullWidth
+                                                        id="email"
+                                                        label="Email"
+                                                        name="email"
+                                                        disabled={load}
+                                                        autoFocus
+                                                    />
+                                                    {errors.email && touched.email ? (<div style={{ textAlign: 'left', color: 'red' }}>{errors.email}</div>) : null}
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <Field as={TextField}
+                                                        variant="standard"
+                                                        margin="normal"
+                                                        required
+                                                        fullWidth
+                                                        name="password"
+                                                        label="Password"
+                                                        type="password"
+                                                        id="password"
+                                                        disabled={load}
+                                                    />
+                                                    {errors.password && touched.password ? (<div style={{ textAlign: 'left', color: 'red' }}>{errors.password}</div>) : null}
+                                                </FormGroup>
+                                                <Grid container item >
+                                                    <Grid item xs className={classes.forgotPassword} >
+                                                        <Link href="/forgetpassword" variant="body2">{t("Forgot password?")}</Link>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
-                                            <Button
-                                                type="submit"
-                                                variant="contained"
-                                                color="primary"
-                                                disabled={load}
-                                                className={classes.login}
-                                            >Login</Button>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </> :
-
-                            <React.Fragment>
-                                {/*the skeleton itself*/}
-                                <Typography component="h1" variant="h5">
-                                    <Skeleton width={300} />
-                                </Typography>
-                                <div className={classes.form} >
-                                    <Skeleton height={40} width={400} />
-                                    <Skeleton height={40} width={400} />
-                                    <Grid container item >
-                                        <Grid item xs className={classes.forgotPassword} >
-                                            <Skeleton width={150} />
-                                        </Grid>
-                                    </Grid>
-                                    <Skeleton
-                                        variant='rect'
-                                        className={classes.login}
-                                        height={35}
-                                        width={150}
-                                        style={{ margin: 'auto' }}
-                                    />
-                                </div>
-                                <Grid container direction="column" className={classes.social_media_grid} >
-                                    <Typography variant="h6" component="h6">
-                                        <Skeleton style={{ margin: 'auto' }} width={150} />
+                                                <Button
+                                                    type="submit"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    disabled={load}
+                                                    className={classes.login}
+                                                >{t("Login")}</Button>
+                                            </Form>
+                                        )}
+                                    </Formik>
+                                </> :
+    
+                                <React.Fragment>
+                                    {/*the skeleton itself*/}
+                                    <Typography component="h1" variant="h5">
+                                        <Skeleton width={300} />
                                     </Typography>
-
-                                    <Grid item container justify='space-between'>
-                                        <Skeleton variant='rect' className={classes.social_media} width={120} height={30} />
-                                        <Skeleton variant='rect' className={classes.social_media} height={30} width={120} />
+                                    <div className={classes.form} >
+                                        <Skeleton height={40} width={400} />
+                                        <Skeleton height={40} width={400} />
+                                        <Grid container item >
+                                            <Grid item xs className={classes.forgotPassword} >
+                                                <Skeleton width={150} />
+                                            </Grid>
+                                        </Grid>
+                                        <Skeleton
+                                            variant='rect'
+                                            className={classes.login}
+                                            height={35}
+                                            width={150}
+                                            style={{ margin: 'auto' }}
+                                        />
+                                    </div>
+                                    <Grid container direction="column" className={classes.social_media_grid} >
+                                        <Typography variant="h6" component="h6">
+                                            <Skeleton style={{ margin: 'auto' }} width={150} />
+                                        </Typography>
+    
+                                        <Grid item container justify='space-between'>
+                                            <Skeleton variant='rect' className={classes.social_media} width={120} height={30} />
+                                            <Skeleton variant='rect' className={classes.social_media} height={30} width={120} />
+                                        </Grid>
+    
                                     </Grid>
-
-                                </Grid>
-                            </React.Fragment>)}
-                    </div>
-
-                    {(!props.login.showSkeletons ?
-                        <Grid container direction="column" className={classes.social_media_grid} >
-                            <Typography variant="h6" component="h6">
-                                Or Login with
-                        </Typography>
-                            <Grid item container justify='space-between' >
-                                <Button
-                                    variant="contained"
-                                    disabled={load}
-                                    className={classes.social_media}
-                                    startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg'} />}
-                                >
-                                    Facebook
-                            </Button>
-
-                                <Button
-                                    variant="contained"
-                                    disabled={load}
-                                    className={classes.social_media}
-                                    startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg'} />}
-                                >
-                                    Google
-                            </Button>
-                            </Grid>
-
-                        </Grid> : null)}
-                </Grid>
-                <Grid item container sm={4} xs={12} style={{ background: "#257AAA" }}>
-                    <div className={classes.paper2} text='primary'>
-
+                                </React.Fragment>)}
+                        </div>
+    
                         {(!props.login.showSkeletons ?
-                            <>
-                                <Typography component="h1" variant="h5">
-                                    Hello, Friend!
-                    </Typography>
-                                <Grid item container className={classes.secondpart}>
-                                    <Typography variant="subtitle1">
-                                        Enter your personal details and start your journey with us.
+                            <Grid container direction="column" className={classes.social_media_grid} >
+                                <Typography variant="h6" component="h6">
+                                    {t("Or Login with")}
+                            </Typography>
+                                <Grid item container justify='space-between' >
+                                    <Button
+                                        variant="contained"
+                                        disabled={load}
+                                        className={classes.social_media}
+                                        startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609406918/images/facebook_cdieom.svg'} />}
+                                    >
+                                        Facebook
+                                </Button>
+    
+                                    <Button
+                                        variant="contained"
+                                        disabled={load}
+                                        className={classes.social_media}
+                                        startIcon={<Avatar className={classes.image_icon} src={'https://res.cloudinary.com/barefoot-nomad-app/image/upload/v1609407032/images/google_gd4tb4.svg'} />}
+                                    >
+                                        Google
+                                </Button>
+                                </Grid>
+    
+                            </Grid> : null)}
+                    </Grid>
+                    <Grid item container sm={4} xs={12} style={{ background: "#257AAA" }}>
+                        <div className={classes.paper2} text='primary'>
+    
+                            {(!props.login.showSkeletons ?
+                                <>
+                                    <Typography component="h1" variant="h5">
+                                        {t("Hello, Friend!")}
                         </Typography>
-
-                                </Grid>
-                                <Typography variant="subtitle1">
-                                    Don't have an account?
-                    </Typography>
-                                <Button
-                                    href="/signup"
-                                    type="submit"
-                                    variant="contained"
-                                    className={classes.submit}
-                                    disabled={load}
-                                >Signup</Button>
-                            </> :
-                            <>
-                                <Typography component="h1" variant="h5">
-                                    <Skeleton width={150} />
-                                </Typography>
-                                <Grid item container className={classes.secondpart}>
-                                    <Skeleton height={20} width={200} /> <Skeleton height={20} width={200} />
-                                </Grid>
-                                <Typography variant="subtitle1">
-                                    <Skeleton width={150} />
-                                </Typography>
-                                <Skeleton variant='rect' height={35} width={150} style={{ margin: 'auto' }} />
-                            </>)}
-
-                    </div>
-
+                                    <Grid item container className={classes.secondpart}>
+                                        <Typography variant="subtitle1">
+                                            {t("Enter your personal details and start your journey with us.")}
+                            </Typography>
+    
+                                    </Grid>
+                                    <Typography variant="subtitle1">
+                                        {t("Don't have an account?")}
+                        </Typography>
+                                    <Button
+                                        href="/signup"
+                                        type="submit"
+                                        variant="contained"
+                                        className={classes.submit}
+                                        disabled={load}
+                                    >{t("Signup")}</Button>
+                                </> :
+                                <>
+                                    <Typography component="h1" variant="h5">
+                                        <Skeleton width={150} />
+                                    </Typography>
+                                    <Grid item container className={classes.secondpart}>
+                                        <Skeleton height={20} width={200} /> <Skeleton height={20} width={200} />
+                                    </Grid>
+                                    <Typography variant="subtitle1">
+                                        <Skeleton width={150} />
+                                    </Typography>
+                                    <Skeleton variant='rect' height={35} width={150} style={{ margin: 'auto' }} />
+                                </>)}
+    
+                        </div>
+    
+                    </Grid>
                 </Grid>
-            </Grid>
-        </>
-    )
+            </>
+        )
+    }
 }
 
 Login.protoTypes = {

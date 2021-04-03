@@ -6,14 +6,14 @@ export const FETCH_TRAVEL_REQUEST_ERROR= 'FETCH_TRAVEL_REQUEST_ERROR'
 
 
 const token = localStorage.getItem('barefootUserToken')
-console.log(token);
+const lang = localStorage.getItem('lang')
 
 export const getTravelRequest = () => dispatch => {
     console.log(token)
     dispatch({
         type:FETCH_TRAVEL_REQUEST_LOADING
     })
-    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports`, {
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/directReports?lang=${lang}`, {
         headers:{
             Authorization: `Bearer ${token}`
         }

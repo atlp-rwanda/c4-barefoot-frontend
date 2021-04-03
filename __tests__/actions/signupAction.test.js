@@ -2,6 +2,7 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as actions from "../../src/redux/actions/signupRequestAction";
 import * as types from "../../src/redux/actions/signupRequestAction";
+<<<<<<< HEAD
 import { user } from "../../dummyData";
 import moxios from "moxios";
 import MockAdapter from "axios-mock-adapter";
@@ -10,17 +11,36 @@ import { request } from "express";
 
 const URL = process.env.REACT_APP_BACKEND_LINK;
 const middlewares = [thunk];
+=======
+import { user } from '../../dummyData'
+import moxios from 'moxios'
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
+
+const middlewares = [thunk]
+>>>>>>> develop
 const mockStore = configureStore(middlewares);
 let store = mockStore({});
 let mock = new MockAdapter(axios);
 const nextStep = jest.fn();
 
+<<<<<<< HEAD
 describe("Fetch Signup actions", () => {
   beforeEach(() => {
     moxios.install();
     store = mockStore({ signup: {} });
   });
   afterEach(() => moxios.uninstall());
+=======
+describe('Fetch Signup actions', () => {
+  let store;
+
+  beforeEach(() => {
+    moxios.install()
+    store = mockStore({fetchLocations: {}})
+  })
+  afterEach(() => moxios.uninstall())
+>>>>>>> develop
 
   it("Creates REQUEST_ERROR after task is unsuccessful", () => {
     moxios.wait(() => {

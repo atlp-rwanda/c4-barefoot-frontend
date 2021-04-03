@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Login } from '../views/Login';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -90,6 +91,7 @@ const validationSchema = yup.object({
 });
 
 export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   return (
     <>
@@ -261,7 +263,7 @@ export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
                   <Skeleton variant="rect" className={classes.skeletonLink} />
                 </Box>
               ) : (
-                <a href='/login' style={{textDecoration:'none'}}>Sign in instead</a>
+                <a href='/login' style={{textDecoration:'none'}}>{t("Sign in instead")}</a>
               )}
               
               <div></div>
@@ -277,7 +279,7 @@ export const FirstStep = ({ loading, formData, setFormData, nextStep }) => {
                 color='primary'
                 className={classes.button}
               >
-                Next
+                {t("Next")}
               </Button>
             )}
               

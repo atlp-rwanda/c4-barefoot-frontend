@@ -6,6 +6,7 @@ import RolesCard from '../../rolesCard'
 import Loader from '../../Loader'
 import MuiAlert from '@material-ui/lab/Alert';
 import { changePermission, updatePermission, clearPermissionSnackbar,getPermissions} from '../../../redux/actions/PermissionsAction'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
  root: {
@@ -40,6 +41,7 @@ separetor:{
 const skeletonData = (<Grid item sm={8} xs={10}><RolesCard/></Grid>)
 
 function SetPermissions(props){
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     props.getRoles()
@@ -128,14 +130,14 @@ function SetPermissions(props){
               >{props.snackBarMessage.message}</MuiAlert>
             </Snackbar>
           <Box>
-            <Typography variant='subtitle1' justify= 'center'  >Allow users to perform their operations</Typography>
+            <Typography variant='subtitle1' justify= 'center'  >{t("Allow users to perform their operations")}</Typography>
             <Divider/>
           </Box>
           <Grid container  sm={6} xs={4} className={classes.container}>
 
             <form onSubmit={handleSubmit} >
               <FormControl className={classes.formControl}>
-                <InputLabel>Select the role</InputLabel>
+                <InputLabel>{t("Select the role")}</InputLabel>
                 <Select 
                   labelId='select-roles'
                   id='roles'
@@ -146,14 +148,14 @@ function SetPermissions(props){
                 </Select>
               </FormControl>
               <Box>
-                <Typography className={classes.content} variant='body2' >Assign all required permissions to the role:</Typography>
+                <Typography className={classes.content} variant='body2' >{t("Assign all required permissions to the role:")}</Typography>
               </Box>
               <FormGroup>
                 {populateChecbox()}
               </FormGroup>
                 <Box className={classes.formButtons} >
-                <Button variant='contained' size='small' color='primary' type="submit" disabled={load} >set</Button>
-                <Button variant='contained' size='small' color='secondary' onClick={handleCancel} >Cancel</Button>
+                <Button variant='contained' size='small' color='primary' type="submit" disabled={load} >{t("set")}</Button>
+                <Button variant='contained' size='small' color='secondary' onClick={handleCancel} >{t("Cancel")}</Button>
               </Box>
             </form>
 

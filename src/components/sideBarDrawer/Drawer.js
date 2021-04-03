@@ -21,9 +21,8 @@ const useStyles = makeStyles( theme =>({
   },
   accountInfo: {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    marginLeft:"10px",
     height: 80
   },
   paper: {

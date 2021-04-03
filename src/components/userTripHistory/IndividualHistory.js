@@ -12,6 +12,18 @@ import { getAccommodation } from "../../redux/actions/userTravelHistoryAction";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import moment from "moment";
 
+const useStyle = makeStyles({
+  cover1: {
+    padding: "10px 5px",
+  },
+  // main: {
+  //   margin: "20px",
+  // },
+  root: {
+    margin: "20px",
+  },
+});
+
 function IndividualHistory(props) {
   React.useEffect(() => {
     props.getAccommodation();
@@ -19,14 +31,15 @@ function IndividualHistory(props) {
   const acc = props.acc;
   const dest = localStorage.getItem("destination");
   const origin = localStorage.getItem("origin");
-  const reason = localStorage.getItem("reason");
+  // const reason = localStorage.getItem("reason");
   const departure = localStorage.getItem("departure");
   const returning = localStorage.getItem("returning");
   console.log(acc);
+  const classes = useStyle();
   return (
     <div>
       {acc && (
-        <div>
+        <div className={classes.main}>
           <Typography
             variant="h5"
             style={{ textAlign: "center", weight: "bolder" }}
@@ -37,46 +50,61 @@ function IndividualHistory(props) {
           <center>
             <Card className="root" md={6} sm={9} xs={11}>
               <CardMedia
-                className="cover1"
+                className={classes.cover1}
                 image={acc.photos}
                 title="Trip image"
               />
-              <div className="details">
+              <div className="details" style={{ textAlign: "left" }}>
                 <CardContent className="content">
                   <Typography component="h5" variant="h5">
-                    Trip Request
+                    <span style={{ fontWeight: "bold" }}> Trip Request</span>
                     <Divider />
                   </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Destination: {dest}
-                  </Typography>
-                  <Typography>Origin City: {origin}</Typography>
-                  <Typography>Reason: {reason}</Typography>
                   <Typography>
-                    From: {moment(departure).format("DD/MMM/YYYY")}
+                    <span style={{ fontWeight: "bold" }}> Destination:</span>
+                    {dest}
                   </Typography>
                   <Typography>
-                    To: {moment(returning).format("DD/MMM/YYYY")}
+                    <span style={{ fontWeight: "bold" }}>Origin City:</span>
+                    {origin}
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: "bold" }}> From:</span>
+
+                    {moment(departure).format("DD/MMM/YYYY")}
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: "bold" }}> To:</span>
+                    {moment(returning).format("DD/MMM/YYYY")}
                   </Typography>
                 </CardContent>
               </div>
             </Card>
             <Card className="root">
-              <div className="details">
+              <div className="details" style={{ textAlign: "left" }}>
                 <CardContent className="content">
                   <Typography component="h5" variant="h5">
-                    Accomodation Booked
+                    <span style={{ fontWeight: "bold" }}>
+                      Accomodation Booked
+                    </span>
                     <Divider />
                   </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Country: {acc.country}
+                  <Typography>
+                    <span style={{ fontWeight: "bold" }}> Country:</span>
+                    {acc.country}
                   </Typography>
-                  <Typography>Street: {acc.streetAddress}</Typography>
-                  <Typography>Type: {acc.title}</Typography>
+                  <Typography>
+                    <span style={{ fontWeight: "bold" }}> Street:</span>
+                    {acc.streetAddress}
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: "bold" }}>Type:</span>
+                    {acc.title}
+                  </Typography>
                 </CardContent>
               </div>
               <CardMedia
-                className="cover"
+                className={classes.cover1}
                 image={acc.photos}
                 title="Accommodation image"
               />
