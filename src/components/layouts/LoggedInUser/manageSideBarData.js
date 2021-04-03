@@ -7,6 +7,7 @@ import CachedIcon from "@material-ui/icons/Cached";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import CancelIcon from "@material-ui/icons/Cancel";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
+import RecentActorsIcon from "@material-ui/icons/RecentActors";
 
 export const managerSideBarData = [
   {
