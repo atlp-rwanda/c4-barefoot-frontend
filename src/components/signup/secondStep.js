@@ -9,6 +9,7 @@ import { AccountCircle, Language, Subject, EventBusy } from "@material-ui/icons"
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +56,7 @@ export  const SecondStep = ({
   nextStep,
   prevStep
 }) => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [direction, setDirection] = useState('back');
   const [photo, setPhoto] = useState('');
@@ -99,7 +101,7 @@ export  const SecondStep = ({
               <label htmlFor="file" className={classes.label}>
                 <i className="fa fa-cloud-upload" aria-hidden="true"></i> 
                 <div>
-                Upload Profile Image {loading ? <CircularProgress className={classes.uploadSpinner}/> : ''}
+                {t("Upload Profile Image")} {loading ? <CircularProgress className={classes.uploadSpinner}/> : ''}
                 </div>
 
               </label>
@@ -131,7 +133,7 @@ export  const SecondStep = ({
               }}
             />
             <FormControl>
-              <InputLabel>Address</InputLabel>
+              <InputLabel>{t("Address")}</InputLabel>
               <Field 
               as={Select} 
               name="address" 
@@ -149,7 +151,7 @@ export  const SecondStep = ({
               </Field>
             </FormControl>
             <FormControl>
-              <InputLabel>Language</InputLabel>
+              <InputLabel>{t("Language")}</InputLabel>
               <Field 
               as={Select} 
               name="language" 
@@ -161,9 +163,9 @@ export  const SecondStep = ({
                   ),
                 }}
               >
-                <MenuItem selected value="Kinyarwanda">Kinyarwanda</MenuItem>
-                <MenuItem value="English">English</MenuItem>
-                <MenuItem value="Franch">Franch</MenuItem>
+                <MenuItem selected value="Kinyarwanda">{t("Kinyarwanda")}</MenuItem>
+                <MenuItem value="English">{t("English")}</MenuItem>
+                <MenuItem value="Franch">{t("French")}</MenuItem>
               </Field>
             </FormControl>
             
@@ -178,7 +180,7 @@ export  const SecondStep = ({
                   setDirection('back'); 
                 }}
               >
-                Back
+                {t("Back")}
               </Button>
               <Button
                 type='submit'
@@ -188,7 +190,7 @@ export  const SecondStep = ({
                 className={classes.button}
                 onClick={() => setDirection('forward')}
               >
-                Next
+                {t("Next")}
               </Button>
             </div>
           </Form>

@@ -9,11 +9,13 @@ export const CLEAR_SNACKBAR = 'CLEAR_SNACKBAR'
 export const UPDATE_ROLE="UPDATE_ROLE"
 export const UPDATE_ROLE_FAILED="UPDATE_ROLE_FAILED"
 
+const lang = localStorage.getItem('lang')
+
 export const createRoleAction = (payload) => dispatch => {
   dispatch({
     type: CREATE_ROLE_PENDING
   })
-  return API.post('/admin/roles', payload,{
+  return API.post(`/admin/roles?lang=${lang}`, payload,{
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -34,7 +36,7 @@ export const updateRoleAction =(id,data)=>dispatch=>{
   dispatch({
     type: CREATE_ROLE_PENDING
   })
-  return API.put(`/admin/roles/${id}`,data,{
+  return API.put(`/admin/roles/${id}?lang=${lang}`,data,{
     headers: {
       Authorization: `Bearer ${token}`
     }

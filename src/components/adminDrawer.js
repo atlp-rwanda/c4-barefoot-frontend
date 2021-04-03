@@ -3,6 +3,7 @@ import { Menu, AccountCircle, ExpandLess, ExpandMore } from '@material-ui/icons'
 import { makeStyles, IconButton, Drawer, Box, Avatar, Typography, Collapse, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import {sideBarData} from "../components/layouts/adminLayout/sidebardata";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles( theme =>({
   root: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles( theme =>({
 }))
 
 function DrawerComponent() {
+  const { t, i18n } = useTranslation();
     const classes = useStyles()
     const [openDrawer, setOpenDrawer] = useState(true);
     const [state, setState] = useState({left: false});
@@ -112,7 +114,7 @@ function DrawerComponent() {
         <Avatar className={classes.paper}>
           <AccountCircle fontSize='large' className={classes.listIcons}/>
         </Avatar>
-        <Typography>Admin Name</Typography>
+        <Typography>{t("Admin Name")}</Typography>
       </Box>
       <Divider/>
       <List>

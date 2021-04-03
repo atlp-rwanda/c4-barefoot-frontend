@@ -11,6 +11,7 @@ import { Field, Form, Formik } from 'formik'
 import { FormGroup, Snackbar } from '@material-ui/core';
 import { object, string, ref } from 'yup';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -59,6 +60,7 @@ const initialValues = {
 }
 
 function NewPassword(props) {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
 
    const { history } = props
@@ -92,7 +94,7 @@ function NewPassword(props) {
                 </Alert>
             </Snackbar>): (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
                 <Alert onclose={handleClose} severity="success">
-                    successful: {messages}👍 You can login with new Password 
+                    {t("successful")}: {messages}👍 {t("You can login with new Password")} 
                 </Alert>
             </Snackbar>)}
     <Container data-test='container' component="main" maxWidth="xs">
@@ -100,7 +102,7 @@ function NewPassword(props) {
       {anyLoading? ( <Typography className={classes.sendingHeader} variant="h5" > Sending ...</Typography> ): (
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Reset Password
+          {t("Reset Password")}
         </Typography>
         <Formik
         initialValues={initialValues}
@@ -163,7 +165,7 @@ function NewPassword(props) {
                 className={classes.submit}
                 // onClick={notify}
               >
-                RESET
+                {t("RESET")}
               </Button>
             </Form>
         )}

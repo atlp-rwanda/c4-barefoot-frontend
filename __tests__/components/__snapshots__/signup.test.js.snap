@@ -443,7 +443,8 @@ exports[`Signup Signup Rendering renders side div correctly 1`] = `
     className="makeStyles-sideText-23"
   >
     <p>
-      Please create account to get 
+      Please create account to get
+       
     </p>
     <p>
       started with Barefoot Nomard.

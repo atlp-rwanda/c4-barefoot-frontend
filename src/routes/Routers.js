@@ -28,7 +28,9 @@ import ProtectedRoute from './protected.route';
 import NotificationDetails from '../components/notificationDetails';
 import GoogleRedirect from '../components/GoogleRedirect';
 import userProfile from '../components/views/userProfile';
-
+import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
+import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
+import CreateLocation from '../components/views/travelManager/CreateLocation';
 
 
 const Routes = () => {
@@ -77,29 +79,61 @@ const Routes = () => {
           path="/userprofile"
         />
         {/* <RouteWithLayout
+  return (
+    <Switch>
+      <Redirect
+        exact
+        from="/"
+        to="/welcome"
+      />
+      <RouteWithLayout
+        component={Landing}
+        exact
+        layout={DefaultLayout}
+        path="/welcome"
+      />
+      <RouteWithLayout
+        component={Login}
+        exact
+        layout={DefaultLayout}
+        path="/login"
+      />
+      <ProtectedRoute
+        component={Profile}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/profile"
+      />
+      <ProtectedRoute
+        component={userProfile}
+        exact
+        layout={AuthorizedUserLayout}
+        path="/userprofile"
+      />
+      {/* <RouteWithLayout
           component={ManagerDashboard}
           exact
           layout={ManagerLayout}
           path="/managerDashboard"
         /> */}
-        <RouteWithLayout
-          component={ManagerTravelDashboard}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel"
-        />
-        <RouteWithLayout
-          component={ApprovedReports}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel/approved"
-        />
-        <RouteWithLayout
-          component={RejectedAndCanceled}
-          exact
-          layout={ManagerLayout}
-          path="/managerTravel/canceled"
-        />
+      <RouteWithLayout
+        component={ManagerTravelDashboard}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel"
+      />
+      <RouteWithLayout
+        component={ApprovedReports}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel/approved"
+      />
+      <RouteWithLayout
+        component={RejectedAndCanceled}
+        exact
+        layout={ManagerLayout}
+        path="/managerTravel/canceled"
+      />
 
         <RouteWithLayout
           component={Done}
@@ -206,11 +240,36 @@ const Routes = () => {
             path="/user/verification/" 
             component={ verifyAccount }
             layout={DefaultLayout}
+        />     
+        <ProtectedRoute
+          exact
+          path="/requester/create-travel-request"
+          component={CreateTravelRequest}
+          layout={AuthorizedUserLayout}
         />
+
+        <ProtectedRoute
+          component={CreateAccomodation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/accommodations/create"
+        />
+       
         
+        <ProtectedRoute
+          component={CreateLocation}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/travelManager/locations/create"
+        />
+
         <Redirect to="/PageNotFound" />
       </Switch>
-    );
-  };
-  
-  export default Routes;
+  );
+};
+
+export default Routes;
+
+        
+        
+        

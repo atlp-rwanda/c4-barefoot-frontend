@@ -11,6 +11,7 @@ import { CssBaseline, Grid, Paper, Snackbar, Avatar, Typography } from '@materia
 import MuiAlert from '@material-ui/lab/Alert';
 import { Skeleton } from '@material-ui/lab';
 import loginStyles from '../styles/Login';
+import { useTranslation } from 'react-i18next';
 
 import Loader from '../Loader';
 
@@ -27,6 +28,7 @@ const loginForm = Yup.object().shape({
 });
 
 function Login(props) {
+    const { t, i18n } = useTranslation();
     const classes = loginStyles();
 
     useEffect(() => {
@@ -93,7 +95,7 @@ function Login(props) {
                         {(!props.login.showSkeletons ?
                             <>
                                 <Typography component="h1" variant="h5">
-                                    Sign in to Barefoot Nomad
+                                    {t("Sign in to Barefoot Nomad")}
                     </Typography>
                                 <Formik
                                     initialValues={initialValues}
@@ -132,7 +134,7 @@ function Login(props) {
                                             </FormGroup>
                                             <Grid container item >
                                                 <Grid item xs className={classes.forgotPassword} >
-                                                    <Link href="/forgetpassword" variant="body2">Forgot password?</Link>
+                                                    <Link href="/forgetpassword" variant="body2">{t("Forgot password?")}</Link>
                                                 </Grid>
                                             </Grid>
                                             <Button
@@ -141,7 +143,7 @@ function Login(props) {
                                                 color="primary"
                                                 disabled={load}
                                                 className={classes.login}
-                                            >Login</Button>
+                                            >{t("Login")}</Button>
                                         </Form>
                                     )}
                                 </Formik>
@@ -185,7 +187,7 @@ function Login(props) {
                     {(!props.login.showSkeletons ?
                         <Grid container direction="column" className={classes.social_media_grid} >
                             <Typography variant="h6" component="h6">
-                                Or Login with
+                                {t("Or Login with")}
                         </Typography>
                             <Grid item container justify='space-between' >
                                 <Button
@@ -198,7 +200,6 @@ function Login(props) {
                             </Button>
 
                                 <Button
-                                    href="http://localhost:4000/api/v1/google"
                                     variant="contained"
                                     disabled={load}
                                     className={classes.social_media}
@@ -216,16 +217,16 @@ function Login(props) {
                         {(!props.login.showSkeletons ?
                             <>
                                 <Typography component="h1" variant="h5">
-                                    Hello, Friend!
+                                    {t("Hello, Friend!")}
                     </Typography>
                                 <Grid item container className={classes.secondpart}>
                                     <Typography variant="subtitle1">
-                                        Enter your personal details and start your journey with us.
+                                        {t("Enter your personal details and start your journey with us.")}
                         </Typography>
 
                                 </Grid>
                                 <Typography variant="subtitle1">
-                                    Don't have an account?
+                                    {t("Don't have an account?")}
                     </Typography>
                                 <Button
                                     href="/signup"
@@ -233,7 +234,7 @@ function Login(props) {
                                     variant="contained"
                                     className={classes.submit}
                                     disabled={load}
-                                >Signup</Button>
+                                >{t("Signup")}</Button>
                             </> :
                             <>
                                 <Typography component="h1" variant="h5">

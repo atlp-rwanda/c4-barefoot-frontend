@@ -2,8 +2,8 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Box, Typography} from '@material-ui/core'
 import AdminDrawer from './adminDrawer';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-
-
+import MultipleLanguages from './MultiLang/MultiLang'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
     navDisplay: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
   }))
 
 function Header (){
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
 
     const barefootLogo = <Typography href='/welcome' variant='h6'component='a' className={classes.logo}> Barefoot Nomad </Typography>
@@ -37,7 +38,8 @@ function Header (){
                 </Box>
               
                     <List component='nav'>
-                        <Button href="/login" color='inherit'>Logout</Button>
+                        <Button><MultipleLanguages/></Button>
+                        <Button href="/login" color='inherit'>{t("Logout")}</Button>
                     </List>
             </Box>
         </Toolbar>
