@@ -24,13 +24,61 @@ import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashb
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
-import ProtectedRoute from './protected.route'
+import ProtectedRoute from './protected.route';
+import NotificationDetails from '../components/notificationDetails';
+import GoogleRedirect from '../components/GoogleRedirect';
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
 
+
 const Routes = () => {
+    return (
+      <Switch>
+        <Redirect
+          exact
+          from="/"
+          to="/welcome"
+        />
+        <RouteWithLayout
+          component={Landing}
+          exact
+          layout={DefaultLayout}
+          path="/welcome"
+        />
+        <RouteWithLayout
+          component={GoogleRedirect}
+          exact
+          layout={DefaultLayout}
+          path="/google/token"
+        />
+
+        <RouteWithLayout
+          component={Login}
+          exact
+          layout={DefaultLayout}
+          path="/login"
+        />
+        <ProtectedRoute
+          component={Profile}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/profile"
+        />
+        <ProtectedRoute
+          component={NotificationDetails}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/notifications/:id"
+          />
+         <ProtectedRoute
+          component={userProfile}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/userprofile"
+        />
+        {/* <RouteWithLayout
   return (
     <Switch>
       <Redirect

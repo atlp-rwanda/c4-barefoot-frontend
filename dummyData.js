@@ -1,17 +1,43 @@
 export const user = [
   {
-    "first_name": "M",
-    "last_name": "JAckson",
-    "email": "jackson.novelty@gmail.com",
-    "occupation": "Programming",
-    "username": "jacks",
-    "bio": "Software Developer",
-    "address": "kk 509 st",
-    "language": "Kinyarwanda",
-    "password": "12345678",
-    "profile_picture": "https://res.cloudinary.com/mjackson/image/upload/v1609304524/Screen_Shot_2020-12-29_at_08.21.43_qe7pem.png"
+    "first_name":"M",
+    "last_name":"JAckson",
+    "email":"jackson.novelty@gmail.com",
+    "occupation":"Programming",
+    "username":"jacks",
+    "bio":"Software Developer",
+    "address":"kk 509 st",
+    "language":"Kinyarwanda",
+    "password":"12345678",
+    "profile_picture":"https://res.cloudinary.com/mjackson/image/upload/v1609304524/Screen_Shot_2020-12-29_at_08.21.43_qe7pem.png"
   }
 ]
+
+export const signupState = {
+    requesting: false,
+    errorOpen: false,
+    erro: ""
+  }
+export const locationsPayload = [
+    {
+      id: "c6028e0d-ef88-4693-ab49-f37669891724",
+      LocationName: "Kigali",
+      country: "Rwanda",
+      description: "The land of a thousand hills",
+      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
+    }
+  ]
+
+
+ 
+
+  export const locationState = {
+    pending: false,
+    locations: locationsPayload,
+    error: null
+  }
+
+
 
 export const userProfile = {
   address: "Kigali",
@@ -29,6 +55,7 @@ export const userProfile = {
   username: "manager_id",
   verified: true
 }
+
 
 export const signupState = {
   requesting: false,
@@ -325,6 +352,7 @@ export const accommodationState = {
   temp:null,
   accId:null
 }
+
 
 export const fetchAccommodationByLocationPayload={
   "status": 200,

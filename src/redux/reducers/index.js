@@ -19,6 +19,7 @@ import { permissionsReducer } from './permissionsReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
+import {notificationReducer }from './notificationReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 
@@ -41,6 +42,7 @@ const reducers = combineReducers({
   users: UsersReducer,
   roles: RolesReducer,
   permissions: permissionsReducer,
+  notifications:notificationReducer,
   createRoles,
   managerReducer,
   createTravelRequest: CreateTravelRequestReducer,
