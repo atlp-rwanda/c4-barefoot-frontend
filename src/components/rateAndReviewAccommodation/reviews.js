@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         borderRadius: '2px',
         padding: '4px',
+        marginLeft:'3px'
     },
     separate: {
         // marginBottom:theme.spacing(3),
@@ -119,7 +120,8 @@ const useStyles = makeStyles((theme) => ({
     },
     theName: {
         margin:'6px'
-    }
+    },
+    
 }));
 function Home({  datas, reviews, accommodation, getReviews }) {
 
@@ -244,10 +246,14 @@ function Home({  datas, reviews, accommodation, getReviews }) {
                                                 Reviews
                                     </Typography>
                                         </div>
+                                        
                                         <div className={classes.btnReview}>
+                                        <Link to={'/bookedAccommodations'} style={{ textDecoration: 'none' }} className={classes.addreview}>
+                                                Back
+                                             </Link>
                                             <Link to={'/review/' + datas.accommodation.id} style={{ textDecoration: 'none' }} className={classes.addreview}>
                                                 Add your review
-                                        </Link>
+                                             </Link>
                                         </div>
                                     </div>
 

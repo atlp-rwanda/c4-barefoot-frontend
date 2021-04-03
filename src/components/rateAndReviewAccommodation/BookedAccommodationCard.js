@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding:'5px'
+  },
+  rates: {
+    paddingRight:'66px'
   }
 }));
 
@@ -91,12 +94,7 @@ function Accommodations(props) {
         :
       <>
       <CardActionArea>
-        <Checkbox
-        onChange={handleSelection}
-        checked={props.accommodationn.id===props.selectedAccommodation?true:false}
-        id={props.accommodationn.id}
-        name={props.accommodationn.city}
-        className={classes.checkbox}/>
+        
         <CardMedia
           onClick={handleViewMore}
           className={classes.media}
@@ -112,11 +110,10 @@ function Accommodations(props) {
           </Typography>
         </CardContent>
           </CardActionArea>
-          {props.accommodation.bookedAccommodation != undefined ? (
             <CardActions className={classes.cardActions}>
-               <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
+              
               <div className={classes.rateAndReviewLinks}>
-                <div>
+                <div className={classes.rates}>
                 <Link  to={'/review/'+props.accommodationn.id}>
                    <Ratings highratings={3} id={props.accommodationn.id} />
                  </Link>
@@ -133,15 +130,7 @@ function Accommodations(props) {
                  
             
            </CardActions>
-          ):( <CardActions className={classes.cardActions}>
-            <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
-                
-                  <Ratings highratings={3} id={props.accommodationn.id} />
-                
-            <Typography className={classes.reviews}>
-                  Reviews
-            </Typography>
-          </CardActions>)}
+         
      
       </>
       )}
