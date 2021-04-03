@@ -6,8 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 export default function ConfirmModal(props) {
+  const { t, i18n } = useTranslation();
 
     const {isOpen, setIsOpen, handleUpdateTravel, travelId}= props
 
@@ -35,7 +37,7 @@ export default function ConfirmModal(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{`Do you want to ${isOpen.action} this travel request?`}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("Do you want to ")+isOpen.action+t(" this travel request?")}</DialogTitle>
         <DialogContent >
             <Typography 
                 style={{padding: '0px 20px'}} 

@@ -4,6 +4,7 @@ import { AddLocation, Business, Home, LocationCity, Menu, PinDrop } from "@mater
 import { useState } from "react"
 import { Link } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles"
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -48,6 +49,7 @@ a:{
 }))
 
 const SideDrawer = ({navLinks}) => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles()
   const [state, setState] = useState({ right: false })
 
@@ -76,13 +78,13 @@ const SideDrawer = ({navLinks}) => {
             <Typography className={classes.a} href='/requester/create-travel-request' component='a'>
               <ListItem className={classes.linkBox}>
                   <Typography><AddLocation/></Typography>
-                  Create Travel Request
+                  {t("Create Travel Request")}
               </ListItem>
             </Typography>
             <Typography className={classes.a} href='/requester/view-travel-requests' component='a'>
               <ListItem className={classes.linkBox}>
                   <Typography><PinDrop/></Typography>
-                  View Travel Requests
+                  {t("View Travel Requests")}
               </ListItem>
             </Typography>
       </List>

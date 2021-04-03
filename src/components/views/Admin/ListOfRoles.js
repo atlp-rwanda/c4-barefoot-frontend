@@ -6,6 +6,7 @@ import RolesCard from '../../rolesCard'
 import Loader from '../../Loader'
 import { Alert } from '@material-ui/lab';
 import { changePermission, updatePermission, clearPermissionSnackbar } from '../../../redux/actions/PermissionsAction'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
  root: {
@@ -28,6 +29,7 @@ center:{
 const skeletonData = (<Grid item sm={8} xs={10}><RolesCard/></Grid>)
 
 function ListOfRoles(props){
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     props.getRoles()
@@ -73,7 +75,7 @@ function ListOfRoles(props){
         </Snackbar>
         <Grid item sm={5} xs={10}>
           <div>
-          <Typography variant='h5' align='center'>List of roles</Typography>
+          <Typography variant='h5' align='center'>{t("List of roles")}</Typography>
           <Divider/>
           </div>
         </Grid>

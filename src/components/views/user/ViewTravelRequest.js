@@ -7,6 +7,7 @@ import DisplayTravelRequest from '../../travelRequests/DisplayTravelRequest';
 import SnackBarMessage from '../../SnackBarMessage';
 import Loader from '../../Loader';
 import { Pagination } from '@material-ui/lab';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) =>({
     main:{
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) =>({
 }))
 
 const ViewTravelRequest = (props) => {
+    const { t, i18n } = useTranslation();
     const classes = useStyles();
     useEffect(()=>{
         const userToken = localStorage.getItem('barefootUserToken');
@@ -49,7 +51,7 @@ const ViewTravelRequest = (props) => {
             <Loader open={false} />
             <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{color: colors.primary100}}> 
-                    View Travel Requests
+                    {t("View Travel Requests")}
                 </Typography>
             </Grid>
             

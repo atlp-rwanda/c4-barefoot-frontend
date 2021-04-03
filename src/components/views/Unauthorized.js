@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box, makeStyles, Typography} from '@material-ui/core'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -14,13 +15,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Unauthorized (){
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
 
   return(
     <React.Fragment>
       <Box className={classes.box}>
         <Typography variant='h1' >401</Typography>
-        <Typography variant='h4' >Unauthorized :(</Typography>
+        <Typography variant='h4' >{t("Unauthorized :(")}</Typography>
       </Box>
     </React.Fragment>
   )
