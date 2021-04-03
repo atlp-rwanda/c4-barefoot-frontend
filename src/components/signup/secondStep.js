@@ -108,7 +108,7 @@ export  const SecondStep = ({
             </Box>
             <Field 
             name='bio' 
-            label='Biography' 
+            label={t("Biography")}
             as={TextField} 
             margin='normal'
               inputprops={{
@@ -121,7 +121,7 @@ export  const SecondStep = ({
             />
             <Field 
             name='occupation' 
-            label='Occupation' 
+            label={t("Occupation")}
             as={TextField} 
             margin='normal'
               inputprops={{
@@ -133,22 +133,18 @@ export  const SecondStep = ({
               }}
             />
             <FormControl>
-              <InputLabel>{t("Address")}</InputLabel>
               <Field 
-              as={Select} 
               name="address" 
+              label={t("Address")}
+              as={TextField} 
                 inputprops={{
                   startAdornment: (
-                    <ListItemIcon>
-                      <AccountCircle />
-                    </ListItemIcon>
+                    <InputAdornment position="start">
+                    <EventBusy />
+                  </InputAdornment>
                   ),
                 }}
-              >
-                <MenuItem selected value="kk 509 st">kk 509 st</MenuItem>
-                <MenuItem value="kk 309 st">kk 309 st</MenuItem>
-                <MenuItem value="kk 280 st">kk 280 st</MenuItem>
-              </Field>
+              />
             </FormControl>
             <FormControl>
               <InputLabel>{t("Language")}</InputLabel>
