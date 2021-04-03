@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.secondary.main,
-    height: '100vh',
+    height: '90vh',
     color: "#fff",
     display: 'flex',
     flexDirection: 'column',

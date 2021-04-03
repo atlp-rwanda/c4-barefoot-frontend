@@ -47,6 +47,16 @@ export const locationsPayload = {
   ]
 }
 
+export const locations=[
+    {
+      id: "c6028e0d-ef88-4693-ab49-f37669891724",
+      LocationName: "Kigali",
+      country: "Rwanda",
+      description: "The land of a thousand hills",
+      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
+    }
+  ]
+
 export const accommodationsPayload = {
   rows: [
     {
@@ -105,6 +115,7 @@ export const accommodationsPayload = {
         "edit profile": 0,"assign requesters to manager": 0,"create travel requests": 0,"view travel requests": 0,"edit travel requests": 0,"cancel travel requests": 0,"approve direct reports travel requests": 0,"view direct reports travel requests": 0,"reject direct reports travel requests": 0,"view accommodations": 0,"create accommodations": 0,"update accommodations": 0,"delete accommodations": 0,"book accommodations": 0,"view locations": 0,"create locations": 0,"update locations": 0,"delete locations": 0,"view statistics": 0
       }
   }
+
 
 
 export const allTravelPayload = [
@@ -676,7 +687,7 @@ export const selectedLocaton = {
 }
 export const locationState = {
   pending: false,
-  locations: locationsPayload,
+  locations:locations,
   error: null
 }
 export const props2 = {
@@ -808,4 +819,49 @@ export const comfirmProps = {
     open: false,
     data: {}
   }
+}
+
+export const location= {
+
+  id: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+  LocationName: "Dubai",
+  country: "United Arab Emirates",
+  description: "The world's biggest trade hub and tourist attractor",
+  currency: "EUR",
+  link: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179656/barefoot%20uploads/xk48tsqz9afl49dkzkhd.jpg",
+  createdAt: "2021-03-19T18:49:00.222Z",
+  updatedAt: "2021-03-19T18:49:00.222Z"
+
+}
+
+export const locationsData= {
+  locations: [
+    {
+      id: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+      LocationName: "Dubai",
+      country: "United Arab Emirates",
+      description: "The world's biggest trade hub and tourist attractor",
+      currency: "EUR",
+      link: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179656/barefoot%20uploads/xk48tsqz9afl49dkzkhd.jpg",
+      createdAt: "2021-03-19T18:49:00.222Z",
+      updatedAt: "2021-03-19T18:49:00.222Z"
+    }
+]};
+
+export const accomodation= {
+    id: "f34e8426-8591-4ab0-90a5-6d716833224b",
+    country: "Dubai",
+    city: "Dubai",
+    state: "Al Hilal",
+    streetAddress: "St 21, Dub, UAE",
+    locationID: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+    propertyType: "Motel",
+    numberOfRooms: 12,
+    price: 123000,
+    typeOfBed: "single",
+    title: "Dubai rest view hotel",
+    description: "This the best place for tourists to rest in Dubai",
+    photos: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179879/barefoot%20uploads/txmzilh8lxwv4u63mvz3.jpg",
+    createdAt: "2021-03-19T18:52:16.774Z",
+    updatedAt: "2021-03-19T18:52:16.774Z"
 }

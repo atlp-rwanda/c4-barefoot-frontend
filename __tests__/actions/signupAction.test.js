@@ -6,9 +6,7 @@ import { user } from '../../dummyData'
 import moxios from 'moxios'
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import { request } from 'express';
 
-const URL =process.env.REACT_APP_BACKEND_LINK
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
 let store=mockStore({});
@@ -16,10 +14,11 @@ let mock = new MockAdapter(axios)
 const nextStep = jest.fn();
 
 describe('Fetch Signup actions', () => {
-  
+  let store;
+
   beforeEach(() => {
     moxios.install()
-    store = mockStore({signup: {}})
+    store = mockStore({fetchLocations: {}})
   })
   afterEach(() => moxios.uninstall())
 
