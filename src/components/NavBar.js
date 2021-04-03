@@ -1,7 +1,9 @@
 import React from 'react'
-import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography, Link } from '@material-ui/core'
+import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography, Link,Grid } from '@material-ui/core'
 import { PersonAddOutlined, PersonOutlined } from '@material-ui/icons'
-import SideDrawer from './SideDrawer'
+import MultipleLanguages from './MultiLang/MultiLang'
+import { useTranslation } from 'react-i18next';
+
 
 const navLinks = [
     { title: 'Login', path: '/login' },
@@ -19,31 +21,36 @@ const useStyles = makeStyles(theme => ({
         color: 'inherit',
         float: 'right',
         marginRight: '1000px'
-    }
+    },
+    link:{
+        '&:hover':{
+            cursor:'pointer',
+            textDecoration:"none"
+        }
+    },
+    title: {
+        flexGrow: 1,
+      }
 }))
 
 function Header() {
     const classes = useStyles()
-
-    const barefootLogo = <Typography href='/welcome' variant='h6' component='a' className={classes.logo}> Barefoot Nomad </Typography>
+    const { t, i18n } = useTranslation();
 
     const displayDesktop = () => {
         return (
-            <div>
-                <div className="navbar">
-
-                    <div className="navlinks">
-                        <Toolbar className={classes.navDisplay}>
-                            <h2>{barefootLogo}</h2>
-                            <nav>
-                                <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>Login</Button>
-                                <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>Signup</Button>
-                            </nav>
-                        </Toolbar>
-                    </div>
-                </div>
-            </div >
-
+            <Toolbar className={classes.navDisplay}>
+                <Typography variant="h6" className={classes.title}>
+                    <Link className={classes.link} href="/" color="inherit">
+                        Barefoot Nomad
+                    </Link>
+                </Typography>
+                <nav>
+                    <Button><MultipleLanguages/></Button>
+                    <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>{t("Login")}</Button>
+                    <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>{t("Signup")}</Button>
+                </nav>
+            </Toolbar>
         )
     }
 

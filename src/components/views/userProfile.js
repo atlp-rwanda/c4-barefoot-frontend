@@ -17,6 +17,8 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { fetchUserProfile, updateUserProfile, closeSnackbar } from '../../redux/actions/userProfileAction';
+import { useTranslation } from 'react-i18next';
+// import { reset } from 'fetch-mock';
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -86,12 +88,16 @@ function Alert(props) {
 };
 
 const UserProfile = (props) => {
-    const [edit, setEdit] = useState(true);
+    const { t, i18n } = useTranslation();
     useEffect(() => {
         props.fetchUserProfile();
     }, []);
 
+    const [edit, setEdit] = useState(true);
+    const [visible, setVisible] = useState(false);
+    
     let data = null
+    let i=0;
     if (props.userProfile.user.data) {
         let result = props.userProfile.user.data;
         const { id, username, refreshtoken, verified, ...rest } = result
@@ -106,6 +112,10 @@ const UserProfile = (props) => {
         props.updateUserProfile({ profile_picture: formData })
     }
 
+    const handlereset=(restform)=>{
+        restform()
+        setVisible(false)
+    }
     const handleClose = () => props.closeSnackbar();
 
     return (
@@ -132,10 +142,10 @@ const UserProfile = (props) => {
                                 props.updated.profileLoading ? (
                                     <CircularProgress color="secondary" />
                                 ) :
-                                    <div id="profilePicture"> <PhotoCameraIcon /> Change Profile Picture </div>}
+                                    <div id="profilePicture"> <PhotoCameraIcon /> {t("Change Profile Picture")} </div>}
                         </label>
                     </Button>
-                    < div >
+                    <div >
                         <Snackbar
                             open={props.updated.snackbarOpen}
                             autoHideDuration={5000}
@@ -165,10 +175,14 @@ const UserProfile = (props) => {
                             onSubmit={values => {
                                 const { email, line_manager, ...rest } = values
                                 props.updateUserProfile(rest)
+                                setVisible(false);
                             }}
+                          
                         >
-                            {({ errors, touched }) => (
-                                < Form className={classes.form}>
+                            {({ errors, touched, resetForm }) => (
+                                <Form className={classes.form}
+                                onChange={() => { setVisible(true);}}
+                                >
                                     <InputLabel htmlFor="first_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> First Name </InputLabel>
                                     <Field
                                         error={errors.first_name && touched.first_name ? true : false}
@@ -187,7 +201,7 @@ const UserProfile = (props) => {
                                         helperText={errors.first_name || null}
 
                                     />
-                                    <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> Last Name </InputLabel>
+                                    <InputLabel htmlFor="last_name" className={classes.inputLabel}> <AccountCircleRoundedIcon color="primary" /> {t("Last Name")} </InputLabel>
                                     <Field
                                         error={errors.last_name && touched.last_name ? true : false}
                                         as={TextField}
@@ -217,7 +231,7 @@ const UserProfile = (props) => {
                                         }}
                                         disabled
                                     />
-                                    <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />Preferred Language</InputLabel>
+                                    <InputLabel htmlFor="language" className={classes.inputLabel}><LanguageIcon color="primary" />{t("Preferred Language")}</InputLabel>
                                     <Field
                                         error={errors.language && touched.language ? true : false}
                                         as={TextField}
@@ -234,7 +248,7 @@ const UserProfile = (props) => {
                                         disabled={edit}
                                         helperText={errors.language || null}
                                     />
-                                    <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> Office Location </InputLabel>
+                                    <InputLabel htmlFor="address" className={classes.inputLabel}><LocationOnIcon color="primary" /> {t("Office Location")} </InputLabel>
                                     <Field
                                         error={errors.address && touched.address ? true : false}
                                         as={TextField}
@@ -251,7 +265,7 @@ const UserProfile = (props) => {
                                         disabled={edit}
                                         helperText={errors.address || null}
                                     />
-                                    <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Occupation </InputLabel>
+                                    <InputLabel htmlFor="occupation" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Occupation")} </InputLabel>
                                     <Field
                                         error={errors.occupation && touched.occupation ? true : false}
                                         as={TextField}
@@ -269,7 +283,7 @@ const UserProfile = (props) => {
                                         disabled={edit}
                                         helperText={errors.occupation || null}
                                     />
-                                    <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> Line Manager </InputLabel>
+                                    <InputLabel htmlFor="line_manager" className={classes.inputLabel}><AccountCircleRoundedIcon color="primary" /> {t("Line Manager")} </InputLabel>
                                     <Field
                                         as={TextField}
                                         fullWidth
@@ -282,7 +296,8 @@ const UserProfile = (props) => {
                                         }}
                                         disabled
                                     />
-                                    <div className={classes.btnGrp} spacing={10}>
+                                    {visible?(
+                                        <div className={classes.btnGrp} spacing={10}>
                                         <Button
                                             type="submit"
                                             color="primary"
@@ -300,10 +315,12 @@ const UserProfile = (props) => {
                                             color="secondary"
                                             variant="contained"
                                             className={classes.btn}
+                                            onClick={handlereset.bind(null,resetForm)}
                                         >
-                                            Cancel
+                                            {t("Cancel")}
                                             </Button>
                                     </div>
+                                    ):(null)}
                                 </Form>
                             )}
                         </Formik>

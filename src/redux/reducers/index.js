@@ -22,6 +22,8 @@ import {managerReducer} from './managersReducer'
 import fetchAllUsers from './getAllUsersReducer';
 import fetchStatistics from './fetchStatistics';
 import fetchVisitors from './fetchVisitors';
+import createAccReducer from './createAccReducer';
+import createLocReducer from './createLocReducer';
 
 const reducers = combineReducers({
   logout: logoutReducer,
@@ -46,9 +48,12 @@ const reducers = combineReducers({
   fetchAllUsers,
   fetchStatistics,
   fetchVisitors,
-  managerReducer
-  
+  managerReducer,
+  createTravelRequest: CreateTravelRequestReducer,
+  createAcc: createAccReducer,
+  createLoc: createLocReducer,
 })
-  
+
 export default reducers
+
 

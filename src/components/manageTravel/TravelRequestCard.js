@@ -2,6 +2,7 @@ import { Box, Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import React from 'react';
 import Moment from 'react-moment'
+import { useTranslation } from 'react-i18next';
 
 
 const default_image= 'https://res.cloudinary.com/nowo-ltd/image/upload/v1614639495/default-placeholder_uoekkz.png'
@@ -73,6 +74,7 @@ const useStyles= makeStyles( (theme)=>({
     }
 }))
 const TravelRequestCard = (props) => {
+    const { t, i18n } = useTranslation();
 
     const {travel, handleSingleTravel, category, userInfo,accomodationsInfo} = props;
 
@@ -122,13 +124,13 @@ const TravelRequestCard = (props) => {
                         <Button color="primary" onClick={ ()=> handleSingleTravel(travel.travelId, 'view')}>View more</Button>
                     </Box>
                     <Box>
-                       {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>Approved</Typography></Box>}
+                       {category==='approved' && <Box className={classes.approvedBadge}><Typography variant='subtitle1' component='h6'>{t("Approved")}</Typography></Box>}
                        {category==='done' && (
                             <Box 
                                 className={classes.badge} 
                                 style={{backgroundColor: 'blue'}} 
                             >
-                                <Typography variant='subtitle1' component='h6'>Done</Typography>
+                                <Typography variant='subtitle1' component='h6'>{t("Done")}</Typography>
                             </Box>
                         )}
                         {category==='rejected' && (

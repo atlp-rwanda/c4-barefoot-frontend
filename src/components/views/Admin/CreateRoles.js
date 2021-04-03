@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import { FormGroup, TextField, Slide, CssBaseline, Snackbar} from '@material-ui/core';
 import Loader from '../../Loader';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useTranslation } from 'react-i18next';
 
 
 //form validation with yup
@@ -39,27 +40,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function CreateRoles (props) {
+  const { t, i18n } = useTranslation();
   let initialValues;
   const classes = useStyles()
-
-  const handleSubmition = (payload, {resetForm}) => {
-    if(props.role){
-      props.updateRoleAction(props.role.id,payload)
-      initialValues.role="";
-      initialValues.description="";
-      resetForm({payload:" "})
-    }else{(props.createRoleAction(payload))}
-    resetForm({payload: ''})
-  }
-
-  
-  const TransitionUp = (props) => {
-    return <Slide {...props} direction="up" />;
-  }
-
-  const closeSnackBarTimer = () => {
-    props.clearSnackBar()
-  }
+  const [visible, setVisible] = React.useState(false);
   initialValues = props.role?(
     {
       role:props.role.name,
@@ -71,12 +55,31 @@ function CreateRoles (props) {
       description: ''
     }
 )
+  const handleSubmition = (payload, {resetForm}) => {
+    if(props.role){
+      props.updateRoleAction(props.role.id,payload)
+      window.location.reload()
+    }else{(props.createRoleAction(payload))}
+    resetForm({payload: ''})
+    props.cleanEditRoleAction();
+    setVisible(false)
+  }
+
+  
+  const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+  }
+
+  const closeSnackBarTimer = () => {
+    props.clearSnackBar()
+  }
+ 
 const message =props.role?('Role Successfully Updated!'):("Role Successfully Created!")
 const title =props.role?('Update Role'):("Create new Role")
-const handelCancel=()=>{
-    
-    props.cleanEditRoleAction();
-    window.location.reload();
+const handelCancel=(resetform)=>{
+    //props.cleanEditRoleAction();
+    setVisible(false)
+    resetform()
 }
 
 
@@ -115,8 +118,10 @@ const handelCancel=()=>{
           validationSchema={roleForm}
           onSubmit={handleSubmition}
           >
-            {({errors, touched}) => (
-              <Form className={classes.form} noValidate>
+            {({errors, touched,resetForm}) => (
+              <Form className={classes.form} noValidate
+              onChange={() => { setVisible(true);}}
+              >
                 <FormGroup className={classes.TextField}>
                   <Field as={TextField} 
                   label='Role title'
@@ -138,10 +143,13 @@ const handelCancel=()=>{
                    />
                    {errors.description && touched.description ? (<div style={{textAlign: 'left', color:'red'}}>{errors.description}</div>) : null}
                 </FormGroup>
-            <Box className={classes.formButtons} >
-              <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>Save</Button>
-              <Button variant='contained' size='medium' color='secondary' onClick={handelCancel}>Cancel</Button>
-            </Box>
+                {visible?(
+                  <Box className={classes.formButtons} >
+                    <Button variant='contained' size='medium' color='primary' type="submit" disabled={load}>Save</Button>
+                    <Button type="reset" variant='contained' size='medium' color='secondary' onClick={handelCancel.bind(null,resetForm)}>Cancel</Button>
+                </Box>
+                ):(null)}
+            
           </Form>
               
             )}

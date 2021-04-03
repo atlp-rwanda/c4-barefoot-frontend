@@ -11,11 +11,13 @@ export const DELETE_USERS_SUCCESS = 'DELETE_USERS_SUCCESS'
 export const DELETE_USERS_ERROR = 'DELETE_USERS_ERROR'
 export const CLEAR_SNACKBAR = 'CLEAR_SNACKBAR'
 
+const lang = localStorage.getItem('lang')
+
 export const getUsers = (page) => dispatch => {
   dispatch({
     type: FETCH_USERS_PENDING
   })
-  return API.get(`/assignUserstoManager/verified-users`, {
+  return API.get(`/assignUserstoManager/verified-users?lang=${lang}`, {
     headers: {
       Authorization: `Bearer ${token}`
     },
@@ -43,7 +45,7 @@ export const deleteUser = (index, email) => dispatch => {
     type: DELETE_USERS_PENDING
   })
 
-  return API.delete(`/admin/users`, {
+  return API.delete(`/admin/users?lang=${lang}`, {
     headers: {
       Authorization: `Bearer ${token}`
     },
