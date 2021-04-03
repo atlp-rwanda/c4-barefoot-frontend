@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   checkbox:{
       display: 'block',
+      background:"white 1px",
       position:'absolute',
       color: 'secondary',
       right: 0,

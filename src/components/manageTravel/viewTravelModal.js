@@ -240,26 +240,32 @@ const ViewTravelModal= (props)=> {
                            { travelRequestArray[0].travelRequestInfo.Trip.length>0 ? travelRequestArray[0].travelRequestInfo.Trip[0].reason : 'No reason available'}
                     </Typography>                    
                 </Box>
-                <Box className={classes.hotelAndReasonBoxes}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
-                            <img 
-                                alt="hotel image" 
-                                src={accomodationsInfo ? accomodationsInfo[0].photos : default_image } 
-                                style={{width: '100%'}} 
-                                onError= { (e)=> handleImageError(e)}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
-                                {accomodationsInfo ? accomodationsInfo[0].title : 'No name available' }
-                            </Typography>
-                            <Typography variant="caption" component="h2" gutterBottom={true}  >
-                                {accomodationsInfo ? accomodationsInfo[0].description : 'No accomodation decription available for this Trip' }     
-                            </Typography> 
-                        </Grid>
-                    </Grid>
-                </Box>   
+                {
+                    accomodationsInfo && accomodationsInfo.map(accomodation =>{
+                        return (
+                            <Box className={classes.hotelAndReasonBoxes}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={6} className={classes.hotelImageContainer}>
+                                        <img
+                                            alt="hotel image"
+                                            src={accomodation ? accomodation.photos : default_image }
+                                            style={{width: '100%'}}
+                                            onError= { (e)=> handleImageError(e)}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <Typography variant="body2" component="h2" gutterBottom={true} className={classes.headersText}>
+                                            {accomodation ? accomodation.title : 'No name available' }
+                                        </Typography>
+                                        <Typography variant="caption" component="h2" gutterBottom={true}  >
+                                            {accomodation ? accomodation.description : 'No accomodation decription available for this Trip' }
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        )
+                    })
+                }  
             </Box>
         </DialogContent>
 
