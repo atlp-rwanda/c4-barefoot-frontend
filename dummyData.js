@@ -821,6 +821,272 @@ export const comfirmProps = {
   }
 }
 
+export const statistics = {
+  "title": "STATISTICS",
+  "numberOfActiveUsers": 6,
+  "users": [
+      {
+          "id": "83b2a3e7-9ba4-4d3f-b3a3-d31940ee2edc",
+          "first_name": "Requester",
+          "last_name": "One",
+          "email": "sequester@gmail.com",
+          "password": "$2b$10$WUGiphjyeUahxAh.7Nbw9eYORcU07IxlV4R6mEzyZem7ENwu../76",
+          "username": "requesterOne",
+          "occupation": "requester_occupation",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "45429837-ed2c-435d-bc22-ad9c5dbe3782",
+          "manager_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8",
+          "refreshtoken": "",
+          "profile_picture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T07:32:00.556Z",
+          "updatedAt": "2021-03-31T15:49:26.423Z"
+      },
+      {
+          "id": "122a0d86-8b78-4bb8-b28f-8e5f7811c456",
+          "first_name": "SUper",
+          "last_name": "Admin",
+          "email": "superadmin@gmail.com",
+          "password": "$2b$10$WUGiphjyeUahxAh.7Nbw9eU1xlkdM9xjmW59tC1I6KcqQRgTUk7xC",
+          "username": "superadmin",
+          "occupation": "admin_occupation",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "eface43c-2e49-473b-bbe2-305d1a5190f1",
+          "manager_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8",
+          "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiZWZhY2U0M2MtMmU0OS00NzNiLWJiZTItMzA1ZDFhNTE5MGYxIiwidXNlcm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjE3MjExMTk2LCJleHAiOjE2MTc4MTU5OTZ9.PtX1BI4Yu9UmlqDoGwiW9LSfacs7FEmeLyNop4Lk2oU",
+          "profile_picture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T07:32:00.556Z",
+          "updatedAt": "2021-03-31T17:19:57.004Z"
+      },
+      {
+          "id": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+          "first_name": "Manager",
+          "last_name": "One",
+          "email": "mj@gmail.com",
+          "password": "$2b$10$WUGiphjyeUahxAh.7Nbw9ebZzGfXGdPTFUhF9tldwrugRfXh1.fQO",
+          "username": "managerOne",
+          "occupation": "manager_occupation",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "7254a9e7-2e1b-4f83-ad73-78b90dd3df77",
+          "manager_id": "a9610cf3-4056-41dd-92ca-463088e23d07",
+          "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiNzI1NGE5ZTctMmUxYi00ZjgzLWFkNzMtNzhiOTBkZDNkZjc3IiwidXNlcm5hbWUiOiJtYW5hZ2VyT25lIiwiaWF0IjoxNjE3MDk4MTI3LCJleHAiOjE2MTc3MDI5Mjd9.VxVBprixZM5w4mqVjOrU0_litFhA5x2h3tRUVp7xxs8",
+          "profile_picture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T07:32:00.556Z",
+          "updatedAt": "2021-03-30T09:55:27.954Z"
+      },
+      {
+          "id": "d74fcc5e-5755-4366-83ef-cf306b013c46",
+          "first_name": "pushRequester",
+          "last_name": "One",
+          "email": "pushnotfication@gmail.com",
+          "password": "$2b$10$WUGiphjyeUahxAh.7Nbw9e0ihrs7EQlotNG472ccUqgsp1vQmxwFG",
+          "username": "pushrequester",
+          "occupation": "push_notification_requester",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "45429837-ed2c-435d-bc22-ad9c5dbe3782",
+          "manager_id": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+          "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiNDU0Mjk4MzctZWQyYy00MzVkLWJjMjItYWQ5YzVkYmUzNzgyIiwidXNlcm5hbWUiOiJwdXNocmVxdWVzdGVyIiwiaWF0IjoxNjE1OTEwOTUxLCJleHAiOjE2MTY1MTU3NTF9.LohWDfWKhv1SbKvd6zwOgHVp52pQj_pF7ivg2ifFbSc",
+          "profile_picture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T07:32:00.556Z",
+          "updatedAt": "2021-03-26T09:45:35.098Z"
+      },
+      {
+          "id": "32898fa8-7f3c-4b0a-908a-b2a9f506ea5d",
+          "first_name": "Robby",
+          "last_name": "Rob",
+          "email": "mungerifraffaak@gmail.com",
+          "password": "$2b$10$J6Df1YtozZpVzRidxBvWIOIpNmTg8Ep9B3tjjK16Fw3dfg.V2FXLW",
+          "username": "mfrawk37w",
+          "occupation": "Engineer",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "45429837-ed2c-435d-bc22-ad9c5dbe3782",
+          "manager_id": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+          "refreshtoken": "refreshtoken",
+          "profile_picture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T16:59:46.490Z",
+          "updatedAt": "2021-03-29T11:19:48.960Z"
+      },
+      {
+          "id": "7cc49081-43fe-413c-a1d7-fb8d21ad1927",
+          "first_name": "MUNGERI",
+          "last_name": "Frank",
+          "email": "mungerifrank@gmail.com",
+          "password": "$2b$10$J6Df1YtozZpVzRidxBvWIOIpNmTg8Ep9B3tjjK16Fw3dfg.V2FXLW",
+          "username": "mfrank37",
+          "occupation": "Engineer",
+          "bio": null,
+          "verified": true,
+          "user_role_id": "45429837-ed2c-435d-bc22-ad9c5dbe3782",
+          "manager_id": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+          "refreshtoken": "refreshtoken",
+          "profile_picture": "https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw",
+          "language": "English",
+          "address": "Kigali",
+          "createdAt": "2021-03-16T16:51:50.516Z",
+          "updatedAt": "2021-03-30T08:20:54.230Z"
+      }
+  ],
+  "numberOfAccommodation": 10,
+  "numberOfLocation": {
+      "count": 10,
+      "rows": [
+          {
+              "id": "23fd8031-52d6-4150-958c-c162ba9e8f5c",
+              "LocationName": "Kigali",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "81e37435-ce52-4cbd-8194-e65072f80497",
+              "LocationName": "Kigali",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "3ea5caaf-e10f-45c3-9876-cd690fe27a32",
+              "LocationName": "Kigali",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "a2bd68c2-39b4-4b61-9975-fc528052b3d4",
+              "LocationName": "Kigali",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "6f54bcae-f476-4224-86c8-52b8bc4c9a3f",
+              "LocationName": "Kamembe",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "13fd6ef0-5ddd-487f-8889-998945ad3b00",
+              "LocationName": "Kamembe",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "5a06accb-c678-4b33-85d4-49183e8edc5a",
+              "LocationName": "Nyamasheke",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "42eb89ff-6fc6-4840-b9d6-80607348bc7e",
+              "LocationName": "Ruhengeri",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "c7c0585e-91ff-4175-af96-07885ff32642",
+              "LocationName": "Rwamagana",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          },
+          {
+              "id": "c6028e0d-ef88-4693-ab49-f37669891724",
+              "LocationName": "Kgl",
+              "country": "Rwanda",
+              "description": "The land of a thousand hills",
+              "currency": null,
+              "link": "https://en.wikipedia.org/wiki/Kigali",
+              "createdAt": "2021-03-16T07:32:00.622Z",
+              "updatedAt": "2021-03-16T07:32:00.622Z"
+          }
+      ]
+  },
+  "sortedVisitedLocation": [
+      {
+          "LocationName": "Kigali",
+          "visits": "4"
+      },
+      {
+          "LocationName": "Kamembe",
+          "visits": "2"
+      },
+      {
+          "LocationName": "Nyamasheke",
+          "visits": "1"
+      },
+      {
+          "LocationName": "Rwamagana",
+          "visits": "1"
+      },
+      {
+          "LocationName": "Kgl",
+          "visits": "1"
+      }
+  ],
+  "SortedBookedAccomodation": [
+      [
+          "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          6
+      ],
+      [
+          "520f2b37-7bac-4490-aa7a-96f15915bcd7",
+          1
+      ],
+      [
+          "2db4eecc-aa69-4ce6-a584-65667ce23d24",
+          1
+      ],
+      [
+          "80f32db8-138c-46a1-bcc2-10ddac7429a2",
+          1
+      ]
+  ]
+};
 export const location= {
 
   id: "0880b2d1-662c-4782-8aed-252fdd0644c4",

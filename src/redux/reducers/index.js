@@ -19,6 +19,9 @@ import { permissionsReducer } from './permissionsReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
+import fetchAllUsers from './getAllUsersReducer';
+import fetchStatistics from './fetchStatistics';
+import fetchVisitors from './fetchVisitors';
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 
@@ -42,6 +45,9 @@ const reducers = combineReducers({
   roles: RolesReducer,
   permissions: permissionsReducer,
   createRoles,
+  fetchAllUsers,
+  fetchStatistics,
+  fetchVisitors,
   managerReducer,
   createTravelRequest: CreateTravelRequestReducer,
   createAcc: createAccReducer,
