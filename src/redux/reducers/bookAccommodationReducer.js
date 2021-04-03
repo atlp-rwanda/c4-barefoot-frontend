@@ -1,4 +1,7 @@
-import {BOOK_ACCOMMODATIONS_PENDING , BOOK_ACCOMMODATIONS_SUCCESS,BOOK_ACCOMMODATIONS_ERROR,CLEAR_BOOK_SNACKBAR} from '../actions/bookAccommodationAction'
+import {
+  BOOK_ACCOMMODATIONS_PENDING, BOOK_ACCOMMODATIONS_SUCCESS, BOOK_ACCOMMODATIONS_ERROR,
+  CLEAR_BOOK_SNACKBAR, GET_BOOKING_SUCCESS,GET_BOOKING_ERROR,GET_BOOKING_PENDING
+} from '../actions/bookAccommodationAction'
 
 const initialState = {
   pending: false,
@@ -6,7 +9,7 @@ const initialState = {
     open: false,
     severity: '',
     message: null
-  }
+  },
 }
 
 export function bookAccommodationsReducer(state = initialState, action){

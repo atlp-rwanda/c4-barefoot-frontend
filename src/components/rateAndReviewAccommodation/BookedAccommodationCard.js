@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Checkbox} from '@material-ui/core';
 import { Place } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
-import colors from './colors';
-import Ratings from './RatingStars';
+import colors from '../colors';
+import Ratings from './stars';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import {getBookings} from "../redux/actions/bookAccommodationAction";
+import {getBookings} from "../../redux/actions/bookAccommodationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   checkbox:{
       display: 'block',
-      background:"white 1px",
       position:'absolute',
       color: 'secondary',
       right: 0,
@@ -50,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding:'5px'
+  },
+  rates: {
+    paddingRight:'66px'
   }
 }));
 
@@ -67,6 +69,10 @@ function Accommodations(props) {
       props.getAccommodationAminity(event.target.id);
 
   };
+  useEffect(() => {
+    props.getBookings()
+    // console.log(props.reviews)
+  },[])
     const handleViewMore =() =>{
       return props.openModalAction({open: true, data: props.accommodation});
     }
@@ -88,12 +94,7 @@ function Accommodations(props) {
         :
       <>
       <CardActionArea>
-        <Checkbox
-        onChange={handleSelection}
-        checked={props.accommodationn.id===props.selectedAccommodation?true:false}
-        id={props.accommodationn.id}
-        name={props.accommodationn.city}
-        className={classes.checkbox}/>
+        
         <CardMedia
           onClick={handleViewMore}
           className={classes.media}
@@ -109,16 +110,27 @@ function Accommodations(props) {
           </Typography>
         </CardContent>
           </CardActionArea>
+            <CardActions className={classes.cardActions}>
+              
+              <div className={classes.rateAndReviewLinks}>
+                <div className={classes.rates}>
+                <Link  to={'/review/'+props.accommodationn.id}>
+                   <Ratings highratings={3} id={props.accommodationn.id} />
+                 </Link>
+                </div>
+                <div>
+                <Typography className={classes.reviews}>
+             <Link  to={'/reviews/'+props.accommodationn.id} className={classes.links}  style={{ textDecoration: 'none' }}>
+                   Reviews
+                   </Link>
+             </Typography>
+                </div>
+              </div>
             
-         <CardActions className={classes.cardActions}>
-            <Button size="small" color="primary" onClick={handleViewMore} startIcon={<Place color="secondary" />}> {props.accommodationn.state}, {props.accommodationn.city} </Button>
-                
-                  <Ratings highratings={3} id={props.accommodationn.id} />
-                
-            <Typography className={classes.reviews}>
-                  Reviews
-            </Typography>
-          </CardActions>
+                 
+            
+           </CardActions>
+         
      
       </>
       )}
@@ -126,5 +138,9 @@ function Accommodations(props) {
   );
 }
 
-export default Accommodations;
+const mapStateToProps = state => ({
+  accommodation:state.bookedAccommodations
+})
+
+export default connect(mapStateToProps, {getBookings}) (Accommodations);
 

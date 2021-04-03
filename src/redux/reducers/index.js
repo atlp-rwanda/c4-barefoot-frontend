@@ -16,9 +16,12 @@ import { UsersReducer } from './usersReducer'
 import { RolesReducer } from './rolesReducer'
 import { createRoles } from './createRoleReducer'
 import { permissionsReducer } from './permissionsReducer'
+import {getBookingsReducer} from './getBookingReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
-import {managerReducer} from './managersReducer'
+import { managerReducer } from './managersReducer'
+import {fetchAccommodationReducer} from './fetchAccommodationReducer'
+import {fetchReviewsReducer,addRatesAndReview} from './ratingsReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 
@@ -30,6 +33,14 @@ const reducers = combineReducers({
   newPassword: NewPasswordReducer,
   fetchLocations: fetchLocationsReducer,
   fetchAccommodations: fetchAccommodationsReducer,
+  fetchAccommodation:fetchAccommodationReducer,
+  fetchReviews: fetchReviewsReducer,
+  addReviews:addRatesAndReview,
+  fetchReviews:fetchReviewsReducer,
+  fetchReviews: fetchReviewsReducer,
+  addReviews:addRatesAndReview,
+  bookAccommodations: bookAccommodationsReducer,
+  bookedAccommodations:getBookingsReducer,
   manageTravel:fetchTravelReducer,
   manageSingleTravel:fetchSingleTravelReducer,
   updateTravel:updateSingleTravelReducer,
