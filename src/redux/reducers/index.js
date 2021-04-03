@@ -51,7 +51,6 @@ const reducers = combineReducers({
   fetchVerifiedUsers: fetchVerifiedUsers,
   fetchAllManagers: fetchAllManagers,
   addAssignActionToQueue: addAssignActionToQueue,
-  fetchVerifiedUsersPage: fetchVerifiedUsersPage,
 });
 
 export default reducers
