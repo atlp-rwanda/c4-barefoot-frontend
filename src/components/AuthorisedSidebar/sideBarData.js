@@ -78,36 +78,25 @@ let menuItems = {
             link: "/managerTravel",
             subs: [
                 {
-                    title: 'Create Travel',
-                    icon: <AddCircleIcon />,
-                    link: "/requester/create-travel-request"
-                },
-                {
                     title: 'Pending',
                     icon: <CachedIcon />,
-                    link: "/requester/view-travel-requests/pending"
+                    link: "/managerTravel"
                 },
                 {
                     title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/requester/view-travel-requests/approved"
+                    link: "/managerTravel/approved"
                 },
                 {
-                    title: 'Canceled',
+                    title: 'Canceled & Rejected',
                     icon: <CancelIcon />,
-                    link: "/requester/view-travel-requests/canceled"
-                },
-                {
-                    title: 'Rejected',
-                    icon: <CancelIcon />,
-                    link: "/requester/view-travel-requests/rejected"
+                    link: "/managerTravel/canceled"
                 },
                 {
                     title: 'Done',
                     icon: <DoneAllIcon />,
-                    link: "/requester/view-travel-requests/done"
+                    link: "/managerTravel/done"
                 },
-
             ]
         },
         {

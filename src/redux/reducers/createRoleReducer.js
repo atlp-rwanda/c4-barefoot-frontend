@@ -1,8 +1,8 @@
-import { CREATE_ROLE_ERROR, CREATE_ROLE_PENDING, CREATE_ROLE_SUCCESS, CLEAR_SNACKBAR,UPDATE_ROLE,UPDATE_ROLE_FAILED } from '../actions/createRoleAction'
+import { CREATE_ROLE_ERROR, CREATE_ROLE_PENDING, CREATE_ROLE_SUCCESS, CLEAR_SNACKBAR, UPDATE_ROLE, UPDATE_ROLE_FAILED } from '../actions/createRoleAction'
 
-const initialState ={
+const initialState = {
   pending: false,
-  snackBarMessage:{
+  snackBarMessage: {
     open: false,
     severity: '',
     message: null
@@ -11,56 +11,56 @@ const initialState ={
 }
 
 export const createRoles = (state = initialState, action) => {
-  switch(action.type){
+  switch (action.type) {
     case CREATE_ROLE_PENDING:
-      return{
+      return {
         ...state,
         pending: true
       }
     case CREATE_ROLE_SUCCESS:
-      return{
+      return {
         ...state,
         pending: false,
-        snackBarMessage:{
-          open:true,
-          severity:"success",
-          message:"Role Successfully Created!"
-        } 
+        snackBarMessage: {
+          open: true,
+          severity: "success",
+          message: "Role Successfully Created!"
+        }
       }
     case CREATE_ROLE_ERROR:
-      return{
+      return {
         ...state,
         pending: false,
-        snackBarMessage:{
-          open:true,
-          severity:"error",
-          message:action.error
+        snackBarMessage: {
+          open: true,
+          severity: "error",
+          message: action.error
         },
         error: action.error
       }
-      case UPDATE_ROLE:
-        return {
+    case UPDATE_ROLE:
+      return {
         ...state,
         pending: false,
-        snackBarMessage:{
-          open:true,
-          severity:"success",
-          message:"Role Successfully Updated!"
-        } 
-        }
-      case UPDATE_ROLE_FAILED:
-        return {
+        snackBarMessage: {
+          open: true,
+          severity: "success",
+          message: "Role Successfully Updated!"
+        },
+      }
+    case UPDATE_ROLE_FAILED:
+      return {
         ...state,
         pending: false,
-        snackBarMessage:{
-          open:true,
-          severity:"error",
-          message:action.error
+        snackBarMessage: {
+          open: true,
+          severity: "error",
+          message: action.error
         },
         error: action.error
       }
     case CLEAR_SNACKBAR:
-      return{
+      return {
         ...state,
         snackBarMessage: false
       }

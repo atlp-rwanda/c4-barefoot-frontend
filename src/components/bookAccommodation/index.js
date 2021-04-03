@@ -1,16 +1,16 @@
-import FirstStep  from './firstStep';
+import FirstStep from './firstStep';
 import SecondStep from './secondStep';
 import Confirm from './thirdStep';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
-import {Snackbar,Slide,Button} from '@material-ui/core';
+import { Snackbar, Slide, Button } from '@material-ui/core';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
-import {clearBookSnackbar} from '../../redux/actions/bookAccommodationAction'
-import { Avatar, Box,Link } from '@material-ui/core';
+import { clearBookSnackbar } from '../../redux/actions/bookAccommodationAction'
+import { Avatar, Box, Link } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Redirect } from 'react-router';
@@ -27,29 +27,29 @@ const useStyles = makeStyles((theme) => ({
   rightSide: {
     border: '2px solid lightblue',
     padding: '1.5rem',
-    '@media(max-width: 740px)' : {
+    '@media(max-width: 740px)': {
       maxWidth: '450px',
     },
-    '@media(max-width: 370px)' : {
+    '@media(max-width: 370px)': {
       border: 'none',
       padding: 'unset'
     },
   },
-  h3:{
+  h3: {
     color: 'dodgerblue',
     margin: '1em',
-    '@media(max-width: 740px)' : {
+    '@media(max-width: 740px)': {
       fontSize: '15px'
     }
   },
   container: {
     display: 'grid',
     fontFamily: "'Poppins', sans-serif",
-    '@media(max-width: 740px)' : {
+    '@media(max-width: 740px)': {
       display: 'flex',
       flexDirection: 'column'
     },
-    gridTemplateColumns: '1fr 1fr', 
+    gridTemplateColumns: '1fr 1fr',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '1rem',
@@ -80,11 +80,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     width: '400px',
     marginTop: '4px',
-    
-    '@media(max-width: 800px)' : {
+
+    '@media(max-width: 800px)': {
       width: '330px'
     },
-    '@media(max-width: 740px)' : {
+    '@media(max-width: 740px)': {
       width: 'unset'
     },
   },
@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     minWidth: '100px',
-    '@media(max-width: 360px)' : {
+    '@media(max-width: 360px)': {
       justifyContent: 'start'
     }
   },
@@ -103,21 +103,21 @@ const useStyles = makeStyles((theme) => ({
     width: '70%',
     marginTop: '5px'
   },
-  link:{
-    '&:hover':{
-        cursor:'pointer',
-        textDecoration:"none"
+  link: {
+    '&:hover': {
+      cursor: 'pointer',
+      textDecoration: "none"
     }
-},
-  container2:{
-    width:'80%',
-    [theme.breakpoints.up("xs")]:{
-      marginLeft:theme.spacing(7)
+  },
+  container2: {
+    width: '80%',
+    [theme.breakpoints.up("xs")]: {
+      marginLeft: theme.spacing(7)
     },
-    [theme.breakpoints.up("sm")]:{
-      marginLeft:theme.spacing(15)
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(15)
     }
-}
+  }
 }));
 
 function getSteps() {
@@ -132,7 +132,7 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
           formData={formData}
           setFormData={setFormData}
           nextStep={handleNext}
-          loading = {loading}
+          loading={loading}
         />
       );
     case 1:
@@ -142,18 +142,18 @@ function getStepContent(loading, stepIndex, formData, setFormData, handleNext, h
           setFormData={setFormData}
           nextStep={handleNext}
           prevStep={handleBack}
-          loading = {loading}
+          loading={loading}
         />
       );
     case 2:
       return (
-        <Confirm formData={formData} nextStep={handleNext} prevStep={handleBack} loading = {loading} />
+        <Confirm formData={formData} nextStep={handleNext} prevStep={handleBack} loading={loading} />
       );
     default:
   }
 }
 
-const Book = (props)=> {
+const Book = (props) => {
   const [formData, setFormData] = React.useState({
     From: '',
     To: ''
@@ -176,35 +176,35 @@ const Book = (props)=> {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
- 
 
-  setTimeout(() => { setLoading(false)}, 1000);
+
+  setTimeout(() => { setLoading(false) }, 1000);
   return (
     <div >
       <div >
-        <div className={classes.rightSide}>    
-          { loading ? (
+        <div className={classes.rightSide}>
+          {loading ? (
             <Box className={classes.stepperContainer}>
               <Box className={classes.stepperBox}>
                 <Skeleton variant="circle">
-                  <Avatar/>
+                  <Avatar />
                 </Skeleton>
-                <Skeleton variant="rect" className={classes.stepperText}/>
-                <Skeleton variant="rect" className={classes.stepperText}/>
+                <Skeleton variant="rect" className={classes.stepperText} />
+                <Skeleton variant="rect" className={classes.stepperText} />
               </Box>
               <Box className={classes.stepperBox}>
                 <Skeleton variant="circle">
-                  <Avatar/>
+                  <Avatar />
                 </Skeleton>
-                <Skeleton variant="rect" className={classes.stepperText}/>
-                <Skeleton variant="rect" className={classes.stepperText}/>
+                <Skeleton variant="rect" className={classes.stepperText} />
+                <Skeleton variant="rect" className={classes.stepperText} />
               </Box>
               <Box className={classes.stepperBox}>
                 <Skeleton variant="circle">
-                  <Avatar/>
+                  <Avatar />
                 </Skeleton>
-                <Skeleton variant="rect" className={classes.stepperText}/>
-                <Skeleton variant="rect" className={classes.stepperText}/>
+                <Skeleton variant="rect" className={classes.stepperText} />
+                <Skeleton variant="rect" className={classes.stepperText} />
               </Box>
             </Box>
           ) : (
@@ -216,32 +216,32 @@ const Book = (props)=> {
               ))}
             </Stepper>
           )}
-          
+
           <div>
             {activeStep === steps.length ? (
               <div>
-                  <Snackbar
-                      open={props.snackBarMessage.open}
-                      onClose={closeBookSnackBarTimer}
-                      autoHideDuration={4000}
-                      TransitionComponent={TransitionUp}
-                  >
+                <Snackbar
+                  open={props.snackBarMessage.open}
+                  onClose={closeBookSnackBarTimer}
+                  autoHideDuration={4000}
+                  TransitionComponent={TransitionUp}
+                >
                   <MuiAlert
-                      severity={props.snackBarMessage.severity}
-                      variant='filled'
-                      elevation={6}
-                      >{props.snackBarMessage.message}
+                    severity={props.snackBarMessage.severity}
+                    variant='filled'
+                    elevation={6}
+                  >{props.snackBarMessage.message}
                   </MuiAlert>
                 </Snackbar>
                 <div className={classes.container2}>
                   <Typography className={classes.instructions}>You have Successfully Booked your Accommodation  <i class="fa fa-thumbs-up"></i></Typography>
-                    <Button
-                        color='primary'
-                        variant='contained'
-                        href="/requester/view-travel-requests"
-                        className={classes.link}
-                    >
-                        Back To your Requestes
+                  <Button
+                    color='primary'
+                    variant='contained'
+                    href="/requester/view-travel-requests/approved"
+                    className={classes.link}
+                  >
+                    Back To your Requestes
                     </Button>
                 </div>
               </div>
@@ -257,9 +257,9 @@ const Book = (props)=> {
   );
 }
 
-const mapStateToProps = state =>({
-  snackBarMessage:state.bookAccommodations.snackBarMessage
+const mapStateToProps = state => ({
+  snackBarMessage: state.bookAccommodations.snackBarMessage
 })
-export{Book}
-export default connect(mapStateToProps,{clearBookSnackbar})(Book)
+export { Book }
+export default connect(mapStateToProps, { clearBookSnackbar })(Book)
 
