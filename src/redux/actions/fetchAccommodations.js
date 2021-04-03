@@ -8,9 +8,10 @@ export const FETCH_AMENITIES_SUCCESS = 'FETCH_AMENITIES_SUCCESS'
 export const FETCH_AMENITIES_ERROR = 'FETCH_AMENITIES_ERROR'
 export const FETCH_ACCOMMODATIONS_ERROR = 'FETCH_ACCOMMODATIONS_ERROR'
 
+const lang = localStorage.getItem('lang')
 
 export const getAccommodations = () => dispatch => {
-  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations`,{
+  return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/accommodations?lang=${lang}`,{
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -57,4 +58,3 @@ export const getAccommodationAminity = (id) => dispatch => {
       })
     })
 }
-

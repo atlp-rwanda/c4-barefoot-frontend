@@ -7,6 +7,7 @@ import NewMessage from './Lists/NewMessage';
 import socket from 'socket.io-client';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import MuiAlert from '@material-ui/lab/Alert';
+import io from './io';
 // import { io } from './io';
  
 
@@ -19,9 +20,17 @@ function ChatMessages(props){
     const [error, setError] = React.useState('')
     const theerror = props.error;
     React.useEffect(()=>{
-        
         props.getChats();
         props.getVisitorsMessages()
+        io.on('new_message', data =>{
+            props.getChats();
+            console.log('User message', data)
+        })
+        io.on('support_message', data=>{
+            props.getVisitorsMessages()
+            console.log("Visitor's messages",data)
+        })
+       
         
         if(theerror){
             setError(theerror)

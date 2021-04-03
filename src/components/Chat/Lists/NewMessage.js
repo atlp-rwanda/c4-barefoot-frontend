@@ -6,6 +6,7 @@ import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
+import io from '../io';
 // import { io } from '../io';
 
 function NewMessage(props) {
@@ -15,15 +16,14 @@ function NewMessage(props) {
     const [feedbackText, setFeedbackText] = React.useState('')
     const [loading, setLoading] = React.useState(false)
     const [vimage, setvImage] = React.useState('');
-    // const [sentMessage, setSentMessage] = React.useState('')
-    // useEffect(()=>{
-    //     io.emit('user_connected', {userId:localStorage.getItem('id')});
-    //     io.on('user_connected', userId=>{
-    //         console.log(userId);
-    //         console.log(sentMessage)
-    //         io.emit('send_message', sentMessage)
-    //     })
-    // }, [sentMessage])
+   const [visitorResponse, setVisitorResponse] = React.useState('')
+
+   React.useEffect(() => {
+    io.on('connection', socket=>{
+        socket.emit('send_message',visitorResponse)
+        console.log(visitorResponse)
+    })
+   })
 
     const senderId = localStorage.getItem('id');
     const handleClick = (e) => {
@@ -43,7 +43,9 @@ function NewMessage(props) {
                 props.getChats()
             }); 
            
-            
+            io.emit('connection', socket=>{
+                socket.emit('send_message', data)
+            })
         }else if(image != ''){
             const messageData = {
                 receiver: receiverId,
@@ -69,12 +71,17 @@ function NewMessage(props) {
             const messageData = {
                 visitor: receiverId,
                 message: vmessage,
-                type: 'plain-text'
+                type: 'plain-text',
+                metadata: "visitor"
             }
             props.supportResponds(messageData).then(() =>{
                 props.getVisitorsMessages()
                 setvMessage('')
+                setVisitorResponse(messageData)
             });
+            io.on('connection', socket=>{
+                socket.emit('send_message',messageData)
+            })
             
         }else if(vimage != ''){
             const messageData = {

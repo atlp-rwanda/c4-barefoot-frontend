@@ -6,11 +6,11 @@ exports[`<Footer /> should be rendered without errors 1`] = `
     className="makeStyles-offset-1"
   />
   <WithStyles(ForwardRef(AppBar))
-    className="makeStyles-stickToBottom-2"
+    className="makeStyles-stickToBottom-3"
     position="static"
   >
     <ForwardRef(AppBar)
-      className="makeStyles-stickToBottom-2"
+      className="makeStyles-stickToBottom-3"
       classes={
         Object {
           "colorDefault": "MuiAppBar-colorDefault",
@@ -29,13 +29,13 @@ exports[`<Footer /> should be rendered without errors 1`] = `
       position="static"
     >
       <WithStyles(ForwardRef(Paper))
-        className="MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-2"
+        className="MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-3"
         component="header"
         elevation={4}
         square={true}
       >
         <ForwardRef(Paper)
-          className="MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-2"
+          className="MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-3"
           classes={
             Object {
               "elevation0": "MuiPaper-elevation0",
@@ -73,7 +73,7 @@ exports[`<Footer /> should be rendered without errors 1`] = `
           square={true}
         >
           <header
-            className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-2 MuiPaper-elevation4"
+            className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-stickToBottom-3 MuiPaper-elevation4"
           >
             <WithStyles(ForwardRef(Toolbar))>
               <ForwardRef(Toolbar)
@@ -137,7 +137,9 @@ exports[`<Footer /> should be rendered without errors 1`] = `
                         className="MuiTypography-root MuiTypography-body1"
                         href="/"
                       >
-                        © 2020, BareFoot Nomad, All rights reserved.
+                        © 
+                        2020, BareFoot Nomad, All rights reserved
+                        .
                       </p>
                     </ForwardRef(Typography)>
                   </WithStyles(ForwardRef(Typography))>

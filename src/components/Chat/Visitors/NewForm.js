@@ -7,6 +7,9 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {connect} from 'react-redux';
 import {visitorsMessage, getSupportResponse, getChats} from '../../../redux/actions/ChatAction';
 import ListMessages from './ListMessages';
+import io from '../io';
+
+localStorage.getItem('')
 
 function NewForm(props){
     const classes = useStyles();
@@ -15,8 +18,16 @@ function NewForm(props){
     const [loading, setLoading] = React.useState(false)
     const [image, setImage] = React.useState('')
     const messages = props.messages;
+    
     React.useEffect(()=>{
+        io.emit('connection', socket=> {
+            socket.on('support_message', data => {
+                console.log(data)
+                props.getSupportResponse();
+            })
+        })
         props.getSupportResponse();
+        
     }, [])
     const handleSubmit = () => {
         if(message != ''){
@@ -29,6 +40,7 @@ function NewForm(props){
             }
             props.visitorsMessage(messageData).then(() => {
                 props.getSupportResponse()
+                io.emit('request_support', messageData)
             });
             setFeedbackText('Message sent!');
             setMessage('')

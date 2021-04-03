@@ -2,6 +2,7 @@ import { Avatar, Box, List, ListItem, makeStyles, Typography } from '@material-u
 import {  AddLocation,Person, Business, Home, LocationCity,  PinDrop } from '@material-ui/icons'
 import React from 'react'
 import Divider from '@material-ui/core/Divider'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 export function SideBar(){
+    const { t, i18n } = useTranslation();
     const classes = useStyles()
     return(
         <div className={classes.container}>
@@ -58,20 +60,20 @@ export function SideBar(){
                 <Typography className={classes.a} href='/requester/profile' component='a'>
                 <ListItem className={classes.linkBox}>
                     <Typography><Person/></Typography>
-                    <Typography className={classes.menuText}>Profile</Typography>
+                    <Typography className={classes.menuText}>{t("Profile")}</Typography>
                 </ListItem>
                 </Typography>
                 <Divider/>
                 <Typography className={classes.a} href='/requester/create-travel-request' component='a'>
                 <ListItem className={classes.linkBox}>
                     <Typography><AddLocation/></Typography>
-                    <Typography className={classes.menuText}>Create TRavel request</Typography>
+                    <Typography className={classes.menuText}>{t("Create Travel Request")}</Typography>
                 </ListItem>
                 </Typography>
                 <Typography className={classes.a} href='/requester/view-travel-requests' component='a'>
                 <ListItem className={classes.linkBox}>
                     <Typography><PinDrop/></Typography>
-                    <Typography className={classes.menuText}>View Travel Requests</Typography>
+                    <Typography className={classes.menuText}>{t("View Travel Requests")}</Typography>
                 </ListItem>
                 </Typography>
                 <Divider/>

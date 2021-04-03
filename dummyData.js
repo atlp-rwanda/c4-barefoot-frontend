@@ -135,66 +135,65 @@ export const accommodationsPayload = {
       profile_picture: 'image1.png'
     }
   ]
-  export const allTravelPayload =[
-    {
-      travelRequestInfo: {
-          travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-          managerId: "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
-          userId: "83b2a3e7-9ba4-4d3f-b3a3-d31940ee2edc",
-          status: "approved",
-          createdAt: "2021-01-11T20:08:41.421Z",
-          updatedAt: "2021-03-01T08:34:29.612Z",
-          Trip: [
-              {
-                  tripId: "83b2a3e7-9ba4-3f4d-b3a3-d31940ee2edc",
-                  originCity: "Kigali",
-                  destination: "Cairo",
-                  reason: "Trippin",
-                  tripDate: "2020-10-10T00:00:00.000Z",
-                  returnDate: "2021-10-10T00:00:00.000Z",
-                  accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-                  createdAt: "2021-01-11T20:08:41.427Z",
-                  updatedAt: "2021-01-11T20:08:41.427Z",
-                  travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
-              },
-              {
-                  tripId: "83b2a3e7-4ab9-3f4d-b3a3-d31940ee2edc",
-                  originCity: "Kigali",
-                  destination: "Kampala",
-                  reason: "Trippin",
-                  tripDate: "2020-10-10T00:00:00.000Z",
-                  returnDate: "2021-10-10T00:00:00.000Z",
-                  accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
-                  createdAt: "2021-01-11T20:08:41.427Z",
-                  updatedAt: "2021-01-11T20:08:41.427Z",
-                  travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
-              },
-              {
-                  tripId: "1a52f79e-568a-45b3-9151-4dfa40bb1217",
-                  originCity:" Kigali",
-                  destination: "Nairobi",
-                  reason: "Trippin",
-                  tripDate: "2020-10-10T00:00:00.000Z",
-                  returnDate: "2021-10-10T00:00:00.000Z",
-                  accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc8",
-                  createdAt: "2021-01-11T20:08:41.427Z",
-                  updatedAt: "2021-01-11T20:08:41.427Z",
-                  travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
-              },
-              {
-                  tripId: "aeebcf33-d125-44ce-b8c1-f5d5e8b75f13",
-                  originCity: "Kigali",
-                  destination: "Nairobi",
-                  reason: "Trippin",
-                  tripDate: "2020-10-10T00:00:00.000Z",
-                  returnDate: "2021-10-10T00:00:00.000Z",
-                  accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc8",
-                  createdAt: "2021-01-11T20:08:41.427Z",
-                  updatedAt: "2021-01-11T20:08:41.427Z",
-                  travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
-              }
-          ]
-
+export const allTravelPayload = [
+  {
+    travelRequestInfo: {
+      travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+      managerId: "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+      userId: "83b2a3e7-9ba4-4d3f-b3a3-d31940ee2edc",
+      status: "approved",
+      createdAt: "2021-01-11T20:08:41.421Z",
+      updatedAt: "2021-03-01T08:34:29.612Z",
+      Trip: [
+        {
+          tripId: "83b2a3e7-9ba4-3f4d-b3a3-d31940ee2edc",
+          originCity: "Kigali",
+          destination: "Cairo",
+          reason: "Trippin",
+          tripDate: "2020-10-10T00:00:00.000Z",
+          returnDate: "2021-10-10T00:00:00.000Z",
+          accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          createdAt: "2021-01-11T20:08:41.427Z",
+          updatedAt: "2021-01-11T20:08:41.427Z",
+          travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
+        },
+        {
+          tripId: "83b2a3e7-4ab9-3f4d-b3a3-d31940ee2edc",
+          originCity: "Kigali",
+          destination: "Kampala",
+          reason: "Trippin",
+          tripDate: "2020-10-10T00:00:00.000Z",
+          returnDate: "2021-10-10T00:00:00.000Z",
+          accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5",
+          createdAt: "2021-01-11T20:08:41.427Z",
+          updatedAt: "2021-01-11T20:08:41.427Z",
+          travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
+        },
+        {
+          tripId: "1a52f79e-568a-45b3-9151-4dfa40bb1217",
+          originCity: " Kigali",
+          destination: "Nairobi",
+          reason: "Trippin",
+          tripDate: "2020-10-10T00:00:00.000Z",
+          returnDate: "2021-10-10T00:00:00.000Z",
+          accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc8",
+          createdAt: "2021-01-11T20:08:41.427Z",
+          updatedAt: "2021-01-11T20:08:41.427Z",
+          travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
+        },
+        {
+          tripId: "aeebcf33-d125-44ce-b8c1-f5d5e8b75f13",
+          originCity: "Kigali",
+          destination: "Nairobi",
+          reason: "Trippin",
+          tripDate: "2020-10-10T00:00:00.000Z",
+          returnDate: "2021-10-10T00:00:00.000Z",
+          accommodationId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc8",
+          createdAt: "2021-01-11T20:08:41.427Z",
+          updatedAt: "2021-01-11T20:08:41.427Z",
+          travelId: "0ce36391-2c08-3074-bddb-a4ea8cccbbc5"
+        }
+      ]
     },
     userInfo: {
       username: "requesterOne",
@@ -867,4 +866,48 @@ export const supportReply = {
   receiver: 'fh839h973jjfbvdy8itet',
   message: '/images/image.png',
   type: 'image/jpeg'
+}
+export const location= {
+
+  id: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+  LocationName: "Dubai",
+  country: "United Arab Emirates",
+  description: "The world's biggest trade hub and tourist attractor",
+  currency: "EUR",
+  link: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179656/barefoot%20uploads/xk48tsqz9afl49dkzkhd.jpg",
+  createdAt: "2021-03-19T18:49:00.222Z",
+  updatedAt: "2021-03-19T18:49:00.222Z"
+
+}
+
+export const locationsData= {
+  locations: [
+    {
+      id: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+      LocationName: "Dubai",
+      country: "United Arab Emirates",
+      description: "The world's biggest trade hub and tourist attractor",
+      currency: "EUR",
+      link: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179656/barefoot%20uploads/xk48tsqz9afl49dkzkhd.jpg",
+      createdAt: "2021-03-19T18:49:00.222Z",
+      updatedAt: "2021-03-19T18:49:00.222Z"
+    }
+]};
+
+export const accomodation= {
+    id: "f34e8426-8591-4ab0-90a5-6d716833224b",
+    country: "Dubai",
+    city: "Dubai",
+    state: "Al Hilal",
+    streetAddress: "St 21, Dub, UAE",
+    locationID: "0880b2d1-662c-4782-8aed-252fdd0644c4",
+    propertyType: "Motel",
+    numberOfRooms: 12,
+    price: 123000,
+    typeOfBed: "single",
+    title: "Dubai rest view hotel",
+    description: "This the best place for tourists to rest in Dubai",
+    photos: "https://res.cloudinary.com/nowo-ltd/image/upload/v1616179879/barefoot%20uploads/txmzilh8lxwv4u63mvz3.jpg",
+    createdAt: "2021-03-19T18:52:16.774Z",
+    updatedAt: "2021-03-19T18:52:16.774Z"
 }

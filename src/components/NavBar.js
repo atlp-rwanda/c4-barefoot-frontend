@@ -2,6 +2,9 @@ import React from 'react'
 import { AppBar, Toolbar, Button, makeStyles, List, Container, Hidden, Typography, Link } from '@material-ui/core'
 import { PersonAddOutlined, PersonOutlined } from '@material-ui/icons'
 import SideDrawer from './SideDrawer'
+import MultipleLanguages from './MultiLang/MultiLang'
+import { useTranslation } from 'react-i18next';
+
 
 const navLinks = [
     { title: 'Login', path: '/login' },
@@ -24,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 function Header() {
     const classes = useStyles()
+    const { t, i18n } = useTranslation();
 
     const barefootLogo = <Typography href='/welcome' variant='h6' component='a' className={classes.logo}> Barefoot Nomad </Typography>
 
@@ -36,8 +40,9 @@ function Header() {
                         <Toolbar className={classes.navDisplay}>
                             <h2>{barefootLogo}</h2>
                             <nav>
-                                <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>Login</Button>
-                                <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>Signup</Button>
+                                <Button><MultipleLanguages/></Button>
+                                <Button href="/login" color='inherit' startIcon={<PersonOutlined />}>{t("Login")}</Button>
+                                <Button href="/signup" color='inherit' startIcon={<PersonAddOutlined />}>{t("Signup")}</Button>
                             </nav>
                         </Toolbar>
                     </div>

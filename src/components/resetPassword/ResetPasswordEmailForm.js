@@ -6,6 +6,7 @@ import { sendEmail, closeSnackbar } from "../../redux/actions/resetPasswordActio
 import { object, string } from 'yup'
 import { ToastContainer, toast, Zoom, Bounce } from 'material-react-toastify';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useTranslation } from 'react-i18next';
 
 const useStyle = makeStyles( (theme) => ({
     typographyColor: {
@@ -70,6 +71,7 @@ const initialValues = {
 }
 
 function ResetPasswordEmailForm(props){
+    const { t, i18n } = useTranslation();
     // const dispatch = useDispatch()
 
     const [Email, setEmail] = useState({email:''})
@@ -82,7 +84,7 @@ function ResetPasswordEmailForm(props){
     const myerror = JSON.stringify(errors)
     const classes= useStyle();
     const notify = (errors) => {
-            toast.success(<p>Your email sent successful!</p>, {position:toast.POSITION.TOP_CENTER})
+            toast.success(<p>{t("Your email sent successful!")}</p>, {position:toast.POSITION.TOP_CENTER})
         };
         
     // let { isLoading } = loading;
@@ -132,8 +134,8 @@ function ResetPasswordEmailForm(props){
             (
                 <Grid item xs={10} sm={8} md={6}>
                 <Paper item className={classes.paperStyle} >
-                    <Typography data-test="typography-test" className={classes.typographyColor} variant="h5">Forgot your password don't worry ?</Typography>
-                    <Typography data-test="typography-test" variant="h6" className={classes.typographyColor}>Enter email below and send you a link to reset your password.</Typography>
+                    <Typography data-test="typography-test" className={classes.typographyColor} variant="h5">{t("Forgot your password don't worry ?")}</Typography>
+                    <Typography data-test="typography-test" variant="h6" className={classes.typographyColor}>{t("Enter email below and send you a link to reset your password.")}</Typography>
                     {/* <Typography className={classes.message}>{messages}</Typography> */}
                     <Formik 
                     initialValues={initialValues}

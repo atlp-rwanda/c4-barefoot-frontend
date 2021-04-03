@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { getLocations } from '../../redux/actions/fetchLocationsAction'
 import { getAccommodations } from '../../redux/actions/fetchAccommodations'
 import VisitorsForm from '../Chat/Visitors/VisitorsForm';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Landing (props){
+  const { t, i18n } = useTranslation();
 
   // useEffect(() => {
   //   props.getLocations()
@@ -51,7 +53,7 @@ function Landing (props){
   return(
     <React.Fragment>
       {props.locationsData.pending ? <Skeleton variant='rect' height='500px'/> :(<Box className={classes.image}>
-        <Box> <Typography variant='h4'>Let's travel together</Typography> </Box>
+        <Box> <Typography variant='h4'>{t("Let's travel together")}</Typography> </Box>
       </Box>)}
       <Container maxWidth='lg' className={classes.cardContainer}>
 
@@ -98,4 +100,3 @@ const mapStateToProps = state => ({
 
 export {Landing}
 export default connect(mapStateToProps, { getLocations, getAccommodations })(Landing)
-

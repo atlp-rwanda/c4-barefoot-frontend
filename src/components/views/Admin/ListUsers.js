@@ -7,6 +7,7 @@ import Loader from '../../Loader'
 import { Pagination, Alert } from '@material-ui/lab'
 import { getRoles } from '../../../redux/actions/fetchRolesAction'
 import { getManagers } from '../../../redux/actions/managersAction'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   pagination:{
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const skeletonData = (<Grid item sm={8} xs={10}><UserCard/></Grid>)
 
 function ListUsers(props) {
+  const { t, i18n } = useTranslation();
   const classes = useStyles()
 
   useEffect(() => {
@@ -65,7 +67,7 @@ function ListUsers(props) {
       </Snackbar>
 
       <Grid item>
-        <Typography variant='subtitle1'>All Users are listed Below</Typography>
+        <Typography variant='subtitle1'>{t("All Users are listed Below")}</Typography>
         <Divider />
       </Grid>
       <Grid container justify='center' spacing={4} alignItems='center'>
