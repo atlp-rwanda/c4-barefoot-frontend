@@ -1,132 +1,175 @@
-import React from 'react';
+import React, { useState } from 'react';
 import colors from '../colors';
-import { Button,  Grid, makeStyles, Typography, Checkbox, TextField, Tooltip } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab'
+import { Button, Grid, makeStyles, Typography, Box, Card, useTheme, Container, Paper, CardContent } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import RequestCard from './RequestCard';
+
 
 const useStyles = makeStyles((theme) => ({
-    main:{
+    main: {
         backgroundColor: colors.neutralWhite,
-        width:'90%',
-        margin:'auto',
+        width: '90%',
+        margin: 'auto',
         justifyContent: 'space-evenly',
         padding: theme.spacing(3),
-        flexDirection:'column'
+        flexDirection: 'column'
     },
-    travelData:{
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'flex-start',
+    container: {
+        minHeight: '78vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0%',
+        marginTop: '20px',
+        flexDirection: 'column',
+        paddingBottom: '20px',
     },
-    data:{
-        flexDirection:'column',
+    cardContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '75vh',
+        position: 'relative',
+        justifyContent: 'space-between',
     },
-    titleButtons:{
-        justifyContent: 'flex-end',
-        flexDirection:'row',
-        margin: theme.spacing(1,0),
+    root: {
+        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxShadow: 'none',
+        marginTop: '20px',
+        position: 'relative',
     },
-    headers:{
-        fontSize:'18px',
+    details: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
     },
-    requestGrid:{
-        background: colors.grey6,
-        margin: theme.spacing(0,0,3,0),
-        border:'2px solid #257AAA',
-        padding:theme.spacing(2),
+    content: {
+        flex: '1 0 auto',
     },
-    editButton:{
-        margin:theme.spacing(0,2)
+
+    image: {
+        width: '100%',
+        height: '300px'
     },
-    reasonOfTravel:{
-        overflow:'hidden',
-        flexDirection:'column'
+    name: {
+        marginLeft: '10px',
+        marginTop: "-5px"
+    },
+    controls: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        justifyContent: 'space-between'
+    },
+
+    requesterProfi: {
+        display: 'flex',
+        width: '350px',
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+    imageContainer: {
+        width: '300px',
+        height: '200px',
+        marginLeft: '0%',
+        overflow: 'hidden'
+    },
+
+    paganete: {
+        marginTop: '20px',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '15px',
+        '& > *': {
+            marginTop: theme.spacing(2),
+        },
+    },
+    buttons: {
+        float: 'inline-end',
+        marginRight: '20px',
+        justifyContent: 'space-evenly',
+        display: 'inline-block',
+
     }
 }))
 
 const DisplayTravelRequest = (props) => {
-    const classes = useStyles();
-    const travelRequests = !props.listTravelRequest.fetchLoading ? props.listTravelRequest.travelRequests : [{Trip:[{}]},{Trip:[{}]}];
+    const classes = useStyles()
+    const theme = useTheme();
+    let filteredTravels = [];
 
-    return ( 
-        <Grid container  className={classes.main} >
-            {travelRequests.map((request) =>{
-                
-                let color = colors.neutralBlack;
-                if(request.status === 'pending'){
-                    color = colors.orange100;
-                }
-                else if(request.status === 'approved'){
-                    color = colors.green3;
-                }else{
-                    color = colors.red;
-                }
-                const returning= request.Trip[0].returnDate ? 'Yes' : 'No';
-            
-            return (
-            <Grid container item className={classes.requestGrid} key={request.travelId}>      
-                {(props.listTravelRequest.fetchLoading? 
-                    <>
-                        <Skeleton animation="wave" variant="rect" style={{width:'40%'}}/>
-                        <Grid container item className={classes.travelData}>
-                            <Grid container item  xs={12} sm={12} md={12}  className={classes.data}>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'30px', margin:'2px'}}/>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
-                                <Skeleton animation="wave" variant="rect" style={{width:'80%', height:'10px', margin:'2px'}}/>
-                            </Grid>
-                            <Grid container item className={classes.titleButtons} >
-                                <Skeleton animation="wave" variant="rect" style={{width:'40%', height:'30px', marginRight:'20px'}}/>
-                            </Grid>
-                        </Grid>
-                    </>
-                :
+    console.log(props.listTravelRequest.status);
+
+    props.listTravelRequest.travelRequests.map((request) => {
+        if (request.travelRequestInfo.status == props.listTravelRequest.status) {
+            filteredTravels.push(request)
+        }
+    });
+
+    console.log(filteredTravels)
+    const category = props.category;
+    //formating dsate
+
+
+    return (
+        <Grid container className={classes.main} >
+            {props.listTravelRequest.fetchLoading ?
                 <>
-                <Typography>
-                    Status: <Button style={{color: color}}>{request.status}</Button>
-                </Typography>
-                <Grid container item className={classes.travelData}>
-                    <Grid container item  xs={10} sm={4} md={3} className={classes.data}>
-                        <Typography variant="h6" component="h6" className={classes.headers} color="primary">Location - Destination</Typography>
-                        {request.Trip.map((trip) =>(
-                            <Typography variant="subtitle2" key={trip.tripId}>{trip.originCity} to {trip.destination}</Typography>
-                        ))}
-                        
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6" color="primary">Date of travel</Typography>
-                        {request.Trip.map((trip) =>{
-                            const date= trip.tripDate.split('T',1);
-                            return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
-                        })}
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6" color="primary">Returning</Typography>
-                        <Typography variant="subtitle2">{returning}</Typography>
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={2} className={classes.data}>
-                        <Typography variant="h6" color="primary">Return date</Typography>
-                        {request.Trip.map((trip) =>{
-                            const date= trip.returnDate ? trip.returnDate.split('T',1) : ['-'];
-                            return (<Typography variant="subtitle2" key={trip.tripId}>{date[0]}</Typography>)
-                        })}
-                    </Grid>
-                    <Grid container item  xs={10} sm={4} md={2} className={classes.reasonOfTravel}>
-                        <Typography variant="h6" color="primary">Reason of travel</Typography>
-                        <Typography gutterBottom variant="subtitle2" noWrap>{request.Trip[0].reason}</Typography>
-                    </Grid>
-                </Grid>
-                <Grid container item className={classes.titleButtons} >
-                    <Button variant="contained" className={classes.editButton} key={request.travelId}>Edit</Button>
-                    <Button variant="contained" color="secondary" key={request.travelId}>Cancel Travel request</Button>
-                </Grid>
+                    <Card className={classes.root} style={{ boxShadow: 'none' }}>
+                        <Paper className={classes.imageContainer}>
+                            <Skeleton variant='rect' animation="wave" height='300px' width='320px' />
+                        </Paper>
+                        <div className={classes.details}>
+                            <CardContent className={classes.content}>
+                                <div className={classes.requesterProfi}>
+                                    <Skeleton variant='circle' width={40} height={40} />
+                                    <Skeleton variant='text' width='190px' height='20' className={classes.name} />
+                                    <Skeleton variant='text' height='20' width='100px' style={{ float: 'right' }} />
+                                </div>
+                                <Skeleton variant='text' width='300px' height='40px' style={{ marginLeft: '30px' }} />
+                                <Skeleton variant='text' width='100px' height='40px' style={{ marginLeft: '30px' }} />
+                                <div className={classes.controls}>
+                                    <Skeleton variant='text' width='100px' height='40px' style={{ marginLeft: '23px' }} />
+                                    <div className={classes.buttons}>
+                                        <Skeleton variant='text' width='150px' height='40px' />
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </div>
+
+                    </Card>
                 </>
-                )}
-            </Grid>
-            )})}
+                :
+                <Container maxWidth="md" className={classes.cardContainer}>
+                    <Box>
+                        {filteredTravels.length !== 0 ? filteredTravels.map((travel) => (
+
+                            <Card className={classes.root} key={travel.travelRequestInfo.travelId}>
+
+                                <RequestCard
+                                    travel={travel.travelRequestInfo}
+                                    userInfo={travel.userInfo}
+                                    accommodationInfo={travel.accommodationInfo}
+                                />
+                            </Card>
+                        ))
+                            :
+                            <center>
+                                <Box style={{ paddingTop: '50px' }}>
+                                    <Typography variant="subtitle1" component="h6">No {category} travel request found</Typography>
+                                </Box>
+                            </center>
+
+                        }
+                    </Box>
+                </Container>
+            }
         </Grid>
-     );
+    );
 }
- 
+
 export default DisplayTravelRequest;

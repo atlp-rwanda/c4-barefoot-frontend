@@ -9,6 +9,13 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
   closeSnackbar={[MockFunction]}
   getLocationsAction={[MockFunction]}
   handleErrorsAction={[MockFunction]}
+  match={
+    Object {
+      "params": Object {
+        "status": "pending",
+      },
+    }
+  }
   openModalAction={[MockFunction]}
   removeMultiCityAction={[MockFunction]}
   searchCurrentLocationAction={[MockFunction]}
@@ -28,6 +35,11 @@ exports[`<AddAccommodation /> if it matches snapshot 1`] = `
       "displaySelected": false,
       "displaySelection": false,
       "isReturning": false,
+      "match": Object {
+        "params": Object {
+          "status": "pending",
+        },
+      },
       "returnDate": "",
       "searchAccommodationsLoading": false,
       "searchLocationsLoading": false,
@@ -727,6 +739,13 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
   closeSnackbar={[MockFunction]}
   getLocationsAction={[MockFunction]}
   handleErrorsAction={[MockFunction]}
+  match={
+    Object {
+      "params": Object {
+        "status": "pending",
+      },
+    }
+  }
   openModalAction={[MockFunction]}
   removeMultiCityAction={[MockFunction]}
   searchCurrentLocationAction={[MockFunction]}
@@ -746,6 +765,11 @@ exports[`<SearchLocations /> if it matches snapshot 1`] = `
       "displaySelected": false,
       "displaySelection": false,
       "isReturning": false,
+      "match": Object {
+        "params": Object {
+          "status": "pending",
+        },
+      },
       "returnDate": "",
       "searchAccommodationsLoading": false,
       "searchLocationsLoading": false,
@@ -5680,6 +5704,11 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
           "displaySelected": false,
           "displaySelection": false,
           "isReturning": false,
+          "match": Object {
+            "params": Object {
+              "status": "pending",
+            },
+          },
           "returnDate": "",
           "searchAccommodationsLoading": false,
           "searchLocationsLoading": false,
@@ -5695,28 +5724,18 @@ exports[`<ViewTravelRequest /> if it matches snapshot 1`] = `
           "travelReason": "",
         }
       }
+      match={
+        Object {
+          "params": Object {
+            "status": "pending",
+          },
+        }
+      }
       openModalAction={[MockFunction]}
       removeMultiCityAction={[MockFunction]}
       searchCurrentLocationAction={[MockFunction]}
       selectAccommodationAction={[MockFunction]}
       sendTravelRequestAction={[MockFunction]}
-    />
-  </WithStyles(ForwardRef(Grid))>
-  <WithStyles(ForwardRef(Grid))
-    container={true}
-    item={true}
-    justify="center"
-    style={
-      Object {
-        "marginTop": "50px",
-      }
-    }
-  >
-    <WithStyles(ForwardRef(Pagination))
-      color="primary"
-      count={10}
-      onChange={[Function]}
-      variant="outlined"
     />
   </WithStyles(ForwardRef(Grid))>
 </WithStyles(ForwardRef(Grid))>
@@ -5731,6 +5750,13 @@ exports[`<addTravelReason /> if it matches snapshot 1`] = `
   closeSnackbar={[MockFunction]}
   getLocationsAction={[MockFunction]}
   handleErrorsAction={[MockFunction]}
+  match={
+    Object {
+      "params": Object {
+        "status": "pending",
+      },
+    }
+  }
   openModalAction={[MockFunction]}
   removeMultiCityAction={[MockFunction]}
   searchCurrentLocationAction={[MockFunction]}

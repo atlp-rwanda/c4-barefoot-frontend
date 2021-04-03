@@ -10,21 +10,21 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 export const sideBarData = [
     {
-        title:"Dashboard",
-        icon:<DashboardIcon />,
-        link:"/home",
-        subs: []
-    },
-      {
-         title:"Accomodation",
-        icon:<AddLocationIcon />,
-        link:"/accomodation",
+        title: "Dashboard",
+        icon: <DashboardIcon />,
+        link: "/home",
         subs: []
     },
     {
-        title:"Travel requests",
-        icon:<CommuteIcon />,
-        link:"/travelRequests",
+        title: "Accomodation",
+        icon: <AddLocationIcon />,
+        link: "/accomodation",
+        subs: []
+    },
+    {
+        title: "Travel requests",
+        icon: <CommuteIcon />,
+        link: "/travelRequests",
         subs: [
             {
                 title: 'Create Travel',
@@ -62,9 +62,9 @@ export const sideBarData = [
         ]
     },
     {
-        title:"Requester Reports",
-        icon:<CommuteIcon />,
-        link:"/managerTravel",
+        title: "Requester Reports",
+        icon: <CommuteIcon />,
+        link: "/managerTravel",
         subs: [
             {
                 title: 'Pending',

@@ -26,18 +26,18 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const role = localStorage.getItem('userRole');
 
-let menuItems={
-    manager:[
+let menuItems = {
+    manager: [
         {
-            title:"Home",
-            icon:<HomeIcon/>,
-            link:"/home",
+            title: "Home",
+            icon: <HomeIcon />,
+            link: "/home",
             subs: []
         },
         {
-            title:"Travel requests",
-            icon:<CommuteIcon />,
-            link:"/travelRequests",
+            title: "Travel requests",
+            icon: <CommuteIcon />,
+            link: "/travelRequests",
             subs: [
                 {
                     title: 'Create Travel',
@@ -47,30 +47,35 @@ let menuItems={
                 {
                     title: 'Pending',
                     icon: <CachedIcon />,
-                    link: "/travelRequests"
+                    link: "/requester/view-travel-requests/pending"
                 },
                 {
                     title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests/approved"
+                    link: "/requester/view-travel-requests/approved"
                 },
                 {
-                    title: 'Canceled & Rejected',
+                    title: 'Canceled',
                     icon: <CancelIcon />,
-                    link: "/travelRequests/canceled"
+                    link: "/requester/view-travel-requests/canceled"
+                },
+                {
+                    title: 'Rejected',
+                    icon: <CancelIcon />,
+                    link: "/requester/view-travel-requests/rejected"
                 },
                 {
                     title: 'Done',
                     icon: <DoneAllIcon />,
-                    link: "/travelRequests/done"
+                    link: "/requester/view-travel-requests/done"
                 },
-    
+
             ]
-        },        
+        },
         {
-            title:"Requester Reports",
-            icon:<CommuteIcon />,
-            link:"/managerTravel",
+            title: "Requester Reports",
+            icon: <CommuteIcon />,
+            link: "/managerTravel",
             subs: [
                 {
                     title: 'Pending',
@@ -95,58 +100,58 @@ let menuItems={
             ]
         },
         {
-            title:"Explore",
-            icon:<ExploreIcon/>,
-            link:"/locations",
+            title: "Explore",
+            icon: <ExploreIcon />,
+            link: "/locations",
             subs: [
                 {
-                    title:"Accomodations",
-                    icon:<BusinessIcon/>,
-                    link:"/accommodations",
+                    title: "Accomodations",
+                    icon: <BusinessIcon />,
+                    link: "/accommodations",
                     subs: []
                 },
                 {
-                    title:"Locations",
-                    icon:<ExploreIcon/>,
-                    link:"/locations",
+                    title: "Locations",
+                    icon: <ExploreIcon />,
+                    link: "/locations",
                     subs: []
                 },
             ]
         },
 
         {
-            title:"Trip history",
-            icon:<HistoryIcon/>,
-            link:"/tripHistory",
+            title: "Trip history",
+            icon: <HistoryIcon />,
+            link: "/tripHistory",
             subs: []
         },
-        
-        {
-            title:"Chat",
-            icon:<ChatIcon/>,
-            link:"/chat",
-            subs: []
-        },
-        {
-            title:"Users",
-            icon:<PeopleIcon/>,
-            link:"/assign-users-to-managers",
-            subs: []
-        },   
 
-        
-    ],
-    "travel-admin":[
         {
-            title:"Home",
-            icon:<HomeIcon/>,
-            link:"/home",
+            title: "Chat",
+            icon: <ChatIcon />,
+            link: "/chat",
             subs: []
         },
         {
-            title:"Travel requests",
-            icon:<CommuteIcon />,
-            link:"/travelRequests",
+            title: "Users",
+            icon: <PeopleIcon />,
+            link: "/assign-users-to-managers",
+            subs: []
+        },
+
+
+    ],
+    "travel-admin": [
+        {
+            title: "Home",
+            icon: <HomeIcon />,
+            link: "/home",
+            subs: []
+        },
+        {
+            title: "Travel requests",
+            icon: <CommuteIcon />,
+            link: "/travelRequests",
             subs: [
                 {
                     title: 'Create Travel',
@@ -156,30 +161,35 @@ let menuItems={
                 {
                     title: 'Pending',
                     icon: <CachedIcon />,
-                    link: "/travelRequests"
+                    link: "/requester/view-travel-requests/pending"
                 },
                 {
                     title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests/approved"
+                    link: "/requester/view-travel-requests/approved"
                 },
                 {
-                    title: 'Canceled & Rejected',
+                    title: 'Canceled',
                     icon: <CancelIcon />,
-                    link: "/travelRequests/canceled"
+                    link: "/requester/view-travel-requests/canceled"
+                },
+                {
+                    title: 'Rejected',
+                    icon: <CancelIcon />,
+                    link: "/requester/view-travel-requests/rejected"
                 },
                 {
                     title: 'Done',
                     icon: <DoneAllIcon />,
-                    link: "/travelRequests/done"
+                    link: "/requester/view-travel-requests/done"
                 },
-    
+
             ]
         },
         {
-            title:"Accomodations",
-            icon:<BusinessIcon />,
-            link:"/travelmanager/accomodations",
+            title: "Accomodations",
+            icon: <BusinessIcon />,
+            link: "/travelmanager/accomodations",
             subs: [
                 {
                     title: 'Create accomodation',
@@ -191,13 +201,13 @@ let menuItems={
                     icon: <ApartmentIcon />,
                     link: "/accomodations"
                 },
-               
+
             ]
         },
         {
-            title:"Locations",
-            icon:<LocationOnIcon />,
-            link:"/travelmanager/locations",
+            title: "Locations",
+            icon: <LocationOnIcon />,
+            link: "/travelmanager/locations",
             subs: [
                 {
                     title: 'Create location',
@@ -209,41 +219,41 @@ let menuItems={
                     icon: <ExploreIcon />,
                     link: "/locations"
                 },
-               
+
             ]
         },
         {
-            title:"Trip history",
-            icon:<HistoryIcon/>,
-            link:"/tripHistory",
-            subs: []
-        },        
-        {
-            title:"Chat",
-            icon:<ChatIcon/>,
-            link:"/chat",
+            title: "Trip history",
+            icon: <HistoryIcon />,
+            link: "/tripHistory",
             subs: []
         },
         {
-            title:"Users",
-            icon:<PeopleIcon/>,
-            link:"/assign-users-to-managers",
+            title: "Chat",
+            icon: <ChatIcon />,
+            link: "/chat",
             subs: []
-        }, 
+        },
+        {
+            title: "Users",
+            icon: <PeopleIcon />,
+            link: "/assign-users-to-managers",
+            subs: []
+        },
 
     ],
 
-    requester:[
+    requester: [
         {
-            title:"Home",
-            icon:<HomeIcon/>,
-            link:"/home",
+            title: "Home",
+            icon: <HomeIcon />,
+            link: "/home",
             subs: []
         },
         {
-            title:"Travel requests",
-            icon:<CommuteIcon />,
-            link:"/travelRequests",
+            title: "Travel requests",
+            icon: <CommuteIcon />,
+            link: "/travelRequests",
             subs: [
                 {
                     title: 'Create Travel',
@@ -253,79 +263,84 @@ let menuItems={
                 {
                     title: 'Pending',
                     icon: <CachedIcon />,
-                    link: "/travelRequests"
+                    link: "/requester/view-travel-requests/pending"
                 },
                 {
                     title: 'Approved',
                     icon: <ThumbUpIcon />,
-                    link: "/travelRequests/approved"
+                    link: "/requester/view-travel-requests/approved"
                 },
                 {
-                    title: 'Canceled & Rejected',
+                    title: 'Canceled',
                     icon: <CancelIcon />,
-                    link: "/travelRequests/canceled"
+                    link: "/requester/view-travel-requests/canceled"
+                },
+                {
+                    title: 'Rejected',
+                    icon: <CancelIcon />,
+                    link: "/requester/view-travel-requests/rejected"
                 },
                 {
                     title: 'Done',
                     icon: <DoneAllIcon />,
-                    link: "/travelRequests/done"
+                    link: "/requester/view-travel-requests/done"
                 },
-    
+
             ]
         },
         {
-            title:"Explore",
-            icon:<ExploreIcon/>,
-            link:"/locations",
+            title: "Explore",
+            icon: <ExploreIcon />,
+            link: "/locations",
             subs: [
                 {
-                    title:"Accomodations",
-                    icon:<BusinessIcon/>,
-                    link:"/accommodations",
+                    title: "Accomodations",
+                    icon: <BusinessIcon />,
+                    link: "/accommodations",
                     subs: []
                 },
                 {
-                    title:"Locations",
-                    icon:<ExploreIcon/>,
-                    link:"/locations",
+                    title: "Locations",
+                    icon: <ExploreIcon />,
+                    link: "/locations",
                     subs: []
                 },
             ]
         },
         {
-            title:"Trip history",
-            icon:<HistoryIcon/>,
-            link:"/tripHistory",
+            title: "Trip history",
+            icon: <HistoryIcon />,
+            link: "/tripHistory",
             subs: []
-        },        
+        },
         {
-            title:"Chat",
-            icon:<ChatIcon/>,
-            link:"/chat",
+            title: "Chat",
+            icon: <ChatIcon />,
+            link: "/chat",
             subs: []
         },
 
     ],
 
-    administrator:[
+    administrator: [
         {
-            title:"Home",
-            icon:<HomeIcon/>,
-            link:"/home",
+            title: "Home",
+            icon: <HomeIcon />,
+            link: "/home",
             subs: []
         },
         {
-            title:"Statistics",
-            icon:<EqualizerIcon/>,
-            link:"/admin",
+            title: "Statistics",
+            icon: <EqualizerIcon />,
+            link: "/admin",
             subs: [
-                
+
             ]
         },
         {
-            title:"Accomodations",
-            icon:<BusinessIcon />,
-            link:"/travelmanager/accomodations",
+            title: "Accomodations",
+            icon: <BusinessIcon />,
+            link: "/travelmanager/accomodations",
             subs: [
                 {
                     title: 'Create accomodation',
@@ -337,13 +352,13 @@ let menuItems={
                     icon: <ApartmentIcon />,
                     link: "/accomodations"
                 },
-               
+
             ]
         },
         {
-            title:"Locations",
-            icon:<LocationOnIcon />,
-            link:"/travelmanager/locations",
+            title: "Locations",
+            icon: <LocationOnIcon />,
+            link: "/travelmanager/locations",
             subs: [
                 {
                     title: 'Create location',
@@ -355,18 +370,18 @@ let menuItems={
                     icon: <ExploreIcon />,
                     link: "/locations"
                 },
-               
+
             ]
         },
-        
+
         {
-            title:"Roles",
-            icon:<RecentActorsIcon/>,
-            link:"/admin",
+            title: "Roles",
+            icon: <RecentActorsIcon />,
+            link: "/admin",
             subs: [
                 {
                     title: 'create Role',
-                    icon: <AddIcon/>,
+                    icon: <AddIcon />,
                     link: "/admin/roles"
                 },
                 {
@@ -377,30 +392,30 @@ let menuItems={
             ]
         },
         {
-            title:"Set Permissions",
-            icon:<RecentActorsIcon/>,
-            link:"/admin/permissions",
+            title: "Set Permissions",
+            icon: <RecentActorsIcon />,
+            link: "/admin/permissions",
             subs: [
             ]
         },
-        
+
         {
-            title:"Chat",
-            icon:<ChatIcon/>,
-            link:"/chat",
+            title: "Chat",
+            icon: <ChatIcon />,
+            link: "/chat",
             subs: []
         },
         {
-            title:"Users",
-            icon:<PeopleIcon/>,
-            link:"/assign-users-to-managers",
+            title: "Users",
+            icon: <PeopleIcon />,
+            link: "/assign-users-to-managers",
             subs: []
-        }, 
-    
+        },
+
     ]
 }
 
 
-export {menuItems};
+export { menuItems };
 
 export default menuItems;

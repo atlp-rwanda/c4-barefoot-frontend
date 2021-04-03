@@ -9,6 +9,13 @@ exports[`<ConfirmSendTravelRequest /> if it matches snapshot 1`] = `
   closeSnackbar={[MockFunction]}
   getLocationsAction={[MockFunction]}
   handleErrorsAction={[MockFunction]}
+  match={
+    Object {
+      "params": Object {
+        "status": "pending",
+      },
+    }
+  }
   openModalAction={[MockFunction]}
   removeMultiCityAction={[MockFunction]}
   searchCurrentLocationAction={[MockFunction]}
