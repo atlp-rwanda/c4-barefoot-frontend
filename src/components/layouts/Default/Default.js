@@ -10,7 +10,8 @@ import Footer from '../../Footer'
 const useStyles = makeStyles(() => ({
   
   content: {
-    height: '100%'
+    height: '100%',
+    marginBottom: '30px',
   }
 }));
 

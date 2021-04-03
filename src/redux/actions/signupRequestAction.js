@@ -21,7 +21,6 @@ export const requestSignup = (user, nextStep) => async dispatch => {
       }
     )
     .catch(err => {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",err,'!!!!!!')
         if (err.response){
             dispatch({
                 type: REQUEST_ERROR,
