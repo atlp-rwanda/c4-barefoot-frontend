@@ -38,14 +38,12 @@ const useStyles = makeStyles((theme) => ({
 const ViewTravelRequest = (props) => {
     const { t, i18n } = useTranslation();
     const classes = useStyles();
+    let status = props.match.params.status;
     useEffect(() => {
         props.GetTravelRequestsAction();
-    }, [])
-
-    const handleFilterChange = (e) => {
-        props.changeStatusFilter(e.target.value);
-    }
-
+        props.changeStatusFilter(status);
+    }, [status])
+    console.log()
     const getNextPage = (event, value) => {
         const userToken = localStorage.getItem('barefootUserToken');
         if (userToken) {
@@ -62,7 +60,7 @@ const ViewTravelRequest = (props) => {
                     {t("View Travel Requests")}
                 </Typography>
             </Grid>
-            <Grid item xs={12} className={classes.title}>
+            {/* <Grid item xs={12} className={classes.title}>
                 <Typography variant="h6" style={{ color: colors.primary100, fontSize: '25px' }}>
                     Filter
                 </Typography>
@@ -72,7 +70,7 @@ const ViewTravelRequest = (props) => {
                     <option value="rejected">rejected</option>
                     <option value="canceled">canceled</option>
                 </select>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} className={classes.content}>
                 <DisplayTravelRequest {...props} />
             </Grid>

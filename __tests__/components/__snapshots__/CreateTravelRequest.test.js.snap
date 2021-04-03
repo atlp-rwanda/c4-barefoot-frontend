@@ -40,6 +40,11 @@ exports[`<CreateTravelRequest /> if it matches snapshot 1`] = `
       "displaySelected": false,
       "displaySelection": false,
       "isReturning": false,
+      "match": Object {
+        "params": Object {
+          "status": "pending",
+        },
+      },
       "returnDate": "",
       "searchAccommodationsLoading": false,
       "searchLocationsLoading": false,
@@ -226,6 +231,11 @@ exports[`<CreateTravelRequest /> if it matches snapshot 1`] = `
               "displaySelected": false,
               "displaySelection": false,
               "isReturning": false,
+              "match": Object {
+                "params": Object {
+                  "status": "pending",
+                },
+              },
               "returnDate": "",
               "searchAccommodationsLoading": false,
               "searchLocationsLoading": false,
@@ -288,6 +298,11 @@ exports[`<CreateTravelRequest /> if it matches snapshot 1`] = `
               "displaySelected": false,
               "displaySelection": false,
               "isReturning": false,
+              "match": Object {
+                "params": Object {
+                  "status": "pending",
+                },
+              },
               "returnDate": "",
               "searchAccommodationsLoading": false,
               "searchLocationsLoading": false,
@@ -1735,6 +1750,11 @@ exports[`<CreateTravelRequest /> if it matches snapshot 1`] = `
                                             "displaySelected": false,
                                             "displaySelection": false,
                                             "isReturning": false,
+                                            "match": Object {
+                                              "params": Object {
+                                                "status": "pending",
+                                              },
+                                            },
                                             "returnDate": "",
                                             "searchAccommodationsLoading": false,
                                             "searchLocationsLoading": false,
@@ -6908,6 +6928,11 @@ exports[`<CreateTravelRequest /> if it matches snapshot 1`] = `
                                                   "displaySelected": false,
                                                   "displaySelection": false,
                                                   "isReturning": false,
+                                                  "match": Object {
+                                                    "params": Object {
+                                                      "status": "pending",
+                                                    },
+                                                  },
                                                   "returnDate": "",
                                                   "searchAccommodationsLoading": false,
                                                   "searchLocationsLoading": false,

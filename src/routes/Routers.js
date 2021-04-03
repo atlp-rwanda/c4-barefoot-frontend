@@ -3,10 +3,12 @@ import NewPassword from '../components/resetPassword/NewPassword'
 import React from 'react';
 import Login from '../components/views/Login'
 import signup from '../components/views/Signup'
+import BookForm from '../components/bookAccommodation/form';
 import verifyAccount from '../components/signup/verifyAccount'
 import Landing from '../components/views/LandingPage'
 import PageNotFound from '../components/views/PageNotFound'
 import Unauthorized from '../components/views/Unauthorized'
+import requesterHome from '../components/views/Requester/Home';
 import Profile from '../components/views/Profile';
 import adminHome from '../components/views/Admin/Home';
 import CreateRoles from '../components/views/Admin/CreateRoles';
@@ -218,7 +220,7 @@ const Routes = () => {
       />
       <ProtectedRoute
         exact
-        path="/requester/view-travel-requests"
+        path="/requester/view-travel-requests/:status"
         component={ViewTravelRequest}
         layout={AuthorizedUserLayout}
       />
