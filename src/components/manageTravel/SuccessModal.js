@@ -28,7 +28,6 @@ const SuccessModal= (props)=> {
   useEffect( ()=>{
     if(success){
         setIsOpen(true);
-
     }
   }, [])
 
@@ -44,7 +43,6 @@ const SuccessModal= (props)=> {
 
     setIsOpen(false);
     clearUpdateTravelRequest()
-
   };
 
   return (

@@ -1,6 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<AuthorizedUserNavBar /> should be rendered without errors 1`] = `
+<<<<<<< HEAD
+<div
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <Connect(DrawerComponent) />
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-3"
+        variant="h6"
+      >
+        <WithStyles(ForwardRef(Link))
+          className="makeStyles-link-4"
+          color="inherit"
+          href="/"
+        >
+          Barefoot Nomad
+        </WithStyles(ForwardRef(Link))>
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Button))
+        color="inherit"
+        href="/logout"
+      >
+        Log out
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+</div>
+=======
 <ButtonAppBar>
   <div
     className="makeStyles-root-1"
@@ -1503,4 +1534,5 @@ exports[`<AuthorizedUserNavBar /> should be rendered without errors 1`] = `
     </WithStyles(ForwardRef(AppBar))>
   </div>
 </ButtonAppBar>
+>>>>>>> develop
 `;

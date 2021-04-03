@@ -7,8 +7,8 @@ import CachedIcon from "@material-ui/icons/Cached";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import CancelIcon from "@material-ui/icons/Cancel";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
-
-export const managerSideBarData = [
+import { subs } from "./Drawer";
+export const sideBarData = [
   {
     title: "Dashboard",
     icon: <DashboardIcon />,
@@ -89,7 +89,7 @@ export const managerSideBarData = [
   },
   {
     title: "Trip History",
-    icon: <RecentActorsIcon />,
+    icon: <CommuteIcon />,
     link: "/travel-history",
     subs: [],
   },

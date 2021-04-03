@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` <ViewTripHistoryCard /> It should render the trip history compnent 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <ViewTripHistoryCard
+    accomodationsInfo={
+      Array [
+        Object {
+          "city": "Kigali",
+          "country": "Rwanda",
+          "description": "A serene environment for relaxation",
+          "id": "598d90a3-68e6-43ac-970a-2855657be478",
+          "locationID": "c6028e0d-ef88-4693-ab49-f37669891724",
+          "numberOfRooms": 100,
+          "photos": "image2.png",
+          "propertyType": "Hostel",
+          "state": "Kicukiro",
+          "streetAddress": "KN 45 ST",
+          "title": "Marina Hotel",
+          "typeOfBed": "Double Decker",
+        },
+      ]
+    }
+    getAccommodation={[MockFunction]}
+    getTripHistory={[MockFunction]}
+    match={
+      Object {
+        "params": Object {
+          "location": "Nyanza",
+        },
+      }
+    }
+    travel={
+      Object {
+        "Trip": Array [
+          Object {
+            "accommodationId": "598d90a3-68e6-43ac-970a-2855657be478",
+            "createdAt": "2021-03-02T11:18:36.600Z",
+            "destination": "KARONGI",
+            "originCity": "MUSANZE",
+            "reason": "Research and market development trip in rular areas",
+            "returnDate": null,
+            "travelId": "59ba77ce-3649-4b8a-bed6-b127cc1c530f",
+            "tripDate": "2020-12-20T08:53:31.303Z",
+            "tripId": "98624254-da4c-47bd-91da-53d9d89172cc",
+            "updatedAt": "2021-03-02T11:18:36.600Z",
+          },
+        ],
+        "createdAt": "2021-03-02T11:18:36.501Z",
+        "managerId": "0ce36391-2c08-4703-bddb-a4ea8cccbbc5",
+        "status": "approved",
+        "travelId": "59ba77ce-3649-4b8a-bed6-b127cc1c530f",
+        "updatedAt": "2021-03-02T11:21:00.554Z",
+        "userId": "d74fcc5e-5755-4366-83ef-cf306b013c46",
+      }
+    }
+    trips={
+      Array [
+        Object {
+          "accommodationId": "598d90a3-68e6-43ac-970a-2855657be478",
+          "createdAt": "2021-03-02T11:18:36.600Z",
+          "destination": "KARONGI",
+          "originCity": "MUSANZE",
+          "reason": "Research and market development trip in rular areas",
+          "returnDate": null,
+          "travelId": "59ba77ce-3649-4b8a-bed6-b127cc1c530f",
+          "tripDate": "2020-12-20T08:53:31.303Z",
+          "tripId": "98624254-da4c-47bd-91da-53d9d89172cc",
+          "updatedAt": "2021-03-02T11:18:36.600Z",
+        },
+      ]
+    }
+    userInfo={
+      Object {
+        "firstName": "pushRequester",
+        "lastName": "One",
+        "profilePpicture": "https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
+        "username": "pushrequester",
+      }
+    }
+  />
+</ContextProvider>
+`;
