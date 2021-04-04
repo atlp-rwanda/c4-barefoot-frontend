@@ -73,6 +73,16 @@ export const locationsPayload = {
   ]
 }
 
+export const locations=[
+    {
+      id: "c6028e0d-ef88-4693-ab49-f37669891724",
+      LocationName: "Kigali",
+      country: "Rwanda",
+      description: "The land of a thousand hills",
+      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
+    }
+  ]
+
 export const accommodationsPayload = {
   rows: [
     {
@@ -703,7 +713,7 @@ export const selectedLocaton = {
 }
 export const locationState = {
   pending: false,
-  locations: locationsPayload,
+  locations:locations,
   error: null
 }
 export const props2 = {

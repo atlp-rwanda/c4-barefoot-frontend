@@ -28,8 +28,11 @@ export const loginAction = (userCredentials) => dispatch => {
         .then((res) => {
             localStorage.setItem('barefootUserToken', res.data.data);
             localStorage.setItem('userProfile', JSON.stringify(res.data.profile));
+            localStorage.setItem('userRole', res.data.role);
+            localStorage.setItem('userName', res.data.profile.username);
             detectLang(res.data.profile.language)
             window.location.reload()
+
             dispatch({
                 type: USER_LOGIN
             })
