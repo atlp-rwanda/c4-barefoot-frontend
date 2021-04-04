@@ -1,0 +1,1504 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AssignUsersToManager /> :  Renders without crashing 1`] = `
+<div
+  className="MuiContainer-root MuiContainer-maxWidthLg"
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row",
+      "justify": "flex-start",
+      "padding": "unset",
+    }
+  }
+>
+  <div
+    className="MuiContainer-root MuiContainer-maxWidthLg"
+    style={
+      Object {
+        "padding": "unset",
+      }
+    }
+  >
+    <h4
+      className="MuiTypography-root makeStyles-center-1 MuiTypography-h4"
+    >
+      List of Users
+    </h4>
+    <hr
+      className="MuiDivider-root"
+    />
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-space-evenly"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Requester One
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Two
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/requesterOne"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          SUper Admin
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Two
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/superadmin"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Manager Two
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Manager
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="a9610cf3-4056-41dd-92ca-463088e23d07"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/managertwo"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Manager One
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Manager
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="a9610cf3-4056-41dd-92ca-463088e23d07"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/managerOne"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          TestName TestName
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager One
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="0ce36391-2c08-4703-bddb-a4ea8cccbbc5"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/TestAdmin"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Manager Manager
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Two
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/With_LineManager"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          pushRequester One
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager One
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="0ce36391-2c08-4703-bddb-a4ea8cccbbc5"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/pushrequester"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Robby Rob
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Two
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/mfrawk37w"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          Mun Frank
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Manager
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="a9610cf3-4056-41dd-92ca-463088e23d07"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/mfrank37w"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        style={
+          Object {
+            "backgroundColor": "#EAF4FB",
+            "margin": 8,
+            "maxWidth": 250,
+            "padding": 3,
+          }
+        }
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          margin="normal"
+          name="profile_picture"
+          style={
+            Object {
+              "backgroundColor": "#ABD5ED",
+              "maxHeight": "50%",
+              "minHeight": 250,
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="user"
+            className="MuiAvatar-img"
+            src="https://cdn.filestackcontent.com/Nvdf2SQRFSR8adGrueTw"
+          />
+        </div>
+        <h2
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+          style={
+            Object {
+              "color": "#43A0D6",
+              "fontWeight": 600,
+            }
+          }
+        >
+          MUNGERI Frank
+        </h2>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              <img
+                className="MuiAvatar-img"
+                src="https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg"
+              />
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Manager Two
+            </p>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            tabIndex={-1}
+            value="fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing"
+        >
+          <a
+            aria-disabled={false}
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            href="/mfrank37"
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginTop": 10,
+              }
+            }
+            tabIndex={0}
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Profile
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiContainer-root MuiContainer-maxWidthLg"
+      style={
+        Object {
+          "display": "flex",
+          "marginTop": 20,
+        }
+      }
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-text"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#257AAA",
+            "color": "#FFF",
+            "margin": "0 20px auto auto",
+          }
+        }
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Save
+        </span>
+      </button>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-text"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#828282",
+            "color": "#FFF",
+            "margin": "0 auto auto 20px",
+          }
+        }
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Cancel
+        </span>
+      </button>
+    </div>
+    <div
+      className="MuiContainer-root MuiContainer-maxWidthLg"
+      style={
+        Object {
+          "display": "flex",
+        }
+      }
+    >
+      <nav
+        aria-label="pagination navigation"
+        className="MuiPagination-root"
+        style={
+          Object {
+            "margin": "20px auto 0 auto",
+          }
+        }
+      >
+        <ul
+          className="MuiPagination-ul"
+        >
+          <li>
+            <button
+              aria-current="true"
+              aria-label="page 1"
+              className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary Mui-selected"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              1
+            </button>
+          </li>
+          <li>
+            <button
+              aria-label="Go to page 2"
+              className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-outlinedPrimary"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              2
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserCardSkeleton /> It should render without crashing 1`] = `
+<WithStyles(ForwardRef(Card))
+  style={
+    Object {
+      "margin": 15,
+    }
+  }
+>
+  <WithStyles(ForwardRef(Skeleton))
+    height={200}
+    variant="circle"
+    width={200}
+  />
+  <WithStyles(ForwardRef(Typography))
+    variant="h5"
+  >
+    <WithStyles(ForwardRef(Skeleton)) />
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Typography))
+    variant="h5"
+  >
+    <WithStyles(ForwardRef(Skeleton)) />
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Typography))
+    style={
+      Object {
+        "float": "right",
+        "width": "50%",
+      }
+    }
+    variant="h5"
+  >
+    <WithStyles(ForwardRef(Skeleton)) />
+  </WithStyles(ForwardRef(Typography))>
+</WithStyles(ForwardRef(Card))>
+`;
