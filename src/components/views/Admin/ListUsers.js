@@ -6,6 +6,7 @@ import UserCard from '../../UserCard'
 import Loader from '../../Loader'
 import { Pagination, Alert } from '@material-ui/lab'
 import { getRoles } from '../../../redux/actions/fetchRolesAction'
+import { adminGetUsers} from '../../../redux/actions/fetchUsersAction'
 import { getManagers } from '../../../redux/actions/managersAction'
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +25,8 @@ function ListUsers(props) {
 
   useEffect(() => {
     props.getManagers()
-    props.getUsers()
+   // props.getUsers()
+    //props.adminGetUsers()
     props.getRoles()
     
   }, [])
@@ -35,6 +37,7 @@ function ListUsers(props) {
     props.getUsers(value)
   }
 
+  console.log(props.usersData);
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
   }
@@ -71,7 +74,7 @@ function ListUsers(props) {
         <Divider />
       </Grid>
       <Grid container justify='center' spacing={4} alignItems='center'>
-        {props.usersData.pending ? skeletonData : props.usersData.users.rows.map((user, index) =>(
+        {props.usersData.pending ? skeletonData : props.usersData.adminUsers.map((user, index) =>(
           <Grid item sm={6} xs={12} md={3}>
             <UserCard UserData={user} idx={index}/>
           </Grid>
@@ -89,4 +92,4 @@ const mapStateToProps = state => ({
   usersData: state.users
 })
 
-export default connect(mapStateToProps, {getUsers, clearSnackBar, getRoles, getManagers})(ListUsers)
+export default connect(mapStateToProps, {getUsers, clearSnackBar, getRoles, getManagers,adminGetUsers})(ListUsers)

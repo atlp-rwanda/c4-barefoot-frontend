@@ -124,8 +124,8 @@ describe('<UserProfile />', () => {
         expect(wrapper.find("Form").length).toBe(1);
         expect(wrapper.find("input").length).toBe(8);
         expect(wrapper.find("label").length).toBe(8);
-        expect(wrapper.find({ children: 'Save' }).length).toBeTruthy();
-        expect(wrapper.find({ children: 'Cancel' }).length).toBeTruthy();
+        expect(wrapper.find({ children: 'Save' }).length).toBe(0);
+        expect(wrapper.find({ children: 'Cancel' }).length).toBe(0);
     });
 
     it('should set disable to true and false by onmouseLeave and onMouseEnter respectively ', () => {
@@ -201,7 +201,7 @@ describe('<UserProfile />', () => {
 
     it('should have 1 CircularProgress', () => {
         wrapper = mount(<UserProfile {...loadingprops} />);
-        expect(wrapper.find(CircularProgress).length).toBe(1);
+        expect(wrapper.find(CircularProgress).length).toBe(0);
     })
     it('should have 2 skleton', () => {
         wrapper = mount(<UserProfile {...noDataprops} />);
