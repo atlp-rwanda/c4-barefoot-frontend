@@ -12,6 +12,7 @@ import { FormGroup, Snackbar } from '@material-ui/core';
 import { object, string, ref } from 'yup';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useTranslation } from 'react-i18next';
+import { Link, Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,21 +74,22 @@ function NewPassword(props) {
   const handleSubmition = (values)=>{
         event.preventDefault()
         props.resetNewPassword(values, query)
-        values=''
+        values=initialValues
     };
   function handleClose(event, reason){
         if(reason === 'clickaway'){
             return opened;
         }
     };
-   if(props.newpassword.success){
-     props.history.push('/login');
-   }
+  //  if(props.newpassword.success){
+  //    props.history.push('/login');
+  //  }
     function Alert(props){
         return < MuiAlert elevation={6} variant="filled" {...props}/>
     };
   return (
     <>
+    
     {errors ? (<Snackbar open={opened} autoHideDuration={5000} onclose={handleClose}>
                 <Alert onclose={handleClose} severity="error">
                     Error: {errors.error? (errors.error): (<div>{errors}</div>)}
@@ -170,6 +172,7 @@ function NewPassword(props) {
             </Form>
         )}
         </Formik>
+        {props.newpassword.success && <Alert onclose={handleClose} severity='success'>your password has been reset, you can Login</Alert>}
       </div>
       )}
     </Container>
