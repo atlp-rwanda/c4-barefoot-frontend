@@ -131,5 +131,12 @@ export const useStyles = makeStyles((theme) => ({
     },
     media: {
       height: 140
+    },
+    clicked: {
+      color: '#376C7C',
+      fontWeight: 'bold'
+    },
+    notclicked: {
+      color: 'inherit'
     }
   }));

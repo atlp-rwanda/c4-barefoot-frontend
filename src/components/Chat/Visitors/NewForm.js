@@ -22,7 +22,6 @@ function NewForm(props){
     React.useEffect(()=>{
         io.emit('connection', socket=> {
             socket.on('support_message', data => {
-                console.log(data)
                 props.getSupportResponse();
             })
         })

@@ -17,6 +17,7 @@ describe('testing chat reducers', () => {
                 allusers: [],
                 error: '',
                 pending: false,
+                lastchat: {}
             }
         )
     })
@@ -39,6 +40,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -59,6 +61,7 @@ describe('testing chat reducers', () => {
             allusers: { data: { profile: {} }, status: 200 },
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -79,6 +82,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -99,6 +103,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -119,6 +124,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -139,6 +145,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -159,6 +166,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -179,6 +187,7 @@ describe('testing chat reducers', () => {
             allusers: [],
             error: '',
             pending: false,
+            lastchat: {}
         })
     })
 
@@ -198,7 +207,8 @@ describe('testing chat reducers', () => {
             supportresponse: [],
             pending: false,
             allusers: [],
-            error: ''
+            error: '',
+            lastchat: {}
         })
     })
 })

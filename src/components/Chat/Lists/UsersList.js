@@ -7,6 +7,7 @@ function UsersList(props) {
 
     const users = props.users;
     const allusers = props.allusers;
+    const lastchat = props.lastchat
     
     const classes = useStyles();
     return (
@@ -16,14 +17,16 @@ function UsersList(props) {
                     <div key={user.id} onClick={()=> {
                         localStorage.setItem('userId', user.id),
                         localStorage.setItem('userName', user.first_name)
+                        localStorage.setItem('pp', user.profile_picture)
                         localStorage.removeItem('visit')
+                        
                     }}>
                         <a href='' style={{textDecoration: 'none', color: 'inherit'}}>
                             <ListItem button>
                                 <ListItemAvatar>
                                 <Avatar alt={user.first_name} src={user.profile_picture} />
                                 </ListItemAvatar>
-                                <ListItemText primary={user.first_name} secondary={user.last_name} />
+                                <ListItemText primary={user.first_name} secondary={localStorage.getItem('userId')===user.id ? lastchat.message : "Start a chat"} className={localStorage.getItem('userId')===user.id ? classes.clicked : classes.notclicked}/>
                             </ListItem>
                         </a>
                     </div>
@@ -34,13 +37,14 @@ function UsersList(props) {
                         localStorage.setItem('userId', user.id),
                         localStorage.setItem('userName', user.first_name)
                         localStorage.removeItem('visit')
+                        
                     }}>
                         <a href='' style={{textDecoration: 'none', color: 'inherit'}}>
                             <ListItem button>
                                 <ListItemAvatar>
                                 <Avatar alt={user.first_name} src={user.profile_picture} />
                                 </ListItemAvatar>
-                                <ListItemText primary={user.first_name} secondary={user.last_name} />
+                                <ListItemText primary={user.first_name} secondary="Click to chat" />
                             </ListItem>
                         </a>
                     </div>))}

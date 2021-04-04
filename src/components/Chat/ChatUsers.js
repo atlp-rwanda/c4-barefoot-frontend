@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField, Typography, CssBaseline, AppBar, makeStyles, Toolbar, IconButton, Fab, ListItem, ListItemAvatar, ListItemText, ListSubheader, Avatar, Paper, List, Snackbar } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
 import { connect } from 'react-redux';
-import { fetchUsersChat,fetchUsers, getVisitorsList } from '../../redux/actions/ChatAction';
+import { fetchUsersChat,fetchUsers, getVisitorsList,  getLastMessage } from '../../redux/actions/ChatAction';
 import UsersList from './Lists/UsersList';
 import VisitorsListing from './vList';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -16,10 +16,14 @@ function ChatUsers(props) {
     const theerror = props.error;
     const [open, setOpen] = React.useState(false)
     const [error, setError] = React.useState('')
+    const lastchat = props.lastmessage
+
+    console.log('lastmessage', lastchat)
     React.useEffect(()=>{
         props.fetchUsersChat();
         props.getVisitorsList();
         props.fetchUsers();
+        props.getLastMessage()
         if(theerror){
             setError(theerror)
             setOpen(true)
@@ -34,7 +38,6 @@ function ChatUsers(props) {
     
         setOpen(false);
     };
-
 
     return (
         <div>
@@ -52,9 +55,9 @@ function ChatUsers(props) {
                     variant="filled"
                     style={{boxSizing: "border-box",width: '100%', padding: '10px', borderRadius: '50px'}}
                 ><Person/></TextField>
-                <UsersList users={users} allusers={allusers}/>
+                <UsersList users={users} allusers={allusers} lastchat={lastchat} />
                 {visitors && <div>
-                    <VisitorsListing visitors={visitors}/>
+                    <VisitorsListing visitors={visitors} />
                 </div>}
             </Paper>}
         </div>
@@ -68,7 +71,8 @@ const mapStateToProps = (state) => ({
     allusers: state.chat.allusers,
     error: state.chat.error,
     pending: state.chat.pending,
-    error: state.chat.error
+    error: state.chat.error,
+    lastmessage: state.chat.lastchat
 })
 
-export default connect(mapStateToProps, { fetchUsersChat,  getVisitorsList, fetchUsers })(ChatUsers)
+export default connect(mapStateToProps, { fetchUsersChat,  getVisitorsList, fetchUsers, getLastMessage })(ChatUsers)

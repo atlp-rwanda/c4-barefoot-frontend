@@ -18,17 +18,16 @@ function Alert(props) {
 function ChatMessages(props){
     const [open, setOpen] = React.useState(false)
     const [error, setError] = React.useState('')
-    const theerror = props.error;
+    const {theerror , chats, pending}= props;
+    const vMessages = props.vmessages
     React.useEffect(()=>{
         props.getChats();
         props.getVisitorsMessages()
         io.on('new_message', data =>{
             props.getChats();
-            console.log('User message', data)
         })
         io.on('support_message', data=>{
             props.getVisitorsMessages()
-            console.log("Visitor's messages",data)
         })
        
         
@@ -39,20 +38,12 @@ function ChatMessages(props){
         
     }, [])
 
-
-    const chats = props.chats;
     const user = localStorage.getItem('userName')
-    const vMessages = props.vmessages;
-    const pending = props.pending;
-   
-
-    
     
     const handleClose = () => {
     
         setOpen(false);
     };
-
     return (
         <React.Fragment>
             <CssBaseline />
@@ -60,14 +51,16 @@ function ChatMessages(props){
                 <Alert onClose={handleClose} severity="error">
                 {error}
                 </Alert>
+                
             </Snackbar>}
+            
             {pending === true ? <LinearProgress/> : <Paper square container="true">
                 
                 <Paper>
                     <Toolbar>
                         <List>
                             <ListItem>
-                                <ListItemAvatar><Avatar alt="Profile Picture" src="" /></ListItemAvatar>
+                                <ListItemAvatar><Avatar alt="Profile Picture" src={localStorage.getItem('pp')} /></ListItemAvatar>
                                 <ListItemText primary={user} secondary="User"/>
                             </ListItem>
                         </List>

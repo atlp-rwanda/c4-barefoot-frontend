@@ -12,6 +12,7 @@ export const GETSUPPORT_RESPONSE = 'GETSUPPORT_RESPONSE';
 export const CHAT_PENDING = 'CHAT_PENDING';
 export const CHAT_ERROR = 'CHAT_ERROR';
 export const ALL_USERS = 'ALL_USERS';
+export const LAST_CHAT = "LAST_CHAT";
 
 // send a new message to the user
 export const newMessageAction = (messageData) => dispatch => {
@@ -23,13 +24,13 @@ export const newMessageAction = (messageData) => dispatch => {
         }
     })
     .then(res => dispatch({
-            type: 'NEW_MESSAGE',
+            type: NEW_MESSAGE,
             payload: res.data
         })
     )
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -45,13 +46,13 @@ export const fetchUsersChat = () => dispatch => {
         }
     })
     .then(res => dispatch({
-            type: 'CHATTED_USERS',
+            type: CHATTED_USERS,
             payload: res.data
         })
     )
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -68,13 +69,13 @@ export const fetchUsers = () => dispatch => {
     })
     .then(res => {
         dispatch({
-            type: 'ALL_USERS',
+            type: ALL_USERS,
             payload: res.data
         })
     })
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -98,7 +99,7 @@ export const getChats = () => dispatch => {
     })
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -112,7 +113,12 @@ export const visitorsMessage = (message) => dispatch =>{
         type: VISITOR_MESSAGE,
         payload: res.data
     }))
-    .catch(err => console.log(err.message))
+    .catch(err => {
+        dispatch({
+            type: CHAT_ERROR,
+            payload: err.message
+        })
+    })
 }
 
 //Get visitors list
@@ -131,7 +137,7 @@ export const getVisitorsList = () => dispatch => {
     })
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -149,12 +155,12 @@ export const getVisitorsMessages = () => dispatch => {
     })
     .then(res => {
         dispatch({
-            type: GETV_MESSAGES,
+            type: 'GETV_MESSAGES',
             payload: res.data
         })
     })
     .catch(err => dispatch({
-        type: 'CHAT_ERROR',
+        type: CHAT_ERROR,
         payload: err.message
     }))
 }
@@ -174,7 +180,7 @@ export const supportResponds = (message) => dispatch =>{
     }))
     .catch(err => {
         dispatch({
-            type: 'CHAT_ERROR',
+            type: CHAT_ERROR,
             payload: err.message
         })
     })
@@ -190,7 +196,26 @@ export const getSupportResponse = () => dispatch => {
         payload: res.data
     }))
     .catch(err => dispatch({
-        type: 'CHAT_ERROR',
+        type: CHAT_ERROR,
+        payload: err.message
+    }))
+}
+
+export const getLastMessage =() => dispatch => {
+    dispatch({type: CHAT_PENDING})
+    const authToken = localStorage.getItem('barefootUserToken');
+    const userid = localStorage.getItem('userId');
+    return axios.get(`${process.env.REACT_APP_BACKEND_LINK}/chat/last?id=${userid}`, {
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => dispatch({
+        type: LAST_CHAT,
+        payload: res.data
+    }))
+    .catch(err => dispatch({
+        type: CHAT_ERROR,
         payload: err.message
     }))
 }

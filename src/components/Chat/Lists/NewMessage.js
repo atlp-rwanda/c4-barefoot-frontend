@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Paper, Toolbar, Input, InputAdornment, IconButton, FormHelperText, CircularProgress, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { newMessageAction, supportResponds, getChats, getVisitorsMessages } from '../../../redux/actions/ChatAction'
+import { newMessageAction, supportResponds, getChats, getVisitorsMessages, getLastMessage } from '../../../redux/actions/ChatAction'
 import SendIcon from '@material-ui/icons/Send';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {Link} from 'react-router-dom';
@@ -21,7 +21,6 @@ function NewMessage(props) {
    React.useEffect(() => {
     io.on('connection', socket=>{
         socket.emit('send_message',visitorResponse)
-        console.log(visitorResponse)
     })
    })
 
@@ -41,6 +40,7 @@ function NewMessage(props) {
                 setMessage('')
                 setFeedbackText("Message sent!")
                 props.getChats()
+                props.getLastMessage()
             }); 
            
             io.emit('connection', socket=>{
@@ -57,6 +57,7 @@ function NewMessage(props) {
                 setMessage('')
                 setFeedbackText("Image sent!")
                 props.getChats()
+                props.getLastMessage()
             });
             io.emit('send_message', messageData)
         }else{
@@ -188,4 +189,4 @@ function NewMessage(props) {
     )
 }
 
-export default connect(null, { newMessageAction, supportResponds, getChats, getVisitorsMessages })(NewMessage);
+export default connect(null, { newMessageAction, supportResponds, getChats, getVisitorsMessages,getLastMessage })(NewMessage);
