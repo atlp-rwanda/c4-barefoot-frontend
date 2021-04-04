@@ -24,11 +24,14 @@ import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashb
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
 import RejectedAndCanceled from '../components/manageTravel/RejectedAndCanceledReports';
 import Done from '../components/manageTravel/Done';
-import ProtectedRoute from './protected.route'
+import ProtectedRoute from './protected.route';
+import NotificationDetails from '../components/notificationDetails';
+import GoogleRedirect from '../components/GoogleRedirect';
 import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
+
 
 const Routes = () => {
   return (
@@ -93,7 +96,6 @@ const Routes = () => {
           layout={ManagerLayout}
           path="/managerTravel/done"
         />
-        
          <RouteWithLayout
           component={signup}
           exact
@@ -103,15 +105,16 @@ const Routes = () => {
         <RouteWithLayout
           component={ResetPasswordEmailForm}
           exact
-          layout={AuthorizedUserLayout}
+          layout={DefaultLayout}
           path="/forgetpassword"
         />
         <RouteWithLayout
           component={NewPassword}
           exact
-          layout={AuthorizedUserLayout}
+          layout={DefaultLayout}
           path="/user/reset-password"
         />
+
         <RouteWithLayout
           component={Logout}
           exact

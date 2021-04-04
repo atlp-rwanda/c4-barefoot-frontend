@@ -1,14 +1,14 @@
 import {ResetPasswordEmailReducer} from '../../src/redux/reducers/resetPasswordEmail';
 import {LOADING, SEND_RESET_EMAIL_SUCCESS, SEND_RESET_EMAIL_FAIL} from '../../src/redux/resetPasswordType';
 const initialState = {
-    isLoading:false,
+    loading:false,
     open:false,
     success:false,
     error: '',
     message:''
 }
 const errorState = {
-    isLoading:false,
+    loading:false,
     error: 'User not found',
     open:true,
     message:''
@@ -24,7 +24,7 @@ describe('Sending email to request password reset', () =>{
             }
         expect(ResetPasswordEmailReducer(initialState, action)).toEqual({
     ...initialState,
-    isLoading:false,
+    loading:false,
     error: 'User not found',
     open:true,
     message:''
@@ -37,7 +37,7 @@ it('Should handle SEND_RESET_EMAIL without error', () => {
         }
         expect(ResetPasswordEmailReducer(initialState, action)).toEqual({
             ...initialState,
-            isLoading:false,
+            loading:false,
             error: '',
             success:true,
             open:true,
@@ -45,6 +45,6 @@ it('Should handle SEND_RESET_EMAIL without error', () => {
         })
     })
     it('should loading before sending email', () => {
-        expect(ResetPasswordEmailReducer(initialState, {type: LOADING})).toEqual({...initialState,isLoading:true, open:false})
+        expect(ResetPasswordEmailReducer(initialState, {type: LOADING})).toEqual({...initialState,loading:true, open:false})
     })
 })
