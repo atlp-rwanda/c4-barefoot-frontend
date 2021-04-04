@@ -1,17 +1,43 @@
 export const user = [
   {
-    "first_name": "M",
-    "last_name": "JAckson",
-    "email": "jackson.novelty@gmail.com",
-    "occupation": "Programming",
-    "username": "jacks",
-    "bio": "Software Developer",
-    "address": "kk 509 st",
-    "language": "Kinyarwanda",
-    "password": "12345678",
-    "profile_picture": "https://res.cloudinary.com/mjackson/image/upload/v1609304524/Screen_Shot_2020-12-29_at_08.21.43_qe7pem.png"
+    "first_name":"M",
+    "last_name":"JAckson",
+    "email":"jackson.novelty@gmail.com",
+    "occupation":"Programming",
+    "username":"jacks",
+    "bio":"Software Developer",
+    "address":"kk 509 st",
+    "language":"Kinyarwanda",
+    "password":"12345678",
+    "profile_picture":"https://res.cloudinary.com/mjackson/image/upload/v1609304524/Screen_Shot_2020-12-29_at_08.21.43_qe7pem.png"
   }
 ]
+
+export const signupState = {
+    requesting: false,
+    errorOpen: false,
+    erro: ""
+  }
+export const locationsPayload = [
+    {
+      id: "c6028e0d-ef88-4693-ab49-f37669891724",
+      LocationName: "Kigali",
+      country: "Rwanda",
+      description: "The land of a thousand hills",
+      link: "https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/africa/downtown-kigali-rwanda.adapt.1900.1.jpg",
+    }
+  ]
+
+
+ 
+
+  export const locationState = {
+    pending: false,
+    locations: locationsPayload,
+    error: null
+  }
+
+
 
 export const userProfile = {
   address: "Kigali",
@@ -820,7 +846,34 @@ export const comfirmProps = {
     data: {}
   }
 }
-
+export const notificationPayload = {
+  "message": "user's Notifications",
+  "notifications": {
+      "count": 2,
+      "rows": [
+          {
+              "id": "e9880544-6493-4511-b6f1-bd91eecf8b43",
+              "title": "your user has made a Travel Request",
+              "message": "The user you are assigned to has made a travel request  ",
+              "travelId": "9b1e1ca6-2fc2-42bb-86c0-86a329703393",
+              "status": "not readed",
+              "createdAt": "2021-03-28T07:03:44.567Z",
+              "updatedAt": "2021-03-28T07:03:44.567Z",
+              "user_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          },
+          {
+              "id": "af772f27-e052-4445-8ed9-80ff8c71f802",
+              "title": "your user has made a Travel Request",
+              "message": "The user you are assigned to has made a travel request  ",
+              "travelId": "1a27b15c-4138-43ac-bb64-c0b4e2c919a0",
+              "status": "not readed",
+              "createdAt": "2021-03-28T07:02:57.589Z",
+              "updatedAt": "2021-03-28T07:02:57.589Z",
+              "user_id": "fb94de4d-47ff-4079-89e8-b0186c0a3be8"
+          }
+      ]
+  }
+}
 export const location= {
 
   id: "0880b2d1-662c-4782-8aed-252fdd0644c4",

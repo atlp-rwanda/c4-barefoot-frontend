@@ -30,7 +30,8 @@ export const resetNewPassword = (newPassword, query)=> dispatch =>{
     dispatch({
         type: LOADING
     });
-    return API.patch(`/user/reset-password${query}?lang=${lang}`, {
+    console.log(query);
+    return API.patch(`/user/reset-password${query}`, {
         password:newPassword.password,
         confirmPassword: newPassword.confirmPassword
     })

@@ -1,15 +1,14 @@
 import { combineReducers } from 'redux'
 import { NewPasswordReducer, ResetPasswordEmailReducer } from './resetPasswordEmail';
-import { fetchLocationsReducer } from './locationsReducer'
+import {loginReducer} from './loginReducer'
+import { signupRequestReducer } from './signupReducer'
+import {fetchLocationsReducer} from './locationsReducer'
 import { fetchAccommodationsReducer } from './accommodationsReducer'
-// import { fetchUserReducer } from "./usersReducer";
 import { logoutReducer } from './logoutReducer';
 import { fetchTravelReducer } from './travelRequestReducer';
 import { fetchSingleTravelReducer } from './singleTravelReducer'
 import { updateSingleTravelReducer } from "./updateTravelReducer";
 import { fetchUserProfileReducer, updateUserProfileReducer, changeUserPasswordeReducer } from './userProfileReducer'
-import { loginReducer } from './loginReducer'
-import { signupRequestReducer } from './signupReducer'
 import { CreateTravelRequestReducer } from './CreateTravelRequestReducer';
 import { ViewTravelRequestReducer } from './ViewTravelRequestReducer';
 import { UsersReducer } from './usersReducer'
@@ -19,6 +18,7 @@ import { permissionsReducer } from './permissionsReducer'
 import { bookAccommodationsReducer } from './bookAccommodationReducer'
 import { convertorReducer } from './convertorReducer'
 import {managerReducer} from './managersReducer'
+import {notificationReducer }from './notificationReducer'
 import createAccReducer from './createAccReducer';
 import createLocReducer from './createLocReducer';
 
@@ -41,6 +41,7 @@ const reducers = combineReducers({
   users: UsersReducer,
   roles: RolesReducer,
   permissions: permissionsReducer,
+  notifications:notificationReducer,
   createRoles,
   managerReducer,
   createTravelRequest: CreateTravelRequestReducer,

@@ -33,6 +33,7 @@ import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
 
+
 const Routes = () => {
     return (
       <Switch>
@@ -115,6 +116,7 @@ const Routes = () => {
           layout={DefaultLayout}
           path="/user/reset-password"
         />
+
         <RouteWithLayout
           component={Logout}
           exact
