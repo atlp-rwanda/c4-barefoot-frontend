@@ -10,9 +10,10 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import {clearBookSnackbar} from '../../redux/actions/bookAccommodationAction'
-import { Avatar, Box } from '@material-ui/core';
+import { Avatar, Box,Link } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MuiAlert from '@material-ui/lab/Alert';
+import { Redirect } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,6 +103,12 @@ const useStyles = makeStyles((theme) => ({
     width: '70%',
     marginTop: '5px'
   },
+  link:{
+    '&:hover':{
+        cursor:'pointer',
+        textDecoration:"none"
+    }
+},
   container2:{
     width:'80%',
     [theme.breakpoints.up("xs")]:{
@@ -169,6 +176,7 @@ const Book = (props)=> {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+ 
 
   setTimeout(() => { setLoading(false)}, 1000);
   return (
@@ -227,12 +235,14 @@ const Book = (props)=> {
                 </Snackbar>
                 <div className={classes.container2}>
                   <Typography className={classes.instructions}>You have Successfully Booked your Accommodation  <i class="fa fa-thumbs-up"></i></Typography>
-                  <Button
-                      color='primary'
-                      variant='contained'
-                  >
-                      Back To your Requestes
-                  </Button>
+                    <Button
+                        color='primary'
+                        variant='contained'
+                        href="/requester/view-travel-requests"
+                        className={classes.link}
+                    >
+                        Back To your Requestes
+                    </Button>
                 </div>
               </div>
             ) : (
