@@ -19,6 +19,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import RouteWithLayout from '../components/RouteWithLayout';
 import {  DefaultLayout, AuthorizedUserLayout, AdminLayout, ErrorLayout, RequesterLayout,ManagerLayout} from '../components/layouts';
 import Logout from '../components/views/Logout';
+import ChatRoom from '../components/Chat/ChatRoom';
 // import ManagerDashboard from '../components/sideBarDrawer/ManagerDashboard';
 import ManagerTravelDashboard from '../components/manageTravel/manageTravelDashboard'
 import ApprovedReports from '../components/manageTravel/ApprovedReports';
@@ -64,6 +65,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/userprofile"
+        />
+        <ProtectedRoute
+          component={ChatRoom}
+          exact
+          layout={AuthorizedUserLayout}
+          path="/chat"
         />
         {/* <RouteWithLayout
           component={ManagerDashboard}

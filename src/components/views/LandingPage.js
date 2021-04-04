@@ -6,6 +6,7 @@ import { Skeleton } from '@material-ui/lab'
 import { connect } from 'react-redux'
 import { getLocations } from '../../redux/actions/fetchLocationsAction'
 import { getAccommodations } from '../../redux/actions/fetchAccommodations'
+import VisitorsForm from '../Chat/Visitors/VisitorsForm';
 import { useTranslation } from 'react-i18next';
 import { getUsers } from '../../redux/actions/UsersAction'
 import { adminGetUsers} from '../../redux/actions/fetchUsersAction'
@@ -106,6 +107,7 @@ function Landing (props){
           ))}
            
         </Grid>
+        <VisitorsForm/>
       </Container>
     </React.Fragment>
 

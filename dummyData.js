@@ -116,8 +116,35 @@ export const accommodationsPayload = {
       }
   }
 
+  export const chattedUsers = [
+    {
+      id: 1,
+      first_name: 'first',
+      last_name: 'last',
+      profile_picture: 'image.png'
+    },
+    {
+      id: 2,
+      first_name: 'secont',
+      last_name: 'name',
+      profile_picture: 'image1.png'
+    }
+  ]
 
-
+  export const allUsers = [
+    {
+      id: 1,
+      first_name: 'first',
+      last_name: 'last',
+      profile_picture: 'image.png'
+    },
+    {
+      id: 2,
+      first_name: 'secont',
+      last_name: 'name',
+      profile_picture: 'image1.png'
+    }
+  ]
 export const allTravelPayload = [
   {
     travelRequestInfo: {
@@ -821,6 +848,35 @@ export const comfirmProps = {
   }
 }
 
+export const vList = [
+  'visitor1@email.com',
+  'visitor2@email.com'
+]
+
+export const messageList = [
+  {
+    id: 1,
+    sender: 'fh839h973jjfbvdy8i339',
+    receiver: 'fh839h973jjfbvdy8ijd',
+    message: 'Hi',
+    type: 'plain-text'
+  },
+  {
+    id: 1,
+    sender: 'fh839h973jjfbvdy8i33op',
+    receiver: 'fh839h973jjfbvdy8itet',
+    message: '/images/image.png',
+    type: 'image/jpeg'
+  }
+]
+
+export const supportReply = {
+  id: 1,
+  sender: 'fh839h973jjfbvdy8i33op',
+  receiver: 'fh839h973jjfbvdy8itet',
+  message: '/images/image.png',
+  type: 'image/jpeg'
+}
 export const location= {
 
   id: "0880b2d1-662c-4782-8aed-252fdd0644c4",

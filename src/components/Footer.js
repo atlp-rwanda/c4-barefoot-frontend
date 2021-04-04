@@ -39,6 +39,5 @@ function Footer (){
             <AppBar className={classes.stickToBottom} position='static'>{displayDesktop()}</AppBar>
          </React.Fragment>
      )
- 
 }
 export default Footer;

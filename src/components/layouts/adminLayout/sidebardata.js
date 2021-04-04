@@ -75,6 +75,13 @@ export const sideBarData = [
         link:"/admin/permissions",
         subs: [
         ]
+    },
+    {
+        title:"Chat",
+        icon:<RecentActorsIcon/>,
+        link:"/chat",
+        subs: [
+        ]
     }
 
 ]

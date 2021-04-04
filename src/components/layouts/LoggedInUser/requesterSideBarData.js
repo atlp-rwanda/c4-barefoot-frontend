@@ -87,7 +87,13 @@ export const managerSideBarData = [
                 link: "/managerTravel/done"
             },
         ]
-    }
+    },
+    {
+        title:"Chat",
+        icon:<DashboardIcon />,
+        link:"/chat",
+        subs: []
+    },
 
 ]
 

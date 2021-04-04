@@ -54,6 +54,12 @@ export const sideBarData = [
                 link:"/requester"
             }
         ] 
-    }
+    },
+    {
+        title:"Chat",
+        icon:<DashboardIcon />,
+        link:"/chat",
+        subs: []
+    },
 
 ]

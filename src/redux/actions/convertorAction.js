@@ -10,7 +10,6 @@ export const convertorAction = (money,from,to) => dispatch => {
       type: CONVERT_MONEY_SUCCESS,
       result:res.data
     })
-    console.log(res.data)
   })
   .catch(err => {
       dispatch({

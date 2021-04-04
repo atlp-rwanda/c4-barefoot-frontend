@@ -15,6 +15,7 @@ export const logoutAction = (authToken) => dispatch => {
 
     return axios.post(`${process.env.REACT_APP_BACKEND_LINK}/user/logout?lang=${lang}`).then(() => {
         localStorage.removeItem('barefootUserToken');
+        localStorage.removeItem('id')
         localStorage.removeItem('userRole');
         localStorage.removeItem('userProfile');
         localStorage.removeItem('userName');
