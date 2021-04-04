@@ -32,8 +32,7 @@ import userProfile from '../components/views/userProfile';
 import CreateTravelRequest from '../components/views/user/CreateTravelRequest';
 import CreateAccomodation from '../components/views/travelManager/CreateAccomodation';
 import CreateLocation from '../components/views/travelManager/CreateLocation';
-
-import AssignUsersToManagers from '../components/views/assignUsersToManagers';
+import AssignUsersToManagers from '../components/assignUsersToManagers/index';
 
 const Routes = () => {
     return (
@@ -97,6 +96,12 @@ const Routes = () => {
           exact
           layout={AuthorizedUserLayout}
           path="/managerTravel/done"
+        />
+        <ManagerRoute
+            component={AssignUsersToManagers}
+            exact
+            layout={ManagerLayout}
+            path="/assign-users-to-managers/"
         />
         
          <UnauthorizedRoute
@@ -220,12 +225,6 @@ const Routes = () => {
           path="/travelManager/locations/create"
         />
 
-        <RouteWithLayout
-            path="/assign-users-to-managers/"
-            exact
-            component= { AssignUsersToManagers }
-           layout={ManagerLayout}
-        />
         <Redirect to="/PageNotFound" />
       </Switch>
   );
